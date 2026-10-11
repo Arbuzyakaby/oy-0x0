@@ -474,7 +474,7 @@ export function createPro({ phone, scale, isRunning }) {
 
     // Citadel и антенны Claw светятся акцентом
     citadelGlow.emissive.copy(accentColor);
-    citadelGlow.emissiveIntensity = 0.25 + clamp01(cur.citadel) * 3.5;
+    citadelGlow.emissiveIntensity = 0.25 + clamp01(cur.citadel) * 6;
     if (parts.antenna) {
       const a = clamp01(cur.antenna);
       parts.antenna.emissive.copy(accentColor);
