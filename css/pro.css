@@ -39,11 +39,6 @@
 .site-nav a[aria-current="page"] { color: var(--fg); }
 
 /* Подколы */
-.jab {
-  margin-top: 22px; padding-left: 14px; border-left: 2px solid var(--accent-text);
-  font-size: 15px; font-weight: 600; color: var(--fg); max-width: 40ch;
-}
-.light .jab, .jab--light { color: var(--light-fg); border-left-color: var(--accent-strong); }
 
 /* Эксклюзив */
 .excl {

@@ -403,6 +403,16 @@ main, .site-footer { position: relative; z-index: 2; }
 .hl__play[data-playing="true"] .i-play, .hl__play[data-playing="false"] .i-pause { display: none; }
 .reduced .hl__play, html:not(.anim) .hl__play { display: none; }
 
+/* ---------- Подколы ---------- */
+
+.jab {
+  margin-top: 22px; padding-left: 14px; border-left: 2px solid var(--accent-text);
+  font-size: 15px; font-weight: 600; color: var(--fg); max-width: 42ch;
+}
+.light .jab { color: var(--light-fg); border-left-color: var(--accent-strong); }
+.pro-teaser--link { text-decoration: none; transition: border-color .3s, transform .3s var(--ease); }
+.pro-teaser--link:hover { border-color: var(--fg); transform: translateY(-2px); }
+
 /* ---------- Футер ---------- */
 
 .site-footer { background: var(--bg); border-top: 1px solid var(--line); padding: 40px 0 calc(40px + env(safe-area-inset-bottom)); }

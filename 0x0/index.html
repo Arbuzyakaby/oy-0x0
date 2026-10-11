@@ -108,15 +108,15 @@
   <canvas class="stage" id="stage" aria-hidden="true"></canvas>
 
   <header class="site-header" id="top">
-    <a class="brand" href="#hero" aria-label="OY 0X0 — в начало">
+    <a class="brand" href="/" aria-label="OY — на главную">
       <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
       <span class="brand__name">OY</span>
     </a>
-    <nav class="site-nav" aria-label="Разделы">
+    <nav class="site-nav" aria-label="Модели">
+      <a href="/0x0/" aria-current="page">0X0</a>
+      <a href="/pro/">0X0 Pro</a>
+      <a href="/compare/">Сравнить</a>
       <a href="#switches">Приватность</a>
-      <a href="#os">OY OS</a>
-      <a href="#signal">Фонарь</a>
-      <a href="#camera">Камеры</a>
       <a href="#specs">Характеристики</a>
     </nav>
     <div class="header-actions">
@@ -210,6 +210,7 @@
             <span class="ks-icon" data-ks-icon="3"><svg><use href="#i-location"/></svg></span>
           </div>
           <p class="note">В положении «выкл» модуль обесточен на&nbsp;уровне железа. Программно это не&nbsp;обойти.</p>
+          <p class="jab">«Режим полёта» — это просьба. Kill switch — это приказ.</p>
         </div>
       </div>
     </section>
@@ -598,7 +599,7 @@
           <article class="bento__card" data-reveal>
             <svg class="bento__ico" aria-hidden="true"><use href="#i-lock"/></svg>
             <h3>Шифрование по&nbsp;умолчанию</h3>
-            <p>Ничего не нужно включать: данные зашифрованы с&nbsp;самого начала.</p>
+            <p>Ничего не нужно включать: данные зашифрованы с&nbsp;самого начала. А&nbsp;не&nbsp;спрятано в&nbsp;«Настройки → Дополнительно → Расширенные → Экспериментальные».</p>
           </article>
           <article class="bento__card bento__card--wide" data-reveal>
             <svg class="bento__ico" aria-hidden="true"><use href="#i-finger"/></svg>
@@ -689,6 +690,7 @@
           <p class="eyebrow" data-reveal>Аккумулятор и зарядка</p>
           <h2 class="h2" id="battery-title"><span data-split>7000&nbsp;мАч.</span> <span class="accent-text" data-split>130&nbsp;Вт.</span></h2>
           <p class="lead" data-reveal>Кремний-углеродный (Si-C) аккумулятор позволил уместить 7000&nbsp;мАч в&nbsp;корпус толщиной 9&nbsp;мм. Проводная зарядка 130&nbsp;Вт — от&nbsp;0 до&nbsp;100&nbsp;% за&nbsp;25&nbsp;минут. Блок — в&nbsp;комплекте.</p>
+          <p class="jab" data-reveal>Зарядка в&nbsp;коробке. Мы проверили — она туда помещается.</p>
         </div>
         <div class="charge" role="img" aria-label="Анимация зарядки: от 0 до 100 процентов за 25 минут">
           <div class="charge__cell" aria-hidden="true">
@@ -934,15 +936,17 @@
               <tr><th scope="row">Аккумулятор</th><td>7000 мАч, кремний-углеродный (Si-C), несъёмный</td></tr>
               <tr><th scope="row">Зарядка</th><td>Проводная 130 Вт, 0–100 % за 25 минут. Беспроводной зарядки нет</td></tr>
               <tr><th scope="row">Связь</th><td>5G, eSIM + физическая SIM, Wi-Fi 6, ИК-порт. NFC нет</td></tr>
-              <tr><th scope="row">Биометрия</th><td>Сканер отпечатка в кнопке питания. Разблокировки по лицу нет</td></tr>
+              <tr><th scope="row">Биометрия</th><td>Сканер отпечатка в кнопке питания. Разблокировки по лицу нет: ваше лицо — не пароль. И не чей-то датасет</td></tr>
               <tr><th scope="row">Безопасность</th><td>Null Chip, шифрование по умолчанию, PIN под принуждением, 7 лет обновлений безопасности, разблокируемый и повторно блокируемый загрузчик</td></tr>
               <tr><th scope="row">Система</th><td>OY OS на базе AOSP, без Google Mobile Services, без телеметрии, без обязательного аккаунта; открытый код, воспроизводимые сборки</td></tr>
-              <tr><th scope="row">Функции OY OS</th><td>Песочница, OY Store с паспортом приватности, XPush Plus, OYPos, журнал доступа, разрешения на время, приблизительная геолокация, очистка метаданных фото, защита буфера обмена, отключение датчиков, клавиатура без доступа к сети, SOS сигнальным фонарём, зашифрованные резервные копии без облака</td></tr>
-              <tr><th scope="row">Звук</th><td>Стерео-динамики, разъём 3,5 мм, качественный вибромотор</td></tr>
+              <tr><th scope="row">Функции OY OS</th><td>OY OS 2 — обновлением (кроме функций Citadel). Песочница, OY Store с паспортом приватности, XPush Plus, OYPos, журнал доступа, разрешения на время, приблизительная геолокация, очистка метаданных фото, защита буфера обмена, отключение датчиков, клавиатура без доступа к сети, SOS сигнальным фонарём, зашифрованные резервные копии без облака</td></tr>
+              <tr><th scope="row">Звук</th><td>Стерео-динамики, разъём 3,5 мм — оказывается, он всё ещё помещается в телефон; качественный вибромотор</td></tr>
+              <tr><th scope="row">Разъём</th><td>USB-C. Без фирменных разъёмов, переходников за полцены телефона и «нового стандарта через два года»</td></tr>
               <tr><th scope="row">Защита</th><td>IPX7</td></tr>
               <tr><th scope="row">Корпус</th><td>Алюминиевая задняя панель и алюминиевая рамка; толщина 9 мм; вес 203 г</td></tr>
               <tr><th scope="row">Цвета</th><td>«Сигнальный Красный», «Арктический ледник»</td></tr>
               <tr><th scope="row">Комплект</th><td>Чехол, зарядный блок 130 Вт, кабель, документация, скрепка для SIM, купон на скидку 25 % на следующую покупку у OY, дизайн-книга OY OS</td></tr>
+              <tr><th scope="row">Обновления</th><td>7 лет обновлений безопасности. После них телефон не становится медленнее. Так тоже можно</td></tr>
               <tr><th scope="row">Гарантия</th><td>20 месяцев</td></tr>
               <tr><th scope="row">Продажи</th><td>Пока только в США. Выход — конец 2027 года</td></tr>
             </tbody>
@@ -973,7 +977,7 @@
         </div>
       </div>
       <div class="container final__pro">
-        <p class="pro-teaser" data-reveal><span class="mono">OY 0X0 Pro</span> <span class="pro-teaser__soon">Скоро.</span></p>
+        <a class="pro-teaser pro-teaser--link" href="/pro/" data-reveal><span class="mono">OY 0X0 Pro</span> <span class="pro-teaser__soon">Уже здесь →</span></a>
       </div>
     </section>
   </main>
@@ -986,7 +990,7 @@
       </div>
       <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
       <p class="footer__small mono">OY 0X0 · Конец 2027 · США</p>
-      <p class="footer__concept">Концепт. OY&nbsp;0X0 и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X0 и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>
 

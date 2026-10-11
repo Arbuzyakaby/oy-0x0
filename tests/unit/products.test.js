@@ -44,3 +44,14 @@ test('getPrice учитывает наценку за мрамор', () => {
   assert.equal(getPrice('pro', '10/256', 'marble'), null);
   assert.deepEqual(getPrice('0x0', '8/128', 'red'), { usd: 449, eur: 539 });
 });
+
+test('сравнение: цены совпадают с конфигурациями', async () => {
+  const { COMPARE } = await import('../../js/data/products.js');
+  const usd = COMPARE.find((r) => r[4] === 'price');
+  assert.equal(usd[2], `от $${PRODUCTS['0x0'].configs[0].usd}`);
+  assert.equal(usd[3], `от $${PRODUCTS.pro.configs[0].usd}`);
+  const eur = COMPARE.find((r) => r[1] === 'Европа — скоро');
+  assert.equal(eur[2], `от €${PRODUCTS['0x0'].configs[0].eur}`);
+  assert.equal(eur[3], `от €${PRODUCTS.pro.configs[0].eur}`);
+  for (const r of COMPARE) assert.ok(r.length >= 4 && r.slice(0, 4).every((x) => typeof x === 'string' && x.length));
+});

@@ -17,7 +17,7 @@ export const POSE_DEFAULTS = {
   float: 1, spin: 0,
 };
 
-export function createStage(canvas, createModel, { forceFallback = false } = {}) {
+export function createStage(canvas, createModel, { forceFallback = false, fitCanvas = false } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -121,7 +121,9 @@ export function createStage(canvas, createModel, { forceFallback = false } = {})
   }
 
   function resize() {
-    const w = window.innerWidth, h = window.innerHeight;
+    // fitCanvas: сцена в собственном canvas (витрина), иначе — на весь экран
+    const w = fitCanvas ? canvas.clientWidth || 1 : window.innerWidth;
+    const h = fitCanvas ? canvas.clientHeight || 1 : window.innerHeight;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
@@ -129,6 +131,7 @@ export function createStage(canvas, createModel, { forceFallback = false } = {})
     if (modelReady && !raf) { update(0); renderer.render(scene, camera); }
   }
   resize();
+  if (fitCanvas && 'ResizeObserver' in window) new ResizeObserver(() => resize()).observe(canvas);
 
   /* ---- Загрузка модели ---- */
   const ready = (async () => {
