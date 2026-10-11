@@ -156,7 +156,9 @@ index.html               витрина семейства
 compare/                 сравнение моделей
 404.html                 «не найдено», автономная, без JS
 og.jpg · og-pro.jpg      превью ссылок, 1200×630
+fonts/                   Onest и JetBrains Mono, переменные woff2, с лицензиями
 
+css/fonts.css            @font-face для шрифтов из fonts/
 css/core.css             токены, типографика, шапка, подвал, карусель
 css/0x0.css              страница 0X0 (Pro переиспользует компоненты)
 css/pro.css · home.css   Pro, витрина и сравнение
@@ -194,8 +196,8 @@ blender -b -P blender/preview_render.py -- models/oy0x0.glb preview   # прев
 Сайт телефона без Google сам тоже ничего не отдаёт Google:
 
 - никакой аналитики, трекеров, cookies и сторонних эмбедов;
-- внешние запросы только к `cdn.jsdelivr.net` (библиотеки) и `fonts.bunny.net` (шрифты);
-- Content Security Policy на каждой странице разрешает только эти домены;
+- внешние запросы только к `cdn.jsdelivr.net` (библиотеки), шрифты лежат на самом сайте;
+- Content Security Policy на каждой странице разрешает только этот домен;
 - в `localStorage` хранится только выбранный цвет корпуса.
 
 Откройте вкладку «Сеть» в DevTools и проверьте сами.
@@ -218,7 +220,7 @@ npm test
 
 ## Стек
 
-[Three.js](https://threejs.org/) 0.180 · [GSAP + ScrollTrigger](https://gsap.com/) 3.13 · [Lenis](https://lenis.darkroom.engineering/) 1.3 · [Blender](https://www.blender.org/) 5.2 · шрифты [Onest](https://fonts.bunny.net/family/onest) и [JetBrains Mono](https://fonts.bunny.net/family/jetbrains-mono) через Bunny Fonts
+[Three.js](https://threejs.org/) 0.180 · [GSAP + ScrollTrigger](https://gsap.com/) 3.13 · [Lenis](https://lenis.darkroom.engineering/) 1.3 · [Blender](https://www.blender.org/) 5.2 · шрифты [Onest](https://github.com/simpals/onest) и [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) (SIL OFL, на самом сайте)
 
 ---
 

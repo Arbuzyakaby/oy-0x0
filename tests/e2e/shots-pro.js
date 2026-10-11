@@ -1,7 +1,6 @@
 // Скриншоты ключевых сцен страницы Pro (для проверки глазами).
 // Запуск: Playwright MCP → browser_run_code_unsafe { filename: "tests/e2e/shots-pro.js" }
 async (page) => {
-  await page.context().route('**://fonts.bunny.net/**', (r) => r.abort());
   const W = 1440, H = 900;
   await page.setViewportSize({ width: W, height: H });
   const errs = [];
