@@ -606,5 +606,19 @@ async function boot() {
     gsap.from('.site-header', { yPercent: -100, opacity: 0, duration: 1, ease: 'expo.out', delay: 0.2 });
   }
   window.addEventListener('load', () => ScrollTrigger.refresh());
+
+  // Ссылка с якорем (#buy и т. п.): браузер прыгает к нему до того, как
+  // расставлены пины, поэтому прокручиваем ещё раз, когда разметка готова
+  let hashTarget = null;
+  try { hashTarget = location.hash.length > 1 ? document.querySelector(location.hash) : null; } catch { /* неверный якорь */ }
+  if (hashTarget) {
+    const go = () => {
+      // Lenis помнит высоту страницы до пинов — пересчитать, иначе цель обрежется
+      if (smooth.lenis) { smooth.lenis.resize(); smooth.lenis.scrollTo(hashTarget, { immediate: true, force: true }); }
+      else hashTarget.scrollIntoView();
+    };
+    requestAnimationFrame(go);
+    if (document.readyState !== 'complete') window.addEventListener('load', () => requestAnimationFrame(go), { once: true });
+  }
 }
 boot();

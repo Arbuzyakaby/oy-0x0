@@ -53,7 +53,14 @@ async (page) => {
         const st = ScrollTrigger.getAll().find((s) => s.trigger && s.trigger.id === id);
         if (!st) { mech[`${id}@${f}`] = 'нет триггера'; continue; }
         window.scrollTo(0, Math.round(st.start + f * (st.end - st.start)));
-        await wait(2600);
+        // Ждём, пока сцена догонит цель (под нагрузкой кадры редкие — фиксированной паузы мало)
+        await wait(400);
+        for (let t = 0; t < 60; t++) {
+          const { cur, target } = stage.debug;
+          const gap = Math.max(...Object.keys(target).map((k) => Math.abs(cur[k] - target[k])));
+          if (gap < 1e-6) break;
+          await wait(200);
+        }
         const p = stage.debug.parts;
         mech[`${id}@${f}`] = {
           shutter: p.shutter ? Math.round(p.shutter.position.x * 1e5) / 1e5 : null,
