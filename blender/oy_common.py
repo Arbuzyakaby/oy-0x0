@@ -233,6 +233,24 @@ class Builder:
         """Кольцо (труба) с отверстием."""
         return self.band(circle(rout, seg, cu, cv), circle(rin, seg, cu, cv), axis, a0, a1, mat)
 
+    def lathe(self, profile, cu, cv, mat, seg=64):
+        """Тело вращения вокруг оси, параллельной Y: profile — точки (радиус, y) снизу вверх."""
+        bm = self.bm
+        rings = []
+        for r, y in profile:
+            rings.append([bm.verts.new(Vector((cu + r * math.cos(2 * math.pi * i / seg), y,
+                                                cv + r * math.sin(2 * math.pi * i / seg))))
+                          for i in range(seg)])
+        faces = []
+        for a, b2 in zip(rings, rings[1:]):
+            for i in range(seg):
+                j = (i + 1) % seg
+                faces.append(bm.faces.new((a[i], b2[i], b2[j], a[j])))
+        idx = self.mi(mat)
+        for f in faces:
+            f.material_index = idx
+        return faces
+
     def dome(self, r, h, cu, cv, base, mat, seg=48, rings=8):
         """Сферический купол-линза вдоль +Y."""
         bm = self.bm

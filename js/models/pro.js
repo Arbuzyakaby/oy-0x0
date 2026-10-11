@@ -9,9 +9,9 @@ import * as THREE from 'three';
 import { MM, SIGNAL_COLORS, roundRect, drawScreen, rrShape, slab, boxG, cylZ, labelTexture, drawChip, makeBeam } from './oy0x0.js';
 
 export const PRO_COLORS = {
-  emerald: { body: 0x1E5A46, frame: 0xA7AEAC, glass: 0xDCEBE4, metal: 0.7, rough: 0.4, marble: false, accent: '#5FD3A5' },
-  chernit: { body: 0x18181B, frame: 0x6A6C72, glass: 0xD9DBE0, metal: 0.65, rough: 0.42, marble: false, accent: '#C9A86A' },
-  marble: { body: 0xFFFFFF, frame: 0xD8CDB8, glass: 0xF2ECE1, metal: 0.0, rough: 0.24, marble: true, accent: '#C8A35A' },
+  emerald: { body: 0x1B4638, frame: 0x22553F, rim: 0xD4C6A4, glass: 0xE6F0EB, metal: 0.55, rough: 0.52, marble: false, accent: '#5FD3A5' },
+  chernit: { body: 0x141416, frame: 0x2A2B2F, rim: 0x6B6D73, glass: 0xE2E3E6, metal: 0.5, rough: 0.5, marble: false, accent: '#C9A86A' },
+  marble: { body: 0xFFFFFF, frame: 0xCFC3AC, rim: 0xDCC28E, glass: 0xF4EFE6, metal: 0.0, rough: 0.2, marble: true, accent: '#C8A35A' },
 };
 
 const SWITCH_TRAVEL = 0.0024;   // м, ход ползунка
@@ -74,25 +74,25 @@ function marbleTexture() {
   // главные серые прожилки: широкий размытый след + тонкая линия
   for (let i = 0; i < 5; i++) {
     const [x, y, a] = start();
-    const pts = vein(x, y, a, 1600 + Math.random() * 1400, 14 + Math.random() * 10, '#9C968B', 0.18, 6);
+    const pts = vein(x, y, a, 1600 + Math.random() * 1400, 14 + Math.random() * 10, '#8E887C', 0.32, 6);
     const [x2, y2] = pts[0];
-    vein(x2, y2, a, 1600 + Math.random() * 1200, 2.2, '#7F796F', 0.55, 0.6);
+    vein(x2, y2, a, 1600 + Math.random() * 1200, 2.2, '#6F695F', 0.85, 0.6);
     // ответвления
     for (let k = 0; k < 4; k++) {
       const p = pts[Math.floor(Math.random() * pts.length)];
-      vein(p[0], p[1], a + (Math.random() - 0.5) * 1.6, 300 + Math.random() * 500, 1.2, '#8E887D', 0.45, 0.4);
+      vein(p[0], p[1], a + (Math.random() - 0.5) * 1.6, 300 + Math.random() * 500, 1.2, '#7E786D', 0.7, 0.4);
     }
   }
   // золотистые прожилки
   for (let i = 0; i < 3; i++) {
     const [x, y, a] = start();
-    vein(x, y, a, 1200 + Math.random() * 1200, 8, '#C49A55', 0.16, 4);
-    vein(x, y, a, 1200 + Math.random() * 1000, 1.6, '#B48A45', 0.6, 0.4);
+    vein(x, y, a, 1200 + Math.random() * 1200, 8, '#C49A55', 0.3, 4);
+    vein(x, y, a, 1200 + Math.random() * 1000, 1.6, '#A87D38', 0.9, 0.4);
   }
   // тонкая сетка
   for (let i = 0; i < 26; i++) {
     const [x, y, a] = start();
-    vein(x, y + Math.random() * H * 0.5, a + (Math.random() - 0.5), 200 + Math.random() * 700, 0.8, '#A39D92', 0.35, 0);
+    vein(x, y + Math.random() * H * 0.5, a + (Math.random() - 0.5), 200 + Math.random() * 700, 0.8, '#968F83', 0.55, 0);
   }
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
@@ -334,10 +334,12 @@ export function createPro({ phone, scale, isRunning }) {
   // Матовое стекло граней; на слабых устройствах — обычная полупрозрачность
   const lowEnd = (navigator.hardwareConcurrency || 8) <= 4 || matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 400;
   const glassMat = new THREE.MeshPhysicalMaterial({
-    name: 'FrameGlass', color: PRO_COLORS.emerald.glass, metalness: 0, roughness: 0.45,
-    transmission: lowEnd ? 0 : 1, thickness: 0.012, ior: 1.5,
-    transparent: lowEnd, opacity: lowEnd ? 0.62 : 1,
-    clearcoat: 0.6, clearcoatRoughness: 0.3,
+    name: 'FrameGlass', color: PRO_COLORS.emerald.glass, metalness: 0, roughness: 0.42,
+    transmission: lowEnd ? 0 : 1, thickness: 0.03, ior: 1.5,
+    attenuationColor: new THREE.Color(PRO_COLORS.emerald.glass), attenuationDistance: 0.5,
+    specularIntensity: 1, envMapIntensity: 1.1,
+    transparent: lowEnd, opacity: lowEnd ? 0.5 : 1,
+    clearcoat: 1, clearcoatRoughness: 0.12,
   });
   const marble = marbleTexture();
   const accentColor = new THREE.Color(PRO_COLORS.emerald.accent);
@@ -345,12 +347,12 @@ export function createPro({ phone, scale, isRunning }) {
 
   const parts = {
     switches: [], switchBase: [], indicatorMats: [],
-    body: null, frame: null, antenna: null,
+    body: null, frame: null, rim: null, antenna: null,
     signalMat: null,
     layers: [], internals: [],
   };
 
-  const colorTarget = { body: new THREE.Color(), frame: new THREE.Color(), glass: new THREE.Color(), metal: 0.7, rough: 0.4 };
+  const colorTarget = { body: new THREE.Color(), frame: new THREE.Color(), rim: new THREE.Color(), glass: new THREE.Color(), metal: 0.7, rough: 0.4 };
   const signalTarget = new THREE.Color(0xffffff);
   const signalCur = new THREE.Color(0xffffff);
   const indicatorOn = new THREE.Color(0xFF2D2D);
@@ -389,6 +391,10 @@ export function createPro({ phone, scale, isRunning }) {
     });
     parts.body = byName.Body || null;
     parts.frame = byName.Frame || null;
+    parts.rim = byName.LensRim || null;
+    if (parts.rim) { parts.rim.metalness = 1; parts.rim.roughness = 0.14; parts.rim.envMapIntensity = 1.25; }
+    if (parts.body) parts.body.envMapIntensity = 0.85;
+    if (parts.frame) { parts.frame.metalness = 0.9; parts.frame.roughness = 0.28; }
     parts.antenna = byName.Antenna || null;
     if (parts.antenna) { parts.antenna.emissive = new THREE.Color(0x000000); }
     parts.signalMat = byName.SignalLightGlow || null;
@@ -407,7 +413,11 @@ export function createPro({ phone, scale, isRunning }) {
       if ('clearcoat' in m) m.clearcoat = 0;
     }
     if (byName.LensRing) byName.LensRing.envMapIntensity = 0.8;
-    if (byName.CamPlate) { byName.CamPlate.envMapIntensity = 0.55; byName.CamPlate.roughness = 0.06; }
+    if (byName.CamPlate) {
+      const m = byName.CamPlate;   // чёрное стекло острова: глубокий чёрный с чёткими отражениями
+      m.color.set(0x020203); m.metalness = 0; m.roughness = 0.04; m.envMapIntensity = 1.4;
+      if ('clearcoat' in m) { m.clearcoat = 1; m.clearcoatRoughness = 0.03; }
+    }
 
     for (let i = 1; i <= 4; i++) {
       const sw = root.getObjectByName(`Switch_${i}`);
@@ -435,6 +445,7 @@ export function createPro({ phone, scale, isRunning }) {
     const c = PRO_COLORS[name] || PRO_COLORS.emerald;
     colorTarget.body.setHex(c.body);
     colorTarget.frame.setHex(c.frame);
+    colorTarget.rim.setHex(c.rim);
     colorTarget.glass.setHex(c.glass);
     colorTarget.metal = c.metal;
     colorTarget.rough = c.rough;
@@ -458,7 +469,9 @@ export function createPro({ phone, scale, isRunning }) {
       b.roughness += (colorTarget.rough - b.roughness) * k;
     }
     if (parts.frame) parts.frame.color.lerp(colorTarget.frame, k);
+    if (parts.rim) parts.rim.color.lerp(colorTarget.rim, k);
     glassMat.color.lerp(colorTarget.glass, k);
+    glassMat.attenuationColor.lerp(colorTarget.glass, k);
     signalCur.lerp(signalTarget, k);
   }
   function applyColorsInstant() { stepColors(1); }

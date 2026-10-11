@@ -98,7 +98,7 @@ js/models/oy0x0.js    3D-модель 0X0: материалы, механика,
 js/models/pro.js      3D-модель Pro: матовое стекло, процедурный мрамор, Citadel, антенны Claw
 js/data/products.js   цены, цвета и сравнение моделей — единственный источник
 js/pages/             хореография страниц: base.js (0X0), pro.js, home.js, compare.js
-models/               oy0x0.glb (~16 тыс. треугольников) и oy0x0-pro.glb (~13 тыс.)
+models/               oy0x0.glb (~16 тыс. треугольников) и oy0x0-pro.glb (~22 тыс.)
 blender/              скрипты сборки и превью модели
 tests/                юнит-тесты (npm test) и регрессия страницы 0X0
 docs/                 скриншоты, спецификации и планы

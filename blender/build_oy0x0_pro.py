@@ -67,13 +67,14 @@ ANTENNA_Z = (62.0, 54.0, -54.0, -62.0)
 
 reset_scene()
 
-make_mat("Body", "#1E5A46", metallic=0.7, rough=0.4)
-make_mat("Frame", "#A7AEAC", metallic=0.9, rough=0.3)            # внутренняя алюминиевая рамка
+make_mat("Body", "#1C4A3B", metallic=0.55, rough=0.55)
+make_mat("Frame", "#1C4A3B", metallic=0.9, rough=0.28)           # внутренняя алюминиевая рамка, в цвет корпуса
 make_mat("FrameGlass", "#E8EEEC", rough=0.35, transmission=1.0)  # матовое стекло граней
 make_mat("Antenna", "#2A2C2F", rough=0.5)
 make_mat("CamPlate", "#050506", rough=0.05, coat=1.0)            # чёрное стекло острова
 make_mat("Lens", "#020306", rough=0.02, coat=1.0)
 make_mat("LensRing", "#2B2D31", metallic=1.0, rough=0.22)
+make_mat("LensRim", "#C9C2B2", metallic=1.0, rough=0.12)       # полированный обод объектива
 make_mat("LensInner", "#0B1222", metallic=0.4, rough=0.08, coat=1.0)
 make_mat("Etch", "#4A4C50", rough=0.7)
 make_mat("Switch", "#2A2B2E", metallic=0.8, rough=0.35)
@@ -140,20 +141,43 @@ b = Builder("CamPlate", ["CamPlate"])
 b.prism(rounded_poly(corners, radii, seg=10), "Y", BACK - 0.05, PL_TOP, "CamPlate", bevel_end=0.35, seg=3)
 b.build(parent=root)
 
-b = Builder("CameraModules", ["LensRing", "Lens", "LensInner"])
+def rim_profile(r_out, r_in, base, top):
+    """Приподнятый полированный обод объектива: скруглённая внешняя кромка, плоский верх, скос внутрь."""
+    pts = [(r_out, base), (r_out, top - 0.35)]
+    for k in range(1, 7):
+        a = math.radians(90 * k / 6)
+        pts.append((r_out - 0.35 + 0.35 * math.cos(a), top - 0.35 + 0.35 * math.sin(a)))
+    pts.append((r_in + 0.2, top))
+    for k in range(1, 5):
+        a = math.radians(90 + 90 * k / 4)
+        pts.append((r_in + 0.2 + 0.2 * math.cos(a), top - 0.2 + 0.2 * math.sin(a)))
+    pts.append((r_in, top - 0.75))
+    return pts
+
+
+RIM_TOP = PL_TOP + 0.75          # обод выступает над стеклом пластины
+GLASS_Y = RIM_TOP - 0.45         # стекло объектива утоплено в обод
+b = Builder("CameraModules", ["LensRim", "Dark", "LensRing", "Lens", "LensInner"])
 for cz in (MAIN_Z, WIDE_Z):
-    b.tube(LENS_R, LENS_R + 0.35, "Y", CAM_X, cz, PL_TOP - 0.02, PL_TOP + 0.015, "LensRing", seg=72)
-    b.dome(LENS_R, 0.07, CAM_X, cz, PL_TOP - 0.01, "Lens", seg=72, rings=6)
-    b.dome(2.6, 0.05, CAM_X, cz, PL_TOP + 0.05, "LensInner", seg=48, rings=4)
-    b.tube(2.6, 2.82, "Y", CAM_X, cz, PL_TOP + 0.04, PL_TOP + 0.07, "LensRing", seg=48)
+    b.lathe(rim_profile(LENS_R + 0.55, LENS_R - 0.25, PL_TOP - 0.05, RIM_TOP), CAM_X, cz, "LensRim", seg=96)
+    b.prism(circle(LENS_R - 0.2, 96, CAM_X, cz), "Y", PL_TOP - 0.05, GLASS_Y - 0.12, "Dark")
+    b.tube(LENS_R - 0.95, LENS_R - 0.25, "Y", CAM_X, cz, GLASS_Y - 0.14, GLASS_Y - 0.02, "LensRing", seg=96)
+    b.dome(LENS_R - 0.95, 0.12, CAM_X, cz, GLASS_Y - 0.06, "Lens", seg=96, rings=8)
+    for rr, dy in ((3.6, 0.03), (2.2, 0.09)):     # внутренние элементы объектива
+        b.tube(rr - 0.18, rr, "Y", CAM_X, cz, GLASS_Y + dy - 0.03, GLASS_Y + dy, "LensRing", seg=72)
+    b.dome(1.5, 0.05, CAM_X, cz, GLASS_Y + 0.08, "LensInner", seg=48, rings=4)
 b.build(parent=root)
 
-b = Builder("Periscope", ["LensRing", "Lens", "LensInner"])
-b.band(rrect(PERI_S, PERI_S, 1.8, seg=6, cx=PERI_X, cy=PERI_Z),
-       rrect(PERI_S - 0.8, PERI_S - 0.8, 1.4, seg=6, cx=PERI_X, cy=PERI_Z),
-       "Y", PL_TOP - 0.02, PL_TOP + 0.015, "LensRing")
-b.prism(rrect(PERI_S - 0.8, PERI_S - 0.8, 1.4, seg=6, cx=PERI_X, cy=PERI_Z), "Y", PL_TOP - 0.02, PL_TOP + 0.01, "Lens")
-b.prism(rrect(3.4, 3.4, 0.7, seg=4, cx=PERI_X, cy=PERI_Z), "Y", PL_TOP + 0.01, PL_TOP + 0.03, "LensInner")
+b = Builder("Periscope", ["LensRim", "Dark", "Lens", "LensInner", "LensRing"])
+PS = PERI_S
+b.band(rrect(PS + 0.6, PS + 0.6, 2.2, seg=8, cx=PERI_X, cy=PERI_Z),
+       rrect(PS - 0.6, PS - 0.6, 1.6, seg=8, cx=PERI_X, cy=PERI_Z),
+       "Y", PL_TOP - 0.05, RIM_TOP - 0.15, "LensRim")
+b.prism(rrect(PS - 0.6, PS - 0.6, 1.6, seg=8, cx=PERI_X, cy=PERI_Z), "Y", PL_TOP - 0.05, GLASS_Y - 0.1, "Dark")
+b.prism(rrect(PS - 1.2, PS - 1.2, 1.3, seg=8, cx=PERI_X, cy=PERI_Z), "Y", GLASS_Y - 0.1, GLASS_Y - 0.02, "Lens")
+b.band(rrect(4.6, 4.6, 0.9, seg=6, cx=PERI_X, cy=PERI_Z), rrect(4.2, 4.2, 0.7, seg=6, cx=PERI_X, cy=PERI_Z),
+       "Y", GLASS_Y - 0.02, GLASS_Y + 0.02, "LensRing")
+b.prism(rrect(3.2, 3.2, 0.6, seg=6, cx=PERI_X, cy=PERI_Z), "Y", GLASS_Y - 0.02, GLASS_Y + 0.03, "LensInner")
 b.build(parent=root)
 
 b = Builder("EngraveX", ["Etch"])
@@ -161,9 +185,9 @@ for ang in (45, -45):
     b.box(CAM_X, PL_TOP + 0.004, X_Z, 4.4, 0.03, 0.55, "Etch", rot_y=math.radians(ang))
 b.build(parent=root)
 
-b = Builder("Flash", ["Flash", "LensRing"])
-b.prism(circle(1.3, 32, FLASH_X, PERI_Z), "Y", PL_TOP - 0.02, PL_TOP + 0.04, "Flash")
-b.tube(1.3, 1.6, "Y", FLASH_X, PERI_Z, PL_TOP - 0.02, PL_TOP + 0.03, "LensRing", seg=32)
+b = Builder("Flash", ["Flash", "LensRim"])
+b.prism(circle(1.3, 32, FLASH_X, PERI_Z), "Y", PL_TOP - 0.02, PL_TOP + 0.12, "Flash")
+b.tube(1.3, 1.75, "Y", FLASH_X, PERI_Z, PL_TOP - 0.02, PL_TOP + 0.2, "LensRim", seg=32)
 b.build(parent=root)
 
 # ----------------------------------------------------------------------------
