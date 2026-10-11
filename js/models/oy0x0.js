@@ -1,12 +1,10 @@
 /* =========================================================================
-   OY 0X0 — 3D-сцена (Three.js)
-   Одна модель на fixed-canvas. Внешний код задаёт целевое состояние (поза,
-   шторка, ползунки, фонарь, экран), сцена плавно догоняет его каждый кадр.
+   OY 0X0 — описание 3D-модели: материалы, механика (шторка, ползунки,
+   фонарь, экран, разлёт по слоям), текстура экрана, луч фонаря и
+   процедурная резервная модель. Сцена (js/core/stage.js) о модели не знает.
    ========================================================================= */
 
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 export const BODY_COLORS = {
   red: {
@@ -23,20 +21,10 @@ export const BODY_COLORS = {
 
 const SIGNAL_COLORS = { white: 0xFFFFFF, red: 0xFF2A2A };
 
-const MODEL_SCALE = 10;           // модель в метрах -> 1.46 единицы по высоте
 const SHUTTER_TRAVEL = 0.023;     // м, ход шторки по X (см. blender/build_oy0x0.py)
 const SWITCH_TRAVEL = 0.0024;     // м, ход ползунка
 const SIGNAL_Y = 0.0734;          // м, верхняя грань
 
-export const DEFAULT_STATE = {
-  x: 0, y: 0, fx: 0, fy: 0, fz: 0,
-  rx: 0, ry: 0, rz: 0, s: 1, dist: 5.4,
-  shutter: 0, sw1: 1, sw2: 1, sw3: 1,
-  signal: 0, screen: 1, float: 1,
-  explode: 0, spin: 0,
-};
-
-// Разлёт по слоям (м, вдоль оси Z модели: + к экрану, − к спинке)
 const LAYER_OFFSET = { glass: 0.05, screen: 0.028, frame: 0, board: -0.024, battery: -0.047, back: -0.072, shutter: -0.094 };
 const LAYER_BY_NAME = {
   Glass: 'glass', FrontCamera: 'glass', Screen: 'screen',
@@ -422,42 +410,12 @@ function makeBeam() {
   return { beam, glow, beamMat: mat };
 }
 
-/* ---------- Сцена ---------- */
+/* ---------- Описание модели для сцены ---------- */
 
-export function createStage(canvas, { forceFallback = false } = {}) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
-  renderer.setClearColor(0x000000, 0);
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(28, 1, 0.05, 100);
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const roomEnv = new RoomEnvironment();
-  scene.environment = pmrem.fromScene(roomEnv, 0.04).texture;
-  roomEnv.dispose?.();
-  pmrem.dispose();
-  scene.environmentIntensity = 0.95;
-
-  const key = new THREE.DirectionalLight(0xffffff, 2.2);
-  key.position.set(3, 4, 5);
-  const rim = new THREE.DirectionalLight(0xffffff, 1.8);
-  rim.position.set(-5, 2.5, -4);
-  const fill = new THREE.DirectionalLight(0xffffff, 0.5);
-  fill.position.set(-2, -3, 3);
-  scene.add(key, rim, fill);
-
-  const phone = new THREE.Group();
-  const modelRoot = new THREE.Group();
-  modelRoot.scale.setScalar(MODEL_SCALE);
-  phone.add(modelRoot);
-  scene.add(phone);
-
+export function createOY0X0({ phone, scale, isRunning }) {
   const { beam, glow, beamMat } = makeBeam();
-  beam.position.set(0, SIGNAL_Y * MODEL_SCALE + 0.004, 0);
-  glow.position.set(0, SIGNAL_Y * MODEL_SCALE + 0.01, 0);
+  beam.position.set(0, SIGNAL_Y * scale + 0.004, 0);
+  glow.position.set(0, SIGNAL_Y * scale + 0.01, 0);
   phone.add(beam, glow);
 
   // Текстуры экрана
@@ -494,12 +452,6 @@ export function createStage(canvas, { forceFallback = false } = {}) {
     layers: [], internals: [],
   };
 
-  // Состояние: target задаёт скролл, cur догоняет его
-  const target = { ...DEFAULT_STATE };
-  const cur = { ...DEFAULT_STATE };
-  const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
-  let reduced = false;
-
   const colorTarget = { body: new THREE.Color(), frame: new THREE.Color(), shutter: new THREE.Color(), bodyMetal: 0.7, bodyRough: 0.4, frameMetal: 0.95, frameRough: 0.2 };
   const signalTarget = new THREE.Color(0xffffff);
   const signalCur = new THREE.Color(0xffffff);
@@ -528,9 +480,8 @@ export function createStage(canvas, { forceFallback = false } = {}) {
     }
   }
 
-  function setupModel(root) {
+  function setup(root) {
     setupLayers(root);
-    modelRoot.add(root);
     const byName = {};
     root.traverse((o) => {
       if (!o.isMesh) return;
@@ -617,38 +568,8 @@ export function createStage(canvas, { forceFallback = false } = {}) {
   }
   function applyColorsInstant() { stepColors(1); }
 
-  /* ---- Применение состояния ---- */
-  const focus = new THREE.Vector3();
-  const clock = new THREE.Clock();
-  const tanHalf = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-
-  function update(dt) {
-    const k = reduced ? 1 : 1 - Math.exp(-dt * 5.5);
-    for (const key in target) cur[key] += (target[key] - cur[key]) * k;
-    const pk = 1 - Math.exp(-dt * 3);
-    pointer.x += (pointer.tx - pointer.x) * pk;
-    pointer.y += (pointer.ty - pointer.y) * pk;
+  function update(cur, dt, { reduced }) {
     stepColors(reduced ? 1 : 1 - Math.exp(-dt * 6));
-
-    const t = clock.elapsedTime;
-    const fl = reduced ? 0 : Math.max(0, Math.min(1, cur.float));
-    const idleY = Math.sin(t * 0.5) * 0.1 * fl;
-    const idleX = Math.sin(t * 0.37) * 0.035 * fl;
-    const bob = Math.sin(t * 0.8) * 0.018 * fl;
-
-    phone.rotation.set(
-      cur.rx + idleX + pointer.y * 0.1 * fl,
-      cur.ry + cur.spin + idleY + pointer.x * 0.22 * fl,
-      cur.rz,
-    );
-    phone.scale.setScalar(cur.s);
-
-    camera.position.set(0, 0, cur.dist);
-    camera.lookAt(0, 0, 0);
-    const halfH = tanHalf * cur.dist;
-    const halfW = halfH * camera.aspect;
-    focus.set(cur.fx, cur.fy, cur.fz).applyEuler(phone.rotation).multiplyScalar(cur.s);
-    phone.position.set(cur.x * halfW - focus.x, cur.y * halfH - focus.y + bob, -focus.z);
 
     // Разлёт по слоям
     const ex = clamp01(cur.explode);
@@ -692,95 +613,26 @@ export function createStage(canvas, { forceFallback = false } = {}) {
     screenMat.emissiveIntensity = mode === 'night' ? 0.35 + scr : 0.15 + scr * 0.9;
   }
 
-  /* ---- Цикл рендера ---- */
-  let raf = 0;
-  let last = 0;
-  let wantActive = true;
-  let modelReady = false;
-
-  function frame(now) {
-    raf = requestAnimationFrame(frame);
-    const dt = Math.min((now - last) / 1000, 0.05);
-    last = now;
-    update(dt);
-    renderer.render(scene, camera);
-  }
-
-  function start() {
-    if (raf || !modelReady) return;
-    snap();
-    last = performance.now();
-    raf = requestAnimationFrame(frame);
-  }
-  function stop() {
-    if (raf) cancelAnimationFrame(raf);
-    raf = 0;
-  }
-  function snap() {
-    Object.assign(cur, target);
-    applyColorsInstant();
-  }
-
-  function resize() {
-    const w = window.innerWidth, h = window.innerHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    if (modelReady && !raf) { update(0); renderer.render(scene, camera); }
-  }
-  resize();
-
-  /* ---- Загрузка модели ---- */
-  const ready = (async () => {
-    let fallback = forceFallback;
-    if (!fallback) {
-      try {
-        const loader = new GLTFLoader();
-        const gltf = await Promise.race([
-          loader.loadAsync('models/oy0x0.glb'),
-          new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 15000)),
-        ]);
-        setupModel(gltf.scene);
-      } catch (err) {
-        console.info('[OY 0X0] GLB недоступен, используется процедурная модель:', err?.message || err);
-        fallback = true;
-      }
-    }
-    if (fallback) setupModel(buildFallbackModel());
-    modelReady = true;
-    snap();
-    update(0);
-    renderer.render(scene, camera);
-    if (wantActive) start();
-    return { fallback };
-  })();
-
   return {
-    ready,
-    renderer,
-    debug: { cur, target, parts },
-    setTarget(values) {
-      for (const k in values) if (k in target && Number.isFinite(values[k])) target[k] = values[k];
+    url: '/models/oy0x0.glb',
+    state: { shutter: 0, sw1: 1, sw2: 1, sw3: 1, signal: 0, screen: 1, explode: 0 },
+    parts,
+    setup,
+    buildFallback: buildFallbackModel,
+    update,
+    snap: applyColorsInstant,
+    api: {
+      setBodyColor(name, instant = false) {
+        setBodyTargets(name);
+        redrawScreen((BODY_COLORS[name] || BODY_COLORS.red).accent);
+        if (instant || !isRunning()) applyColorsInstant();
+      },
+      setSignalColor(name, instant = false) {
+        signalTarget.setHex(SIGNAL_COLORS[name] || SIGNAL_COLORS.white);
+        if (instant || !isRunning()) signalCur.copy(signalTarget);
+      },
+      redrawScreen,
     },
-    snap,
-    setPointer(x, y) { pointer.tx = x; pointer.ty = y; },
-    setBodyColor(name, instant = false) {
-      setBodyTargets(name);
-      redrawScreen((BODY_COLORS[name] || BODY_COLORS.red).accent);
-      if (instant || !raf) applyColorsInstant();
-    },
-    setSignalColor(name, instant = false) {
-      signalTarget.setHex(SIGNAL_COLORS[name] || SIGNAL_COLORS.white);
-      if (instant || !raf) signalCur.copy(signalTarget);
-    },
-    setActive(v) {
-      wantActive = v;
-      if (v) start(); else stop();
-    },
-    setReduced(v) { reduced = v; },
-    redrawScreen,
-    resize,
   };
 }
 

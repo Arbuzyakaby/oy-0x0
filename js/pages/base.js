@@ -10,7 +10,8 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { createStage, BODY_COLORS } from '../scene.js';
+import { createStage } from '../core/stage.js';
+import { createOY0X0, BODY_COLORS } from '../models/oy0x0.js';
 import { createKeys } from '../core/keys.js';
 import { PRODUCTS, getConfig } from '../data/products.js';
 import { $, $$, clamp01, store, createToast, syncRadio, initRadioGroup, bindToggles, bindStubs } from '../core/ui.js';
@@ -38,7 +39,7 @@ const toast = createToast($('#toast'), gsap);
 const canvas = $('#stage');
 let stage = null;
 try {
-  stage = createStage(canvas, { forceFallback: params.has('fallback') });
+  stage = createStage(canvas, createOY0X0, { forceFallback: params.has('fallback') });
 } catch (err) {
   console.warn('[OY 0X0] WebGL недоступен, 3D отключено.', err);
   canvas.style.display = 'none';
