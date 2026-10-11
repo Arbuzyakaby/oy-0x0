@@ -1,0 +1,9 @@
+{
+  "name": "oy0x0-site",
+  "private": true,
+  "type": "module",
+  "description": "Промо-сайт OY 0X0. Сборщик не нужен; package.json только для тестов.",
+  "scripts": {
+    "test": "node --test \"tests/unit/**/*.test.js\""
+  }
+}
