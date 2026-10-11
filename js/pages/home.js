@@ -1,5 +1,5 @@
 /* =========================================================================
-   OY — витрина семейства: два телефона в 3D, выбор, мини-сравнение.
+   OY — витрина семейства: три телефона в 3D, выбор, мини-сравнение.
    ========================================================================= */
 
 import { gsap } from 'gsap';
@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { createStage } from '../core/stage.js';
 import { createOY0X0 } from '../models/oy0x0.js';
+import { createOY0X1 } from '../models/oy0x1.js';
 import { createPro } from '../models/pro.js';
 import { COMPARE } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
@@ -30,19 +31,21 @@ const PI = Math.PI;
 
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
-/* ---------- Два телефона ---------- */
+/* ---------- Три телефона ---------- */
 
 const POSES = {
   '0x0': { rest: { x: 0, y: 0.04, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: -PI + 0.55, rz: 0.05, dist: 3.6, float: 1, screen: 1 }, near: { dist: 3.15, ry: -PI + 0.3 } },
+  '0x1': { rest: { x: 0, y: 0.04, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: -PI + 0.35, rz: 0, dist: 3.95, float: 1, screen: 1 }, near: { dist: 3.45, ry: -PI + 0.15 } },
   pro: { rest: { x: 0, y: 0.04, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: -PI - 0.55, rz: -0.05, dist: 3.7, float: 1, screen: 1 }, near: { dist: 3.25, ry: -PI - 0.3 } },
 };
+const MODELS = { '0x0': [createOY0X0, 'red'], '0x1': [createOY0X1, 'violet'], pro: [createPro, 'emerald'] };
 const stages = [];
 $$('.duo__item').forEach((item) => {
   const id = item.dataset.model;
   const canvas = $('.duo__canvas', item);
   let stage = null;
   try {
-    stage = createStage(canvas, id === 'pro' ? createPro : createOY0X0, { forceFallback: params.has('fallback'), fitCanvas: true });
+    stage = createStage(canvas, MODELS[id][0], { forceFallback: params.has('fallback'), fitCanvas: true });
   } catch (err) {
     console.warn('[OY] WebGL недоступен, 3D отключено.', err);
     canvas.style.visibility = 'hidden';
@@ -50,7 +53,7 @@ $$('.duo__item').forEach((item) => {
   }
   const pose = POSES[id];
   stage.setTarget(pose.rest);
-  stage.setBodyColor(id === 'pro' ? 'emerald' : 'red', true);
+  stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);
   stage.ready.then(() => stage.snap());
   const near = (on) => stage.setTarget(on ? { ...pose.rest, ...pose.near } : pose.rest);
@@ -77,9 +80,9 @@ document.addEventListener('visibilitychange', () => setActive(duoVisible));
 
 const mini = $('[data-mini]');
 if (mini) {
-  const labels = { price: 'Цена', citadel: 'Безопасность', cams: 'Камеры', battery: 'Аккумулятор', protect: 'Защита' };
-  mini.innerHTML = COMPARE.filter((r) => labels[r[4]])
-    .map((r) => `<tr><th scope="row">${labels[r[4]]}</th><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('');
+  const labels = { price: 'Цена', citadel: 'Безопасность', keys: 'Отключение', cams: 'Камеры', battery: 'Аккумулятор', protect: 'Защита' };
+  mini.innerHTML = COMPARE.filter((r) => labels[r[5]])
+    .map((r) => `<tr><th scope="row">${labels[r[5]]}</th><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('');
 }
 
 /* ---------- Появления ---------- */
