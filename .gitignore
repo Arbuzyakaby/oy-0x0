@@ -1,0 +1,14 @@
+# Локальные настройки инструментов
+.claude/
+.playwright-mcp/
+.vscode/
+.idea/
+
+# Рабочие файлы
+prompt.md
+preview/
+*.blend1
+__pycache__/
+node_modules/
+.DS_Store
+Thumbs.db
