@@ -19,7 +19,7 @@ export const BODY_COLORS = {
   },
 };
 
-const SIGNAL_COLORS = { white: 0xFFFFFF, red: 0xFF2A2A };
+export const SIGNAL_COLORS = { white: 0xFFFFFF, red: 0xFF2A2A };
 
 const SHUTTER_TRAVEL = 0.023;     // м, ход шторки по X (см. blender/build_oy0x0.py)
 const SWITCH_TRAVEL = 0.0024;     // м, ход ползунка
@@ -34,7 +34,7 @@ const LAYER_BY_NAME = {
 
 /* ---------- Текстура экрана (интерфейс OY OS) ---------- */
 
-function roundRect(ctx, x, y, w, h, r) {
+export function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
   ctx.arcTo(x + w, y, x + w, y + h, r);
@@ -44,7 +44,7 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-function drawScreen(canvas, mode, accent) {
+export function drawScreen(canvas, mode, accent, label = 'OY OS') {
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
   const night = mode === 'night';
@@ -87,7 +87,7 @@ function drawScreen(canvas, mode, accent) {
   ctx.fillText('14:02', W / 2, 300);
   ctx.font = `500 30px ${sans}`;
   ctx.fillStyle = dim;
-  ctx.fillText(night ? 'Ночной режим · 0,5 нит' : 'OY OS', W / 2, 420);
+  ctx.fillText(night ? 'Ночной режим · 0,5 нит' : label, W / 2, 420);
 
   // Знак 0X0
   const cy = 560;
@@ -136,9 +136,9 @@ function drawScreen(canvas, mode, accent) {
 
 /* ---------- Резервная процедурная модель ---------- */
 
-const MM = 0.001;
+export const MM = 0.001;
 
-function rrShape(w, h, r) {
+export function rrShape(w, h, r) {
   const s = new THREE.Shape();
   const x = -w / 2, y = -h / 2;
   s.moveTo(x + r, y);
@@ -154,7 +154,7 @@ function rrShape(w, h, r) {
 }
 
 /** Скруглённая пластина (мм), центрирована по Z. */
-function slab(w, h, r, depth, bevel = 0, seg = 10) {
+export function slab(w, h, r, depth, bevel = 0, seg = 10) {
   const b = Math.min(bevel, depth / 2 - 0.01);
   const g = new THREE.ExtrudeGeometry(
     rrShape(w - 2 * b, h - 2 * b, Math.max(r - b, 0.1)),
@@ -165,13 +165,13 @@ function slab(w, h, r, depth, bevel = 0, seg = 10) {
   return g;
 }
 
-function boxG(sx, sy, sz) {
+export function boxG(sx, sy, sz) {
   const g = new THREE.BoxGeometry(sx, sy, sz);
   g.scale(MM, MM, MM);
   return g;
 }
 
-function cylZ(r, depth, seg = 64) {
+export function cylZ(r, depth, seg = 64) {
   const g = new THREE.CylinderGeometry(r, r, depth, seg);
   g.rotateX(Math.PI / 2);
   g.scale(MM, MM, MM);
@@ -278,7 +278,7 @@ function buildFallbackModel() {
 
 /* ---------- Внутренности для разлёта: плата и аккумулятор ---------- */
 
-function labelTexture(w, h, draw) {
+export function labelTexture(w, h, draw) {
   const c = document.createElement('canvas');
   c.width = w; c.height = h;
   draw(c.getContext('2d'), w, h);
@@ -288,7 +288,7 @@ function labelTexture(w, h, draw) {
   return t;
 }
 
-function drawChip(g, x, y, w, h, title, sub) {
+export function drawChip(g, x, y, w, h, title, sub) {
   roundRect(g, x, y, w, h, 10);
   g.fillStyle = '#1B1C20'; g.fill();
   g.strokeStyle = 'rgba(255,255,255,.18)'; g.lineWidth = 2; g.stroke();
@@ -354,7 +354,7 @@ function buildInternals() {
 
 /* ---------- Луч и свечение фонаря ---------- */
 
-function makeBeam() {
+export function makeBeam() {
   const geo = new THREE.CylinderGeometry(0.85, 0.035, 14, 48, 1, true);
   geo.translate(0, 7, 0);
   const mat = new THREE.ShaderMaterial({
