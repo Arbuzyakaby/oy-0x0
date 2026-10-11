@@ -1077,6 +1077,7 @@ main, .site-footer { position: relative; z-index: 2; }
 .price-card__usd { font-size: clamp(64px, 7vw, 104px); font-weight: 700; letter-spacing: -.05em; line-height: 1; margin: 6px 0; font-variant-numeric: tabular-nums; }
 .price-card__eur { font-size: 15px; color: var(--muted); margin-bottom: 18px; }
 .price-card__note { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.price-card__concept { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
 
 .specs-title { margin-top: 110px; }
 .specs-wrap { margin-top: 28px; overflow-x: auto; }
@@ -1111,6 +1112,8 @@ main, .site-footer { position: relative; z-index: 2; }
 .footer__privacy { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; text-align: center; }
 .footer__privacy svg { width: 20px; height: 20px; color: var(--ok); flex: none; }
 .footer__small { justify-self: end; font-size: 12px; color: var(--muted); }
+.footer__concept { grid-column: 1 / -1; margin: 4px 0 0; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); text-align: center; }
+.footer__concept a { color: var(--fg); }
 
 /* ---------- Toast ---------- */
 
@@ -1151,6 +1154,7 @@ main, .site-footer { position: relative; z-index: 2; }
   .journal__text { justify-self: stretch; }
   .footer__inner { grid-template-columns: 1fr; justify-items: start; }
   .footer__small { justify-self: start; }
+  .footer__concept { text-align: left; }
   .price-card { position: static; }
   .mem-switch { grid-template-columns: repeat(2, 1fr); }
   .square { margin-top: 80px; }

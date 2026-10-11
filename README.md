@@ -9,6 +9,8 @@
 
 **[oy0x.online](https://oy0x.online)**
 
+<sub>Концепт: OY 0X0 и компания OY вымышлены, телефон не продаётся.</sub>
+
 <img src="docs/screenshots/hero.jpg" alt="Первый экран: заголовок OY 0X0 и 3D-модель телефона" width="100%">
 
 </div>
@@ -60,7 +62,9 @@ npx serve .
 ## Как это устроено
 
 ```
-index.html          разметка всех секций, import map
+index.html          разметка всех секций, import map, Open Graph
+404.html            страница «не найдено» (автономная, без JS)
+og.jpg              превью ссылки для мессенджеров и соцсетей, 1200×630
 css/styles.css      токены цвета, типографика, адаптив, reduced motion
 js/scene.js         Three.js: загрузка GLB, процедурная модель, луч фонаря, экран
 js/main.js          Lenis + ScrollTrigger, ключевые кадры модели, переключатели
