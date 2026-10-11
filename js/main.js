@@ -266,6 +266,10 @@ function makePoses(mobile) {
     signalEnd: { x: -0.42, y: -0.04, fx: 0, fy: 0.73, fz: 0, rx: 0.3, ry: -0.4, rz: -PI / 2, dist: 2.5 },
     display: { x: 0.34, y: 0, fx: 0, fy: 0, fz: 0, rx: 0.02, ry: -0.3, rz: 0, dist: 4.9 },
     displayEnd: { x: 0.34, y: 0, fx: 0, fy: 0, fz: 0, rx: 0, ry: -0.16, rz: 0, dist: 4.7 },
+    // Разлёт: спереди в три четверти, к концу — разворот к спинке
+    insideA: { x: 0.3, y: 0, fx: 0, fy: 0, fz: 0, rx: 0.32, ry: -0.62, rz: 0.1, dist: 7.2, float: 0, screen: 1, signal: 0, shutter: 0, sw1: 1, sw2: 1, sw3: 1 },
+    insideMid: { x: 0.3, y: 0, rx: 0.3, ry: -1.22, rz: 0.08, dist: 6.6 },
+    insideB: { x: 0.3, y: 0, rx: 0.22, ry: -PI + 0.85, rz: -0.06, dist: 6.8 },
     colorsA: { x: 0.26, y: 0.06, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: -1.0, rz: 0.04, dist: 4.5, float: 0, screen: 1, signal: 0 },
     colorsB: { x: 0.26, y: 0.06, fx: 0, fy: 0, fz: 0, rx: 0.1, ry: -1.0 + PI * 1.35, rz: -0.04, dist: 4.3 },
     finalA: { x: 0, y: -0.75, fx: 0, fy: 0, fz: 0, rx: 0.08, ry: -0.7, rz: 0.04, dist: 8, float: 1, screen: 1, shutter: 0, signal: 0 },
@@ -286,6 +290,9 @@ function makePoses(mobile) {
     signalEnd: { x: -0.28, y: 0.5, dist: 4.0 },
     display: { x: 0, y: 0.4, ry: -0.25, dist: 8.2 },
     displayEnd: { x: 0, y: 0.4, ry: -0.14, dist: 8 },
+    insideA: { x: 0, y: 0.4, dist: 10.5 },
+    insideMid: { x: 0, y: 0.4, dist: 9.8 },
+    insideB: { x: 0, y: 0.4, dist: 10 },
     colorsA: { x: 0, y: 0.34, dist: 7.6 },
     colorsB: { x: 0, y: 0.34, dist: 7.3 },
     finalA: { x: 0, y: -0.7, dist: 9.4 },
@@ -416,6 +423,87 @@ function buildSplitReveal(el, reduce) {
   splitState.set(el, st);
 }
 
+/* ---------- Абзац, который «загорается» по словам ---------- */
+
+const scrubWords = $$('[data-scrub-words]').map((el) => {
+  const words = el.textContent.replace(/[ \t\r\n]+/g, ' ').trim().split(' ');
+  el.textContent = '';
+  const spans = words.map((w, i) => {
+    const s = document.createElement('span');
+    s.className = 'w';
+    s.textContent = w;
+    el.append(s);
+    if (i < words.length - 1) el.append(' ');
+    return s;
+  });
+  return { el, spans };
+});
+
+/* ---------- Карусель «Коротко о главном» ---------- */
+
+const hl = (() => {
+  const sec = $('#highlights');
+  if (!sec) return null;
+  const track = $('.hl__track', sec);
+  const slides = $$('.hl__slide', sec);
+  const dots = $$('.hl__dot', sec);
+  const playBtn = $('.hl__play', sec);
+  const DUR = 5;
+  let idx = 0, p = 0, playing = true, inView = false, programmatic = 0;
+
+  const offset = (i) => slides[i].offsetLeft - slides[0].offsetLeft;
+  function setActive(i) {
+    idx = i;
+    slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    dots.forEach((d, k) => {
+      if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      d.style.setProperty('--p', '0');
+    });
+  }
+  function go(i) {
+    setActive(i);
+    p = 0;
+    programmatic = performance.now();
+    track.scrollTo({ left: offset(i), behavior: reducedMode ? 'auto' : 'smooth' });
+  }
+  function setPlaying(v) {
+    playing = v;
+    playBtn.dataset.playing = String(v);
+    playBtn.setAttribute('aria-label', v ? 'Пауза' : 'Воспроизвести');
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+  playBtn.addEventListener('click', () => {
+    if (!playing && idx === slides.length - 1 && p >= 1) go(0);
+    setPlaying(!playing);
+  });
+
+  // Свайп или прокрутка пользователем
+  let t = 0;
+  track.addEventListener('scroll', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      const x = track.scrollLeft;
+      let best = 0;
+      slides.forEach((s, i) => { if (Math.abs(offset(i) - x) < Math.abs(offset(best) - x)) best = i; });
+      if (best !== idx) { setActive(best); p = 0; }
+    }, 90);
+    if (performance.now() - programmatic > 900) setPlaying(false);
+  }, { passive: true });
+
+  new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.35 }).observe(track);
+
+  gsap.ticker.add((time, dt) => {
+    if (!playing || !inView || reducedMode || document.hidden) return;
+    p = Math.min(1, p + dt / 1000 / DUR);
+    dots[idx]?.style.setProperty('--p', p.toFixed(4));
+    if (p >= 1) go((idx + 1) % slides.length);
+  });
+
+  setActive(0);
+  return { go, setPlaying };
+})();
+
 /* ---------- Одометры «до нуля» ---------- */
 
 const reels = $$('.odo__reel');
@@ -432,7 +520,7 @@ reels.forEach((reel, i) => {
 const sections = {
   hero: $('#hero'), zero: $('#zero'), shutter: $('#shutter'), switches: $('#switches'),
   journal: $('#journal'), signal: $('#signal'), display: $('#display'),
-  colors: $('#colors'), final: $('#final'),
+  inside: $('#inside'), colors: $('#colors'), final: $('#final'),
 };
 
 let reducedMode = reduceMQ.matches;
@@ -484,6 +572,7 @@ function buildChoreography({ isMobile, reduce }) {
   }
   const tlSignal = pinned('signal', 150);
   pinned('display', 170);
+  const tlInside = pinned('inside', 200);
   pinned('colors', 130);
   // Диапазон ровно в один экран: модель уезжает вверх синхронно с контентом
   sts.final = ScrollTrigger.create({ trigger: sections.final, start: 'top top', end: '+=100%' });
@@ -498,6 +587,11 @@ function buildChoreography({ isMobile, reduce }) {
   if (tlJournal) {
     $$('.log__item', sections.journal).forEach((el, i, all) => {
       tlJournal.fromTo(el, { autoAlpha: 0, y: 18, scale: 0.97 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.06 }, 0.04 + (i / all.length) * 0.8);
+    });
+  }
+  if (tlInside) {
+    $$('.layer', sections.inside).forEach((el, i) => {
+      tlInside.fromTo(el, { autoAlpha: 0.12, x: -16 }, { autoAlpha: 1, x: 0, duration: 0.08 }, 0.14 + i * 0.075);
     });
   }
   if (tlSignal) {
@@ -535,7 +629,12 @@ function buildChoreography({ isMobile, reduce }) {
   K('display', 0.35, { light: 1, nits: 0, screen: 1 });
   K('display', 0.65, { light: 0, nits: 1, screen: 0.04 });
   K('display', 1, { ...P.displayEnd, screen: 0.04 });
-  K('colors', -1, { ...P.colorsA, light: 0, nits: 1 });
+  K('inside', -1, { ...P.insideA, explode: 0, light: 0, nits: 1 });
+  K('inside', 0, { ...P.insideA, explode: 0 });
+  K('inside', 0.12, { explode: 0 });
+  K('inside', 0.6, { ...P.insideMid, explode: 1 });
+  K('inside', 1, { ...P.insideB, explode: 1 });
+  K('colors', -1, { ...P.colorsA, light: 0, nits: 1, explode: 0 });
   K('colors', 0, P.colorsA);
   K('colors', 1, P.colorsB);
   K('final', -1, P.finalA);
@@ -555,6 +654,15 @@ function buildChoreography({ isMobile, reduce }) {
       ? { opacity: 1, duration: 0.5, delay }
       : { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, delay, ease: 'expo.out' };
     gsap.fromTo(el, from, { ...to, scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' } });
+  });
+
+  // Слова загораются по мере прокрутки
+  scrubWords.forEach(({ el, spans }) => {
+    const n = spans.length;
+    const paint = (p) => spans.forEach((s, i) => s.style.setProperty('--o', String(0.16 + 0.84 * clamp01(p * (n + 4) - i))));
+    if (reduce) { paint(1); return; }
+    paint(0);
+    ScrollTrigger.create({ trigger: el, start: 'top 82%', end: 'bottom 52%', onUpdate: (st) => paint(st.progress), onRefresh: (st) => paint(st.progress) });
   });
 
   // Одометры
@@ -619,7 +727,7 @@ function buildChoreography({ isMobile, reduce }) {
   }
 
   // Анимации карточек — только пока секции видны
-  ['.os', '.features', '.network'].forEach((sel) => ScrollTrigger.create({ trigger: sel, start: 'top bottom', end: 'bottom top', toggleClass: 'in-view' }));
+  ['.os', '.features', '.network', '.highlights'].forEach((sel) => ScrollTrigger.create({ trigger: sel, start: 'top bottom', end: 'bottom top', toggleClass: 'in-view' }));
 
   ScrollTrigger.refresh();
 
@@ -635,6 +743,36 @@ ScrollTrigger.addEventListener('refresh', () => {
   if (ln) ln.style.setProperty('--lane-w', `${ln.clientWidth}px`);
 });
 
+/* ---------- Вращение модели перетаскиванием (секция цветов) ---------- */
+
+const spin = { v: 0, on: false };
+{
+  const sec = sections.colors;
+  let drag = null;
+  new IntersectionObserver(([e]) => {
+    spin.on = e.isIntersecting;
+    if (!spin.on) spin.v = 0;
+  }, { threshold: 0.6 }).observe(sec);
+  sec.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0 || e.target.closest('button, a')) return;
+    drag = { x: e.clientX, v: spin.v, id: e.pointerId };
+    sec.setPointerCapture(e.pointerId);
+    sec.classList.add('is-dragging');
+  });
+  sec.addEventListener('pointermove', (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    spin.v = drag.v + ((e.clientX - drag.x) / window.innerWidth) * PI * 2.2;
+    if (Math.abs(e.clientX - drag.x) > 6) sec.classList.add('was-dragged');
+  });
+  const end = (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    drag = null;
+    sec.classList.remove('is-dragging');
+  };
+  sec.addEventListener('pointerup', end);
+  sec.addEventListener('pointercancel', end);
+}
+
 /* ---------- Каждый тик: прокрутка → состояние ---------- */
 
 let lastPoseKey = '';
@@ -642,11 +780,12 @@ let fading = false;
 function tick() {
   if (Keys.empty) return;
   const v = Keys.sample(window.scrollY, reducedMode);
+  v.spin = spin.on ? spin.v : 0;
   syncHtml(v);
   if (!stage) return;
   if (!reducedMode) { stage.setTarget(v); return; }
   // Reduced motion: позы меняются ступенчато, через короткое затухание
-  const keyStr = ['x', 'y', 'rx', 'ry', 'rz', 'dist', 'fy'].map((k) => (v[k] ?? 0).toFixed(2)).join('|');
+  const keyStr = ['x', 'y', 'rx', 'ry', 'rz', 'dist', 'fy', 'explode'].map((k) => (v[k] ?? 0).toFixed(2)).join('|');
   if (keyStr === lastPoseKey || fading) { if (!fading) stage.setTarget(v); return; }
   if (!lastPoseKey) { lastPoseKey = keyStr; stage.setTarget(v); return; }
   lastPoseKey = keyStr;

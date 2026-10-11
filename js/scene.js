@@ -33,6 +33,15 @@ export const DEFAULT_STATE = {
   rx: 0, ry: 0, rz: 0, s: 1, dist: 5.4,
   shutter: 0, sw1: 1, sw2: 1, sw3: 1,
   signal: 0, screen: 1, float: 1,
+  explode: 0, spin: 0,
+};
+
+// Разлёт по слоям (м, вдоль оси Z модели: + к экрану, − к спинке)
+const LAYER_OFFSET = { glass: 0.05, screen: 0.028, frame: 0, board: -0.024, battery: -0.047, back: -0.072, shutter: -0.094 };
+const LAYER_BY_NAME = {
+  Glass: 'glass', FrontCamera: 'glass', Screen: 'screen',
+  Body: 'back', CameraIsland: 'back', CameraModules: 'back', EngraveX: 'back', Flash: 'back', ShutterRails: 'back',
+  Shutter: 'shutter', Board: 'board', Battery: 'battery',
 };
 
 /* ---------- Текстура экрана (интерфейс OY OS) ---------- */
@@ -279,6 +288,82 @@ function buildFallbackModel() {
   return root;
 }
 
+/* ---------- Внутренности для разлёта: плата и аккумулятор ---------- */
+
+function labelTexture(w, h, draw) {
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 4;
+  return t;
+}
+
+function drawChip(g, x, y, w, h, title, sub) {
+  roundRect(g, x, y, w, h, 10);
+  g.fillStyle = '#1B1C20'; g.fill();
+  g.strokeStyle = 'rgba(255,255,255,.18)'; g.lineWidth = 2; g.stroke();
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillStyle = '#E8E8E6';
+  g.font = `600 ${Math.round(Math.min(w, h) * 0.16)}px "JetBrains Mono", ui-monospace, monospace`;
+  g.fillText(title, x + w / 2, y + h / 2 - (sub ? h * 0.1 : 0));
+  if (sub) {
+    g.fillStyle = 'rgba(232,232,230,.55)';
+    g.font = `500 ${Math.round(Math.min(w, h) * 0.11)}px "JetBrains Mono", ui-monospace, monospace`;
+    g.fillText(sub, x + w / 2, y + h / 2 + h * 0.16);
+  }
+}
+
+function buildInternals() {
+  const W = 62, BH = 60, AH = 80;              // мм
+  const boardTex = labelTexture(620, 600, (g, w, h) => {
+    g.fillStyle = '#0D1712'; g.fillRect(0, 0, w, h);
+    // дорожки
+    g.strokeStyle = 'rgba(160,200,170,.16)'; g.lineWidth = 2;
+    for (let i = 0; i < 26; i++) {
+      const y = 20 + i * 22;
+      g.beginPath(); g.moveTo(0, y); g.lineTo(w * (0.2 + (i % 5) * 0.12), y); g.lineTo(w * (0.26 + (i % 5) * 0.12), y + 16); g.lineTo(w, y + 16); g.stroke();
+    }
+    drawChip(g, 170, 150, 280, 220, 'DIMENSITY', '8500 · 4 нм');
+    drawChip(g, 40, 420, 230, 130, 'LPDDR5X');
+    drawChip(g, 350, 420, 230, 130, 'UFS 4.0');
+    drawChip(g, 470, 40, 120, 90, 'NULL', 'CHIP');
+  });
+  const battTex = labelTexture(620, 800, (g, w, h) => {
+    g.fillStyle = '#16171A'; g.fillRect(0, 0, w, h);
+    roundRect(g, 24, 24, w - 48, h - 48, 20);
+    g.strokeStyle = 'rgba(255,255,255,.14)'; g.lineWidth = 3; g.stroke();
+    g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#F2F2F0';
+    g.font = '800 132px "Onest", system-ui, sans-serif';
+    g.fillText('7000', w / 2, h / 2 - 50);
+    g.font = '600 58px "Onest", system-ui, sans-serif';
+    g.fillText('мАч', w / 2, h / 2 + 50);
+    g.font = '500 34px "JetBrains Mono", ui-monospace, monospace';
+    g.fillStyle = 'rgba(242,242,240,.55)';
+    g.fillText('Si-C · 130 Вт', w / 2, h / 2 + 140);
+  });
+
+  const side = new THREE.MeshStandardMaterial({ color: 0x1A1B1E, metalness: 0.5, roughness: 0.5 });
+  const make = (name, w, h, d, y, tex) => {
+    const grp = new THREE.Group();
+    grp.name = name;
+    const box = new THREE.Mesh(boxG(w, h, d), side);
+    grp.add(box);
+    const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.55, metalness: 0.2 });
+    for (const sz of [1, -1]) {
+      const pl = new THREE.Mesh(new THREE.PlaneGeometry(w * MM, h * MM), face);
+      pl.position.z = sz * (d / 2 + 0.02) * MM;
+      if (sz < 0) pl.rotation.y = Math.PI;
+      grp.add(pl);
+    }
+    grp.position.y = y * MM;
+    grp.visible = false;
+    return grp;
+  };
+  return [make('Board', W, BH, 0.9, 38, boardTex), make('Battery', W, AH, 4.2, -31, battTex)];
+}
+
 /* ---------- Луч и свечение фонаря ---------- */
 
 function makeBeam() {
@@ -406,6 +491,7 @@ export function createStage(canvas, { forceFallback = false } = {}) {
     switches: [], switchBase: [], indicatorMats: [],
     body: [], frame: [], shutterMats: [],
     signalMat: null,
+    layers: [], internals: [],
   };
 
   // Состояние: target задаёт скролл, cur догоняет его
@@ -420,7 +506,30 @@ export function createStage(canvas, { forceFallback = false } = {}) {
   const indicatorOn = new THREE.Color(0xFF2D2D);
   const indicatorOff = new THREE.Color(0x3A3A3E);
 
+  // Раскладывает детали верхнего уровня по слоям для разлёта
+  function setupLayers(root) {
+    const anchor = root.getObjectByName('Frame');
+    const holder = anchor?.parent || root;
+    const internals = buildInternals();
+    holder.add(...internals);
+    parts.internals = internals;
+    root.updateMatrixWorld(true);
+    const box = new THREE.Box3();
+    const c = new THREE.Vector3();
+    const inv = new THREE.Matrix4().copy(holder.matrixWorld).invert();
+    for (const o of holder.children) {
+      let layer = LAYER_BY_NAME[o.name];
+      if (!layer) {
+        box.setFromObject(o).getCenter(c).applyMatrix4(inv);
+        layer = c.z < -0.0045 ? 'back' : c.z > 0.0043 ? 'glass' : 'frame';
+      }
+      const off = LAYER_OFFSET[layer];
+      if (off) parts.layers.push({ o, base: o.position.z, off });
+    }
+  }
+
   function setupModel(root) {
+    setupLayers(root);
     modelRoot.add(root);
     const byName = {};
     root.traverse((o) => {
@@ -529,7 +638,7 @@ export function createStage(canvas, { forceFallback = false } = {}) {
 
     phone.rotation.set(
       cur.rx + idleX + pointer.y * 0.1 * fl,
-      cur.ry + idleY + pointer.x * 0.22 * fl,
+      cur.ry + cur.spin + idleY + pointer.x * 0.22 * fl,
       cur.rz,
     );
     phone.scale.setScalar(cur.s);
@@ -540,6 +649,12 @@ export function createStage(canvas, { forceFallback = false } = {}) {
     const halfW = halfH * camera.aspect;
     focus.set(cur.fx, cur.fy, cur.fz).applyEuler(phone.rotation).multiplyScalar(cur.s);
     phone.position.set(cur.x * halfW - focus.x, cur.y * halfH - focus.y + bob, -focus.z);
+
+    // Разлёт по слоям
+    const ex = clamp01(cur.explode);
+    const e = ex * ex * (3 - 2 * ex);
+    for (const l of parts.layers) l.o.position.z = l.base + l.off * e;
+    for (const m of parts.internals) m.visible = e > 0.01;
 
     // Механика
     if (parts.shutter) parts.shutter.position.x = parts.shutterBase + clamp01(cur.shutter) * SHUTTER_TRAVEL;
