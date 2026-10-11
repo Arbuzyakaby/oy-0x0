@@ -20,8 +20,16 @@ async (page) => {
     const onCon = (m) => { if (m.type() === 'error') errors.push(m.text()); };
     page.on('pageerror', onErr);
     page.on('console', onCon);
-    await page.goto(url + (fallback ? '&fallback' : ''));
-    await page.waitForFunction(() => window.__oy && window.__oy.Keys && !window.__oy.Keys.empty, null, { timeout: 20000 });
+    // Один повтор: изредка страница не успевает загрузиться (CDN, GLB)
+    for (let attempt = 0; ; attempt++) {
+      await page.goto(url + (fallback ? '&fallback' : ''));
+      try {
+        await page.waitForFunction(() => window.__oy && window.__oy.Keys && !window.__oy.Keys.empty, null, { timeout: 30000 });
+        break;
+      } catch (e) {
+        if (attempt >= 1) throw new Error(`${url}: страница не загрузилась — ${e.message}`);
+      }
+    }
     await page.waitForTimeout(800);
     const data = await page.evaluate(async ({ N, points }) => {
       const { Keys, ScrollTrigger, stage } = window.__oy;

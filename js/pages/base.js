@@ -12,6 +12,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { createStage, BODY_COLORS } from '../scene.js';
 import { createKeys } from '../core/keys.js';
+import { PRODUCTS, getConfig } from '../data/products.js';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -92,10 +93,11 @@ function initRadioGroup(group, onChange) {
 }
 
 // Цвет корпуса
-const COLOR_NAMES = { red: 'Сигнальный Красный', ice: 'Арктический ледник' };
+const PRODUCT = PRODUCTS['0x0'];
+const COLOR_NAMES = PRODUCT.colors;
 const colorGroups = $$('[data-color-switch]');
 function setColor(name, { save = true, instant = false } = {}) {
-  if (!COLOR_NAMES[name]) name = 'red';
+  if (!COLOR_NAMES[name]) name = PRODUCT.defaultColor;
   root.dataset.color = name;
   colorGroups.forEach((g) => syncRadio(g, name));
   $$('[data-cfg-color]').forEach((el) => { el.textContent = COLOR_NAMES[name]; });
@@ -106,23 +108,18 @@ colorGroups.forEach((g) => initRadioGroup(g, (v) => setColor(v)));
 setColor(store.get('oy-color') || root.dataset.color || 'red', { save: false, instant: true });
 
 // Память и цена
-const PRICES = {
-  '8/128': { usd: 449, eur: 539 },
-  '12/128': { usd: 489, eur: 579 },
-  '12/256': { usd: 519, eur: 609 },
-  '14/512': { usd: 639, eur: 729 },
-};
 const memGroup = $('[data-mem-switch]');
 const usdEl = $('[data-price-usd]');
 const eurEl = $('[data-price-eur]');
 const cfgNameEl = $('[data-cfg-name]');
 let currentMem = '8/128';
 function setMemory(v, animate = true) {
-  if (!PRICES[v]) return;
-  const prev = PRICES[currentMem].usd;
+  const cfg = getConfig(PRODUCT.id, v);
+  if (!cfg) return;
+  const prev = getConfig(PRODUCT.id, currentMem).usd;
   currentMem = v;
   syncRadio(memGroup, v);
-  const { usd, eur } = PRICES[v];
+  const { usd, eur } = cfg;
   cfgNameEl.textContent = `${v} ГБ`;
   eurEl.textContent = `€${eur}`;
   if (!animate || reduceMQ.matches) { usdEl.textContent = `$${usd}`; return; }
