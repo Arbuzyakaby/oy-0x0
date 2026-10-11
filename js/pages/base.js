@@ -13,6 +13,8 @@ import Lenis from 'lenis';
 import { createStage, BODY_COLORS } from '../scene.js';
 import { createKeys } from '../core/keys.js';
 import { PRODUCTS, getConfig } from '../data/products.js';
+import { $, $$, clamp01, store, createToast, syncRadio, initRadioGroup, bindToggles, bindStubs } from '../core/ui.js';
+import { createSmoothScroll } from '../core/scroll.js';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -20,34 +22,14 @@ ScrollTrigger.config({ ignoreMobileResize: true });
 const root = document.documentElement;
 root.classList.add('anim');
 
-const $ = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
-const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const PI = Math.PI;
 
 const reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
 const params = new URLSearchParams(location.search);
 
-/* ---------- Хранилище (может быть недоступно) ---------- */
-
-const store = {
-  get(k) { try { return window.localStorage.getItem(k); } catch { return null; } },
-  set(k, v) { try { window.localStorage.setItem(k, v); } catch { /* приватный режим */ } },
-};
-
 /* ---------- Toast ---------- */
 
-const toastEl = $('#toast');
-let toastTimer = 0;
-function toast(msg) {
-  toastEl.textContent = msg;
-  toastEl.hidden = false;
-  gsap.fromTo(toastEl, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: 'power3.out' });
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    gsap.to(toastEl, { autoAlpha: 0, y: 16, duration: 0.3, onComplete: () => { toastEl.hidden = true; } });
-  }, 3600);
-}
+const toast = createToast($('#toast'), gsap);
 
 /* ---------- 3D-сцена ---------- */
 
@@ -61,36 +43,6 @@ try {
 }
 
 /* ---------- Радиогруппы (цвет, память, фонарь) ---------- */
-
-function syncRadio(group, value) {
-  $$('[role="radio"]', group).forEach((b) => {
-    const on = b.dataset.value === value;
-    b.setAttribute('aria-checked', String(on));
-    b.tabIndex = on ? 0 : -1;
-  });
-}
-
-function initRadioGroup(group, onChange) {
-  const radios = () => $$('[role="radio"]', group);
-  group.addEventListener('click', (e) => {
-    const b = e.target.closest('[role="radio"]');
-    if (b && group.contains(b)) onChange(b.dataset.value);
-  });
-  group.addEventListener('keydown', (e) => {
-    const list = radios();
-    const i = list.indexOf(document.activeElement);
-    if (i < 0) return;
-    let n = -1;
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % list.length;
-    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i - 1 + list.length) % list.length;
-    else if (e.key === 'Home') n = 0;
-    else if (e.key === 'End') n = list.length - 1;
-    if (n < 0) return;
-    e.preventDefault();
-    onChange(list[n].dataset.value);
-    list[n].focus();
-  });
-}
 
 // Цвет корпуса
 const PRODUCT = PRODUCTS['0x0'];
@@ -145,9 +97,7 @@ initRadioGroup(signalGroup, setSignal);
 setSignal('white');
 
 // Тумблеры (Tor, разрешения)
-$$('[data-toggle]').forEach((t) => t.addEventListener('click', () => {
-  t.setAttribute('aria-checked', String(t.getAttribute('aria-checked') !== 'true'));
-}));
+bindToggles();
 
 // Разрешения на время (демо)
 const PERM_TEXT = {
@@ -170,42 +120,11 @@ if (geoGroup) {
 }
 
 // Заглушки
-$$('[data-stub]').forEach((el) => el.addEventListener('click', (e) => {
-  e.preventDefault();
-  toast(el.dataset.stub);
-}));
+bindStubs(toast);
 
 /* ---------- Плавная прокрутка ---------- */
 
-let lenis = null;
-function enableLenis() {
-  if (lenis) return;
-  lenis = new Lenis({ autoRaf: false, lerp: 0.1, wheelMultiplier: 1, smoothWheel: true });
-  lenis.on('scroll', ScrollTrigger.update);
-}
-function disableLenis() {
-  if (!lenis) return;
-  lenis.destroy();
-  lenis = null;
-}
-gsap.ticker.add((time) => { lenis?.raf(time * 1000); });
-gsap.ticker.lagSmoothing(0);
-
-// Якоря
-document.addEventListener('click', (e) => {
-  const a = e.target.closest('a[href^="#"]');
-  if (!a || a.hasAttribute('data-stub')) return;
-  const id = a.getAttribute('href');
-  if (id.length < 2) return;
-  const target = document.querySelector(id);
-  if (!target) return;
-  e.preventDefault();
-  if (lenis) lenis.scrollTo(target, { duration: 1.4 });
-  else target.scrollIntoView({ behavior: reduceMQ.matches ? 'auto' : 'smooth' });
-  if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-  target.focus({ preventScroll: true });
-  history.replaceState(null, '', id);
-});
+const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
 /* ---------- Ключевые кадры модели ---------- */
 
@@ -490,7 +409,7 @@ let reducedMode = reduceMQ.matches;
 function buildChoreography({ isMobile, reduce }) {
   reducedMode = reduce;
   stage?.setReduced(reduce);
-  if (reduce) disableLenis(); else enableLenis();
+  if (reduce) smooth.disable(); else smooth.enable();
   root.classList.toggle('reduced', reduce);
 
   Keys.reset();
@@ -760,7 +679,7 @@ function tick() {
   });
 }
 gsap.ticker.add(tick);
-if (params.has('debug')) window.__oy = { stage, Keys, ScrollTrigger, lenis: () => lenis };
+if (params.has('debug')) window.__oy = { stage, Keys, ScrollTrigger, lenis: () => smooth.lenis };
 
 /* ---------- Рендер только когда 3D-секции видны ---------- */
 
