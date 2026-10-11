@@ -189,8 +189,9 @@ function buildFallbackModel() {
     Switch: new THREE.MeshStandardMaterial({ name: 'Switch', color: 0x2A2B2E, metalness: 0.8, roughness: 0.35 }),
     SwitchIndicator: new THREE.MeshStandardMaterial({ name: 'SwitchIndicator', color: 0xFF2D2D, emissive: 0xFF2D2D, emissiveIntensity: 1.5 }),
     SignalLightGlow: new THREE.MeshStandardMaterial({ name: 'SignalLightGlow', color: 0xEDEDED, emissive: 0xFFFFFF, emissiveIntensity: 0.4, roughness: 0.15 }),
-    Lens: new THREE.MeshPhysicalMaterial({ name: 'Lens', color: 0x05070A, roughness: 0.03, clearcoat: 1 }),
-    LensRing: new THREE.MeshStandardMaterial({ name: 'LensRing', color: 0xD9DCE0, metalness: 1, roughness: 0.12 }),
+    Lens: new THREE.MeshPhysicalMaterial({ name: 'Lens', color: 0x020306, roughness: 0.02, clearcoat: 1 }),
+    LensRing: new THREE.MeshStandardMaterial({ name: 'LensRing', color: 0x2B2D31, metalness: 1, roughness: 0.22 }),
+    LensInner: new THREE.MeshPhysicalMaterial({ name: 'LensInner', color: 0x0B1222, metalness: 0.4, roughness: 0.08, clearcoat: 1 }),
     Screen: new THREE.MeshStandardMaterial({ name: 'Screen', color: 0x020203, roughness: 0.18 }),
     Glass: new THREE.MeshPhysicalMaterial({ name: 'Glass', color: 0x030304, roughness: 0.05, clearcoat: 1 }),
     Dark: new THREE.MeshStandardMaterial({ name: 'Dark', color: 0x0B0B0C, roughness: 0.6 }),
@@ -228,25 +229,16 @@ function buildFallbackModel() {
   // Камеры «0X0»: вертикальная пара на острове (со спины — слева сверху)
   const CX = 20.5, CZ = 45;
   add(slab(19.2, 41.2, 9.6, 0.4, 0.15, 16), 'Frame', CX, CZ, -4.77, 'CameraIsland');
-  const lensGeo = (() => {
-    const R = 39.2, th = 0.128;
-    const g = new THREE.SphereGeometry(R, 48, 4, 0, Math.PI * 2, 0, th);
-    g.translate(0, -R * Math.cos(th), 0);
-    g.rotateX(-Math.PI / 2);
-    g.scale(MM, MM, MM);
-    return g;
-  })();
+  // Модуль как у флагманов: приподнятый полированный обод, внутри чёрное стекло
   for (const dz of [11, -11]) {
     const cz = CZ + dz;
-    add(cylZ(8, 0.6), 'Frame', CX, cz, -5.22);
-    add(cylZ(6.8, 0.12), 'Dark', CX, cz, -5.52);
-    const ring = new THREE.TorusGeometry(5.42, 0.42, 12, 64); ring.scale(MM, MM, MM);
-    add(ring, 'LensRing', CX, cz, -5.62);
-    add(lensGeo, 'Lens', CX, cz, -5.54);
-    const ring2 = new THREE.TorusGeometry(2.35, 0.12, 8, 48); ring2.scale(MM, MM, MM);
-    add(ring2, 'LensRing', CX, cz, -5.86);
-  }
-  for (const a of [Math.PI / 4, -Math.PI / 4]) {
+    add(cylZ(8, 0.35), 'Frame', CX, cz, -5.12);              // основание
+    const rim = new THREE.TorusGeometry(7.45, 0.5, 16, 72); rim.scale(MM, MM, MM);
+    add(rim, 'Frame', CX, cz, -5.35);                          // обод (верх ≈ 5,85 мм, как в GLB)
+    add(cylZ(6.8, 0.1), 'LensRing', CX, cz, -5.35);           // окантовка
+    add(cylZ(6.15, 0.1), 'Lens', CX, cz, -5.42);              // стекло
+    add(cylZ(2.5, 0.04), 'LensInner', CX, cz, -5.49);         // элемент объектива
+  }  for (const a of [Math.PI / 4, -Math.PI / 4]) {
     const x = add(boxG(5.2, 0.7, 0.05), 'Engrave', CX, CZ, -4.99);
     x.rotation.z = a;
   }
@@ -445,8 +437,19 @@ export function createStage(canvas, { forceFallback = false } = {}) {
       parts.signalMat.emissive = new THREE.Color(0xffffff);
       parts.signalMat.emissiveIntensity = 0.3;
     }
-    if (byName.Lens) byName.Lens.envMapIntensity = 1.4;
-    if (byName.LensRing) byName.LensRing.envMapIntensity = 1.3;
+    // Стекло камер — глубокий чёрный с бликами, а не серое зеркало
+    if (byName.Lens) {
+      byName.Lens.envMapIntensity = 0.12;
+      if ('clearcoat' in byName.Lens) byName.Lens.clearcoat = 0;
+      if ('specularIntensity' in byName.Lens) byName.Lens.specularIntensity = 0.7;
+      byName.Lens.roughness = 0.05;
+    }
+    if (byName.LensInner) {
+      const m = byName.LensInner;
+      m.envMapIntensity = 0.25; m.color.set(0x050C1E); m.roughness = 0.1; m.metalness = 0.6;
+      if ('clearcoat' in m) m.clearcoat = 0;
+    }
+    if (byName.LensRing) byName.LensRing.envMapIntensity = 0.8;
 
     parts.shutter = root.getObjectByName('Shutter');
     parts.shutterBase = parts.shutter ? parts.shutter.position.x : 0;

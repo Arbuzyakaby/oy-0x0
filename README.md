@@ -64,7 +64,7 @@ index.html          разметка всех секций, import map
 css/styles.css      токены цвета, типографика, адаптив, reduced motion
 js/scene.js         Three.js: загрузка GLB, процедурная модель, луч фонаря, экран
 js/main.js          Lenis + ScrollTrigger, ключевые кадры модели, переключатели
-models/oy0x0.glb    модель телефона (~14 тыс. треугольников, 370 КБ)
+models/oy0x0.glb    модель телефона (~16 тыс. треугольников, 410 КБ)
 blender/            скрипты сборки и превью модели
 docs/screenshots/   скриншоты для README
 ```

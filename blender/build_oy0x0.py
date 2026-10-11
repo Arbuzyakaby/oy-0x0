@@ -67,12 +67,12 @@ CAM_DZ = 11.0          # полурасстояние между центрам�
 CAM_R = 8.0            # радиус модуля
 ISLAND_W, ISLAND_H = 19.2, 41.2
 ISLAND_TOP = BACK + 0.35
-CAM_TOP = ISLAND_TOP + 0.55   # верх модуля
+CAM_TOP = ISLAND_TOP + 0.9    # верх обода модуля
 
 SHUTTER_W, SHUTTER_H = 23.0, 48.4
 SHUTTER_TRAVEL = 23.0  # ход шторки по X до положения «закрыто»
 SHUTTER_OPEN_X = CAM_X - SHUTTER_TRAVEL
-SH_BOTTOM = CAM_TOP + 0.43    # нижняя плоскость шторки (над линзами)
+SH_BOTTOM = CAM_TOP + 0.12    # нижняя плоскость шторки (над ободами камер)
 RAIL_X0, RAIL_X1 = -15.0, 30.0
 
 SWITCH_Z = (40.0, 26.0, 12.0)
@@ -147,8 +147,9 @@ make_mat("Shutter", BODY_HEX, metallic=0.8, rough=0.34)
 make_mat("Switch", "#2A2B2E", metallic=0.8, rough=0.35)
 make_mat("SwitchIndicator", "#FF2D2D", rough=0.4, emission="#FF2D2D", strength=1.5)
 make_mat("SignalLightGlow", "#EDEDED", rough=0.15, emission="#FFFFFF", strength=0.4)
-make_mat("Lens", "#05070A", rough=0.03, coat=1.0)
-make_mat("LensRing", "#D9DCE0", metallic=1.0, rough=0.12)
+make_mat("Lens", "#020306", rough=0.02, coat=1.0)            # чёрное сапфировое стекло
+make_mat("LensRing", "#2B2D31", metallic=1.0, rough=0.22)     # тонкая тёмная окантовка стекла
+make_mat("LensInner", "#0B1222", metallic=0.4, rough=0.08, coat=1.0)  # внутренний элемент объектива
 make_mat("Screen", "#020203", rough=0.18, emission="#000000", strength=1.0)
 make_mat("Glass", "#030304", rough=0.05, coat=1.0)
 # Вспомогательные
@@ -251,6 +252,25 @@ class Builder:
             faces.append(bm.faces.new((oi1[i], oi1[j], ii1[j], ii1[i])))
             faces.append(bm.faces.new((oi0[j], oi0[i], ii0[i], ii0[j])))
         self._finish_faces(faces, mat)
+        return faces
+
+    def lathe(self, profile, cu, cv, mat, seg=64):
+        """Тело вращения вокруг оси, параллельной Y: profile — точки (радиус, y)."""
+        bm = self.bm
+        rings = []
+        for r, y in profile:
+            rings.append([bm.verts.new(Vector((cu + r * math.cos(2 * math.pi * i / seg), y,
+                                                cv + r * math.sin(2 * math.pi * i / seg))))
+                          for i in range(seg)])
+        faces = []
+        for a, b2 in zip(rings, rings[1:]):
+            for i in range(seg):
+                j = (i + 1) % seg
+                # такой порядок даёт нормали наружу: профиль идёт снизу вверх и внутрь
+                faces.append(bm.faces.new((a[i], b2[i], b2[j], a[j])))
+        idx = self.mi(mat)
+        for f in faces:
+            f.material_index = idx
         return faces
 
     def dome(self, r, h, cu, cv, base, mat, seg=48, rings=8):
@@ -383,18 +403,31 @@ b.prism(rrect(ISLAND_W, ISLAND_H, ISLAND_W / 2, seg=16, cx=CAM_X, cy=CAM_ZC), "Y
         "Frame", bevel_end=0.22, seg=3)
 b.build(parent=root)
 
-b = Builder("CameraModules", ["Frame", "Dark", "LensRing", "Lens"])
+def camera_rim_profile(base, top):
+    """Приподнятый обод модуля: скруглённая внешняя кромка, плоский верх, скругление внутрь."""
+    pts = [(CAM_R, base), (CAM_R, top - 0.45)]
+    for k in range(1, 7):                      # внешнее скругление R 0.45
+        a = math.radians(90 * k / 6)
+        pts.append((CAM_R - 0.45 + 0.45 * math.cos(a), top - 0.45 + 0.45 * math.sin(a)))
+    pts.append((6.95, top))
+    for k in range(1, 5):                      # внутреннее скругление R 0.2
+        a = math.radians(90 + 90 * k / 4)
+        pts.append((6.95 + 0.2 * math.cos(a), top - 0.2 + 0.2 * math.sin(a)))
+    pts.append((6.75, top - 0.6))
+    return pts
+
+
+GLASS_Y = CAM_TOP - 0.55                       # стекло утоплено под обод
+b = Builder("CameraModules", ["Frame", "Dark", "LensRing", "Lens", "LensInner"])
 for sz in (1, -1):
     cz = CAM_ZC + sz * CAM_DZ
-    b.prism(circle(CAM_R, 64, CAM_X, cz), "Y", ISLAND_TOP - 0.05, CAM_TOP, "Frame",
-            bevel_end=0.35, seg=3)
-    b.prism(circle(6.8, 64, CAM_X, cz), "Y", CAM_TOP - 0.1, CAM_TOP + 0.04, "Dark")
-    b.tube(5.0, 5.85, "Y", CAM_X, cz, CAM_TOP, CAM_TOP + 0.25, "LensRing", seg=64)
-    b.dome(5.0, 0.32, CAM_X, cz, CAM_TOP + 0.02, "Lens", seg=64, rings=8)
-    b.tube(2.2, 2.5, "Y", CAM_X, cz, CAM_TOP + 0.28, CAM_TOP + 0.33, "LensRing", seg=48)
-    b.tube(3.55, 3.72, "Y", CAM_X, cz, CAM_TOP + 0.2, CAM_TOP + 0.27, "LensRing", seg=48)
+    b.lathe(camera_rim_profile(ISLAND_TOP - 0.05, CAM_TOP), CAM_X, cz, "Frame", seg=72)
+    b.prism(circle(6.8, 72, CAM_X, cz), "Y", GLASS_Y - 0.3, GLASS_Y - 0.05, "Dark")          # дно гнезда
+    b.tube(6.15, 6.8, "Y", CAM_X, cz, GLASS_Y - 0.08, GLASS_Y + 0.03, "LensRing", seg=72)    # тонкая окантовка
+    b.dome(6.15, 0.09, CAM_X, cz, GLASS_Y - 0.02, "Lens", seg=72, rings=6)                   # чёрное стекло
+    b.dome(2.5, 0.05, CAM_X, cz, GLASS_Y + 0.07, "LensInner", seg=48, rings=4)               # внутренний элемент
+    b.tube(2.5, 2.72, "Y", CAM_X, cz, GLASS_Y + 0.06, GLASS_Y + 0.085, "LensRing", seg=48)
 b.build(parent=root)
-
 b = Builder("EngraveX", ["Engrave"])
 for ang in (45, -45):
     b.box(CAM_X, ISLAND_TOP + 0.003, CAM_ZC, 5.2, 0.03, 0.7, "Engrave", rot_y=math.radians(ang))
