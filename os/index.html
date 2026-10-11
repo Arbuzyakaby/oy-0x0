@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ru" data-color="red">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY OS 2 — система, которой нечего скрывать</title>
+  <meta name="description" content="OY OS 2: ассистент OY Assist на устройстве, карта сетевых запросов, призрачный профиль, PIN под принуждением и 7 лет обновлений. Без Google, телеметрии и аккаунта. Концепт.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0A0B">
+  <link rel="canonical" href="https://oy0x.online/os/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/os/">
+  <meta property="og:title" content="OY OS 2 — система, которой нечего скрывать">
+  <meta property="og:description" content="Ассистент на устройстве, карта запросов, призрачный профиль. Без Google, телеметрии и аккаунта.">
+  <meta property="og:image" content="https://oy0x.online/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OY OS 2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.bunny.net; font-src https://fonts.bunny.net; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Ccircle cx='47' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Шрифты: Bunny Fonts (без Google). -->
+  <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=onest:400,500,600,700,800|jetbrains-mono:400,500,700&display=swap">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/os.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="module" src="/js/pages/os.js"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+      <symbol id="i-network" viewBox="0 0 24 24"><path d="M3.5 9.5a12 12 0 0 1 17 0M6.5 12.5a7.8 7.8 0 0 1 11 0M9.5 15.5a3.6 3.6 0 0 1 5 0"/><circle cx="12" cy="18.5" r="1.2"/></symbol>
+      <symbol id="i-location" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+      <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></symbol>
+      <symbol id="i-usb" viewBox="0 0 24 24"><path d="M12 3v14M12 3l-2.2 3M12 3l2.2 3M8 9v2.5l4 2.5M16 8.5v2l-4 2.5"/><circle cx="12" cy="19" r="2"/></symbol>
+      <symbol id="i-restart" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v4.5H15"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-contacts" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5H7z"/><path d="M14 3.5V8h4.5"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15zM10 20.5a2 2 0 0 0 4 0"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></symbol>
+      <symbol id="i-store" viewBox="0 0 24 24"><path d="M4.5 8.5h15l-1.2 11h-12.6z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></symbol>
+      <symbol id="i-update" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 13-5.1M19.5 12a7.5 7.5 0 0 1-13 5.1M17.5 3.5v3.4h-3.4M6.5 20.5v-3.4h3.4"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z"/><path d="M18.5 15.5c.3 1.9 1 2.6 2.9 2.9-1.9.3-2.6 1-2.9 2.9-.3-1.9-1-2.6-2.9-2.9 1.9-.3 2.6-1 2.9-2.9z"/></symbol>
+      <symbol id="i-ghost" viewBox="0 0 24 24"><path d="M5.5 20.5V10a6.5 6.5 0 0 1 13 0v10.5l-2.2-1.6-2.1 1.6-2.2-1.6-2.2 1.6-2.1-1.6z"/><path d="M9.5 10.5h.01M14.5 10.5h.01"/></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></symbol>
+      <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6.5 10h.01M9.5 10h.01M12.5 10h.01M15.5 10h.01M17.5 10h.01M8 14h8"/></symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 12s3.3-6 9-6c1.6 0 3 .4 4.2 1M21 12s-3.3 6-9 6c-1.6 0-3-.4-4.2-1"/><path d="M4 20L20 4"/></symbol>
+      <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 3.5c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5V9l7 4v2l-7-2v5l2 1.5v1.5l-3.5-1-3.5 1V19.5l2-1.5v-5l-7 2v-2l7-4z"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <div class="bgfx" aria-hidden="true">
+    <div class="bgfx__glow bgfx__glow--a"></div>
+    <div class="bgfx__glow bgfx__glow--b"></div>
+  </div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="/" aria-label="OY — на главную">
+      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Разделы">
+      <a href="/0x0/">0X0</a>
+      <a href="/pro/">0X0 Pro</a>
+      <a href="/os/" aria-current="page">OY OS</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--accent btn--sm" href="/pro/#buy">Купить</a>
+    </div>
+  </header>
+
+  <!-- Подменю разделов, как у Apple: таблетки, подсветка текущего раздела -->
+  <nav class="os-tabs" aria-label="Разделы OY OS">
+    <div class="os-tabs__track">
+      <a class="os-tab" href="#overview" aria-current="true">Обзор</a>
+      <a class="os-tab" href="#assist">OY Assist</a>
+      <a class="os-tab" href="#requests">Карта запросов</a>
+      <a class="os-tab" href="#ghost">Призрак</a>
+      <a class="os-tab" href="#more">Ещё</a>
+      <a class="os-tab" href="#updates">Обновления</a>
+      <a class="os-tab os-tab--ring" href="#devices"><svg aria-hidden="true"><use href="#i-spark"/></svg>Устройства</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- 1. ГЕРОЙ -->
+    <section class="section os-hero" id="overview" aria-labelledby="hero-title">
+      <div class="container os-hero__head">
+        <p class="os-hero__eyebrow" data-reveal>OY OS 2</p>
+        <h1 class="os-hero__title" id="hero-title" data-split>Представляем OY&nbsp;Assist. Правда полезный. Правда ваш.</h1>
+        <p class="os-hero__sub" data-reveal>OY Assist сразу говорит по-русски, по-английски и&nbsp;по-французски. Без интернета.</p>
+      </div>
+
+      <div class="os-lineup" aria-hidden="true">
+        <!-- 0X0: главный экран -->
+        <div class="ophone ophone--red os-lineup__a" data-par="-40">
+          <div class="ophone__screen wall wall--ember">
+            <span class="ophone__island"></span>
+            <div class="scr-status mono"><span>8:00</span><span>0 трекеров</span></div>
+            <div class="scr-widget">
+              <b>Отчёт за неделю</b>
+              <span class="scr-widget__big">1&nbsp;284</span>
+              <span>запроса к трекерам перекрыто</span>
+            </div>
+            <div class="scr-apps">
+              <i style="--c:#E8434D"><svg><use href="#i-camera"/></svg></i>
+              <i style="--c:#3D7BFF"><svg><use href="#i-map"/></svg></i>
+              <i style="--c:#2BB673"><svg><use href="#i-store"/></svg></i>
+              <i style="--c:#F2A23A"><svg><use href="#i-file"/></svg></i>
+              <i style="--c:#8B5CF6"><svg><use href="#i-bell"/></svg></i>
+              <i style="--c:#14B8A6"><svg><use href="#i-contacts"/></svg></i>
+              <i style="--c:#64748B"><svg><use href="#i-lock"/></svg></i>
+              <i style="--c:#0EA5E9"><svg><use href="#i-network"/></svg></i>
+            </div>
+            <div class="scr-dock"><i style="--c:#2BB673"><svg><use href="#i-phone"/></svg></i><i style="--c:#3D7BFF"><svg><use href="#i-bell"/></svg></i><i style="--c:#E8434D"><svg><use href="#i-spark"/></svg></i><i style="--c:#1F2937"><svg><use href="#i-terminal"/></svg></i></div>
+          </div>
+        </div>
+
+        <!-- 0X0 Pro: экран блокировки с OY Assist -->
+        <div class="ophone ophone--pro os-lineup__b" data-par="-90">
+          <div class="ophone__screen wall wall--gold">
+            <span class="ophone__island ophone__island--assist"><i class="orb"></i></span>
+            <p class="scr-date">Понедельник, 1&nbsp;ноября</p>
+            <p class="scr-clock">8:00</p>
+            <div class="scr-bubble">
+              <p>Напомни купить цветы маме, когда буду рядом с&nbsp;рынком.</p>
+              <span class="mono"><svg><use href="#i-chip"/></svg>на устройстве · 0&nbsp;байт в&nbsp;сеть</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 0X0 «Ледник»: журнал доступа -->
+        <div class="ophone ophone--ice os-lineup__c" data-par="-20">
+          <div class="ophone__screen wall wall--ice">
+            <span class="ophone__island"></span>
+            <p class="scr-h">Журнал доступа</p>
+            <ul class="scr-log mono">
+              <li><svg><use href="#i-camera"/></svg><span>Сканер QR</span><em>1 раз</em></li>
+              <li class="no"><svg><use href="#i-mic"/></svg><span>Фонарик</span><em>запрещено</em></li>
+              <li><svg><use href="#i-location"/></svg><span>Погода</span><em>город</em></li>
+              <li class="no"><svg><use href="#i-contacts"/></svg><span>Ферма</span><em>пусто</em></li>
+              <li><svg><use href="#i-network"/></svg><span>Почта</span><em>1 адрес</em></li>
+              <li class="no"><svg><use href="#i-file"/></svg><span>Игра</span><em>буфер — нет</em></li>
+            </ul>
+          </div>
+        </div>
+
+        <span class="os-chip os-chip--1" data-par="-120">0 аккаунтов</span>
+        <span class="os-chip os-chip--2" data-par="-60">0 байт в&nbsp;облако</span>
+        <span class="os-chip os-chip--3" data-par="-150">0 рекламных ID</span>
+      </div>
+    </section>
+
+    <!-- 2. ЧТО НОВОГО (галерея) -->
+    <section class="section os-new highlights" id="new" aria-labelledby="new-title">
+      <div class="container">
+        <h2 class="os-new__title" id="new-title" data-split>Что нового в&nbsp;OY&nbsp;OS&nbsp;2.</h2>
+      </div>
+      <div class="hl" aria-roledescription="карусель" aria-labelledby="new-title">
+        <ul class="hl__track" role="list" tabindex="0" aria-label="Слайды">
+          <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+            <div class="hl__text nw__text"><h3 class="hl__title">Новый OY&nbsp;Assist. ИИ-ассистент, который думает прямо в&nbsp;телефоне.</h3></div>
+            <div class="hl__vis nw__vis">
+              <div class="ophone ophone--pro ophone--cut" aria-hidden="true">
+                <div class="ophone__screen wall wall--gold">
+                  <span class="ophone__island ophone__island--assist ophone__island--big"><i class="orb"></i></span>
+                  <p class="scr-date">Пн, 1&nbsp;ноября</p>
+                  <p class="scr-clock scr-clock--xl">8:00</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="hl__slide nw nw--split" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+            <div class="hl__text nw__text"><h3 class="hl__title">Просите своими словами. Длинно, сбивчиво, с&nbsp;уточнениями.</h3><p class="hl__desc">OY Assist разберётся и&nbsp;сделает. А&nbsp;сервер не&nbsp;узнает, что вы просили.</p></div>
+            <div class="hl__vis nw__vis">
+              <div class="ophone ophone--pro ophone--cut" aria-hidden="true">
+                <div class="ophone__screen wall wall--gold">
+                  <span class="ophone__island"></span>
+                  <div class="scr-ask">
+                    <p data-typer="Напиши Лене письмо: в ноябре я свободен по субботам с 12 до 15. Предложи перекус без глютена."></p>
+                    <span class="scr-ask__hint">— Спросить OY Assist</span>
+                  </div>
+                  <span class="scr-ask__btn"><svg><use href="#i-spark"/></svg>Показать</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+            <div class="hl__text nw__text"><h3 class="hl__title">Карта запросов. Видно, куда ходит каждое приложение.</h3><p class="hl__desc">И&nbsp;одной кнопкой — куда оно больше не&nbsp;ходит.</p></div>
+            <div class="hl__vis nw__vis">
+              <svg class="nw-map" viewBox="0 0 400 240" aria-hidden="true">
+                <g class="nw-map__lines">
+                  <path d="M200 120 L70 50"/><path d="M200 120 L330 40"/><path d="M200 120 L360 150" class="bad"/><path d="M200 120 L60 190" class="bad"/><path d="M200 120 L250 215" class="bad"/>
+                </g>
+                <circle cx="70" cy="50" r="6"/><circle cx="330" cy="40" r="6"/><circle class="bad" cx="360" cy="150" r="6"/><circle class="bad" cx="60" cy="190" r="6"/><circle class="bad" cx="250" cy="215" r="6"/>
+                <rect x="186" y="96" width="28" height="48" rx="7" class="nw-map__phone"/>
+              </svg>
+            </div>
+          </li>
+          <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+            <div class="hl__text nw__text"><h3 class="hl__title">Призрачный профиль. Перезагрузка — и&nbsp;его как не&nbsp;было.</h3><p class="hl__desc">Для чужого вайфая, поездок и&nbsp;«дай позвонить».</p></div>
+            <div class="hl__vis nw__vis"><svg class="nw-ghost" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ghost"/></svg></div>
+          </li>
+          <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+            <div class="hl__text nw__text"><h3 class="hl__title">Песочница 2. Приложение просит контакты — получает пустую книжку.</h3><p class="hl__desc">Оно довольно. Вы тоже.</p></div>
+            <div class="hl__vis nw__vis">
+              <div class="nw-sand" aria-hidden="true">
+                <span class="nw-sand__q mono">«Ферма» → contacts.read()</span>
+                <span class="nw-sand__a mono">← []  (0 записей)</span>
+              </div>
+            </div>
+          </li>
+          <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+            <div class="hl__text nw__text"><h3 class="hl__title">Сейф. Пароли и&nbsp;документы — в&nbsp;отдельном чипе Citadel.</h3><p class="hl__desc">Только на&nbsp;0X0&nbsp;Pro.</p></div>
+            <div class="hl__vis nw__vis"><div class="nw-vault" aria-hidden="true"><svg><use href="#i-lock"/></svg><span class="mono">CITADEL</span></div></div>
+          </li>
+        </ul>
+        <div class="hl__controls">
+          <div class="hl__dots">
+            <button type="button" class="hl__dot" aria-label="Слайд 1" aria-current="true"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 2"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 3"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 4"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 5"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 6"><span></span></button>
+          </div>
+          <button type="button" class="hl__play" aria-label="Пауза" data-playing="true">
+            <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12M16 6v12"/></svg>
+            <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. МАНИФЕСТ ПО СЛОВАМ -->
+    <section class="section solid os-manifest" aria-label="О системе">
+      <div class="container">
+        <p class="os-manifest__text" data-scrub-words>Обычный ассистент отправляет ваш голос на&nbsp;сервер, ждёт ответа и&nbsp;оставляет копию «для улучшения качества». OY&nbsp;Assist слушает, только пока вы держите кнопку, думает на&nbsp;нейроядре телефона и&nbsp;ничего не&nbsp;запоминает без спроса.</p>
+      </div>
+    </section>
+
+    <!-- 4. OY ASSIST: ИНТЕРАКТИВНОЕ ДЕМО -->
+    <section class="section solid assist" id="assist" aria-labelledby="assist-title">
+      <div class="container assist__grid">
+        <div class="assist__copy">
+          <p class="eyebrow" data-reveal>OY Assist</p>
+          <h2 class="h2" id="assist-title" data-split>Спросите что&nbsp;угодно. Сеть не&nbsp;узнает.</h2>
+          <p class="lead" data-reveal>Выберите вопрос и&nbsp;смотрите на&nbsp;счётчики. Слева — облачный ассистент, справа — OY&nbsp;Assist. Можно включить авиарежим: на&nbsp;ответ это не&nbsp;повлияет.</p>
+
+          <div class="assist__prompts" role="group" aria-label="Вопросы ассистенту" data-reveal>
+            <button type="button" class="chip-btn" data-q="0">Сократи письмо от&nbsp;начальника до&nbsp;трёх строк</button>
+            <button type="button" class="chip-btn" data-q="1">Что я обещал Марку на&nbsp;прошлой неделе?</button>
+            <button type="button" class="chip-btn" data-q="2">Найди фото чека из&nbsp;аптеки</button>
+            <button type="button" class="chip-btn" data-q="3">Переведи с&nbsp;французского меню на&nbsp;фото</button>
+          </div>
+
+          <label class="cmp-toggle assist__plane" data-reveal>
+            <input type="checkbox" data-plane>
+            <span class="cmp-toggle__track" aria-hidden="true"></span>
+            <span><svg aria-hidden="true"><use href="#i-plane"/></svg>Авиарежим</span>
+          </label>
+        </div>
+
+        <div class="assist__duel" data-reveal>
+          <div class="duel duel--cloud">
+            <p class="duel__name mono">Облачный ассистент</p>
+            <div class="duel__meter"><span class="duel__num mono" data-cloud-bytes>0 Б</span><span class="duel__lbl">ушло на&nbsp;сервер</span></div>
+            <div class="duel__route" aria-hidden="true"><i></i><span class="mono">8&nbsp;400&nbsp;км</span></div>
+            <p class="duel__out" data-cloud-out aria-live="polite">Ждёт вопроса.</p>
+          </div>
+
+          <div class="ophone ophone--pro assist__phone">
+            <div class="ophone__screen wall wall--night">
+              <span class="ophone__island ophone__island--assist" data-assist-island><i class="orb"></i></span>
+              <div class="chat" data-chat aria-live="polite">
+                <p class="chat__sys mono">OY Assist · на устройстве</p>
+              </div>
+              <div class="chat__foot mono"><span data-oy-bytes>0 Б</span> в&nbsp;сеть · <span data-oy-km>0 км</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p class="jab" data-reveal>Нашему ассистенту не&nbsp;нужен «режим конфиденциальности». У&nbsp;него просто нет другого режима.</p>
+      </div>
+    </section>
+
+    <!-- 5. КАРТА ЗАПРОСОВ -->
+    <section class="section solid reqmap" id="requests" aria-labelledby="req-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Карта запросов</p>
+        <h2 class="h2" id="req-title" data-split>Каждое приложение на&nbsp;поводке.</h2>
+        <p class="lead" data-reveal>Выберите приложение: линии показывают, с&nbsp;какими серверами оно говорит. Красные — трекеры. Их можно перекрыть, приложение продолжит работать.</p>
+
+        <div class="reqmap__box" data-reveal>
+          <div class="reqmap__apps" role="radiogroup" aria-label="Приложение" data-req-apps>
+            <button type="button" role="radio" class="req-app" data-value="weather" aria-checked="true"><i style="--c:#3D7BFF">П</i><span><b>Погода</b><em class="mono" data-req-meta="weather"></em></span></button>
+            <button type="button" role="radio" class="req-app" data-value="taxi" aria-checked="false" tabindex="-1"><i style="--c:#F2A23A">Т</i><span><b>Такси</b><em class="mono" data-req-meta="taxi"></em></span></button>
+            <button type="button" role="radio" class="req-app" data-value="farm" aria-checked="false" tabindex="-1"><i style="--c:#2BB673">Ф</i><span><b>Игра «Ферма»</b><em class="mono" data-req-meta="farm"></em></span></button>
+            <button type="button" role="radio" class="req-app" data-value="chat" aria-checked="false" tabindex="-1"><i style="--c:#8B5CF6">М</i><span><b>Мессенджер</b><em class="mono" data-req-meta="chat"></em></span></button>
+          </div>
+
+          <div class="reqmap__canvas">
+            <svg class="reqmap__svg" viewBox="0 0 640 400" role="img" aria-label="Схема сетевых запросов выбранного приложения" data-req-svg></svg>
+            <div class="reqmap__bar">
+              <p class="mono" data-req-status aria-live="polite"></p>
+              <button type="button" class="btn btn--accent btn--sm" data-req-block>Перекрыть трекеры</button>
+            </div>
+          </div>
+        </div>
+
+        <ul class="stats" role="list">
+          <li data-reveal><span class="stats__n mono" data-count="1284">0</span><span>запроса к&nbsp;трекерам перекрыто за&nbsp;неделю</span></li>
+          <li data-reveal><span class="stats__n mono" data-count="37">0</span><span>разрешений истекло само</span></li>
+          <li data-reveal><span class="stats__n mono" data-count="0">0</span><span>обращений к&nbsp;Google. Не&nbsp;заблокировано — их&nbsp;просто нет</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. ПРИЗРАК И PIN ПОД ПРИНУЖДЕНИЕМ -->
+    <section class="section solid ghost" id="ghost" aria-labelledby="ghost-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Призрачный профиль · PIN под принуждением</p>
+        <h2 class="h2" id="ghost-title" data-split>Телефон, который умеет молчать.</h2>
+
+        <div class="ghost__grid">
+          <article class="gcard" data-reveal>
+            <div class="gcard__vis">
+              <div class="ophone ophone--ice ophone--sm">
+                <div class="ophone__screen wall wall--ice" data-ghost-screen>
+                  <span class="ophone__island"></span>
+                  <p class="scr-h">Призрачный профиль</p>
+                  <ul class="ghost-items" data-ghost-items>
+                    <li><svg aria-hidden="true"><use href="#i-camera"/></svg>Фото <em class="mono">12</em></li>
+                    <li><svg aria-hidden="true"><use href="#i-network"/></svg>Вкладки <em class="mono">7</em></li>
+                    <li><svg aria-hidden="true"><use href="#i-lock"/></svg>Пароль от&nbsp;вайфая отеля</li>
+                    <li><svg aria-hidden="true"><use href="#i-file"/></svg>Скачанный посадочный</li>
+                    <li><svg aria-hidden="true"><use href="#i-bell"/></svg>Переписка в&nbsp;такси</li>
+                  </ul>
+                  <div class="ghost-boot" aria-hidden="true"><svg viewBox="0 0 64 24"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg></div>
+                  <p class="ghost-empty mono">Пусто. Совсем.</p>
+                </div>
+              </div>
+            </div>
+            <h3>Призрачный профиль</h3>
+            <p>Временный профиль для поездок и&nbsp;чужих сетей. После перезагрузки исчезает со&nbsp;всем, что в&nbsp;нём было: ключи шифрования удаляются, данные не&nbsp;восстановить.</p>
+            <button type="button" class="btn btn--ghost btn--sm" data-ghost-reboot><svg aria-hidden="true" class="btn__ic"><use href="#i-restart"/></svg>Перезагрузить</button>
+          </article>
+
+          <article class="gcard" data-reveal>
+            <div class="gcard__vis">
+              <div class="pin" data-pin>
+                <div class="pin__screen" data-pin-screen>
+                  <p class="pin__title" data-pin-title>Введите PIN</p>
+                  <div class="pin__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <p class="pin__res mono" data-pin-res aria-live="polite"></p>
+                </div>
+                <div class="pin__pad" role="group" aria-label="Цифровая клавиатура">
+                  <button type="button" data-d="1">1</button><button type="button" data-d="2">2</button><button type="button" data-d="3">3</button>
+                  <button type="button" data-d="4">4</button><button type="button" data-d="5">5</button><button type="button" data-d="6">6</button>
+                  <button type="button" data-d="7">7</button><button type="button" data-d="8">8</button><button type="button" data-d="9">9</button>
+                  <button type="button" data-d="reset" aria-label="Сначала"><svg aria-hidden="true"><use href="#i-restart"/></svg></button><button type="button" data-d="0">0</button><button type="button" data-d="back" aria-label="Стереть">⌫</button>
+                </div>
+              </div>
+            </div>
+            <h3>PIN под принуждением</h3>
+            <p>Второй PIN открывает чистый профиль. Настоящий остаётся зашифрованным, и&nbsp;снаружи не&nbsp;видно, что он вообще есть.</p>
+            <p class="pin__hint mono">Попробуйте: <b>2027</b> — ваш телефон, <b>1984</b> — для&nbsp;«покажите, что у&nbsp;вас там».</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ЕЩЁ (сетка) -->
+    <section class="section solid more" id="more" aria-labelledby="more-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Ещё в OY OS 2</p>
+        <h2 class="h2" id="more-title" data-split>Мелочи, о&nbsp;которых больше никто не&nbsp;подумал.</h2>
+        <ul class="more__grid" role="list">
+          <li class="mf mf--wide" data-reveal>
+            <svg aria-hidden="true"><use href="#i-restart"/></svg>
+            <h3>Перезагрузка в&nbsp;простое</h3>
+            <p>Телефон пролежал 18&nbsp;часов без разблокировки? Он перезагрузится сам, и&nbsp;данные снова будут под полным шифрованием. Потерянный телефон через сутки — просто кирпич.</p>
+          </li>
+          <li class="mf" data-reveal><svg aria-hidden="true"><use href="#i-usb"/></svg><h3>USB только для зарядки</h3><p>На&nbsp;заблокированном экране порт отдаёт ток и&nbsp;больше ничего.</p></li>
+          <li class="mf" data-reveal><svg aria-hidden="true"><use href="#i-keyboard"/></svg><h3>Клавиатура без сети</h3><p>Она не&nbsp;знает, что такое интернет. И&nbsp;не&nbsp;узнает.</p></li>
+          <li class="mf" data-reveal><svg aria-hidden="true"><use href="#i-eye-off"/></svg><h3>Тихие датчики</h3><p>Акселерометр и&nbsp;гироскоп выдаются по&nbsp;разрешению. По&nbsp;ним тоже можно следить — мы проверили.</p></li>
+          <li class="mf" data-reveal><svg aria-hidden="true"><use href="#i-store"/></svg><h3>Паспорт приватности 2</h3><p>OY Store показывает трекеры и&nbsp;адреса до&nbsp;установки. И&nbsp;что изменилось с&nbsp;прошлой версии.</p></li>
+          <li class="mf" data-reveal><svg aria-hidden="true"><use href="#i-bell"/></svg><h3>XPush Plus</h3><p>Уведомления без Google. Сервер видит только зашифрованный конверт.</p></li>
+          <li class="mf mf--wide mf--accent" data-reveal>
+            <svg aria-hidden="true"><use href="#i-code"/></svg>
+            <h3>Режим «Объясни»</h3>
+            <p>Зажмите любую настройку — OY&nbsp;Assist объяснит человеческим языком, что она делает и&nbsp;что будет, если её выключить. Без «улучшения пользовательского опыта».</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. ОБНОВЛЕНИЯ И ВОСПРОИЗВОДИМЫЕ СБОРКИ -->
+    <section class="section solid light updates" id="updates" aria-labelledby="upd-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Обновления</p>
+        <h2 class="h2" id="upd-title" data-split>7&nbsp;лет обновлений. Без «оптимизации батареи».</h2>
+        <p class="lead" data-reveal>Обновления системы и&nbsp;безопасности до&nbsp;2034 года для обеих моделей. Обещание записано в&nbsp;гарантию, а&nbsp;не&nbsp;в&nbsp;пресс-релиз.</p>
+
+        <div class="timeline" data-reveal>
+          <div class="timeline__years mono" aria-hidden="true"><span>2027</span><span>2028</span><span>2029</span><span>2030</span><span>2031</span><span>2032</span><span>2033</span><span>2034</span></div>
+          <div class="timeline__bar timeline__bar--os"><span>Новые версии OY OS</span></div>
+          <div class="timeline__bar timeline__bar--sec"><span>Патчи безопасности каждый месяц</span></div>
+          <p class="timeline__note">Каждый релиз проверяем OY&nbsp;Bench до&nbsp;и&nbsp;после. Если стало медленнее хотя бы на&nbsp;3&nbsp;% — релиз не&nbsp;выходит.</p>
+        </div>
+
+        <div class="verify" data-reveal>
+          <div class="verify__copy">
+            <h3 class="h3">Не&nbsp;верьте нам. Проверьте&nbsp;хеш.</h3>
+            <p>Сборки OY&nbsp;OS воспроизводимы: соберите систему из&nbsp;открытого кода и&nbsp;сравните отпечаток с&nbsp;тем, что пришло на&nbsp;телефон. Совпадёт до&nbsp;байта.</p>
+          </div>
+          <div class="verify__box mono">
+            <p><span>Опубликовано</span><code data-hash-pub>9f3a…</code></p>
+            <p><span>Ваша сборка</span><code data-hash-mine>—</code></p>
+            <div class="verify__row">
+              <button type="button" class="btn btn--accent btn--sm" data-hash-run>Собрать и&nbsp;сравнить</button>
+              <span class="verify__res" data-hash-res aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. УСТРОЙСТВА -->
+    <section class="section solid devices" id="devices" aria-labelledby="dev-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Совместимость</p>
+        <h2 class="h2" id="dev-title" data-split>OY&nbsp;OS&nbsp;2 на&nbsp;обоих телефонах.</h2>
+        <div class="devices__grid">
+          <a class="dev" href="/0x0/" data-reveal>
+            <p class="dev__name">OY 0X0</p>
+            <p class="dev__price mono">от $449</p>
+            <ul class="dev__list">
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY Assist на&nbsp;устройстве</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Карта запросов</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Призрачный профиль и&nbsp;PIN под принуждением</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Песочница 2</li>
+              <li class="n"><svg aria-hidden="true"><use href="#i-minus"/></svg>Сейф в&nbsp;Citadel</li>
+            </ul>
+            <span class="dev__more">Подробнее о&nbsp;0X0 →</span>
+          </a>
+          <a class="dev dev--pro" href="/pro/" data-reveal>
+            <p class="dev__name">OY 0X0 Pro</p>
+            <p class="dev__price mono">от $749</p>
+            <ul class="dev__list">
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё, что есть на&nbsp;0X0</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Сейф в&nbsp;Citadel</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY Assist быстрее: нейроядро мощнее</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Шифратор звонков</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Четыре kill switch</li>
+            </ul>
+            <span class="dev__more">Подробнее о&nbsp;0X0 Pro →</span>
+          </a>
+        </div>
+        <p class="note devices__note" data-reveal>На&nbsp;0X0 система приходит обновлением. Бесплатно, без аккаунта и&nbsp;без «примите новые условия».</p>
+        <button type="button" class="term-hint mono" data-term-open><svg aria-hidden="true"><use href="#i-terminal"/></svg>Для любопытных: нажмите <kbd>`</kbd></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · французский стартап</span>
+      </div>
+      <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY OS 2 · OY 0X0 · OY 0X0 Pro · Конец 2027</p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X0, OY&nbsp;0X0&nbsp;Pro, OY&nbsp;OS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефоны не&nbsp;продаются. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <!-- Пасхалка: терминал OY OS -->
+  <div class="term" data-term hidden role="dialog" aria-modal="true" aria-label="Терминал OY OS">
+    <div class="term__win">
+      <div class="term__bar"><i></i><i></i><i></i><span class="mono">user@oy-os: ~</span><button type="button" class="term__x" data-term-close aria-label="Закрыть">×</button></div>
+      <div class="term__out mono" data-term-out></div>
+      <form class="term__line mono" data-term-form autocomplete="off">
+        <label for="term-in">$</label>
+        <input id="term-in" data-term-in spellcheck="false" autocapitalize="off" aria-label="Команда">
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -25,6 +25,7 @@
 | [`/`](https://oy0x.online/) | Витрина: два телефона в 3D, выбор модели, главные различия, OY OS 2, «Чего здесь нет» |
 | [`/0x0/`](https://oy0x.online/0x0/) | OY 0X0: шторка, три kill switch, сигнальный фонарь, экран 0,5–3500 нит |
 | [`/pro/`](https://oy0x.online/pro/) | OY 0X0 Pro: Citadel, шифратор звонков, Claw, четыре kill switch, стеклянные грани, мрамор |
+| [`/os/`](https://oy0x.online/os/) | OY OS 2: OY Assist против облака, карта запросов, призрачный профиль, PIN под принуждением, проверка хеша сборки, терминал по <kbd>`</kbd> |
 | [`/compare/`](https://oy0x.online/compare/) | Таблица сравнения с фильтром «только различия» |
 
 <table><tr>
@@ -87,17 +88,19 @@ npx serve .
 index.html            витрина семейства
 0x0/index.html        страница OY 0X0
 pro/index.html        страница OY 0X0 Pro
+os/index.html         страница OY OS 2 (без 3D)
 compare/index.html    сравнение моделей
 404.html              страница «не найдено» (автономная, без JS)
 og.jpg                превью ссылки для мессенджеров и соцсетей, 1200×630
 css/core.css          общие стили: токены, типографика, шапка, подвал, карусель
 css/0x0.css           стили страницы 0X0 (Pro переиспользует компоненты)
 css/pro.css · home.css стили Pro, витрины и сравнения
+css/os.css            стили страницы OY OS 2
 js/core/              ядро: 3D-сцена, ключевые кадры, прокрутка, тексты, карусель, UI
 js/models/oy0x0.js    3D-модель 0X0: материалы, механика, экран, резервная модель
 js/models/pro.js      3D-модель Pro: матовое стекло, процедурный мрамор, Citadel, антенны Claw
 js/data/products.js   цены, цвета и сравнение моделей — единственный источник
-js/pages/             хореография страниц: base.js (0X0), pro.js, home.js, compare.js
+js/pages/             хореография страниц: base.js (0X0), pro.js, home.js, compare.js, os.js
 models/               oy0x0.glb (~16 тыс. треугольников) и oy0x0-pro.glb (~22 тыс.)
 blender/              скрипты сборки и превью модели
 tests/                юнит-тесты (npm test) и регрессия страницы 0X0
