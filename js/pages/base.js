@@ -15,6 +15,8 @@ import { createKeys } from '../core/keys.js';
 import { PRODUCTS, getConfig } from '../data/products.js';
 import { $, $$, clamp01, store, createToast, syncRadio, initRadioGroup, bindToggles, bindStubs } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
+import { createSplitReveals, wrapWords, scrubWords } from '../core/text.js';
+import { initCarousel } from '../core/carousel.js';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -241,149 +243,15 @@ function syncHtml(v) {
 
 /* ---------- Разбиение текста на строки ---------- */
 
-function splitLines(el) {
-  const text = el.dataset.splitText ?? (el.dataset.splitText = el.textContent.replace(/[ \t\r\n]+/g, ' ').trim());
-  el.textContent = '';
-  const words = text.split(' ');
-  const spans = words.map((w, i) => {
-    const s = document.createElement('span');
-    s.textContent = w;
-    el.append(s);
-    if (i < words.length - 1) el.append(' ');
-    return s;
-  });
-  const lines = [];
-  let top = null;
-  for (const s of spans) {
-    const t = s.offsetTop;
-    if (top === null || Math.abs(t - top) > 3) { lines.push([]); top = t; }
-    lines[lines.length - 1].push(s.textContent);
-  }
-  el.textContent = '';
-  return lines.map((ws) => {
-    const line = document.createElement('span');
-    line.className = 'line';
-    const inner = document.createElement('span');
-    inner.className = 'line__inner';
-    inner.textContent = ws.join(' ');
-    line.append(inner);
-    el.append(line);
-    return inner;
-  });
-}
-function unsplit(el) {
-  if (el.dataset.splitText !== undefined) el.textContent = el.dataset.splitText;
-}
-
-const splitEls = $$('[data-split]');
-const splitState = new Map();
-
-function buildSplitReveal(el, reduce) {
-  const st = splitState.get(el) || {};
-  st.tween?.scrollTrigger?.kill();
-  st.tween?.kill();
-  if (st.done) { unsplit(el); return; }
-  if (reduce) {
-    unsplit(el);
-    st.tween = gsap.fromTo(el, { opacity: 0 }, {
-      opacity: 1, duration: 0.6, ease: 'none',
-      scrollTrigger: { trigger: el, start: 'top 92%', once: true },
-      onComplete: () => { st.done = true; },
-    });
-  } else {
-    const lines = splitLines(el);
-    st.tween = gsap.fromTo(lines,
-      { yPercent: 110, opacity: 0, filter: 'blur(8px)' },
-      {
-        yPercent: 0, opacity: 1, filter: 'blur(0px)',
-        duration: 1.15, ease: 'expo.out', stagger: 0.09,
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-        onComplete: () => { st.done = true; unsplit(el); },
-      });
-  }
-  splitState.set(el, st);
-}
+const splits = createSplitReveals($$('[data-split]'), { gsap });
 
 /* ---------- Абзац, который «загорается» по словам ---------- */
 
-const scrubWords = $$('[data-scrub-words]').map((el) => {
-  const words = el.textContent.replace(/[ \t\r\n]+/g, ' ').trim().split(' ');
-  el.textContent = '';
-  const spans = words.map((w, i) => {
-    const s = document.createElement('span');
-    s.className = 'w';
-    s.textContent = w;
-    el.append(s);
-    if (i < words.length - 1) el.append(' ');
-    return s;
-  });
-  return { el, spans };
-});
+const scrubItems = $$('[data-scrub-words]').map((el) => ({ el, spans: wrapWords(el) }));
 
 /* ---------- Карусель «Коротко о главном» ---------- */
 
-const hl = (() => {
-  const sec = $('#highlights');
-  if (!sec) return null;
-  const track = $('.hl__track', sec);
-  const slides = $$('.hl__slide', sec);
-  const dots = $$('.hl__dot', sec);
-  const playBtn = $('.hl__play', sec);
-  const DUR = 5;
-  let idx = 0, p = 0, playing = true, inView = false, programmatic = 0;
-
-  const offset = (i) => slides[i].offsetLeft - slides[0].offsetLeft;
-  function setActive(i) {
-    idx = i;
-    slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
-    dots.forEach((d, k) => {
-      if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
-      d.style.setProperty('--p', '0');
-    });
-  }
-  function go(i) {
-    setActive(i);
-    p = 0;
-    programmatic = performance.now();
-    track.scrollTo({ left: offset(i), behavior: reducedMode ? 'auto' : 'smooth' });
-  }
-  function setPlaying(v) {
-    playing = v;
-    playBtn.dataset.playing = String(v);
-    playBtn.setAttribute('aria-label', v ? 'Пауза' : 'Воспроизвести');
-  }
-
-  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
-  playBtn.addEventListener('click', () => {
-    if (!playing && idx === slides.length - 1 && p >= 1) go(0);
-    setPlaying(!playing);
-  });
-
-  // Свайп или прокрутка пользователем
-  let t = 0;
-  track.addEventListener('scroll', () => {
-    clearTimeout(t);
-    t = setTimeout(() => {
-      const x = track.scrollLeft;
-      let best = 0;
-      slides.forEach((s, i) => { if (Math.abs(offset(i) - x) < Math.abs(offset(best) - x)) best = i; });
-      if (best !== idx) { setActive(best); p = 0; }
-    }, 90);
-    if (performance.now() - programmatic > 900) setPlaying(false);
-  }, { passive: true });
-
-  new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.35 }).observe(track);
-
-  gsap.ticker.add((time, dt) => {
-    if (!playing || !inView || reducedMode || document.hidden) return;
-    p = Math.min(1, p + dt / 1000 / DUR);
-    dots[idx]?.style.setProperty('--p', p.toFixed(4));
-    if (p >= 1) go((idx + 1) % slides.length);
-  });
-
-  setActive(0);
-  return { go, setPlaying };
-})();
+initCarousel($('#highlights'), { gsap, isReduced: () => reducedMode });
 
 /* ---------- Одометры «до нуля» ---------- */
 
@@ -523,7 +391,7 @@ function buildChoreography({ isMobile, reduce }) {
   K('final', 1, { y: P.finalB.y + 2 }, true);
 
   // Появления
-  splitEls.forEach((el) => buildSplitReveal(el, reduce));
+  splits.buildAll(reduce);
 
   const reveals = $$('[data-reveal]');
   reveals.forEach((el) => {
@@ -538,13 +406,7 @@ function buildChoreography({ isMobile, reduce }) {
   });
 
   // Слова загораются по мере прокрутки
-  scrubWords.forEach(({ el, spans }) => {
-    const n = spans.length;
-    const paint = (p) => spans.forEach((s, i) => s.style.setProperty('--o', String(0.16 + 0.84 * clamp01(p * (n + 4) - i))));
-    if (reduce) { paint(1); return; }
-    paint(0);
-    ScrollTrigger.create({ trigger: el, start: 'top 82%', end: 'bottom 52%', onUpdate: (st) => paint(st.progress), onRefresh: (st) => paint(st.progress) });
-  });
+  scrubWords(scrubItems, { reduce, ScrollTrigger });
 
   // Одометры
   reels.forEach((reel, i) => {
@@ -614,7 +476,7 @@ function buildChoreography({ isMobile, reduce }) {
 
   return () => {
     Keys.reset();
-    splitEls.forEach(unsplit);
+    splits.unsplitAll();
   };
 }
 
@@ -703,10 +565,7 @@ if (stage) {
     stage.resize();
     if (Math.abs(window.innerWidth - rw) > 2) {
       rw = window.innerWidth;
-      splitEls.forEach((el) => {
-        const st = splitState.get(el);
-        if (st && !st.done) buildSplitReveal(el, reducedMode);
-      });
+      splits.rebuildPending(reducedMode);
     }
   });
 }
