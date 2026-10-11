@@ -44,7 +44,7 @@ export function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-export function drawScreen(canvas, mode, accent, label = 'OY OS') {
+export function drawScreen(canvas, mode, accent, label = 'OY OS', switches = { title: 'Kill Switches', sub: 'камера+мик · связь · гео', dots: 3 }) {
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
   const night = mode === 'night';
@@ -116,11 +116,11 @@ export function drawScreen(canvas, mode, accent, label = 'OY OS') {
     lines.forEach((l, i) => ctx.fillText(l, 76, y + 96 + i * 36));
   };
   card(700, 190, 'Журнал доступа', ['Камера — Сканер QR — 14:02', 'Геолокация — отклонено — 14:05']);
-  card(920, 150, 'Kill Switches', ['камера+мик · связь · гео']);
+  card(920, 150, switches.title, [switches.sub]);
   // индикаторы
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < switches.dots; i++) {
     ctx.beginPath();
-    ctx.arc(W - 160 + i * 36, 970, 10, 0, Math.PI * 2);
+    ctx.arc(W - 88 - (switches.dots - 1 - i) * 36, 970, 10, 0, Math.PI * 2);
     ctx.fillStyle = night ? ink : '#4ADE9B';
     ctx.fill();
   }
