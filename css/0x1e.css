@@ -1,0 +1,97 @@
+/* =========================================================================
+   OY 0X1 Essential — стили страницы модели (поверх core.css, 0x0.css, pro.css и 0x1.css)
+   ========================================================================= */
+
+:root[data-color="mint"] {
+  --accent: #3FBF8C;
+  --accent-text: #6FE3B4;
+  --accent-strong: #23946A;
+  --accent-ink: #04140D;
+  --glow: rgba(80, 220, 160, .3);
+  --bg-tint: #07100C;
+}
+:root[data-color="sand"] {
+  --accent: #D8B57A;
+  --accent-text: #EBC98C;
+  --accent-strong: #A9864C;
+  --accent-ink: #160F05;
+  --glow: rgba(230, 190, 120, .28);
+  --bg-tint: #0E0C08;
+}
+:root[data-color="coal"] {
+  --accent: #FF7A2D;
+  --accent-text: #FF8A45;
+  --accent-strong: #C75313;
+  --accent-ink: #160903;
+  --glow: rgba(255, 122, 45, .26);
+  --bg-tint: #0B0B0C;
+}
+
+.swatch--mint { background: radial-gradient(circle at 35% 30%, #C4F0DC, #86D3B2 55%, #4D9C7C); }
+.swatch--sand { background: radial-gradient(circle at 35% 30%, #F4E6CC, #DCC7A4 55%, #A88F68); }
+.swatch--coal { background: radial-gradient(circle at 35% 30%, #5C5F65, #2A2C2F 55%, #101112); }
+
+:root[data-color="mint"] .cl--mint, :root[data-color="sand"] .cl--sand, :root[data-color="coal"] .cl--coal { display: inline; }
+
+.hero__title--e { font-size: clamp(56px, 8.6vw, 148px); }
+.mem-switch--2 { grid-template-columns: repeat(2, 1fr); }
+.design .stage-text { max-width: min(520px, 42vw); }
+
+/* ---------- Кнопка «0»: демо ---------- */
+
+.ek {
+  margin-top: clamp(40px, 6vh, 72px); display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px clamp(24px, 4vw, 64px); align-items: start;
+  grid-template-areas: "side cfg" "side screen";
+}
+.ek__side { grid-area: side; display: grid; justify-items: center; gap: 18px; }
+.ek__cfg { grid-area: cfg; }
+.ek__screen { grid-area: screen; }
+.ek__rail { height: 300px; padding-top: 80px; }
+.ek__rail .kd__key { height: 104px; touch-action: none; user-select: none; -webkit-user-select: none; }
+.ek__hint { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+.ek__ring {
+  --p: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: conic-gradient(var(--bad) calc(var(--p) * 360deg), var(--bg-3) 0);
+  -webkit-mask: radial-gradient(circle, transparent 55%, #000 57%); mask: radial-gradient(circle, transparent 55%, #000 57%);
+}
+
+/* ---------- Что мы не урезали ---------- */
+
+.kept .h2 { max-width: 16ch; }
+.kept__grid { margin-top: 48px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 16px; }
+.kept__col { padding: clamp(24px, 3vw, 40px); border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg-2); }
+.kept__k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kept__col ul { margin-top: 20px; display: grid; gap: 14px; }
+.kept__col--cut li { position: relative; color: var(--muted); font-size: 17px; text-decoration: line-through; text-decoration-color: rgba(255, 92, 100, .7); text-decoration-thickness: 1.5px; }
+.kept__col--kept { border-color: var(--accent-text); background: radial-gradient(120% 80% at 90% 0%, var(--glow), transparent 60%), var(--bg-2); }
+.kept__col--kept .kept__k { color: var(--accent-text); }
+.kept__col--kept li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; font-size: 16px; color: var(--muted); }
+.kept__col--kept li b { color: var(--fg); font-weight: 600; }
+.kept__col--kept svg { width: 24px; height: 24px; color: var(--accent-text); }
+.kept .jab { margin-top: 28px; }
+
+/* ---------- Карусель: визуалы Essential ---------- */
+
+.hlx-keys--one { grid-template-columns: 1fr; }
+.hlx-epair {
+  position: relative; width: 96px; height: 228px; border-radius: 48px; display: grid; justify-items: center; align-content: center; gap: 14px;
+  background: var(--accent); box-shadow: 0 30px 80px -30px var(--glow);
+}
+.hlx-epair span { width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle, #24365C 0 18%, #0B1222 19% 70%, #020306 72% 86%, #C9CCD0 88%); }
+.hlx-epair span:last-child { width: 56px; height: 56px; }
+.hlx-epair em { width: 16px; height: 16px; border-radius: 50%; background: #F3EAD6; }
+
+/* =========================================================================
+   Адаптив
+   ========================================================================= */
+
+@media (max-width: 1000px) {
+  .kept__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .design .stage-text { max-width: none; }
+  .design .lead { font-size: 15px; }
+  .ek { grid-template-columns: 1fr; grid-template-areas: "side" "screen" "cfg"; }
+  .ek__rail { height: 120px; padding: 0 40px; }
+  .ek__rail .kd__key { width: 104px; height: 44px; }
+}
