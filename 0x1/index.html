@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-color="violet">
+<html lang="ru" data-subnav data-color="violet">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -25,11 +25,11 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23B79CFF' stroke-width='4'/%3E%3Cpath d='M47 23v18' stroke='%23B79CFF' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
 
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/fonts.css">
-  <link rel="stylesheet" href="/css/core.css">
-  <link rel="stylesheet" href="/css/0x0.css">
-  <link rel="stylesheet" href="/css/pro.css">
-  <link rel="stylesheet" href="/css/0x1.css">
+  <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
+  <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
+  <link rel="stylesheet" href="/css/0x0.css?v=9a40b47add">
+  <link rel="stylesheet" href="/css/pro.css?v=4c516458eb">
+  <link rel="stylesheet" href="/css/0x1.css?v=53a3639a44">
 
   <script type="importmap">
   {
@@ -38,13 +38,39 @@
       "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
       "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
       "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
-      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=6dc9c05129",
+      "/js/data/products.js": "/js/data/products.js?v=49dfda6191",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=7e2a169dd7",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
+      "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=44713648f7",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=1a319607fa",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=d897cd391d",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=874617d651",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=fc124d94b6",
+      "/js/pages/base.js": "/js/pages/base.js?v=afc624698e",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=68f3b01381",
+      "/js/pages/home.js": "/js/pages/home.js?v=ae38fc7b30",
+      "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
     }
   }
   </script>
   <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-0x1-color');if(c==='violet'||c==='polar'||c==='concrete')document.documentElement.dataset.color=c}catch(e){}</script>
-  <link rel="modulepreload" href="/js/core/stage.js">
-  <script type="module" src="/js/pages/0x1.js"></script>
+  <script type="module" src="/js/core/subnav.js?v=2b8a463a67"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x1.js?v=44713648f7"></script>
 </head>
 <body>
   <!-- Иконки -->
@@ -122,18 +148,33 @@
       <a href="/os/">OY OS</a>
       <a href="/accessories/">Аксессуары</a>
       <a href="/compare/">Сравнить</a>
-      <a href="#keys">Кнопки</a>
-      <a href="#specs">Характеристики</a>
     </nav>
-    <div class="header-actions">
-      <div class="color-switch color-switch--mini" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
-        <button type="button" role="radio" class="swatch swatch--violet" data-value="violet" aria-checked="true"><span class="sr-only">Фиалка</span></button>
-        <button type="button" role="radio" class="swatch swatch--polar" data-value="polar" aria-checked="false"><span class="sr-only">Полярная Ночь</span></button>
-        <button type="button" role="radio" class="swatch swatch--concrete" data-value="concrete" aria-checked="false"><span class="sr-only">Бетон</span></button>
-      </div>
-      <a class="btn btn--accent btn--sm" href="#buy">Купить</a>
-    </div>
   </header>
+
+  <nav class="subnav" aria-label="Разделы страницы OY 0X1" data-subnav>
+    <div class="subnav__inner">
+      <a class="subnav__title" href="#top">0X1</a>
+      <button type="button" class="subnav__toggle" aria-expanded="false" aria-controls="subnav-menu" data-subnav-toggle>
+        <span class="sr-only">Разделы</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+      </button>
+      <div class="subnav__menu" id="subnav-menu">
+        <a href="#design">Дизайн</a>
+        <a href="#cams">Камеры</a>
+        <a href="#keys">Кнопки</a>
+        <a href="#claw">Claw 2.0</a>
+        <a href="#specs">Характеристики</a>
+      </div>
+      <div class="subnav__actions">
+        <div class="color-switch color-switch--mini" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+          <button type="button" role="radio" class="swatch swatch--violet" data-value="violet" aria-checked="true"><span class="sr-only">Фиалка</span></button>
+          <button type="button" role="radio" class="swatch swatch--polar" data-value="polar" aria-checked="false"><span class="sr-only">Полярная Ночь</span></button>
+          <button type="button" role="radio" class="swatch swatch--concrete" data-value="concrete" aria-checked="false"><span class="sr-only">Бетон</span></button>
+        </div>
+        <a class="btn btn--accent btn--sm" href="#buy">Купить</a>
+      </div>
+    </div>
+  </nav>
 
   <main id="main">
 

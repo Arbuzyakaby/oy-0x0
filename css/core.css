@@ -292,6 +292,38 @@ main, .site-footer { position: relative; z-index: 2; }
 .site-nav a { text-decoration: none; color: var(--muted); transition: color .2s; white-space: nowrap; }
 .site-nav a:hover { color: var(--fg); }
 .header-actions { display: flex; align-items: center; gap: 14px; }
+/* Прячем через top: transform шапки анимирует GSAP при появлении */
+.site-header { transition: top .4s var(--ease); }
+.site-header .site-nav { position: absolute; left: 50%; translate: -50% 0; }
+
+/* ---------- Подменю страницы модели (как у Apple) ----------
+   Под общей шапкой: название модели, разделы, цвет и «Купить». При прокрутке
+   общая шапка уезжает вверх, а подменю прилипает к краю экрана. */
+
+:root { --subnav-h: 52px; }
+.subnav {
+  position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 49;
+  height: var(--subnav-h);
+  background: rgba(10, 10, 11, .72);
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  border-bottom: 1px solid var(--line);
+  transition: top .4s var(--ease);
+}
+html.subnav-stuck .site-header { top: calc(-1 * var(--header-h) - 1px); }
+html.subnav-stuck .subnav { top: 0; }
+.subnav__inner { height: 100%; display: flex; align-items: center; gap: clamp(16px, 2vw, 28px); padding: 0 var(--gutter); }
+.subnav__title { margin-right: auto; font-size: 21px; font-weight: 650; letter-spacing: -.025em; text-decoration: none; white-space: nowrap; }
+.subnav__menu { display: flex; gap: clamp(14px, 1.6vw, 26px); font-size: 13px; }
+.subnav__menu a { color: var(--muted); text-decoration: none; white-space: nowrap; transition: color .2s; }
+.subnav__menu a:hover, .subnav__menu a.is-active { color: var(--fg); }
+.subnav__actions { display: flex; align-items: center; gap: 14px; }
+.subnav__actions .btn--sm { height: 30px; padding: 0 14px; font-size: 13px; }
+.subnav__toggle { display: none; }
+@media (min-width: 761px) {
+  html[data-subnav] .hero__inner { padding-top: calc(var(--header-h) + var(--subnav-h) + 24px); }
+}
+html[data-subnav] [id] { scroll-margin-top: var(--subnav-h); }
 
 /* ---------- Переключатель цвета ---------- */
 
@@ -465,10 +497,6 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
    Адаптив (общие элементы)
    ========================================================================= */
 
-/* Восемь разделов в шапке: якоря страницы уходят первыми */
-@media (max-width: 1440px) {
-  .site-nav a:nth-child(n+9) { display: none; }
-}
 @media (max-width: 1100px) {
   .site-nav { display: none; }
 }
@@ -500,6 +528,26 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
   .hl__track { gap: 12px; }
   .hl__dots { height: 48px; padding: 0 14px; }
   .hl__play { width: 48px; height: 48px; }
+}
+
+@media (max-width: 860px) {
+  .subnav__title { font-size: 18px; }
+  .subnav__toggle {
+    display: grid; place-items: center; width: 32px; height: 32px; margin-left: -12px; border: 0; border-radius: 8px;
+    background: transparent; color: var(--muted); cursor: pointer;
+  }
+  .subnav__toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .3s var(--ease); }
+  .subnav.is-open .subnav__toggle svg { transform: rotate(180deg); }
+  .subnav__toggle:focus-visible { outline: 2px solid var(--accent-text); }
+  .subnav__menu {
+    position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 6px var(--gutter) 16px;
+    background: rgba(10, 10, 11, .94); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    visibility: hidden; opacity: 0; transform: translateY(-6px); transition: opacity .25s, transform .25s, visibility 0s .25s;
+  }
+  .subnav.is-open .subnav__menu { visibility: visible; opacity: 1; transform: none; transition: opacity .25s, transform .25s; }
+  .subnav__menu a { padding: 12px 0; font-size: 17px; border-bottom: 1px solid var(--line); }
+  .subnav__actions .color-switch--mini { display: none; }
 }
 
 @media (max-width: 400px) {
