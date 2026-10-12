@@ -31,7 +31,7 @@ const LAYER_BY_NAME = {
 
 /* ---------- Зерно матового стекла ---------- */
 
-function frostTexture() {
+export function frostTexture() {
   const c = document.createElement('canvas');
   c.width = c.height = 256;
   const g = c.getContext('2d');
@@ -51,7 +51,7 @@ function frostTexture() {
 
 // Мягкий перелив по спинке: стекло светлее у верхнего угла и глубже книзу,
 // как у окрашенного в массе стекла под студийным светом
-function shadeTexture() {
+export function shadeTexture() {
   const c = document.createElement('canvas');
   c.width = 256; c.height = 512;
   const g = c.getContext('2d');
