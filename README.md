@@ -9,7 +9,7 @@
 Промо-сайт вымышленного семейства смартфонов OY в духе презентаций Apple.<br>
 Живые 3D-модели, которые крутятся от скролла, и система, которой нечего скрывать.
 
-**[oy0x.online](https://oy0x.online)**  ·  [0X0](https://oy0x.online/0x0/)  ·  [0X1](https://oy0x.online/0x1/)  ·  [0X0 Pro](https://oy0x.online/pro/)  ·  [OY OS 2](https://oy0x.online/os/)  ·  [Сравнить](https://oy0x.online/compare/)
+**[oy0x.online](https://oy0x.online)**  ·  [0X0](https://oy0x.online/0x0/)  ·  [0X1](https://oy0x.online/0x1/)  ·  [0X1Q](https://oy0x.online/0x1q/)  ·  [0X0 Pro](https://oy0x.online/pro/)  ·  [OY OS 2](https://oy0x.online/os/)  ·  [Сравнить](https://oy0x.online/compare/)
 
 ![Сборщик](https://img.shields.io/badge/сборщик-не_нужен-0A0A0B?style=flat-square)
 ![Трекеры](https://img.shields.io/badge/трекеры-0-4ADE9B?style=flat-square)
@@ -18,7 +18,7 @@
 ![GSAP](https://img.shields.io/badge/GSAP-3.13-B3202A?style=flat-square)
 ![Blender](https://img.shields.io/badge/Blender-5.2-B3202A?style=flat-square)
 
-<sub>Это концепт. OY 0X0, OY 0X1, OY 0X0 Pro, OY OS и компания OY вымышлены, телефоны не продаются.</sub>
+<sub>Это концепт. OY 0X0, OY 0X1, OY 0X1Q, OY 0X0 Pro, OY OS и компания OY вымышлены, телефоны не продаются.</sub>
 
 </div>
 
@@ -28,7 +28,7 @@
 
 <table>
 <tr>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
 ### OY 0X0
 **от $449**
@@ -38,7 +38,7 @@
 [Страница →](https://oy0x.online/0x0/)
 
 </td>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
 ### OY 0X1
 **от $499**
@@ -48,9 +48,30 @@
 [Страница →](https://oy0x.online/0x1/)
 
 </td>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
-### OY 0X0 Pro
+### OY 0X1Q
+**от $719**
+
+Первый телефон новой линейки Q. Три камеры в модуле на магните: снял его, и в телефоне нет ни одной. Модем NC1, Null Chip 2.0, только беспроводная зарядка XMagnum, водопад 5,95" и ни одного разъёма.
+
+[Страница →](https://oy0x.online/0x1q/)
+
+</td>
+<td width="20%" valign="top">
+
+### OY 0X1Q
+
+<img src="docs/screenshots/0x1q-hero.jpg" alt="OY 0X1Q: первый экран" width="100%">
+
+| | | |
+|---|---|---|
+| <img src="docs/screenshots/0x1q-module.jpg" alt="0X1Q: модуль камеры на верхней грани"> | <img src="docs/screenshots/0x1q-lift.jpg" alt="0X1Q: модуль снят, видны контакты"> | <img src="docs/screenshots/0x1q-flip.jpg" alt="0X1Q: модуль перевёрнут к экрану"> |
+| **Модуль.** Основная и перископ 3× сзади, фронтальная на обороте | **Магнит и контакты.** Null Chip 2.0 проверяет ключ модуля | **Переворот.** Селфи на основную 50 МП |
+| <img src="docs/screenshots/0x1q-try.jpg" alt="0X1Q: интерактивное демо модуля"> | <img src="docs/screenshots/0x1q-qkey.jpg" alt="0X1Q: кнопка Q и сигнальный фонарь"> | <img src="docs/screenshots/0x1q-inside.jpg" alt="0X1Q: разбор по слоям"> |
+| **Попробуйте.** Снять, перевернуть, пульт, чужой модуль, магнит | **Кнопка Q.** Латунная, сигнальный фонарь — в модуле | **По слоям.** Null Chip 2.0, 6000 мАч и катушка XMagnum |
+
+## OY 0X0 Pro
 **от $749**
 
 Citadel — отдельный компьютер для секретов. Аппаратный шифратор звонков, восемь антенн Claw, четыре kill switch с фиксаторами, стеклянные грани, IP69K. Три цвета, включая «Средиземноморский Мрамор».
@@ -58,7 +79,7 @@ Citadel — отдельный компьютер для секретов. Ап�
 [Страница →](https://oy0x.online/pro/)
 
 </td>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
 ### OY OS 2
 **для всех моделей**
@@ -75,12 +96,13 @@ OY Assist на устройстве, карта сетевых запросов,
 
 | Адрес | Что там |
 |---|---|
-| [`/`](https://oy0x.online/) | Витрина: три телефона в 3D, выбор модели, мини-сравнение, OY OS 2, «Чего здесь нет» |
+| [`/`](https://oy0x.online/) | Витрина: модельный ряд из четырёх телефонов в одном масштабе, выбор модели, мини-сравнение, OY OS 2, «Чего здесь нет» |
 | [`/0x0/`](https://oy0x.online/0x0/) | OY 0X0: шторка, kill switches, фонарь, экран, разбор на слои, конфигуратор |
 | [`/0x1/`](https://oy0x.online/0x1/) | OY 0X1: новый дизайн, перископ, кнопки «0» и «1» с интерактивным демо, Claw 2.0, «Антиблик 2», конфигуратор |
+| [`/0x1q/`](https://oy0x.online/0x1q/) | OY 0X1Q: модуль камеры (снять, перевернуть, пульт) с демо, Null Chip 2.0, кнопка Q, модем NC1, водопад, XMagnum, гарантия 26 месяцев, конфигуратор |
 | [`/pro/`](https://oy0x.online/pro/) | OY 0X0 Pro: Citadel, шифратор звонков, Claw, четыре kill switch, грани, мрамор, конфигуратор |
 | [`/os/`](https://oy0x.online/os/) | OY OS 2: интерактивные демо системы, без 3D |
-| [`/compare/`](https://oy0x.online/compare/) | Таблица сравнения трёх моделей с фильтром «только различия» |
+| [`/compare/`](https://oy0x.online/compare/) | Таблица сравнения четырёх моделей с фильтром «только различия» |
 
 ---
 
@@ -174,25 +196,26 @@ npx serve .
 
 ```
 index.html               витрина семейства
-0x0/ · 0x1/ · pro/ · os/ страницы OY 0X0, OY 0X1, OY 0X0 Pro и OY OS 2
+0x0/ · 0x1/ · 0x1q/ · pro/ · os/   страницы OY 0X0, OY 0X1, OY 0X1Q, OY 0X0 Pro и OY OS 2
 compare/                 сравнение моделей
 404.html                 «не найдено», автономная, без JS
-og.jpg · og-0x1.jpg · og-pro.jpg   превью ссылок, 1200×630
+og.jpg · og-0x1.jpg · og-0x1q.jpg · og-pro.jpg   превью ссылок, 1200×630
 fonts/                   Onest и JetBrains Mono, переменные woff2, с лицензиями
 
 css/fonts.css            @font-face для шрифтов из fonts/
 css/core.css             токены, типографика, шапка, подвал, карусель
 css/0x0.css              страница 0X0 (Pro переиспользует компоненты)
 css/pro.css · 0x1.css    Pro и 0X1 (0X1 переиспользует компоненты 0X0 и Pro)
+css/0x1q.css             0X1Q: демо модуля, Null Chip 2.0, гарантия (поверх 0X0, Pro и 0X1)
 css/home.css             витрина и сравнение
 css/os.css               OY OS 2: макеты телефонов, демо, терминал
 
 js/core/                 3D-сцена, ключевые кадры, прокрутка, тексты, карусель, UI
-js/models/               3D-модели 0X0, 0X1 и Pro: материалы, механика, резервная модель
+js/models/               3D-модели 0X0, 0X1, 0X1Q и Pro: материалы, механика, резервная модель
 js/data/products.js      цены, цвета и сравнение — единственный источник цифр
-js/pages/                хореография страниц: base.js (0X0), 0x1.js, pro.js, home.js, compare.js, os.js
+js/pages/                хореография страниц: base.js (0X0), 0x1.js, 0x1q.js, pro.js, home.js, compare.js, os.js
 
-models/                  oy0x0.glb (~16 тыс. треугольников), oy0x1.glb (~24 тыс.), oy0x0-pro.glb (~22 тыс.)
+models/                  oy0x0.glb (~16 тыс. треугольников), oy0x1.glb (~24 тыс.), oy0x1q.glb (~46 тыс.), oy0x0-pro.glb (~22 тыс.)
 blender/                 скрипты сборки и превью моделей
 tests/                   юнит-тесты и сценарии Playwright
 docs/                    скриншоты, спецификации и планы
@@ -205,11 +228,12 @@ docs/                    скриншоты, спецификации и пла�
 ```bash
 blender -b -P blender/build_oy0x0.py       # OY 0X0 → models/oy0x0.glb
 blender -b -P blender/build_oy0x1.py       # OY 0X1 → models/oy0x1.glb
+blender -b -P blender/build_oy0x1q.py      # OY 0X1Q → models/oy0x1q.glb, модуль камеры — отдельная нода Module
 blender -b -P blender/build_oy0x0_pro.py   # OY 0X0 Pro, общие хелперы в blender/oy_common.py
 blender -b -P blender/preview_render.py -- models/oy0x0.glb preview   # превью, --closed для закрытой шторки
 ```
 
-Подвижные части вынесены в отдельные ноды (`Shutter`, `Switch_1..3`, `Key_1..2`, `SignalLight`, `Screen`), материалы (`Body`, `Frame`, `SignalLightGlow` и другие) названы так, чтобы сайт мог к ним обращаться. Проверено на Blender 5.2, рассчитано на 4.x и 5.x.
+Подвижные части вынесены в отдельные ноды (`Shutter`, `Switch_1..3`, `Key_1..2`, `Module`, `SignalLight`, `Screen`), материалы (`Body`, `Frame`, `SignalLightGlow` и другие) названы так, чтобы сайт мог к ним обращаться. Проверено на Blender 5.2, рассчитано на 4.x и 5.x.
 
 **Если GLB не загрузился**, модель строится прямо в браузере, с теми же именами деталей. Сайт работает всегда.
 
@@ -240,7 +264,7 @@ blender -b -P blender/preview_render.py -- models/oy0x0.glb preview   # прев
 npm test
 ```
 
-Юнит-тесты проверяют ключевые кадры хореографии и данные моделей: цены, цвета, наценку за мрамор и совпадение сравнения с конфигурациями. Сценарии в `tests/e2e/` запускаются через Playwright: регрессия страницы 0X0, скриншоты Pro на десктопе и телефоне, скриншоты 0X1 и её превью ссылки.
+Юнит-тесты проверяют ключевые кадры хореографии и данные моделей: цены, цвета, наценку за мрамор и совпадение сравнения с конфигурациями. Сценарии в `tests/e2e/` запускаются через Playwright: регрессия страницы 0X0, скриншоты Pro на десктопе и телефоне, скриншоты 0X1 и 0X1Q с превью ссылок и витрины.
 
 ## Стек
 

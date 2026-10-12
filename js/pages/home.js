@@ -1,5 +1,5 @@
 /* =========================================================================
-   OY — витрина семейства: три телефона в 3D, выбор, мини-сравнение.
+   OY — витрина семейства: модельный ряд в 3D, выбор, мини-сравнение.
    ========================================================================= */
 
 import { gsap } from 'gsap';
@@ -8,6 +8,7 @@ import Lenis from 'lenis';
 import { createStage } from '../core/stage.js';
 import { createOY0X0 } from '../models/oy0x0.js';
 import { createOY0X1 } from '../models/oy0x1.js';
+import { createOY0X1Q } from '../models/oy0x1q.js';
 import { createPro } from '../models/pro.js';
 import { COMPARE } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
@@ -31,18 +32,19 @@ const PI = Math.PI;
 
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
-/* ---------- Три телефона ---------- */
+/* ---------- Модельный ряд: четыре телефона в одном масштабе ---------- */
 
-const POSES = {
-  '0x0': { rest: { x: 0, y: 0.04, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: -PI + 0.55, rz: 0.05, dist: 3.6, float: 1, screen: 1 }, near: { dist: 3.15, ry: -PI + 0.3 } },
-  '0x1': { rest: { x: 0, y: 0.04, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: -PI + 0.35, rz: 0, dist: 3.95, float: 1, screen: 1 }, near: { dist: 3.45, ry: -PI + 0.15 } },
-  pro: { rest: { x: 0, y: 0.04, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: -PI - 0.55, rz: -0.05, dist: 3.7, float: 1, screen: 1 }, near: { dist: 3.25, ry: -PI - 0.3 } },
-};
-const MODELS = { '0x0': [createOY0X0, 'red'], '0x1': [createOY0X1, 'violet'], pro: [createPro, 'emerald'] };
+// У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
+// поэтому разница в росте настоящая: 0X1 — 161 мм, 0X1Q — 142,4 мм.
+const HEIGHT = { '0x0': 146, '0x1': 161, '0x1q': 142.4, pro: 150 };
+const TURN = { '0x0': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, pro: -PI - 0.5 };
+const DIST = 4.05;
+const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1 });
+const MODELS = { '0x0': [createOY0X0, 'red'], '0x1': [createOY0X1, 'violet'], '0x1q': [createOY0X1Q, 'wave'], pro: [createPro, 'emerald'] };
 const stages = [];
-$$('.duo__item').forEach((item) => {
+$$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
-  const canvas = $('.duo__canvas', item);
+  const canvas = $('.lineup__canvas', item);
   let stage = null;
   try {
     stage = createStage(canvas, MODELS[id][0], { forceFallback: params.has('fallback'), fitCanvas: true });
@@ -51,16 +53,18 @@ $$('.duo__item').forEach((item) => {
     canvas.style.visibility = 'hidden';
     return;
   }
-  const pose = POSES[id];
-  stage.setTarget(pose.rest);
+  const rest = pose(id);
+  // при наведении телефон разворачивается к вам экраном вполоборота
+  const near = { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9) };
+  stage.setTarget(rest);
   stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);
   stage.ready.then(() => stage.snap());
-  const near = (on) => stage.setTarget(on ? { ...pose.rest, ...pose.near } : pose.rest);
-  item.addEventListener('pointerenter', () => near(true));
-  item.addEventListener('pointerleave', () => { near(false); stage.setPointer(0, 0); });
-  item.addEventListener('focus', () => near(true));
-  item.addEventListener('blur', () => near(false));
+  const turn = (on) => stage.setTarget(on ? { ...rest, ...near } : rest);
+  item.addEventListener('pointerenter', () => turn(true));
+  item.addEventListener('pointerleave', () => { turn(false); stage.setPointer(0, 0); });
+  item.addEventListener('focus', () => turn(true));
+  item.addEventListener('blur', () => turn(false));
   item.addEventListener('pointermove', (e) => {
     if (reduceMQ.matches || e.pointerType === 'touch') return;
     const r = canvas.getBoundingClientRect();
@@ -70,19 +74,19 @@ $$('.duo__item').forEach((item) => {
 });
 
 // Рендер только пока первый экран виден
-const duo = $('.duo');
+const lineup = $('.lineup');
 const setActive = (v) => stages.forEach((s) => s.setActive(v && !document.hidden));
-let duoVisible = true;
-new IntersectionObserver(([e]) => { duoVisible = e.isIntersecting; setActive(duoVisible); }, { rootMargin: '10% 0px' }).observe(duo);
-document.addEventListener('visibilitychange', () => setActive(duoVisible));
+let lineupVisible = true;
+new IntersectionObserver(([e]) => { lineupVisible = e.isIntersecting; setActive(lineupVisible); }, { rootMargin: '10% 0px' }).observe(lineup);
+document.addEventListener('visibilitychange', () => setActive(lineupVisible));
 
 /* ---------- Мини-сравнение ---------- */
 
 const mini = $('[data-mini]');
 if (mini) {
   const labels = { price: 'Цена', citadel: 'Безопасность', keys: 'Отключение', cams: 'Камеры', battery: 'Аккумулятор', protect: 'Защита' };
-  mini.innerHTML = COMPARE.filter((r) => labels[r[5]])
-    .map((r) => `<tr><th scope="row">${labels[r[5]]}</th><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('');
+  mini.innerHTML = COMPARE.filter((r) => labels[r[6]])
+    .map((r) => `<tr><th scope="row">${labels[r[6]]}</th><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('');
 }
 
 /* ---------- Появления ---------- */
@@ -103,7 +107,7 @@ mm.add({ reduce: '(prefers-reduced-motion: reduce)', motion: '(prefers-reduced-m
     });
   });
   if (!reduce) {
-    gsap.from('.duo__item', { y: 60, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.12, delay: 0.2 });
+    gsap.from('.lineup__item', { y: 40, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.09, delay: 0.2 });
     gsap.to('.bgfx__glow--a', { yPercent: 70, xPercent: -20, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: true } });
   }
   return () => splits.unsplitAll();

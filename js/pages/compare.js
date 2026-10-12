@@ -1,6 +1,6 @@
 /* =========================================================================
-   OY — страница сравнения 0X0, 0X1 и 0X0 Pro. Таблица собирается из
-   js/data/products.js; переключатель скрывает строки, где все три совпадают.
+   OY — страница сравнения 0X0, 0X1, 0X1Q и 0X0 Pro. Таблица собирается из
+   js/data/products.js; переключатель скрывает строки, где все четыре совпадают.
    ========================================================================= */
 
 import { gsap } from 'gsap';
@@ -21,15 +21,15 @@ const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>'
 const body = $('[data-compare]');
 let html = '';
 let section = '';
-for (const [sec, label, a, b, c] of COMPARE) {
+for (const [sec, label, a, b, q, c] of COMPARE) {
   if (sec !== section) {
     section = sec;
-    html += `<tr class="cmp__sec" data-sec="${esc(sec)}"><th scope="rowgroup" colspan="4">${esc(sec)}</th></tr>`;
+    html += `<tr class="cmp__sec" data-sec="${esc(sec)}"><th scope="rowgroup" colspan="5">${esc(sec)}</th></tr>`;
   }
-  const same = a === b && b === c;
+  const same = a === b && b === q && q === c;
   // Отличия от 0X0 подсвечиваются у старших моделей
   const cell = (v, cls) => `<td class="${cls}">${v === a ? esc(v) : `<mark>${esc(v)}</mark>`}</td>`;
-  html += `<tr class="${same ? 'is-same' : 'is-diff'}" data-sec="${esc(sec)}"><th scope="row">${esc(label)}</th><td>${esc(a)}</td>${cell(b, 'is-0x1')}${cell(c, 'is-pro')}</tr>`;
+  html += `<tr class="${same ? 'is-same' : 'is-diff'}" data-sec="${esc(sec)}"><th scope="row">${esc(label)}</th><td>${esc(a)}</td>${cell(b, 'is-0x1')}${cell(q, 'is-0x1q')}${cell(c, 'is-pro')}</tr>`;
 }
 body.innerHTML = html;
 // Разделы, где нет различий, при фильтре скрываются целиком
