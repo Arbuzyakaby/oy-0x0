@@ -95,6 +95,7 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
   /* ---- Цикл рендера ---- */
   let last = 0;
   let wantActive = true;
+  let disposed = false;
   let modelReady = false;
 
   function frame(now) {
@@ -131,7 +132,8 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
     if (modelReady && !raf) { update(0); renderer.render(scene, camera); }
   }
   resize();
-  if (fitCanvas && 'ResizeObserver' in window) new ResizeObserver(() => resize()).observe(canvas);
+  const ro = fitCanvas && 'ResizeObserver' in window ? new ResizeObserver(() => resize()) : null;
+  ro?.observe(canvas);
 
   /* ---- Загрузка модели ---- */
   const ready = (async () => {
@@ -150,6 +152,7 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
         fallback = true;
       }
     }
+    if (disposed) return { fallback };
     if (fallback) root = model.buildFallback();
     model.setup(root);
     modelRoot.add(root);
@@ -176,6 +179,15 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
     },
     setReduced(v) { reduced = v; },
     resize,
+    // Освободить WebGL-контекст: на странице сравнения модели меняются на лету
+    dispose() {
+      disposed = true;
+      stop();
+      wantActive = false;
+      ro?.disconnect();
+      renderer.dispose();
+      renderer.forceContextLoss();
+    },
     ...model.api,
   };
 }

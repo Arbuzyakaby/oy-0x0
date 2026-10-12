@@ -17,15 +17,16 @@
   <meta property="og:image" content="https://oy0x.online/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Смартфоны OY 0X0 и OY 0X0 Pro">
+  <meta property="og:image:alt" content="Смартфоны OY">
   <meta name="twitter:card" content="summary_large_image">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Ccircle cx='47' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
 
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/fonts.css">
-  <link rel="stylesheet" href="/css/core.css">
-  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
+  <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
+  <link rel="stylesheet" href="/css/home.css?v=d32a699b0f">
+  <link rel="stylesheet" href="/css/compare.css?v=2f250343b5">
 
   <script type="importmap">
   {
@@ -34,12 +35,37 @@
       "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
       "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
       "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
-      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=6dc9c05129",
+      "/js/data/products.js": "/js/data/products.js?v=49dfda6191",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=7e2a169dd7",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
+      "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=44713648f7",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=1a319607fa",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=d897cd391d",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=874617d651",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=fc124d94b6",
+      "/js/pages/base.js": "/js/pages/base.js?v=afc624698e",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=68f3b01381",
+      "/js/pages/home.js": "/js/pages/home.js?v=ae38fc7b30",
+      "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
     }
   }
   </script>
   <script>document.documentElement.classList.add('js');</script>
-  <script type="module" src="/js/pages/compare.js"></script>
+  <script type="module" src="/js/pages/compare.js?v=68f3b01381"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -110,42 +136,72 @@
   </header>
 
   <main id="main">
-    <section class="section solid cmp-page" id="compare" aria-labelledby="cmp-title">
+    <section class="section solid cx-page" id="compare" aria-labelledby="cmp-title">
       <div class="container">
-        <p class="eyebrow" data-reveal>Сравнение</p>
-        <h1 class="h2" id="cmp-title" data-split>Какой OY ваш.</h1>
-        <div class="cmp-tools" data-reveal>
+        <header class="cx-head">
+          <h1 class="cx-title" id="cmp-title" data-split>Сравните модели OY.</h1>
+          <p class="cx-links" data-reveal><a href="/">Все модели на витрине <span aria-hidden="true">›</span></a> <a href="/accessories/">Аксессуары <span aria-hidden="true">›</span></a></p>
+        </header>
+
+        <div class="cx-cols" data-cols>
+          <div class="cx-col" data-col="0">
+            <label class="sr-only" for="cx-pick-0">Модель 1</label>
+            <div class="cx-select"><select id="cx-pick-0" data-pick></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></div>
+            <a class="cx-stage" data-stage-link tabindex="-1" aria-hidden="true"><canvas class="cx-canvas"></canvas></a>
+            <div class="cx-colors" role="radiogroup" aria-label="Цвет" data-swatches></div>
+            <p class="cx-cname mono" data-cname></p>
+            <div class="cx-buy">
+              <p class="cx-tag mono" data-tag></p>
+              <p class="cx-price" data-price></p>
+              <p class="cx-eur mono" data-eur></p>
+              <a class="btn btn--accent btn--sm" data-buy></a>
+              <a class="cx-more" data-more>Подробнее <span aria-hidden="true">›</span></a>
+            </div>
+          </div>
+          <div class="cx-col" data-col="1">
+            <label class="sr-only" for="cx-pick-1">Модель 2</label>
+            <div class="cx-select"><select id="cx-pick-1" data-pick></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></div>
+            <a class="cx-stage" data-stage-link tabindex="-1" aria-hidden="true"><canvas class="cx-canvas"></canvas></a>
+            <div class="cx-colors" role="radiogroup" aria-label="Цвет" data-swatches></div>
+            <p class="cx-cname mono" data-cname></p>
+            <div class="cx-buy">
+              <p class="cx-tag mono" data-tag></p>
+              <p class="cx-price" data-price></p>
+              <p class="cx-eur mono" data-eur></p>
+              <a class="btn btn--accent btn--sm" data-buy></a>
+              <a class="cx-more" data-more>Подробнее <span aria-hidden="true">›</span></a>
+            </div>
+          </div>
+          <div class="cx-col" data-col="2">
+            <label class="sr-only" for="cx-pick-2">Модель 3</label>
+            <div class="cx-select"><select id="cx-pick-2" data-pick></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></div>
+            <a class="cx-stage" data-stage-link tabindex="-1" aria-hidden="true"><canvas class="cx-canvas"></canvas></a>
+            <div class="cx-colors" role="radiogroup" aria-label="Цвет" data-swatches></div>
+            <p class="cx-cname mono" data-cname></p>
+            <div class="cx-buy">
+              <p class="cx-tag mono" data-tag></p>
+              <p class="cx-price" data-price></p>
+              <p class="cx-eur mono" data-eur></p>
+              <a class="btn btn--accent btn--sm" data-buy></a>
+              <a class="cx-more" data-more>Подробнее <span aria-hidden="true">›</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cx-sticky" aria-hidden="true" data-sticky>
+          <div class="cx-sticky__inner" data-sticky-names></div>
+        </div>
+
+        <div class="cx-tools">
           <label class="cmp-toggle">
             <input type="checkbox" data-diff>
             <span class="cmp-toggle__track" aria-hidden="true"></span>
             <span>Показать только различия</span>
           </label>
         </div>
-        <div class="cmp-scroll">
-        <div class="cmp-heads" aria-hidden="true">
-          <span></span>
-          <a class="cmp-head cmp-head--0x1e" href="/0x1e/"><b>0X1 Essential</b><span class="mono">от $349</span></a>
-          <a class="cmp-head" href="/0x0/"><b>0X0</b><span class="mono">от $449</span></a>
-          <a class="cmp-head cmp-head--0x1" href="/0x1/"><b>0X1</b><span class="mono">от $499</span></a>
-          <a class="cmp-head cmp-head--0x1q" href="/0x1q/"><b>0X1Q</b><span class="mono">от $719</span></a>
-          <a class="cmp-head cmp-head--0x1pro" href="/0x1pro/"><b>0X1 Pro</b><span class="mono">от $899</span></a>
-          <a class="cmp-head cmp-head--pro" href="/pro/"><b>0X0 Pro</b><span class="mono">снят с продажи</span></a>
-        </div>
-        <div class="specs-wrap">
-          <table class="cmp">
-            <caption class="sr-only">Сравнение характеристик OY 0X1 Essential, OY 0X0, OY 0X1, OY 0X1Q, OY 0X1 Pro и снятого с продажи OY 0X0 Pro</caption>
-            <thead><tr><th scope="col">Параметр</th><th scope="col">0X1 Essential</th><th scope="col">0X0</th><th scope="col">0X1</th><th scope="col">0X1Q</th><th scope="col">0X1 Pro</th><th scope="col">0X0 Pro (снят с продажи)</th></tr></thead>
-            <tbody data-compare></tbody>
-          </table>
-        </div>
-        </div>
-        <div class="cmp-cta" data-reveal>
-          <a class="btn btn--ghost" href="/0x1e/#buy">Купить 0X1 Essential — от $349</a>
-          <a class="btn btn--ghost" href="/0x0/#buy">Купить 0X0 — от $449</a>
-          <a class="btn btn--ghost" href="/0x1/#buy">Купить 0X1 — от $499</a>
-          <a class="btn btn--ghost" href="/0x1q/#buy">Купить 0X1Q — от $719</a>
-          <a class="btn btn--accent" href="/0x1pro/#buy">Купить 0X1 Pro — от $899</a>
-        </div>
+
+        <div class="cx-body" data-body aria-live="polite"></div>
+        <p class="note cx-note">Характеристики и&nbsp;цены — для США. «—» значит, что у&nbsp;модели этого нет. Это концепт: телефоны OY вымышлены и&nbsp;не&nbsp;продаются.</p>
       </div>
     </section>
   </main>

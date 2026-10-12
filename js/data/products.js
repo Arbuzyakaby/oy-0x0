@@ -7,6 +7,9 @@ export const PRODUCTS = {
   '0x1e': {
     id: '0x1e',
     name: 'OY 0X1 Essential',
+    href: '/0x1e/',
+    tag: 'Новинка',
+    swatches: { mint: '#5DC496', sand: '#D9BC8C', coal: '#2A2C2F' },
     colors: { mint: 'Мята', sand: 'Песок', coal: 'Уголь' },
     defaultColor: 'mint',
     configs: [
@@ -17,6 +20,8 @@ export const PRODUCTS = {
   '0x0': {
     id: '0x0',
     name: 'OY 0X0',
+    href: '/0x0/',
+    swatches: { red: '#B3202A', ice: '#DCE6EC' },
     colors: { red: 'Сигнальный Красный', ice: 'Арктический ледник' },
     defaultColor: 'red',
     configs: [
@@ -29,6 +34,8 @@ export const PRODUCTS = {
   '0x1': {
     id: '0x1',
     name: 'OY 0X1',
+    href: '/0x1/',
+    swatches: { violet: '#4A2A78', polar: '#18213A', concrete: '#8F8C86' },
     colors: { violet: 'Фиалка', polar: 'Полярная Ночь', concrete: 'Бетон' },
     defaultColor: 'violet',
     configs: [
@@ -40,6 +47,8 @@ export const PRODUCTS = {
   '0x1q': {
     id: '0x1q',
     name: 'OY 0X1Q',
+    href: '/0x1q/',
+    swatches: { wave: '#0F5A5A', moon: '#E2DED6', graphite: '#232528' },
     colors: { wave: 'Морская Волна', moon: 'Лунный Камень', graphite: 'Графит' },
     defaultColor: 'wave',
     configs: [
@@ -50,6 +59,9 @@ export const PRODUCTS = {
   '0x1pro': {
     id: '0x1pro',
     name: 'OY 0X1 Pro',
+    href: '/0x1pro/',
+    tag: 'Новинка',
+    swatches: { obsidian: '#1A1B1F', titan: '#A39B8C', cobalt: '#16306A' },
     colors: { obsidian: 'Обсидиан', titan: 'Титан', cobalt: 'Кобальт' },
     defaultColor: 'obsidian',
     configs: [
@@ -61,6 +73,9 @@ export const PRODUCTS = {
   pro: {
     id: 'pro',
     name: 'OY 0X0 Pro',
+    href: '/pro/',
+    tag: 'Снят с продажи',
+    swatches: { emerald: '#1E5A46', chernit: '#18181B', marble: '#ECE6DB' },
     // снят с продажи: страница и колонка в сравнении остаются, конфигуратора нет
     discontinued: true,
     colors: { emerald: 'Лесной Изумрудный', chernit: 'Чернит', marble: 'Средиземноморский Мрамор' },

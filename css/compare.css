@@ -1,0 +1,89 @@
+/* =========================================================================
+   OY — страница сравнения в духе apple.com/iphone/compare (поверх core.css и home.css)
+   ========================================================================= */
+
+.cx-page { padding-top: calc(var(--header-h) + clamp(40px, 7vh, 88px)); }
+.cx-page .container { max-width: 1120px; }
+.cx-head { text-align: center; }
+.cx-title { font-size: clamp(40px, 5.6vw, 80px); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.cx-links { margin-top: 18px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 15px; }
+.cx-links a { color: var(--accent-text); text-decoration: none; }
+.cx-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Три колонки ---------- */
+
+.cx-cols { margin-top: clamp(40px, 6vh, 64px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 40px); }
+.cx-col { display: grid; justify-items: center; text-align: center; align-content: start; }
+
+.cx-select { position: relative; width: 100%; }
+.cx-select select {
+  appearance: none; -webkit-appearance: none; width: 100%; height: 48px; padding: 0 44px 0 16px; border-radius: 12px; cursor: pointer;
+  border: 1px solid var(--line-2); background: var(--bg-2); color: var(--fg); font: 600 16px var(--sans); letter-spacing: -.01em;
+  transition: border-color .2s;
+}
+.cx-select select:hover { border-color: var(--fg); }
+.cx-select select:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.cx-select select option { background: #141416; color: #F2F2F0; }
+.cx-select svg { position: absolute; right: 14px; top: 50%; width: 18px; height: 18px; margin-top: -9px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+
+.cx-stage { display: block; width: 100%; margin-top: 8px; }
+.cx-canvas { display: block; width: 100%; height: clamp(280px, 38vh, 420px); }
+
+.cx-colors { display: flex; justify-content: center; gap: 10px; margin-top: 4px; }
+.cx-swatch {
+  position: relative; width: 20px; height: 20px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+  background: var(--c); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
+}
+.cx-swatch[aria-checked="true"]::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid var(--fg); }
+.cx-swatch:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 4px; }
+.cx-cname { margin-top: 8px; min-height: 1.4em; font-size: 11px; letter-spacing: .04em; color: var(--muted); }
+
+.cx-buy { width: 100%; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line-2); display: grid; justify-items: center; gap: 6px; }
+.cx-tag { min-height: 1.3em; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #FF8A45; }
+.cx-tag.is-off { color: var(--muted); }
+.cx-price { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+.cx-eur { font-size: 12px; color: var(--muted); }
+.cx-buy .btn { margin-top: 12px; height: 34px; padding: 0 18px; font-size: 14px; }
+.cx-more { margin-top: 6px; font-size: 14px; color: var(--accent-text); text-decoration: none; }
+.cx-more:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Короткие названия прилипают, когда колонки ушли вверх */
+.cx-sticky {
+  position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 40;
+  background: rgba(10, 10, 11, .82); backdrop-filter: saturate(160%) blur(16px); -webkit-backdrop-filter: saturate(160%) blur(16px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-110%); opacity: 0; transition: transform .35s var(--ease), opacity .35s;
+}
+.cx-sticky.is-on { transform: none; opacity: 1; }
+.cx-sticky__inner { max-width: 1120px; margin: 0 auto; padding: 14px var(--gutter); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 40px); text-align: center; font-weight: 600; font-size: 15px; }
+
+.cx-tools { margin-top: clamp(48px, 8vh, 80px); display: flex; justify-content: center; }
+
+/* ---------- Разделы ---------- */
+
+.cx-sec { margin-top: clamp(48px, 7vh, 80px); }
+.cx-sec__title { padding-bottom: 14px; border-bottom: 1px solid var(--line-2); font-size: clamp(24px, 2.4vw, 32px); font-weight: 650; letter-spacing: -.025em; }
+.cx-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 40px); padding: 18px 0; border-bottom: 1px solid var(--line); }
+.cx-row--hero { border-bottom: 0; padding: 36px 0 10px; }
+.cx-cell { display: grid; gap: 4px; align-content: start; text-align: center; }
+.cx-cell__k { font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+.cx-cell__v { font-size: 15px; line-height: 1.45; }
+.cx-cell__v.is-none { color: var(--muted); }
+.cx-hero { justify-items: center; gap: 10px; }
+.cx-hero__big { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.cx-hero__icon { width: 46px; height: 46px; fill: none; stroke: var(--fg); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.cx-hero__cap { max-width: 26ch; font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--fg); }
+
+.cx-page.only-diff .cx-row.is-same:not(.cx-row--hero), .cx-page.only-diff .cx-sec.is-same { display: none; }
+.cx-note { margin-top: 48px; text-align: center; }
+
+/* ---------- Адаптив: на телефоне — две колонки, как у Apple ---------- */
+
+@media (max-width: 760px) {
+  .cx-cols, .cx-row, .cx-sticky__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .cx-col[data-col="2"], .cx-row > :nth-child(3), .cx-sticky__inner > :nth-child(3) { display: none; }
+  .cx-select select { font-size: 14px; height: 44px; padding: 0 34px 0 12px; }
+  .cx-canvas { height: 260px; }
+  .cx-cell__v { font-size: 14px; }
+  .cx-hero__big { font-size: 40px; }
+}
