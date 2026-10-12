@@ -47,13 +47,13 @@ test('getPrice учитывает наценку за мрамор', () => {
 
 test('сравнение: цены совпадают с конфигурациями', async () => {
   const { COMPARE } = await import('../../js/data/products.js');
-  const usd = COMPARE.find((r) => r[5] === 'price');
+  const usd = COMPARE.find((r) => r[6] === 'price');
   const eur = COMPARE.find((r) => r[1] === 'Европа — скоро');
-  ['0x0', '0x1', 'pro'].forEach((id, i) => {
+  ['0x0', '0x1', '0x1q', 'pro'].forEach((id, i) => {
     assert.equal(usd[2 + i], `от $${PRODUCTS[id].configs[0].usd}`);
     assert.equal(eur[2 + i], `от €${PRODUCTS[id].configs[0].eur}`);
   });
-  for (const r of COMPARE) assert.ok(r.length >= 5 && r.slice(0, 5).every((x) => typeof x === 'string' && x.length));
+  for (const r of COMPARE) assert.ok(r.length >= 6 && r.slice(0, 6).every((x) => typeof x === 'string' && x.length));
 });
 
 test('цены и цвета 0X1', () => {
@@ -64,4 +64,14 @@ test('цены и цвета 0X1', () => {
   assert.deepEqual(PRODUCTS['0x1'].colors, { violet: 'Фиалка', polar: 'Полярная Ночь', concrete: 'Бетон' });
   assert.equal(PRODUCTS['0x1'].defaultColor, 'violet');
   assert.deepEqual(getPrice('0x1', '12/512', 'concrete'), { usd: 629, eur: 719 });
+});
+
+test('цены и цвета 0X1Q', () => {
+  assert.deepEqual(
+    PRODUCTS['0x1q'].configs.map((c) => [c.id, c.usd, c.eur]),
+    [['16/256', 719, 829], ['20/512', 849, 969]],
+  );
+  assert.deepEqual(PRODUCTS['0x1q'].colors, { wave: 'Морская Волна', moon: 'Лунный Камень', graphite: 'Графит' });
+  assert.equal(PRODUCTS['0x1q'].defaultColor, 'wave');
+  assert.deepEqual(getPrice('0x1q', '20/512', 'graphite'), { usd: 849, eur: 969 });
 });
