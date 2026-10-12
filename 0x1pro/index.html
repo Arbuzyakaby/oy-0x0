@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="ru" data-color="obsidian">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X1 Pro — Ноль слежки. Всё остальное — на максимум.</title>
+  <meta name="description" content="OY 0X1 Pro — флагман с Citadel 2, шифратором звонков и видео, кнопками «0» и «1» с фиксацией, камерой 1&quot; и перископом 6×, 6,8&quot; на 5000 нит, испарительной камерой и XMagnum. 8 мм. Концепт. От $899.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0A0B">
+  <link rel="canonical" href="https://oy0x.online/0x1pro/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x1pro/">
+  <meta property="og:title" content="OY 0X1 Pro — Ноль слежки. Всё остальное — на максимум.">
+  <meta property="og:description" content="Концепт смартфона: Citadel 2 с «Последним словом» и «Сторожем», камера 1&quot; и перископ 6×, кнопки «0» и «1» с фиксацией, 8 мм, титан.">
+  <meta property="og:image" content="https://oy0x.online/og-0x1pro.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Смартфон OY 0X1 Pro в цвете «Обсидиан» и заголовок «0X1 Pro»">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23C9D1DC' stroke-width='4'/%3E%3Cpath d='M26 26l12 12M38 26L26 38' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/0x0.css">
+  <link rel="stylesheet" href="/css/pro.css">
+  <link rel="stylesheet" href="/css/0x1.css">
+  <link rel="stylesheet" href="/css/0x1pro.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-0x1pro-color');if(c==='obsidian'||c==='titan'||c==='cobalt')document.documentElement.dataset.color=c}catch(e){}</script>
+  <link rel="modulepreload" href="/js/core/stage.js">
+  <script type="module" src="/js/pages/0x1pro.js"></script>
+</head>
+<body>
+  <!-- Иконки -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+      <symbol id="i-network" viewBox="0 0 24 24"><path d="M3.5 9.5a12 12 0 0 1 17 0M6.5 12.5a7.8 7.8 0 0 1 11 0M9.5 15.5a3.6 3.6 0 0 1 5 0"/><circle cx="12" cy="18.5" r="1.2"/></symbol>
+      <symbol id="i-location" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+      <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2.5"/><path d="M7.5 12h.01M10.5 12h.01M13.5 12h.01M16.5 12h.01"/></symbol>
+      <symbol id="i-usb" viewBox="0 0 24 24"><path d="M12 3v14M12 3l-2.2 3M12 3l2.2 3M8 9v2.5l4 2.5M16 8.5v2l-4 2.5"/><circle cx="12" cy="19" r="2"/></symbol>
+      <symbol id="i-restart" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v4.5H15"/></symbol>
+      <symbol id="i-finger" viewBox="0 0 24 24"><path d="M7.5 18.5c1-2 1.5-4 1.5-6.5a3 3 0 0 1 6 0c0 1.2-.1 2.4-.3 3.5M12 12c0 3.2-.8 6-2.3 8.5M5.5 14.5c.4-1 .5-1.8.5-2.5a6 6 0 0 1 10.3-4.2M17.8 10.4c.1.5.2 1 .2 1.6 0 2.2-.4 4.3-1.1 6.2M14.2 19.8c.4-.7.7-1.5 1-2.3"/></symbol>
+      <symbol id="i-face" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M9 10v1M15 10v1M12 10v3h-1M9.5 15.5a3.5 3.5 0 0 0 5 0"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-contacts" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5H7z"/><path d="M14 3.5V8h4.5"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15zM10 20.5a2 2 0 0 0 4 0"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></symbol>
+      <symbol id="i-store" viewBox="0 0 24 24"><path d="M4.5 8.5h15l-1.2 11h-12.6z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5L5.5 13.5h6l-1 8 7.5-11h-6z"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z"/></symbol>
+      <symbol id="i-jack" viewBox="0 0 24 24"><path d="M12 2.5v9M10 11.5h4v4.5a2 2 0 0 1-4 0zM12 18v3.5"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></symbol>
+      <symbol id="i-update" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 13-5.1M19.5 12a7.5 7.5 0 0 1-13 5.1M17.5 3.5v3.4h-3.4M6.5 20.5v-3.4h3.4"/></symbol>
+      <symbol id="i-warranty" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></symbol>
+      <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 7.7-1.5"/></symbol>
+      <symbol id="i-ir" viewBox="0 0 24 24"><rect x="9" y="9" width="6" height="12" rx="1.5"/><path d="M8 6.5a5.5 5.5 0 0 1 8 0M5.5 4a9 9 0 0 1 13 0"/></symbol>
+      <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4.5 9.5h3.5l4.5-4v13l-4.5-4H4.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+      <symbol id="i-wireless" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="7.5" ry="2.5"/><path d="M8.5 10.5a5 5 0 0 1 7 0M6 8a8.5 8.5 0 0 1 12 0"/></symbol>
+      <symbol id="i-nfc" viewBox="0 0 24 24"><path d="M7 17V7l10 10V7"/><rect x="3.5" y="3.5" width="17" height="17" rx="3"/></symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24"><rect x="3" y="7.5" width="16" height="9" rx="2"/><path d="M21 10.5v3"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+      <symbol id="i-tor" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><circle cx="12" cy="13" r="4.8"/><circle cx="12" cy="13" r="2"/><path d="M12 5.5c0-1.5.8-2.5 2-3"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8L19.5 3.5M16 7l2.5 2.5M14 9l2 2"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: два круга и X -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <svg class="loader__mark" viewBox="0 0 120 44" aria-hidden="true">
+      <circle class="loader__o loader__o--l" cx="20" cy="22" r="16"/>
+      <path class="loader__x" d="M52 12l16 20M68 12L52 32"/>
+      <circle class="loader__o loader__o--r" cx="100" cy="22" r="16"/>
+    </svg>
+    <span class="loader__label">Загружаем модель…</span>
+  </div>
+
+  <!-- Фон и 3D-сцена -->
+  <div class="bgfx" id="bgfx" aria-hidden="true">
+    <div class="bgfx__glow bgfx__glow--a"></div>
+    <div class="bgfx__glow bgfx__glow--b"></div>
+    <div class="bgfx__shade" id="bgfx-shade"></div>
+  </div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="/" aria-label="OY — на главную">
+      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a href="/0x1e/">0X1 Essential</a>
+      <a href="/0x0/">0X0</a>
+      <a href="/0x1/">0X1</a>
+      <a href="/0x1pro/" aria-current="page">0X1 Pro</a>
+      <a href="/0x1q/">0X1Q</a>
+      <a href="/os/">OY OS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+      <a href="#citadel">Citadel 2</a>
+      <a href="#specs">Характеристики</a>
+    </nav>
+    <div class="header-actions">
+      <div class="color-switch color-switch--mini" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+        <button type="button" role="radio" class="swatch swatch--obsidian" data-value="obsidian" aria-checked="true"><span class="sr-only">Обсидиан</span></button>
+        <button type="button" role="radio" class="swatch swatch--titan" data-value="titan" aria-checked="false"><span class="sr-only">Титан</span></button>
+        <button type="button" role="radio" class="swatch swatch--cobalt" data-value="cobalt" aria-checked="false"><span class="sr-only">Кобальт</span></button>
+      </div>
+      <a class="btn btn--accent btn--sm" href="#buy">Купить</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- 1. HERO -->
+    <section class="section hero" id="hero" data-3d aria-labelledby="hero-title">
+      <div class="hero__inner container">
+        <p class="eyebrow" data-reveal>Осень 2028 · США · OY OS 2</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="split grad" data-split>0X1 Pro</span>
+        </h1>
+        <p class="hero__slogan" data-split>Ноль слежки. Всё остальное — на&nbsp;максимум.</p>
+        <p class="hero__pron" data-reveal>Citadel&nbsp;2 — компьютер для секретов, который договорит за&nbsp;вас, даже когда телефон сел. Камера с&nbsp;сенсором 1" и&nbsp;перископ 6×. Кнопки «0» и&nbsp;«1», которые фиксируются. И&nbsp;всё это — в&nbsp;8&nbsp;мм титана и&nbsp;стекла.</p>
+        <div class="hero__buy" data-reveal>
+          <p class="hero__price"><span class="muted">от</span> <strong>$899</strong></p>
+          <a class="btn btn--accent" href="#buy">Купить</a>
+          <a class="btn btn--ghost" href="#design">Смотреть</a>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- 2. ДИЗАЙН -->
+    <section class="section pinned design" id="design" data-3d aria-labelledby="design-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--right">
+          <p class="eyebrow">Титан и стекло · 8 мм</p>
+          <h2 class="h2" id="design-title" data-split>Тоньше всех Pro. Сильнее всех&nbsp;OY.</h2>
+          <p class="lead">Титановая рамка, грани из&nbsp;матового стекла, как у&nbsp;0X0&nbsp;Pro, и&nbsp;спинка из&nbsp;травлёного стекла. Камеры собраны в&nbsp;«шайбу» в&nbsp;полированном титановом кольце — её узнаешь через всю комнату.</p>
+          <ul class="chips" role="list">
+            <li class="chip mono">8,0&nbsp;мм</li>
+            <li class="chip mono">219&nbsp;г</li>
+            <li class="chip mono">IP69K<sup class="fn"><a href="#fn-1" id="fnr-1">1</a></sup></li>
+            <li class="chip mono">титан</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. КАМЕРЫ -->
+    <section class="section pinned cams" id="cams" data-3d aria-labelledby="cams-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Камеры · четыре сзади, две спереди</p>
+          <h2 class="h2" id="cams-title" data-split>Дюйм. И&nbsp;шесть крат.</h2>
+          <ol class="lens-list" role="list">
+            <li class="lens"><span class="lens__k mono">Основная</span><span class="lens__v">50&nbsp;МП · сенсор 1" · f/1.6 · OIS</span></li>
+            <li class="lens"><span class="lens__k mono">Сверхширокая</span><span class="lens__v">50&nbsp;МП · 120° · автофокус · макро</span></li>
+            <li class="lens"><span class="lens__k mono">Телевик</span><span class="lens__v">50&nbsp;МП · 3× · f/2.0 · OIS</span></li>
+            <li class="lens"><span class="lens__k mono">Перископ</span><span class="lens__v">200&nbsp;МП · 6× · f/3.0 · OIS</span></li>
+            <li class="lens"><span class="lens__k mono">Фронтальные</span><span class="lens__v">24&nbsp;МП квадратная + 12&nbsp;МП сверхширокая</span></li>
+          </ol>
+          <p class="note cams-note">8K/30 на&nbsp;основной, 4K/120 на&nbsp;всех шести камерах. Фото — без геометок, пока вы сами их не&nbsp;включите.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CITADEL 2 -->
+    <section class="section pinned citadel" id="citadel" data-3d aria-labelledby="citadel-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--right">
+          <p class="eyebrow">Citadel 2 · чип безопасности</p>
+          <h2 class="h2" id="citadel-title" data-split>Компьютер для секретов. Версия&nbsp;2.</h2>
+          <p class="lead">Свой процессор — втрое быстрее первого Citadel. Свой аккумулятор на&nbsp;600&nbsp;мАч — вчетверо больше. Свои 64&nbsp;ГБ. Основная система к&nbsp;ним не&nbsp;дотягивается.</p>
+          <ul class="cit-list" role="list">
+            <li class="cit"><svg aria-hidden="true"><use href="#i-battery"/></svg><span><b>Полгода без зарядки.</b> Сейф с&nbsp;ключами живёт на&nbsp;своём аккумуляторе, даже если телефон месяцами лежит разряженным.</span></li>
+            <li class="cit"><svg aria-hidden="true"><use href="#i-shield"/></svg><span><b>Сетка от вскрытия.</b> Токопроводящая сетка вокруг чипа: корпус вскрыли не&nbsp;в&nbsp;сервисе OY — ключи стёрты.<sup class="fn"><a href="#fn-2" id="fnr-2">2</a></sup></span></li>
+            <li class="cit"><svg aria-hidden="true"><use href="#i-key"/></svg><span><b>Ключи доступа.</b> Passkeys живут только в&nbsp;Citadel&nbsp;2. Вход на&nbsp;сайты — по&nbsp;отпечатку.</span></li>
+            <li class="cit"><svg aria-hidden="true"><use href="#i-chip"/></svg><span><b>Защита от магнитов</b> из&nbsp;Null Chip&nbsp;2.0 и&nbsp;<b>журнал</b> кнопок «0» и&nbsp;«1», который нельзя переписать.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ДЕМО CITADEL 2 -->
+    <section class="section solid vault" id="vault" aria-labelledby="vault-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Попробуйте</p>
+        <h2 class="h2" id="vault-title" data-split>Три вещи, которые умеет только Citadel&nbsp;2.</h2>
+        <div class="vd" data-reveal>
+          <div class="vd__tabs" role="tablist" aria-label="Функции Citadel 2">
+            <button type="button" role="tab" class="vd__tab" id="vt-guard" aria-controls="vp-guard" aria-selected="true"><span class="mono">01</span>«Сторож»</button>
+            <button type="button" role="tab" class="vd__tab" id="vt-last" aria-controls="vp-last" aria-selected="false" tabindex="-1"><span class="mono">02</span>«Последнее слово»</button>
+            <button type="button" role="tab" class="vd__tab" id="vt-finger" aria-controls="vp-finger" aria-selected="false" tabindex="-1"><span class="mono">03</span>«Тревожный палец»</button>
+          </div>
+
+          <div class="vd__panel" role="tabpanel" id="vp-guard" aria-labelledby="vt-guard">
+            <div class="vd__ctl">
+              <p class="vd__lead">При каждом включении Citadel&nbsp;2 сам считает хеш системы и&nbsp;сверяет его с&nbsp;подписью OY. Ещё до&nbsp;того, как вы увидите экран блокировки.</p>
+              <label class="cmp-toggle vd__switch">
+                <input type="checkbox" data-guard-tamper>
+                <span class="cmp-toggle__track" aria-hidden="true"></span>
+                <span>Подменить прошивку</span>
+              </label>
+              <button type="button" class="btn btn--accent" data-guard-boot><svg aria-hidden="true"><use href="#i-restart"/></svg>Включить телефон</button>
+            </div>
+            <div class="vd__phone" aria-live="polite">
+              <ol class="vd__log mono" data-guard-log role="list"><li class="is-dim">Телефон выключен.</li></ol>
+              <p class="vd__plate" data-guard-plate hidden></p>
+            </div>
+          </div>
+
+          <div class="vd__panel" role="tabpanel" id="vp-last" aria-labelledby="vt-last" hidden>
+            <div class="vd__ctl">
+              <p class="vd__lead">Основная батарея села где-то, где нет ни&nbsp;вышки, ни&nbsp;розетки. Citadel&nbsp;2 на&nbsp;своём аккумуляторе отправит одну SMS с&nbsp;координатами через спутник и&nbsp;до&nbsp;12&nbsp;часов будет мигать SOS сигнальным фонарём.</p>
+              <label class="cmp-toggle vd__switch">
+                <input type="checkbox" data-last-on checked>
+                <span class="cmp-toggle__track" aria-hidden="true"></span>
+                <span>«Последнее слово» включено заранее</span>
+              </label>
+              <button type="button" class="btn btn--accent" data-last-run><svg aria-hidden="true"><use href="#i-battery"/></svg>Разрядить телефон</button>
+            </div>
+            <div class="vd__phone vd__phone--last" aria-live="polite">
+              <div class="vd__batt" aria-hidden="true"><span class="vd__batt-fill" data-last-fill></span></div>
+              <p class="vd__pct mono"><span data-last-pct>9</span>%</p>
+              <ol class="vd__log mono" data-last-log role="list"><li class="is-dim">Основной аккумулятор: 9&nbsp;%.</li></ol>
+              <div class="vd__sos" data-last-sos hidden><i aria-hidden="true"></i><span class="mono">SOS · <span data-last-timer>12:00:00</span></span></div>
+            </div>
+          </div>
+
+          <div class="vd__panel" role="tabpanel" id="vp-finger" aria-labelledby="vt-finger" hidden>
+            <div class="vd__ctl">
+              <p class="vd__lead">Назначьте один палец тревожным. Если вас заставят открыть сейф — приложите его. Сейф откроется. Пустой.</p>
+              <div class="vd__fingers" role="group" aria-label="Приложить палец">
+                <button type="button" class="btn btn--ghost" data-finger-use="normal"><svg aria-hidden="true"><use href="#i-finger"/></svg>Указательный</button>
+                <button type="button" class="btn btn--ghost vd__danger" data-finger-use="duress"><svg aria-hidden="true"><use href="#i-finger"/></svg>Безымянный — тревожный</button>
+              </div>
+            </div>
+            <div class="vd__phone" aria-live="polite">
+              <p class="vd__title mono">Сейф Citadel 2</p>
+              <ul class="vd__files" data-finger-files role="list"><li class="is-dim">Приложите палец к&nbsp;кнопке питания.</li></ul>
+              <p class="vd__hidden mono" data-finger-hidden hidden></p>
+            </div>
+          </div>
+        </div>
+        <p class="note" data-reveal>Это демонстрация: на&nbsp;настоящем телефоне всё происходит внутри Citadel&nbsp;2, а&nbsp;сайт ничего никуда не&nbsp;отправляет.</p>
+      </div>
+    </section>
+
+    <!-- 6. ШИФРАТОР ЗВОНКОВ 2 -->
+    <section class="section solid calls" id="calls" aria-labelledby="calls-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Шифратор звонков 2</p>
+        <h2 class="h2" id="calls-title" data-split>Теперь и&nbsp;видео. Теперь со&nbsp;всеми Pro.</h2>
+        <div class="crypt" role="img" aria-label="Схема: голос и видео шифруются в Citadel 2 до того, как попадают в модем">
+          <div class="crypt__node"><svg aria-hidden="true"><use href="#i-camera"/></svg><span class="mono">Голос и видео</span></div>
+          <svg class="crypt__wave crypt__wave--clean" viewBox="0 0 240 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 Q 15 5 30 30 T 60 30 T 90 30 T 120 30 T 150 30 T 180 30 T 210 30 T 240 30"/></svg>
+          <div class="crypt__node crypt__node--chip"><svg aria-hidden="true"><use href="#i-chip"/></svg><span class="mono">Citadel 2</span></div>
+          <svg class="crypt__wave crypt__wave--noise" viewBox="0 0 240 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 L8 12 L14 44 L22 20 L28 50 L36 8 L44 38 L50 16 L58 46 L66 24 L72 52 L80 10 L88 34 L94 18 L102 48 L110 6 L118 40 L124 22 L132 50 L140 14 L146 36 L154 8 L162 44 L170 26 L176 52 L184 12 L192 38 L198 20 L206 46 L214 10 L222 34 L230 18 L240 30"/></svg>
+          <div class="crypt__node"><svg aria-hidden="true"><use href="#i-network"/></svg><span class="mono">NC1</span></div>
+        </div>
+        <div class="crypt-facts">
+          <p data-reveal>Голос и&nbsp;видео шифруются внутри Citadel&nbsp;2 — ещё до&nbsp;того, как попадут в&nbsp;модем NC1. До&nbsp;сети доходит уже шум.</p>
+          <p data-reveal>Сквозное шифрование работает с&nbsp;любым Pro: и&nbsp;с&nbsp;0X1&nbsp;Pro, и&nbsp;с&nbsp;0X0&nbsp;Pro. Расшифровать разговор можно только на&nbsp;двух телефонах, между которыми он идёт.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. КНОПКИ «0» И «1» С ФИКСАЦИЕЙ -->
+    <section class="section pinned keys" id="keys" data-3d aria-labelledby="keys-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Кнопки «0» и «1» · с фиксацией</p>
+          <h2 class="h2" id="keys-title" data-split>Нажал — и&nbsp;она осталась нажатой.</h2>
+          <p class="lead">Те же две программируемые кнопки, что у&nbsp;0X1. Но&nbsp;в&nbsp;аппаратном режиме кнопка утапливается в&nbsp;рамку и&nbsp;фиксируется — как kill switch. Что выключено, видно и&nbsp;на&nbsp;ощупь, в&nbsp;кармане.</p>
+          <ol class="modes" role="list">
+            <li class="mode" data-mode="1">
+              <span class="mode__n mono">0</span>
+              <span class="mode__body"><strong>Любое действие</strong><span>Фонарь, камера, OY&nbsp;Assist, диктофон, призрачный профиль.</span></span>
+            </li>
+            <li class="mode" data-mode="2">
+              <span class="mode__n mono">1</span>
+              <span class="mode__body"><strong>Аппаратный режим с&nbsp;фиксацией</strong><span>Кнопка остаётся утопленной, а&nbsp;Citadel&nbsp;2 держит выбранное без питания. Нажмите ещё раз — кнопка выйдет.</span></span>
+            </li>
+            <li class="mode" data-mode="3">
+              <span class="mode__n mono">0+1</span>
+              <span class="mode__body"><strong>Всё выключить</strong><span>Обе кнопки на&nbsp;2&nbsp;секунды — обе фиксируются, камеры, микрофоны, связь и&nbsp;геолокация без питания. Каждое срабатывание — в&nbsp;журнал Citadel&nbsp;2.</span></span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CLAW 2.0 + NC1 -->
+    <section class="section pinned claw" id="claw" data-3d aria-labelledby="claw-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--right">
+          <p class="eyebrow">Claw 2.0 на модеме NC1</p>
+          <h2 class="h2" id="claw-title" data-split>Через спутник — уже не&nbsp;только SMS.</h2>
+          <ol class="ladder" role="list" aria-label="Claw 2.0 переходит на любую доступную сеть">
+            <li class="ladder__step" data-net="0"><span class="mono">Нет сети</span></li>
+            <li class="ladder__step ladder__step--sat" data-net="1"><span class="mono">Спутник</span><i>звонок и SMS</i></li>
+            <li class="ladder__step" data-net="2"><span class="mono">2G</span><i>звонок и SMS</i></li>
+            <li class="ladder__step" data-net="3"><span class="mono">3G</span></li>
+            <li class="ladder__step" data-net="4"><span class="mono">4G</span></li>
+            <li class="ladder__step" data-net="5"><span class="mono">5G</span></li>
+          </ol>
+          <ul class="claw-facts" role="list">
+            <li>NC1 — модем OY, впервые за&nbsp;пределами линейки Q. Геолокацию отдаёт только с&nbsp;разрешения OY&nbsp;OS</li>
+            <li>Ни одной вышки? Через спутник проходит не&nbsp;только SMS, но&nbsp;и&nbsp;голосовой звонок<sup class="fn"><a href="#fn-3" id="fnr-3">3</a></sup></li>
+            <li>10 антенн, обе SIM активны, «Прогноз сети» на&nbsp;устройстве</li>
+            <li>Сотовая связь и&nbsp;Wi-Fi&nbsp;7 объединяются</li>
+          </ul>
+          <p class="jab">«Нет сети» — не&nbsp;характеристика. Это оправдание.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. ЭКРАН -->
+    <section class="section pinned pdisplay" id="display" data-3d aria-labelledby="display-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">6,8" LTPO AMOLED · 1440×3120</p>
+          <h2 class="h2" id="display-title" data-split>5000&nbsp;нит. И&nbsp;0,2&nbsp;нита.<sup class="fn"><a href="#fn-4" id="fnr-4">4</a></sup></h2>
+          <p class="lead">Самый яркий экран OY — и&nbsp;самый тёмный. Днём «Антиблик&nbsp;2» гасит солнце в&nbsp;стекле, ночью экран опускается до&nbsp;0,2&nbsp;нита и&nbsp;не&nbsp;будит соседа.</p>
+          <div class="refl" aria-label="Сколько света отражает экран">
+            <div class="refl__row"><span class="mono">Обычное стекло</span><span class="refl__bar"><i style="--v:1"></i></span><span class="mono">≈4&nbsp;%</span></div>
+            <div class="refl__row"><span class="mono">0X0 Pro</span><span class="refl__bar"><i style="--v:.5"></i></span><span class="mono">≈2&nbsp;%</span></div>
+            <div class="refl__row refl__row--me"><span class="mono">0X1 Pro</span><span class="refl__bar"><i style="--v:.22"></i></span><span class="mono">&lt;1&nbsp;%</span></div>
+          </div>
+          <ul class="chips" role="list">
+            <li class="chip mono">1–144 Гц</li>
+            <li class="chip mono">505 ppi</li>
+            <li class="chip mono">ШИМ 3840 Гц</li>
+          </ul>
+        </div>
+      </div>
+      <div class="glare" aria-hidden="true"></div>
+    </section>
+
+    <!-- 10. ПРОИЗВОДИТЕЛЬНОСТЬ И ИСПАРИТЕЛЬНАЯ КАМЕРА -->
+    <section class="section solid perf pperf" id="perf" aria-labelledby="perf-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Производительность · испарительная камера</p>
+        <h2 class="h2" id="perf-title" data-split>Тот же 9500. Дольше на&nbsp;пике.</h2>
+        <p class="tb grad grad--accent" aria-hidden="true">9500</p>
+        <div class="vc" data-reveal>
+          <div class="vc__text">
+            <p class="lead">Медная испарительная камера на&nbsp;6200&nbsp;мм² — почти во&nbsp;всю площадь корпуса. Жидкость внутри кипит у&nbsp;процессора и&nbsp;конденсируется у&nbsp;краёв, унося тепло. Поэтому Dimensity&nbsp;9500 в&nbsp;8&nbsp;мм держит полную частоту дольше, чем в&nbsp;9,4&nbsp;мм 0X0&nbsp;Pro.</p>
+          </div>
+          <div class="vc__bars" role="img" aria-label="Сколько процессор держит полную частоту: 0X0 Pro — 100 %, 0X1 Pro — 140 %">
+            <div class="vc__row"><span class="mono">0X0 Pro · графит</span><span class="vc__bar"><i style="--v:.714"></i></span><span class="mono">100&nbsp;%</span></div>
+            <div class="vc__row vc__row--me"><span class="mono">0X1 Pro · испарительная камера</span><span class="vc__bar"><i style="--v:1"></i></span><span class="mono">140&nbsp;%</span></div>
+            <p class="vc__cap mono">Время на полной частоте под нагрузкой<sup class="fn"><a href="#fn-5" id="fnr-5">5</a></sup></p>
+          </div>
+        </div>
+        <div class="perf-grid">
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">Dimensity 9500</p><p class="perf-cell__k mono">процессор</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">до 24&nbsp;ГБ</p><p class="perf-cell__k mono">LPDDR5X</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">до 1&nbsp;ТБ</p><p class="perf-cell__k mono">UFS 4.1</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">6200&nbsp;мм²</p><p class="perf-cell__k mono">испарительная камера</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. БАТАРЕЯ И XMAGNUM -->
+    <section class="section solid light battery" id="battery" aria-labelledby="battery-title">
+      <div class="container battery__grid">
+        <div>
+          <p class="eyebrow" data-reveal>Аккумулятор и зарядка</p>
+          <h2 class="h2" id="battery-title"><span data-split>7800&nbsp;мАч.</span> <span class="accent-text" data-split>150&nbsp;Вт. И&nbsp;XMagnum.</span><sup class="fn"><a href="#fn-6" id="fnr-6">6</a></sup></h2>
+          <p class="lead" data-reveal>Самый большой аккумулятор OY в&nbsp;самом тонком корпусе Pro. Проводом — от&nbsp;0 до&nbsp;100&nbsp;% за&nbsp;25&nbsp;минут.<sup class="fn"><a href="#fn-7" id="fnr-7">7</a></sup> А&nbsp;без провода — магнитной шайбой XMagnum на&nbsp;65&nbsp;Вт: впервые за&nbsp;пределами линейки&nbsp;Q.</p>
+          <p class="jab jab--light" data-reveal>Обратная зарядка 15&nbsp;Вт. Положите на&nbsp;спинку модуль камеры от&nbsp;0X1Q — он тоже зарядится.</p>
+        </div>
+        <div class="charge" role="img" aria-label="Анимация зарядки: от 0 до 100 процентов за 25 минут">
+          <div class="charge__cell" aria-hidden="true">
+            <div class="charge__fill"></div>
+            <svg class="charge__bolt"><use href="#i-bolt"/></svg>
+          </div>
+          <p class="charge__pct mono" aria-hidden="true"><span data-charge-pct>0</span>%</p>
+          <p class="charge__time mono" aria-hidden="true"><span data-charge-min>0</span> / 25 минут</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. ВНУТРИ -->
+    <section class="section pinned inside" id="inside" data-3d aria-labelledby="inside-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Устройство</p>
+          <h2 class="h2" id="inside-title">8&nbsp;мм. По&nbsp;слоям.</h2>
+          <ol class="layers" role="list">
+            <li class="layer"><span class="layer__n mono">01</span><span class="layer__body"><b>Стекло и экран</b><span>«Антиблик 2» · 6,8" LTPO · до&nbsp;5000&nbsp;нит</span></span></li>
+            <li class="layer"><span class="layer__n mono">02</span><span class="layer__body"><b>Рамка</b><span>Титан, грани из&nbsp;стекла, 10 антенн, кнопки «0» и&nbsp;«1»</span></span></li>
+            <li class="layer"><span class="layer__n mono">03</span><span class="layer__body"><b>Испарительная камера</b><span>Медь, 6200&nbsp;мм²</span></span></li>
+            <li class="layer"><span class="layer__n mono">04</span><span class="layer__body"><b>Плата</b><span>Dimensity 9500 · модем NC1 · UFS 4.1</span></span></li>
+            <li class="layer layer--accent"><span class="layer__n mono">05</span><span class="layer__body"><b>Citadel 2</b><span>Свой процессор, 64&nbsp;ГБ, 600&nbsp;мАч, сетка от&nbsp;вскрытия</span></span></li>
+            <li class="layer"><span class="layer__n mono">06</span><span class="layer__body"><b>Аккумулятор</b><span>7800&nbsp;мАч, кремний-углеродный</span></span></li>
+            <li class="layer"><span class="layer__n mono">07</span><span class="layer__body"><b>Катушка XMagnum</b><span>65&nbsp;Вт, обратная 15&nbsp;Вт</span></span></li>
+            <li class="layer"><span class="layer__n mono">08</span><span class="layer__body"><b>Спинка</b><span>Матовое стекло, «шайба» камер</span></span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. ЦВЕТА -->
+    <section class="section pinned colors" id="colors" data-3d aria-labelledby="colors-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--bottom">
+          <p class="eyebrow">Три цвета</p>
+          <h2 class="h2" id="colors-title" data-split>Металл, который не&nbsp;притворяется.</h2>
+          <p class="lead colors-lead"><span class="cl cl--obsidian">Чёрный с&nbsp;графитовым отливом, как вулканическое стекло. Кольцо камер — светлый полированный титан.</span><span class="cl cl--titan">Тёплый природный титан: рамку не&nbsp;красили, только отполировали.</span><span class="cl cl--cobalt">Глубокий синий, который на&nbsp;солнце уходит в&nbsp;ультрамарин.</span></p>
+          <div class="color-switch color-switch--big" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+            <button type="button" role="radio" class="color-opt" data-value="obsidian" aria-checked="true"><span class="swatch swatch--obsidian" aria-hidden="true"></span><span>Обсидиан</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="titan" aria-checked="false"><span class="swatch swatch--titan" aria-hidden="true"></span><span>Титан</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="cobalt" aria-checked="false"><span class="swatch swatch--cobalt" aria-hidden="true"></span><span>Кобальт</span></button>
+          </div>
+          <p class="drag-hint mono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M4 12h16"/></svg>Потяните, чтобы повернуть</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. КОРОТКО О ГЛАВНОМ -->
+    <section class="section solid highlights" id="highlights" aria-labelledby="hl-title">
+      <div class="container">
+        <h2 class="h2" id="hl-title" data-split>Коротко о&nbsp;главном.</h2>
+      </div>
+      <div class="hl" aria-roledescription="карусель" aria-labelledby="hl-title">
+        <ul class="hl__track" role="list" tabindex="0" aria-label="Слайды">
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+            <div class="hl__text"><h3 class="hl__title">Citadel&nbsp;2. Договорит за&nbsp;вас.</h3><p class="hl__desc">64&nbsp;ГБ, 600&nbsp;мАч, «Последнее слово», «Сторож».</p></div>
+            <div class="hl__vis"><div class="hlp-cit" aria-hidden="true"><span>CITADEL 2</span></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+            <div class="hl__text"><h3 class="hl__title">Сенсор 1". Перископ 6×.</h3><p class="hl__desc">Четыре камеры в&nbsp;титановой «шайбе».</p></div>
+            <div class="hl__vis"><div class="hlx-puck" aria-hidden="true"><span></span><span></span><span></span><b></b></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+            <div class="hl__text"><h3 class="hl__title">Кнопки, которые фиксируются.</h3><p class="hl__desc">Что выключено — видно на&nbsp;ощупь.</p></div>
+            <div class="hl__vis"><div class="hlx-keys hlx-keys--lock" aria-hidden="true"><span>0</span><span>1</span></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+            <div class="hl__text"><h3 class="hl__title">Звонок через спутник.</h3><p class="hl__desc">Claw 2.0 на&nbsp;модеме NC1.</p></div>
+            <div class="hl__vis"><div class="hlp-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+            <div class="hl__text"><h3 class="hl__title">6,8". 5000&nbsp;нит.</h3><p class="hl__desc">«Антиблик 2» и&nbsp;0,2&nbsp;нита ночью.</p></div>
+            <div class="hl__vis"><div class="hlx-glare" aria-hidden="true"><span></span></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+            <div class="hl__text"><h3 class="hl__title">7800&nbsp;мАч в&nbsp;8&nbsp;мм.</h3><p class="hl__desc">150&nbsp;Вт проводом, 65&nbsp;Вт XMagnum.</p></div>
+            <div class="hl__vis"><div class="hl-batt" aria-hidden="true"><span></span></div></div>
+          </li>
+        </ul>
+        <div class="hl__controls">
+          <div class="hl__dots">
+            <button type="button" class="hl__dot" aria-label="Слайд 1" aria-current="true"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 2"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 3"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 4"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 5"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 6"><span></span></button>
+          </div>
+          <button type="button" class="hl__play" aria-label="Пауза" data-playing="true">
+            <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12M16 6v12"/></svg>
+            <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. ПОКУПКА И ХАРАКТЕРИСТИКИ -->
+    <section class="section solid light buy" id="buy" aria-labelledby="buy-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Предзаказ · осень 2028 · США</p>
+        <h2 class="h2" id="buy-title" data-split>Выберите свой 0X1&nbsp;Pro.</h2>
+        <div class="configurator">
+          <div class="configurator__opts">
+            <p class="cfg-label mono" id="mem-label">Память</p>
+            <div class="mem-switch mem-switch--3" role="radiogroup" aria-labelledby="mem-label" data-mem-switch>
+              <button type="button" role="radio" class="mem-opt" data-value="12/256" aria-checked="true"><span class="mono">12/256</span><span class="mem-opt__unit">ГБ</span></button>
+              <button type="button" role="radio" class="mem-opt" data-value="16/512" aria-checked="false"><span class="mono">16/512</span><span class="mem-opt__unit">ГБ</span></button>
+              <button type="button" role="radio" class="mem-opt" data-value="24/1024" aria-checked="false"><span class="mono">24/1024</span><span class="mem-opt__unit">ГБ</span></button>
+            </div>
+            <p class="cfg-label mono" id="color-label">Цвет</p>
+            <div class="color-switch color-switch--big" role="radiogroup" aria-labelledby="color-label" data-color-switch>
+              <button type="button" role="radio" class="color-opt" data-value="obsidian" aria-checked="true"><span class="swatch swatch--obsidian" aria-hidden="true"></span><span>Обсидиан</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="titan" aria-checked="false"><span class="swatch swatch--titan" aria-hidden="true"></span><span>Титан</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="cobalt" aria-checked="false"><span class="swatch swatch--cobalt" aria-hidden="true"></span><span>Кобальт</span></button>
+            </div>
+          </div>
+          <div class="price-card" aria-live="polite">
+            <p class="price-card__cfg mono"><span data-cfg-name>12/256 ГБ</span> · <span data-cfg-color>Обсидиан</span></p>
+            <p class="price-card__usd" data-price-usd>$899</p>
+            <p class="price-card__eur mono"><span data-price-eur>€1029</span> · Европа — скоро</p>
+            <button type="button" class="btn btn--accent btn--wide" data-stub="Это демонстрационная страница: оформление предзаказа здесь не подключено.">Оформить предзаказ</button>
+            <p class="price-card__note">Продажи — пока только в&nbsp;США. Выход — осень 2028 года. Гарантия 26&nbsp;месяцев.</p>
+            <p class="price-card__concept">Это концепт-сайт: OY&nbsp;0X1&nbsp;Pro и&nbsp;компания OY вымышлены, предзаказ и&nbsp;продажи не&nbsp;ведутся.</p>
+          </div>
+        </div>
+
+        <h3 class="h3 specs-title" id="specs">Характеристики</h3>
+        <div class="specs-wrap">
+          <table class="specs">
+            <caption class="sr-only">Технические характеристики OY 0X1 Pro</caption>
+            <tbody>
+              <tr><th scope="row">Процессор</th><td>MediaTek Dimensity 9500; испарительная камера 6200 мм²</td></tr>
+              <tr><th scope="row">Citadel 2</th><td>Отдельный чип безопасности: свой процессор (втрое быстрее Citadel), аккумулятор 600 мАч, накопитель 64 ГБ; «Сейф», ключи доступа (passkeys), «Сторож» — проверка хеша системы при включении, «Последнее слово» — SMS с координатами через спутник и SOS фонарём до 12 часов, «Тревожный палец», сетка от вскрытия, защита от магнитов, журнал кнопок</td></tr>
+              <tr><th scope="row">Шифратор звонков 2</th><td>Аппаратный, в Citadel 2: голос и видеозвонки; сквозное шифрование со всеми Pro, включая 0X0 Pro</td></tr>
+              <tr><th scope="row">Экран</th><td>6,8" LTPO AMOLED, 1440×3120, 505 ppi, 1–144 Гц; пиковая яркость 5000 нит, минимальная 0,2 нит; ШИМ 3840 Гц; «Антиблик 2» — отражает меньше 1 % света</td></tr>
+              <tr><th scope="row">Память</th><td>12/256, 16/512 и 24/1024 ГБ (LPDDR5X + UFS 4.1)</td></tr>
+              <tr><th scope="row">Основная камера</th><td>50 МП, сенсор 1", f/1.6, оптическая стабилизация</td></tr>
+              <tr><th scope="row">Сверхширокоугольная</th><td>50 МП, 120°, автофокус, макро</td></tr>
+              <tr><th scope="row">Телевики</th><td>50 МП, 3×, f/2.0, оптическая стабилизация · перископ 200 МП, 6×, f/3.0, оптическая стабилизация</td></tr>
+              <tr><th scope="row">Фронтальные</th><td>24 МП квадратная + 12 МП сверхширокая 100°, вырез-«таблетка»</td></tr>
+              <tr><th scope="row">Видео</th><td>8K/30 на основной камере, 4K/120 на всех камерах</td></tr>
+              <tr><th scope="row">Кнопки «0» и «1»</th><td>Две программируемые кнопки на левой грани: короткое, долгое и двойное нажатие — любое действие; аппаратный режим через Citadel 2 с фиксацией — кнопка остаётся утопленной; обе кнопки на 2 секунды — «Всё выключить». Переназначение в аппаратном режиме — после отпечатка. Журнал срабатываний в Citadel 2</td></tr>
+              <tr><th scope="row">Связь</th><td>Модем OY NC1; Claw 2.0: 10 антенн, переход 5G → 2G ради звонка и SMS, спутниковые SMS и голосовые звонки, «Прогноз сети», объединение сотовой связи и Wi-Fi. eSIM + физическая SIM (обе активны), Wi-Fi 7, Bluetooth 6.0, UWB, ИК-порт. NFC нет</td></tr>
+              <tr><th scope="row">Фонари</th><td>Вспышка под стеклом «шайбы»; сигнальный фонарь на верхней грани — белый и красный, заявленная видимость до 5000 м, SOS от Citadel 2</td></tr>
+              <tr><th scope="row">Аккумулятор</th><td>7800 мАч, кремний-углеродный (Si-C), несъёмный</td></tr>
+              <tr><th scope="row">Зарядка</th><td>Проводная 150 Вт, 0–100 % за 25 минут; беспроводная XMagnum 65 Вт; обратная беспроводная 15 Вт</td></tr>
+              <tr><th scope="row">Биометрия</th><td>Сканер отпечатка в кнопке питания, отпечатки хранятся в Citadel 2; «Тревожный палец». Разблокировки по лицу нет</td></tr>
+              <tr><th scope="row">Система</th><td>OY OS 2 с функциями Citadel 2: OY Assist на устройстве, Призрачный профиль, Песочница 2, карта сетевых запросов; без Google Mobile Services, без телеметрии, без обязательного аккаунта</td></tr>
+              <tr><th scope="row">Звук и разъёмы</th><td>Стерео-динамики, 3,5 мм, USB-C</td></tr>
+              <tr><th scope="row">Защита</th><td>IP69K</td></tr>
+              <tr><th scope="row">Корпус</th><td>Титановая рамка, грани из матового стекла, спинка из матового стекла; 163,5 × 76,8 × 8,0 мм; 219 г</td></tr>
+              <tr><th scope="row">Цвета</th><td>«Обсидиан», «Титан», «Кобальт»</td></tr>
+              <tr><th scope="row">Обновления и гарантия</th><td>7 лет обновлений безопасности · 26 месяцев гарантии</td></tr>
+              <tr><th scope="row">Продажи</th><td>Пока только в США. Выход — осень 2028 года</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="specs-wrap">
+          <table class="prices">
+            <caption class="prices__cap mono">Цены по конфигурациям</caption>
+            <thead><tr><th scope="col">Конфигурация</th><th scope="col">США</th><th scope="col">Европа — скоро</th></tr></thead>
+            <tbody data-price-table></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. ФИНАЛ -->
+    <section class="section final" id="final" data-3d aria-labelledby="final-title">
+      <div class="container final__inner">
+        <h2 class="mega final__title" id="final-title"><span class="grad" data-split>Ноль слежки.</span> <span class="grad" data-split>Всё остальное — на&nbsp;максимум.</span></h2>
+        <div class="final__cta" data-reveal>
+          <a class="btn btn--accent" href="#buy">Купить — от $899</a>
+          <a class="btn btn--ghost" href="/compare/">Сравнить с&nbsp;0X0&nbsp;Pro и&nbsp;0X1</a>
+        </div>
+      </div>
+    </section>
+    <!-- СНОСКИ -->
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">Защита IP69K: пыль, погружение в&nbsp;пресную воду до&nbsp;2&nbsp;м на&nbsp;30&nbsp;минут и&nbsp;струя горячей воды под высоким давлением по&nbsp;IEC&nbsp;60529 и&nbsp;ISO&nbsp;20653. Защита не&nbsp;постоянна и&nbsp;может снижаться со&nbsp;временем. Повреждения от&nbsp;жидкости не&nbsp;покрываются гарантией. <a href="#fnr-1" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-2">Ремонт с&nbsp;вскрытием корпуса — только в&nbsp;сервисе OY: перед ним сейф переносится в&nbsp;зашифрованную копию на&nbsp;вашем компьютере. Без копии ключи после ремонта не&nbsp;восстановить — так и&nbsp;задумано. <a href="#fnr-2" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-3">Спутниковые звонки и&nbsp;SMS — в&nbsp;США, под открытым небом. Звонок через спутник может занимать до&nbsp;30&nbsp;секунд на&nbsp;соединение; качество голоса ниже, чем в&nbsp;сотовой сети. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-4">Пиковая яркость при показе HDR-контента на&nbsp;3&nbsp;% площади экрана. Яркость во&nbsp;весь экран ниже: 2400&nbsp;нит. <a href="#fnr-4" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-5">Внутреннее тестирование OY: 30-минутный графический тест при 25&nbsp;°C, время до&nbsp;снижения частоты на&nbsp;10&nbsp;% и&nbsp;более. За&nbsp;100&nbsp;% принят результат 0X0&nbsp;Pro. <a href="#fnr-5" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-6">Типичная ёмкость. Минимальная номинальная — 7580&nbsp;мАч. Ёмкость и&nbsp;время работы снижаются с&nbsp;числом циклов зарядки. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-7">Зарядка выключенного телефона блоком OY Power 150&nbsp;Вт и&nbsp;кабелем OY при температуре 25&nbsp;°C. Время зависит от&nbsp;температуры, износа аккумулятора и&nbsp;использования телефона во&nbsp;время зарядки. <a href="#fnr-7" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+        </ol>
+        <p class="footnotes__more">Все характеристики и&nbsp;результаты испытаний — предварительные: это концепт, телефоны не&nbsp;выпускаются.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · французский стартап</span>
+      </div>
+      <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X1 Pro · Осень 2028 · США · <a href="/pro/">OY 0X0 Pro (снят с продажи)</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X1&nbsp;Pro и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
