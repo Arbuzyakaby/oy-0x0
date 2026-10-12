@@ -1,12 +1,13 @@
 /* =========================================================================
-   OY — страница сравнения 0X0, 0X1, 0X1Q и 0X0 Pro. Таблица собирается из
-   js/data/products.js; переключатель скрывает строки, где все четыре совпадают.
+   OY — страница сравнения всех моделей, включая снятый с продажи 0X0 Pro.
+   Таблица собирается из js/data/products.js; переключатель скрывает строки,
+   где все модели совпадают.
    ========================================================================= */
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { COMPARE } from '../data/products.js';
+import { COMPARE, COMPARE_MODELS } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals } from '../core/text.js';
@@ -19,17 +20,24 @@ const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const body = $('[data-compare]');
+const N = COMPARE_MODELS.length;
 let html = '';
 let section = '';
-for (const [sec, label, a, b, q, c] of COMPARE) {
+for (const row of COMPARE) {
+  const [sec, label] = row;
+  const vals = row.slice(2, 2 + N);
   if (sec !== section) {
     section = sec;
-    html += `<tr class="cmp__sec" data-sec="${esc(sec)}"><th scope="rowgroup" colspan="5">${esc(sec)}</th></tr>`;
+    html += `<tr class="cmp__sec" data-sec="${esc(sec)}"><th scope="rowgroup" colspan="${N + 1}">${esc(sec)}</th></tr>`;
   }
-  const same = a === b && b === q && q === c;
-  // Отличия от 0X0 подсвечиваются у старших моделей
-  const cell = (v, cls) => `<td class="${cls}">${v === a ? esc(v) : `<mark>${esc(v)}</mark>`}</td>`;
-  html += `<tr class="${same ? 'is-same' : 'is-diff'}" data-sec="${esc(sec)}"><th scope="row">${esc(label)}</th><td>${esc(a)}</td>${cell(b, 'is-0x1')}${cell(q, 'is-0x1q')}${cell(c, 'is-pro')}</tr>`;
+  const same = vals.every((v) => v === vals[0]);
+  // Отличия от 0X0 подсвечиваются у остальных моделей цветом модели
+  const base = vals[COMPARE_MODELS.indexOf('0x0')];
+  const cells = vals.map((v, i) => {
+    const id = COMPARE_MODELS[i];
+    return `<td class="is-${id}">${v === base || id === '0x0' ? esc(v) : `<mark>${esc(v)}</mark>`}</td>`;
+  }).join('');
+  html += `<tr class="${same ? 'is-same' : 'is-diff'}" data-sec="${esc(sec)}"><th scope="row">${esc(label)}</th>${cells}</tr>`;
 }
 body.innerHTML = html;
 // Разделы, где нет различий, при фильтре скрываются целиком

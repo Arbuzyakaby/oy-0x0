@@ -21,7 +21,7 @@ const toast = createToast($('#toast'), gsap);
 // Подсветка за рендером — в цвет аксессуара
 const TINT = {
   module: 'rgba(60, 210, 190, .2)', puck: 'rgba(232, 67, 77, .14)', cap: 'rgba(160, 170, 185, .14)',
-  'case-0x1q': 'rgba(200, 90, 50, .2)', 'case-0x1': 'rgba(140, 90, 240, .22)', 'case-pro': 'rgba(40, 170, 120, .16)',
+  'case-0x1q': 'rgba(200, 90, 50, .2)', 'case-0x1pro': 'rgba(200, 210, 225, .14)', 'case-0x1e': 'rgba(80, 220, 160, .2)', 'case-0x1': 'rgba(140, 90, 240, .22)', 'case-pro': 'rgba(40, 170, 120, .16)',
   glass: 'rgba(232, 110, 60, .16)', power: 'rgba(255, 255, 255, .1)', faraday: 'rgba(110, 140, 90, .2)',
 };
 

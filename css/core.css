@@ -288,8 +288,8 @@ main, .site-footer { position: relative; z-index: 2; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: -.02em; font-size: 18px; }
 .brand__mark { width: 46px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
 .brand__mark circle { stroke: var(--accent-text); }
-.site-nav { display: flex; gap: 26px; font-size: 14px; }
-.site-nav a { text-decoration: none; color: var(--muted); transition: color .2s; }
+.site-nav { display: flex; gap: clamp(14px, 1.5vw, 26px); font-size: 14px; }
+.site-nav a { text-decoration: none; color: var(--muted); transition: color .2s; white-space: nowrap; }
 .site-nav a:hover { color: var(--fg); }
 .header-actions { display: flex; align-items: center; gap: 14px; }
 
@@ -465,6 +465,10 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
    Адаптив (общие элементы)
    ========================================================================= */
 
+/* Восемь разделов в шапке: якоря страницы уходят первыми */
+@media (max-width: 1440px) {
+  .site-nav a:nth-child(n+9) { display: none; }
+}
 @media (max-width: 1100px) {
   .site-nav { display: none; }
 }

@@ -278,3 +278,14 @@
   .hlp-bars i { opacity: 1; }
   .glare { display: none; }
 }
+
+/* ---------- Снят с продажи ---------- */
+
+.disc-plate {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: rgba(255, 255, 255, .04); font-size: 12px; letter-spacing: .04em; color: var(--muted);
+}
+.disc-plate::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--bad); }
+.disc-plate a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+.price-card--disc .price-card__usd { letter-spacing: -.04em; }
+

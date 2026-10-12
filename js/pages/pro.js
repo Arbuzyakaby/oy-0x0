@@ -61,7 +61,7 @@ function showHint(text) {
 
 function updatePrice(animate = true) {
   const price = getPrice(PRODUCT.id, currentMem, currentColor);
-  if (!price) return;
+  if (!price || !usdEl) return;   // снят с продажи: конфигуратора на странице нет
   cfgNameEl.textContent = `${currentMem} ГБ`;
   eurEl.textContent = `€${price.eur.toLocaleString('ru-RU')}`;
   const fmt = (n) => `$${Math.round(n).toLocaleString('en-US')}`;
@@ -78,7 +78,7 @@ function setColor(name, { save = true, instant = false, animate = true } = {}) {
   showHint('');
   if (!colorAvailable(PRODUCT.id, currentMem, name)) {
     currentMem = PRODUCT.surcharge[name].configs[0];
-    syncRadio(memGroup, currentMem);
+    if (memGroup) syncRadio(memGroup, currentMem);
     showHint(`«${COLOR_NAMES[name]}» есть только в версиях 16/512 и 20/1024 — выбрали ${currentMem}.`);
   }
   root.dataset.color = name;
@@ -104,8 +104,10 @@ function setMemory(v, animate = true) {
 }
 
 colorGroups.forEach((g) => initRadioGroup(g, (v) => setColor(v)));
-initRadioGroup(memGroup, (v) => setMemory(v));
-syncRadio(memGroup, currentMem);
+if (memGroup) {
+  initRadioGroup(memGroup, (v) => setMemory(v));
+  syncRadio(memGroup, currentMem);
+}
 setColor(store.get('oy-pro-color') || root.dataset.color || PRODUCT.defaultColor, { save: false, instant: true, animate: false });
 
 // Таблица цен из тех же данных

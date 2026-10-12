@@ -9,8 +9,9 @@ import { createStage } from '../core/stage.js';
 import { createOY0X0 } from '../models/oy0x0.js';
 import { createOY0X1 } from '../models/oy0x1.js';
 import { createOY0X1Q } from '../models/oy0x1q.js';
-import { createPro } from '../models/pro.js';
-import { COMPARE } from '../data/products.js';
+import { createOY0X1E } from '../models/oy0x1e.js';
+import { createOY0X1Pro } from '../models/oy0x1pro.js';
+import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals } from '../core/text.js';
@@ -32,15 +33,15 @@ const PI = Math.PI;
 
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
-/* ---------- Модельный ряд: четыре телефона в одном масштабе ---------- */
+/* ---------- Модельный ряд: пять телефонов в одном масштабе ---------- */
 
 // У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
 // поэтому разница в росте настоящая: 0X1 — 161 мм, 0X1Q — 142,4 мм.
-const HEIGHT = { '0x0': 146, '0x1': 161, '0x1q': 142.4, pro: 150 };
-const TURN = { '0x0': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x0': 146, '0x1': 161, '0x1q': 142.4, '0x1pro': 163.5 };
+const TURN = { '0x1e': -PI + 0.5, '0x0': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x1pro': -PI - 0.45 };
 const DIST = 4.05;
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1 });
-const MODELS = { '0x0': [createOY0X0, 'red'], '0x1': [createOY0X1, 'violet'], '0x1q': [createOY0X1Q, 'wave'], pro: [createPro, 'emerald'] };
+const MODELS = { '0x1e': [createOY0X1E, 'mint'], '0x0': [createOY0X0, 'red'], '0x1': [createOY0X1, 'violet'], '0x1q': [createOY0X1Q, 'wave'], '0x1pro': [createOY0X1Pro, 'obsidian'] };
 const stages = [];
 $$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
@@ -85,8 +86,10 @@ document.addEventListener('visibilitychange', () => setActive(lineupVisible));
 const mini = $('[data-mini]');
 if (mini) {
   const labels = { price: 'Цена', citadel: 'Безопасность', keys: 'Отключение', cams: 'Камеры', battery: 'Аккумулятор', protect: 'Защита' };
-  mini.innerHTML = COMPARE.filter((r) => labels[r[6]])
-    .map((r) => `<tr><th scope="row">${labels[r[6]]}</th><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('');
+  const N = COMPARE_MODELS.length;
+  const cols = ON_SALE.map((id) => 2 + COMPARE_MODELS.indexOf(id));
+  mini.innerHTML = COMPARE.filter((r) => labels[r[2 + N]])
+    .map((r) => `<tr><th scope="row">${labels[r[2 + N]]}</th>${cols.map((c) => `<td>${r[c]}</td>`).join('')}</tr>`).join('');
 }
 
 /* ---------- Появления ---------- */
