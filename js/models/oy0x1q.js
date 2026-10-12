@@ -474,7 +474,7 @@ export function createOY0X1Q({ phone, scale, isRunning }) {
   }
 
   return {
-    url: '/models/oy0x1q.glb',
+    url: '/models/oy0x1q.glb?v=f3ba3ad91c',
     state: { mod: 0, modFlip: 0, modFar: 0, key: 0, auth: 0, camLed: 0, signal: 0, screen: 1, explode: 0, nullchip: 0, coil: 0, antenna: 0 },
     parts,
     setup,

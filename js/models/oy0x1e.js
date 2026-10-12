@@ -356,7 +356,7 @@ export function createOY0X1E({ phone, scale, isRunning }) {
   }
 
   return {
-    url: '/models/oy0x1e.glb',
+    url: '/models/oy0x1e.glb?v=a053cad721',
     state: { key1: 0, led1: 1, signal: 0, screen: 1, explode: 0, nullchip: 0 },
     parts,
     setup,

@@ -614,7 +614,7 @@ export function createOY0X0({ phone, scale, isRunning }) {
   }
 
   return {
-    url: '/models/oy0x0.glb',
+    url: '/models/oy0x0.glb?v=902b74961e',
     state: { shutter: 0, sw1: 1, sw2: 1, sw3: 1, signal: 0, screen: 1, explode: 0 },
     parts,
     setup,

@@ -530,7 +530,7 @@ export function createPro({ phone, scale, isRunning }) {
   }
 
   return {
-    url: '/models/oy0x0-pro.glb',
+    url: '/models/oy0x0-pro.glb?v=67777120de',
     state: { sw1: 1, sw2: 1, sw3: 1, sw4: 1, signal: 0, screen: 1, explode: 0, citadel: 0, antenna: 0 },
     parts,
     setup,

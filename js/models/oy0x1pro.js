@@ -442,7 +442,7 @@ export function createOY0X1Pro({ phone, scale, isRunning }) {
   }
 
   return {
-    url: '/models/oy0x1pro.glb',
+    url: '/models/oy0x1pro.glb?v=e997b2015b',
     state: { key1: 0, key2: 0, lock1: 0, lock2: 0, led1: 1, led2: 1, signal: 0, sos: 0, screen: 1, explode: 0, citadel: 0, vapor: 0, coil: 0, antenna: 0 },
     parts,
     setup,

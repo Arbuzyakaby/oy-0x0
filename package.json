@@ -4,6 +4,7 @@
   "type": "module",
   "description": "Промо-сайт OY 0X0. Сборщик не нужен; package.json только для тестов.",
   "scripts": {
-    "test": "node --test \"tests/unit/**/*.test.js\""
+    "stamp": "node tools/stamp.mjs",
+    "test": "node tools/stamp.mjs --check && node --test \"tests/unit/**/*.test.js\""
   }
 }
