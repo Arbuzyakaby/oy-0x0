@@ -46,14 +46,41 @@ test('getPrice учитывает наценку за мрамор', () => {
 });
 
 test('сравнение: цены совпадают с конфигурациями', async () => {
-  const { COMPARE } = await import('../../js/data/products.js');
-  const usd = COMPARE.find((r) => r[6] === 'price');
+  const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
+  const n = COMPARE_MODELS.length;
+  const usd = COMPARE.find((r) => r[2 + n] === 'price');
   const eur = COMPARE.find((r) => r[1] === 'Европа — скоро');
-  ['0x0', '0x1', '0x1q', 'pro'].forEach((id, i) => {
+  COMPARE_MODELS.forEach((id, i) => {
+    if (PRODUCTS[id].discontinued) return;
     assert.equal(usd[2 + i], `от $${PRODUCTS[id].configs[0].usd}`);
     assert.equal(eur[2 + i], `от €${PRODUCTS[id].configs[0].eur}`);
   });
-  for (const r of COMPARE) assert.ok(r.length >= 6 && r.slice(0, 6).every((x) => typeof x === 'string' && x.length));
+  for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
+});
+
+test('0X0 Pro снят с продажи, в продаже пять моделей по цене', async () => {
+  const { ON_SALE } = await import('../../js/data/products.js');
+  assert.equal(PRODUCTS.pro.discontinued, true);
+  assert.deepEqual(ON_SALE, ['0x1e', '0x0', '0x1', '0x1q', '0x1pro']);
+});
+
+test('цены и цвета 0X1 Essential', () => {
+  assert.deepEqual(
+    PRODUCTS['0x1e'].configs.map((c) => [c.id, c.usd, c.eur]),
+    [['8/128', 349, 419], ['8/256', 399, 469]],
+  );
+  assert.deepEqual(PRODUCTS['0x1e'].colors, { mint: 'Мята', sand: 'Песок', coal: 'Уголь' });
+  assert.equal(PRODUCTS['0x1e'].defaultColor, 'mint');
+});
+
+test('цены и цвета 0X1 Pro', () => {
+  assert.deepEqual(
+    PRODUCTS['0x1pro'].configs.map((c) => [c.id, c.usd, c.eur]),
+    [['12/256', 899, 1029], ['16/512', 999, 1139], ['24/1024', 1199, 1359]],
+  );
+  assert.deepEqual(PRODUCTS['0x1pro'].colors, { obsidian: 'Обсидиан', titan: 'Титан', cobalt: 'Кобальт' });
+  assert.equal(PRODUCTS['0x1pro'].defaultColor, 'obsidian');
+  assert.deepEqual(getPrice('0x1pro', '24/1024', 'cobalt'), { usd: 1199, eur: 1359 });
 });
 
 test('цены и цвета 0X1', () => {
