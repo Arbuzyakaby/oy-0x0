@@ -9,7 +9,7 @@
 Промо-сайт вымышленного семейства смартфонов OY в духе презентаций Apple.<br>
 Живые 3D-модели, которые крутятся от скролла, и система, которой нечего скрывать.
 
-**[oy0x.online](https://oy0x.online)**  ·  [0X0](https://oy0x.online/0x0/)  ·  [0X1](https://oy0x.online/0x1/)  ·  [0X1Q](https://oy0x.online/0x1q/)  ·  [0X0 Pro](https://oy0x.online/pro/)  ·  [OY OS 2](https://oy0x.online/os/)  ·  [Сравнить](https://oy0x.online/compare/)
+**[oy0x.online](https://oy0x.online)**  ·  [0X0](https://oy0x.online/0x0/)  ·  [0X1](https://oy0x.online/0x1/)  ·  [0X1Q](https://oy0x.online/0x1q/)  ·  [0X0 Pro](https://oy0x.online/pro/)  ·  [OY OS 2](https://oy0x.online/os/)  ·  [Аксессуары](https://oy0x.online/accessories/)  ·  [Сравнить](https://oy0x.online/compare/)
 
 ![Сборщик](https://img.shields.io/badge/сборщик-не_нужен-0A0A0B?style=flat-square)
 ![Трекеры](https://img.shields.io/badge/трекеры-0-4ADE9B?style=flat-square)
@@ -101,7 +101,8 @@ OY Assist на устройстве, карта сетевых запросов,
 | [`/0x1/`](https://oy0x.online/0x1/) | OY 0X1: новый дизайн, перископ, кнопки «0» и «1» с интерактивным демо, Claw 2.0, «Антиблик 2», конфигуратор |
 | [`/0x1q/`](https://oy0x.online/0x1q/) | OY 0X1Q: модуль камеры (снять, перевернуть, пульт) с демо, Null Chip 2.0, кнопка Q, модем NC1, водопад, XMagnum, гарантия 26 месяцев, конфигуратор |
 | [`/pro/`](https://oy0x.online/pro/) | OY 0X0 Pro: Citadel, шифратор звонков, Claw, четыре kill switch, грани, мрамор, конфигуратор |
-| [`/os/`](https://oy0x.online/os/) | OY OS 2: интерактивные демо системы, без 3D |
+| [`/os/`](https://oy0x.online/os/) | OY OS 2: интерактивные демо системы, без 3D: ассистент, карта запросов, призрак и PIN, фото без метаданных, сообщения, приложения без Google, OY Move, проверка хеша |
+| [`/accessories/`](https://oy0x.online/accessories/) | Аксессуары: модуль камеры Q, шайба XMagnum, заглушка Q, чехлы для 0X1Q, 0X1 и Pro, стекло «Антиблик 2», блок 150 Вт, чехол Фарадея. Фильтр по модели, рендеры из Blender |
 | [`/compare/`](https://oy0x.online/compare/) | Таблица сравнения четырёх моделей с фильтром «только различия» |
 
 ---
@@ -163,6 +164,7 @@ OY Assist на устройстве, карта сетевых запросов,
 - **Цвет меняет всё.** Смена корпуса за 0,7 с перекрашивает и модель, и акценты страницы. Выбор запоминается.
 - **Приёмы Apple.** Закреплённые секции и scrub на GSAP ScrollTrigger, плавная прокрутка Lenis, карусель с прогрессом на точке и паузой, абзац, который загорается по словам, градиентные заголовки, подменю-таблетки с подсветкой раздела.
 - **Демо вместо картинок.** Журнал доступа, песочница, разрешения на время, приблизительная геолокация, SOS фонарём азбукой Морзе. На странице OY OS: ассистент, карта запросов, призрачный профиль, PIN-клавиатура и проверка хеша.
+- **Сноски, как у Apple.** Важные цифры (яркость, ёмкость, время зарядки, защита от воды, 7 лет обновлений) помечены цифрой, расшифровка — внизу страницы со ссылкой обратно к тексту. Сноски переживают анимацию заголовков по строкам.
 - **Конфигураторы.** Память меняет цену в долларах и евро («Европа — скоро»). «Средиземноморский Мрамор» доступен только в старших версиях Pro и с наценкой.
 - **Подколы.** Ровно столько, сколько нужно. «Удалить аккаунт — одна кнопка. Шутка. Аккаунта у нас нет».
 
@@ -197,6 +199,7 @@ npx serve .
 ```
 index.html               витрина семейства
 0x0/ · 0x1/ · 0x1q/ · pro/ · os/   страницы OY 0X0, OY 0X1, OY 0X1Q, OY 0X0 Pro и OY OS 2
+accessories/             аксессуары; данные — js/data/accessories.js, рендеры — img/accessories/
 compare/                 сравнение моделей
 404.html                 «не найдено», автономная, без JS
 og.jpg · og-0x1.jpg · og-0x1q.jpg · og-pro.jpg   превью ссылок, 1200×630
@@ -230,6 +233,7 @@ blender -b -P blender/build_oy0x0.py       # OY 0X0 → models/oy0x0.glb
 blender -b -P blender/build_oy0x1.py       # OY 0X1 → models/oy0x1.glb
 blender -b -P blender/build_oy0x1q.py      # OY 0X1Q → models/oy0x1q.glb, модуль камеры — отдельная нода Module
 blender -b -P blender/build_oy0x0_pro.py   # OY 0X0 Pro, общие хелперы в blender/oy_common.py
+blender -b -P blender/build_accessories.py # аксессуары: Cycles-рендеры в img/accessories/*.png (--only glass,puck --samples 64)
 blender -b -P blender/preview_render.py -- models/oy0x0.glb preview   # превью, --closed для закрытой шторки
 ```
 

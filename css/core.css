@@ -413,6 +413,26 @@ main, .site-footer { position: relative; z-index: 2; }
 .pro-teaser--link { text-decoration: none; transition: border-color .3s, transform .3s var(--ease); }
 .pro-teaser--link:hover { border-color: var(--fg); transform: translateY(-2px); }
 
+/* ---------- Сноски, как у Apple: цифра у числа, расшифровка внизу страницы ---------- */
+
+sup.fn { font-size: .5em; line-height: 0; vertical-align: super; margin-left: .08em; font-weight: 500; letter-spacing: 0; }
+.h2 sup.fn, .mega sup.fn, .giant sup.fn { font-size: .28em; vertical-align: .9em; }
+sup.fn a { color: inherit; opacity: .7; text-decoration: none; padding: 0 .1em; border-radius: 3px; transition: opacity .2s; }
+sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline; }
+.footnotes {
+  position: relative; background: var(--bg-2);
+  border-top: 1px solid var(--line);
+  padding: 40px 0 36px;
+  font-size: 12px; line-height: 1.55; color: var(--muted);
+}
+.footnotes__list { list-style: none; counter-reset: fn; display: grid; gap: 10px; max-width: 980px; }
+.footnotes__list li { counter-increment: fn; position: relative; padding-left: 22px; scroll-margin-top: calc(var(--header-h) + 24px); }
+.footnotes__list li::before { content: counter(fn) '.'; position: absolute; left: 0; font-family: var(--mono); font-size: 11px; }
+.footnotes__list li:target { color: var(--fg); }
+.footnotes__back { color: var(--fg); text-decoration: none; margin-left: 4px; }
+.footnotes__more { margin-top: 18px; max-width: 980px; }
+[id^="fnr-"] { scroll-margin-top: 45vh; }
+
 /* ---------- Футер ---------- */
 
 .site-footer { background: var(--bg); border-top: 1px solid var(--line); padding: 40px 0 calc(40px + env(safe-area-inset-bottom)); }

@@ -4,7 +4,20 @@
 
 import { clamp01 } from './ui.js';
 
+// Сноски (<sup class="fn">) в заголовках переживают разбиение: их вынимают
+// до разбиения и возвращают в конец последней строки и после сборки обратно.
+const FOOTNOTES = new WeakMap();
+function takeFootnotes(el) {
+  if (!FOOTNOTES.has(el)) {
+    const fns = [...el.querySelectorAll('sup.fn')];
+    fns.forEach((f) => f.remove());
+    FOOTNOTES.set(el, fns);
+  }
+  return FOOTNOTES.get(el);
+}
+
 export function splitLines(el) {
+  const fns = takeFootnotes(el);
   const text = el.dataset.splitText ?? (el.dataset.splitText = el.textContent.replace(/[ \t\r\n]+/g, ' ').trim());
   el.textContent = '';
   const words = text.split(' ');
@@ -23,7 +36,7 @@ export function splitLines(el) {
     lines[lines.length - 1].push(s.textContent);
   }
   el.textContent = '';
-  return lines.map((ws) => {
+  const inners = lines.map((ws) => {
     const line = document.createElement('span');
     line.className = 'line';
     const inner = document.createElement('span');
@@ -33,10 +46,14 @@ export function splitLines(el) {
     el.append(line);
     return inner;
   });
+  inners[inners.length - 1]?.append(...fns);
+  return inners;
 }
 
 export function unsplit(el) {
-  if (el.dataset.splitText !== undefined) el.textContent = el.dataset.splitText;
+  if (el.dataset.splitText === undefined) return;
+  el.textContent = el.dataset.splitText;
+  el.append(...(FOOTNOTES.get(el) ?? []));
 }
 
 export function createSplitReveals(els, { gsap }) {

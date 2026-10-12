@@ -14,7 +14,7 @@
   -webkit-backdrop-filter: saturate(160%) blur(16px);
 }
 .os-tabs__track {
-  display: flex; justify-content: center; gap: 10px;
+  display: flex; justify-content: safe center; gap: 10px;
   padding: 0 var(--gutter);
   overflow-x: auto; scrollbar-width: none;
 }
@@ -392,6 +392,90 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
 .term__line { display: flex; gap: 10px; align-items: center; padding: 10px 16px 16px; font-size: 13.5px; color: var(--ok); }
 .term__line input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: var(--fg); font: inherit; caret-color: var(--ok); }
 
+/* ---------- Фото без следов ---------- */
+
+.photos__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.photos .lead { margin-top: 22px; max-width: 40ch; }
+.photos__toggle { margin-top: 30px; }
+.exif { border-radius: 28px; overflow: hidden; background: var(--bg-2); border: 1px solid var(--line); }
+.exif__photo {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
+  background: linear-gradient(180deg, #F2A23A 0%, #E8434D 45%, #5A1E3A 75%, #1A0F1E);
+}
+.exif__sun { position: absolute; left: 62%; top: 30%; width: 16%; aspect-ratio: 1; border-radius: 50%; background: #FFE3B0; box-shadow: 0 0 60px 20px rgba(255, 210, 150, .55); }
+.exif__hill { position: absolute; bottom: -30%; border-radius: 50%; background: #1A0F1E; }
+.exif__hill--a { left: -20%; width: 90%; height: 70%; background: #2A1426; }
+.exif__hill--b { right: -25%; width: 100%; height: 62%; }
+.exif__face { position: absolute; bottom: 16%; width: 7%; aspect-ratio: 1; border-radius: 50%; background: #0E080C; outline: 2px solid transparent; outline-offset: 5px; transition: outline-color .4s; }
+.exif__face::after { content: ''; position: absolute; left: -45%; right: -45%; top: 105%; height: 160%; border-radius: 50% 50% 0 0; background: #0E080C; }
+.exif__face--1 { left: 30%; }
+.exif__face--2 { left: 41%; width: 6%; bottom: 15%; }
+.exif:not(.is-clean) .exif__face { outline-color: rgba(255, 255, 255, .85); }
+.exif__list { display: grid; padding: 10px 22px; font-size: 12.5px; }
+.exif__list li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); transition: opacity .4s; }
+.exif__list span { color: var(--muted); }
+.exif__list b { font-weight: 500; text-align: right; position: relative; }
+.exif__list b::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--bad); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
+.exif.is-clean .exif__list li { opacity: .45; }
+.exif.is-clean .exif__list b::after { transform: scaleX(1); }
+.exif__foot { padding: 14px 22px 18px; font-size: 13px; }
+.exif__foot [data-exif-n] { color: var(--ok); font-weight: 700; }
+.exif:not(.is-clean) .exif__foot [data-exif-n] { color: var(--bad); }
+.photos__more { margin-top: clamp(40px, 6vh, 72px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 28px; }
+.photos__more li { display: grid; gap: 8px; align-content: start; padding-top: 20px; border-top: 1px solid var(--line-2); color: var(--muted); font-size: 15px; }
+.photos__more svg { width: 26px; height: 26px; color: var(--accent-text); }
+.photos__more b { color: var(--fg); font-size: 18px; letter-spacing: -.01em; }
+
+/* ---------- Сообщения ---------- */
+
+.msg__grid { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.msg__phone { display: grid; place-items: center; padding: 30px; border-radius: 28px; background: radial-gradient(70% 60% at 50% 50%, rgba(255, 140, 100, .14), transparent 70%); }
+.msg__phone .ophone { --w: clamp(230px, 22vw, 280px); }
+.msg__phone .ophone__screen { align-items: stretch; padding-top: calc(var(--w) * .19); }
+.msg__head { display: grid; justify-items: center; gap: 2px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
+.msg__head b { font-size: 1.05em; }
+.msg__head span { font-size: .62em; color: var(--ok); }
+.msg__thread { display: grid; gap: 7px; margin-top: 10px; font-size: .74em; line-height: 1.3; }
+.msg__b { max-width: 82%; padding: 7px 10px; border-radius: 14px; }
+.msg__b--in { justify-self: start; background: rgba(255, 255, 255, .12); border-bottom-left-radius: 4px; }
+.msg__b--out { justify-self: end; background: #B3202A; border-bottom-right-radius: 4px; }
+.msg__b--loc { background: rgba(179, 32, 42, .35); border: 1px solid rgba(255, 107, 115, .5); font-size: .9em; }
+.msg__key { margin-top: auto; text-align: center; font-size: .6em; color: rgba(255, 255, 255, .55); }
+.msg__list { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+.msg__list li { display: grid; gap: 8px; align-content: start; }
+.msg__list svg { width: 28px; height: 28px; color: var(--accent-text); margin-bottom: 4px; }
+.msg__list h3 { font-size: 20px; letter-spacing: -.02em; }
+.msg__list p { color: var(--muted); font-size: 15px; }
+
+.more__grid .mf--accent { grid-column: 1 / -1; }
+
+/* ---------- Приложения ---------- */
+
+.apps .lead { margin-top: 22px; max-width: 52ch; }
+.apps__cmp { margin-top: clamp(40px, 6vh, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.apps__col { padding: clamp(22px, 3vw, 36px); border-radius: 24px; border: 1px solid var(--line); background: var(--bg-2); }
+.apps__col--oy { background: radial-gradient(100% 120% at 100% 0%, rgba(74, 222, 155, .12), transparent 60%), var(--bg-2); }
+.apps__h { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.apps__col ul { display: grid; gap: 12px; }
+.apps__col li { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; }
+.apps__col svg { width: 20px; height: 20px; flex: none; margin-top: 2px; }
+.apps__col .n { color: var(--muted); }
+.apps__col .n svg { color: var(--bad); }
+.apps__col .y svg { color: var(--ok); }
+
+/* ---------- Переезд ---------- */
+
+.move__steps { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.move__steps li { position: relative; display: grid; gap: 10px; align-content: start; padding: 28px; border-radius: var(--radius); background: var(--bg-2); border: 1px solid var(--line); }
+.move__steps li:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; translate: 0 -50%; z-index: 1; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line-2); font-size: 13px; color: var(--muted); }
+.move__n { font-size: 13px; color: var(--accent-text); }
+.move__steps h3 { font-size: 22px; letter-spacing: -.02em; }
+.move__steps p { color: var(--muted); font-size: 15px; }
+.move__note { margin-top: 28px; max-width: 62ch; }
+
+.dev--0x1 { background: radial-gradient(100% 100% at 100% 0%, rgba(140, 90, 240, .2), transparent 60%), var(--bg-2); }
+.dev--0x1q { background: radial-gradient(100% 100% at 100% 0%, rgba(60, 210, 190, .16), transparent 60%), var(--bg-2); }
+
 /* =========================================================================
    Адаптив
    ========================================================================= */
@@ -400,6 +484,8 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
   .assist__grid { grid-template-columns: 1fr; }
   .reqmap__box { grid-template-columns: 1fr; }
   .reqmap__apps { grid-template-columns: repeat(2, 1fr); }
+  .photos__grid, .msg__grid { grid-template-columns: 1fr; }
+  .msg__phone { justify-self: center; }
 }
 
 @media (max-width: 760px) {
@@ -427,4 +513,7 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
   .mf--wide { grid-column: auto; }
   .timeline__years span:nth-child(even) { visibility: hidden; }
   .timeline__bar { font-size: 13px; padding: 0 12px; }
+  .photos__more, .msg__list, .apps__cmp, .move__steps { grid-template-columns: 1fr; }
+  .move__steps li:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -14px; translate: 50% 0; }
+  .exif__list { font-size: 11.5px; padding: 6px 16px; }
 }

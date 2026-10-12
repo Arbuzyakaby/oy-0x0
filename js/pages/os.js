@@ -220,6 +220,23 @@ ghostBtn.addEventListener('click', async () => {
   ghostBtn.disabled = false;
 });
 
+/* ---------- Фото без следов: метаданные при отправке ---------- */
+
+// Остаются только ориентация и цветовой профиль — без них фото выглядело бы иначе
+const EXIF_ALL = 14;
+const EXIF_KEPT = 2;
+const exifBox = $('.exif');
+const exifN = $('[data-exif-n]');
+function paintExif(clean) {
+  exifBox.classList.toggle('is-clean', clean);
+  exifN.textContent = String(clean ? EXIF_KEPT : EXIF_ALL);
+}
+$('[data-exif]').addEventListener('change', (e) => {
+  paintExif(e.target.checked);
+  if (!e.target.checked) toast('Без OY OS получатель узнал бы, что вы были у Эйфелевой башни в 18:42.');
+});
+paintExif(true);
+
 /* ---------- PIN под принуждением ---------- */
 
 const pin = $('[data-pin]');
