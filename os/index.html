@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>OY OS 2 — система, которой нечего скрывать</title>
-  <meta name="description" content="OY OS 2: ассистент OY Assist на устройстве, карта сетевых запросов, призрачный профиль, PIN под принуждением и 7 лет обновлений. Без Google, телеметрии и аккаунта. Концепт.">
+  <title>OY OS 3 — система, которой нечего скрывать</title>
+  <meta name="description" content="OY OS 3: OY Assist 3 работает в приложениях прямо на устройстве, «Граница», отравленные данные, mesh-сообщения, «Двойник» и «Кошелёк» в чипе, больше сорока новых функций. Без Google, телеметрии и аккаунта. Концепт.">
   <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#0A0A0B">
   <link rel="canonical" href="https://oy0x.online/os/">
@@ -12,12 +12,12 @@
   <meta property="og:site_name" content="OY">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:url" content="https://oy0x.online/os/">
-  <meta property="og:title" content="OY OS 2 — система, которой нечего скрывать">
-  <meta property="og:description" content="Ассистент на устройстве, карта запросов, призрачный профиль. Без Google, телеметрии и аккаунта.">
+  <meta property="og:title" content="OY OS 3 — система, которой нечего скрывать">
+  <meta property="og:description" content="Ассистент, который делает сам, «Граница», mesh-сообщения и больше сорока новых функций. Без Google, телеметрии и аккаунта.">
   <meta property="og:image" content="https://oy0x.online/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="OY OS 2">
+  <meta property="og:image:alt" content="OY OS 3">
   <meta name="twitter:card" content="summary_large_image">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Ccircle cx='47' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -25,7 +25,7 @@
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
   <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
-  <link rel="stylesheet" href="/css/os.css?v=804d5c8712">
+  <link rel="stylesheet" href="/css/os.css?v=8e1bc6feee">
 
   <script type="importmap">
   {
@@ -61,11 +61,13 @@
       "/js/pages/compare.js": "/js/pages/compare.js?v=a83d33188a",
       "/js/pages/home.js": "/js/pages/home.js?v=e9d35ad7f9",
       "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
+      "/js/pages/os3.js": "/js/pages/os3.js?v=b5d0199164",
       "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
     }
   }
   </script>
   <script>document.documentElement.classList.add('js');</script>
+  <script type="module" src="/js/pages/os3.js?v=b5d0199164"></script>
   <script type="module" src="/js/pages/os.js?v=c836f83ed8"></script>
 </head>
 <body>
@@ -133,6 +135,8 @@
   <nav class="os-tabs" aria-label="Разделы OY OS">
     <div class="os-tabs__track">
       <a class="os-tab" href="#overview" aria-current="true">Обзор</a>
+      <a class="os-tab" href="#os3">Новое в OY OS 3</a>
+      <a class="os-tab" href="#try3">Попробуйте</a>
       <a class="os-tab" href="#assist">OY Assist</a>
       <a class="os-tab" href="#requests">Карта запросов</a>
       <a class="os-tab" href="#ghost">Призрак</a>
@@ -151,9 +155,9 @@
     <!-- 1. ГЕРОЙ -->
     <section class="section os-hero" id="overview" aria-labelledby="hero-title">
       <div class="container os-hero__head">
-        <p class="os-hero__eyebrow" data-reveal>OY OS 2</p>
-        <h1 class="os-hero__title" id="hero-title" data-split>Представляем OY&nbsp;Assist. Правда полезный. Правда ваш.</h1>
-        <p class="os-hero__sub" data-reveal>OY Assist сразу говорит по-русски, по-английски и&nbsp;по-французски. Без интернета.</p>
+        <p class="os-hero__eyebrow" data-reveal>OY OS 3</p>
+        <h1 class="os-hero__title" id="hero-title" data-split>Представляем OY&nbsp;Assist&nbsp;3. Он не&nbsp;только отвечает. Он делает.</h1>
+        <p class="os-hero__sub" data-reveal>Сам работает в&nbsp;приложениях, а&nbsp;каждый шаг видно на&nbsp;экране. По-русски, по-английски и&nbsp;по-французски. Без интернета.</p>
       </div>
 
       <div class="os-lineup" aria-hidden="true">
@@ -219,12 +223,12 @@
     <!-- 2. ЧТО НОВОГО (галерея) -->
     <section class="section os-new highlights" id="new" aria-labelledby="new-title">
       <div class="container">
-        <h2 class="os-new__title" id="new-title" data-split>Что нового в&nbsp;OY&nbsp;OS&nbsp;2.</h2>
+        <h2 class="os-new__title" id="new-title" data-split>Что нового в&nbsp;OY&nbsp;OS&nbsp;3.</h2>
       </div>
       <div class="hl" aria-roledescription="карусель" aria-labelledby="new-title">
         <ul class="hl__track" role="list" tabindex="0" aria-label="Слайды">
           <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="1 из 6">
-            <div class="hl__text nw__text"><h3 class="hl__title">Новый OY&nbsp;Assist. ИИ-ассистент, который думает прямо в&nbsp;телефоне.</h3></div>
+            <div class="hl__text nw__text"><h3 class="hl__title">OY&nbsp;Assist&nbsp;3. Ассистент, который сам нажимает кнопки.</h3></div>
             <div class="hl__vis nw__vis">
               <div class="ophone ophone--pro ophone--cut" aria-hidden="true">
                 <div class="ophone__screen wall wall--gold">
@@ -236,7 +240,7 @@
             </div>
           </li>
           <li class="hl__slide nw nw--split" role="group" aria-roledescription="слайд" aria-label="2 из 6">
-            <div class="hl__text nw__text"><h3 class="hl__title">Просите своими словами. Длинно, сбивчиво, с&nbsp;уточнениями.</h3><p class="hl__desc">OY Assist разберётся и&nbsp;сделает. А&nbsp;сервер не&nbsp;узнает, что вы просили.</p></div>
+            <div class="hl__text nw__text"><h3 class="hl__title">Просите своими словами. Он&nbsp;сделает сам.</h3><p class="hl__desc">Откроет приложения, заполнит, отправит — и&nbsp;покажет каждый шаг. Сервер не&nbsp;узнает, что вы просили.</p></div>
             <div class="hl__vis nw__vis">
               <div class="ophone ophone--pro ophone--cut" aria-hidden="true">
                 <div class="ophone__screen wall wall--gold">
@@ -251,7 +255,7 @@
             </div>
           </li>
           <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="3 из 6">
-            <div class="hl__text nw__text"><h3 class="hl__title">Карта запросов. Видно, куда ходит каждое приложение.</h3><p class="hl__desc">И&nbsp;одной кнопкой — куда оно больше не&nbsp;ходит.</p></div>
+            <div class="hl__text nw__text"><h3 class="hl__title">Mesh-сообщения. Связь там, где нет связи.</h3><p class="hl__desc">Телефоны OY передают сообщение друг через друга. Без вышек и&nbsp;интернета.</p></div>
             <div class="hl__vis nw__vis">
               <svg class="nw-map" viewBox="0 0 400 240" aria-hidden="true">
                 <g class="nw-map__lines">
@@ -263,21 +267,21 @@
             </div>
           </li>
           <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="4 из 6">
-            <div class="hl__text nw__text"><h3 class="hl__title">Призрачный профиль. Перезагрузка — и&nbsp;его как не&nbsp;было.</h3><p class="hl__desc">Для чужого вайфая, поездок и&nbsp;«дай позвонить».</p></div>
+            <div class="hl__text nw__text"><h3 class="hl__title">«Граница». Чаты исчезают перед паспортным контролем.</h3><p class="hl__desc">И&nbsp;возвращаются после — по&nbsp;отпечатку.</p></div>
             <div class="hl__vis nw__vis"><svg class="nw-ghost" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ghost"/></svg></div>
           </li>
           <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="5 из 6">
-            <div class="hl__text nw__text"><h3 class="hl__title">Песочница 2. Приложение просит контакты — получает пустую книжку.</h3><p class="hl__desc">Оно довольно. Вы тоже.</p></div>
+            <div class="hl__text nw__text"><h3 class="hl__title">Отравленные данные. Настаивает — получит выдумку.</h3><p class="hl__desc">Правдоподобные контакты и&nbsp;геопозиция, которых не&nbsp;существует.</p></div>
             <div class="hl__vis nw__vis">
               <div class="nw-sand" aria-hidden="true">
                 <span class="nw-sand__q mono">«Ферма» → contacts.read()</span>
-                <span class="nw-sand__a mono">← []  (0 записей)</span>
+                <span class="nw-sand__a mono">← [«Анна Б.», «Сантехник»…]  (выдумано)</span>
               </div>
             </div>
           </li>
           <li class="hl__slide nw" role="group" aria-roledescription="слайд" aria-label="6 из 6">
-            <div class="hl__text nw__text"><h3 class="hl__title">Сейф. Пароли и&nbsp;документы — в&nbsp;отдельном чипе Citadel.</h3><p class="hl__desc">На&nbsp;0X1&nbsp;Pro и&nbsp;0X0&nbsp;Pro.</p></div>
-            <div class="hl__vis nw__vis"><div class="nw-vault" aria-hidden="true"><svg><use href="#i-lock"/></svg><span class="mono">CITADEL</span></div></div>
+            <div class="hl__text nw__text"><h3 class="hl__title">«Двойник». Второй PIN — вторая жизнь телефона.</h3><p class="hl__desc">На&nbsp;0X2 и&nbsp;0X2Q: живая фальшивая система внутри Tesseract и&nbsp;Citadel&nbsp;3.</p></div>
+            <div class="hl__vis nw__vis"><div class="nw-vault" aria-hidden="true"><svg><use href="#i-lock"/></svg><span class="mono">TESSERACT</span></div></div>
           </li>
         </ul>
         <div class="hl__controls">
@@ -301,6 +305,153 @@
     <section class="section solid os-manifest" aria-label="О системе">
       <div class="container">
         <p class="os-manifest__text" data-scrub-words>Обычный ассистент отправляет ваш голос на&nbsp;сервер, ждёт ответа и&nbsp;оставляет копию «для улучшения качества». OY&nbsp;Assist слушает, только пока вы держите кнопку, думает на&nbsp;нейроядре телефона и&nbsp;ничего не&nbsp;запоминает без спроса.</p>
+      </div>
+    </section>
+
+    <!-- 3А. ВСЁ НОВОЕ В OY OS 3 -->
+    <section class="section solid os3" id="os3" aria-labelledby="os3-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>OY OS 3 · больше сорока новых функций</p>
+        <h2 class="h2" id="os3-title" data-split>Всё новое. Ничего лишнего.</h2>
+        <div class="os3__grid">
+          <article class="os3g" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-spark"/></svg>OY Assist 3</h3>
+            <ul role="list">
+              <li><b>Агент в&nbsp;приложениях.</b> «Отмени подписку», «найди чек за&nbsp;июль и&nbsp;перешли бухгалтеру» — каждый шаг виден на&nbsp;экране</li>
+              <li><b>Память на&nbsp;устройстве.</b> Список «что я о&nbsp;тебе знаю» — и&nbsp;любой пункт стирается одним касанием</li>
+              <li><b>Видит экран.</b> Найдёт подвох в&nbsp;мелком шрифте договора, переведёт меню на&nbsp;фото</li>
+              <li><b>Расшифровка встреч</b> с&nbsp;разбивкой по&nbsp;участникам — без облака</li>
+              <li><b>«Сводка дня»</b> вместо восьмидесяти уведомлений</li>
+              <li><b>Проверка подделок.</b> Предупредит, что голос в&nbsp;звонке синтезирован, а&nbsp;фото сгенерировано</li>
+            </ul>
+          </article>
+          <article class="os3g" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-eye-off"/></svg>Приватность</h3>
+            <ul role="list">
+              <li><b>Отчёт за&nbsp;неделю:</b> кто просил камеру, геопозицию и&nbsp;контакты, куда ходил в&nbsp;сеть</li>
+              <li><b>Отравленные данные.</b> Настырному приложению — правдоподобные фальшивые контакты, геопозиция и&nbsp;фото</li>
+              <li><b>Одноразовые адреса и&nbsp;номера</b> для каждого сервиса</li>
+              <li><b>Разрешения с&nbsp;таймером:</b> на&nbsp;10&nbsp;минут, на&nbsp;один раз, до&nbsp;блокировки</li>
+              <li><b>«Стеклянная стена».</b> Приложения не&nbsp;видят друг друга</li>
+              <li><b>Случайный MAC</b> при каждом подключении, буфер обмена с&nbsp;замком, запрет записи экрана для банка и&nbsp;мессенджера</li>
+            </ul>
+          </article>
+          <article class="os3g" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-lock"/></svg>Безопасность</h3>
+            <ul role="list">
+              <li><b>«Двойник», «Кошелёк», «Свидетель», «Мёртвая рука»</b> — на&nbsp;Tesseract и&nbsp;Citadel&nbsp;3</li>
+              <li><b>«Граница».</b> Перед паспортным контролем выбранные чаты и&nbsp;приложения исчезают, после — возвращаются</li>
+              <li><b>«Чужие руки».</b> Телефон выхватили — экран блокируется по&nbsp;рывку</li>
+              <li><b>«Зеркало».</b> Чужое лицо за&nbsp;плечом — чаты размываются</li>
+              <li><b>Ключи-паспорта в&nbsp;чипе</b> вместо паролей</li>
+              <li><b>Поддельные вышки и&nbsp;Wi-Fi.</b> Предупреждение до&nbsp;подключения</li>
+            </ul>
+          </article>
+          <article class="os3g" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-network"/></svg>Связь</h3>
+            <ul role="list">
+              <li><b>Mesh-сообщения.</b> Без сети и&nbsp;интернета: телефоны OY передают сообщения друг через друга</li>
+              <li><b>Офлайн-перевод</b> звонков и&nbsp;чатов, 40&nbsp;языков</li>
+              <li><b>Спутниковые SMS</b> прямо в&nbsp;«Сообщениях»</li>
+              <li><b>Отложенные и&nbsp;отзываемые</b> сообщения, даже SMS между OY</li>
+            </ul>
+          </article>
+          <article class="os3g" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-camera"/></svg>Камера и&nbsp;модули</h3>
+            <ul role="list">
+              <li><b>Менеджер модулей</b> 0X2Q: права для каждого, заряд, журнал</li>
+              <li><b>Тепловизорный режим</b> для модуля «Тепло»</li>
+              <li><b>Пульт «Луча»:</b> яркость, стробоскоп, SOS морзянкой</li>
+              <li><b>«Чистое фото».</b> Случайные лица и&nbsp;номера машин убираются перед отправкой</li>
+              <li><b>Видео с&nbsp;подписью чипа</b> — можно доказать, что его не&nbsp;монтировали</li>
+            </ul>
+          </article>
+          <article class="os3g" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-phone"/></svg>Удобство</h3>
+            <ul role="list">
+              <li><b>Разблокировка по&nbsp;NFC-метке</b> дома и&nbsp;рабочий профиль в&nbsp;офисе</li>
+              <li><b>«Тихие обои»</b> почти не&nbsp;тратят заряд</li>
+              <li><b>Режимы по&nbsp;месту и&nbsp;времени</b> — геопозиция никуда не&nbsp;уходит</li>
+              <li><b>Рабочий стол на&nbsp;мониторе</b> с&nbsp;окнами и&nbsp;доком</li>
+              <li><b>Режим одной руки&nbsp;2</b> и&nbsp;<b>«Детский телефон»</b></li>
+            </ul>
+          </article>
+          <article class="os3g" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-battery"/></svg>Батарея</h3>
+            <ul role="list">
+              <li><b>Умная зарядка&nbsp;3:</b> держит 80&nbsp;% и&nbsp;дозаряжается к&nbsp;будильнику</li>
+              <li><b>Профиль испарительной камеры</b> на&nbsp;0X2: тишина или мощность</li>
+              <li><b>Аварийный режим:</b> звонки, SMS и&nbsp;фонарь — до&nbsp;5&nbsp;дней на&nbsp;5&nbsp;%</li>
+            </ul>
+          </article>
+          <article class="os3g os3g--accent" data-reveal>
+            <h3><svg aria-hidden="true"><use href="#i-code"/></svg>Открытость</h3>
+            <ul role="list">
+              <li><b>Воспроизводимая сборка&nbsp;2:</b> хеш проверяется и&nbsp;у&nbsp;обновлений приложений из&nbsp;OY&nbsp;Store</li>
+              <li><b>Открытые логи чипа</b> — журнал Tesseract и&nbsp;Citadel&nbsp;3 читается сторонней утилитой</li>
+              <li><b>8&nbsp;лет обновлений</b> для 0X2 и&nbsp;0X2Q</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3Б. ПОПРОБУЙТЕ OY OS 3 -->
+    <section class="section solid try3" id="try3" aria-labelledby="try3-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Попробуйте</p>
+        <h2 class="h2" id="try3-title" data-split>Три новинки в&nbsp;деле.</h2>
+        <div class="try3__grid">
+          <article class="t3" data-reveal>
+            <div class="t3__screen" aria-live="polite">
+              <p class="t3__h mono">OY Assist 3 · агент</p>
+              <ol class="t3__log mono" data-agent-log role="list"><li class="is-dim">Выберите задачу.</li></ol>
+            </div>
+            <h3>Ассистент, который делает</h3>
+            <p>OY&nbsp;Assist&nbsp;3 сам нажимает кнопки в&nbsp;приложениях. Каждое действие видно, любое можно остановить.</p>
+            <div class="t3__row" role="group" aria-label="Задача для ассистента">
+              <button type="button" class="chip-btn" data-agent="sub">Отмени подписку на&nbsp;кино</button>
+              <button type="button" class="chip-btn" data-agent="receipt">Перешли чек за&nbsp;июль</button>
+            </div>
+          </article>
+          <article class="t3" data-reveal>
+            <div class="t3__screen" aria-live="polite">
+              <p class="t3__h mono" data-border-title>Чаты</p>
+              <ul class="t3__chats" data-border-list role="list">
+                <li data-secret>Юрист <span>Черновик иска</span></li>
+                <li>Мама <span>Позвони, как прилетишь</span></li>
+                <li data-secret>Редакция <span>Источник подтвердил</span></li>
+                <li>Отель <span>Заезд с 14:00</span></li>
+              </ul>
+            </div>
+            <h3>«Граница»</h3>
+            <p>Перед паспортным контролем отмеченные чаты исчезают — не&nbsp;скрываются, а&nbsp;уходят в&nbsp;чип. Прошли — вернули отпечатком.</p>
+            <div class="t3__row">
+              <button type="button" class="btn btn--accent btn--sm" data-border><svg aria-hidden="true" class="btn__ic"><use href="#i-lock"/></svg><span data-border-text>Включить «Границу»</span></button>
+            </div>
+          </article>
+          <article class="t3" data-reveal>
+            <div class="t3__screen t3__screen--mesh" aria-hidden="true">
+              <svg class="t3__mesh" viewBox="0 0 300 180" data-mesh>
+                <path class="t3__link" d="M30 140 L95 80 L160 120 L215 55 L275 40"/>
+                <path class="t3__hop" d="M30 140 L95 80 L160 120 L215 55 L275 40" pathLength="1"/>
+                <g class="t3__nodes">
+                  <circle cx="30" cy="140" r="9"/><circle cx="95" cy="80" r="7"/><circle cx="160" cy="120" r="7"/><circle cx="215" cy="55" r="7"/><circle cx="275" cy="40" r="9"/>
+                </g>
+                <text x="30" y="166" text-anchor="middle">вы</text>
+                <text x="275" y="24" text-anchor="middle">Лена</text>
+                <text x="150" y="172" text-anchor="middle" class="t3__nosig">нет сети · нет интернета</text>
+              </svg>
+            </div>
+            <h3>Mesh-сообщения</h3>
+            <p>Вышки упали, интернета нет. Сообщение прыгает от&nbsp;одного OY к&nbsp;другому — зашифрованным, прочитать его по&nbsp;пути нельзя.</p>
+            <div class="t3__row">
+              <button type="button" class="btn btn--accent btn--sm" data-mesh-run><svg aria-hidden="true" class="btn__ic"><use href="#i-network"/></svg>Отправить без сети</button>
+              <span class="t3__res mono" data-mesh-res aria-live="polite"></span>
+            </div>
+          </article>
+        </div>
+        <p class="note" data-reveal>Это демонстрация: на&nbsp;настоящем телефоне всё происходит на&nbsp;устройстве, а&nbsp;сайт ничего никуда не&nbsp;отправляет.</p>
       </div>
     </section>
 
@@ -511,7 +662,7 @@
     <!-- 7. ЕЩЁ (сетка) -->
     <section class="section solid more" id="more" aria-labelledby="more-title">
       <div class="container">
-        <p class="eyebrow" data-reveal>Ещё в OY OS 2</p>
+        <p class="eyebrow" data-reveal>И&nbsp;всё, что появилось в&nbsp;OY&nbsp;OS&nbsp;2</p>
         <h2 class="h2" id="more-title" data-split>Мелочи, о&nbsp;которых больше никто не&nbsp;подумал.</h2>
         <ul class="more__grid" role="list">
           <li class="mf mf--wide" data-reveal>
@@ -586,7 +737,7 @@
       <div class="container">
         <p class="eyebrow" data-reveal>Обновления</p>
         <h2 class="h2" id="upd-title" data-split>7&nbsp;лет обновлений. Без «оптимизации батареи».<sup class="fn"><a href="#fn-7" id="fnr-7">7</a></sup></h2>
-        <p class="lead" data-reveal>Обновления системы и&nbsp;безопасности для всех моделей OY. Обещание записано в&nbsp;гарантию, а&nbsp;не&nbsp;в&nbsp;пресс-релиз.</p>
+        <p class="lead" data-reveal>Обновления системы и&nbsp;безопасности для всех моделей OY, а&nbsp;для 0X2 и&nbsp;0X2Q — 8&nbsp;лет. Обещание записано в&nbsp;гарантию, а&nbsp;не&nbsp;в&nbsp;пресс-релиз.</p>
 
         <div class="timeline" data-reveal>
           <div class="timeline__years mono" aria-hidden="true"><span>2027</span><span>2028</span><span>2029</span><span>2030</span><span>2031</span><span>2032</span><span>2033</span><span>2034</span></div>
@@ -616,65 +767,65 @@
     <section class="section solid devices" id="devices" aria-labelledby="dev-title">
       <div class="container">
         <p class="eyebrow" data-reveal>Совместимость</p>
-        <h2 class="h2" id="dev-title" data-split>OY&nbsp;OS&nbsp;2 на&nbsp;всех OY.</h2>
+        <h2 class="h2" id="dev-title" data-split>OY&nbsp;OS&nbsp;3 на&nbsp;всех OY.</h2>
         <div class="devices__grid">
           <a class="dev dev--0x1e" href="/0x1e/" data-reveal>
             <p class="dev__name">OY 0X1 Essential</p>
-            <p class="dev__price mono">от $349</p>
+            <p class="dev__price mono">от $349 · обновлением</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY Assist на&nbsp;устройстве</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Карта запросов, призрак, PIN под принуждением</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY Assist 3 и&nbsp;агент в&nbsp;приложениях</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Граница», отравленные данные, mesh</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Кнопка «0»: «Всё выключить» через Null Chip</li>
-              <li class="n"><svg aria-hidden="true"><use href="#i-minus"/></svg>Сейф в&nbsp;отдельном чипе</li>
+              <li class="n"><svg aria-hidden="true"><use href="#i-minus"/></svg>«Двойник» и&nbsp;«Кошелёк» в&nbsp;чипе</li>
             </ul>
             <span class="dev__more">Подробнее о&nbsp;0X1 Essential →</span>
           </a>
           <a class="dev" href="/0x0/" data-reveal>
             <p class="dev__name">OY 0X0</p>
-            <p class="dev__price mono">от $449</p>
+            <p class="dev__price mono">от $449 · обновлением</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY Assist на&nbsp;устройстве</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Карта запросов, призрак, PIN под принуждением</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY Assist 3 и&nbsp;агент в&nbsp;приложениях</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Граница», отравленные данные, mesh</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Kill switch для камеры, связи и&nbsp;геопозиции</li>
-              <li class="n"><svg aria-hidden="true"><use href="#i-minus"/></svg>Сейф в&nbsp;отдельном чипе</li>
+              <li class="n"><svg aria-hidden="true"><use href="#i-minus"/></svg>«Двойник» и&nbsp;«Кошелёк» в&nbsp;чипе</li>
             </ul>
             <span class="dev__more">Подробнее о&nbsp;0X0 →</span>
           </a>
-          <a class="dev dev--0x1" href="/0x1/" data-reveal>
-            <p class="dev__name">OY 0X1</p>
-            <p class="dev__price mono">от $499</p>
+          <a class="dev dev--0x2" href="/0x2/" data-reveal>
+            <p class="dev__name">OY 0X2</p>
+            <p class="dev__price mono">от $579 · из коробки</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё, что есть на&nbsp;0X0</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Кнопки «0» и&nbsp;«1»: любое действие или отключение</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Спутниковые SMS через Claw 2.0</li>
-              <li class="n"><svg aria-hidden="true"><use href="#i-minus"/></svg>Сейф в&nbsp;отдельном чипе</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё новое в&nbsp;OY&nbsp;OS&nbsp;3</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Двойник», «Кошелёк», «Мёртвая рука» в&nbsp;Tesseract</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>NFC-оплата и&nbsp;разблокировка по&nbsp;метке</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>8&nbsp;лет обновлений</li>
             </ul>
-            <span class="dev__more">Подробнее о&nbsp;0X1 →</span>
+            <span class="dev__more">Подробнее о&nbsp;0X2 →</span>
           </a>
-          <a class="dev dev--0x1q" href="/0x1q/" data-reveal>
-            <p class="dev__name">OY 0X1Q</p>
-            <p class="dev__price mono">от $719</p>
+          <a class="dev dev--0x2q" href="/0x2q/" data-reveal>
+            <p class="dev__name">OY 0X2Q</p>
+            <p class="dev__price mono">от $799 · из коробки</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё, что есть на&nbsp;0X1</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Пульт и&nbsp;проверка модуля камеры</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Тревога при чужом магните</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Сейф в&nbsp;Null Chip 2.0</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё, что есть на&nbsp;0X2</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Менеджер модулей и&nbsp;права для каждого</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Тепловизорный режим и&nbsp;пульт «Луча»</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Citadel&nbsp;3 управляет мотором</li>
             </ul>
-            <span class="dev__more">Подробнее о&nbsp;0X1Q →</span>
+            <span class="dev__more">Подробнее о&nbsp;0X2Q →</span>
           </a>
           <a class="dev dev--pro" href="/0x1pro/" data-reveal>
             <p class="dev__name">OY 0X1 Pro</p>
-            <p class="dev__price mono">от $899</p>
+            <p class="dev__price mono">от $899 · обновлением</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Сейф и&nbsp;ключи доступа в&nbsp;Citadel&nbsp;2</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё новое в&nbsp;OY&nbsp;OS&nbsp;3</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Сторож», «Последнее слово», «Тревожный палец»</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Шифратор звонков и&nbsp;видео</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Шифратор звонков и&nbsp;видео — только у&nbsp;Pro</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Кнопки «0» и&nbsp;«1» с&nbsp;фиксацией</li>
             </ul>
             <span class="dev__more">Подробнее о&nbsp;0X1 Pro →</span>
           </a>
         </div>
-        <p class="note devices__note" data-reveal>На&nbsp;0X0 вторая версия приходит обновлением. Бесплатно, без аккаунта и&nbsp;без «примите новые условия». <a class="link" href="/pro/">0X0&nbsp;Pro</a> снят с&nbsp;продажи, но&nbsp;получает OY&nbsp;OS&nbsp;2 и&nbsp;все обещанные 7&nbsp;лет обновлений.</p>
+        <p class="note devices__note" data-reveal>На&nbsp;всех моделях до&nbsp;0X2 третья версия приходит обновлением. Бесплатно, без аккаунта и&nbsp;без «примите новые условия». Снятые с&nbsp;продажи <a class="link" href="/0x1/">0X1</a>, <a class="link" href="/0x1q/">0X1Q</a> и&nbsp;<a class="link" href="/pro/">0X0&nbsp;Pro</a> тоже получают OY&nbsp;OS&nbsp;3 и&nbsp;все обещанные 7&nbsp;лет обновлений. На&nbsp;0X1Q с&nbsp;ней встают новые модули.</p>
         <button type="button" class="term-hint mono" data-term-open><svg aria-hidden="true"><use href="#i-terminal"/></svg>Для любопытных: нажмите <kbd>`</kbd></button>
       </div>
     </section>
@@ -691,7 +842,7 @@
           <li id="fn-7">Новые версии OY&nbsp;OS и&nbsp;ежемесячные патчи безопасности в&nbsp;течение 7&nbsp;лет с&nbsp;начала продаж каждой модели в&nbsp;США: для 0X0 и&nbsp;0X0&nbsp;Pro&nbsp;— до&nbsp;конца 2034 года, для 0X1 и&nbsp;0X1Q&nbsp;— до&nbsp;2035. Срок записан в&nbsp;гарантийных условиях. <a href="#fnr-7" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
           <li id="fn-8">Медиана OY&nbsp;Bench по&nbsp;20 прогонам на&nbsp;каждой модели в&nbsp;одинаковых условиях: запуск приложений, прокрутка, камера, OY&nbsp;Assist. Результаты каждого релиза публикуются вместе с&nbsp;исходным кодом. <a href="#fnr-8" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
         </ol>
-        <p class="footnotes__more">Функции и&nbsp;результаты испытаний предварительные: это концепт, OY&nbsp;OS&nbsp;2 не&nbsp;выпускается.</p>
+        <p class="footnotes__more">Функции и&nbsp;результаты испытаний предварительные: это концепт, OY&nbsp;OS не&nbsp;выпускается.</p>
       </div>
     </section>
   </main>
@@ -703,7 +854,7 @@
         <span>OY · французский стартап</span>
       </div>
       <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-      <p class="footer__small mono">OY OS 2 · все модели OY</p>
+      <p class="footer__small mono">OY OS 3 · все модели OY</p>
       <p class="footer__concept">Концепт. OY&nbsp;0X1&nbsp;Essential, OY&nbsp;0X0, OY&nbsp;0X2, OY&nbsp;0X2Q, OY&nbsp;0X1&nbsp;Pro, OY&nbsp;0X1, OY&nbsp;0X1Q, OY&nbsp;0X0&nbsp;Pro, OY&nbsp;OS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефоны не&nbsp;продаются. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>

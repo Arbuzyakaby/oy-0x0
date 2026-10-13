@@ -521,3 +521,67 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
   .move__steps li:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -14px; translate: 50% 0; }
   .exif__list { font-size: 11.5px; padding: 6px 16px; }
 }
+
+/* =========================================================================
+   OY OS 3: всё новое и демо
+   ========================================================================= */
+
+.dev--0x2 { background: radial-gradient(100% 100% at 100% 0%, rgba(240, 170, 50, .18), transparent 60%), var(--bg-2); }
+.dev--0x2q { background: radial-gradient(100% 100% at 100% 0%, rgba(140, 120, 255, .2), transparent 60%), var(--bg-2); }
+
+.os3__grid { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.os3g { padding: clamp(24px, 3vw, 36px); border-radius: var(--radius); background: var(--bg-2); border: 1px solid var(--line); }
+.os3g h3 { display: flex; align-items: center; gap: 12px; font-size: clamp(20px, 1.8vw, 24px); letter-spacing: -.02em; }
+.os3g h3 svg { width: 26px; height: 26px; flex: none; color: var(--accent-text); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.os3g ul { margin-top: 18px; display: grid; gap: 12px; }
+.os3g li { position: relative; padding-left: 18px; font-size: 15px; line-height: 1.5; color: var(--muted); }
+.os3g li::before { content: ''; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-text); }
+.os3g li b { color: var(--fg); font-weight: 600; }
+.os3g--accent { background: radial-gradient(100% 120% at 100% 100%, var(--glow), transparent 60%), var(--bg-2); }
+
+.try3__grid { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.t3 { display: grid; gap: 12px; align-content: start; padding: 22px; border-radius: var(--radius); background: var(--bg-2); border: 1px solid var(--line); }
+.t3 h3 { margin-top: 6px; font-size: 20px; letter-spacing: -.02em; }
+.t3 > p { color: var(--muted); font-size: 15px; }
+.t3__row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; }
+.t3__row .btn { display: inline-flex; align-items: center; gap: 8px; }
+.t3__screen {
+  min-height: 230px; padding: 18px; border-radius: 26px; background: #050506;
+  border: 1px solid var(--line-2); box-shadow: inset 0 0 0 5px #121316; display: grid; align-content: start; gap: 10px; overflow: hidden;
+}
+.t3__h { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.t3__log { display: grid; gap: 7px; font-size: 12.5px; line-height: 1.45; }
+.t3__log li { animation: t3-in .35s var(--ease) both; }
+.t3__log .is-dim { color: var(--muted); animation: none; }
+.t3__log .is-ok { color: var(--ok); }
+.t3__log .is-acc { color: var(--accent-text); }
+@keyframes t3-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.t3__chats { display: grid; gap: 8px; }
+.t3__chats li {
+  display: grid; gap: 2px; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, .05); font-size: 14px;
+  max-height: 60px; transition: opacity .45s, max-height .45s var(--ease), padding .45s, transform .45s;
+}
+.t3__chats li span { font: 400 12px var(--mono); color: var(--muted); }
+.t3__chats li.is-gone { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; transform: translateX(16px); margin-top: -8px; }
+.t3__screen--mesh { place-content: center; }
+.t3__mesh { width: 100%; height: auto; }
+.t3__mesh text { font: 400 11px var(--mono); fill: var(--muted); }
+.t3__mesh .t3__nosig { fill: var(--bad); }
+.t3__link { fill: none; stroke: rgba(255, 255, 255, .14); stroke-width: 1.5; stroke-dasharray: 3 5; }
+.t3__hop { fill: none; stroke: var(--accent-text); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.t3__mesh.is-run .t3__hop { animation: t3-hop 2.1s linear forwards; }
+@keyframes t3-hop { to { stroke-dashoffset: 0; } }
+.t3__nodes circle { fill: #1A1B1F; stroke: rgba(255, 255, 255, .4); stroke-width: 1.5; transition: fill .3s, stroke .3s; }
+.t3__nodes circle.is-lit { fill: var(--accent); stroke: var(--accent-text); }
+.t3__res { font-size: 12px; color: var(--ok); }
+
+@media (max-width: 1000px) {
+  .try3__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .os3__grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t3__log li { animation: none; }
+  .t3__mesh.is-run .t3__hop { animation: none; stroke-dashoffset: 0; }
+}
