@@ -22,7 +22,7 @@ export const ACCESSORIES = [
     kind: 'Модули',
     fits: ['0x2q', '0x1q'],
     usd: 119,
-    text: 'Бывший модуль камеры Q: те&nbsp;же основная 50&nbsp;МП, перископ 3× и&nbsp;фронтальная 32&nbsp;МП, но&nbsp;корпус тоньше — в&nbsp;0X2Q он прячется целиком. Привязка за&nbsp;8&nbsp;секунд<sup class="fn"><a href="#fn-2">2</a></sup>.',
+    text: 'Бывший модуль камеры Q: те&nbsp;же основная 50&nbsp;МП, перископ 3× и&nbsp;фронтальная 32&nbsp;МП, но&nbsp;корпус тоньше — в&nbsp;0X2Q он прячется целиком. Привязка за&nbsp;8&nbsp;секунд<sup class="fn"><a href="#fn-2" id="fnr-2">2</a></sup>.',
   },
   {
     id: 'module-thermal',

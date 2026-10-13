@@ -7,8 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { createStage } from '../core/stage.js';
 import { createOY0X0 } from '../models/oy0x0.js';
-import { createOY0X1 } from '../models/oy0x1.js';
-import { createOY0X1Q } from '../models/oy0x1q.js';
+import { createOY0X2 } from '../models/oy0x2.js';
+import { createOY0X2Q } from '../models/oy0x2q.js';
 import { createOY0X1E } from '../models/oy0x1e.js';
 import { createOY0X1Pro } from '../models/oy0x1pro.js';
 import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
@@ -37,11 +37,11 @@ const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
 // У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
 // поэтому разница в росте настоящая: 0X1 — 161 мм, 0X1Q — 142,4 мм.
-const HEIGHT = { '0x1e': 152, '0x0': 146, '0x1': 161, '0x1q': 142.4, '0x1pro': 163.5 };
-const TURN = { '0x1e': -PI + 0.5, '0x0': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x1pro': -PI - 0.45 };
+const HEIGHT = { '0x1e': 152, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1pro': 163.5 };
+const TURN = { '0x1e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1pro': -PI - 0.45 };
 const DIST = 4.05;
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1 });
-const MODELS = { '0x1e': [createOY0X1E, 'mint'], '0x0': [createOY0X0, 'red'], '0x1': [createOY0X1, 'violet'], '0x1q': [createOY0X1Q, 'wave'], '0x1pro': [createOY0X1Pro, 'obsidian'] };
+const MODELS = { '0x1e': [createOY0X1E, 'mint'], '0x0': [createOY0X0, 'red'], '0x2': [createOY0X2, 'honey'], '0x2q': [createOY0X2Q, 'tesseract'], '0x1pro': [createOY0X1Pro, 'obsidian'] };
 const stages = [];
 $$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
@@ -56,7 +56,8 @@ $$('.lineup__item').forEach((item) => {
   }
   const rest = pose(id);
   // при наведении телефон разворачивается к вам экраном вполоборота
-  const near = { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9) };
+  // у 0X2Q заодно выезжает модуль
+  const near = { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
   stage.setTarget(rest);
   stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);
