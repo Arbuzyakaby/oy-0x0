@@ -537,7 +537,6 @@ export function createOY0X2Q({ phone, scale, isRunning }) {
       },
       redrawScreen,
       setModule(kind) { selectModule(kind); },
-      get module() { return parts.active; },
     },
   };
 }

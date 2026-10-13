@@ -1,0 +1,140 @@
+/* =========================================================================
+   OY 0X2Q — стили страницы модели (поверх core.css, 0x0.css, pro.css,
+   0x1.css, 0x1q.css и 0x2.css: загрузчик и карусель оттуда)
+   ========================================================================= */
+
+:root[data-color="sand"] {
+  --accent: #D9B27C;
+  --accent-text: #E8C48E;
+  --accent-strong: #A8834D;
+  --accent-ink: #1A1206;
+  --glow: rgba(230, 200, 150, .26);
+  --bg-tint: #0E0D0B;
+}
+:root[data-color="tesseract"] {
+  --accent: #8A78F0;
+  --accent-text: #A897FF;
+  --accent-strong: #5E4FC2;
+  --accent-ink: #FFFFFF;
+  --glow: rgba(140, 120, 255, .32);
+  --bg-tint: #09081A;
+}
+
+.swatch--sand { background: radial-gradient(circle at 35% 30%, #FFFFFF, #E6DED0 55%, #B8AD99); }
+.swatch--tesseract { background: radial-gradient(circle at 35% 30%, #5A5A90, #232740 55%, #0C0D1C); }
+
+:root[data-color="sand"] .cl--sand, :root[data-color="tesseract"] .cl--tesseract { display: inline; }
+
+.fine { margin-top: 10px; font-size: 11px; line-height: 1.5; color: var(--muted); }
+.light .fine, .buy .fine { color: var(--light-muted); }
+
+/* ---------- Четыре модуля (пин) ---------- */
+
+.qmods .stage-text { max-width: min(520px, 42vw); }
+.qm-list { margin-top: 28px; display: grid; gap: 4px; }
+.qm {
+  display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line);
+  align-items: baseline; opacity: calc(.35 + var(--on, 0) * .65); transition: opacity .3s;
+}
+.qm__n { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.qm__v { font-size: 16px; }
+.qm.is-current .qm__n { color: var(--accent-text); }
+
+/* ---------- Видоискатель: один кадр, четыре модуля ---------- */
+
+.vf-wrap { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 22px; align-items: stretch; }
+.vf-wrap .md__ctl, .vf-wrap .md__screen-out { grid-area: auto; }
+.vf-wrap .md__screen-out { margin-top: 8px; }
+.vf {
+  position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden;
+  background: #000; border: 1px solid var(--line-2); isolation: isolate;
+}
+.vf__scene { position: absolute; inset: 0; transform-origin: 72% 40%; transition: transform .7s var(--ease), filter .5s; }
+.vf__scene > span { position: absolute; display: block; transition: background .5s, box-shadow .5s, opacity .5s; }
+.vf__sky { inset: 0 0 35% 0; background: linear-gradient(#8EC5F0, #D8ECF7); }
+.vf__sun { width: 9%; aspect-ratio: 1; border-radius: 50%; left: 14%; top: 12%; background: #FFF4C6; box-shadow: 0 0 40px 10px rgba(255, 240, 180, .7); }
+.vf__hill--far { left: -10%; right: -10%; bottom: 30%; height: 22%; border-radius: 50% 50% 0 0; background: #8FB28A; }
+.vf__hill { left: -5%; right: -5%; bottom: 0; height: 38%; border-radius: 40% 40% 0 0 / 30% 30% 0 0; background: #5C8A4E; }
+.vf__tower { left: 70%; bottom: 46%; width: 1.4%; height: 16%; background: #6B6F77; }
+.vf__tower i { position: absolute; left: 50%; top: -10%; width: 380%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: #C8452F; }
+.vf__house { left: 26%; bottom: 22%; width: 22%; height: 20%; background: #E7D7BF; }
+.vf__roof { position: absolute; left: -8%; right: -8%; bottom: 100%; height: 70%; background: #8A3D2B; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.vf__win { position: absolute; left: 14%; top: 26%; width: 22%; height: 36%; background: #6D8FAE; transition: background .5s, box-shadow .5s; }
+.vf__win--2 { left: auto; right: 14%; }
+.vf__tree { left: 54%; bottom: 20%; width: 12%; height: 30%; border-radius: 50% 50% 46% 46%; background: #3E6A2C; }
+.vf__person { left: 68%; bottom: 14%; width: 3.6%; height: 15%; border-radius: 40% 40% 20% 20%; background: #2C3A52; }
+.vf__cat { left: 18%; bottom: 13%; width: 5%; height: 3.6%; border-radius: 50% 50% 30% 30%; background: #4A3B30; }
+.vf__pipe { left: 30%; bottom: 0; width: 34%; height: 2.2%; background: #6A6A6A; opacity: .0; }
+
+.vf__beam {
+  position: absolute; left: 50%; bottom: -10%; width: 140%; height: 120%; transform: translateX(-50%); pointer-events: none;
+  background: radial-gradient(ellipse 18% 70% at 72% 40%, rgba(255, 250, 230, .55), rgba(255, 250, 230, 0) 70%);
+  opacity: 0; mix-blend-mode: screen; transition: opacity .5s;
+}
+.vf__reticle { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border: 1.5px solid rgba(255, 255, 255, .7); border-radius: 8px; transition: opacity .3s; }
+.vf__hud {
+  position: absolute; left: 16px; bottom: 14px; padding: 6px 10px; border-radius: 999px;
+  background: rgba(0, 0, 0, .55); color: #FFF; font-size: 12px; letter-spacing: .04em; backdrop-filter: blur(6px);
+}
+.vf__temp { position: absolute; right: 16px; top: 14px; padding: 6px 10px; border-radius: 999px; background: rgba(0, 0, 0, .6); color: #FFD27A; font-size: 12px; opacity: 0; transition: opacity .3s; }
+.vf__shutter {
+  position: absolute; inset: 0; display: grid; place-content: center; gap: 6px; text-align: center;
+  background: repeating-linear-gradient(90deg, #121316 0 22px, #0C0D0F 22px 24px); color: var(--fg);
+  transform: scaleX(0); transition: transform .45s var(--ease);
+}
+.vf__shutter b { font: 600 20px var(--sans); }
+.vf__shutter i { font: 400 13px var(--mono); color: var(--muted); font-style: normal; }
+.vf[data-state="in"] .vf__shutter, .vf[data-state="fake"] .vf__shutter { transform: scaleX(1); }
+.vf[data-state="fake"] .vf__shutter b { color: #FF6A6A; }
+
+/* «Тепло»: железная палитра тепловизора — тёплое светится, холодное синеет */
+.vf[data-mod="thermal"] .vf__sky { background: linear-gradient(#06021A, #120637); }
+.vf[data-mod="thermal"] .vf__sun { background: #2A0B4A; box-shadow: none; }
+.vf[data-mod="thermal"] .vf__hill--far { background: #160A3E; }
+.vf[data-mod="thermal"] .vf__hill { background: #1E0C4A; }
+.vf[data-mod="thermal"] .vf__tower { background: #2A0F55; }
+.vf[data-mod="thermal"] .vf__tower i { background: #3B1466; }
+.vf[data-mod="thermal"] .vf__house { background: #47156E; }
+.vf[data-mod="thermal"] .vf__roof { background: #6A1B6A; }
+.vf[data-mod="thermal"] .vf__win { background: #E8572A; box-shadow: 0 0 22px 6px rgba(240, 100, 40, .6); }
+.vf[data-mod="thermal"] .vf__tree { background: #251052; }
+.vf[data-mod="thermal"] .vf__person { background: radial-gradient(circle at 50% 30%, #FFFBE0, #FFD23A 40%, #F07A1E 80%); box-shadow: 0 0 26px 8px rgba(255, 170, 40, .55); }
+.vf[data-mod="thermal"] .vf__cat { background: radial-gradient(circle, #FFE58A, #F0852A); box-shadow: 0 0 18px 4px rgba(255, 150, 40, .5); }
+.vf[data-mod="thermal"] .vf__pipe { opacity: 1; background: linear-gradient(90deg, #C83A3A, #FFC03A 40%, #C83A3A); box-shadow: 0 0 18px 4px rgba(255, 120, 40, .5); }
+.vf[data-mod="thermal"] .vf__temp { opacity: 1; }
+.vf[data-mod="thermal"] .vf__reticle { border-color: #FFF; border-radius: 50%; }
+
+/* «Дюйм»: 4× на флажок вышки — резко и издалека */
+.vf[data-mod="inch"] .vf__scene { transform: scale(4); }
+
+/* «Луч»: ночь и световой столб до вышки */
+.vf[data-mod="beam"] .vf__scene { filter: brightness(.18) saturate(.6); }
+.vf[data-mod="beam"] .vf__beam { opacity: 1; }
+.vf[data-mod="beam"] .vf__reticle { opacity: 0; }
+
+/* ---------- Модули отдельно ---------- */
+
+.qc__grid { margin-top: clamp(28px, 5vh, 48px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.qc { padding: 18px 18px 22px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg-2); }
+.qc img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.qc h3 { margin-top: 6px; font: 600 19px var(--sans); }
+.qc p { margin-top: 6px; font-size: 13px; color: var(--accent-text); }
+.qc__lead { margin-top: clamp(24px, 4vh, 40px); max-width: 64ch; }
+
+/* =========================================================================
+   Адаптив
+   ========================================================================= */
+
+@media (max-width: 1000px) {
+  .vf-wrap { grid-template-columns: 1fr; }
+  .qc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .qmods .stage-text { max-width: none; }
+  .qm-list { margin-top: 14px; gap: 0; }
+  .qm { grid-template-columns: 96px 1fr; padding: 8px 0; }
+  .qm__v { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vf__scene, .vf__shutter { transition: none; }
+}
