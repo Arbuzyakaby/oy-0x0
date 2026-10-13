@@ -650,12 +650,6 @@
 .perf-cell__v { font-size: clamp(26px, 2.6vw, 40px); font-weight: 650; letter-spacing: -.03em; }
 .perf-cell__k { margin-top: 8px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 
-.fourteen { margin-top: 100px; display: grid; grid-template-columns: auto 1fr; gap: 40px 60px; align-items: center; }
-.fourteen__num { display: flex; align-items: baseline; gap: 18px; font-family: var(--mono); line-height: 1; }
-.fourteen__main { font-size: clamp(120px, 18vw, 280px); font-weight: 500; color: var(--accent-text); letter-spacing: -.06em; }
-.fourteen__strike { position: relative; font-size: clamp(32px, 4vw, 56px); color: var(--muted); }
-.fourteen__strike::after { content: ''; position: absolute; left: -10%; right: -10%; top: 52%; height: 3px; background: var(--muted); transform: rotate(-14deg); }
-.fourteen .lead { margin-top: 18px; }
 
 /* ---------- 15. Цвета ---------- */
 
@@ -739,7 +733,6 @@ html:not(.anim) .drag-hint { display: none; }
 .mem-opt .mono { font-size: 20px; font-weight: 500; }
 .mem-opt__unit { font-size: 13px; color: var(--light-muted); }
 .mem-opt[aria-checked="true"] { border-color: var(--light-fg); box-shadow: inset 0 0 0 1px var(--light-fg); }
-.mem-opt--14 .mono::after { content: ' ★'; color: var(--accent-strong); font-size: 13px; vertical-align: super; }
 
 .price-card {
   position: sticky; top: calc(var(--header-h) + 20px);
@@ -837,7 +830,7 @@ html:not(.anim) .drag-hint { display: none; }
   .os-card--sandbox { grid-row: auto; }
   .compare__grid { grid-template-columns: 1fr; }
   .compare__plus { justify-self: center; }
-  .strike-wrap, .battery__grid, .configurator, .square, .fourteen, .honest__grid { grid-template-columns: 1fr; }
+  .strike-wrap, .battery__grid, .configurator, .square, .honest__grid { grid-template-columns: 1fr; }
   .journal__grid { grid-template-columns: 1fr; gap: 36px; justify-items: center; }
   .journal__text { justify-self: stretch; }
   .price-card { position: static; }
@@ -884,7 +877,6 @@ html:not(.anim) .drag-hint { display: none; }
   .box-item { min-height: 190px; padding: 18px; font-size: 15px; }
   .box-ill { width: 84px; height: 84px; }
   .perf-grid { grid-template-columns: 1fr 1fr; }
-  .fourteen__main { font-size: 120px; }
   .dns { height: 200px; grid-template-columns: 1fr; }
   .dns__side { display: none; }
   .specs th { width: 38%; }

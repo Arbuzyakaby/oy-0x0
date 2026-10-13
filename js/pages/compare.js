@@ -33,10 +33,11 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-const FACTORY = { '0x1e': createOY0X1E, '0x0': createOY0X0, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x1pro': createOY0X1Pro, pro: createPro };
+// TODO(этап 2): 0X2 и 0X2Q пока показаны моделями 0X1 и 0X1Q — заменить на oy0x2.js и oy0x2q.js
+const FACTORY = { '0x1e': createOY0X1E, '0x0': createOY0X0, '0x2': createOY0X1, '0x2q': createOY0X1Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
-const HEIGHT = { '0x1e': 152, '0x0': 146, '0x1': 161, '0x1q': 142.4, '0x1pro': 163.5, pro: 150 };
-const TURN = { '0x1e': -PI + 0.5, '0x0': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x1pro': 163.5, pro: 150 };
+const TURN = { '0x1e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1 });
 
 /* ---------- Крупная цифра раздела ---------- */
@@ -67,7 +68,8 @@ const HERO = {
   },
   'Производительность': (id) => {
     const v = val(id, 'Процессор');
-    return { big: (v.match(/\d{4}/) || [v])[0], cap: 'MediaTek Dimensity' };
+    if (v.startsWith('Snapdragon')) return { big: v.replace('Snapdragon ', ''), cap: 'Qualcomm Snapdragon' };
+    return { big: (v.match(/\d{4}\w*/) || [v])[0], cap: 'MediaTek Dimensity' };
   },
   'Питание': (id) => {
     const v = val(id, 'Аккумулятор');
@@ -86,7 +88,7 @@ const IN_HERO = new Set(['Диагональ', 'Всего', 'Процессор
 /* ---------- Колонки ---------- */
 
 const START = (params.get('models') || '').split(',').filter((id) => PRODUCTS[id]);
-const picks = [0, 1, 2].map((i) => START[i] || ['0x1e', '0x1', '0x1pro'][i]);
+const picks = [0, 1, 2].map((i) => START[i] || ['0x2', '0x2q', '0x1pro'][i]);
 const colorOf = {};
 const cols = $$('.cx-col');
 const stages = [];
@@ -134,10 +136,11 @@ function renderCol(i) {
   tag.classList.toggle('is-off', !!p.discontinued);
   const c0 = p.configs[0];
   $('[data-price]', col).textContent = p.discontinued ? `Был от $${c0.usd}` : `От $${c0.usd.toLocaleString('en-US')}`;
-  $('[data-eur]', col).textContent = p.discontinued ? 'Преемник — 0X1 Pro' : `€${c0.eur} · Европа — скоро`;
+  const next = p.successor && PRODUCTS[p.successor];
+  $('[data-eur]', col).textContent = next ? `Преемник — ${SHORT_NAMES[next.id]}` : `€${c0.eur} · Европа — скоро`;
   const buy = $('[data-buy]', col);
-  buy.textContent = p.discontinued ? 'Смотреть 0X1 Pro' : 'Купить';
-  buy.href = p.discontinued ? '/0x1pro/' : `${p.href}#buy`;
+  buy.textContent = next ? `Смотреть ${SHORT_NAMES[next.id]}` : 'Купить';
+  buy.href = next ? next.href : `${p.href}#buy`;
   const more = $('[data-more]', col);
   more.href = p.href;
   more.setAttribute('aria-label', `Подробнее об ${p.name}`);

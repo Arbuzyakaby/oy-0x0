@@ -466,7 +466,6 @@ function buildChoreography({ isMobile, reduce }) {
     $$('.cam-hero .giant').forEach((el, i) => {
       gsap.fromTo(el, { xPercent: i ? 6 : -6 }, { xPercent: i ? -4 : 4, ease: 'none', scrollTrigger: { trigger: '.cam-hero', start: 'top bottom', end: 'bottom top', scrub: true } });
     });
-    gsap.fromTo('.fourteen__main', { yPercent: 18 }, { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '.fourteen', start: 'top bottom', end: 'bottom top', scrub: true } });
     gsap.fromTo('.hero__inner', { y: 0 }, { y: -80, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: sections.hero, start: 'top top', end: 'bottom top', scrub: true } });
   }
 

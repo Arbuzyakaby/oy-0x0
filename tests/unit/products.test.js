@@ -2,10 +2,10 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PRODUCTS, getConfig, getPrice, colorAvailable } from '../../js/data/products.js';
 
-test('цены 0X0 точно по ТЗ', () => {
+test('цены 0X0: 14/512 убран, чтобы не спорить с 0X2', () => {
   assert.deepEqual(
     PRODUCTS['0x0'].configs.map((c) => [c.id, c.usd, c.eur]),
-    [['8/128', 449, 539], ['12/128', 489, 579], ['12/256', 519, 609], ['14/512', 639, 729]],
+    [['8/128', 449, 539], ['12/128', 489, 579], ['12/256', 519, 609]],
   );
 });
 
@@ -58,10 +58,50 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('0X0 Pro снят с продажи, в продаже пять моделей по цене', async () => {
+test('сняты с продажи 0X1, 0X1Q и 0X0 Pro, в продаже пять моделей по цене', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
-  assert.equal(PRODUCTS.pro.discontinued, true);
-  assert.deepEqual(ON_SALE, ['0x1e', '0x0', '0x1', '0x1q', '0x1pro']);
+  for (const id of ['0x1', '0x1q', 'pro']) assert.equal(PRODUCTS[id].discontinued, true, id);
+  assert.deepEqual(ON_SALE, ['0x1e', '0x0', '0x2', '0x2q', '0x1pro']);
+});
+
+test('у снятых моделей есть преемник в продаже', () => {
+  assert.deepEqual(
+    Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
+    [['0x1', '0x2'], ['0x1q', '0x2q'], ['pro', '0x1pro']],
+  );
+  for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
+});
+
+test('лестница цен: модели в продаже идут по возрастанию, 0X0 заканчивается дешевле 0X2', async () => {
+  const { ON_SALE } = await import('../../js/data/products.js');
+  const from = ON_SALE.map((id) => PRODUCTS[id].configs[0].usd);
+  assert.deepEqual(from, [...from].sort((a, b) => a - b));
+  // 0X0 заканчивается дешевле, чем начинается 0X2
+  assert.ok(PRODUCTS['0x0'].configs.at(-1).usd < PRODUCTS['0x2'].configs[0].usd);
+});
+
+test('цены и цвета 0X2: память 11, 17, 21', () => {
+  assert.deepEqual(
+    PRODUCTS['0x2'].configs.map((c) => [c.id, c.usd, c.eur]),
+    [['11/256', 579, 669], ['17/512', 679, 779], ['21/1024', 829, 949]],
+  );
+  assert.deepEqual(PRODUCTS['0x2'].colors, { honey: 'Медовый', leaf: 'Листовой Зелёный', blossom: 'Цветочный Розовый' });
+  assert.equal(PRODUCTS['0x2'].defaultColor, 'honey');
+});
+
+test('цены и цвета 0X2Q', () => {
+  assert.deepEqual(
+    PRODUCTS['0x2q'].configs.map((c) => [c.id, c.usd, c.eur]),
+    [['17/512', 799, 919], ['21/1024', 949, 1079]],
+  );
+  assert.deepEqual(PRODUCTS['0x2q'].colors, { sand: 'Песочный Белый', tesseract: 'Тессеракт' });
+  assert.deepEqual(getPrice('0x2q', '21/1024', 'sand'), { usd: 949, eur: 1079 });
+});
+
+test('сравнение: цвета совпадают с моделями', async () => {
+  const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
+  const row = COMPARE.find((r) => r[1] === 'Цвета');
+  COMPARE_MODELS.forEach((id, i) => assert.equal(row[2 + i], Object.values(PRODUCTS[id].colors).join(', '), id));
 });
 
 test('цены и цвета 0X1 Essential', () => {
