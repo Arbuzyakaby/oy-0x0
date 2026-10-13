@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ru" data-color="red">
+<html lang="ru" data-color="aurora" class="os3-page">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>OY OS 3 — система, которой нечего скрывать</title>
   <meta name="description" content="OY OS 3: OY Assist 3 работает в приложениях прямо на устройстве, «Граница», отравленные данные, mesh-сообщения, «Двойник» и «Кошелёк» в чипе, больше сорока новых функций. Без Google, телеметрии и аккаунта. Концепт.">
   <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#0A0A0B">
+  <meta name="theme-color" content="#08070F">
   <link rel="canonical" href="https://oy0x.online/os/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OY">
@@ -20,12 +20,12 @@
   <meta property="og:image:alt" content="OY OS 3">
   <meta name="twitter:card" content="summary_large_image">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Ccircle cx='47' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23A897FF' stroke-width='4'/%3E%3Ccircle cx='47' cy='32' r='9' fill='none' stroke='%23A897FF' stroke-width='4'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
 
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
   <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
-  <link rel="stylesheet" href="/css/os.css?v=8e1bc6feee">
+  <link rel="stylesheet" href="/css/os.css?v=f4c991d9a7">
 
   <script type="importmap">
   {
@@ -153,70 +153,82 @@
   <main id="main">
 
     <!-- 1. ГЕРОЙ -->
-    <section class="section os-hero" id="overview" aria-labelledby="hero-title">
-      <div class="container os-hero__head">
-        <p class="os-hero__eyebrow" data-reveal>OY OS 3</p>
-        <h1 class="os-hero__title" id="hero-title" data-split>Представляем OY&nbsp;Assist&nbsp;3. Он не&nbsp;только отвечает. Он делает.</h1>
-        <p class="os-hero__sub" data-reveal>Сам работает в&nbsp;приложениях, а&nbsp;каждый шаг видно на&nbsp;экране. По-русски, по-английски и&nbsp;по-французски. Без интернета.</p>
-      </div>
-
-      <div class="os-lineup" aria-hidden="true">
-        <!-- 0X0: главный экран -->
-        <div class="ophone ophone--red os-lineup__a" data-par="-40">
-          <div class="ophone__screen wall wall--ember">
-            <span class="ophone__island"></span>
-            <div class="scr-status mono"><span>8:00</span><span>0 трекеров</span></div>
-            <div class="scr-widget">
-              <b>Отчёт за неделю</b>
-              <span class="scr-widget__big">1&nbsp;284</span>
-              <span>запроса к трекерам перекрыто</span>
-            </div>
-            <div class="scr-apps">
-              <i style="--c:#E8434D"><svg><use href="#i-camera"/></svg></i>
-              <i style="--c:#3D7BFF"><svg><use href="#i-map"/></svg></i>
-              <i style="--c:#2BB673"><svg><use href="#i-store"/></svg></i>
-              <i style="--c:#F2A23A"><svg><use href="#i-file"/></svg></i>
-              <i style="--c:#8B5CF6"><svg><use href="#i-bell"/></svg></i>
-              <i style="--c:#14B8A6"><svg><use href="#i-contacts"/></svg></i>
-              <i style="--c:#64748B"><svg><use href="#i-lock"/></svg></i>
-              <i style="--c:#0EA5E9"><svg><use href="#i-network"/></svg></i>
-            </div>
-            <div class="scr-dock"><i style="--c:#2BB673"><svg><use href="#i-phone"/></svg></i><i style="--c:#3D7BFF"><svg><use href="#i-bell"/></svg></i><i style="--c:#E8434D"><svg><use href="#i-spark"/></svg></i><i style="--c:#1F2937"><svg><use href="#i-terminal"/></svg></i></div>
+    <section class="section os-hero os3-hero" id="overview" aria-labelledby="hero-title">
+      <div class="os3-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="container os3-hero__grid">
+        <div class="os3-hero__copy">
+          <p class="os3-badge mono" data-reveal><span></span>Новая версия · весна 2029</p>
+          <p class="os3-mark" aria-hidden="true"><span class="os3-mark__oy">OY&nbsp;OS</span><span class="os3-mark__n">3</span></p>
+          <h1 class="os3-hero__title" id="hero-title" data-split>Ассистент, который делает. Система, которой нечего скрывать.</h1>
+          <p class="os3-hero__sub" data-reveal>OY&nbsp;Assist&nbsp;3 сам работает в&nbsp;приложениях — и&nbsp;показывает каждый шаг. Больше сорока новых функций, ни&nbsp;одного байта в&nbsp;облако. По-русски, по-английски и&nbsp;по-французски, без интернета.</p>
+          <div class="os3-hero__cta" data-reveal>
+            <a class="btn btn--accent" href="#os3">Что нового</a>
+            <a class="btn btn--ghost" href="#try3">Попробовать</a>
           </div>
+          <ul class="os3-stats" role="list" data-reveal>
+            <li><b class="mono">45+</b><span>новых функций</span></li>
+            <li><b class="mono">0&nbsp;Б</b><span>в&nbsp;облако</span></li>
+            <li><b class="mono">8&nbsp;лет</b><span>обновлений на&nbsp;0X2</span></li>
+          </ul>
         </div>
 
-        <!-- 0X0 Pro: экран блокировки с OY Assist -->
-        <div class="ophone ophone--pro os-lineup__b" data-par="-90">
-          <div class="ophone__screen wall wall--gold">
-            <span class="ophone__island ophone__island--assist"><i class="orb"></i></span>
-            <p class="scr-date">Понедельник, 1&nbsp;ноября</p>
-            <p class="scr-clock">8:00</p>
-            <div class="scr-bubble">
-              <p>Напомни купить цветы маме, когда буду рядом с&nbsp;рынком.</p>
-              <span class="mono"><svg><use href="#i-chip"/></svg>на устройстве · 0&nbsp;байт в&nbsp;сеть</span>
+        <div class="os-lineup os3-lineup" aria-hidden="true">
+          <!-- «Граница»: два чата ушли в чип -->
+          <div class="ophone ophone--honey os-lineup__a" data-par="-40">
+            <div class="ophone__screen wall wall--aurora-a">
+              <span class="ophone__island"></span>
+              <p class="scr-h">Чаты</p>
+              <div class="scr-pill mono"><svg><use href="#i-lock"/></svg>«Граница» · 2 чата в&nbsp;чипе</div>
+              <ul class="scr-chats">
+                <li><i style="--c:#F2A23A">М</i><span><b>Мама</b>Позвони, как прилетишь</span></li>
+                <li class="gone"><i style="--c:#8B5CF6">Ю</i><span><b>Юрист</b>Черновик иска</span></li>
+                <li><i style="--c:#2BB673">О</i><span><b>Отель</b>Заезд с&nbsp;14:00</span></li>
+                <li class="gone"><i style="--c:#3D7BFF">Р</i><span><b>Редакция</b>Источник подтвердил</span></li>
+              </ul>
             </div>
           </div>
-        </div>
 
-        <!-- 0X0 «Ледник»: журнал доступа -->
-        <div class="ophone ophone--ice os-lineup__c" data-par="-20">
-          <div class="ophone__screen wall wall--ice">
-            <span class="ophone__island"></span>
-            <p class="scr-h">Журнал доступа</p>
-            <ul class="scr-log mono">
-              <li><svg><use href="#i-camera"/></svg><span>Сканер QR</span><em>1 раз</em></li>
-              <li class="no"><svg><use href="#i-mic"/></svg><span>Фонарик</span><em>запрещено</em></li>
-              <li><svg><use href="#i-location"/></svg><span>Погода</span><em>город</em></li>
-              <li class="no"><svg><use href="#i-contacts"/></svg><span>Ферма</span><em>пусто</em></li>
-              <li><svg><use href="#i-network"/></svg><span>Почта</span><em>1 адрес</em></li>
-              <li class="no"><svg><use href="#i-file"/></svg><span>Игра</span><em>буфер — нет</em></li>
-            </ul>
+          <!-- OY Assist 3: агент в приложениях -->
+          <div class="ophone ophone--tess os-lineup__b" data-par="-90">
+            <div class="ophone__screen wall wall--aurora">
+              <span class="ophone__island ophone__island--assist"><i class="orb"></i></span>
+              <p class="scr-date">Понедельник, 4&nbsp;марта</p>
+              <p class="scr-clock">9:41</p>
+              <div class="scr-agent">
+                <p class="scr-agent__h mono"><svg><use href="#i-spark"/></svg>OY Assist 3 · делаю</p>
+                <ol class="scr-agent__steps">
+                  <li class="ok">Открыл «Кино+» → Подписка</li>
+                  <li class="ok">Нашёл: $14,99 в&nbsp;месяц</li>
+                  <li class="ok">Отказался от «скидки 50&nbsp;%»</li>
+                  <li class="run">Отменяю подписку…</li>
+                </ol>
+                <p class="scr-agent__ask">«Отмени подписку на&nbsp;кино»</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <span class="os-chip os-chip--1" data-par="-120">0 аккаунтов</span>
-        <span class="os-chip os-chip--2" data-par="-60">0 байт в&nbsp;облако</span>
-        <span class="os-chip os-chip--3" data-par="-150">0 рекламных ID</span>
+          <!-- Отчёт за неделю и mesh -->
+          <div class="ophone ophone--sand os-lineup__c" data-par="-20">
+            <div class="ophone__screen wall wall--aurora-c">
+              <span class="ophone__island"></span>
+              <div class="scr-widget scr-widget--glass">
+                <b>Отчёт за неделю</b>
+                <span class="scr-widget__big">1&nbsp;284</span>
+                <span>запроса к&nbsp;трекерам перекрыто</span>
+              </div>
+              <div class="scr-widget scr-widget--glass scr-widget--mesh">
+                <b>Mesh</b>
+                <span class="scr-mesh"><i></i><i></i><i></i><i></i></span>
+                <span>3 телефона OY рядом · сети нет</span>
+              </div>
+              <div class="scr-dock"><i style="--c:#8A78F0"><svg><use href="#i-spark"/></svg></i><i style="--c:#E0A030"><svg><use href="#i-lock"/></svg></i><i style="--c:#2BB673"><svg><use href="#i-network"/></svg></i><i style="--c:#1F2937"><svg><use href="#i-terminal"/></svg></i></div>
+            </div>
+          </div>
+
+          <span class="os-chip os-chip--1" data-par="-120">агент на&nbsp;устройстве</span>
+          <span class="os-chip os-chip--2" data-par="-60">0 байт в&nbsp;облако</span>
+          <span class="os-chip os-chip--3" data-par="-150">«Двойник» в&nbsp;чипе</span>
+        </div>
       </div>
     </section>
 
