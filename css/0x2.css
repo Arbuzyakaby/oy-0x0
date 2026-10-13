@@ -1,0 +1,138 @@
+/* =========================================================================
+   OY 0X2 — стили страницы модели (поверх core.css, 0x0.css, pro.css,
+   0x1.css и 0x1pro.css: демо Citadel 2 и испарительная камера оттуда)
+   ========================================================================= */
+
+:root[data-color="honey"] {
+  --accent: #E0A030;
+  --accent-text: #FFC24A;
+  --accent-strong: #A86E10;
+  --accent-ink: #1A1103;
+  --glow: rgba(240, 170, 50, .3);
+  --bg-tint: #100C06;
+}
+:root[data-color="leaf"] {
+  --accent: #4E8A36;
+  --accent-text: #9BE07A;
+  --accent-strong: #36642A;
+  --accent-ink: #FFFFFF;
+  --glow: rgba(110, 190, 80, .28);
+  --bg-tint: #080C07;
+}
+:root[data-color="blossom"] {
+  --accent: #E59AB3;
+  --accent-text: #FF9FC0;
+  --accent-strong: #B5607E;
+  --accent-ink: #1A0910;
+  --glow: rgba(240, 150, 180, .28);
+  --bg-tint: #100A0C;
+}
+
+.swatch--honey { background: radial-gradient(circle at 35% 30%, #F2C870, #C98A22 55%, #7A4E0A); }
+.swatch--leaf { background: radial-gradient(circle at 35% 30%, #7FAE62, #3E6A2C 55%, #1C3312); }
+.swatch--blossom { background: radial-gradient(circle at 35% 30%, #FAD3DF, #E09AB0 55%, #A85F78); }
+
+:root[data-color="honey"] .cl--honey, :root[data-color="leaf"] .cl--leaf, :root[data-color="blossom"] .cl--blossom { display: inline; }
+
+.tess .stage-text { max-width: min(540px, 44vw); }
+#try > .container > .note { margin-top: 18px; }
+
+/* ---------- Память: 11, 17, 21 ---------- */
+
+.primes__row {
+  margin-top: clamp(36px, 6vh, 72px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 40px); align-items: end;
+}
+.prime { position: relative; padding-top: 34px; }
+.prime__was { position: absolute; top: 0; left: 4px; display: flex; gap: 14px; font-size: clamp(20px, 2.4vw, 32px); color: var(--muted); }
+.prime__was s { text-decoration-thickness: 3px; text-decoration-color: var(--accent-text); }
+.prime__n { font: 600 clamp(110px, 17vw, 260px) var(--mono); line-height: .82; letter-spacing: -.07em; }
+.prime__k { margin-top: 14px; font-size: 14px; color: var(--muted); letter-spacing: .04em; }
+.primes__lead { margin-top: clamp(28px, 5vh, 52px); max-width: 60ch; }
+
+/* ---------- Функции Tesseract ---------- */
+
+.tfeat__grid { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tf {
+  position: relative; padding: 26px 24px 24px; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--bg-2);
+}
+.tf h3 { margin-top: 22px; font: 600 21px var(--sans); letter-spacing: -.01em; }
+.tf p { margin-top: 10px; font-size: 15px; line-height: 1.5; color: var(--muted); }
+.tf__n { font-size: 12px; color: var(--accent-text); letter-spacing: .08em; }
+.tf--old .tf__n { color: var(--muted); }
+.tf--old::after {
+  content: 'было в Citadel 2'; position: absolute; top: 24px; right: 22px;
+  font: 400 11px var(--mono); letter-spacing: .04em; color: var(--muted);
+}
+
+/* ---------- Загрузчик ---------- */
+
+.boot .lead { max-width: 62ch; }
+.bl { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 22px; align-items: stretch; }
+.bl__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.bl__step {
+  display: grid; gap: 10px; align-content: start; min-height: 100px; padding: 16px; border-radius: 18px;
+  border: 1px solid var(--line); background: var(--bg-2); font-size: 14px; line-height: 1.35;
+  transition: border-color .3s, background-color .3s, color .3s;
+}
+.bl__step span { font-size: 12px; color: var(--muted); }
+.bl__step.is-run { border-color: var(--accent-text); }
+.bl__step.is-pass { border-color: rgba(255, 70, 70, .5); background: rgba(255, 60, 60, .08); }
+.bl__step.is-pass span::after { content: ' · пройдено'; color: #FF6A6A; }
+.bl__panel {
+  display: grid; gap: 20px; align-content: space-between; padding: clamp(22px, 3vw, 32px);
+  border-radius: var(--radius); border: 1px solid var(--line-2); background: #050506;
+}
+.bl__parts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.bl__parts li {
+  display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px;
+  background: rgba(74, 222, 155, .08); color: var(--ok); font-size: 15px;
+  transition: background-color .4s, color .4s, opacity .4s;
+}
+.bl__parts svg { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.bl__parts li.is-dead { background: rgba(255, 60, 60, .1); color: #FF6A6A; }
+.bl__parts li.is-dead span { text-decoration: line-through; }
+.bl__out { min-height: 3em; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.bl__out.is-bad { color: #FF6A6A; }
+.bl__panel .btn { justify-self: start; display: inline-flex; gap: 10px; }
+.bl__panel .btn svg { width: 18px; height: 18px; }
+.boot .jab { margin-top: clamp(28px, 5vh, 48px); }
+
+/* ---------- Впервые в OY: NFC и XMagnum ---------- */
+
+.firsts__grid { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.first { padding: clamp(26px, 3vw, 40px); border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg-2); }
+.first svg { width: 40px; height: 40px; fill: none; stroke: var(--accent-text); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.first h3 { margin-top: 22px; font: 600 clamp(22px, 2.2vw, 28px) var(--sans); letter-spacing: -.015em; }
+.first p { margin-top: 12px; font-size: 16px; line-height: 1.55; color: var(--muted); max-width: 52ch; }
+
+/* ---------- Карусель: визуалы 0X2 ---------- */
+
+.hlx-primes { display: flex; gap: 18px; font: 600 clamp(54px, 7vw, 96px) var(--mono); letter-spacing: -.06em; color: var(--accent-text); }
+.hlx-primes span:nth-child(3) { opacity: .5; }
+.highlights.in-view .hl__slide.is-active .hlx-primes span { animation: hlx-prime 3s ease-in-out infinite; }
+.hlx-primes span:nth-child(2) { animation-delay: .3s !important; }
+.hlx-primes span:nth-child(3) { animation-delay: .6s !important; }
+@keyframes hlx-prime { 0%, 40%, 100% { transform: none; } 20% { transform: translateY(-10px); } }
+
+/* =========================================================================
+   Адаптив
+   ========================================================================= */
+
+@media (max-width: 1000px) {
+  .tfeat__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bl { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .tess .stage-text { max-width: none; }
+  .tess .lead { display: none; }
+  .primes__row { grid-template-columns: 1fr; gap: 26px; }
+  .prime__n { font-size: 120px; }
+  .tfeat__grid, .firsts__grid { grid-template-columns: 1fr; }
+  .bl__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bl__step { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hlx-primes span { animation: none !important; }
+}

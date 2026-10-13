@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="ru" data-subnav data-color="honey">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X2 — Ноль слежки. Два шага вперёд.</title>
+  <meta name="description" content="OY 0X2 — смартфон с чипом безопасности Tesseract, навсегда заблокированным загрузчиком, пятью камерами, NFC и магнитной зарядкой XMagnum. Snapdragon 8s Gen 4, память 11, 17 и 21 ГБ, корпус 7,9 мм. Концепт. От $579.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0A0B">
+  <link rel="canonical" href="https://oy0x.online/0x2/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x2/">
+  <meta property="og:title" content="OY 0X2 — Ноль слежки. Два шага вперёд.">
+  <meta property="og:description" content="Концепт смартфона: Tesseract сильнее Citadel 2, загрузчик, который нельзя открыть, пять камер, NFC и XMagnum, 11, 17 и 21 ГБ памяти.">
+  <meta property="og:image" content="https://oy0x.online/og-0x2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Смартфон OY 0X2 в цвете «Медовый» и заголовок «0X2»">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23FFC24A' stroke-width='4'/%3E%3Cpath d='M42 25.5a5.2 5.2 0 0 1 10 1.5c0 4.5-10 8-10 13h10.5' fill='none' stroke='%23FFC24A' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
+  <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
+  <link rel="stylesheet" href="/css/0x0.css?v=88ed9b22c1">
+  <link rel="stylesheet" href="/css/pro.css?v=4c516458eb">
+  <link rel="stylesheet" href="/css/0x1.css?v=53a3639a44">
+  <link rel="stylesheet" href="/css/0x1pro.css?v=ec56a78d31">
+  <link rel="stylesheet" href="/css/0x2.css?v=812f60207a">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=9c6931cb5a",
+      "/js/data/products.js": "/js/data/products.js?v=b58b7a6010",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=7e2a169dd7",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=6149c88dc8",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=8d9ceaf948",
+      "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=44713648f7",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=1a319607fa",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=d897cd391d",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=874617d651",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=0870384b45",
+      "/js/pages/base.js": "/js/pages/base.js?v=d565cf9bf8",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=a83d33188a",
+      "/js/pages/home.js": "/js/pages/home.js?v=ae38fc7b30",
+      "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-0x2-color');if(c==='honey'||c==='leaf'||c==='blossom')document.documentElement.dataset.color=c}catch(e){}</script>
+  <script type="module" src="/js/core/subnav.js?v=2b8a463a67"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x2.js?v=be3144703f"></script>
+</head>
+<body>
+  <!-- Иконки -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+      <symbol id="i-network" viewBox="0 0 24 24"><path d="M3.5 9.5a12 12 0 0 1 17 0M6.5 12.5a7.8 7.8 0 0 1 11 0M9.5 15.5a3.6 3.6 0 0 1 5 0"/><circle cx="12" cy="18.5" r="1.2"/></symbol>
+      <symbol id="i-location" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+      <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2.5"/><path d="M7.5 12h.01M10.5 12h.01M13.5 12h.01M16.5 12h.01"/></symbol>
+      <symbol id="i-usb" viewBox="0 0 24 24"><path d="M12 3v14M12 3l-2.2 3M12 3l2.2 3M8 9v2.5l4 2.5M16 8.5v2l-4 2.5"/><circle cx="12" cy="19" r="2"/></symbol>
+      <symbol id="i-restart" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v4.5H15"/></symbol>
+      <symbol id="i-finger" viewBox="0 0 24 24"><path d="M7.5 18.5c1-2 1.5-4 1.5-6.5a3 3 0 0 1 6 0c0 1.2-.1 2.4-.3 3.5M12 12c0 3.2-.8 6-2.3 8.5M5.5 14.5c.4-1 .5-1.8.5-2.5a6 6 0 0 1 10.3-4.2M17.8 10.4c.1.5.2 1 .2 1.6 0 2.2-.4 4.3-1.1 6.2M14.2 19.8c.4-.7.7-1.5 1-2.3"/></symbol>
+      <symbol id="i-face" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M9 10v1M15 10v1M12 10v3h-1M9.5 15.5a3.5 3.5 0 0 0 5 0"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-contacts" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5H7z"/><path d="M14 3.5V8h4.5"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15zM10 20.5a2 2 0 0 0 4 0"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></symbol>
+      <symbol id="i-store" viewBox="0 0 24 24"><path d="M4.5 8.5h15l-1.2 11h-12.6z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5L5.5 13.5h6l-1 8 7.5-11h-6z"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z"/></symbol>
+      <symbol id="i-jack" viewBox="0 0 24 24"><path d="M12 2.5v9M10 11.5h4v4.5a2 2 0 0 1-4 0zM12 18v3.5"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></symbol>
+      <symbol id="i-update" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 13-5.1M19.5 12a7.5 7.5 0 0 1-13 5.1M17.5 3.5v3.4h-3.4M6.5 20.5v-3.4h3.4"/></symbol>
+      <symbol id="i-warranty" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></symbol>
+      <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 7.7-1.5"/></symbol>
+      <symbol id="i-ir" viewBox="0 0 24 24"><rect x="9" y="9" width="6" height="12" rx="1.5"/><path d="M8 6.5a5.5 5.5 0 0 1 8 0M5.5 4a9 9 0 0 1 13 0"/></symbol>
+      <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4.5 9.5h3.5l4.5-4v13l-4.5-4H4.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+      <symbol id="i-wireless" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="7.5" ry="2.5"/><path d="M8.5 10.5a5 5 0 0 1 7 0M6 8a8.5 8.5 0 0 1 12 0"/></symbol>
+      <symbol id="i-nfc" viewBox="0 0 24 24"><path d="M7 17V7l10 10V7"/><rect x="3.5" y="3.5" width="17" height="17" rx="3"/></symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24"><rect x="3" y="7.5" width="16" height="9" rx="2"/><path d="M21 10.5v3"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+      <symbol id="i-tor" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><circle cx="12" cy="13" r="4.8"/><circle cx="12" cy="13" r="2"/><path d="M12 5.5c0-1.5.8-2.5 2-3"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8L19.5 3.5M16 7l2.5 2.5M14 9l2 2"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: два круга и X -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <svg class="loader__mark" viewBox="0 0 120 44" aria-hidden="true">
+      <circle class="loader__o loader__o--l" cx="20" cy="22" r="16"/>
+      <path class="loader__x" d="M52 12l16 20M68 12L52 32"/>
+      <circle class="loader__o loader__o--r" cx="100" cy="22" r="16"/>
+    </svg>
+    <span class="loader__label">Загружаем модель…</span>
+  </div>
+
+  <!-- Фон и 3D-сцена -->
+  <div class="bgfx" id="bgfx" aria-hidden="true">
+    <div class="bgfx__glow bgfx__glow--a"></div>
+    <div class="bgfx__glow bgfx__glow--b"></div>
+    <div class="bgfx__shade" id="bgfx-shade"></div>
+  </div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="/" aria-label="OY — на главную">
+      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a href="/0x1e/">0X1 Essential</a>
+      <a href="/0x0/">0X0</a>
+      <a href="/0x2/" aria-current="page">0X2</a>
+      <a href="/0x2q/">0X2Q</a>
+      <a href="/0x1pro/">0X1 Pro</a>
+      <a href="/os/">OY OS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+  </header>
+
+  <nav class="subnav" aria-label="Разделы страницы OY 0X2" data-subnav>
+    <div class="subnav__inner">
+      <a class="subnav__title" href="#top">0X2</a>
+      <button type="button" class="subnav__toggle" aria-expanded="false" aria-controls="subnav-menu" data-subnav-toggle>
+        <span class="sr-only">Разделы</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+      </button>
+      <div class="subnav__menu" id="subnav-menu">
+        <a href="#design">Дизайн</a>
+        <a href="#memory">Память</a>
+        <a href="#cams">Камеры</a>
+        <a href="#tesseract">Tesseract</a>
+        <a href="#boot">Загрузчик</a>
+        <a href="#specs">Характеристики</a>
+      </div>
+      <div class="subnav__actions">
+        <div class="color-switch color-switch--mini" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+          <button type="button" role="radio" class="swatch swatch--honey" data-value="honey" aria-checked="true"><span class="sr-only">Медовый</span></button>
+          <button type="button" role="radio" class="swatch swatch--leaf" data-value="leaf" aria-checked="false"><span class="sr-only">Листовой Зелёный</span></button>
+          <button type="button" role="radio" class="swatch swatch--blossom" data-value="blossom" aria-checked="false"><span class="sr-only">Цветочный Розовый</span></button>
+        </div>
+        <a class="btn btn--accent btn--sm" href="#buy">Купить</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- 1. HERO -->
+    <section class="section hero" id="hero" data-3d aria-labelledby="hero-title">
+      <div class="hero__inner container">
+        <p class="eyebrow" data-reveal>Новинка · весна 2029 · США · OY OS 3</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="split grad" data-split>0X2</span>
+        </h1>
+        <p class="hero__slogan" data-split>Ноль слежки. Два шага вперёд.</p>
+        <p class="hero__pron" data-reveal>Чип безопасности сильнее, чем у&nbsp;флагмана. Загрузчик, который нельзя открыть. Пять камер, NFC и&nbsp;магнитная зарядка — впервые в&nbsp;OY. И&nbsp;всё это на&nbsp;миллиметр тоньше.</p>
+        <div class="hero__buy" data-reveal>
+          <p class="hero__price"><span class="muted">от</span> <strong>$579</strong></p>
+          <a class="btn btn--accent" href="#buy">Купить</a>
+          <a class="btn btn--ghost" href="#design">Смотреть</a>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- 2. ДИЗАЙН -->
+    <section class="section pinned design" id="design" data-3d aria-labelledby="design-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--right">
+          <p class="eyebrow">Дизайн</p>
+          <h2 class="h2" id="design-title" data-split>Минус миллиметр. Плюс испарительная камера.</h2>
+          <p class="lead">Узнаваемая форма 0X1 — матовое стекло, скруглённая рамка, большой остров камер. Только тоньше на&nbsp;миллиметр и&nbsp;легче на&nbsp;22&nbsp;грамма. А&nbsp;внутри впервые за&nbsp;пределами Pro — испарительная камера.</p>
+          <ul class="chips" role="list">
+            <li class="chip mono">7,9&nbsp;мм</li>
+            <li class="chip mono">192&nbsp;г</li>
+            <li class="chip mono">IP68<sup class="fn"><a href="#fn-1" id="fnr-1">1</a></sup></li>
+            <li class="chip mono">4800&nbsp;мм² испарительной камеры</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ПАМЯТЬ: 11, 17, 21 -->
+    <section class="section solid primes" id="memory" aria-labelledby="memory-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Память · LPDDR5X + UFS 4.0</p>
+        <h2 class="h2" id="memory-title" data-split>Числа, которых нет ни у&nbsp;кого.</h2>
+        <div class="primes__row" aria-label="Конфигурации: 11 ГБ и 256 ГБ, 17 ГБ и 512 ГБ, 21 ГБ и 1 ТБ">
+          <div class="prime" data-reveal>
+            <p class="prime__was mono" aria-hidden="true"><s>8</s> <s>12</s></p>
+            <p class="prime__n grad grad--accent">11</p>
+            <p class="prime__k mono">ГБ · 256&nbsp;ГБ</p>
+          </div>
+          <div class="prime" data-reveal>
+            <p class="prime__was mono" aria-hidden="true"><s>16</s></p>
+            <p class="prime__n grad grad--accent">17</p>
+            <p class="prime__k mono">ГБ · 512&nbsp;ГБ</p>
+          </div>
+          <div class="prime" data-reveal>
+            <p class="prime__was mono" aria-hidden="true"><s>20</s> <s>24</s></p>
+            <p class="prime__n grad grad--accent">21</p>
+            <p class="prime__k mono">ГБ · 1&nbsp;ТБ</p>
+          </div>
+        </div>
+        <p class="lead primes__lead" data-reveal>Никто не&nbsp;делает 11, 17 и&nbsp;21&nbsp;ГБ. Мы сделали. Лишние гигабайты не&nbsp;ушли на&nbsp;рекламные SDK, которых у&nbsp;нас нет, — их&nbsp;получают OY&nbsp;Assist&nbsp;3 и&nbsp;«Двойник», которому нужна вторая система целиком.</p>
+        <p class="jab" data-reveal>11 и&nbsp;17 — простые. 21 — нет. Мы не&nbsp;удержались.</p>
+        <p class="note" data-reveal>Помните 14&nbsp;ГБ у&nbsp;0X0? Мы вошли во&nbsp;вкус.</p>
+      </div>
+    </section>
+
+    <!-- 4. КАМЕРЫ -->
+    <section class="section pinned cams" id="cams" data-3d aria-labelledby="cams-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Камеры · три сзади, две спереди</p>
+          <h2 class="h2" id="cams-title" data-split>Пять камер. Две смотрят на&nbsp;вас.</h2>
+          <ol class="lens-list" role="list">
+            <li class="lens"><span class="lens__k mono">Основная</span><span class="lens__v">50&nbsp;МП · сенсор 1/1,5" · f/1.6 · OIS</span></li>
+            <li class="lens"><span class="lens__k mono">Сверхширокая</span><span class="lens__v">32&nbsp;МП · 118° · макро</span></li>
+            <li class="lens"><span class="lens__k mono">Перископ</span><span class="lens__v">50&nbsp;МП · 3× оптический зум · OIS</span></li>
+            <li class="lens"><span class="lens__k mono">Фронтальная</span><span class="lens__v">24&nbsp;МП квадратная</span></li>
+            <li class="lens"><span class="lens__k mono">Фронтальная 2</span><span class="lens__v">12&nbsp;МП сверхширокая · для&nbsp;групповых селфи</span></li>
+          </ol>
+          <p class="note cams-note">4K/60 на&nbsp;всех камерах, 4K/120 на&nbsp;основной. Кнопкой «1» камеры обесточиваются все пять сразу.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. КНОПКИ «0» И «1» -->
+    <section class="section pinned keys" id="keys" data-3d aria-labelledby="keys-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Кнопки «0» и «1» · левая грань</p>
+          <h2 class="h2" id="keys-title" data-split>Два бита свободы. Теперь через Tesseract.</h2>
+          <p class="lead">Две программируемые кнопки. Короткое, долгое и&nbsp;двойное нажатие — на&nbsp;каждое можно повесить что угодно. В&nbsp;аппаратном режиме кнопка идёт прямо в&nbsp;Tesseract.</p>
+          <ol class="modes" role="list">
+            <li class="mode" data-mode="1">
+              <span class="mode__n mono">0</span>
+              <span class="mode__body"><strong>Любое действие</strong><span>Фонарь, камера, OY&nbsp;Assist, «Двойник», «Кошелёк».</span></span>
+            </li>
+            <li class="mode" data-mode="2">
+              <span class="mode__n mono">1</span>
+              <span class="mode__body"><strong>Аппаратный режим</strong><span>Tesseract обесточивает камеры, микрофоны, связь или геолокацию. Индикатор горит красным.</span></span>
+            </li>
+            <li class="mode" data-mode="3">
+              <span class="mode__n mono">0+1</span>
+              <span class="mode__body"><strong>Всё выключить</strong><span>Обе кнопки на&nbsp;2&nbsp;секунды — без питания остаётся всё, что может следить.</span></span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. НАЗНАЧЬТЕ САМИ -->
+    <section class="section solid assign" id="assign" aria-labelledby="assign-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Попробуйте</p>
+        <h2 class="h2" id="assign-title" data-split>Назначьте сами. Нажмите.</h2>
+        <div class="kd" data-reveal>
+          <div class="kd__side" aria-label="Левая грань телефона">
+            <div class="kd__rail">
+              <span class="kd__led" data-led="1" aria-hidden="true"></span>
+              <button type="button" class="kd__key" data-press="1"><span class="kd__glyph" aria-hidden="true">0</span><span class="sr-only">Нажать кнопку «0»</span></button>
+              <span class="kd__led" data-led="2" aria-hidden="true"></span>
+              <button type="button" class="kd__key" data-press="2"><span class="kd__glyph" aria-hidden="true">1</span><span class="sr-only">Нажать кнопку «1»</span></button>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm kd__both" data-press-both>Зажать обе</button>
+          </div>
+          <div class="kd__cfg">
+            <div class="kd__card" data-key="1">
+              <p class="kd__title">Кнопка <b class="mono">«0»</b></p>
+              <p class="cfg-label mono" id="k1-act">Действие</p>
+              <div class="kd__opts" role="radiogroup" aria-labelledby="k1-act" data-assign="1">
+                <button type="button" role="radio" class="kd__opt" data-value="flash" aria-checked="true">Фонарь</button>
+                <button type="button" role="radio" class="kd__opt" data-value="camera" aria-checked="false">Камера</button>
+                <button type="button" role="radio" class="kd__opt" data-value="assist" aria-checked="false">OY Assist</button>
+                <button type="button" role="radio" class="kd__opt" data-value="wallet" aria-checked="false">Кошелёк</button>
+                <button type="button" role="radio" class="kd__opt kd__opt--hw" data-value="hw-cam" aria-checked="false">Камеры</button>
+                <button type="button" role="radio" class="kd__opt kd__opt--hw" data-value="hw-mic" aria-checked="false">Микрофоны</button>
+              </div>
+            </div>
+            <div class="kd__card" data-key="2">
+              <p class="kd__title">Кнопка <b class="mono">«1»</b></p>
+              <p class="cfg-label mono" id="k2-act">Действие</p>
+              <div class="kd__opts" role="radiogroup" aria-labelledby="k2-act" data-assign="2">
+                <button type="button" role="radio" class="kd__opt" data-value="recorder" aria-checked="false">Диктофон</button>
+                <button type="button" role="radio" class="kd__opt" data-value="double" aria-checked="false">Двойник</button>
+                <button type="button" role="radio" class="kd__opt" data-value="silent" aria-checked="false">Без звука</button>
+                <button type="button" role="radio" class="kd__opt kd__opt--hw" data-value="hw-net" aria-checked="true">Связь</button>
+                <button type="button" role="radio" class="kd__opt kd__opt--hw" data-value="hw-geo" aria-checked="false">Геолокация</button>
+                <button type="button" role="radio" class="kd__opt kd__opt--hw" data-value="hw-mic" aria-checked="false">Микрофоны</button>
+              </div>
+            </div>
+            <p class="kd__legend mono"><span class="kd__hwdot" aria-hidden="true"></span>аппаратный режим · через Tesseract</p>
+          </div>
+          <div class="kd__screen" aria-live="polite">
+            <p class="kd__out" data-kd-out>Нажмите кнопку на&nbsp;грани телефона.</p>
+            <ul class="kd__state" role="list" aria-label="Что сейчас обесточено">
+              <li data-hw="hw-cam"><svg aria-hidden="true"><use href="#i-camera"/></svg><span>Камеры</span></li>
+              <li data-hw="hw-mic"><svg aria-hidden="true"><use href="#i-mic"/></svg><span>Микрофоны</span></li>
+              <li data-hw="hw-net"><svg aria-hidden="true"><use href="#i-network"/></svg><span>Связь</span></li>
+              <li data-hw="hw-geo"><svg aria-hidden="true"><use href="#i-location"/></svg><span>Геолокация</span></li>
+            </ul>
+            <button type="button" class="btn btn--accent btn--sm kd__finger" data-finger hidden><svg aria-hidden="true"><use href="#i-finger"/></svg>Приложить палец</button>
+          </div>
+        </div>
+        <p class="note" data-reveal>Переназначить кнопку в&nbsp;аппаратном режиме можно только после отпечатка — его хранит Tesseract.</p>
+        <p class="jab" data-reveal>«Режим полёта» — это просьба. Кнопка в&nbsp;аппаратном режиме — это приказ.</p>
+      </div>
+    </section>
+
+    <!-- 7. TESSERACT -->
+    <section class="section pinned citadel tess" id="tesseract" data-3d aria-labelledby="tesseract-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--right">
+          <p class="eyebrow">Tesseract · новый чип безопасности</p>
+          <h2 class="h2" id="tesseract-title" data-split>Сильнее Citadel&nbsp;2. В&nbsp;телефоне за&nbsp;$579.</h2>
+          <p class="lead">Отдельный компьютер для ваших секретов: свой процессор, свои 84&nbsp;ГБ и&nbsp;свой аккумулятор на&nbsp;1000&nbsp;мАч. Основная система к&nbsp;ним не&nbsp;дотягивается — даже если её взломали.</p>
+          <ul class="cit-list" role="list">
+            <li class="cit"><svg aria-hidden="true"><use href="#i-battery"/></svg><span><b>1000&nbsp;мАч своих.</b> На&nbsp;400 больше, чем у&nbsp;Citadel&nbsp;2. Ключи живут почти год без зарядки телефона.</span></li>
+            <li class="cit"><svg aria-hidden="true"><use href="#i-file"/></svg><span><b>84&nbsp;ГБ.</b> Сейф, «Двойник», журнал «Свидетель» и&nbsp;ключи оплаты — всё внутри чипа.<sup class="fn"><a href="#fn-2" id="fnr-2">2</a></sup></span></li>
+            <li class="cit"><svg aria-hidden="true"><use href="#i-shield"/></svg><span><b>Сетка от вскрытия.</b> Корпус вскрыли не&nbsp;в&nbsp;сервисе OY — ключи стёрты.</span></li>
+            <li class="cit"><svg aria-hidden="true"><use href="#i-key"/></svg><span><b>«Сторож», «Последнее слово», «Тревожный палец»</b> — всё, что умел Citadel&nbsp;2, плюс шесть новых функций.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ФУНКЦИИ TESSERACT -->
+    <section class="section solid tfeat" id="tfeatures" aria-labelledby="tfeat-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Фишек в&nbsp;разы больше</p>
+        <h2 class="h2" id="tfeat-title" data-split>Девять функций, которые живут только в&nbsp;чипе.</h2>
+        <ul class="tfeat__grid" role="list">
+          <li class="tf" data-reveal><span class="tf__n mono">01</span><h3>«Двойник»</h3><p>Второй PIN открывает правдоподобную фальшивую систему: с&nbsp;перепиской, фото и&nbsp;заметками.</p></li>
+          <li class="tf" data-reveal><span class="tf__n mono">02</span><h3>«Кошелёк»</h3><p>Оплата по&nbsp;NFC и&nbsp;ключи от&nbsp;дома, машины и&nbsp;офиса. Номер карты не&nbsp;видит даже OY&nbsp;OS.</p></li>
+          <li class="tf" data-reveal><span class="tf__n mono">03</span><h3>«Мёртвая рука»</h3><p>Вы не&nbsp;подтверждали себя N&nbsp;дней — ключи уничтожаются, доверенный контакт получает письмо.</p></li>
+          <li class="tf" data-reveal><span class="tf__n mono">04</span><h3>«Свидетель»</h3><p>Журнал всех аппаратных событий, подписанный чипом. Задним числом его не&nbsp;переписать.</p></li>
+          <li class="tf" data-reveal><span class="tf__n mono">05</span><h3>«Карантин»</h3><p>Любой USB- или&nbsp;NFC-предмет сначала проверяет Tesseract — и&nbsp;только потом его видит телефон.</p></li>
+          <li class="tf" data-reveal><span class="tf__n mono">06</span><h3>«Тихий час»</h3><p>Радио и&nbsp;датчики выключаются по&nbsp;расписанию. Решает чип, а&nbsp;не&nbsp;приложение, которое «очень просит».</p></li>
+          <li class="tf tf--old" data-reveal><span class="tf__n mono">07</span><h3>«Сторож»</h3><p>Хеш системы при каждом включении. Подменили прошивку — телефон скажет об&nbsp;этом первым.</p></li>
+          <li class="tf tf--old" data-reveal><span class="tf__n mono">08</span><h3>«Последнее слово»</h3><p>Села батарея — чип сам отправит SMS с&nbsp;координатами через спутник.</p></li>
+          <li class="tf tf--old" data-reveal><span class="tf__n mono">09</span><h3>«Тревожный палец»</h3><p>Один палец открывает пустой сейф. Для&nbsp;тех, кто заставляет.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 9. ДЕМО TESSERACT -->
+    <section class="section solid vault" id="try" aria-labelledby="try-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Попробуйте</p>
+        <h2 class="h2" id="try-title" data-split>Три новинки Tesseract в&nbsp;деле.</h2>
+        <div class="vd" data-reveal>
+          <div class="vd__tabs" role="tablist" aria-label="Функции Tesseract">
+            <button type="button" role="tab" class="vd__tab" id="vt-double" aria-controls="vp-double" aria-selected="true"><span class="mono">01</span>«Двойник»</button>
+            <button type="button" role="tab" class="vd__tab" id="vt-wallet" aria-controls="vp-wallet" aria-selected="false" tabindex="-1"><span class="mono">02</span>«Кошелёк»</button>
+            <button type="button" role="tab" class="vd__tab" id="vt-dead" aria-controls="vp-dead" aria-selected="false" tabindex="-1"><span class="mono">03</span>«Мёртвая рука»</button>
+          </div>
+
+          <div class="vd__panel" role="tabpanel" id="vp-double" aria-labelledby="vt-double">
+            <div class="vd__ctl">
+              <p class="vd__lead">У&nbsp;телефона два PIN-кода. Настоящий открывает вашу систему. Второй — систему-двойника: живую, с&nbsp;перепиской и&nbsp;фото, но&nbsp;без единого настоящего секрета. Отличить их снаружи нельзя.</p>
+              <div class="vd__fingers" role="group" aria-label="Ввести PIN">
+                <button type="button" class="btn btn--ghost" data-double="real"><svg aria-hidden="true"><use href="#i-unlock"/></svg>Настоящий PIN</button>
+                <button type="button" class="btn btn--ghost vd__danger" data-double="fake"><svg aria-hidden="true"><use href="#i-lock"/></svg>PIN двойника</button>
+              </div>
+            </div>
+            <div class="vd__phone" aria-live="polite">
+              <p class="vd__title mono" data-double-title>Экран блокировки</p>
+              <ul class="vd__files" data-double-list role="list"><li class="is-dim">Введите PIN.</li></ul>
+              <p class="vd__hidden mono" data-double-hidden hidden></p>
+            </div>
+          </div>
+
+          <div class="vd__panel" role="tabpanel" id="vp-wallet" aria-labelledby="vt-wallet" hidden>
+            <div class="vd__ctl">
+              <p class="vd__lead">Поднесите телефон к&nbsp;терминалу. NFC-поле сначала видит Tesseract: проверяет терминал и&nbsp;выдаёт одноразовый токен. Номер карты не&nbsp;покидает чип — его не&nbsp;видит ни&nbsp;OY&nbsp;OS, ни&nbsp;приложения.</p>
+              <label class="cmp-toggle vd__switch">
+                <input type="checkbox" data-wallet-fake>
+                <span class="cmp-toggle__track" aria-hidden="true"></span>
+                <span>Терминал с&nbsp;накладкой-скиммером</span>
+              </label>
+              <button type="button" class="btn btn--accent" data-wallet-run><svg aria-hidden="true"><use href="#i-nfc"/></svg>Приложить к&nbsp;терминалу</button>
+            </div>
+            <div class="vd__phone" aria-live="polite">
+              <ol class="vd__log mono" data-wallet-log role="list"><li class="is-dim">Терминал ждёт: $4,20 · кофе.</li></ol>
+              <p class="vd__plate" data-wallet-plate hidden></p>
+            </div>
+          </div>
+
+          <div class="vd__panel" role="tabpanel" id="vp-dead" aria-labelledby="vt-dead" hidden>
+            <div class="vd__ctl">
+              <p class="vd__lead">Если телефон попал в&nbsp;чужие руки, а&nbsp;вы не&nbsp;можете до&nbsp;него добраться, «Мёртвая рука» доделает работу сама. Срок выбираете вы — здесь 30&nbsp;дней.</p>
+              <label class="cmp-toggle vd__switch">
+                <input type="checkbox" data-dead-checkin>
+                <span class="cmp-toggle__track" aria-hidden="true"></span>
+                <span>Я подтверждаю себя каждую неделю</span>
+              </label>
+              <button type="button" class="btn btn--accent" data-dead-run><svg aria-hidden="true"><use href="#i-update"/></svg>Промотать 30&nbsp;дней</button>
+            </div>
+            <div class="vd__phone" aria-live="polite">
+              <p class="vd__pct mono"><span data-dead-day>0</span>&nbsp;<span class="muted" data-dead-unit>дней</span></p>
+              <ol class="vd__log mono" data-dead-log role="list"><li class="is-dim">«Мёртвая рука» включена · срок 30&nbsp;дней.</li></ol>
+              <p class="vd__plate" data-dead-plate hidden></p>
+            </div>
+          </div>
+        </div>
+        <p class="note" data-reveal>Это демонстрация: на&nbsp;настоящем телефоне всё происходит внутри Tesseract, а&nbsp;сайт ничего никуда не&nbsp;отправляет.</p>
+      </div>
+    </section>
+
+    <!-- 10. ЗАГРУЗЧИК -->
+    <section class="section solid boot" id="boot" aria-labelledby="boot-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Загрузчик</p>
+        <h2 class="h2" id="boot-title" data-split>Заблокирован. Навсегда.</h2>
+        <p class="lead" data-reveal>Загрузчик 0X2 нельзя разблокировать. Ни&nbsp;вам, ни&nbsp;вору, ни&nbsp;сервису OY, ни&nbsp;нам. Попытка разблокировки запускает девять ступеней защиты. А&nbsp;если кто-то пройдёт все девять — Tesseract физически отключит питание камер, датчиков, микрофонов и&nbsp;динамиков. Навсегда.</p>
+        <div class="bl" data-reveal>
+          <ol class="bl__steps" role="list" data-boot-steps>
+            <li class="bl__step"><span class="mono">1</span>Проверка подписи</li>
+            <li class="bl__step"><span class="mono">2</span>PIN владельца</li>
+            <li class="bl__step"><span class="mono">3</span>Пароль Tesseract</li>
+            <li class="bl__step"><span class="mono">4</span>Отпечаток</li>
+            <li class="bl__step"><span class="mono">5</span>Задержка 72&nbsp;часа</li>
+            <li class="bl__step"><span class="mono">6</span>Повторное подтверждение</li>
+            <li class="bl__step"><span class="mono">7</span>Сетка от&nbsp;вскрытия</li>
+            <li class="bl__step"><span class="mono">8</span>Уничтожение ключей</li>
+            <li class="bl__step"><span class="mono">9</span>Запись в&nbsp;«Свидетель»</li>
+          </ol>
+          <div class="bl__panel" aria-live="polite">
+            <ul class="bl__parts" role="list" aria-label="Что получает питание">
+              <li data-part="cam"><svg aria-hidden="true"><use href="#i-camera"/></svg><span>Камеры</span></li>
+              <li data-part="mic"><svg aria-hidden="true"><use href="#i-mic"/></svg><span>Микрофоны</span></li>
+              <li data-part="spk"><svg aria-hidden="true"><use href="#i-speaker"/></svg><span>Динамики</span></li>
+              <li data-part="sns"><svg aria-hidden="true"><use href="#i-location"/></svg><span>Датчики</span></li>
+            </ul>
+            <p class="bl__out mono" data-boot-out>fastboot oem unlock — ожидание</p>
+            <button type="button" class="btn btn--accent" data-boot-run><svg aria-hidden="true"><use href="#i-unlock"/></svg>Попробовать разблокировать</button>
+          </div>
+        </div>
+        <p class="jab" data-reveal>Хотите поставить свою прошивку? Купите другой телефон. Этот — для&nbsp;тех, кто не&nbsp;хочет, чтобы прошивку поставили за&nbsp;них.</p>
+      </div>
+    </section>
+
+    <!-- 11. NFC И XMAGNUM -->
+    <section class="section solid firsts" id="firsts" aria-labelledby="firsts-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Впервые в&nbsp;OY</p>
+        <h2 class="h2" id="firsts-title" data-split>NFC из&nbsp;коробки. И&nbsp;магнит.</h2>
+        <div class="firsts__grid">
+          <article class="first" data-reveal>
+            <svg aria-hidden="true"><use href="#i-nfc"/></svg>
+            <h3>NFC — первый в&nbsp;истории OY</h3>
+            <p>Мы так долго тянули, потому что не&nbsp;хотели отдавать вашу карту системе. Теперь не&nbsp;отдаём: NFC идёт через Tesseract, а&nbsp;«Карантин» проверяет каждую метку до&nbsp;того, как её прочитает телефон.</p>
+          </article>
+          <article class="first" data-reveal>
+            <svg aria-hidden="true"><use href="#i-wireless"/></svg>
+            <h3>XMagnum 65&nbsp;Вт</h3>
+            <p>Магнитная беспроводная зарядка: шайба встаёт по&nbsp;центру сама, 0–100&nbsp;% за&nbsp;48&nbsp;минут. Обратная зарядка 15&nbsp;Вт — для&nbsp;наушников и&nbsp;модуля 0X2Q.<sup class="fn"><a href="#fn-3" id="fnr-3">3</a></sup></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. CLAW 2.0 -->
+    <section class="section pinned claw" id="claw" data-3d aria-labelledby="claw-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--right">
+          <p class="eyebrow">Claw 2.0 · связь любой ценой</p>
+          <h2 class="h2" id="claw-title" data-split>Цепляется за&nbsp;связь. Даже за&nbsp;спутник.</h2>
+          <ol class="ladder" role="list" aria-label="Claw 2.0 переходит на любую доступную сеть">
+            <li class="ladder__step" data-net="0"><span class="mono">Нет сети</span></li>
+            <li class="ladder__step ladder__step--sat" data-net="1"><span class="mono">Спутник</span><i>SMS SOS</i></li>
+            <li class="ladder__step" data-net="2"><span class="mono">2G</span><i>звонок и SMS</i></li>
+            <li class="ladder__step" data-net="3"><span class="mono">3G</span></li>
+            <li class="ladder__step" data-net="4"><span class="mono">4G</span></li>
+            <li class="ladder__step" data-net="5"><span class="mono">5G</span></li>
+          </ol>
+          <ul class="claw-facts" role="list">
+            <li>10 антенн, обе SIM активны</li>
+            <li>Спутниковые SMS прямо в&nbsp;«Сообщениях» OY&nbsp;OS&nbsp;3</li>
+            <li>«Прогноз сети»: слабые места на&nbsp;ваших маршрутах — только на&nbsp;устройстве</li>
+            <li>OY&nbsp;OS&nbsp;3 предупреждает о&nbsp;поддельных вышках</li>
+          </ul>
+          <p class="jab">«Нет сети» — не&nbsp;характеристика. Это оправдание.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. ЭКРАН -->
+    <section class="section pinned pdisplay" id="display" data-3d aria-labelledby="display-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">6,6" AMOLED · 1080×2400</p>
+          <h2 class="h2" id="display-title" data-split>3600&nbsp;нит. Блик не&nbsp;пройдёт.<sup class="fn"><a href="#fn-4" id="fnr-4">4</a></sup></h2>
+          <p class="lead">«Антиблик&nbsp;2» отражает меньше 1&nbsp;% света. Лампы, окна и&nbsp;солнце в&nbsp;экране просто гаснут.</p>
+          <div class="refl" aria-label="Сколько света отражает экран">
+            <div class="refl__row"><span class="mono">Обычное стекло</span><span class="refl__bar"><i style="--v:1"></i></span><span class="mono">≈4&nbsp;%</span></div>
+            <div class="refl__row"><span class="mono">0X0 Pro</span><span class="refl__bar"><i style="--v:.5"></i></span><span class="mono">≈2&nbsp;%</span></div>
+            <div class="refl__row refl__row--me"><span class="mono">0X2</span><span class="refl__bar"><i style="--v:.22"></i></span><span class="mono">&lt;1&nbsp;%</span></div>
+          </div>
+          <ul class="chips" role="list">
+            <li class="chip mono">1–144 Гц</li>
+            <li class="chip mono">минимум 0,4 нит</li>
+            <li class="chip mono">ШИМ 3840 Гц</li>
+          </ul>
+        </div>
+      </div>
+      <div class="glare" aria-hidden="true"></div>
+    </section>
+
+    <!-- 14. ПРОИЗВОДИТЕЛЬНОСТЬ -->
+    <section class="section solid perf pperf" id="perf" aria-labelledby="perf-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Производительность</p>
+        <h2 class="h2" id="perf-title" data-split>Snapdragon. И&nbsp;наконец холодный.</h2>
+        <p class="tb grad grad--accent" aria-hidden="true">8s</p>
+        <div class="perf-grid">
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">Snapdragon 8s Gen 4</p><p class="perf-cell__k mono">процессор · Qualcomm</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">до 21&nbsp;ГБ</p><p class="perf-cell__k mono">LPDDR5X</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">до 1&nbsp;ТБ</p><p class="perf-cell__k mono">UFS 4.0</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">OY Assist 3</p><p class="perf-cell__k mono">целиком на устройстве</p></div>
+        </div>
+        <div class="vc">
+          <div class="vc__text" data-reveal>
+            <p class="lead">Испарительная камера на&nbsp;4800&nbsp;мм² — впервые в&nbsp;OY за&nbsp;пределами Pro. Медь, вода и&nbsp;вакуум уводят тепло от&nbsp;процессора по&nbsp;всей площади корпуса.</p>
+          </div>
+          <div class="vc__bars" data-reveal aria-label="Температура корпуса после 20 минут игры">
+            <div class="vc__row"><span>0X1 · графитовые пластины</span><span class="vc__bar"><i style="--v:.86"></i></span><span class="mono">44&nbsp;°C</span></div>
+            <div class="vc__row vc__row--me"><span>0X2 · испарительная камера</span><span class="vc__bar"><i style="--v:.64"></i></span><span class="mono">39&nbsp;°C</span></div>
+            <p class="vc__cap mono">Температура корпуса после 20&nbsp;минут игры<sup class="fn"><a href="#fn-5" id="fnr-5">5</a></sup></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. БАТАРЕЯ -->
+    <section class="section solid light battery" id="battery" aria-labelledby="battery-title">
+      <div class="container battery__grid">
+        <div>
+          <p class="eyebrow" data-reveal>Аккумулятор и зарядка</p>
+          <h2 class="h2" id="battery-title"><span data-split>7300&nbsp;мАч.</span> <span class="accent-text" data-split>На&nbsp;миллиметр тоньше.</span><sup class="fn"><a href="#fn-6" id="fnr-6">6</a></sup></h2>
+          <p class="lead" data-reveal>Ёмкость та&nbsp;же, что у&nbsp;0X1, — ячейки нового поколения плотнее. Проводная зарядка 140&nbsp;Вт: 0–100&nbsp;% за&nbsp;24&nbsp;минуты. И&nbsp;XMagnum 65&nbsp;Вт без проводов.</p>
+          <p class="jab jab--light" data-reveal>Блок на&nbsp;140&nbsp;Вт — в&nbsp;коробке. Мы проверили — он туда помещается.</p>
+        </div>
+        <div class="charge" role="img" aria-label="Анимация зарядки: от 0 до 100 процентов за 24 минуты">
+          <div class="charge__cell" aria-hidden="true">
+            <div class="charge__fill"></div>
+            <svg class="charge__bolt"><use href="#i-bolt"/></svg>
+          </div>
+          <p class="charge__pct mono" aria-hidden="true"><span data-charge-pct>0</span>%</p>
+          <p class="charge__time mono" aria-hidden="true"><span data-charge-min>0</span> / 24 минуты</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. ВНУТРИ -->
+    <section class="section pinned inside" id="inside" data-3d aria-labelledby="inside-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Устройство</p>
+          <h2 class="h2" id="inside-title">7,9&nbsp;мм. По&nbsp;слоям.</h2>
+          <ol class="layers" role="list">
+            <li class="layer"><span class="layer__n mono">01</span><span class="layer__body"><b>Стекло</b><span>«Антиблик 2»</span></span></li>
+            <li class="layer"><span class="layer__n mono">02</span><span class="layer__body"><b>Экран</b><span>6,6" AMOLED · до&nbsp;3600&nbsp;нит · две фронтальные</span></span></li>
+            <li class="layer"><span class="layer__n mono">03</span><span class="layer__body"><b>Рамка</b><span>Алюминий, 10 антенн, кнопки «0» и&nbsp;«1»</span></span></li>
+            <li class="layer"><span class="layer__n mono">04</span><span class="layer__body"><b>Испарительная камера</b><span>4800&nbsp;мм² меди</span></span></li>
+            <li class="layer"><span class="layer__n mono">05</span><span class="layer__body"><b>Плата</b><span>Snapdragon 8s Gen 4 · LPDDR5X · UFS 4.0</span></span></li>
+            <li class="layer layer--accent"><span class="layer__n mono">06</span><span class="layer__body"><b>Tesseract</b><span>84&nbsp;ГБ · 1000&nbsp;мАч · сетка от&nbsp;вскрытия</span></span></li>
+            <li class="layer"><span class="layer__n mono">07</span><span class="layer__body"><b>Аккумулятор</b><span>7300&nbsp;мАч, кремний-углеродный</span></span></li>
+            <li class="layer"><span class="layer__n mono">08</span><span class="layer__body"><b>Катушка XMagnum</b><span>65&nbsp;Вт, кольцо магнитов</span></span></li>
+            <li class="layer"><span class="layer__n mono">09</span><span class="layer__body"><b>Спинка</b><span>Матовое стекло, остров камер</span></span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. ЦВЕТА -->
+    <section class="section pinned colors" id="colors" data-3d aria-labelledby="colors-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--bottom">
+          <p class="eyebrow">Три новых цвета</p>
+          <h2 class="h2" id="colors-title" data-split>Мёд, лист и&nbsp;цветок.</h2>
+          <p class="lead colors-lead"><span class="cl cl--honey">Тёплый янтарный, как мёд на&nbsp;свету. Кнопки — оранжевые.</span><span class="cl cl--leaf">Глубокий зелёный, как лист в&nbsp;середине лета. Кнопки — оранжевые.</span><span class="cl cl--blossom">Мягкий розовый, как цветущая вишня. Кнопки — оранжевые.</span></p>
+          <div class="color-switch color-switch--big" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+            <button type="button" role="radio" class="color-opt" data-value="honey" aria-checked="true"><span class="swatch swatch--honey" aria-hidden="true"></span><span>Медовый</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="leaf" aria-checked="false"><span class="swatch swatch--leaf" aria-hidden="true"></span><span>Листовой Зелёный</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="blossom" aria-checked="false"><span class="swatch swatch--blossom" aria-hidden="true"></span><span>Цветочный Розовый</span></button>
+          </div>
+          <p class="jab">Впервые у&nbsp;OY нет ни&nbsp;одного серого. Мы тоже удивились.</p>
+          <p class="drag-hint mono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M4 12h16"/></svg>Потяните, чтобы повернуть</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18. OY OS 3 -->
+    <section class="section solid os2" id="os3" aria-labelledby="os3-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>OY OS 3 · из коробки</p>
+        <h2 class="h2" id="os3-title" data-split>Новая система. Всё так&nbsp;же нечего скрывать.</h2>
+        <div class="os2-grid">
+          <article class="os2-card os2-card--wide" data-reveal>
+            <svg aria-hidden="true"><use href="#i-chip"/></svg>
+            <h3>OY Assist 3</h3>
+            <p>Ассистент, который сам работает в&nbsp;приложениях: «отмени подписку», «найди чек за&nbsp;июль». Каждый его шаг виден на&nbsp;экране. Всё — на&nbsp;устройстве.</p>
+          </article>
+          <article class="os2-card" data-reveal>
+            <svg aria-hidden="true"><use href="#i-map"/></svg>
+            <h3>«Граница»</h3>
+            <p>Перед паспортным контролем выбранные чаты и&nbsp;приложения исчезают. После — возвращаются.</p>
+          </article>
+          <article class="os2-card" data-reveal>
+            <svg aria-hidden="true"><use href="#i-contacts"/></svg>
+            <h3>Отравленные данные</h3>
+            <p>Приложение настаивает на&nbsp;доступе? Отдайте ему правдоподобные фальшивые контакты и&nbsp;геопозицию.</p>
+          </article>
+          <article class="os2-card" data-reveal>
+            <svg aria-hidden="true"><use href="#i-network"/></svg>
+            <h3>Mesh-сообщения</h3>
+            <p>Без сети и&nbsp;интернета: телефоны OY передают сообщения друг через друга.</p>
+          </article>
+          <article class="os2-card" data-reveal>
+            <svg aria-hidden="true"><use href="#i-update"/></svg>
+            <h3>8 лет обновлений</h3>
+            <p>На&nbsp;год больше, чем обещали с&nbsp;OY&nbsp;OS&nbsp;2. Хеш каждого обновления можно проверить.</p>
+          </article>
+        </div>
+        <p class="note os2-note" data-reveal><a class="link" href="/os/">Всё об&nbsp;OY OS 3 — больше сорока новых функций</a></p>
+      </div>
+    </section>
+
+    <!-- 19. КОРОТКО О ГЛАВНОМ -->
+    <section class="section solid highlights" id="highlights" aria-labelledby="hl-title">
+      <div class="container">
+        <h2 class="h2" id="hl-title" data-split>Коротко о&nbsp;главном.</h2>
+      </div>
+      <div class="hl" aria-roledescription="карусель" aria-labelledby="hl-title">
+        <ul class="hl__track" role="list" tabindex="0" aria-label="Слайды">
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="1 из 6">
+            <div class="hl__text"><h3 class="hl__title">Tesseract. Сильнее Citadel&nbsp;2.</h3><p class="hl__desc">84&nbsp;ГБ, 1000&nbsp;мАч и&nbsp;девять функций внутри чипа.</p></div>
+            <div class="hl__vis"><div class="hlp-cit hlx-chip" aria-hidden="true"><span>TESSERACT</span></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="2 из 6">
+            <div class="hl__text"><h3 class="hl__title">11. 17. 21.</h3><p class="hl__desc">Гигабайт оперативной памяти. Таких чисел нет ни&nbsp;у&nbsp;кого.</p></div>
+            <div class="hl__vis"><div class="hlx-primes" aria-hidden="true"><span>11</span><span>17</span><span>21</span></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="3 из 6">
+            <div class="hl__text"><h3 class="hl__title">Пять камер.</h3><p class="hl__desc">Три сзади с&nbsp;перископом 3×, две спереди.</p></div>
+            <div class="hl__vis"><div class="hlx-cams" aria-hidden="true"><span></span><span></span><b></b><em></em></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="4 из 6">
+            <div class="hl__text"><h3 class="hl__title">Кнопки «0» и&nbsp;«1».</h3><p class="hl__desc">Любое действие — или аппаратное отключение.</p></div>
+            <div class="hl__vis"><div class="hlx-keys" aria-hidden="true"><span>0</span><span>1</span></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="5 из 6">
+            <div class="hl__text"><h3 class="hl__title">NFC и&nbsp;XMagnum.</h3><p class="hl__desc">Впервые в&nbsp;OY. Карта — только в&nbsp;чипе.</p></div>
+            <div class="hl__vis"><div class="hlp-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
+          </li>
+          <li class="hl__slide" role="group" aria-roledescription="слайд" aria-label="6 из 6">
+            <div class="hl__text"><h3 class="hl__title">7300&nbsp;мАч в&nbsp;7,9&nbsp;мм.</h3><p class="hl__desc">140&nbsp;Вт по&nbsp;проводу, 65&nbsp;Вт по&nbsp;воздуху.</p></div>
+            <div class="hl__vis"><div class="hl-batt" aria-hidden="true"><span></span></div></div>
+          </li>
+        </ul>
+        <div class="hl__controls">
+          <div class="hl__dots">
+            <button type="button" class="hl__dot" aria-label="Слайд 1" aria-current="true"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 2"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 3"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 4"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 5"><span></span></button>
+            <button type="button" class="hl__dot" aria-label="Слайд 6"><span></span></button>
+          </div>
+          <button type="button" class="hl__play" aria-label="Пауза" data-playing="true">
+            <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12M16 6v12"/></svg>
+            <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20. ПОКУПКА И ХАРАКТЕРИСТИКИ -->
+    <section class="section solid light buy" id="buy" aria-labelledby="buy-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Предзаказ · весна 2029 · США</p>
+        <h2 class="h2" id="buy-title" data-split>Выберите свой 0X2.</h2>
+        <div class="configurator">
+          <div class="configurator__opts">
+            <p class="cfg-label mono" id="mem-label">Память</p>
+            <div class="mem-switch mem-switch--3" role="radiogroup" aria-labelledby="mem-label" data-mem-switch>
+              <button type="button" role="radio" class="mem-opt" data-value="11/256" aria-checked="true"><span class="mono">11/256</span><span class="mem-opt__unit">ГБ</span></button>
+              <button type="button" role="radio" class="mem-opt" data-value="17/512" aria-checked="false"><span class="mono">17/512</span><span class="mem-opt__unit">ГБ</span></button>
+              <button type="button" role="radio" class="mem-opt" data-value="21/1024" aria-checked="false"><span class="mono">21/1024</span><span class="mem-opt__unit">ГБ</span></button>
+            </div>
+            <p class="cfg-label mono" id="color-label">Цвет</p>
+            <div class="color-switch color-switch--big" role="radiogroup" aria-labelledby="color-label" data-color-switch>
+              <button type="button" role="radio" class="color-opt" data-value="honey" aria-checked="true"><span class="swatch swatch--honey" aria-hidden="true"></span><span>Медовый</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="leaf" aria-checked="false"><span class="swatch swatch--leaf" aria-hidden="true"></span><span>Листовой Зелёный</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="blossom" aria-checked="false"><span class="swatch swatch--blossom" aria-hidden="true"></span><span>Цветочный Розовый</span></button>
+            </div>
+          </div>
+          <div class="price-card" aria-live="polite">
+            <p class="price-card__cfg mono"><span data-cfg-name>11/256 ГБ</span> · <span data-cfg-color>Медовый</span></p>
+            <p class="price-card__usd" data-price-usd>$579</p>
+            <p class="price-card__eur mono"><span data-price-eur>€669</span> · Европа — скоро</p>
+            <button type="button" class="btn btn--accent btn--wide" data-stub="Это демонстрационная страница: оформление предзаказа здесь не подключено.">Оформить предзаказ</button>
+            <p class="price-card__note">Продажи — пока только в&nbsp;США. Выход — весна 2029 года.</p>
+            <p class="price-card__concept">Это концепт-сайт: OY&nbsp;0X2 и&nbsp;компания OY вымышлены, предзаказ и&nbsp;продажи не&nbsp;ведутся.</p>
+          </div>
+        </div>
+
+        <h3 class="h3 specs-title" id="specs">Характеристики</h3>
+        <div class="specs-wrap">
+          <table class="specs">
+            <caption class="sr-only">Технические характеристики OY 0X2</caption>
+            <tbody>
+              <tr><th scope="row">Процессор</th><td>Qualcomm Snapdragon 8s Gen 4</td></tr>
+              <tr><th scope="row">Чип безопасности</th><td>Tesseract: свой процессор, 84 ГБ, аккумулятор 1000 мАч, сетка от вскрытия; «Двойник», «Кошелёк», «Мёртвая рука», «Свидетель», «Карантин», «Тихий час», «Сторож», «Последнее слово», «Тревожный палец»</td></tr>
+              <tr><th scope="row">Загрузчик</th><td>Заблокирован навсегда, разблокировка невозможна. Попытка запускает 9 ступеней защиты; если они пройдены — камеры, датчики, микрофоны и динамики обесточиваются аппаратно и безвозвратно</td></tr>
+              <tr><th scope="row">Экран</th><td>6,6" AMOLED, 1080×2400, 1–144 Гц; пиковая яркость 3600 нит, минимальная 0,4 нит; ШИМ 3840 Гц; «Антиблик 2» — отражает меньше 1 % света</td></tr>
+              <tr><th scope="row">Память</th><td>11/256, 17/512 и 21/1024 ГБ (LPDDR5X + UFS 4.0)</td></tr>
+              <tr><th scope="row">Основная камера</th><td>50 МП, сенсор 1/1,5", f/1.6, оптическая стабилизация</td></tr>
+              <tr><th scope="row">Сверхширокоугольная</th><td>32 МП, 118°, макро</td></tr>
+              <tr><th scope="row">Телевик</th><td>50 МП, перископ, 3× оптический зум, f/3.0, оптическая стабилизация</td></tr>
+              <tr><th scope="row">Фронтальные</th><td>24 МП квадратная и 12 МП сверхширокая, вырез-«пилюля» по центру</td></tr>
+              <tr><th scope="row">Видео</th><td>4K/60 на всех камерах, 4K/120 на основной</td></tr>
+              <tr><th scope="row">Кнопки «0» и «1»</th><td>Две программируемые кнопки на левой грани: короткое, долгое и двойное нажатие — любое действие; аппаратный режим через Tesseract — обесточивает камеры, микрофоны, связь или геолокацию; обе кнопки на 2 секунды — «Всё выключить»</td></tr>
+              <tr><th scope="row">Claw 2.0</th><td>10 антенн, две активные SIM, переход 5G → 2G ради звонка и SMS, спутниковые SMS, «Прогноз сети», объединение сотовой связи и Wi-Fi 7</td></tr>
+              <tr><th scope="row">Охлаждение</th><td>Испарительная камера 4800 мм²</td></tr>
+              <tr><th scope="row">Аккумулятор</th><td>7300 мАч, кремний-углеродный (Si-C), несъёмный</td></tr>
+              <tr><th scope="row">Зарядка</th><td>Проводная 140 Вт, 0–100 % за 24 минуты; магнитная беспроводная XMagnum 65 Вт; обратная беспроводная 15 Вт</td></tr>
+              <tr><th scope="row">Связь</th><td>5G, eSIM + физическая SIM (обе активны), Wi-Fi 7, ИК-порт, NFC — через Tesseract</td></tr>
+              <tr><th scope="row">Биометрия</th><td>Сканер отпечатка в кнопке питания, отпечаток хранится в Tesseract; «Тревожный палец». Разблокировки по лицу нет</td></tr>
+              <tr><th scope="row">Система</th><td>OY OS 3: OY Assist 3 на устройстве, «Граница», отравленные данные, mesh-сообщения; без Google Mobile Services, без телеметрии, без обязательного аккаунта</td></tr>
+              <tr><th scope="row">Звук</th><td>Стерео-динамики, разъём 3,5 мм — да, и в 7,9 мм тоже</td></tr>
+              <tr><th scope="row">Разъём</th><td>USB-C</td></tr>
+              <tr><th scope="row">Защита</th><td>IP68</td></tr>
+              <tr><th scope="row">Корпус</th><td>Алюминиевая рамка, спинка из матового стекла; 161 × 74,5 × 7,9 мм; 192 г</td></tr>
+              <tr><th scope="row">Цвета</th><td>«Медовый», «Листовой Зелёный», «Цветочный Розовый»</td></tr>
+              <tr><th scope="row">Обновления</th><td>8 лет обновлений безопасности</td></tr>
+              <tr><th scope="row">Гарантия</th><td>20 месяцев</td></tr>
+              <tr><th scope="row">Продажи</th><td>Пока только в США. Выход — весна 2029 года</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="specs-wrap">
+          <table class="prices">
+            <caption class="prices__cap mono">Цены по конфигурациям</caption>
+            <thead><tr><th scope="col">Конфигурация</th><th scope="col">США</th><th scope="col">Европа — скоро</th></tr></thead>
+            <tbody data-price-table></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 21. ФИНАЛ -->
+    <section class="section final" id="final" data-3d aria-labelledby="final-title">
+      <div class="container final__inner">
+        <h2 class="mega final__title" id="final-title"><span class="grad" data-split>Ноль слежки.</span> <span class="grad" data-split>Два шага вперёд.</span></h2>
+        <div class="final__cta" data-reveal>
+          <a class="btn btn--accent" href="#buy">Купить — от $579</a>
+          <a class="btn btn--ghost" href="/compare/?models=0x2,0x2q,0x1pro">Сравнить с 0X2Q и 0X1 Pro</a>
+        </div>
+      </div>
+      <div class="container final__pro">
+        <p class="pro-teaser" data-reveal><span class="mono">Модули теперь прячутся.</span> <a class="pro-teaser__soon link" href="/0x2q/">Знакомьтесь: 0X2Q</a></p>
+      </div>
+    </section>
+    <!-- СНОСКИ -->
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">Защита IP68 по&nbsp;IEC&nbsp;60529 проверена в&nbsp;лаборатории: погружение в&nbsp;пресную воду на&nbsp;глубину до&nbsp;2&nbsp;м на&nbsp;30&nbsp;минут. Защита от&nbsp;воды и&nbsp;пыли не&nbsp;постоянна и&nbsp;может снижаться со&nbsp;временем. <a href="#fnr-1" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-2">Объём памяти Tesseract доступен только функциям чипа и&nbsp;не&nbsp;суммируется с&nbsp;памятью телефона. <a href="#fnr-2" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-3">Зарядка выключенного телефона шайбой XMagnum 65&nbsp;Вт с&nbsp;блоком OY&nbsp;Power при температуре 25&nbsp;°C. Шайба XMagnum продаётся отдельно. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-4">Пиковая яркость при показе HDR-контента на&nbsp;3&nbsp;% площади экрана. Яркость во&nbsp;весь экран ниже: 1900&nbsp;нит. <a href="#fnr-4" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-5">Испытания OY: 20&nbsp;минут игры при 60&nbsp;кадрах в&nbsp;секунду, комнатная температура 25&nbsp;°C, яркость 50&nbsp;%. Максимальная температура задней панели. <a href="#fnr-5" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-6">Типичная ёмкость. Минимальная номинальная — 7090&nbsp;мАч. Проводная зарядка выключенного телефона блоком из&nbsp;комплекта при 25&nbsp;°C. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+        </ol>
+        <p class="footnotes__more">Все характеристики и&nbsp;результаты испытаний — предварительные: это концепт, телефоны не&nbsp;выпускаются.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · французский стартап</span>
+      </div>
+      <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X2 · Весна 2029 · США</p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X2 и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
