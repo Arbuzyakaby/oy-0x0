@@ -388,6 +388,39 @@ if want("case-0x1e"):
     put(bpy.data.objects["Case0X1E"], c)
     shot("case-0x1e", c, (-0.6, 1.0, 0.3))
 
+# 3c. Чехол 0X2 Essential «Прозрачный» — чтобы «Красный Маяк» было видно; окно на весь ход шторки
+if want("case-0x2e"):
+    c = new_coll("case-0x2e")
+    import_glb("oy0x2e.glb", c)
+    make_case("Case0X2E", clear_tpu("ClearTPU_E"), 71.0, 150.0, -4.55, 4.55, 2.6, [
+        back(-14.6, 33.6, 37.6, 65.4, 2.4, 4.55),                 # камера и весь ход шторки
+        back(18.6, 23.4, 26.5, 31.3, 2.3, 4.55),                  # вспышка
+        side(15.8, 44.2, 1.9, -45, -30),                           # два kill switch
+        side(9.5, 51.5, 1.7, 30, 45),
+        end(-24.0, 24.0, 1.6, -90, -70),                           # USB-C, динамик и винты
+        end(-25.0, 25.0, 1.5, 70, 90),                             # фонарь, 3,5 мм, ИК
+    ], t=1.2, tb=1.0, lip=0.8)
+    put(bpy.data.objects["Case0X2E"], c)
+    bpy.context.view_layer.update()
+    shot("case-0x2e", c, (-0.6, 1.0, 0.3))
+
+# 3d. Сменная ячейка 0X2 Essential: плоский пакет, красный язычок и шлейф с разъёмом
+if want("cell-0x2e"):
+    c = new_coll("cell-0x2e")
+    M_FOIL = make_mat("CellFoil", "#1B1C20", metallic=0.6, rough=0.42)
+    M_TAB = make_mat("CellTab", "#C8102E", rough=0.5)
+    M_FLEX = make_mat("CellFlex", "#C9842F", metallic=0.3, rough=0.4)
+    b = Builder("Cell", ["CellFoil", "CellTab", "CellFlex", "Port", "EtchLight"])
+    b.prism(rrect(64.0, 78.0, 3.0, seg=10), "Y", 0.0, 4.0, "CellFoil", bevel_end=0.8, bevel_start=0.8, seg=4)
+    b.prism(rrect(40.0, 1.2, 0.4, seg=4, cy=-20.0), "Y", 4.0, 4.05, "EtchLight")      # гравировка-полоса
+    b.prism(rrect(14.0, 30.0, 2.0, seg=6, cx=-18.0, cy=-48.0), "Y", 3.6, 3.85, "CellTab")   # язычок
+    b.prism(rrect(8.0, 16.0, 1.0, seg=4, cx=20.0, cy=45.0), "Y", 3.7, 3.85, "CellFlex")      # шлейф
+    b.prism(rrect(9.0, 5.0, 1.0, seg=4, cx=20.0, cy=54.0), "Y", 3.7, 4.9, "Port")             # разъём
+    ob = mm(b.build())
+    ob.rotation_euler = (math.radians(-62), 0, math.radians(-24))
+    put(ob, c)
+    shot("cell-0x2e", c, (0.2, -1.0, 0.55), pad=1.15, lens=70)
+
 # 4. Защитное стекло «Антиблик 2»: 0X1 лежит экраном вверх, стекло опускается на экран
 if want("glass"):
     c = new_coll("glass")

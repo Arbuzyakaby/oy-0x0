@@ -358,7 +358,6 @@
 
 .devices__grid { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
 .devices__grid .dev { grid-column: span 2; }
-.devices__grid .dev:nth-child(n+4) { grid-column: span 3; }
 .dev { display: grid; gap: 6px; align-content: start; padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: var(--bg-2); border: 1px solid var(--line); text-decoration: none; transition: border-color .3s, transform .3s var(--ease); }
 .dev:hover { border-color: var(--fg); transform: translateY(-2px); }
 .dev--pro { background: radial-gradient(100% 100% at 100% 0%, var(--glow), transparent 60%), var(--bg-2); }
@@ -511,7 +510,7 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
   .reqmap__apps .req-app { padding: 10px; }
   .stats { grid-template-columns: 1fr; }
   .ghost__grid, .devices__grid, .verify { grid-template-columns: 1fr; }
-  .devices__grid .dev, .devices__grid .dev:nth-child(n+4) { grid-column: auto; }
+  .devices__grid .dev { grid-column: auto; }
   .gcard__vis { min-height: 0; padding: 24px 0; }
   .more__grid { grid-template-columns: 1fr; }
   .mf--wide { grid-column: auto; }
@@ -526,6 +525,7 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
    OY OS 3: всё новое и демо
    ========================================================================= */
 
+.dev--0x2e { background: radial-gradient(100% 100% at 100% 0%, rgba(200, 16, 46, .24), transparent 60%), var(--bg-2); }
 .dev--0x2 { background: radial-gradient(100% 100% at 100% 0%, rgba(240, 170, 50, .18), transparent 60%), var(--bg-2); }
 .dev--0x2q { background: radial-gradient(100% 100% at 100% 0%, rgba(140, 120, 255, .2), transparent 60%), var(--bg-2); }
 

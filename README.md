@@ -9,7 +9,7 @@
 Промо-сайт вымышленного семейства смартфонов OY в духе презентаций Apple.<br>
 Живые 3D-модели, которые крутятся от скролла, и система, которой нечего скрывать.
 
-**[oy0x.online](https://oy0x.online)**  ·  [0X1 Essential](https://oy0x.online/0x1e/)  ·  [0X0](https://oy0x.online/0x0/)  ·  [0X2](https://oy0x.online/0x2/)  ·  [0X2Q](https://oy0x.online/0x2q/)  ·  [0X1 Pro](https://oy0x.online/0x1pro/)  ·  [OY OS 3](https://oy0x.online/os/)  ·  [Аксессуары](https://oy0x.online/accessories/)  ·  [Сравнить](https://oy0x.online/compare/)
+**[oy0x.online](https://oy0x.online)**  ·  [0X1 Essential](https://oy0x.online/0x1e/)  ·  [0X2 Essential](https://oy0x.online/0x2e/)  ·  [0X0](https://oy0x.online/0x0/)  ·  [0X2](https://oy0x.online/0x2/)  ·  [0X2Q](https://oy0x.online/0x2q/)  ·  [0X1 Pro](https://oy0x.online/0x1pro/)  ·  [OY OS 3](https://oy0x.online/os/)  ·  [Аксессуары](https://oy0x.online/accessories/)  ·  [Сравнить](https://oy0x.online/compare/)
 
 ![Сборщик](https://img.shields.io/badge/сборщик-не_нужен-0A0A0B?style=flat-square)
 ![Трекеры](https://img.shields.io/badge/трекеры-0-4ADE9B?style=flat-square)
@@ -18,7 +18,7 @@
 ![GSAP](https://img.shields.io/badge/GSAP-3.13-B3202A?style=flat-square)
 ![Blender](https://img.shields.io/badge/Blender-5.2-B3202A?style=flat-square)
 
-<sub>Это концепт. OY 0X1 Essential, OY 0X0, OY 0X2, OY 0X2Q, OY 0X1 Pro, OY 0X1, OY 0X1Q, OY 0X0 Pro, OY OS и компания OY вымышлены, телефоны не продаются.</sub>
+<sub>Это концепт. OY 0X1 Essential, OY 0X2 Essential, OY 0X0, OY 0X2, OY 0X2Q, OY 0X1 Pro, OY 0X1, OY 0X1Q, OY 0X0 Pro, OY OS и компания OY вымышлены, телефоны не продаются.</sub>
 
 </div>
 
@@ -26,11 +26,12 @@
 
 ## Семейство
 
-<img src="docs/screenshots/home.jpg" alt="Витрина: пять телефонов OY в одном масштабе" width="100%">
+<img src="docs/screenshots/home.jpg" alt="Витрина: шесть телефонов OY в одном масштабе" width="100%">
 
 | Модель | Цена | Главное |
 |---|---|---|
 | [**OY 0X1 Essential**](https://oy0x.online/0x1e/) | от $349 | Самый доступный OY, «брат 0X0»: спинка из поликарбоната, остров в цвет корпуса, одна кнопка «0» — долгое нажатие обесточивает всё через Null Chip. Dimensity 8350, 4K/30 на всех камерах, 6000 мАч, 7 лет обновлений |
+| [**OY 0X2 Essential**](https://oy0x.online/0x2e/) | от $399 | Почти копия 0X0 с острыми углами, как у S24 Ultra, в одном цвете — «Красный Маяк». Одна камера под шторкой, впервые у Essential два kill switch («Слух» и «Эфир»), полный Tesseract как у 0X2, Dimensity 8500, LTPO 1–144 Гц с «Антибликом 2», «Красный режим», аккумулятор 6200 мАч меняется за 10 минут |
 | [**OY 0X0**](https://oy0x.online/0x0/) | от $449 | Шторка на камерах, три kill switch на левой грани, сигнальный фонарь на 5000 м, экран от 0,5 до 3500 нит |
 | [**OY 0X2**](https://oy0x.online/0x2/) | от $579 | Наследник 0X1: чип безопасности Tesseract (84 ГБ, 1000 мАч, «Двойник», «Кошелёк», «Мёртвая рука») сильнее Citadel 2, навсегда заблокированный загрузчик на 9 ступеней, пять камер, NFC и XMagnum — впервые в OY, Snapdragon 8s Gen 4, память 11/17/21 ГБ, 7,9 мм с испарительной камерой |
 | [**OY 0X2Q**](https://oy0x.online/0x2q/) | от $799 | Наследник 0X1Q: модуль выезжает из верхней грани на моторе и прячется в корпус за шторку, четыре модуля («Классика», тепловизор «Тепло», телевик 1" «Дюйм», фонарь «Луч» на 12 000 м), Citadel 3, NFC, Dimensity 9400e. Модули подходят и к 0X1Q |
@@ -46,6 +47,7 @@
 |---|---|
 | [`/`](https://oy0x.online/) | Витрина: модельный ряд из пяти телефонов в продаже в одном масштабе (у 0X2Q при наведении выезжает модуль), выбор модели, мини-сравнение, OY OS 3, «Чего здесь нет» |
 | [`/0x1e/`](https://oy0x.online/0x1e/) | OY 0X1 Essential: «брат 0X0», кнопка «0» с демо (нажать или удержать), «Что мы урезали и что — нет», камеры, разбор по слоям, конфигуратор |
+| [`/0x2e/`](https://oy0x.online/0x2e/) | OY 0X2 Essential — свой тип страницы: вместо закреплённых секций горизонтальная лента из десяти кадров, пульт внизу экрана (шторка, «Слух», «Эфир», Красный режим) двигает детали 3D-модели и меняет саму страницу, видоискатель 1×/2×, счётчик герц от скорости прокрутки, чек вместо конфигуратора |
 | [`/0x0/`](https://oy0x.online/0x0/) | OY 0X0: шторка, kill switches, фонарь, экран, разбор на слои, конфигуратор |
 | [`/0x2/`](https://oy0x.online/0x2/) | OY 0X2: память 11, 17, 21 ГБ, пять камер, кнопки «0» и «1» с демо, Tesseract в разборе и демо («Двойник», «Кошелёк», «Мёртвая рука»), загрузчик на 9 ступеней с демо, NFC и XMagnum, испарительная камера, конфигуратор |
 | [`/0x2q/`](https://oy0x.online/0x2q/) | OY 0X2Q: модуль выезжает и прячется по прокрутке, четыре модуля сменяют друг друга, видоискатель «один кадр — четыре модуля», Citadel 3, загрузчик, совместимость с 0X1Q, конфигуратор |
@@ -54,7 +56,7 @@
 | [`/0x1q/`](https://oy0x.online/0x1q/) | OY 0X1Q, снят с продажи: модуль камеры (снять, перевернуть, пульт) с демо, Null Chip 2.0, кнопка Q, модем NC1; вместо конфигуратора — ссылка на 0X2Q |
 | [`/pro/`](https://oy0x.online/pro/) | OY 0X0 Pro, снят с продажи: Citadel, шифратор звонков, Claw, четыре kill switch, грани, мрамор; вместо конфигуратора — ссылка на 0X1 Pro |
 | [`/os/`](https://oy0x.online/os/) | OY OS 3: все новые функции по группам, демо агента OY Assist 3, «Границы» и mesh-сообщений, а также демо OY OS 2: ассистент, карта запросов, призрак и PIN, фото без метаданных, проверка хеша |
-| [`/accessories/`](https://oy0x.online/accessories/) | Аксессуары: модули «Классика», «Тепло», «Дюйм» и «Луч», шайба XMagnum, заглушка Q, чехлы для 0X2, 0X2Q, 0X1 Pro, 0X1 Essential, 0X1Q, 0X1 и 0X0 Pro, стекло «Антиблик 2», блок 150 Вт, чехол Фарадея. Фильтр по модели, рендеры из Blender |
+| [`/accessories/`](https://oy0x.online/accessories/) | Аксессуары: модули «Классика», «Тепло», «Дюйм» и «Луч», шайба XMagnum, заглушка Q, чехлы для 0X2 Essential, 0X2, 0X2Q, 0X1 Pro, 0X1 Essential, 0X1Q, 0X1 и 0X0 Pro, сменная ячейка 6200 мАч для 0X2 Essential, стекло «Антиблик 2», блок 150 Вт, чехол Фарадея. Фильтр по модели, рендеры из Blender |
 | [`/compare/`](https://oy0x.online/compare/) | Сравнение как у Apple: три колонки с выпадающим списком, живой 3D-моделью, цветами и ценой, ниже — разделы с крупной цифрой. Выбор хранится в адресе (`?models=0x2,0x2q,0x1pro`), фильтр «только различия», на телефоне — две колонки |
 
 ---
@@ -106,6 +108,17 @@
 | **«Шайба».** Сенсор 1", телевик 3×, перископ 6× в титановом кольце | **Citadel 2.** Свой процессор, 64 ГБ и 600 мАч | **Попробуйте.** «Сторож», «Последнее слово», «Тревожный палец» |
 | <img src="docs/screenshots/0x1pro-keys.jpg" alt="0X1 Pro: кнопки с фиксацией"> | <img src="docs/screenshots/0x1pro-inside.jpg" alt="0X1 Pro: разбор по слоям"> | <img src="docs/screenshots/0x1pro-colors.jpg" alt="0X1 Pro: цвета"> |
 | **Кнопки с фиксацией.** Аппаратный режим видно на ощупь | **По слоям.** Испарительная камера, Citadel 2, катушка XMagnum | **Три цвета.** Обсидиан, Титан, Кобальт |
+
+## OY 0X2 Essential
+
+<img src="docs/screenshots/0x2e-hero.jpg" alt="OY 0X2 Essential: первый кадр ленты" width="100%">
+
+| | | |
+|---|---|---|
+| <img src="docs/screenshots/0x2e-shutter.jpg" alt="0X2 Essential: шторка"> | <img src="docs/screenshots/0x2e-switches.jpg" alt="0X2 Essential: два kill switch"> | <img src="docs/screenshots/0x2e-camera.jpg" alt="0X2 Essential: одна камера и видоискатель"> |
+| **Шторка.** Закрыта — Tesseract снимает питание с камеры | **Два тумблера.** «Слух» и «Эфир», впервые у Essential | **Одна, но честная.** 50 МП, OIS, видоискатель 1×/2× |
+| <img src="docs/screenshots/0x2e-tesseract.jpg" alt="0X2 Essential: Tesseract в разборе"> | <img src="docs/screenshots/0x2e-red.jpg" alt="0X2 Essential: Красный режим всей страницы"> | <img src="docs/screenshots/0x2e-buy.jpg" alt="0X2 Essential: чек"> |
+| **Tesseract без скидки.** Тот же чип, что в 0X2 за $579 | **Красный режим.** Кнопка на пульте красит всю страницу | **Чек.** Память, единственный цвет, итог |
 
 ## OY 0X1 Essential
 
@@ -208,11 +221,11 @@ npx serve .
 
 ```
 index.html               витрина семейства
-0x1e/ · 0x0/ · 0x2/ · 0x2q/ · 0x1pro/ · 0x1/ · 0x1q/ · pro/ · os/   страницы моделей (0x1/, 0x1q/ и pro/ сняты с продажи) и OY OS 3
+0x1e/ · 0x2e/ · 0x0/ · 0x2/ · 0x2q/ · 0x1pro/ · 0x1/ · 0x1q/ · pro/ · os/   страницы моделей (0x1/, 0x1q/ и pro/ сняты с продажи) и OY OS 3
 accessories/             аксессуары; данные — js/data/accessories.js, рендеры — img/accessories/
 compare/                 сравнение моделей
 404.html                 «не найдено», автономная, без JS
-og.jpg · og-0x1e.jpg · og-0x2.jpg · og-0x2q.jpg · og-0x1pro.jpg · og-0x1.jpg · og-0x1q.jpg · og-pro.jpg   превью ссылок, 1200×630
+og.jpg · og-0x1e.jpg · og-0x2e.jpg · og-0x2.jpg · og-0x2q.jpg · og-0x1pro.jpg · og-0x1.jpg · og-0x1q.jpg · og-pro.jpg   превью ссылок, 1200×630
 fonts/                   Onest и JetBrains Mono, переменные woff2, с лицензиями
 
 css/fonts.css            @font-face для шрифтов из fonts/
@@ -221,6 +234,7 @@ css/0x0.css              страница 0X0 (Pro переиспользует 
 css/pro.css · 0x1.css    Pro и 0X1 (0X1 переиспользует компоненты 0X0 и Pro)
 css/0x1q.css             0X1Q: демо модуля, Null Chip 2.0, гарантия (поверх 0X0, Pro и 0X1)
 css/0x1pro.css · 0x1e.css  0X1 Pro (демо Citadel 2, испарительная камера) и 0X1 Essential (демо кнопки «0»)
+css/0x2e.css             0X2 Essential: лента кадров, пульт, Красный режим, чек
 css/0x2.css · 0x2q.css   0X2 (11/17/21, Tesseract, загрузчик) и 0X2Q (видоискатель модулей, Citadel 3)
 css/home.css · compare.css  витрина и сравнение
 css/os.css               OY OS 3: макеты телефонов, демо, терминал
@@ -228,9 +242,9 @@ css/os.css               OY OS 3: макеты телефонов, демо, т�
 js/core/                 3D-сцена, ключевые кадры, прокрутка, тексты, карусель, UI
 js/models/               3D-модели всех телефонов: материалы, механика, резервная модель
 js/data/products.js      цены, цвета, сравнение и «снят с продажи» — единственный источник цифр
-js/pages/                хореография страниц: base.js (0X0), 0x1.js, 0x1e.js, 0x1pro.js, 0x1q.js, 0x2.js, 0x2q.js, pro.js, home.js, compare.js, os.js и os3.js
+js/pages/                хореография страниц: base.js (0X0), 0x1.js, 0x1e.js, 0x2e.js (лента и пульт), 0x1pro.js, 0x1q.js, 0x2.js, 0x2q.js, pro.js, home.js, compare.js, os.js и os3.js
 
-models/                  oy0x0.glb (~16 тыс. треугольников), oy0x1.glb (~24 тыс.), oy0x1e.glb, oy0x1pro.glb (~38 тыс.), oy0x1q.glb (~46 тыс.), oy0x2.glb, oy0x2q.glb (четыре модуля), oy0x0-pro.glb (~22 тыс.)
+models/                  oy0x0.glb (~16 тыс. треугольников), oy0x1.glb (~24 тыс.), oy0x1e.glb, oy0x2e.glb (~12 тыс.), oy0x1pro.glb (~38 тыс.), oy0x1q.glb (~46 тыс.), oy0x2.glb, oy0x2q.glb (четыре модуля), oy0x0-pro.glb (~22 тыс.)
 blender/                 скрипты сборки и превью моделей
 tests/                   юнит-тесты и сценарии Playwright
 tools/stamp.mjs          версии файлов (?v=хеш) для кеша Cloudflare
@@ -245,6 +259,7 @@ docs/                    скриншоты, спецификации и пла�
 blender -b -P blender/build_oy0x0.py       # OY 0X0 → models/oy0x0.glb
 blender -b -P blender/build_oy0x1.py       # OY 0X1 → models/oy0x1.glb
 blender -b -P blender/build_oy0x1e.py      # OY 0X1 Essential → models/oy0x1e.glb
+blender -b -P blender/build_oy0x2e.py      # OY 0X2 Essential → models/oy0x2e.glb, острые углы, шторка Shutter и Switch_1, Switch_2
 blender -b -P blender/build_oy0x1pro.py    # OY 0X1 Pro → models/oy0x1pro.glb, «шайба» камер
 blender -b -P blender/build_oy0x1q.py      # OY 0X1Q → models/oy0x1q.glb, модуль камеры — отдельная нода Module
 blender -b -P blender/build_oy0x2.py       # OY 0X2 → models/oy0x2.glb, на миллиметр тоньше 0X1, две фронтальные
@@ -285,7 +300,7 @@ blender -b -P blender/preview_render.py -- models/oy0x0.glb preview   # прев
 npm test
 ```
 
-Юнит-тесты проверяют ключевые кадры хореографии и данные моделей: цены, цвета, лестницу цен, преемников снятых моделей, наценку за мрамор и совпадение сравнения с конфигурациями. Тесты страниц следят, чтобы import map каждой страницы был валидным JSON, все подключённые файлы существовали, а в шапке были только модели в продаже. Сценарии в `tests/e2e/` запускаются через Playwright: регрессия страницы 0X0, скриншоты Pro на десктопе и телефоне, скриншоты 0X1, 0X1Q, 0X1 Pro, 0X1 Essential, 0X2 и 0X2Q с превью ссылок и витрины.
+Юнит-тесты проверяют ключевые кадры хореографии и данные моделей: цены, цвета, лестницу цен, преемников снятых моделей, наценку за мрамор и совпадение сравнения с конфигурациями. Тесты страниц следят, чтобы import map каждой страницы был валидным JSON, все подключённые файлы существовали, а в шапке были только модели в продаже. Сценарии в `tests/e2e/` запускаются через Playwright: регрессия страницы 0X0, скриншоты Pro на десктопе и телефоне, скриншоты 0X1, 0X1Q, 0X1 Pro, 0X1 Essential, 0X2 Essential, 0X2 и 0X2Q с превью ссылок и витрины.
 
 ## Стек
 

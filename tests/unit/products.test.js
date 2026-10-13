@@ -58,10 +58,10 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('сняты с продажи 0X1, 0X1Q и 0X0 Pro, в продаже пять моделей по цене', async () => {
+test('сняты с продажи 0X1, 0X1Q и 0X0 Pro, в продаже шесть моделей по цене', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
   for (const id of ['0x1', '0x1q', 'pro']) assert.equal(PRODUCTS[id].discontinued, true, id);
-  assert.deepEqual(ON_SALE, ['0x1e', '0x0', '0x2', '0x2q', '0x1pro']);
+  assert.deepEqual(ON_SALE, ['0x1e', '0x2e', '0x0', '0x2', '0x2q', '0x1pro']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
@@ -111,6 +111,17 @@ test('цены и цвета 0X1 Essential', () => {
   );
   assert.deepEqual(PRODUCTS['0x1e'].colors, { mint: 'Мята', sand: 'Песок', coal: 'Уголь' });
   assert.equal(PRODUCTS['0x1e'].defaultColor, 'mint');
+});
+
+test('0X2 Essential: от $399, один цвет — «Красный Маяк»', () => {
+  assert.deepEqual(
+    PRODUCTS['0x2e'].configs.map((c) => [c.id, c.usd, c.eur]),
+    [['8/128', 399, 479], ['8/256', 449, 529]],
+  );
+  assert.deepEqual(PRODUCTS['0x2e'].colors, { beacon: 'Красный Маяк' });
+  assert.equal(PRODUCTS['0x2e'].defaultColor, 'beacon');
+  // встаёт между 0X1 Essential и 0X0
+  assert.ok(PRODUCTS['0x1e'].configs[0].usd < 399 && 399 < PRODUCTS['0x0'].configs[0].usd);
 });
 
 test('цены и цвета 0X1 Pro', () => {
