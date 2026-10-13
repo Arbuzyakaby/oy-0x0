@@ -7,8 +7,8 @@
 
 Чехлы строятся вокруг настоящих моделей телефонов из models/*.glb: корпус
 чехла — скруглённая коробка, из которой булевыми операциями вырезаны телефон,
-окно экрана, остров камер, кнопки и порты. Модуль камеры 0X1Q берётся прямо
-из oy0x1q.glb (нода Module), остальное — с нуля.
+окно экрана, остров камер, кнопки и порты. Модули берутся прямо из oy0x2q.glb
+(ноды Module, ModuleThermal, ModuleInch, ModuleBeam), остальное — с нуля.
 
 Рендер — Cycles, прозрачный фон, 1000×1000. Результат: img/accessories/<id>.png;
 для сайта они переводятся в WebP (см. README).
@@ -439,10 +439,10 @@ if want("glass"):
     bpy.context.view_layer.update()
     shot("glass", c, (0.55, -1.0, 0.62), pad=1.03, lens=70, roll_floor=False, light={"Top": 0.5, "Key": 1.2, "Rim": 1.4})  # тень-ловушка сквозь стекло белеет
 
-# 5. Модуль камеры 0X1Q — запасной, из модели телефона
+# 5. Модуль «Классика» — запасной, из модели 0X2Q (подходит и к 0X1Q)
 if want("module"):
     c = new_coll("module")
-    objs = import_glb("oy0x1q.glb", c)
+    objs = import_glb("oy0x2q.glb", c)
     mod = named(objs, "Module")
     keep = {mod} | set(mod.children_recursive)
     mod.parent = None
@@ -452,6 +452,54 @@ if want("module"):
             bpy.data.objects.remove(o)
     mod.rotation_euler = (0, 0, math.radians(-18))
     shot("module", c, (0.5, 1.0, 0.55), pad=1.12)
+
+# 5a. Новые модули 0X2Q — «Тепло», «Дюйм», «Луч»: каждый из своей ноды oy0x2q.glb
+for sid, node, rot in (("module-thermal", "ModuleThermal", -18), ("module-inch", "ModuleInch", 16), ("module-beam", "ModuleBeam", -14)):
+    if not want(sid):
+        continue
+    c = new_coll(sid)
+    objs = import_glb("oy0x2q.glb", c)
+    mod = named(objs, node)
+    keep = {mod} | set(mod.children_recursive)
+    mod.parent = None
+    mod.matrix_world = Matrix.Translation((0, 0, 0))
+    for o in objs:
+        if o not in keep:
+            bpy.data.objects.remove(o)
+    mod.rotation_euler = (0, 0, math.radians(rot))
+    shot(sid, c, (0.5 if rot < 0 else -0.5, 1.0, 0.55), pad=1.12)
+
+# 5b. Чехол 0X2 «Мягкий» — силикон в цвет «Медового», окно под остров, кольцо XMagnum внутри
+if want("case-0x2"):
+    c = new_coll("case-0x2")
+    import_glb("oy0x2.glb", c)
+    m = silicone("Silicone_Honey", "#8A4C00")
+    make_case("Case0X2", m, 74.6, 161.0, -3.9, 3.9, 9.5, [
+        back(3.6, 34.9, 20.6, 77.0, 8.6, 3.9),
+        side(21.6, 46.6, 1.8, -45, -30),                         # кнопки «0» и «1» открыты
+        side(6.5, 51.8, 1.7, 30, 45),
+        end(-26.5, 12.6, 1.6, -95, -76),
+        end(-8.0, 8.0, 1.4, 76, 95),                              # сигнальный фонарь
+    ])
+    put(bpy.data.objects["Case0X2"], c)
+    shot("case-0x2", c, (-0.4, 1.0, 0.18))
+
+# 5c. Чехол 0X2Q «Мягкий» — щель модуля открыта: модуль выезжает и снимается в чехле
+if want("case-0x2q"):
+    c = new_coll("case-0x2q")
+    objs = import_glb("oy0x2q.glb", c)
+    extra = [named(objs, n) for n in ("ModuleThermal", "ModuleInch", "ModuleBeam")]
+    for o in {x for mod in extra for x in [mod] + list(mod.children_recursive)}:
+        bpy.data.objects.remove(o)
+    m = silicone("Silicone_Tesseract", "#06061A")
+    make_case("Case0X2Q", m, 60.6, 142.4, -3.8, 3.8, 7.6, [
+        ("Z", (0.0, 0.0, 41.0, 7.4, 3.6), 69.0, 90.0),            # щель модуля
+        side(45.5, 54.5, 1.4, -40, -25),                         # кнопка Q
+        side(15.5, 28.5, 1.6, 25, 40),                           # питание с отпечатком
+        end(-20.5, 18.8, 1.1, -90, -69),                         # динамик и микрофоны
+    ])
+    put(bpy.data.objects["Case0X2Q"], c)
+    shot("case-0x2q", c, (0.55, 1.0, 0.3))
 
 # 6. Заглушка Q — алюминиевая крышка разъёма модуля, на телефоне
 if want("cap"):

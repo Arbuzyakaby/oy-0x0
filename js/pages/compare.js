@@ -15,6 +15,8 @@ import { createOY0X1 } from '../models/oy0x1.js';
 import { createOY0X1E } from '../models/oy0x1e.js';
 import { createOY0X1Pro } from '../models/oy0x1pro.js';
 import { createOY0X1Q } from '../models/oy0x1q.js';
+import { createOY0X2 } from '../models/oy0x2.js';
+import { createOY0X2Q } from '../models/oy0x2q.js';
 import { createPro } from '../models/pro.js';
 import { $, $$, initRadioGroup, syncRadio } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -33,8 +35,7 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-// TODO(этап 2): 0X2 и 0X2Q пока показаны моделями 0X1 и 0X1Q — заменить на oy0x2.js и oy0x2q.js
-const FACTORY = { '0x1e': createOY0X1E, '0x0': createOY0X0, '0x2': createOY0X1, '0x2q': createOY0X1Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x1pro': createOY0X1Pro, pro: createPro };
+const FACTORY = { '0x1e': createOY0X1E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
 const HEIGHT = { '0x1e': 152, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x1pro': 163.5, pro: 150 };
 const TURN = { '0x1e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
