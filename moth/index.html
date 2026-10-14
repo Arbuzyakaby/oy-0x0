@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="ru" data-color="yellow">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X Moth — Летит на свет.</title>
+  <meta name="description" content="OY 0X Moth — первая раскладушка OY. Собственный процессор Argon 1, внешний экран «Крыло» 4,1&quot;, петля «Кокон», дебют OY OS 4 и шесть цветов. Концепт. От $699.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0A0B">
+  <link rel="canonical" href="https://oy0x.online/moth/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/moth/">
+  <meta property="og:title" content="OY 0X Moth — Летит на свет.">
+  <meta property="og:description" content="Концепт первой раскладушки OY: собственный процессор Argon 1, внешний экран «Крыло», OY OS 4, шесть цветов. От $699 / €799.">
+  <meta property="og:image" content="https://oy0x.online/og-moth.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Раскладушка OY 0X Moth в жёлтом цвете, наполовину раскрытая, и заголовок «0X Moth»">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Crect x='20' y='10' width='24' height='21' rx='6' fill='%23F6D44A'/%3E%3Crect x='20' y='33' width='24' height='21' rx='6' fill='%23F6D44A' opacity='.7'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
+  <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
+  <link rel="stylesheet" href="/css/moth.css?v=afaba9e9c4">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=4d9bc990cd",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=598f7739a8",
+      "/js/data/products.js": "/js/data/products.js?v=97dbbc3429",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=7e2a169dd7",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=6149c88dc8",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=ec6142f2ce",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=0686dda9e7",
+      "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=f5d541bfe5",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=326a8ba011",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=b4b889aa13",
+      "/js/pages/base.js": "/js/pages/base.js?v=d565cf9bf8",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=0360737d3d",
+      "/js/pages/home.js": "/js/pages/home.js?v=ffa4d4dc1e",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=bd1594cf29",
+      "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
+      "/js/pages/os3.js": "/js/pages/os3.js?v=b5d0199164",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/moth.js?v=bd1594cf29"></script>
+</head>
+<body>
+  <!-- Иконки -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: две половины складываются -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <svg class="loader__mark loader__mark--moth" viewBox="0 0 120 60" aria-hidden="true">
+      <rect class="loader__half loader__half--b" x="44" y="31" width="32" height="24" rx="6"/>
+      <rect class="loader__half loader__half--t" x="44" y="5" width="32" height="24" rx="6"/>
+    </svg>
+    <span class="loader__label">Раскрываем…</span>
+  </div>
+
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+
+  <!-- Шкала угла: вместо подменю. Видна только в режиме сгиба -->
+  <nav class="hinge-gauge" aria-label="Главы страницы" data-gauge>
+    <a class="hinge-gauge__brand" href="/" aria-label="OY — на главную">
+      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+    </a>
+    <p class="hinge-gauge__now mono" aria-hidden="true"><span data-gauge-no>1</span><i>/ 9</i><b data-gauge-deg>180°</b></p>
+    <ol class="hinge-gauge__list" data-gauge-list></ol>
+    <a class="hinge-gauge__buy btn btn--accent btn--sm" href="#buy" data-price-from>$699</a>
+  </nav>
+  <p class="sr-only" aria-live="polite" data-announce></p>
+
+  <main id="main" class="fold" data-fold>
+
+    <!-- 1. ЛЕТИТ НА СВЕТ -->
+    <section class="ch ch--light has-3d" id="light" data-chapter="Летит на свет" aria-labelledby="light-title">
+      <div class="lamp-glow" aria-hidden="true"></div>
+      <header class="site-header" id="top">
+        <a class="brand" href="/" aria-label="OY — на главную">
+          <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+          <span class="brand__name">OY</span>
+        </a>
+        <nav class="site-nav" aria-label="Модели">
+          <a href="/0x2e/">0X2 Essential</a>
+          <a href="/0x0/">0X0</a>
+          <a href="/0x2/">0X2</a>
+          <a href="/moth/" aria-current="page">0X Moth</a>
+          <a href="/0x2q/">0X2Q</a>
+          <a href="/0x2pro/">0X2 Pro</a>
+          <a href="/os/">OY OS</a>
+          <a href="/accessories/">Аксессуары</a>
+          <a href="/compare/">Сравнить</a>
+        </nav>
+        <a class="btn btn--accent btn--sm" href="#buy" data-price-from>$699</a>
+      </header>
+      <div class="ch__inner">
+        <div class="ch__text">
+          <p class="eyebrow mono">Весна 2030 · США и&nbsp;Евросоюз · OY&nbsp;OS&nbsp;4</p>
+          <h1 class="light__title" id="light-title"><span class="light__model">0X Moth</span><span class="light__big">Летит на&nbsp;свет.</span></h1>
+          <p class="lead">Первая раскладушка OY. Складывается вдвое и&nbsp;помещается в&nbsp;любой карман. Внутри первый собственный процессор OY, снаружи шесть цветов, а&nbsp;на&nbsp;крышке целый экран.</p>
+          <div class="light__buy">
+            <p class="price"><span class="muted">от</span> <strong data-price data-usd="699" data-eur="799">$699</strong></p>
+            <a class="btn btn--accent" href="#buy">Купить</a>
+            <button type="button" class="btn btn--ghost" data-fold-toggle aria-pressed="false">Сложить</button>
+          </div>
+          <p class="hint mono" aria-hidden="true">Листайте — страница сложится, как&nbsp;Moth <span>↓</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. «КРЫЛО» -->
+    <section class="ch ch--wing has-3d" id="wing" data-chapter="«Крыло»" aria-labelledby="wing-title">
+      <div class="ch__inner ch__inner--split">
+        <div class="ch__text">
+          <p class="eyebrow mono">02 · Внешний экран 4,1"</p>
+          <h2 class="h2 ch__h" id="wing-title">Целый экран на&nbsp;крышке.</h2>
+          <p class="lead">«Крыло» занимает всю крышку сложенного Moth, камеры вырезаны прямо в&nbsp;нём. На&nbsp;нём работают полноценные приложения и&nbsp;OY&nbsp;Assist. Раскроете телефон, и&nbsp;то&nbsp;же приложение продолжит на&nbsp;большом экране с&nbsp;того&nbsp;же места.</p>
+          <div class="wing-apps" role="radiogroup" aria-label="Что на «Крыле»" data-wing-switch>
+            <button type="button" role="radio" data-value="clock" aria-checked="true">Часы</button>
+            <button type="button" role="radio" data-value="assist" aria-checked="false" tabindex="-1">OY Assist</button>
+            <button type="button" role="radio" data-value="player" aria-checked="false" tabindex="-1">Плеер</button>
+            <button type="button" role="radio" data-value="camera" aria-checked="false" tabindex="-1">Камера</button>
+          </div>
+          <button type="button" class="btn btn--ghost btn--sm wing-open" data-wing-open>Раскрыть и&nbsp;продолжить</button>
+          <p class="wing-status mono" aria-live="polite" data-wing-status>Moth сложен. «Крыло» показывает часы.</p>
+        </div>
+        <!-- «Крыло» в натуральную величину: 68 × 76 мм -->
+        <figure class="wing" data-wing>
+          <div class="wing__screen" data-wing-screen>
+            <span class="wing__cam wing__cam--a" aria-hidden="true"></span>
+            <span class="wing__cam wing__cam--b" aria-hidden="true"></span>
+            <span class="wing__flash" aria-hidden="true"></span>
+            <div class="wing__app" data-app="clock">
+              <p class="wing__time">9:41</p>
+              <p class="wing__date">Четверг, 14&nbsp;марта</p>
+              <p class="wing__note"><i aria-hidden="true"></i>Мама: «Ты на&nbsp;свету?»</p>
+            </div>
+            <div class="wing__app" data-app="assist" hidden>
+              <p class="wing__kicker mono">OY Assist · на&nbsp;«Крыле»</p>
+              <p class="wing__say">Такси будет через 4&nbsp;минуты. Раскройте&nbsp;— карта на&nbsp;большом экране.</p>
+            </div>
+            <div class="wing__app" data-app="player" hidden>
+              <div class="wing__cover" aria-hidden="true"></div>
+              <p class="wing__track"><b>Лампа</b><span>Ночной рейс</span></p>
+              <span class="wing__bar" aria-hidden="true"><i></i></span>
+            </div>
+            <div class="wing__app wing__app--cam" data-app="camera" hidden>
+              <span class="wing__face" aria-hidden="true"></span>
+              <p class="wing__meta mono">1× · основная 50&nbsp;МП</p>
+            </div>
+          </div>
+          <figcaption class="wing__cap mono">«Крыло» в&nbsp;натуральную величину: 68&nbsp;×&nbsp;76&nbsp;мм</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3. «КОКОН» -->
+    <section class="ch ch--cocoon has-3d" id="cocoon" data-chapter="«Кокон»" aria-labelledby="cocoon-title">
+      <div class="ch__inner">
+        <div class="ch__text">
+          <p class="eyebrow mono">03 · Петля «Кокон»</p>
+          <h2 class="h2 ch__h" id="cocoon-title">Закрывается без&nbsp;щели.</h2>
+          <p class="lead">Половины смыкаются плотно, как створки кокона: в&nbsp;сложенном Moth не&nbsp;видно ни&nbsp;щели, ни&nbsp;экрана. Петля держит любой угол от&nbsp;30 до&nbsp;150°, поэтому телефон стоит на&nbsp;столе сам<sup class="fn"><a href="#fn-2" id="fnr-2">2</a></sup>.</p>
+          <label class="range">
+            <span class="range__label mono">Угол раскрытия · <b data-angle-out>180°</b></span>
+            <input type="range" min="0" max="180" value="180" step="1" data-angle aria-describedby="cocoon-mode">
+          </label>
+          <ul class="angle-marks mono" aria-hidden="true"><li>0°</li><li>30°</li><li>90°</li><li>150°</li><li>180°</li></ul>
+          <p class="cocoon-mode" id="cocoon-mode" data-cocoon-mode><b>Разложен.</b> Обычный телефон с&nbsp;экраном 6,9".</p>
+          <div class="cocoon-presets" role="group" aria-label="Быстрый выбор угла">
+            <button type="button" data-angle-set="0">Сложен</button>
+            <button type="button" data-angle-set="95">«Палатка»</button>
+            <button type="button" data-angle-set="180">Разложен</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ARGON 1 -->
+    <section class="ch ch--argon" id="argon" data-chapter="Argon 1" aria-labelledby="argon-title">
+      <div class="ch__inner ch__inner--split">
+        <div class="ch__text">
+          <p class="eyebrow mono">04 · Начало новой эры</p>
+          <h2 class="h2 ch__h" id="argon-title">Argon&nbsp;1. Свой.</h2>
+          <p class="lead">Первый собственный процессор OY. Мы разработали его вместе с&nbsp;ABC Processors, которую купили ради этого. Производит TSMC по&nbsp;2&nbsp;нм. На&nbsp;одном кристалле восемь ядер, своя графика, нейроблок, модем NC3 и&nbsp;блок безопасности MSC.</p>
+          <div class="score" data-score>
+            <div class="score__row">
+              <p class="score__label mono">В&nbsp;Moth</p>
+              <span class="score__bar" style="--v:.75"><i></i></span>
+              <p class="score__num"><b data-count="1.5">1,5</b>&nbsp;млн</p>
+            </div>
+            <div class="score__row score__row--ghost">
+              <p class="score__label mono">В&nbsp;обычном корпусе</p>
+              <span class="score__bar" style="--v:1"><i></i></span>
+              <p class="score__num"><b>~2</b>&nbsp;млн</p>
+            </div>
+            <p class="note">Баллы AnTuTu<sup class="fn"><a href="#fn-1" id="fnr-1">1</a></sup>. В&nbsp;Moth это уровень Snapdragon&nbsp;8&nbsp;Gen&nbsp;2, 8s&nbsp;Gen&nbsp;3 или Dimensity&nbsp;8500. Частоты урезаны честно: в&nbsp;тонких половинах нет места под испарительную камеру. В&nbsp;обычном телефоне тот&nbsp;же Argon быстро выходит на&nbsp;~2&nbsp;млн, и&nbsp;называться он будет так&nbsp;же.</p>
+          </div>
+        </div>
+        <div class="chip-side">
+          <figure class="die" aria-hidden="true">
+            <div class="die__core"><span>Argon</span><b>1</b><i class="mono">2 нм · TSMC</i></div>
+            <span class="die__blk die__blk--cpu mono">8 ядер</span>
+            <span class="die__blk die__blk--gpu mono">Графика</span>
+            <span class="die__blk die__blk--npu mono">NPU</span>
+            <span class="die__blk die__blk--nc mono">NC3</span>
+            <span class="die__blk die__blk--msc mono">MSC</span>
+          </figure>
+          <ul class="family" aria-label="Семейство процессоров OY">
+            <li class="family__el is-on"><b>Ar</b><span>Argon</span><i>топ</i></li>
+            <li class="family__el"><b>Be</b><span>Beryllium</span><i>средний</i></li>
+            <li class="family__el"><b>Cs</b><span>Cesium</span><i>младший</i></li>
+            <li class="family__el family__el--none"><b>Xe</b><span>Ксенона не&nbsp;будет</span><i>X у&nbsp;нас уже есть</i></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. NC3 И CLAW -->
+    <section class="ch ch--claw" id="claw" data-chapter="Связь" aria-labelledby="claw-title">
+      <div class="ch__inner ch__inner--split">
+        <div class="ch__text">
+          <p class="eyebrow mono">05 · Модем NC3 · Claw</p>
+          <h2 class="h2 ch__h" id="claw-title">Вы его не&nbsp;увидите.</h2>
+          <p class="lead">Модем NC3 встроен прямо в&nbsp;Argon. У&nbsp;Claw в&nbsp;Moth нет ни&nbsp;имени, ни&nbsp;экранов, ни&nbsp;настроек. Остались только функции, которые работают незаметно.</p>
+          <ul class="quiet">
+            <li><b>Антенны перестраиваются на&nbsp;сгибе.</b> Сложили, раскрыли или взяли в&nbsp;кулак, и&nbsp;сигнал не&nbsp;проседает.</li>
+            <li><b>Сотовая сеть и&nbsp;Wi-Fi работают вместе.</b> Связь сама выбирает лучший путь и&nbsp;объединяет оба.</li>
+            <li><b>Звонок важнее скорости.</b> Ради звонка модем откатится вплоть до&nbsp;2G.</li>
+          </ul>
+          <p class="note">Спутниковых SMS и&nbsp;«Прогноза сети» в&nbsp;Moth нет. Они остались у&nbsp;0X2, 0X2Q и&nbsp;0X2 Pro.</p>
+        </div>
+        <figure class="ant" data-ant>
+          <svg class="ant__svg" viewBox="0 0 260 360" role="img" aria-labelledby="ant-cap">
+            <rect class="ant__half" x="70" y="20" width="120" height="156" rx="16"/>
+            <rect class="ant__half" x="70" y="184" width="120" height="156" rx="16"/>
+            <rect class="ant__hinge" x="78" y="174" width="104" height="12" rx="6"/>
+            <g class="ant__lines" data-ant-open>
+              <path d="M70 60v40"/><path d="M190 120v44"/><path d="M70 240v50"/><path d="M190 300v26"/><path d="M110 340h40"/>
+            </g>
+            <g class="ant__lines ant__lines--alt" data-ant-folded>
+              <path d="M70 140v30"/><path d="M190 30v40"/><path d="M70 200v30"/><path d="M190 230v50"/><path d="M110 20h40"/>
+            </g>
+          </svg>
+          <figcaption class="ant__cap mono" id="ant-cap" data-ant-cap>Разложен: работают антенны по&nbsp;краям</figcaption>
+          <button type="button" class="btn btn--ghost btn--sm" data-ant-toggle aria-pressed="false">Сложить</button>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 6. MSC -->
+    <section class="ch ch--msc" id="msc" data-chapter="MSC" aria-labelledby="msc-title">
+      <div class="ch__inner ch__inner--split">
+        <div class="ch__text">
+          <p class="eyebrow mono">06 · Moth Security Chip</p>
+          <h2 class="h2 ch__h" id="msc-title">Честно о&nbsp;защите.</h2>
+          <p class="lead">MSC&nbsp;— блок безопасности внутри Argon, отдельного чипа нет. Он слабее даже первого Null Chip. Мы сделали так сознательно: ради цены и&nbsp;толщины.</p>
+          <div class="can">
+            <div class="can__col">
+              <p class="can__h mono">Умеет</p>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg>Шифрует накопитель своими ключами</li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg>Хранит отпечаток, а&nbsp;не&nbsp;система</li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg>Держит ключи оплаты NFC</li>
+                <li><svg aria-hidden="true"><use href="#i-check"/></svg>Не&nbsp;даёт открыть загрузчик</li>
+              </ul>
+            </div>
+            <div class="can__col can__col--no">
+              <p class="can__h mono">Не&nbsp;умеет</p>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#i-minus"/></svg>Обесточить камеру или микрофон</li>
+                <li><svg aria-hidden="true"><use href="#i-minus"/></svg>Работать при выключенном Argon</li>
+                <li><svg aria-hidden="true"><use href="#i-minus"/></svg>Вести журнал кнопок «0» и&nbsp;«1»: их&nbsp;нет</li>
+                <li><svg aria-hidden="true"><use href="#i-minus"/></svg>Закрыть камеры шторкой: её&nbsp;тоже нет</li>
+              </ul>
+            </div>
+          </div>
+          <p class="zero"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Трекеров по-прежнему ноль. Нужна крепость&nbsp;— <a href="/0x2/">0X2</a> и&nbsp;<a href="/0x2pro/">0X2&nbsp;Pro</a>.</span></p>
+        </div>
+        <div class="msc-vis">
+          <figure class="slice" data-slice>
+            <p class="slice__big" aria-hidden="true"><b data-slice-mm>6,8</b><span>мм</span></p>
+            <svg class="slice__svg" viewBox="0 0 540 210" aria-hidden="true">
+              <rect class="slice__body" x="20" y="60" width="480" height="96" rx="14" data-slice-body/>
+              <rect class="slice__part slice__part--glass" x="28" y="64" width="464" height="7" rx="3"/>
+              <rect class="slice__part slice__part--screen" x="36" y="76" width="448" height="12" rx="3"/>
+              <rect class="slice__part slice__part--argon" x="40" y="94" width="110" height="28" rx="4"/>
+              <rect class="slice__part" x="160" y="94" width="320" height="28" rx="4"/>
+              <rect class="slice__part slice__part--back" x="28" y="136" width="464" height="14" rx="4"/>
+              <text class="slice__t slice__t--ink" x="95" y="112">Argon + MSC</text>
+              <text class="slice__t" x="320" y="112">аккумулятор</text>
+              <text class="slice__t" x="260" y="85">складной экран</text>
+              <text class="slice__t" x="260" y="146">стеклянная крышка</text>
+              <g class="slice__chip" data-slice-chip>
+                <rect x="190" y="8" width="160" height="36" rx="6"/>
+                <text class="slice__t slice__t--bad" x="270" y="30">отдельный чип + питание</text>
+              </g>
+              <path class="slice__dim" d="M514 60v96M508 60h12M508 156h12" data-slice-dim/>
+            </svg>
+            <figcaption class="slice__cap mono" aria-live="polite" data-slice-cap>Половина Moth в&nbsp;разрезе. Свободного места нет.</figcaption>
+            <button type="button" class="btn btn--ghost btn--sm" data-slice-try aria-pressed="false">Вставить отдельный чип</button>
+          </figure>
+          <div class="specs-wrap specs-wrap--dark">
+            <table class="msc-table">
+              <caption class="sr-only">Null Chip, MSC и Citadel 4</caption>
+              <thead><tr><th scope="col"></th><th scope="col">Null Chip <span>0X0</span></th><th scope="col" class="is-moth">MSC <span>Moth</span></th><th scope="col">Citadel 4 <span>0X2 Pro</span></th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Отдельный кристалл</th><td>Да</td><td class="is-moth">Нет, внутри Argon</td><td>Да, отдельный компьютер</td></tr>
+                <tr><th scope="row">Своё питание</th><td>Нет</td><td class="is-moth">Нет</td><td>Да, 2500&nbsp;мАч</td></tr>
+                <tr><th scope="row">Физически обесточивает</th><td>Камеры, микрофоны, связь</td><td class="is-moth">Ничего</td><td>Всё&nbsp;+ журнал</td></tr>
+                <tr><th scope="row">Ключи и&nbsp;отпечаток</th><td>Да</td><td class="is-moth">Да</td><td>Да</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. КАМЕРЫ -->
+    <section class="ch ch--cams has-3d" id="cams" data-chapter="Камеры" aria-labelledby="cams-title">
+      <div class="ch__inner">
+        <div class="ch__text">
+          <p class="eyebrow mono">07 · Две камеры на&nbsp;крышке</p>
+          <h2 class="h2 ch__h" id="cams-title">Селфи на&nbsp;основную.</h2>
+          <p class="lead">Сложите Moth и&nbsp;снимайте себя основной камерой на&nbsp;50&nbsp;МП, а&nbsp;кадр смотрите на&nbsp;«Крыле». Фронталка на&nbsp;10&nbsp;МП в&nbsp;большом экране остаётся для звонков.</p>
+          <ul class="cam-stats" aria-label="Камеры коротко">
+            <li><b>50</b><span>МП, основная<br>1/1,56" · OIS</span></li>
+            <li><b>123°</b><span>сверхширокая<br>12&nbsp;МП</span></li>
+            <li><b>4K</b><span>60 кадров<br>на&nbsp;всех камерах</span></li>
+          </ul>
+          <div class="cam-ctl">
+            <div class="zoom-mini" role="radiogroup" aria-label="Камера" data-cam-switch>
+              <button type="button" role="radio" data-value="1" aria-checked="true">1×</button>
+              <button type="button" role="radio" data-value="0.6" aria-checked="false" tabindex="-1">0,6×</button>
+            </div>
+            <button type="button" class="btn btn--accent btn--sm" data-shot>Снять селфи</button>
+          </div>
+          <ol class="roll" aria-label="Снятые кадры" data-roll>
+            <li class="roll__empty mono">Снимков пока нет. Нажмите «Снять селфи»</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ЦВЕТА -->
+    <section class="ch ch--colors has-3d" id="colors" data-chapter="Цвета" aria-labelledby="colors-title">
+      <ul class="garland" aria-hidden="true" data-garland>
+        <li style="--c:#F6D44A; --l:70px" data-value="yellow"><i></i></li>
+        <li style="--c:#D7263D; --l:128px" data-value="red"><i></i></li>
+        <li style="--c:#F4A6C0; --l:46px" data-value="pink"><i></i></li>
+        <li style="--c:#8DC63F; --l:104px" data-value="apple"><i></i></li>
+        <li style="--c:#2F6FDB; --l:60px" data-value="blue"><i></i></li>
+        <li style="--c:#EEF1F4; --l:140px" data-value="cloud"><i></i></li>
+      </ul>
+      <div class="lamp" data-lamp aria-hidden="true"><span class="lamp__bulb"></span></div>
+      <div class="ch__inner">
+        <div class="ch__text">
+          <p class="eyebrow mono">08 · Шесть цветов&nbsp;— впервые у&nbsp;OY</p>
+          <h2 class="h2 ch__h" id="colors-title" data-color-name>Жёлтый.</h2>
+          <p class="lead" data-color-desc>Цвет лампы, на&nbsp;которую летит мотылёк. Мы выбрали его первым.</p>
+          <p class="lamp-hint mono" data-lamp-hint>Ведите лампу курсором или&nbsp;зажгите лампочку на&nbsp;гирлянде</p>
+          <div class="color-switch color-switch--big" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+            <button type="button" role="radio" class="color-opt" data-value="yellow" aria-checked="true"><span class="swatch swatch--yellow" aria-hidden="true"></span><span>Жёлтый</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="red" aria-checked="false" tabindex="-1"><span class="swatch swatch--red" aria-hidden="true"></span><span>Красный</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="pink" aria-checked="false" tabindex="-1"><span class="swatch swatch--pink" aria-hidden="true"></span><span>Розовый</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="apple" aria-checked="false" tabindex="-1"><span class="swatch swatch--apple" aria-hidden="true"></span><span>Яблочный</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="blue" aria-checked="false" tabindex="-1"><span class="swatch swatch--blue" aria-hidden="true"></span><span>Синий</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="cloud" aria-checked="false" tabindex="-1"><span class="swatch swatch--cloud" aria-hidden="true"></span><span>Облачный</span></button>
+          </div>
+          <div class="pollen">
+            <div class="pollen__screen" aria-hidden="true">
+              <p class="pollen__time">9:41</p>
+              <span class="pollen__ring"></span>
+              <span class="pollen__card"><i></i><b></b></span>
+              <span class="pollen__card pollen__card--short"><i></i><b></b></span>
+              <span class="pollen__dock"><i></i><i></i><i></i><i></i></span>
+            </div>
+            <p class="pollen__text"><b>«Пыльца» в&nbsp;OY&nbsp;OS&nbsp;4.</b> Цвет корпуса уходит в&nbsp;систему: акценты, обои, виджеты «Крыла». Перекрасили телефон, и&nbsp;экран перекрасился вместе с&nbsp;ним.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. КУПИТЬ И ХАРАКТЕРИСТИКИ -->
+    <section class="ch ch--buy" id="buy" data-chapter="Купить" aria-labelledby="buy-title">
+      <div class="ch__scroll">
+        <div class="container">
+          <p class="eyebrow mono">09 · Предзаказ</p>
+          <h2 class="h2" id="buy-title">Самая доступная раскладушка с&nbsp;семью годами обновлений.</h2>
+          <div class="order">
+            <div class="order__opts">
+              <p class="cfg-label mono" id="mem-label">Память</p>
+              <div class="order__mem" role="radiogroup" aria-labelledby="mem-label" data-mem-switch>
+                <button type="button" role="radio" data-value="12/256" aria-checked="true"><strong>256</strong><span class="mono">ГБ · 12&nbsp;ГБ ОЗУ</span></button>
+                <button type="button" role="radio" data-value="12/512" aria-checked="false" tabindex="-1"><strong>512</strong><span class="mono">ГБ · 12&nbsp;ГБ ОЗУ</span></button>
+              </div>
+              <p class="cfg-label mono" id="buy-color-label">Цвет</p>
+              <div class="color-switch color-switch--mini order__colors" role="radiogroup" aria-labelledby="buy-color-label" data-color-switch>
+                <button type="button" role="radio" class="swatch swatch--yellow" data-value="yellow" aria-checked="true"><span class="sr-only">Жёлтый</span></button>
+                <button type="button" role="radio" class="swatch swatch--red" data-value="red" aria-checked="false" tabindex="-1"><span class="sr-only">Красный</span></button>
+                <button type="button" role="radio" class="swatch swatch--pink" data-value="pink" aria-checked="false" tabindex="-1"><span class="sr-only">Розовый</span></button>
+                <button type="button" role="radio" class="swatch swatch--apple" data-value="apple" aria-checked="false" tabindex="-1"><span class="sr-only">Яблочный</span></button>
+                <button type="button" role="radio" class="swatch swatch--blue" data-value="blue" aria-checked="false" tabindex="-1"><span class="sr-only">Синий</span></button>
+                <button type="button" role="radio" class="swatch swatch--cloud" data-value="cloud" aria-checked="false" tabindex="-1"><span class="sr-only">Облачный</span></button>
+              </div>
+            </div>
+            <div class="order__card" aria-live="polite">
+              <p class="order__cfg mono"><span data-cfg-name>OY 0X Moth · 12/256 ГБ</span> · <span data-cfg-color>Жёлтый</span></p>
+              <p class="order__total" data-total aria-label="Цена"></p>
+              <div class="cur cur--small" role="radiogroup" aria-label="Валюта" data-currency>
+                <button type="button" role="radio" data-value="usd" aria-checked="true">$</button>
+                <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">€</button>
+              </div>
+              <button type="button" class="btn btn--accent btn--wide" data-stub="Это демонстрационная страница: оформление предзаказа здесь не подключено.">Оформить предзаказ</button>
+              <p class="order__note">США и&nbsp;Евросоюз, с&nbsp;весны 2030&nbsp;года. Это концепт: OY&nbsp;0X&nbsp;Moth и&nbsp;компания OY вымышлены, предзаказ не&nbsp;ведётся.</p>
+            </div>
+          </div>
+
+          <h3 class="h3 specs-title" id="specs">Характеристики</h3>
+          <div class="specs-wrap">
+            <table class="specs">
+              <caption class="sr-only">Технические характеристики OY 0X Moth</caption>
+              <tbody>
+                <tr><th scope="row">Форма</th><td>Раскладушка, первая у&nbsp;OY. Петля «Кокон»: закрывается без зазора, держит любой угол от&nbsp;30° до&nbsp;150°, рассчитана на&nbsp;500&nbsp;000 сгибов<sup class="fn"><a href="#fn-2">2</a></sup></td></tr>
+                <tr><th scope="row">Процессор</th><td>Argon&nbsp;1, собственный процессор OY (2&nbsp;нм, TSMC): 8 ядер, своя графика и&nbsp;NPU. В&nbsp;Moth около 1,5&nbsp;млн баллов AnTuTu<sup class="fn"><a href="#fn-1">1</a></sup>; охлаждение графитовыми листами в&nbsp;обеих половинах</td></tr>
+                <tr><th scope="row">Чип безопасности</th><td>MSC (Moth Security Chip) внутри Argon&nbsp;1: ключи шифрования накопителя, отпечаток, ключи оплаты. Ничего не&nbsp;обесточивает физически</td></tr>
+                <tr><th scope="row">Основной экран</th><td>6,9" LTPO AMOLED, складной, 1080×2640, 1–120&nbsp;Гц, пиковая яркость 3000&nbsp;нит<sup class="fn"><a href="#fn-3" id="fnr-3">3</a></sup>; защитный слой нанесён на&nbsp;заводе</td></tr>
+                <tr><th scope="row">Внешний экран</th><td>«Крыло»: 4,1" AMOLED на&nbsp;всю крышку, 1–120&nbsp;Гц, 2600&nbsp;нит; полноценные приложения и&nbsp;OY&nbsp;Assist</td></tr>
+                <tr><th scope="row">Память</th><td>12/256 и&nbsp;12/512&nbsp;ГБ, LPDDR5X + UFS&nbsp;4.1</td></tr>
+                <tr><th scope="row">Основная камера</th><td>50&nbsp;МП, сенсор 1/1,56", f/1.8, оптическая стабилизация</td></tr>
+                <tr><th scope="row">Сверхширокоугольная</th><td>12&nbsp;МП, 123°</td></tr>
+                <tr><th scope="row">Фронтальная</th><td>10&nbsp;МП, в&nbsp;отверстии на&nbsp;основном экране. Шторки нет</td></tr>
+                <tr><th scope="row">Видео</th><td>4K/60 на&nbsp;всех камерах</td></tr>
+                <tr><th scope="row">Кнопки</th><td>Питание со&nbsp;сканером отпечатка и&nbsp;громкость. Kill switch и&nbsp;кнопок «0» и&nbsp;«1» нет</td></tr>
+                <tr><th scope="row">Связь</th><td>Модем NC3 внутри Argon&nbsp;1; Claw без имени: антенны подстраиваются под сгиб, переход до&nbsp;2G ради звонка, объединение сотовой и&nbsp;Wi-Fi. 5G, eSIM + физическая SIM, Wi-Fi&nbsp;7, Bluetooth&nbsp;6.0, NFC (оплата через MSC)</td></tr>
+                <tr><th scope="row">Аккумулятор</th><td>4600&nbsp;мАч<sup class="fn"><a href="#fn-4" id="fnr-4">4</a></sup> в&nbsp;двух ячейках, по&nbsp;одной в&nbsp;каждой половине</td></tr>
+                <tr><th scope="row">Зарядка</th><td>Проводная 45&nbsp;Вт, 0–100&nbsp;% за&nbsp;55&nbsp;минут<sup class="fn"><a href="#fn-5" id="fnr-5">5</a></sup>; беспроводная XMagnum 25&nbsp;Вт</td></tr>
+                <tr><th scope="row">Биометрия</th><td>Отпечаток в&nbsp;кнопке питания, хранится в&nbsp;MSC. Разблокировки по&nbsp;лицу нет</td></tr>
+                <tr><th scope="row">Система</th><td>OY&nbsp;OS&nbsp;4, впервые: приложения на&nbsp;«Крыле», «Палатка», «Пыльца». Без Google Mobile Services, без телеметрии, без обязательного аккаунта</td></tr>
+                <tr><th scope="row">Звук и&nbsp;разъёмы</th><td>Стерео-динамики, USB-C. Разъёма 3,5&nbsp;мм нет, впервые у&nbsp;OY: он не&nbsp;помещается в&nbsp;половину толщиной 6,8&nbsp;мм</td></tr>
+                <tr><th scope="row">Фонари</th><td>Вспышка умеет светить красным. Сигнального фонаря нет</td></tr>
+                <tr><th scope="row">Защита</th><td>IP48<sup class="fn"><a href="#fn-6" id="fnr-6">6</a></sup></td></tr>
+                <tr><th scope="row">Корпус</th><td>Алюминиевая рамка, стеклянные крышки. Разложен: 166,7 × 75 × 6,8&nbsp;мм, сложен: 85,6 × 75 × 14,6&nbsp;мм; 187&nbsp;г</td></tr>
+                <tr><th scope="row">Цвета</th><td>Жёлтый, Красный, Розовый, Яблочный, Синий, Облачный. Шесть цветов, впервые у&nbsp;OY</td></tr>
+                <tr><th scope="row">Обновления и&nbsp;гарантия</th><td>7&nbsp;лет обновлений безопасности · 24&nbsp;месяца гарантии</td></tr>
+                <tr><th scope="row">Продажи</th><td>США и&nbsp;Евросоюз. Выход весной 2030&nbsp;года</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="specs-wrap">
+            <table class="prices">
+              <caption class="prices__cap mono">Цены по&nbsp;конфигурациям</caption>
+              <thead><tr><th scope="col">Конфигурация</th><th scope="col">США</th><th scope="col">Евросоюз</th></tr></thead>
+              <tbody data-price-table></tbody>
+            </table>
+          </div>
+          <div class="specs-cta">
+            <a class="btn btn--accent" href="#buy" data-to-top>Купить — от&nbsp;<span data-price data-usd="699" data-eur="799">$699</span></a>
+            <a class="btn btn--ghost btn--dark" href="/compare/?models=0x2,moth,0x2q">Сравнить с&nbsp;0X2 и&nbsp;0X2Q</a>
+            <a class="btn btn--ghost btn--dark" href="/os/">Что такое OY OS</a>
+          </div>
+        </div>
+
+        <section class="footnotes" aria-label="Примечания">
+          <div class="container">
+            <ol class="footnotes__list">
+              <li id="fn-1">AnTuTu v11, общий балл, внутреннее измерение OY на&nbsp;версии 12/256 при 25&nbsp;°C. Результат «около 2&nbsp;млн» относится к&nbsp;Argon&nbsp;1 в&nbsp;опытном моноблоке с&nbsp;испарительной камерой и&nbsp;в&nbsp;продаже пока не&nbsp;встречается. <a href="#fnr-1" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-2">500&nbsp;000 циклов складывания и&nbsp;раскладывания в&nbsp;лабораторных условиях, внутреннее испытание OY. Это больше 130 раскрытий в&nbsp;день в&nbsp;течение 10 лет. <a href="#fnr-2" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-3">Пиковая яркость при показе HDR-контента на&nbsp;3&nbsp;% площади экрана. Яркость во&nbsp;весь экран ниже: 1600&nbsp;нит. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-4">Суммарная типичная ёмкость двух ячеек. Минимальная номинальная&nbsp;— 4480&nbsp;мАч. <a href="#fnr-4" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-5">Зарядка выключенного телефона блоком OY&nbsp;Power и&nbsp;кабелем из&nbsp;коробки при 25&nbsp;°C. Блок продаётся отдельно. <a href="#fnr-5" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-6">IP48 по&nbsp;IEC&nbsp;60529: защита от&nbsp;твёрдых частиц больше 1&nbsp;мм и&nbsp;погружение в&nbsp;пресную воду на&nbsp;глубину до&nbsp;1,5&nbsp;м на&nbsp;30&nbsp;минут. От&nbsp;пыли и&nbsp;песка Moth не&nbsp;защищён. Защита не&nbsp;постоянна и&nbsp;может снижаться со&nbsp;временем. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+            </ol>
+            <p class="footnotes__more">Все характеристики и&nbsp;результаты испытаний предварительные: это концепт, телефоны не&nbsp;выпускаются.</p>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="container footer__inner">
+            <div class="footer__brand">
+              <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+              <span>OY · французский стартап</span>
+            </div>
+            <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+            <p class="footer__small mono">OY 0X Moth · Весна 2030 · США и Евросоюз</p>
+            <p class="footer__concept">Концепт. OY&nbsp;0X&nbsp;Moth и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

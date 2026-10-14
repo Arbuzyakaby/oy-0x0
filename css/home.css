@@ -21,7 +21,7 @@
 
 .lineup {
   position: relative; margin-top: clamp(28px, 5vh, 56px);
-  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0;
   border-top: 1px solid var(--line);
 }
 /* общий «пол», на котором стоят телефоны */
@@ -53,10 +53,16 @@
 .choose__grid--4 .pick__lead { font-size: 18px; }
 .choose__grid--5 { grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .choose__grid--6 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.choose__grid--5 .pick { padding: clamp(20px, 1.8vw, 30px); }
+.choose__grid--5 .pick, .choose__grid--6 .pick { padding: clamp(20px, 1.8vw, 30px); }
+.choose__grid--6 .pick__name { font-size: clamp(26px, 2.2vw, 38px); }
+.choose__grid--6 .pick__lead { font-size: 16px; }
+.choose__grid--6 .pick__list li { font-size: 14px; }
 .choose__grid--5 .pick__name { font-size: clamp(26px, 2.2vw, 38px); }
 .choose__grid--5 .pick__lead { font-size: 16px; }
 .choose__grid--5 .pick__list li { font-size: 14px; }
+.pick--moth { background: radial-gradient(120% 80% at 90% 0%, rgba(246, 212, 74, .2), transparent 60%), var(--bg-2); }
+.pick--moth .pick__list li::before { background: #F6D44A; }
+.pick--moth .btn--accent { background: #F6D44A; color: #1A1505; box-shadow: 0 10px 40px -10px rgba(246, 212, 74, .45); }
 .pick--0x2e { background: radial-gradient(120% 80% at 90% 0%, rgba(200, 16, 46, .22), transparent 60%), var(--bg-2); }
 .pick--0x2e .pick__list li::before { background: #FF4D5E; }
 .pick--0x2e .btn--accent { background: #C8102E; color: #fff; box-shadow: 0 10px 40px -10px rgba(200, 16, 46, .5); }

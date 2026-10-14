@@ -59,10 +59,10 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('сняты с продажи 0X1, 0X1Q, 0X0 Pro, 0X1 Pro и 0X1 Essential, в продаже пять моделей по цене', async () => {
+test('сняты с продажи 0X1, 0X1Q, 0X0 Pro, 0X1 Pro и 0X1 Essential, в продаже шесть моделей по цене', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
   for (const id of ['0x1', '0x1q', 'pro', '0x1pro', '0x1e']) assert.equal(PRODUCTS[id].discontinued, true, id);
-  assert.deepEqual(ON_SALE, ['0x2e', '0x0', '0x2', '0x2q', '0x2pro']);
+  assert.deepEqual(ON_SALE, ['0x2e', '0x0', '0x2', 'moth', '0x2q', '0x2pro']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
@@ -134,7 +134,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x2pro']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', '0x2pro']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -165,4 +165,34 @@ test('цены и цвета 0X1Q', () => {
   assert.deepEqual(PRODUCTS['0x1q'].colors, { wave: 'Морская Волна', moon: 'Лунный Камень', graphite: 'Графит' });
   assert.equal(PRODUCTS['0x1q'].defaultColor, 'wave');
   assert.deepEqual(getPrice('0x1q', '20/512', 'graphite'), { usd: 849, eur: 969 });
+});
+
+test('0X Moth: от $699, шесть цветов, между 0X2 и 0X2Q, продаётся в Европе', () => {
+  assert.deepEqual(
+    PRODUCTS.moth.configs.map((c) => [c.id, c.usd, c.eur]),
+    [['12/256', 699, 799], ['12/512', 799, 909]],
+  );
+  assert.deepEqual(PRODUCTS.moth.colors, { yellow: 'Жёлтый', red: 'Красный', pink: 'Розовый', apple: 'Яблочный', blue: 'Синий', cloud: 'Облачный' });
+  assert.equal(PRODUCTS.moth.defaultColor, 'yellow');
+  assert.equal(PRODUCTS.moth.eu, true);
+  assert.deepEqual(Object.keys(PRODUCTS.moth.swatches), Object.keys(PRODUCTS.moth.colors));
+  assert.ok(PRODUCTS['0x2'].configs[0].usd < 699 && 699 < PRODUCTS['0x2q'].configs[0].usd);
+});
+
+test('сравнение: у Moth — Argon 1, MSC, раскладушка и внешний экран', async () => {
+  const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
+  const i = 2 + COMPARE_MODELS.indexOf('moth');
+  const get = (label) => COMPARE.find((r) => r[1] === label);
+  assert.match(get('Процессор')[i], /^Argon 1/);
+  assert.match(get('Чип безопасности')[i], /^MSC/);
+  assert.match(get('Модем')[i], /^NC3/);
+  assert.match(get('Форма')[i], /Раскладушка/);
+  assert.match(get('Внешний экран')[i], /«Крыло»/);
+  assert.match(get('Система')[i], /OY OS 4/);
+  // у остальных — моноблок и без внешнего экрана
+  COMPARE_MODELS.forEach((id, k) => {
+    if (id === 'moth') return;
+    assert.equal(get('Форма')[2 + k], 'Моноблок', id);
+    assert.equal(get('Внешний экран')[2 + k], '—', id);
+  });
 });
