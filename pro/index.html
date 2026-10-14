@@ -39,14 +39,15 @@
       "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
       "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
       "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=4d9bc990cd",
       "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
       "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
       "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
       "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
-      "/js/data/accessories.js": "/js/data/accessories.js?v=72666c8e50",
-      "/js/data/products.js": "/js/data/products.js?v=6019a85fc3",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=c6b3c7db72",
+      "/js/data/products.js": "/js/data/products.js?v=7ca2e6c8d1",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
       "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
       "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
@@ -54,19 +55,22 @@
       "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
       "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=6149c88dc8",
       "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=ec6142f2ce",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
       "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
       "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
-      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=1a319607fa",
-      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=d897cd391d",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
       "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
       "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
       "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=f5d541bfe5",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=4ba4155ed9",
       "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
-      "/js/pages/accessories.js": "/js/pages/accessories.js?v=b3bd76b34e",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=8f136b6a0f",
       "/js/pages/base.js": "/js/pages/base.js?v=d565cf9bf8",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=3df845796d",
-      "/js/pages/home.js": "/js/pages/home.js?v=d10ebe0cac",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=24d155cb6c",
+      "/js/pages/home.js": "/js/pages/home.js?v=853d34becf",
       "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
       "/js/pages/os3.js": "/js/pages/os3.js?v=b5d0199164",
       "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
@@ -146,12 +150,11 @@
       <span class="brand__name">OY</span>
     </a>
     <nav class="site-nav" aria-label="Модели">
-      <a href="/0x1e/">0X1 Essential</a>
       <a href="/0x2e/">0X2 Essential</a>
       <a href="/0x0/">0X0</a>
       <a href="/0x2/">0X2</a>
       <a href="/0x2q/">0X2Q</a>
-      <a href="/0x1pro/">0X1 Pro</a>
+      <a href="/0x2pro/">0X2 Pro</a>
       <a href="/os/">OY OS</a>
       <a href="/accessories/">Аксессуары</a>
       <a href="/compare/">Сравнить</a>
@@ -178,7 +181,7 @@
           <button type="button" role="radio" class="swatch swatch--chernit" data-value="chernit" aria-checked="false"><span class="sr-only">Чернит</span></button>
           <button type="button" role="radio" class="swatch swatch--marble" data-value="marble" aria-checked="false"><span class="sr-only">Средиземноморский Мрамор</span></button>
         </div>
-        <a class="btn btn--accent btn--sm" href="/0x1pro/">0X1 Pro</a>
+        <a class="btn btn--accent btn--sm" href="/0x2pro/">0X2 Pro</a>
       </div>
     </div>
   </nav>
@@ -188,7 +191,7 @@
     <!-- 1. HERO -->
     <section class="section hero" id="hero" data-3d aria-labelledby="hero-title">
       <div class="hero__inner container">
-        <p class="disc-plate mono" data-reveal>Снят с продажи · преемник — <a href="/0x1pro/">0X1 Pro</a></p>
+        <p class="disc-plate mono" data-reveal>Снят с продажи · преемник — <a href="/0x1pro/">0X1 Pro</a>, теперь — <a href="/0x2pro/">0X2 Pro</a></p>
         <p class="eyebrow" data-reveal>Конец 2027 · США · OY OS 2</p>
         <h1 class="hero__title" id="hero-title">
           <span class="split grad" data-split>0X0 Pro</span>
@@ -197,7 +200,7 @@
         <p class="hero__pron" data-reveal>Отдельный компьютер для ваших секретов, связь, которая не&nbsp;сдаётся, и&nbsp;пять камер — в&nbsp;корпусе из&nbsp;стекла и&nbsp;алюминия.</p>
         <div class="hero__buy" data-reveal>
           <p class="hero__price"><span class="muted">был от</span> <strong>$749</strong></p>
-          <a class="btn btn--accent" href="/0x1pro/">Смотреть 0X1 Pro</a>
+          <a class="btn btn--accent" href="/0x2pro/">Смотреть 0X2 Pro</a>
           <a class="btn btn--ghost" href="#cams">Смотреть</a>
         </div>
       </div>
@@ -535,9 +538,9 @@
           </div>
           <div class="price-card price-card--disc">
             <p class="price-card__cfg mono">Снят с продажи · преемник</p>
-            <p class="price-card__usd">0X1 Pro</p>
-            <p class="price-card__eur mono">от $899 · Citadel 2 · 8 мм · титан</p>
-            <a class="btn btn--accent btn--wide" href="/0x1pro/">Смотреть 0X1 Pro</a>
+            <p class="price-card__usd">0X2 Pro</p>
+            <p class="price-card__eur mono">от $889 · Citadel 4 · CPix · титан</p>
+            <a class="btn btn--accent btn--wide" href="/0x2pro/">Смотреть 0X2 Pro</a>
             <p class="price-card__note">0X0 Pro продавался с&nbsp;конца 2027 года по&nbsp;осень 2028-го. Обновления безопасности — все обещанные 7&nbsp;лет, гарантия на&nbsp;купленные телефоны сохраняется. Шифратор звонков 0X0&nbsp;Pro работает и&nbsp;с&nbsp;0X1&nbsp;Pro.</p>
             <p class="price-card__concept">Это концепт-сайт: OY&nbsp;0X0&nbsp;Pro и&nbsp;компания OY вымышлены, продажи не&nbsp;велись.</p>
           </div>
@@ -592,8 +595,8 @@
       <div class="container final__inner">
         <h2 class="mega final__title" id="final-title"><span class="grad" data-split>Остаётся на&nbsp;связи.</span> <span class="grad" data-split>Не&nbsp;остаётся в&nbsp;облаке.</span></h2>
         <div class="final__cta" data-reveal>
-          <a class="btn btn--accent" href="/0x1pro/">Смотреть 0X1 Pro — от $899</a>
-          <a class="btn btn--ghost" href="/compare/">Сравнить с 0X1 Pro</a>
+          <a class="btn btn--accent" href="/0x2pro/">Смотреть 0X2 Pro — от $889</a>
+          <a class="btn btn--ghost" href="/compare/?models=pro,0x1pro,0x2pro">Сравнить с 0X1 Pro и 0X2 Pro</a>
         </div>
       </div>
       <div class="container final__pro">
@@ -621,7 +624,7 @@
         <span>OY · французский стартап</span>
       </div>
       <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-      <p class="footer__small mono">OY 0X0 Pro · Конец 2027 · снят с продажи · <a href="/0x1pro/">OY 0X1 Pro</a></p>
+      <p class="footer__small mono">OY 0X0 Pro · Конец 2027 · снят с продажи · <a href="/0x1pro/">OY 0X1 Pro</a> · <a href="/0x2pro/">OY 0X2 Pro</a></p>
       <p class="footer__concept">Концепт. OY&nbsp;0X0&nbsp;Pro и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>

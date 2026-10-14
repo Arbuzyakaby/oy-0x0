@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="ru" data-color="sky">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X2 Pro — Под пикселями.</title>
+  <meta name="description" content="OY 0X2 Pro: фронталки под экраном CPix — пиксели уезжают под соседние, камера поднимается. Гигантская шайба с двумя сенсорами 1&quot;, перископ 6–14×, Citadel 4, модем NC2 и Claw 3. Первый OY в Европе. Концепт. От $889.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0A0B">
+  <link rel="canonical" href="https://oy0x.online/0x2pro/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x2pro/">
+  <meta property="og:title" content="OY 0X2 Pro — Под пикселями.">
+  <meta property="og:description" content="Концепт смартфона: камеры под экраном CPix, шайба с двумя дюймами, зум 6–14×, Citadel 4. Первый OY в Европе. От $889 / €1019.">
+  <meta property="og:image" content="https://oy0x.online/og-0x2pro.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Смартфон OY 0X2 Pro в цвете «Парижское Небо» с гигантской шайбой камер и заголовок «0X2 Pro»">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2344586F'/%3E%3Ccircle cx='32' cy='36' r='18' fill='%23050506' stroke='%23B9C3CF' stroke-width='3'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
+  <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
+  <link rel="stylesheet" href="/css/0x2pro.css?v=d75fae0532">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=4d9bc990cd",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=c6b3c7db72",
+      "/js/data/products.js": "/js/data/products.js?v=7ca2e6c8d1",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=7e2a169dd7",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=6149c88dc8",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=ec6142f2ce",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
+      "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=f5d541bfe5",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=4ba4155ed9",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=8f136b6a0f",
+      "/js/pages/base.js": "/js/pages/base.js?v=d565cf9bf8",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=24d155cb6c",
+      "/js/pages/home.js": "/js/pages/home.js?v=853d34becf",
+      "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
+      "/js/pages/os3.js": "/js/pages/os3.js?v=b5d0199164",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x2pro.js?v=4ba4155ed9"></script>
+</head>
+<body>
+  <!-- Иконки -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+      <symbol id="i-tower" viewBox="0 0 24 24"><path d="M12 9v12M8.5 21L12 9l3.5 12M7 5.5a7 7 0 0 1 10 0M9.3 7.6a3.6 3.6 0 0 1 5.4 0"/><circle cx="12" cy="9" r="1.2"/></symbol>
+      <symbol id="i-sat" viewBox="0 0 24 24"><path d="M5 19l4-4M14 4l6 6-4 4-6-6zM8 10l6 6M4 14a6 6 0 0 0 6 6"/></symbol>
+      <symbol id="i-echo" viewBox="0 0 24 24"><rect x="9" y="4" width="6" height="16" rx="1.5"/><path d="M5.5 8a6 6 0 0 0 0 8M18.5 8a6 6 0 0 1 0 8M3 5.5a10 10 0 0 0 0 13M21 5.5a10 10 0 0 1 0 13"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: шайба и X -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <svg class="loader__mark" viewBox="0 0 120 44" aria-hidden="true">
+      <circle class="loader__o loader__o--l" cx="20" cy="22" r="16"/>
+      <path class="loader__x" d="M52 12l16 20M68 12L52 32"/>
+      <circle class="loader__o loader__o--r" cx="100" cy="22" r="16"/>
+    </svg>
+    <span class="loader__label">Сдвигаем пиксели…</span>
+  </div>
+
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+
+  <!-- Шкала глубины: вместо подменю. Видна только в режиме слоёв -->
+  <nav class="gauge" aria-label="Слои страницы" data-gauge>
+    <a class="gauge__brand" href="/" aria-label="OY — на главную">
+      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+    </a>
+    <p class="gauge__now mono" aria-hidden="true"><span data-gauge-no>1</span><i>/ 9</i></p>
+    <ol class="gauge__list" data-gauge-list></ol>
+    <a class="gauge__buy btn btn--accent btn--sm" href="#buy" data-price-from>$889</a>
+  </nav>
+  <p class="sr-only" aria-live="polite" data-announce></p>
+
+  <main id="main" class="depth" data-depth>
+
+    <!-- 1. ПИКСЕЛЬ -->
+    <section class="layer layer--pixel has-3d" id="pixel" data-layer="Пиксель" aria-labelledby="pixel-title">
+      <div class="subpx" aria-hidden="true" data-subpx></div>
+      <header class="site-header" id="top">
+        <a class="brand" href="/" aria-label="OY — на главную">
+          <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+          <span class="brand__name">OY</span>
+        </a>
+        <nav class="site-nav" aria-label="Модели">
+          <a href="/0x2e/">0X2 Essential</a>
+          <a href="/0x0/">0X0</a>
+          <a href="/0x2/">0X2</a>
+          <a href="/0x2q/">0X2Q</a>
+          <a href="/0x2pro/" aria-current="page">0X2 Pro</a>
+          <a href="/os/">OY OS</a>
+          <a href="/accessories/">Аксессуары</a>
+          <a href="/compare/">Сравнить</a>
+        </nav>
+        <a class="btn btn--accent btn--sm" href="#buy" data-price-from>$889</a>
+      </header>
+      <div class="layer__inner">
+        <div class="layer__text">
+          <p class="eyebrow mono">Осень 2029 · США и&nbsp;Евросоюз</p>
+          <h1 class="pixel__title" id="pixel-title"><span class="pixel__model">0X2 Pro</span><span class="pixel__big">Под пикселями.</span></h1>
+          <p class="lead">Над фронталками — обычные пиксели. Никаких редких, никаких «дырочек». Когда камера нужна, блок экрана гаснет и&nbsp;уезжает под соседние пиксели, а&nbsp;камера поднимается на&nbsp;его место.</p>
+          <p class="veko mono" data-veko><span class="veko__dot" aria-hidden="true"></span><span data-veko-text>Камера спрятана и&nbsp;обесточена</span></p>
+          <div class="pixel__buy">
+            <p class="price"><span class="muted">от</span> <strong data-price data-usd="889" data-eur="1019">$889</strong></p>
+            <a class="btn btn--accent" href="#buy">Купить</a>
+            <button type="button" class="btn btn--ghost" data-front-toggle aria-pressed="false">Поднять камеру</button>
+          </div>
+          <p class="hint mono" aria-hidden="true">Листайте вниз — этот слой уйдёт под пиксели <span>↓</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CPix В РАЗРЕЗЕ -->
+    <section class="layer layer--cpix has-3d" id="cpix" data-layer="CPix в разрезе" aria-labelledby="cpix-title">
+      <div class="layer__inner">
+        <div class="layer__text">
+          <p class="eyebrow mono">02 · CPix — Curtain Pixels</p>
+          <h2 class="h2 layer__h" id="cpix-title">Пятнашки из&nbsp;пикселей.</h2>
+          <p class="lead">Пиксели над каждой фронталкой склеены в&nbsp;один блок. Он гаснет, отъезжает влево под соседние пиксели и&nbsp;освобождает окно. Камера поднимается ровно туда, где у&nbsp;обычного телефона дырка в&nbsp;экране. Не&nbsp;выше.</p>
+          <figure class="xsec" data-xsec>
+            <svg class="xsec__svg" viewBox="0 0 520 220" role="img" aria-labelledby="xsec-cap" data-xsec-svg></svg>
+            <figcaption class="xsec__cap mono" id="xsec-cap" data-xsec-cap>Пиксели на&nbsp;месте. Камера в&nbsp;колодце, обесточена.</figcaption>
+          </figure>
+          <label class="range">
+            <span class="range__label mono">Ход механизма</span>
+            <input type="range" min="0" max="100" value="0" step="1" data-xsec-range aria-describedby="xsec-cap">
+          </label>
+          <ol class="stages mono" aria-hidden="true">
+            <li>Пиксели на&nbsp;месте</li><li>Блок гаснет</li><li>Уходит под соседей</li><li>Камера поднимается</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ШАЙБА -->
+    <section class="layer layer--puck has-3d" id="puck" data-layer="Шайба" aria-labelledby="puck-title">
+      <div class="layer__inner">
+        <div class="layer__text">
+          <p class="eyebrow mono">03 · Шайба Ø60&nbsp;мм</p>
+          <h2 class="h2 layer__h" id="puck-title">Стекло перетекает через край.</h2>
+          <p class="lead">Шайба стоит строго по&nbsp;центру и&nbsp;не&nbsp;заканчивается на&nbsp;спинке: стекло вместе с&nbsp;кольцом огибает верхнее ребро и&nbsp;полукругом выходит на&nbsp;верхнюю грань. Сигнальный фонарь светит прямо из&nbsp;этого наплыва — белым и&nbsp;красным, на&nbsp;6000&nbsp;м.</p>
+          <div class="balance" data-balance>
+            <p class="balance__q mono">Ткните в&nbsp;угол телефона, лежащего на&nbsp;столе</p>
+            <div class="balance__row">
+              <button type="button" class="balance__item" data-wobble="corner" aria-describedby="bal-a">
+                <svg viewBox="0 0 220 70" aria-hidden="true"><g class="balance__phone"><rect x="20" y="24" width="180" height="16" rx="5" class="balance__body"/><rect x="132" y="40" width="58" height="13" rx="3" class="balance__island"/></g><path d="M4 53h212" class="balance__table"/></svg>
+                <span id="bal-a" class="mono">Остров в&nbsp;углу — качается</span>
+              </button>
+              <button type="button" class="balance__item balance__item--oy" data-wobble="center" aria-describedby="bal-b">
+                <svg viewBox="0 0 220 70" aria-hidden="true"><g class="balance__phone"><rect x="20" y="24" width="180" height="16" rx="5" class="balance__body"/><rect x="72" y="40" width="76" height="13" rx="3" class="balance__island"/></g><path d="M4 53h212" class="balance__table"/></svg>
+                <span id="bal-b" class="mono">0X2 Pro — стоит</span>
+              </button>
+            </div>
+            <p class="note">Аккумулятор — в&nbsp;нижних двух третях корпуса, Citadel&nbsp;4 со&nbsp;своим аккумулятором — у&nbsp;самого низа. Центр тяжести совпадает с&nbsp;серединой корпуса в&nbsp;пределах миллиметра<sup class="fn"><a href="#fn-9" id="fnr-9">9</a></sup>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 14× -->
+    <section class="layer layer--zoom" id="zoom" data-layer="Зум 14×" aria-labelledby="zoom-title">
+      <div class="layer__inner layer__inner--split">
+        <div class="layer__text">
+          <p class="eyebrow mono">04 · Четыре камеры, два дюйма</p>
+          <h2 class="h2 layer__h" id="zoom-title">От&nbsp;0,5 до&nbsp;14×. Без дыр.</h2>
+          <p class="lead">Основная и&nbsp;телевик 3× — обе на&nbsp;сенсорах 1". Дальше перископ на&nbsp;200&nbsp;МП: его плавающая линза едет внутри корпуса и&nbsp;даёт оптику на&nbsp;любом шаге от&nbsp;6 до&nbsp;14×<sup class="fn"><a href="#fn-10" id="fnr-10">10</a></sup>. Покрутите кольцо.</p>
+          <dl class="lenses mono" data-lenses>
+            <div data-lens="uw"><dt>0,5×</dt><dd>Сверхширокая · 50&nbsp;МП · 122° · макро</dd></div>
+            <div data-lens="main"><dt>1×</dt><dd>Основная · 50&nbsp;МП · сенсор 1" · f/1.6</dd></div>
+            <div data-lens="tele"><dt>3×</dt><dd>Телевик · 50&nbsp;МП · сенсор 1" · f/2.0</dd></div>
+            <div data-lens="peri"><dt>6–14×</dt><dd>Перископ · 200&nbsp;МП · плавающая линза</dd></div>
+          </dl>
+        </div>
+        <div class="finder" data-finder>
+          <div class="finder__view" data-finder-view>
+            <div class="finder__scene" data-finder-scene></div>
+            <span class="finder__grid" aria-hidden="true"></span>
+            <p class="finder__meta mono" aria-live="polite"><span data-finder-x>1×</span> · <span data-finder-lens>Основная · сенсор 1"</span></p>
+            <svg class="finder__peri" viewBox="0 0 160 40" aria-hidden="true" data-finder-peri>
+              <rect x="6" y="10" width="148" height="20" rx="3" class="peri__tube"/>
+              <path d="M134 10h20v20z" class="peri__prism"/>
+              <g data-peri-lens><rect x="60" y="12" width="5" height="16" rx="2"/><rect x="68" y="11" width="6" height="18" rx="2"/><rect x="77" y="12" width="5" height="16" rx="2"/></g>
+              <rect x="8" y="12" width="3" height="16" class="peri__sensor"/>
+            </svg>
+          </div>
+          <div class="ring" data-ring>
+            <input type="range" min="0" max="1000" value="250" step="1" aria-label="Приближение, от 0,5 до 14 крат" aria-valuetext="1×" data-zoom-range>
+            <div class="ring__ticks mono" aria-hidden="true"><span>0,5</span><span>1</span><span>3</span><span>6</span><span>14</span></div>
+          </div>
+          <div class="ring__presets" role="group" aria-label="Быстрый выбор">
+            <button type="button" data-zoom="0.5">0,5×</button><button type="button" data-zoom="1">1×</button><button type="button" data-zoom="3">3×</button><button type="button" data-zoom="6">6×</button><button type="button" data-zoom="10">10×</button><button type="button" data-zoom="14">14×</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CITADEL 4 -->
+    <section class="layer layer--citadel has-3d" id="citadel" data-layer="Citadel 4" aria-labelledby="citadel-title">
+      <div class="layer__inner">
+        <div class="layer__text layer__text--wide">
+          <p class="eyebrow mono">05 · Citadel 4 · 256&nbsp;ГБ · 2500&nbsp;мАч</p>
+          <h2 class="h2 layer__h" id="citadel-title">Отдельный компьютер для&nbsp;секретов.</h2>
+          <p class="lead">Всё, что умели Citadel&nbsp;3 и&nbsp;Tesseract, плюс три новых умения. Шифратор звонков&nbsp;3 — теперь и&nbsp;через спутник.</p>
+          <div class="tabs" data-tabs>
+            <div class="tabs__list" role="tablist" aria-label="Новое в Citadel 4">
+              <button type="button" role="tab" id="tab-curtain" aria-controls="panel-curtain" aria-selected="true">«Занавес»</button>
+              <button type="button" role="tab" id="tab-catcher" aria-controls="panel-catcher" aria-selected="false" tabindex="-1">«Ловец вышек»</button>
+              <button type="button" role="tab" id="tab-lid" aria-controls="panel-lid" aria-selected="false" tabindex="-1">«Веко»</button>
+            </div>
+
+            <div class="tabs__panel" role="tabpanel" id="panel-curtain" aria-labelledby="tab-curtain">
+              <p class="tabs__lead">Кадр с&nbsp;фронталки сначала попадает в&nbsp;Citadel&nbsp;4. Фон, лица за&nbsp;спиной и&nbsp;метаданные убираются <em>до</em> системы — приложение комнату просто не&nbsp;получает.</p>
+              <div class="curtain" data-curtain>
+                <figure class="curtain__pane">
+                  <div class="room" aria-hidden="true"><span class="room__window"></span><span class="room__shelf"></span><span class="room__photo"></span><span class="room__guest"></span><span class="room__you"></span></div>
+                  <figcaption class="mono">Что видит камера</figcaption>
+                </figure>
+                <figure class="curtain__pane curtain__pane--app">
+                  <div class="room room--app" aria-hidden="true"><span class="room__window"></span><span class="room__shelf"></span><span class="room__photo"></span><span class="room__guest"></span><span class="room__you"></span></div>
+                  <figcaption class="mono">Что получает приложение</figcaption>
+                </figure>
+              </div>
+              <div class="curtain__ctl">
+                <button type="button" class="switch" role="switch" aria-checked="true" data-curtain-switch><span class="switch__track" aria-hidden="true"><span class="switch__knob"></span></span>«Занавес»</button>
+                <p class="curtain__meta mono" data-curtain-meta>Фон: заменён · Лица на&nbsp;фоне: 1 убрано · GPS и&nbsp;модель: удалены</p>
+              </div>
+            </div>
+
+            <div class="tabs__panel" role="tabpanel" id="panel-catcher" aria-labelledby="tab-catcher" hidden>
+              <p class="tabs__lead">Вместе с&nbsp;модемом NC2 Citadel&nbsp;4 узнаёт подставные вышки — IMSI-кэтчеры и&nbsp;принудительный перевод на&nbsp;2G. Телефон к&nbsp;такой вышке не&nbsp;подключается и&nbsp;отмечает её на&nbsp;карте<sup class="fn"><a href="#fn-8" id="fnr-8">8</a></sup>.</p>
+              <div class="catcher" data-catcher>
+                <svg class="catcher__map" viewBox="0 0 420 220" aria-hidden="true" data-catcher-map>
+                  <g class="catcher__streets"><path d="M0 60h420M0 150h420M90 0v220M230 0v220M340 0v220M0 205L420 20"/></g>
+                  <g class="catcher__tower" transform="translate(60 40)"><path d="M0 18L6 0l6 18M6 0v-4"/><circle cx="6" cy="-6" r="3"/></g>
+                  <g class="catcher__tower" transform="translate(360 120)"><path d="M0 18L6 0l6 18M6 0v-4"/><circle cx="6" cy="-6" r="3"/></g>
+                  <g class="catcher__tower" transform="translate(250 180)"><path d="M0 18L6 0l6 18M6 0v-4"/><circle cx="6" cy="-6" r="3"/></g>
+                  <path class="catcher__link" d="M196 112L66 36" data-catcher-link/>
+                  <g class="catcher__fake" transform="translate(150 132)" data-catcher-fake><circle class="catcher__ping" cx="6" cy="-6" r="10"/><path d="M0 18L6 0l6 18M6 0v-4"/><circle cx="6" cy="-6" r="3"/></g>
+                  <path class="catcher__bad" d="M196 112L156 126" data-catcher-bad/>
+                  <g class="catcher__phone" transform="translate(190 100)"><rect width="12" height="22" rx="3"/></g>
+                </svg>
+                <ol class="catcher__log mono" aria-live="polite" data-catcher-log><li>Сеть: оператор · 5G · подпись вышки проверена</li></ol>
+                <button type="button" class="btn btn--ghost btn--sm" data-catcher-btn>Подставить вышку</button>
+              </div>
+            </div>
+
+            <div class="tabs__panel" role="tabpanel" id="panel-lid" aria-labelledby="tab-lid" hidden>
+              <p class="tabs__lead">Блоками CPix и&nbsp;подъёмником фронталок управляет только Citadel&nbsp;4. Спрятанная камера обесточена и&nbsp;смотрит в&nbsp;изнанку экрана. Открытое окно и&nbsp;есть индикатор — подделать его нельзя. Это шторка 0X0, только для&nbsp;фронталки.</p>
+              <div class="lid" data-lid>
+                <div class="lid__phone" aria-hidden="true"><span class="lid__cell" data-lid-cell></span><span class="lid__cam"></span></div>
+                <div class="lid__side">
+                  <div class="lid__btns">
+                    <button type="button" class="btn btn--ghost btn--sm" data-lid-ask="call">Видеозвонок просит камеру</button>
+                    <button type="button" class="btn btn--ghost btn--sm" data-lid-ask="bg">Фоновый процесс просит камеру</button>
+                  </div>
+                  <ol class="lid__log mono" aria-live="polite" data-lid-log><li><time>—</time> Журнал «Века» пуст: камеру сегодня не&nbsp;поднимали</li></ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CLAW 3 -->
+    <section class="layer layer--claw has-3d" id="claw" data-layer="Claw 3" aria-labelledby="claw-title">
+      <div class="layer__inner">
+        <div class="layer__text layer__text--wide">
+          <p class="eyebrow mono">06 · Модем NC2 · Claw 3</p>
+          <h2 class="h2 layer__h" id="claw-title">Связь там, где её&nbsp;нет.</h2>
+          <div class="claw">
+            <article class="claw__card claw__card--echo">
+              <h3 class="claw__h"><svg aria-hidden="true"><use href="#i-echo"/></svg>«Эхо»</h3>
+              <p>Отдельное дальнобойное радио: телефоны OY шлют друг другу сообщения и&nbsp;координаты до&nbsp;8&nbsp;км — без вышек и&nbsp;спутника<sup class="fn"><a href="#fn-7" id="fnr-7">7</a></sup>.</p>
+              <svg class="echo" viewBox="0 0 420 120" aria-hidden="true" data-echo>
+                <path class="echo__ground" d="M0 104 L40 92 L80 98 L130 60 L170 72 L210 30 L250 52 L300 40 L340 70 L380 66 L420 84 V120 H0Z"/>
+                <g class="echo__a" transform="translate(64 78)"><rect width="9" height="16" rx="2"/></g>
+                <g class="echo__b" transform="translate(356 50)"><rect width="9" height="16" rx="2"/></g>
+                <path class="echo__arc" d="M70 76 Q210 -36 360 48" data-echo-arc/>
+                <circle class="echo__dot" r="4" cx="70" cy="76" data-echo-dot/>
+                <text x="210" y="116" class="echo__km">8 км</text>
+              </svg>
+              <div class="claw__row">
+                <button type="button" class="btn btn--ghost btn--sm" data-echo-send>Отправить «Я на&nbsp;перевале, всё хорошо»</button>
+                <p class="claw__status mono" aria-live="polite" data-echo-status></p>
+              </div>
+            </article>
+            <article class="claw__card">
+              <h3 class="claw__h"><svg aria-hidden="true"><use href="#i-sat"/></svg>Интернет через спутник</h3>
+              <p>Не&nbsp;только SMS и&nbsp;звонки: мессенджеры, почта, погода и&nbsp;подгрузка офлайн-карт — медленно, но&nbsp;там, где нет ничего<sup class="fn"><a href="#fn-6" id="fnr-6">6</a></sup>.</p>
+              <p class="claw__small mono">Только с&nbsp;некоторыми операторами США и&nbsp;Франции</p>
+            </article>
+            <article class="claw__card">
+              <h3 class="claw__h"><svg aria-hidden="true"><use href="#i-tower"/></svg>«Прогноз сети 2»</h3>
+              <p>Знает, где на&nbsp;маршруте пропадёт связь, сам скачивает нужное и&nbsp;предупреждает близких. Всё на&nbsp;телефоне, без облака.</p>
+              <div class="route" aria-hidden="true"><span style="--w:34"></span><span class="route__gap" style="--w:22"><i class="mono">≈40 мин без сети</i></span><span style="--w:44"></span></div>
+              <p class="claw__small mono">Скачано: карта участка, плейлист · Мама предупреждена</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ЕВРОПА -->
+    <section class="layer layer--europe" id="europe" data-layer="Европа" aria-labelledby="europe-title">
+      <div class="layer__inner layer__inner--split">
+        <div class="layer__text">
+          <p class="eyebrow mono">07 · Впервые в&nbsp;истории OY</p>
+          <h2 class="h2 layer__h" id="europe-title" lang="fr">Bonjour, l’Europe.</h2>
+          <p class="lead">Французский стартап наконец продаёт телефон дома. 0X2 Pro — первый OY, который выходит в&nbsp;Евросоюзе в&nbsp;один день с&nbsp;США. Цены на&nbsp;этой странице можно смотреть в&nbsp;евро.</p>
+          <div class="cur" role="radiogroup" aria-label="Валюта цен на странице" data-currency>
+            <button type="button" role="radio" data-value="usd" aria-checked="true">$ доллары</button>
+            <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">€ евро</button>
+          </div>
+          <p class="cur__big"><span class="muted">от</span> <strong data-price data-usd="889" data-eur="1019">$889</strong></p>
+          <p class="note">У&nbsp;остальных OY в&nbsp;Европе пока «скоро». Остальные модели подтянутся.</p>
+        </div>
+        <ul class="eu" aria-label="Страны Евросоюза, где продаётся 0X2 Pro" data-eu></ul>
+      </div>
+    </section>
+
+    <!-- 8. ЦВЕТА -->
+    <section class="layer layer--colors has-3d" id="colors" data-layer="Цвета" aria-labelledby="colors-title">
+      <div class="swatchwall" aria-hidden="true" data-swatchwall></div>
+      <div class="layer__inner">
+        <div class="layer__text">
+          <p class="eyebrow mono">08 · Четыре цвета — впервые у&nbsp;OY</p>
+          <h2 class="h2 layer__h" id="colors-title" data-color-name>Парижское Небо.</h2>
+          <p class="lead" data-color-desc>Тёмно-синий, уходящий в&nbsp;серо-голубой, — как небо над цинковыми крышами в&nbsp;ноябре.</p>
+          <div class="color-switch color-switch--big" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+            <button type="button" role="radio" class="color-opt" data-value="sky" aria-checked="true"><span class="swatch swatch--sky" aria-hidden="true"></span><span>Парижское Небо</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="peach" aria-checked="false" tabindex="-1"><span class="swatch swatch--peach" aria-hidden="true"></span><span>Персик</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="provence" aria-checked="false" tabindex="-1"><span class="swatch swatch--provence" aria-hidden="true"></span><span>Прованс</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="maple" aria-checked="false" tabindex="-1"><span class="swatch swatch--maple" aria-hidden="true"></span><span>Канадский Клён</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. КУПИТЬ И ХАРАКТЕРИСТИКИ -->
+    <section class="layer layer--buy" id="buy" data-layer="Купить" aria-labelledby="buy-title">
+      <div class="layer__scroll">
+        <div class="container">
+          <p class="eyebrow mono">09 · Предзаказ</p>
+          <h2 class="h2" id="buy-title">Дешевле 0X1 Pro. И&nbsp;17&nbsp;ГБ в&nbsp;базе.</h2>
+          <div class="order">
+            <div class="order__opts">
+              <p class="cfg-label mono" id="mem-label">Память</p>
+              <div class="order__mem" role="radiogroup" aria-labelledby="mem-label" data-mem-switch>
+                <button type="button" role="radio" data-value="17/512" aria-checked="true"><strong>17</strong><span class="mono">ГБ · 512&nbsp;ГБ</span></button>
+                <button type="button" role="radio" data-value="21/1024" aria-checked="false" tabindex="-1"><strong>21</strong><span class="mono">ГБ · 1&nbsp;ТБ</span></button>
+                <button type="button" role="radio" data-value="29/2048" aria-checked="false" tabindex="-1"><strong>29</strong><span class="mono">ГБ · 2&nbsp;ТБ</span></button>
+              </div>
+              <p class="note">17, 21 и&nbsp;29 — числа, которых нет ни&nbsp;у&nbsp;кого. 2&nbsp;ТБ — впервые у&nbsp;OY.</p>
+              <p class="cfg-label mono" id="buy-color-label">Цвет</p>
+              <div class="color-switch color-switch--mini order__colors" role="radiogroup" aria-labelledby="buy-color-label" data-color-switch>
+                <button type="button" role="radio" class="swatch swatch--sky" data-value="sky" aria-checked="true"><span class="sr-only">Парижское Небо</span></button>
+                <button type="button" role="radio" class="swatch swatch--peach" data-value="peach" aria-checked="false" tabindex="-1"><span class="sr-only">Персик</span></button>
+                <button type="button" role="radio" class="swatch swatch--provence" data-value="provence" aria-checked="false" tabindex="-1"><span class="sr-only">Прованс</span></button>
+                <button type="button" role="radio" class="swatch swatch--maple" data-value="maple" aria-checked="false" tabindex="-1"><span class="sr-only">Канадский Клён</span></button>
+              </div>
+            </div>
+            <div class="order__card" aria-live="polite">
+              <p class="order__cfg mono"><span data-cfg-name>OY 0X2 Pro · 17/512 ГБ</span> · <span data-cfg-color>Парижское Небо</span></p>
+              <p class="order__total" data-total aria-label="Цена"></p>
+              <div class="cur cur--small" role="radiogroup" aria-label="Валюта" data-currency>
+                <button type="button" role="radio" data-value="usd" aria-checked="true">$</button>
+                <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">€</button>
+              </div>
+              <button type="button" class="btn btn--accent btn--wide" data-stub="Это демонстрационная страница: оформление предзаказа здесь не подключено.">Оформить предзаказ</button>
+              <p class="order__note">США и&nbsp;Евросоюз, с&nbsp;осени 2029&nbsp;года. Это концепт: OY&nbsp;0X2&nbsp;Pro и&nbsp;компания OY вымышлены, предзаказ не&nbsp;ведётся.</p>
+            </div>
+          </div>
+
+          <h3 class="h3 specs-title" id="specs">Характеристики</h3>
+          <div class="specs-wrap">
+            <table class="specs">
+              <caption class="sr-only">Технические характеристики OY 0X2 Pro</caption>
+              <tbody>
+                <tr><th scope="row">Процессор</th><td>MediaTek Dimensity 9600 Pro (2&nbsp;нм) — самый мощный чип MediaTek; испарительная камера 7000&nbsp;мм²</td></tr>
+                <tr><th scope="row">Чип безопасности</th><td>Citadel&nbsp;4: свой процессор, 256&nbsp;ГБ, аккумулятор 2500&nbsp;мАч, сетка от&nbsp;вскрытия. Новое: «Веко», «Занавес», «Ловец вышек». Всё от&nbsp;Citadel&nbsp;3, Tesseract и&nbsp;Citadel&nbsp;2: «Двойник», «Кошелёк», «Мёртвая рука», «Сторож», «Последнее слово», «Тревожный палец», защита от&nbsp;магнитов, журнал кнопок, ключи доступа</td></tr>
+                <tr><th scope="row">Шифратор звонков</th><td>Шифратор&nbsp;3: голос и&nbsp;видео, сквозное шифрование со&nbsp;всеми Pro (0X0 Pro, 0X1 Pro), через спутник и&nbsp;«Эхо»</td></tr>
+                <tr><th scope="row">Экран</th><td>7" LTPO AMOLED с&nbsp;CPix, 1440×3200, 1–144&nbsp;Гц; пиковая яркость 6000&nbsp;нит<sup class="fn"><a href="#fn-3" id="fnr-3">3</a></sup>, минимальная 0,1&nbsp;нит; ШИМ 4320&nbsp;Гц; «Антиблик&nbsp;3» — отражает меньше 0,3&nbsp;% света<sup class="fn"><a href="#fn-2" id="fnr-2">2</a></sup></td></tr>
+                <tr><th scope="row">CPix</th><td>Над каждой фронталкой — блок обычных пикселей той же плотности. Камера нужна — блок гаснет и&nbsp;уезжает под соседние пиксели, камера поднимается под цельное защитное стекло. Управляет только Citadel&nbsp;4</td></tr>
+                <tr><th scope="row">Память</th><td>17/512, 21/1024 и&nbsp;29/2048&nbsp;ГБ, LPDDR5X + UFS&nbsp;4.1</td></tr>
+                <tr><th scope="row">Основная камера</th><td>50&nbsp;МП, сенсор 1", f/1.6, оптическая стабилизация</td></tr>
+                <tr><th scope="row">Сверхширокоугольная</th><td>50&nbsp;МП, 122°, автофокус, макро</td></tr>
+                <tr><th scope="row">Телевик</th><td>50&nbsp;МП, сенсор 1", 3×, f/2.0, оптическая стабилизация</td></tr>
+                <tr><th scope="row">Перископ</th><td>200&nbsp;МП, плавный оптический зум 6–14×<sup class="fn"><a href="#fn-10">10</a></sup>, f/2.8–4.2, плавающая линза, оптическая стабилизация, телемакро от&nbsp;10&nbsp;см</td></tr>
+                <tr><th scope="row">Фронтальные</th><td>Две, на&nbsp;CPix: 50&nbsp;МП, квадратный сенсор, автофокус · 50&nbsp;МП сверхширокая, 100°</td></tr>
+                <tr><th scope="row">Видео</th><td>8K/60 на&nbsp;основной, 4K/120 на&nbsp;всех задних, 4K/60 на&nbsp;фронтальных</td></tr>
+                <tr><th scope="row">Кнопки «0» и&nbsp;«1»</th><td>Программируемые, с&nbsp;фиксацией: в&nbsp;аппаратном режиме остаются утопленными; каждое срабатывание — в&nbsp;журнал Citadel&nbsp;4</td></tr>
+                <tr><th scope="row">Claw&nbsp;3</th><td>Модем OY NC2: 10&nbsp;антенн, две активные SIM, переход 5G&nbsp;→&nbsp;2G ради звонка и&nbsp;SMS, спутниковые SMS, звонки и&nbsp;интернет<sup class="fn"><a href="#fn-6">6</a></sup>, «Эхо» до&nbsp;8&nbsp;км<sup class="fn"><a href="#fn-7">7</a></sup>, «Прогноз сети&nbsp;2», «Ловец вышек»</td></tr>
+                <tr><th scope="row">Связь</th><td>5G, eSIM + физическая SIM (обе активны), Wi-Fi&nbsp;7, Bluetooth&nbsp;6.0, UWB, ИК-порт, NFC (оплата через Citadel&nbsp;4)</td></tr>
+                <tr><th scope="row">Фонари</th><td>Вспышка в&nbsp;шайбе; сигнальный фонарь на&nbsp;стеклянном наплыве шайбы на&nbsp;верхней грани — белый и&nbsp;красный, видимость до&nbsp;6000&nbsp;м; SOS от&nbsp;Citadel&nbsp;4</td></tr>
+                <tr><th scope="row">Аккумулятор</th><td>9000&nbsp;мАч<sup class="fn"><a href="#fn-4" id="fnr-4">4</a></sup>, кремний-углеродный (Si-C)</td></tr>
+                <tr><th scope="row">Зарядка</th><td>Проводная 150&nbsp;Вт, 0–100&nbsp;% за&nbsp;28&nbsp;минут<sup class="fn"><a href="#fn-5" id="fnr-5">5</a></sup>; беспроводная XMagnum 80&nbsp;Вт; обратная 15&nbsp;Вт</td></tr>
+                <tr><th scope="row">Биометрия</th><td>Ультразвуковой сканер отпечатка под экраном, отпечаток хранится в&nbsp;Citadel&nbsp;4; «Тревожный палец». Разблокировки по&nbsp;лицу нет — даже с&nbsp;двумя фронталками</td></tr>
+                <tr><th scope="row">Система</th><td>OY OS&nbsp;3 с&nbsp;функциями Citadel&nbsp;4; без Google Mobile Services, без телеметрии, без обязательного аккаунта</td></tr>
+                <tr><th scope="row">Звук и&nbsp;разъёмы</th><td>Стерео-динамики, 3,5&nbsp;мм, USB-C</td></tr>
+                <tr><th scope="row">Защита</th><td>IP69K<sup class="fn"><a href="#fn-1" id="fnr-1">1</a></sup></td></tr>
+                <tr><th scope="row">Корпус</th><td>Титановая рамка, спинка из&nbsp;матового стекла; шайба Ø60&nbsp;мм переходит на&nbsp;верхнюю грань; 166 × 78,5 × 8,6&nbsp;мм (шайба выступает на&nbsp;3,2&nbsp;мм); 236&nbsp;г</td></tr>
+                <tr><th scope="row">Цвета</th><td>«Парижское Небо», «Персик», «Прованс», «Канадский Клён» — четыре, впервые у&nbsp;OY</td></tr>
+                <tr><th scope="row">Обновления и&nbsp;гарантия</th><td>8&nbsp;лет обновлений безопасности · 26&nbsp;месяцев гарантии</td></tr>
+                <tr><th scope="row">Продажи</th><td>США и&nbsp;Евросоюз — впервые у&nbsp;OY. Выход — осень 2029&nbsp;года</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="specs-wrap">
+            <table class="prices">
+              <caption class="prices__cap mono">Цены по&nbsp;конфигурациям</caption>
+              <thead><tr><th scope="col">Конфигурация</th><th scope="col">США</th><th scope="col">Евросоюз</th></tr></thead>
+              <tbody data-price-table></tbody>
+            </table>
+          </div>
+          <div class="specs-cta">
+            <a class="btn btn--accent" href="#buy" data-to-top>Купить — от&nbsp;<span data-price data-usd="889" data-eur="1019">$889</span></a>
+            <a class="btn btn--ghost btn--dark" href="/compare/?models=0x2,0x2q,0x2pro">Сравнить с&nbsp;0X2 и&nbsp;0X2Q</a>
+            <a class="btn btn--ghost btn--dark" href="/0x1pro/">Что было у&nbsp;0X1 Pro</a>
+          </div>
+        </div>
+
+        <section class="footnotes" aria-label="Примечания">
+          <div class="container">
+            <ol class="footnotes__list">
+              <li id="fn-1">Защита IP69K по&nbsp;IEC&nbsp;60529 и&nbsp;ISO&nbsp;20653 проверена в&nbsp;лаборатории: погружение в&nbsp;пресную воду на&nbsp;глубину до&nbsp;1,5&nbsp;м на&nbsp;30&nbsp;минут и&nbsp;струи горячей воды под высоким давлением. Защита не&nbsp;постоянна и&nbsp;может снижаться со&nbsp;временем. <a href="#fnr-1" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-2">Средний коэффициент отражения покрытия «Антиблик&nbsp;3» в&nbsp;видимом диапазоне 400–700&nbsp;нм при угле падения 8°, внутреннее измерение OY. <a href="#fnr-2" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-3">Пиковая яркость при показе HDR-контента на&nbsp;3&nbsp;% площади экрана. Яркость во&nbsp;весь экран ниже: 2200&nbsp;нит. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-4">Типичная ёмкость. Минимальная номинальная — 8820&nbsp;мАч. <a href="#fnr-4" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-5">Зарядка выключенного телефона блоком OY&nbsp;Power 150&nbsp;Вт и&nbsp;кабелем из&nbsp;коробки при 25&nbsp;°C. Блок продаётся отдельно. <a href="#fnr-5" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-6">Спутниковый интернет работает только с&nbsp;некоторыми операторами США и&nbsp;Франции, на&nbsp;открытом небе. Скорость — десятки килобит в&nbsp;секунду: видео и&nbsp;тяжёлые страницы не&nbsp;загрузятся. Список операторов публикуется к&nbsp;выходу. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-7">Дальность «Эха» — на&nbsp;открытой местности в&nbsp;прямой видимости между двумя OY&nbsp;0X2&nbsp;Pro. В&nbsp;лесу и&nbsp;городе дальность меньше. Сообщения шифруются ключами Citadel&nbsp;4. <a href="#fnr-7" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-8">«Ловец вышек» распознаёт известные приёмы подставных базовых станций. Обнаружение всех видов атак не&nbsp;гарантируется. <a href="#fnr-8" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-9">Положение центра тяжести измерено на&nbsp;версии 17/512 без чехла, внутреннее измерение OY. <a href="#fnr-9" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+              <li id="fn-10">Оптический зум перископа — непрерывный от&nbsp;6 до&nbsp;14×; дальше — цифровое увеличение. Значения 0,5× и&nbsp;3× даны относительно основной камеры. <a href="#fnr-10" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+            </ol>
+            <p class="footnotes__more">Все характеристики и&nbsp;результаты испытаний — предварительные: это концепт, телефоны не&nbsp;выпускаются.</p>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="container footer__inner">
+            <div class="footer__brand">
+              <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+              <span>OY · французский стартап</span>
+            </div>
+            <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+            <p class="footer__small mono">OY 0X2 Pro · Осень 2029 · США и Евросоюз · Сняты с продажи: <a href="/0x1pro/">OY 0X1 Pro</a>, <a href="/0x1e/">OY 0X1 Essential</a></p>
+            <p class="footer__concept">Концепт. OY&nbsp;0X2&nbsp;Pro и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

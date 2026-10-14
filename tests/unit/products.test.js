@@ -49,25 +49,26 @@ test('сравнение: цены совпадают с конфигураци�
   const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
   const n = COMPARE_MODELS.length;
   const usd = COMPARE.find((r) => r[2 + n] === 'price');
-  const eur = COMPARE.find((r) => r[1] === 'Европа — скоро');
+  const eur = COMPARE.find((r) => r[1] === 'Европа');
   COMPARE_MODELS.forEach((id, i) => {
     if (PRODUCTS[id].discontinued) return;
     assert.equal(usd[2 + i], `от $${PRODUCTS[id].configs[0].usd}`);
-    assert.equal(eur[2 + i], `от €${PRODUCTS[id].configs[0].eur}`);
+    // евро настоящие только у тех, кто уже продаётся в Европе
+    assert.equal(eur[2 + i], `от €${PRODUCTS[id].configs[0].eur} · ${PRODUCTS[id].eu ? 'в продаже' : 'скоро'}`);
   });
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('сняты с продажи 0X1, 0X1Q и 0X0 Pro, в продаже шесть моделей по цене', async () => {
+test('сняты с продажи 0X1, 0X1Q, 0X0 Pro, 0X1 Pro и 0X1 Essential, в продаже пять моделей по цене', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
-  for (const id of ['0x1', '0x1q', 'pro']) assert.equal(PRODUCTS[id].discontinued, true, id);
-  assert.deepEqual(ON_SALE, ['0x1e', '0x2e', '0x0', '0x2', '0x2q', '0x1pro']);
+  for (const id of ['0x1', '0x1q', 'pro', '0x1pro', '0x1e']) assert.equal(PRODUCTS[id].discontinued, true, id);
+  assert.deepEqual(ON_SALE, ['0x2e', '0x0', '0x2', '0x2q', '0x2pro']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['0x1', '0x2'], ['0x1q', '0x2q'], ['pro', '0x1pro']],
+    [['0x1e', '0x2e'], ['0x1', '0x2'], ['0x1q', '0x2q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
@@ -122,6 +123,18 @@ test('0X2 Essential: от $399, один цвет — «Красный Маяк�
   assert.equal(PRODUCTS['0x2e'].defaultColor, 'beacon');
   // встаёт между 0X1 Essential и 0X0
   assert.ok(PRODUCTS['0x1e'].configs[0].usd < 399 && 399 < PRODUCTS['0x0'].configs[0].usd);
+});
+
+test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый OY в Европе', () => {
+  assert.deepEqual(
+    PRODUCTS['0x2pro'].configs.map((c) => [c.id, c.usd, c.eur]),
+    [['17/512', 889, 1019], ['21/1024', 1039, 1189], ['29/2048', 1289, 1469]],
+  );
+  assert.deepEqual(PRODUCTS['0x2pro'].colors, { sky: 'Парижское Небо', peach: 'Персик', provence: 'Прованс', maple: 'Канадский Клён' });
+  assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
+  // дешевле предшественника
+  assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x2pro']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
