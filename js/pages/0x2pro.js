@@ -326,8 +326,9 @@ function lightEurope() {
   euItems.slice(1).forEach((li, i) => setTimeout(() => li.classList.add('is-on'), reduceMQ.matches ? 0 : 300 + i * 55));
 }
 
-const CUR_KEY = 'oy-0x2pro-currency';
-let currency = store.get(CUR_KEY) === 'eur' ? 'eur' : 'usd';
+// выбор валюты общий с 0X Moth; старый ключ этой страницы тоже понимаем
+const CUR_KEY = 'oy-currency';
+let currency = (store.get(CUR_KEY) || store.get('oy-0x2pro-currency')) === 'eur' ? 'eur' : 'usd';
 const money = (usd, eur) => (currency === 'eur' ? `€${eur}` : `$${usd}`);
 function applyCurrency() {
   $$('[data-currency]').forEach((g) => syncRadio(g, currency));

@@ -63,7 +63,7 @@ async (page) => {
   await page.click('#europe [data-value="eur"]');
   await open(1440, 900);
   checks.euroAfterReload = await page.evaluate(() => document.querySelector('#pixel [data-price]').textContent);
-  await page.evaluate(() => { try { localStorage.removeItem('oy-0x2pro-currency'); } catch {} });
+  await page.evaluate(() => { try { localStorage.removeItem('oy-0x2pro-currency'); localStorage.removeItem('oy-currency'); } catch {} });
 
   // #layer-5 открывает Citadel 4 без анимации
   await open(1440, 900, '#layer-5');

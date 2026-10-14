@@ -4,6 +4,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PRODUCTS, ON_SALE } from '../../js/data/products.js';
+import { ACCESSORIES } from '../../js/data/accessories.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 const PAGES = ['index.html', ...readdirSync(ROOT).filter((d) => existsSync(join(ROOT, d, 'index.html')) && !d.startsWith('.')).map((d) => `${d}/index.html`)];
@@ -66,3 +67,29 @@ test('у снятых моделей на странице есть плашка
     assert.ok(html.includes(`href="${PRODUCTS[p.successor].href}"`), `${p.id}: нет ссылки на ${p.successor}`);
   }
 });
+
+test('страница 0X Moth: девять глав, у каждой id и подпись, все ссылки на главы ведут к существующим id', () => {
+  const html = read('moth/index.html');
+  const chapters = [...html.matchAll(/<section class="ch[^"]*" id="([^"]+)" data-chapter="([^"]+)"/g)];
+  assert.equal(chapters.length, 9);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  // шесть цветов на странице — те же, что в данных
+  for (const id of Object.keys(PRODUCTS.moth.colors)) assert.ok(html.includes(`data-value="${id}"`), id);
+});
+
+test('Moth — только «мотылёк»: другого слова для него нет ни в одном файле сайта', () => {
+  const word = new RegExp('бабоч' + 'к', 'i');
+  const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((d) => {
+    const rel = `${dir}/${d.name}`;
+    return d.isDirectory() ? walk(rel) : /\.(html|js|css)$/.test(d.name) ? [rel] : [];
+  });
+  const files = [...PAGES, '404.html', ...walk('js'), ...walk('css')];
+  for (const f of files) if (existsSync(join(ROOT, f))) assert.ok(!word.test(read(f)), f);
+});
+
+test('у каждого аксессуара есть рендер', () => {
+  for (const a of ACCESSORIES) assert.ok(existsSync(join(ROOT, 'img', 'accessories', `${a.id}.webp`)), a.id);
+});
+

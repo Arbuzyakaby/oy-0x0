@@ -554,6 +554,77 @@ if want("case-0x2pro"):
     put(bpy.data.objects["Case0X2Pro"], c)
     shot("case-0x2pro", c, (0.55, 1.0, 0.42))
 
+# 5g. Аксессуары 0X Moth. Модель импортируется разложенной: верхняя половина — нода Top
+#     над петлёй, половины по 82,65 мм, центры на ±42,03 мм от оси петли
+MOTH_H = 83.35 - 0.7
+MOTH_ZC = 0.7 + MOTH_H / 2
+MOTH_WING_Z = (0.7 + 4.0 + 83.35 - 3.6) / 2
+MOTH_CAMS = ((22.5, 70.5), (8.5, 70.5))
+MOTH_FLASH = (-3.2, 72.6)
+
+
+def moth_half_case(name, mat, sign):
+    """Половинка чехла «Кокон»: у петли стенки нет — Moth складывается прямо в чехле."""
+    hinge = -sign * MOTH_H / 2
+    cuts = [end(-37.0, 37.0, 3.6, hinge - 6.0, hinge + 6.0)]
+    if sign > 0:
+        wz = MOTH_WING_Z - MOTH_ZC
+        cuts += [
+            back(-34.7, 34.7, wz - 38.7, wz + 38.7, 7.5, 3.4),       # «Крыло» открыто целиком
+            side(20.0 - MOTH_ZC - 7.0, 42.0 - MOTH_ZC + 10.5, 1.7, 30, 46),   # питание и громкость
+        ]
+    else:
+        cuts += [end(-25.0, 25.0, 1.6, -MOTH_H / 2 - 6.0, -MOTH_H / 2 + 6.0)]   # USB-C и динамики
+    ob = make_case(name, mat, 75.0, MOTH_H, -3.4, 3.4, 10.0, cuts, t=1.1, tb=0.9, lip=0.7)
+    ob.location.z = sign * MOTH_ZC * MM
+    return ob
+
+
+if want("case-moth"):
+    c = new_coll("case-moth")
+    import_glb("oymoth.glb", c)
+    pc = make_mat("MothPC", "#F6D44A", rough=0.32, coat=0.5)
+    for sign, nm in ((1, "CaseMothTop"), (-1, "CaseMothBottom")):
+        put(moth_half_case(nm, pc, sign), c)
+    bpy.context.view_layer.update()
+    shot("case-moth", c, (0.55, 1.0, 0.3))
+
+# 5h. Ремешок-кольцо для 0X Moth: тканевое кольцо на запястье и алюминиевый карабин
+if want("strap-moth"):
+    c = new_coll("strap-moth")
+    bpy.ops.mesh.primitive_torus_add(major_radius=0.036, minor_radius=0.0036, major_segments=128, minor_segments=24)
+    ring = bpy.context.active_object
+    ring.name = "StrapRing"
+    ring.data.materials.append(fabric("StrapFabric", "#F6D44A"))
+    ring.scale = (1.0, 1.0, 0.55)
+    set_smooth(ring, 80.0)
+    put(ring, c)
+    b = Builder("StrapClip", ["Alu", "Port"])
+    b.prism(rrect(9.0, 16.0, 4.0, seg=10), "Y", -2.6, 2.6, "Alu", bevel_end=0.8, bevel_start=0.8, seg=3)
+    b.prism(rrect(4.0, 8.0, 2.0, seg=8), "Y", -2.7, 2.7, "Port")
+    clip = mm(b.build(location=(36.0, 0.0, 0.0)))
+    clip.rotation_euler = (0, math.radians(90), 0)
+    put(clip, c)
+    shot("strap-moth", c, (0.35, -1.0, 0.85), pad=1.12)
+
+# 5i. Стекло для «Крыла»: 0,4 мм на внешний экран, вырезы под две камеры и вспышку
+if want("glass-wing"):
+    c = new_coll("glass-wing")
+    import_glb("oymoth.glb", c)
+    gw, gh = 68.6, 76.6
+    b = Builder("GlassWing", ["ScreenGlass", "GlassPrint"])
+    b.prism(rrect(gw, gh, 7.4, seg=16), "Y", 0.0, 0.4, "ScreenGlass", bevel_end=0.12, bevel_start=0.12, seg=3)
+    b.band(rrect(gw - 0.6, gh - 0.6, 7.1, seg=16), rrect(gw - 3.0, gh - 3.0, 6.0, seg=16), "Y", 0.405, 0.43, "GlassPrint")
+    glass = b.build()
+    holes = [rprism("h", circle(6.1, 64, x, z - MOTH_WING_Z), "Y", -1.0, 1.0) for x, z in MOTH_CAMS]
+    holes.append(rprism("h", circle(2.0, 32, MOTH_FLASH[0], MOTH_FLASH[1] - MOTH_WING_Z), "Y", -1.0, 1.0))
+    cut(glass, holes)
+    glass.location = (4.0, 3.7 + 11.0, MOTH_WING_Z + 14.0)
+    glass.rotation_euler = (math.radians(-6), 0, math.radians(-3))
+    put(mm(glass), c)
+    bpy.context.view_layer.update()
+    shot("glass-wing", c, (0.45, 1.0, 0.5), pad=1.04, lens=70, light={"Top": 0.6, "Key": 1.2, "Rim": 1.4})
+
 # 5e. Шайба XMagnum 80 Вт — графитовая, с голубым кольцом; старые OY заряжает на 65 Вт
 if want("puck-80"):
     c = new_coll("puck-80")

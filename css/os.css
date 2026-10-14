@@ -745,3 +745,15 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
 @media (prefers-reduced-motion: reduce) {
   .os3-aurora i, .os3-mark__n, .os3-badge span, .scr-agent__steps .run::before { animation: none; }
 }
+
+/* ---------- Плашка OY OS 4: дебют на 0X Moth ---------- */
+
+.os4-plate {
+  display: inline-flex; align-items: center; gap: 12px; margin-bottom: 22px; padding: 8px 16px 8px 8px; max-width: 100%;
+  border-radius: 999px; border: 1px solid rgba(246, 212, 74, .45); background: rgba(246, 212, 74, .08);
+  color: var(--fg); text-decoration: none; font-size: 14px; transition: border-color .2s, background .2s;
+}
+.os4-plate b { flex: none; padding: 5px 10px; border-radius: 999px; background: #F6D44A; color: #1A1505; font-size: 12px; font-weight: 600; }
+.os4-plate i { font-style: normal; color: #F6D44A; transition: transform .3s var(--ease); }
+.os4-plate:hover { border-color: #F6D44A; background: rgba(246, 212, 74, .14); }
+.os4-plate:hover i { transform: translateX(4px); }

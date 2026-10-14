@@ -11,6 +11,7 @@ import { createOY0X2 } from '../models/oy0x2.js';
 import { createOY0X2Q } from '../models/oy0x2q.js';
 import { createOY0X2E } from '../models/oy0x2e.js';
 import { createOY0X2Pro } from '../models/oy0x2pro.js';
+import { createOYMoth } from '../models/oymoth.js';
 import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -33,15 +34,15 @@ const PI = Math.PI;
 
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
-/* ---------- Модельный ряд: пять телефонов в одном масштабе ---------- */
+/* ---------- Модельный ряд: шесть телефонов в одном масштабе ---------- */
 
 // У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
 // поэтому разница в росте настоящая: 0X2 Pro — 166 мм, 0X2Q — 142,4 мм.
-const HEIGHT = { '0x2e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x2pro': 166 };
-const TURN = { '0x2e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x2pro': -PI - 0.4 };
+const HEIGHT = { '0x2e': 150, '0x0': 146, '0x2': 161, moth: 166.7, '0x2q': 142.4, '0x2pro': 166 };
+const TURN = { '0x2e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, moth: -PI + 0.45, '0x2q': -PI + 0.5, '0x2pro': -PI - 0.4 };
 const DIST = 4.05;
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1 });
-const MODELS = { '0x2e': [createOY0X2E, 'beacon'], '0x0': [createOY0X0, 'red'], '0x2': [createOY0X2, 'honey'], '0x2q': [createOY0X2Q, 'tesseract'], '0x2pro': [createOY0X2Pro, 'sky'] };
+const MODELS = { '0x2e': [createOY0X2E, 'beacon'], '0x0': [createOY0X0, 'red'], '0x2': [createOY0X2, 'honey'], moth: [createOYMoth, 'yellow'], '0x2q': [createOY0X2Q, 'tesseract'], '0x2pro': [createOY0X2Pro, 'sky'] };
 const stages = [];
 $$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
@@ -56,8 +57,9 @@ $$('.lineup__item').forEach((item) => {
   }
   const rest = pose(id);
   // при наведении телефон разворачивается к вам экраном вполоборота;
-  // у 0X2Q заодно выезжает модуль, а 0X2 Pro поворачивается экраном и поднимает фронталку из-под CPix
-  const near = id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
+  // у 0X2Q заодно выезжает модуль, 0X2 Pro поворачивается экраном и поднимает фронталку из-под CPix,
+  // а Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам
+  const near = id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth' ? { ry: -0.35, fold: 1, rz: PI, fy: 0 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
   stage.setTarget(rest);
   stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);
