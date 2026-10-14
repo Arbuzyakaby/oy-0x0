@@ -511,3 +511,82 @@ input[type="range"] { width: 100%; accent-color: var(--accent-text); height: 28p
 @media (prefers-reduced-motion: reduce) {
   .hint span, .catcher__ping { animation: none; }
 }
+
+/* ---------- Телефон: каждый слой помещается в экран ----------
+   Модель занимает верхнюю треть, текст — остальное; второстепенное прячется.
+   Если слой всё же выше экрана, он прокручивается без видимой полосы. */
+
+@media (max-width: 760px) {
+  html.is-depth .layer { scrollbar-width: none; }
+  html.is-depth .layer::-webkit-scrollbar { display: none; }
+  .layer__inner { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  html.is-depth .has-3d .layer__inner { padding-top: 34svh; }
+  html.is-depth .layer--pixel .layer__inner { padding-top: 40svh; }
+  html.is-depth .layer--citadel .layer__inner { padding-top: 30svh; }
+  /* у «Claw 3» на телефоне модели нет — и места под неё тоже */
+  html.is-depth .layer--claw .layer__inner { padding-top: calc(var(--header-h) + 8px); }
+  html.is-depth .layer--claw .layer__text::before { display: none; }
+
+  .eyebrow { font-size: 11px; }
+  .layer__h { font-size: clamp(30px, 8.6vw, 40px); }
+  .layer__text .lead { font-size: 14px; line-height: 1.45; margin-top: 10px; }
+  .hint { display: none; }
+
+  .pixel__big { font-size: 15vw; }
+  .layer--pixel .lead { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .veko { margin-top: 12px; font-size: 11px; }
+  .pixel__buy { margin-top: 14px; gap: 10px; }
+  .pixel__buy .btn { --h: 42px; padding: 0 18px; font-size: 14px; }
+  .price strong { font-size: 26px; }
+
+  .xsec { margin-top: 14px; }
+  .xsec__cap { min-height: 0; font-size: 11px; }
+  .stages { display: none; }
+  .range { margin-top: 8px; gap: 2px; }
+
+  .balance { margin-top: 14px; }
+  .balance .note { display: none; }
+  .balance__row { margin-bottom: 0; }
+
+  .tabs { margin-top: 14px; }
+  .tabs__lead { font-size: 13px; }
+  .tabs__panel { margin-top: 10px; }
+  .curtain { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .catcher { grid-template-columns: 1.2fr 1fr; gap: 8px; }
+  .catcher__log { min-height: 0; font-size: 10px; }
+  .lid { grid-template-columns: 110px 1fr; gap: 10px; }
+  .lid__phone { width: 110px; height: 90px; }
+
+  .claw { gap: 8px; margin-top: 14px; grid-template-columns: 1fr 1fr; }
+  .claw__card { padding: 12px; font-size: 13px; line-height: 1.4; }
+  .claw__card--echo { grid-column: 1 / -1; }
+  .claw__h { font-size: 15px; margin-bottom: 4px; }
+  .claw__h svg { width: 18px; height: 18px; }
+  .route { margin-top: 10px; }
+  .route + .claw__small { margin-top: 26px; }
+
+  .cur { margin-top: 14px; }
+  .cur__big { margin-top: 8px; }
+  .cur__big strong { font-size: 56px; }
+  .eu { gap: 4px; }
+
+  .layer--colors .color-switch--big { margin-top: 14px; grid-template-columns: 1fr 1fr; }
+}
+
+/* короткие телефоны (iPhone SE и подобные): модель ниже ростом, демо компактнее */
+@media (max-width: 760px) and (max-height: 720px) {
+  html.is-depth .has-3d .layer__inner { padding-top: 30svh; }
+  html.is-depth .layer--pixel .layer__inner { padding-top: 34svh; }
+  html.is-depth .layer--citadel .layer__inner { padding-top: 26svh; }
+  .layer__h { font-size: 28px; }
+  .layer__text .lead { font-size: 13px; -webkit-line-clamp: 4; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+  .pixel__big { font-size: 13vw; }
+  .xsec__svg { max-height: 110px; }
+  .finder__view { aspect-ratio: 16 / 9; }
+  .ring__presets button { height: 32px; }
+  .echo { display: none; }
+  .claw__card p { font-size: 12px; }
+  .cur__big strong { font-size: 44px; }
+  .eu li b { font-size: 11px; }
+  .curtain__pane figcaption, .curtain__meta { font-size: 10px; }
+}

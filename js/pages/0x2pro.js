@@ -63,16 +63,18 @@ const POSES_DESKTOP = {
   buy: OFF,
 };
 const POSES_MOBILE = {
-  // на телефоне корпус не должен заходить на текст снизу: либо целиком в верхней половине,
-  // либо перевёрнут — тогда крупный план камеры, а сам телефон уходит вверх за край
-  pixel: { x: 0, y: 0.5, rx: 0.06, ry: -0.18, dist: 9.6 },
-  cpix: { x: 0, y: 0.42, fx: -0.056, fy: 0.757, fz: 0.04, rx: -0.4, ry: 0.4, rz: PI, dist: 1.25, float: 0.3 },
-  puck: { x: 0, y: 0.52, fy: 0, rx: 0.5, ry: PI - 0.4, dist: 8.2 },
+  // на телефоне модель живёт в верхней трети экрана и не заходит на текст:
+  // слои сверстаны так, что текст начинается с 34–40 % высоты
+  pixel: { x: 0, y: 0.6, rx: 0.06, ry: -0.18, dist: 10.6 },
+  // фронталки крупно: телефон лежит боком в верхней полосе, верхним краем вправо — корпус уходит
+  // за левый край экрана и не заходит ни на шапку, ни на текст
+  cpix: { x: 0.12, y: 0.7, fx: -0.056, fy: 0.757, fz: 0.04, rx: 0.9, ry: -0.2, rz: -PI / 2 + 0.2, dist: 3.6, float: 0.3 },
+  puck: { x: 0, y: 0.64, fy: 0, rx: 0.5, ry: PI - 0.4, dist: 10.4 },
   zoom: OFF,
-  citadel: { x: 0, y: 0.55, rx: 0.5, ry: -0.8, rz: 0.1, dist: 10, explode: 1, citadel: 1, vapor: 0.6, coil: 0.5 },
+  citadel: { x: 0, y: 0.7, rx: 0.5, ry: -0.8, rz: 0.1, dist: 12.5, explode: 1, citadel: 1, vapor: 0.6, coil: 0.5 },
   claw: OFF,
   europe: OFF,
-  colors: { x: 0, y: 0.52, rx: 0.12, ry: PI - 0.5, dist: 8.2 },
+  colors: { x: 0, y: 0.64, rx: 0.12, ry: PI - 0.5, dist: 10.4 },
   buy: OFF,
 };
 const BASE = { x: 0, y: 0, fx: 0, fy: 0, fz: 0, rx: 0, ry: 0, rz: 0, s: 1, dist: 5.4, float: 1, explode: 0, citadel: 0, vapor: 0, coil: 0, antenna: 0 };
@@ -478,9 +480,11 @@ const step = (d) => go(cur + d);
 
 /* ---------- Ввод: колесо, свайп, клавиши, ссылки ---------- */
 
+const SCROLL_SLACK = 24;
 function canScroll(dir) {
   const L = layers[cur];
-  return dir > 0 ? L.scrollTop + L.clientHeight < L.scrollHeight - 2 : L.scrollTop > 2;
+  // переполнение в пару десятков пикселей — не повод тратить свайп на прокрутку
+  return dir > 0 ? L.scrollTop + L.clientHeight < L.scrollHeight - SCROLL_SLACK : L.scrollTop > SCROLL_SLACK;
 }
 
 let acc = 0;
@@ -649,6 +653,6 @@ async function boot() {
     gsap.from('.layer--pixel .site-header', { yPercent: -100, opacity: 0, duration: 1, ease: 'expo.out', delay: 0.9 });
   }
   onEnter(ids[cur]);
-  if (params.has('debug')) window.__oy = { stage, fx, go, cur: () => cur, cpix, gsap };
+  if (params.has('debug')) window.__oy = { stage, fx, go, cur: () => cur, cpix, gsap, poses: { desktop: POSES_DESKTOP, mobile: POSES_MOBILE } };
 }
 boot();
