@@ -19,8 +19,9 @@ function mulberry32(a) {
 
 /** Сетка → блоки из соседних клеток. Возвращает [{ cells:[{x,y,w,h}], cx, cy, minX, maxX, minY, maxY, path }]. */
 export function makeClumps(w, h, { seed = 2029, cols } = {}) {
-  const c = cols || (w > 760 ? 8 : 4);
-  const r = Math.max(4, Math.min(9, Math.round((c * h) / w)));
+  // на телефоне блоков вдвое меньше: каждый держит полную копию слоя, а видеочип слабее
+  const c = cols || (w > 760 ? 8 : 3);
+  const r = Math.max(4, Math.min(w > 760 ? 9 : 6, Math.round((c * h) / w)));
   const rnd = mulberry32(seed + c * 31 + r);
   const owner = new Array(c * r).fill(-1);
   const order = owner.map((_, i) => i).sort(() => rnd() - 0.5);

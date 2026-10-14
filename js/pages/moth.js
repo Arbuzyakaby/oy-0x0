@@ -557,9 +557,11 @@ const step = (d) => go(cur + d);
 
 /* ---------- Ввод: колесо, свайп, клавиши, ссылки ---------- */
 
+const SCROLL_SLACK = 24;
 function canScroll(dir) {
   const C = chapters[cur];
-  return dir > 0 ? C.scrollTop + C.clientHeight < C.scrollHeight - 2 : C.scrollTop > 2;
+  // переполнение в пару десятков пикселей — не повод тратить свайп на прокрутку
+  return dir > 0 ? C.scrollTop + C.clientHeight < C.scrollHeight - SCROLL_SLACK : C.scrollTop > SCROLL_SLACK;
 }
 
 let acc = 0;
