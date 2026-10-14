@@ -43,6 +43,26 @@ test('шапка всех страниц ведёт на модели в про�
     const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
     if (!nav) continue;
     for (const id of ON_SALE) assert.ok(nav[1].includes(`href="${PRODUCTS[id].href}"`), `${p}: нет ${id}`);
-    assert.ok(!nav[1].includes('href="/0x1q/"'), `${p}: снятый 0X1Q в шапке`);
+    for (const p2 of Object.values(PRODUCTS).filter((x) => x.discontinued)) {
+      assert.ok(!nav[1].includes(`href="${p2.href}"`), `${p}: снятый ${p2.id} в шапке`);
+    }
+  }
+});
+
+test('страница 0X2 Pro: девять слоёв, у каждого id и подпись, все ссылки на слои ведут к существующим id', () => {
+  const html = read('0x2pro/index.html');
+  const layers = [...html.matchAll(/<section class="layer[^"]*" id="([^"]+)" data-layer="([^"]+)"/g)];
+  assert.equal(layers.length, 9);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  // у слоёв одна h1 — на первом
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+});
+
+test('у снятых моделей на странице есть плашка и ссылка на преемника', () => {
+  for (const p of Object.values(PRODUCTS).filter((x) => x.discontinued)) {
+    const html = read(`${p.href.slice(1)}index.html`);
+    assert.ok(html.includes('disc-plate'), `${p.id}: нет плашки`);
+    assert.ok(html.includes(`href="${PRODUCTS[p.successor].href}"`), `${p.id}: нет ссылки на ${p.successor}`);
   }
 });

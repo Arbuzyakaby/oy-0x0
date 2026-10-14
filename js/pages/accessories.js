@@ -20,9 +20,9 @@ const toast = createToast($('#toast'), gsap);
 
 // Подсветка за рендером — в цвет аксессуара
 const TINT = {
-  module: 'rgba(60, 210, 190, .2)', 'module-thermal': 'rgba(255, 120, 40, .2)', 'module-inch': 'rgba(120, 160, 255, .18)', 'module-beam': 'rgba(255, 240, 200, .18)', puck: 'rgba(232, 67, 77, .14)', cap: 'rgba(160, 170, 185, .14)',
-  'case-0x2e': 'rgba(200, 16, 46, .24)', 'cell-0x2e': 'rgba(200, 16, 46, .18)', 'case-0x2': 'rgba(217, 164, 65, .2)', 'case-0x2q': 'rgba(90, 100, 170, .2)', 'case-0x1q': 'rgba(200, 90, 50, .2)', 'case-0x1pro': 'rgba(200, 210, 225, .14)', 'case-0x1e': 'rgba(80, 220, 160, .2)', 'case-0x1': 'rgba(140, 90, 240, .22)', 'case-pro': 'rgba(40, 170, 120, .16)',
-  glass: 'rgba(232, 110, 60, .16)', power: 'rgba(255, 255, 255, .1)', faraday: 'rgba(110, 140, 90, .2)',
+  module: 'rgba(60, 210, 190, .2)', 'module-thermal': 'rgba(255, 120, 40, .2)', 'module-inch': 'rgba(120, 160, 255, .18)', 'module-beam': 'rgba(255, 240, 200, .18)', puck: 'rgba(232, 67, 77, .14)', 'puck-80': 'rgba(110, 160, 220, .2)', cap: 'rgba(160, 170, 185, .14)',
+  'case-0x2pro': 'rgba(110, 160, 220, .22)', 'case-0x2e': 'rgba(200, 16, 46, .24)', 'cell-0x2e': 'rgba(200, 16, 46, .18)', 'case-0x2': 'rgba(217, 164, 65, .2)', 'case-0x2q': 'rgba(90, 100, 170, .2)', 'case-0x1q': 'rgba(200, 90, 50, .2)', 'case-0x1pro': 'rgba(200, 210, 225, .14)', 'case-0x1e': 'rgba(80, 220, 160, .2)', 'case-0x1': 'rgba(140, 90, 240, .22)', 'case-pro': 'rgba(40, 170, 120, .16)',
+  glass: 'rgba(232, 110, 60, .16)', 'glass-3': 'rgba(110, 160, 220, .18)', power: 'rgba(255, 255, 255, .1)', faraday: 'rgba(110, 140, 90, .2)',
 };
 
 const grid = $('[data-acc-grid]');

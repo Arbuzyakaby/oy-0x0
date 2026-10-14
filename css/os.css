@@ -527,6 +527,7 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
 
 .dev--0x2e { background: radial-gradient(100% 100% at 100% 0%, rgba(200, 16, 46, .24), transparent 60%), var(--bg-2); }
 .dev--0x2 { background: radial-gradient(100% 100% at 100% 0%, rgba(240, 170, 50, .18), transparent 60%), var(--bg-2); }
+.dev--0x2pro { background: radial-gradient(100% 100% at 100% 0%, rgba(110, 160, 220, .22), transparent 60%), var(--bg-2); }
 .dev--0x2q { background: radial-gradient(100% 100% at 100% 0%, rgba(140, 120, 255, .2), transparent 60%), var(--bg-2); }
 
 .os3__grid { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }

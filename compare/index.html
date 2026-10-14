@@ -25,7 +25,7 @@
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
   <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
-  <link rel="stylesheet" href="/css/home.css?v=6896118ff4">
+  <link rel="stylesheet" href="/css/home.css?v=37a29d1048">
   <link rel="stylesheet" href="/css/compare.css?v=2f250343b5">
 
   <script type="importmap">
@@ -37,14 +37,15 @@
       "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
       "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
       "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=4d9bc990cd",
       "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
       "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
       "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
       "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
-      "/js/data/accessories.js": "/js/data/accessories.js?v=72666c8e50",
-      "/js/data/products.js": "/js/data/products.js?v=6019a85fc3",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=c6b3c7db72",
+      "/js/data/products.js": "/js/data/products.js?v=7ca2e6c8d1",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
       "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
       "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
@@ -52,19 +53,22 @@
       "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
       "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=6149c88dc8",
       "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=ec6142f2ce",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
       "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
       "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
-      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=1a319607fa",
-      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=d897cd391d",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
       "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
       "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
       "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=f5d541bfe5",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=4ba4155ed9",
       "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
-      "/js/pages/accessories.js": "/js/pages/accessories.js?v=b3bd76b34e",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=8f136b6a0f",
       "/js/pages/base.js": "/js/pages/base.js?v=d565cf9bf8",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=3df845796d",
-      "/js/pages/home.js": "/js/pages/home.js?v=d10ebe0cac",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=24d155cb6c",
+      "/js/pages/home.js": "/js/pages/home.js?v=853d34becf",
       "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
       "/js/pages/os3.js": "/js/pages/os3.js?v=b5d0199164",
       "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
@@ -72,7 +76,7 @@
   }
   </script>
   <script>document.documentElement.classList.add('js');</script>
-  <script type="module" src="/js/pages/compare.js?v=3df845796d"></script>
+  <script type="module" src="/js/pages/compare.js?v=24d155cb6c"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -128,18 +132,17 @@
       <span class="brand__name">OY</span>
     </a>
     <nav class="site-nav" aria-label="Модели">
-      <a href="/0x1e/">0X1 Essential</a>
       <a href="/0x2e/">0X2 Essential</a>
       <a href="/0x0/">0X0</a>
       <a href="/0x2/">0X2</a>
       <a href="/0x2q/">0X2Q</a>
-      <a href="/0x1pro/">0X1 Pro</a>
+      <a href="/0x2pro/">0X2 Pro</a>
       <a href="/os/">OY OS</a>
       <a href="/accessories/">Аксессуары</a>
       <a href="/compare/" aria-current="page">Сравнить</a>
     </nav>
     <div class="header-actions">
-      <a class="btn btn--accent btn--sm" href="/0x1pro/#buy">Купить</a>
+      <a class="btn btn--accent btn--sm" href="/0x2pro/#buy">Купить</a>
     </div>
   </header>
 
@@ -221,7 +224,7 @@
         <span>OY · французский стартап</span>
       </div>
       <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-      <p class="footer__small mono">OY 0X1 Essential · OY 0X2 Essential · OY 0X0 · OY 0X2 · OY 0X2Q · OY 0X1 Pro · США · Сняты с продажи: <a href="/0x1/">OY 0X1</a>, <a href="/0x1q/">OY 0X1Q</a>, <a href="/pro/">OY 0X0 Pro</a></p>
+      <p class="footer__small mono">OY 0X2 Essential · OY 0X0 · OY 0X2 · OY 0X2Q · OY 0X2 Pro · США, 0X2 Pro — и Евросоюз · Сняты с продажи: <a href="/0x1pro/">OY 0X1 Pro</a>, <a href="/0x1e/">OY 0X1 Essential</a>, <a href="/0x1/">OY 0X1</a>, <a href="/0x1q/">OY 0X1Q</a>, <a href="/pro/">OY 0X0 Pro</a></p>
       <p class="footer__concept">Концепт. OY&nbsp;0X1&nbsp;Essential, OY&nbsp;0X0, OY&nbsp;0X2, OY&nbsp;0X2Q, OY&nbsp;0X1&nbsp;Pro, OY&nbsp;0X1, OY&nbsp;0X1Q, OY&nbsp;0X0&nbsp;Pro и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефоны не&nbsp;продаются. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>

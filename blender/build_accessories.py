@@ -534,6 +534,103 @@ if want("case-0x2q"):
     put(bpy.data.objects["Case0X2Q"], c)
     shot("case-0x2q", c, (0.55, 1.0, 0.3))
 
+# 5d. Чехол 0X2 Pro «Арамид 3» — круглое окно под шайбу и открытая середина верхней грани:
+#     шайба перегибается через ребро, фонарь на её наплыве светит сквозь чехол
+if want("case-0x2pro"):
+    c = new_coll("case-0x2pro")
+    objs = import_glb("oy0x2pro.glb", c)
+    for n in ("ScreenCPix", "CPix_1", "CPix_2", "FrontCam_1", "FrontCam_2"):
+        named(objs, n).hide_render = True
+    PZ, PR = 58.21, 30.4
+    make_case("Case0X2Pro", aramid("Aramid3"), 78.5, 166.0, -4.3, 4.3, 11.0, [
+        back(-PR, PR, PZ - PR, PZ + PR, PR - 0.01, 4.3),           # шайба Ø60
+        end(-23.0, 23.0, 3.6, 78, 96),                             # наплыв шайбы и фонарь
+        end(-29.5, -24.5, 1.4, 78, 96),                            # ИК-окно
+        end(24.5, 29.5, 1.6, 78, 96),                              # 3,5 мм
+        side(26.0, 52.0, 1.8, -46, -30),                           # кнопки «0» и «1»
+        side(11.0, 55.5, 1.7, 30, 46),                             # питание и громкость
+        end(-27.0, 27.0, 1.6, -96, -78),                           # USB-C и динамики
+    ], t=1.0, tb=0.9, lip=0.7)
+    put(bpy.data.objects["Case0X2Pro"], c)
+    shot("case-0x2pro", c, (0.55, 1.0, 0.42))
+
+# 5e. Шайба XMagnum 80 Вт — графитовая, с голубым кольцом; старые OY заряжает на 65 Вт
+if want("puck-80"):
+    c = new_coll("puck-80")
+    M_SKY = make_mat("SkyRing", "#7FA6D6", metallic=1.0, rough=0.35)
+    b = Builder("Puck80", ["AluGraphite", "BlackGlass", "SignalRed", "SkyRing"])
+    b.lathe([(0.0, 0.0), (26.0, 0.0), (28.6, 0.6), (29.4, 2.0), (29.4, 6.0), (28.9, 7.2), (27.8, 7.6)], 0, 0, "AluGraphite", seg=128)
+    b.prism(circle(27.8, 128), "Y", 7.55, 7.75, "BlackGlass", bevel_end=0.15)
+    b.band(circle(21.0, 128), circle(19.8, 128), "Y", 7.76, 7.82, "SkyRing")
+    b.prism(circle(1.0, 32, 0, 24.4), "Y", 7.76, 7.82, "SignalRed")
+    b.prism(rrect(7.0, 3.2, 1.4, seg=8, cx=0.0, cy=3.5), "Z", 25.0, 33.0, "AluGraphite", bevel_end=0.6, seg=3)
+    puck = b.build()
+    puck.rotation_euler = (math.radians(90), 0, 0)
+    put(mm(puck), c)
+    cd = bpy.data.curves.new("CableCurve80", "CURVE")
+    cd.dimensions = "3D"
+    cd.bevel_depth = 1.7 * MM
+    cd.bevel_resolution = 6
+    sp = cd.splines.new("BEZIER")
+    pts = [(0, -33, 3.5), (0, -55, 2.0), (-28, -78, 1.8), (-70, -70, 1.8), (-92, -30, 1.8)]
+    sp.bezier_points.add(len(pts) - 1)
+    for bp, p in zip(sp.bezier_points, pts):
+        bp.co = Vector(p) * MM
+        bp.handle_left_type = bp.handle_right_type = "AUTO"
+    cable = bpy.data.objects.new("Cable80", cd)
+    cd.materials.append(M_BRAID)
+    c.objects.link(cable)
+    shot("puck-80", c, (0.35, -0.75, 0.85), frame=[bpy.data.objects["Puck80"]], pad=1.45, lens=70)
+
+# 5f. Стекло «Антиблик 3» для 0X2 Pro — на телефоне, сдвинуто к краю, чтобы было видно кромку
+if want("glass-3"):
+    c = new_coll("glass-3")
+    objs = import_glb("oy0x2pro.glb", c)
+    phone = named(objs, "OY0X2Pro")
+    for n in ("ScreenCPix", "CPix_1", "CPix_2", "FrontCam_1", "FrontCam_2"):
+        named(objs, n).hide_render = True
+    wall3 = make_mat("Wallpaper3", "#000000", rough=0.3)
+    nt, bsdf = nodes_of(wall3)
+    co = obj_coords(nt, 1.0)
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(co, sep.inputs["Vector"])
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 7.0
+    noise.inputs["Detail"].default_value = 0.5
+    nt.links.new(co, noise.inputs["Vector"])
+    mix = nt.nodes.new("ShaderNodeMath")
+    mix.operation = "MULTIPLY_ADD"
+    nt.links.new(sep.outputs["Z"], mix.inputs[0])
+    mix.inputs[1].default_value = 4.5
+    nt.links.new(noise.outputs["Fac"], mix.inputs[2])
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    els = ramp.color_ramp.elements
+    els[0].position, els[0].color = 0.05, hex_rgba("#070B14")
+    els[1].position, els[1].color = 0.95, hex_rgba("#BFD6F2")
+    mid = els.new(0.5)
+    mid.color = hex_rgba("#44586F")
+    nt.links.new(mix.outputs["Value"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], bsdf.inputs["Emission Color"])
+    bsdf.inputs["Emission Strength"].default_value = 0.9
+    scr = named(objs, "Screen")
+    scr.data.materials.clear()
+    scr.data.materials.append(wall3)
+    _, gb = nodes_of(M_GLASS)
+    for k, v in (("Thin Film Thickness", 240.0), ("Thin Film IOR", 1.38)):
+        if gb.inputs.get(k) is not None:
+            gb.inputs[k].default_value = v
+    b = Builder("Glass9H3", ["ScreenGlass", "GlassPrint"])
+    b.prism(rrect(75.4, 162.6, 9.4, seg=16), "Y", -0.5, 0.0, "ScreenGlass", bevel_end=0.12, bevel_start=0.32, seg=4)
+    b.band(rrect(74.8, 162.0, 9.1, seg=16), rrect(70.6, 157.8, 7.2, seg=16), "Y", 0.005, 0.03, "GlassPrint")
+    glass = b.build(location=(0.0, -12.0, -22.0))
+    glass.rotation_euler = (math.radians(4), 0, math.radians(1.5))
+    mm(glass)
+    glass.parent = phone
+    put(glass, c)
+    phone.rotation_euler = (math.radians(-90), 0, math.radians(28))
+    bpy.context.view_layer.update()
+    shot("glass-3", c, (0.55, -1.0, 0.62), pad=1.03, lens=70, roll_floor=False, light={"Top": 0.5, "Key": 1.2, "Rim": 1.4})
+
 # 6. Заглушка Q — алюминиевая крышка разъёма модуля, на телефоне
 if want("cap"):
     c = new_coll("cap")
