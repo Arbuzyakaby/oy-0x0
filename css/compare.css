@@ -55,26 +55,59 @@
   transform: translateY(-110%); opacity: 0; transition: transform .35s var(--ease), opacity .35s;
 }
 .cx-sticky.is-on { transform: none; opacity: 1; }
+.cx-sticky::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
 .cx-sticky__inner { max-width: 1120px; margin: 0 auto; padding: 14px var(--gutter); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 40px); text-align: center; font-weight: 600; font-size: 15px; }
 
 .cx-tools { margin-top: clamp(48px, 8vh, 80px); display: flex; justify-content: center; }
 
 /* ---------- Разделы ---------- */
 
-.cx-sec { margin-top: clamp(48px, 7vh, 80px); }
-.cx-sec__title { padding-bottom: 14px; border-bottom: 1px solid var(--line-2); font-size: clamp(24px, 2.4vw, 32px); font-weight: 650; letter-spacing: -.025em; }
-.cx-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 40px); padding: 18px 0; border-bottom: 1px solid var(--line); }
-.cx-row--hero { border-bottom: 0; padding: 36px 0 10px; }
-.cx-cell { display: grid; gap: 4px; align-content: start; text-align: center; }
-.cx-cell__k { font-size: 12px; color: var(--muted); letter-spacing: .02em; }
-.cx-cell__v { font-size: 15px; line-height: 1.45; }
-.cx-cell__v.is-none { color: var(--muted); }
-.cx-hero { justify-items: center; gap: 10px; }
-.cx-hero__big { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
-.cx-hero__icon { width: 46px; height: 46px; fill: none; stroke: var(--fg); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.cx-hero__cap { max-width: 26ch; font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--fg); }
+/* Как у Apple: раздел — крупный заголовок и линия, дальше без рамок.
+   Строка с иконкой открывает группу, остальные — тихие строки под ней */
+.cx-body { counter-reset: sec; }
+.cx-sec { position: relative; isolation: isolate; margin-top: clamp(56px, 9vh, 104px); padding-top: 22px; }
+/* красная линия раздела гаснет вправо, под ней — номер раздела */
+.cx-sec::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, var(--accent) 0 18%, var(--line-2) 18% 100%); }
+.cx-sec::after {
+  content: ''; position: absolute; z-index: -1; left: -10%; top: -60px; width: 60%; height: 260px; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 16%, transparent), transparent);
+}
+.cx-sec__title { font-size: clamp(28px, 3vw, 40px); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; }
+.cx-sec__title::before { counter-increment: sec; content: counter(sec, decimal-leading-zero); display: block; margin-bottom: 10px; font: 600 12px var(--mono); letter-spacing: .1em; color: var(--accent-text); }
+.cx-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 40px); padding: 11px 0; }
+.cx-row--icon { margin-top: clamp(26px, 4vh, 44px); }
+.cx-sec__title + .cx-row { margin-top: 18px; }
+.cx-cell { display: grid; justify-items: center; align-content: start; gap: 4px; text-align: center; padding: 0 4px; }
+.cx-cell__k { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+/* красная точка — у моделей здесь разные значения */
+.cx-row:not(.is-same) .cx-cell__k::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent-text); }
+.cx-cell__v { display: grid; gap: 3px; max-width: 30ch; font-size: 14px; line-height: 1.45; text-wrap: balance; }
+.cx-cell__v b { font-weight: 600; color: var(--fg); }
+.cx-cell__v span { color: #B9B9BE; }
+.cx-row--icon .cx-cell__v b { font-size: 15px; }
+.cx-none { display: block; width: 14px; height: 2px; margin: 9px auto; background: var(--fg); border-radius: 1px; font-size: 0; }
 
-.cx-page.only-diff .cx-row.is-same:not(.cx-row--hero), .cx-page.only-diff .cx-sec.is-same { display: none; }
+/* иконки: тонкая линия, текст внутри — как «A20 PRO» на значке чипа */
+.cx-ico { --ico: 76px; width: calc(var(--ico) * var(--w, 1)); height: var(--ico); margin-bottom: 12px; overflow: visible; }
+.cx-ico .cx-ico__line, .cx-ico .cx-ico__chip { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cx-ico .is-dash { stroke-dasharray: 3 4; opacity: .5; }
+.cx-ico .cx-ico__chip { stroke-width: 2.4; }
+.cx-ico .cx-ico__dot { fill: var(--accent-text); }
+.cx-ico .cx-ico__crease { fill: none; stroke: var(--accent-text); stroke-width: 2; stroke-linecap: round; }
+.cx-ico .cx-ico__fill { fill: rgba(255, 255, 255, .14); }
+.cx-ico .cx-ico__fill.is-accent { fill: var(--accent); }
+.cx-ico .cx-ico__t--red { fill: var(--accent-text); }
+.cx-ico .cx-ico__hole { fill: var(--bg); stroke: var(--fg); stroke-width: 1.2; }
+.cx-ico .cx-ico__gap { stroke: var(--bg); stroke-width: 2; }
+.cx-ico__t { fill: var(--fg); font-family: var(--sans); font-weight: 650; text-anchor: middle; letter-spacing: -.02em; }
+.cx-ico__t--big { font-weight: 750; }
+.cx-ico__t--small { font-family: var(--mono); font-weight: 600; letter-spacing: .04em; fill: var(--accent-text); }
+.cx-ico__t--tag { font-family: var(--mono); font-weight: 700; text-anchor: end; fill: var(--accent-text); }
+.cx-ico.is-accent .cx-ico__chip { fill: var(--accent); stroke: var(--accent); }
+.cx-ico.is-accent .cx-ico__t { fill: var(--accent-ink); }
+.cx-ico.is-none { opacity: .55; }
+
+.cx-page.only-diff .cx-row.is-same, .cx-page.only-diff .cx-sec.is-same { display: none; }
 .cx-note { margin-top: 48px; text-align: center; }
 
 /* ---------- Адаптив: на телефоне — две колонки, как у Apple ---------- */
@@ -84,6 +117,9 @@
   .cx-col[data-col="2"], .cx-row > :nth-child(3), .cx-sticky__inner > :nth-child(3) { display: none; }
   .cx-select select { font-size: 14px; height: 44px; padding: 0 34px 0 12px; }
   .cx-canvas { height: 260px; }
-  .cx-cell__v { font-size: 14px; }
-  .cx-hero__big { font-size: 40px; }
+  .cx-cell__v { font-size: 13px; }
+  .cx-ico { --ico: 60px; }
 }
+
+/* «Только различия» горит красным */
+.cx-page .cmp-toggle input:checked + .cmp-toggle__track { background: var(--accent); border-color: var(--accent); }

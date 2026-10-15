@@ -57,7 +57,8 @@ const POSES_DESKTOP = {
   claw: OFF,
   msc: OFF,
   cams: { x: 0.52, y: -0.02, fy: FC, rx: -0.05, ry: 0.36, rz: PI, dist: 3.7, float: 0.4 },
-  colors: { x: 0.45, y: 0, rx: 0.2, ry: -0.7, rz: 0.1, dist: 5.2 },
+  // в «Цветах» Moth стоит разложенным, экраном к вам: видно, как меняются обои
+  colors: { x: 0.45, y: 0, rx: 0.06, ry: -0.32, rz: 0.03, dist: 5.3, float: 0.5 },
   buy: OFF,
 };
 const POSES_MOBILE = {
@@ -68,13 +69,13 @@ const POSES_MOBILE = {
   claw: OFF,
   msc: OFF,
   cams: { x: 0, y: 0.5, fy: FC, ry: 0.25, rz: PI, dist: 5.6 },
-  colors: { x: 0, y: 0.42, rx: 0.2, ry: -0.6, dist: 8.4 },
+  colors: { x: 0, y: 0.42, rx: 0.06, ry: -0.28, dist: 8.6, float: 0.5 },
   buy: OFF,
 };
 // Сложенность по главам
-const FOLD = { light: null, wing: 1, cocoon: null, argon: 0, claw: 0, msc: 0, cams: 1, colors: 0.42, buy: 0 };
+const FOLD = { light: null, wing: 1, cocoon: null, argon: 0, claw: 0, msc: 0, cams: 1, colors: 0, buy: 0 };
 const BASE = { x: 0, y: 0, fx: 0, fy: 0, fz: 0, rx: 0, ry: 0, rz: 0, s: 1, dist: 5.4, float: 1 };
-const lampPose = { x: 0, y: 0, on: false };
+const lampPose = { on: false };
 
 function tick() {
   if (!stage) return;
@@ -87,11 +88,6 @@ function tick() {
   if (id === 'cocoon' || id === 'light') v.fy = FC * clamp01(f) * 0.9;
   // складываясь, Moth переворачивается петлёй вниз — «Крыло» читается как надо
   if (id === 'light' || id === 'wing') v.rz += PI * smoothstep(v.fold);
-  if (id === 'colors' && lampPose.on) {
-    v.x = lampPose.x;
-    v.y = lampPose.y;
-    v.ry += lampPose.x * 0.6;
-  }
   v.flash = fx.flash;
   v.redFlash = fx.redFlash;
   v.wing = fx.wing;
@@ -218,19 +214,136 @@ function playScore() {
   gsap.to(o, { v: 1.5, duration: reduceMQ.matches ? 0.01 : 1.4, ease: 'power3.out', onUpdate: () => { scoreNum.textContent = o.v.toFixed(1).replace('.', ','); } });
 }
 
-/* ---------- 5. Антенны ---------- */
-
+// Блоки кристалла: нажали — внизу рассказ о блоке
 {
-  const ant = $('[data-ant]');
-  const cap = $('[data-ant-cap]');
-  const btn = $('[data-ant-toggle]');
-  btn.addEventListener('click', () => {
-    const folded = !ant.classList.contains('is-folded');
-    ant.classList.toggle('is-folded', folded);
-    btn.setAttribute('aria-pressed', String(folded));
-    btn.textContent = folded ? 'Раскрыть' : 'Сложить';
-    cap.textContent = folded ? 'Сложен: работают антенны у петли и на крышке' : 'Разложен: работают антенны по краям';
+  const group = $('[data-die-switch]');
+  const info = $('.die-info');
+  const k = $('[data-die-k]');
+  const t = $('[data-die-t]');
+  const DIE = {
+    core: ['Argon 1 · весь кристалл', 'Пять блоков на одном кристалле. Чем меньше отдельных чипов, тем тоньше половины Moth. Нажмите на любой блок.'],
+    cpu: ['8 ядер · процессор', 'Мощные ядра берут игры и камеру, экономные держат фон и «Крыло». В Moth частоты ниже, чем будут в обычном корпусе.'],
+    gpu: ['Графика · своя', 'Первая собственная графика OY. Рисует OY OS 4 сразу на двух экранах и не перегревает тонкие половины.'],
+    npu: ['NPU · нейроблок', 'Обрабатывает снимки и отвечает за OY Assist на «Крыле». Считает прямо на телефоне.'],
+    nc: ['NC3 · модем', 'Модем живёт внутри Argon, а не отдельным чипом рядом. Что он умеет — в следующей главе.'],
+    msc: ['MSC · безопасность', 'Ключи накопителя, отпечаток и оплата NFC. Чего он не умеет, мы честно рассказываем через главу.'],
+  };
+  initRadioGroup(group, (v) => {
+    syncRadio(group, v);
+    k.textContent = DIE[v][0];
+    t.textContent = DIE[v][1];
+    info.classList.remove('is-in');
+    void info.offsetWidth;
+    if (!reduceMQ.matches) info.classList.add('is-in');
   });
+}
+
+/* ---------- 5. Связь ---------- */
+
+// Три функции NC3 слева переключают сцену справа; в шапке сцены — «статус-бар»
+const net = {};
+{
+  const box = $('[data-net]');
+  const tag = $('[data-net-tag]');
+  const bars = $('[data-net-bars]');
+  const gen = $('[data-net-gen]');
+  const status = (t, lvl, g) => { tag.textContent = t; bars.dataset.lvl = String(lvl); gen.textContent = g; };
+
+  /* 01 · антенны */
+  const ant = $('[data-ant]');
+  const antCap = $('[data-ant-cap]');
+  const antGroup = $('[data-ant-switch]');
+  const ANT = {
+    open: 'Разложен: работают антенны по краям',
+    folded: 'Сложен: работают антенны у петли и на крышке',
+    fist: 'В кулаке: нижние антенны закрыты рукой, связь ушла наверх и в петлю',
+  };
+  initRadioGroup(antGroup, (v) => {
+    syncRadio(antGroup, v);
+    ant.dataset.antState = v;
+    antCap.textContent = ANT[v];
+  });
+
+  /* 02 · сотовая + Wi-Fi */
+  const bond = $('[data-bond]');
+  const walk = $('[data-bond-walk]');
+  const bondCap = $('[data-bond-cap]');
+  let away = false;
+  function setBond(cell, wifi) {
+    const sum = cell + wifi;
+    const max = 600;
+    [['cell', cell], ['wifi', wifi], ['sum', sum]].forEach(([k, v]) => {
+      $(`[data-bond-${k}]`).style.setProperty('--v', String(Math.min(1, v / max)));
+      const n = $(`[data-bond-${k}-n]`);
+      const o = { v: Number(n.textContent) || 0 };
+      gsap.to(o, { v, duration: reduceMQ.matches ? 0.01 : 0.9, ease: 'power2.out', onUpdate: () => { n.textContent = String(Math.round(o.v)); } });
+    });
+    bond.style.setProperty('--w-cell', String(2 + cell / 70));
+    bond.style.setProperty('--w-wifi', String(1 + wifi / 70));
+  }
+  walk.addEventListener('click', () => {
+    away = !away;
+    bond.classList.toggle('is-away', away);
+    walk.setAttribute('aria-pressed', String(away));
+    walk.textContent = away ? 'Вернуться домой' : 'Уйти от роутера';
+    if (away) setBond(470, 60); else setBond(210, 380);
+    bondCap.textContent = away
+      ? 'Во дворе Wi-Fi слабеет, и 5G берёт поток на себя. Видео не останавливается'
+      : 'Дома: Wi-Fi и 5G тянут вместе, Мбит/с';
+  });
+
+  /* 03 · звонок */
+  const ladder = $$('[data-ladder] li');
+  const callBtn = $('[data-call-go]');
+  const callCap = $('[data-call-cap]');
+  const callTime = $('[data-call-time]');
+  const GENS = ['5G', '4G', '3G', '2G'];
+  const CALL = [
+    'Город, 5G. Звонок идёт.',
+    'Пригород, 4G. Звонок не прерывался.',
+    'Трасса, 3G. Интернет еле дышит, голос чистый.',
+    'Дача, 2G. Интернета почти нет, а мама слышит вас.',
+  ];
+  let g = 0;
+  let sec = 0;
+  let timer = 0;
+  const fmt = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  function paintCall() {
+    ladder.forEach((li, i) => { li.classList.toggle('is-on', i === g); li.classList.toggle('is-past', i < g); });
+    callCap.textContent = CALL[g];
+    callBtn.textContent = g === GENS.length - 1 ? 'Вернуться в город' : 'Уехать дальше';
+    if (g === 0) callBtn.textContent = 'Уехать за город';
+    status('Звонок · NC3', 4 - g, GENS[g]);
+  }
+  callBtn.addEventListener('click', () => {
+    g = g === GENS.length - 1 ? 0 : g + 1;
+    paintCall();
+  });
+  net.callRun = (on) => {
+    clearInterval(timer);
+    if (on) timer = setInterval(() => { sec += 1; callTime.textContent = fmt(sec); }, 1000);
+  };
+
+  /* переключение сцен */
+  const group = $('[data-net-switch]');
+  const scenes = { fold: ant, bond, call: $('[data-call]') };
+  let scene = 'fold';
+  function setScene(v) {
+    syncRadio(group, v);
+    if (v === scene) return;
+    scene = v;
+    box.dataset.scene = v;
+    Object.entries(scenes).forEach(([k, el]) => {
+      el.hidden = k !== v;
+      el.classList.toggle('is-in', k === v && !reduceMQ.matches);
+    });
+    if (v === 'fold') status('NC3 · антенны', 4, '5G');
+    if (v === 'bond') status('NC3 · 5G + Wi-Fi', 4, '5G+');
+    if (v === 'call') paintCall();
+    net.callRun(v === 'call' && ids[cur] === 'claw');
+  }
+  initRadioGroup(group, setScene);
+  net.isCall = () => scene === 'call';
 }
 
 /* ---------- 6. MSC: отдельный чип не влезает ---------- */
@@ -313,28 +426,16 @@ function setColor(name, { instant = false } = {}) {
 $$('[data-color-switch]').forEach((g) => initRadioGroup(g, (v) => setColor(v)));
 
 const lamp = $('[data-lamp]');
-const colorsCh = $('#colors');
-const lampHint = $('[data-lamp-hint]');
 function placeLamp(px, py) {
-  const w = window.innerWidth, h = window.innerHeight;
   lamp.style.transform = `translate(${px}px, ${py}px)`;
-  // Moth летит к лампе, но держится чуть ниже и в стороне — не закрывает свет
+  // Moth стоит на месте: в этой главе меняются только корпус и обои
   lampPose.on = true;
-  lampPose.x = Math.max(-0.85, Math.min(0.85, (px / w) * 2 - 1 - 0.1));
-  lampPose.y = Math.max(-0.7, Math.min(0.7, -((py / h) * 2 - 1) - 0.22));
 }
 function resetLamp() {
   const w = window.innerWidth, h = window.innerHeight;
   if (mobileMQ.matches) placeLamp(w * 0.62, h * 0.16); else placeLamp(w * 0.78, h * 0.26);
 }
-const setLampHint = () => {
-  lampHint.textContent = mobileMQ.matches
-    ? 'Тяните лампу пальцем или зажгите лампочку на гирлянде'
-    : 'Ведите лампу курсором или зажгите лампочку на гирлянде';
-};
-setLampHint();
-mobileMQ.addEventListener('change', setLampHint);
-// гирлянда: лампочка загорается, качается, и лампа с Moth летят к ней
+// гирлянда: лампочка загорается, качается, и лампа летит к ней
 $$('[data-garland] li').forEach((li) => li.addEventListener('click', () => {
   setColor(li.dataset.value);
   const r = $('i', li).getBoundingClientRect();
@@ -343,19 +444,6 @@ $$('[data-garland] li').forEach((li) => li.addEventListener('click', () => {
   void li.offsetWidth;
   if (!reduceMQ.matches) li.classList.add('is-swing');
 }));
-colorsCh.addEventListener('pointermove', (e) => {
-  if (e.pointerType === 'touch' || ids[cur] !== 'colors' || e.target.closest('.ch__text, [data-garland]')) return;
-  placeLamp(e.clientX, e.clientY);
-});
-lamp.addEventListener('pointerdown', (e) => {
-  e.preventDefault();
-  lamp.setPointerCapture(e.pointerId);
-  const move = (ev) => placeLamp(ev.clientX, ev.clientY);
-  const up = () => { lamp.removeEventListener('pointermove', move); lamp.removeEventListener('pointerup', up); lamp.removeEventListener('pointercancel', up); };
-  lamp.addEventListener('pointermove', move);
-  lamp.addEventListener('pointerup', up);
-  lamp.addEventListener('pointercancel', up);
-});
 
 /* ---------- 9. Купить и валюта ---------- */
 
@@ -449,6 +537,24 @@ function snapshot(ch) {
   return c;
 }
 
+// Копия начинает CSS-анимации с нуля (свечение лампы, стрелка, гирлянда), и на
+// листе они прыгали. Выставляем копиям то же время, что у оригинала
+function syncAnimations(src, clone) {
+  const own = src.getAnimations({ subtree: true });
+  if (!own.length) return;
+  const srcEls = [src, ...src.querySelectorAll('*')];
+  const cloneEls = [clone, ...clone.querySelectorAll('*')];
+  const cloneAnims = clone.getAnimations({ subtree: true });
+  own.forEach((a) => {
+    const t = cloneEls[srcEls.indexOf(a.effect?.target)];
+    if (!t) return;
+    const pseudo = a.effect.pseudoElement || null;
+    cloneAnims.forEach((b) => {
+      if (b.effect?.target === t && (b.effect.pseudoElement || null) === pseudo && b.animationName === a.animationName) b.currentTime = a.currentTime;
+    });
+  });
+}
+
 function flip(fromEl, toEl, dir) {
   const flap = document.createElement('div');
   flap.className = 'flap';
@@ -473,6 +579,8 @@ function flip(fromEl, toEl, dir) {
   document.body.append(flap);
   fClone.scrollTop = fromEl.scrollTop;
   bClone.scrollTop = 0;
+  syncAnimations(fromEl, fClone);
+  syncAnimations(toEl, bClone);
 
   // под листом — новая глава целиком; от старой остаётся неподвижная половина
   toEl.classList.add('is-under');
@@ -484,7 +592,8 @@ function flip(fromEl, toEl, dir) {
   const sign = dir > 0 ? -1 : 1;
   return new Promise((resolve) => {
     gsap.to(o, {
-      a: 180, duration: mobileMQ.matches ? 0.75 : 0.9, ease: 'power2.in',
+      // лист разгоняется и мягко ложится: с power2.in он бил в край на полной скорости
+      a: 180, duration: mobileMQ.matches ? 0.8 : 0.95, ease: 'power2.inOut',
       onUpdate: () => {
         leaf.style.transform = `rotateX(${sign * o.a}deg)`;
         const t = o.a / 180;
@@ -510,8 +619,8 @@ function onEnter(id) {
     // первый экран: Moth прилетает сложенным и раскрывается
     if (!reduceMQ.matches) { fx.fold = 1; setTimeout(() => { if (ids[cur] === 'light') setHeroFold(false); }, 500); }
   }
-  if (id === 'cocoon') setAngle(Number(angle.value), { tween: true });
   if (id === 'argon') playScore();
+  if (id === 'claw') net.callRun(net.isCall());
   if (id === 'cams') stage?.setWing(camLens === '1' ? 'camera' : 'camera-wide');
   if (id === 'colors' && !lampPose.on) resetLamp();
 }
@@ -527,6 +636,7 @@ function onLeave(id) {
     wingStatus.textContent = WING_TEXT[wingApp];
   }
   if (id === 'colors') lampPose.on = false;
+  if (id === 'claw') net.callRun(false);
 }
 
 async function go(to, { instant = false } = {}) {
@@ -534,10 +644,19 @@ async function go(to, { instant = false } = {}) {
   const from = cur;
   busy = true;
   onLeave(ids[from]);
-  // модель складывается в такт листу
-  const fromFold = FOLD[ids[from]] ?? fx.fold;
-  if (FOLD[ids[from]] === null || ids[from] === 'cocoon') fx.fold = fromFold;
+  const fromFold = stage ? stage.debug.cur.fold : 0;
   cur = to;
+  // у «Летит на свет» и «Кокона» сгиб свой — задаём его сразу, а не после листа,
+  // иначе Moth сперва едет к старому значению fx.fold и потом разворачивается
+  let toFold = FOLD[ids[to]] ?? fx.fold;
+  if (ids[to] === 'light') {
+    toFold = foldBtn.getAttribute('aria-pressed') === 'true' ? 1 : 0;
+    tweenFold(toFold, 1.1);
+  }
+  if (ids[to] === 'cocoon') {
+    toFold = 1 - Number(angle.value) / 180;
+    setAngle(Number(angle.value), { tween: true });
+  }
   history.replaceState(null, '', to === 0 ? location.pathname + location.search : `#${ids[to]}`);
   announce.textContent = `Глава ${to + 1} из ${N}: ${chapters[to].dataset.chapter}`;
   chapters[to].scrollTop = 0;
@@ -545,7 +664,11 @@ async function go(to, { instant = false } = {}) {
     paint();
     if (!instant) gsap.fromTo(chapters[to], { opacity: 0 }, { opacity: 1, duration: 0.3, clearProps: 'opacity' });
   } else {
-    gsap.fromTo(fx, { pulse: 0 }, { keyframes: [{ pulse: 1, duration: 0.45, ease: 'power2.in' }, { pulse: 0, duration: 0.6, ease: 'power2.out' }] });
+    // Moth «кивает» сгибом в такт листу, только если сам сгиб между главами не
+    // меняется. Поверх смены сгиба пульс тянул в обратную сторону, и модель дёргалась
+    const settled = Math.abs(toFold - fromFold) < 0.15;
+    if (settled) gsap.fromTo(fx, { pulse: 0 }, { keyframes: [{ pulse: 1, duration: 0.45, ease: 'sine.inOut' }, { pulse: 0, duration: 0.6, ease: 'sine.inOut' }] });
+    else fx.pulse = 0;
     await flip(chapters[from], chapters[to], to > from ? 1 : -1);
     paint();
   }

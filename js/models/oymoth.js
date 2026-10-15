@@ -39,23 +39,37 @@ const MONO = '"JetBrains Mono", ui-monospace, monospace';
 
 /* ---------- Складной экран: OY OS 4 ---------- */
 
-function drawMain(canvas, c, app = 'clock') {
+// Обои под цвет корпуса: картинка заполняет холст целиком, лишнее обрезается
+const ready = (img) => img && img.complete && img.naturalWidth > 0;
+function drawCover(g, img, Wc, Hc, { top = false } = {}) {
+  const k = Math.max(Wc / img.naturalWidth, Hc / img.naturalHeight);
+  const w = img.naturalWidth * k, h = img.naturalHeight * k;
+  g.drawImage(img, (Wc - w) / 2, top ? 0 : (Hc - h) / 2, w, h);
+}
+
+function drawMain(canvas, c, app = 'clock', wall = null) {
   const g = canvas.getContext('2d');
   const Wc = canvas.width, Hc = canvas.height;
   const px = Wc / SCR.w;                       // пикселей на мм
   g.clearRect(0, 0, Wc, Hc);
-  const bg = g.createLinearGradient(0, 0, 0, Hc);
-  bg.addColorStop(0, '#0E0D12');
-  bg.addColorStop(1, '#040405');
-  g.fillStyle = bg;
-  g.fillRect(0, 0, Wc, Hc);
-  // «Пыльца»: свет цвета корпуса сверху и снизу — система в тон телефона
-  for (const [x, y, r, a] of [[0.85, 0.08, 1.1, 'aa'], [0.1, 0.92, 0.9, '66']]) {
-    const rg = g.createRadialGradient(Wc * x, Hc * y, 10, Wc * x, Hc * y, Wc * r);
-    rg.addColorStop(0, c.accent + a);
-    rg.addColorStop(1, 'rgba(0,0,0,0)');
-    g.fillStyle = rg;
+  if (ready(wall)) {
+    g.fillStyle = '#000';
     g.fillRect(0, 0, Wc, Hc);
+    drawCover(g, wall, Wc, Hc);
+  } else {
+    const bg = g.createLinearGradient(0, 0, 0, Hc);
+    bg.addColorStop(0, '#0E0D12');
+    bg.addColorStop(1, '#040405');
+    g.fillStyle = bg;
+    g.fillRect(0, 0, Wc, Hc);
+    // «Пыльца»: свет цвета корпуса сверху и снизу — система в тон телефона
+    for (const [x, y, r, a] of [[0.85, 0.08, 1.1, 'aa'], [0.1, 0.92, 0.9, '66']]) {
+      const rg = g.createRadialGradient(Wc * x, Hc * y, 10, Wc * x, Hc * y, Wc * r);
+      rg.addColorStop(0, c.accent + a);
+      rg.addColorStop(1, 'rgba(0,0,0,0)');
+      g.fillStyle = rg;
+      g.fillRect(0, 0, Wc, Hc);
+    }
   }
   const ink = '#F4F3EF', dim = 'rgba(244,243,239,.6)';
   g.textBaseline = 'middle';
@@ -93,7 +107,7 @@ function drawMain(canvas, c, app = 'clock') {
   // сгиб посередине: карточки обходят его, как в настоящей системе
   const card = (y, h, title, lines, tint) => {
     roundRect(g, 38, y, Wc - 76, h, 32);
-    g.fillStyle = tint || 'rgba(255,255,255,.075)';
+    g.fillStyle = tint || (ready(wall) ? 'rgba(6,6,8,.62)' : 'rgba(255,255,255,.075)');
     g.fill();
     g.textAlign = 'left';
     g.fillStyle = ink;
@@ -172,7 +186,7 @@ function drawContinued(g, Wc, Hc, app, c, ink, dim) {
 
 export const WING_MODES = ['clock', 'assist', 'player', 'camera', 'camera-wide', 'off'];
 
-function drawWing(canvas, mode, c) {
+function drawWing(canvas, mode, c, wall = null) {
   const g = canvas.getContext('2d');
   const Wc = canvas.width, Hc = canvas.height;
   const px = Wc / WING.w;
@@ -184,6 +198,12 @@ function drawWing(canvas, mode, c) {
   g.fillRect(0, 0, Wc, Hc);
   if (mode === 'off') return;
   const ink = '#F4F3EF', dim = 'rgba(244,243,239,.62)';
+  // на «Крыле» — верх тех же обоев, чуть притушенный под текст
+  if (ready(wall) && !mode.startsWith('camera')) {
+    drawCover(g, wall, Wc, Hc, { top: true });
+    g.fillStyle = 'rgba(0,0,0,.32)';
+    g.fillRect(0, 0, Wc, Hc);
+  }
   const rg = g.createRadialGradient(Wc * 0.8, Hc * 0.9, 10, Wc * 0.8, Hc * 0.9, Wc);
   rg.addColorStop(0, c.accent + (mode === 'camera' ? '00' : '70'));
   rg.addColorStop(1, 'rgba(0,0,0,0)');
@@ -361,10 +381,19 @@ export function createOYMoth({ isRunning }) {
   let colorName = 'yellow';
   let wingMode = 'clock';
   let mainApp = 'clock';
+  // обои грузятся сразу все шесть, чтобы смена цвета была мгновенной
+  const walls = {};
+  for (const name of Object.keys(MOTH_COLORS)) {
+    const img = new Image();
+    img.decoding = 'async';
+    img.onload = () => { if (name === colorName) redrawScreen(); };
+    img.src = `/img/moth/wall-${name}.webp`;
+    walls[name] = img;
+  }
   function redrawScreen() {
     const c = MOTH_COLORS[colorName];
-    drawMain(mainCanvas, c, mainApp);
-    drawWing(wingCanvas, wingMode, c);
+    drawMain(mainCanvas, c, mainApp, walls[colorName]);
+    drawWing(wingCanvas, wingMode, c, walls[colorName]);
     mainTex.needsUpdate = true;
     wingTex.needsUpdate = true;
   }
@@ -440,13 +469,13 @@ export function createOYMoth({ isRunning }) {
       setWing(mode) {
         if (!WING_MODES.includes(mode) || mode === wingMode) return;
         wingMode = mode;
-        drawWing(wingCanvas, wingMode, MOTH_COLORS[colorName]);
+        drawWing(wingCanvas, wingMode, MOTH_COLORS[colorName], walls[colorName]);
         wingTex.needsUpdate = true;
       },
       setMainApp(app) {
         if (app === mainApp) return;
         mainApp = app;
-        drawMain(mainCanvas, MOTH_COLORS[colorName], mainApp);
+        drawMain(mainCanvas, MOTH_COLORS[colorName], mainApp, walls[colorName]);
         mainTex.needsUpdate = true;
       },
       setSignalColor() {},

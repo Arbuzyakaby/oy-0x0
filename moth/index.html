@@ -27,7 +27,7 @@
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=a76f5cccfc">
   <link rel="stylesheet" href="/css/core.css?v=331613d8c1">
-  <link rel="stylesheet" href="/css/moth.css?v=afaba9e9c4">
+  <link rel="stylesheet" href="/css/moth.css?v=5aac46b458">
 
   <script type="importmap">
   {
@@ -56,7 +56,7 @@
       "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=ec6142f2ce",
       "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
-      "/js/models/oymoth.js": "/js/models/oymoth.js?v=0686dda9e7",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=47aa3f2034",
       "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
       "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
       "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
@@ -69,9 +69,9 @@
       "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
       "/js/pages/accessories.js": "/js/pages/accessories.js?v=b4b889aa13",
       "/js/pages/base.js": "/js/pages/base.js?v=d565cf9bf8",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=0360737d3d",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=218f6504c0",
       "/js/pages/home.js": "/js/pages/home.js?v=ffa4d4dc1e",
-      "/js/pages/moth.js": "/js/pages/moth.js?v=022e994c44",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=f2cb99d87c",
       "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
       "/js/pages/os3.js": "/js/pages/os3.js?v=b5d0199164",
       "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
@@ -80,7 +80,7 @@
   </script>
   <script>document.documentElement.classList.add('js')</script>
   <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
-  <script type="module" src="/js/pages/moth.js?v=022e994c44"></script>
+  <script type="module" src="/js/pages/moth.js?v=f2cb99d87c"></script>
 </head>
 <body>
   <!-- Иконки -->
@@ -230,6 +230,12 @@
           <p class="eyebrow mono">04 · Начало новой эры</p>
           <h2 class="h2 ch__h" id="argon-title">Argon&nbsp;1. Свой.</h2>
           <p class="lead">Первый собственный процессор OY. Мы разработали его вместе с&nbsp;ABC Processors, которую купили ради этого. Производит TSMC по&nbsp;2&nbsp;нм. На&nbsp;одном кристалле восемь ядер, своя графика, нейроблок, модем NC3 и&nbsp;блок безопасности MSC.</p>
+          <ul class="net-facts argon-facts mono" aria-label="Argon 1 коротко">
+            <li><b>2&nbsp;нм</b><span>TSMC</span></li>
+            <li><b>8</b><span>ядер</span></li>
+            <li><b>5&nbsp;в&nbsp;1</b><span>блоков на&nbsp;кристалле</span></li>
+            <li><b>ABC</b><span>Processors, теперь OY</span></li>
+          </ul>
           <div class="score" data-score>
             <div class="score__row">
               <p class="score__label mono">В&nbsp;Moth</p>
@@ -245,19 +251,26 @@
           </div>
         </div>
         <div class="chip-side">
-          <figure class="die" aria-hidden="true">
-            <div class="die__core"><span>Argon</span><b>1</b><i class="mono">2 нм · TSMC</i></div>
-            <span class="die__blk die__blk--cpu mono">8 ядер</span>
-            <span class="die__blk die__blk--gpu mono">Графика</span>
-            <span class="die__blk die__blk--npu mono">NPU</span>
-            <span class="die__blk die__blk--nc mono">NC3</span>
-            <span class="die__blk die__blk--msc mono">MSC</span>
+          <figure class="die" data-die>
+            <span class="die__scan" aria-hidden="true"></span>
+            <div class="die__grid" role="radiogroup" aria-label="Блоки кристалла Argon 1" data-die-switch>
+              <button type="button" role="radio" class="die__core" data-value="core" aria-checked="true"><span>Argon</span><b>1</b><i class="mono">2 нм · TSMC</i></button>
+              <button type="button" role="radio" class="die__blk die__blk--cpu" data-value="cpu" aria-checked="false" tabindex="-1"><span class="mono">8 ядер</span><span class="die__cpu" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
+              <button type="button" role="radio" class="die__blk die__blk--gpu" data-value="gpu" aria-checked="false" tabindex="-1"><span class="mono">Графика</span><span class="die__mesh" aria-hidden="true"></span></button>
+              <button type="button" role="radio" class="die__blk die__blk--npu" data-value="npu" aria-checked="false" tabindex="-1"><span class="mono">NPU</span><span class="die__dots" aria-hidden="true"></span></button>
+              <button type="button" role="radio" class="die__blk die__blk--nc" data-value="nc" aria-checked="false" tabindex="-1"><span class="mono">NC3</span><span class="die__wave" aria-hidden="true"></span></button>
+              <button type="button" role="radio" class="die__blk die__blk--msc" data-value="msc" aria-checked="false" tabindex="-1"><span class="mono">MSC</span><svg aria-hidden="true"><use href="#i-shield"/></svg></button>
+            </div>
           </figure>
+          <div class="die-info" aria-live="polite">
+            <p class="die-info__k mono" data-die-k>Argon 1 · весь кристалл</p>
+            <p class="die-info__t" data-die-t>Пять блоков на&nbsp;одном кристалле. Чем меньше отдельных чипов, тем тоньше половины Moth. Нажмите на&nbsp;любой блок.</p>
+          </div>
           <ul class="family" aria-label="Семейство процессоров OY">
-            <li class="family__el is-on"><b>Ar</b><span>Argon</span><i>топ</i></li>
-            <li class="family__el"><b>Be</b><span>Beryllium</span><i>средний</i></li>
-            <li class="family__el"><b>Cs</b><span>Cesium</span><i>младший</i></li>
-            <li class="family__el family__el--none"><b>Xe</b><span>Ксенона не&nbsp;будет</span><i>X у&nbsp;нас уже есть</i></li>
+            <li class="family__el is-on"><sup class="mono">18</sup><b>Ar</b><span>Argon</span><i>топ</i></li>
+            <li class="family__el"><sup class="mono">4</sup><b>Be</b><span>Beryllium</span><i>средний</i></li>
+            <li class="family__el"><sup class="mono">55</sup><b>Cs</b><span>Cesium</span><i>младший</i></li>
+            <li class="family__el family__el--none"><sup class="mono">54</sup><b>Xe</b><span>Ксенона не&nbsp;будет</span><i>X у&nbsp;нас уже есть</i></li>
           </ul>
         </div>
       </div>
@@ -270,28 +283,112 @@
           <p class="eyebrow mono">05 · Модем NC3 · Claw</p>
           <h2 class="h2 ch__h" id="claw-title">Вы его не&nbsp;увидите.</h2>
           <p class="lead">Модем NC3 встроен прямо в&nbsp;Argon. У&nbsp;Claw в&nbsp;Moth нет ни&nbsp;имени, ни&nbsp;экранов, ни&nbsp;настроек. Остались только функции, которые работают незаметно.</p>
-          <ul class="quiet">
-            <li><b>Антенны перестраиваются на&nbsp;сгибе.</b> Сложили, раскрыли или взяли в&nbsp;кулак, и&nbsp;сигнал не&nbsp;проседает.</li>
-            <li><b>Сотовая сеть и&nbsp;Wi-Fi работают вместе.</b> Связь сама выбирает лучший путь и&nbsp;объединяет оба.</li>
-            <li><b>Звонок важнее скорости.</b> Ради звонка модем откатится вплоть до&nbsp;2G.</li>
+          <div class="quiet" role="radiogroup" aria-label="Что делает NC3" data-net-switch>
+            <button type="button" role="radio" data-value="fold" aria-checked="true"><span class="quiet__no mono">01</span><span><b>Антенны перестраиваются на&nbsp;сгибе.</b> Сложили, раскрыли или взяли в&nbsp;кулак, и&nbsp;сигнал не&nbsp;проседает.</span></button>
+            <button type="button" role="radio" data-value="bond" aria-checked="false" tabindex="-1"><span class="quiet__no mono">02</span><span><b>Сотовая сеть и&nbsp;Wi-Fi работают вместе.</b> Связь сама выбирает лучший путь и&nbsp;объединяет оба.</span></button>
+            <button type="button" role="radio" data-value="call" aria-checked="false" tabindex="-1"><span class="quiet__no mono">03</span><span><b>Звонок важнее скорости.</b> Ради звонка модем откатится вплоть до&nbsp;2G.</span></button>
+          </div>
+          <ul class="net-facts mono" aria-label="Связь Moth">
+            <li><b>NC3</b><span>внутри Argon</span></li>
+            <li><b>Wi-Fi&nbsp;7</b><span>и&nbsp;Bluetooth&nbsp;6.0</span></li>
+            <li><b>eSIM</b><span>+ физическая SIM</span></li>
+            <li><b>0</b><span>экранов настроек</span></li>
           </ul>
           <p class="note">Спутниковых SMS и&nbsp;«Прогноза сети» в&nbsp;Moth нет. Они остались у&nbsp;0X2, 0X2Q и&nbsp;0X2 Pro.</p>
         </div>
-        <figure class="ant" data-ant>
-          <svg class="ant__svg" viewBox="0 0 260 360" role="img" aria-labelledby="ant-cap">
-            <rect class="ant__half" x="70" y="20" width="120" height="156" rx="16"/>
-            <rect class="ant__half" x="70" y="184" width="120" height="156" rx="16"/>
-            <rect class="ant__hinge" x="78" y="174" width="104" height="12" rx="6"/>
-            <g class="ant__lines" data-ant-open>
-              <path d="M70 60v40"/><path d="M190 120v44"/><path d="M70 240v50"/><path d="M190 300v26"/><path d="M110 340h40"/>
-            </g>
-            <g class="ant__lines ant__lines--alt" data-ant-folded>
-              <path d="M70 140v30"/><path d="M190 30v40"/><path d="M70 200v30"/><path d="M190 230v50"/><path d="M110 20h40"/>
-            </g>
-          </svg>
-          <figcaption class="ant__cap mono" id="ant-cap" data-ant-cap>Разложен: работают антенны по&nbsp;краям</figcaption>
-          <button type="button" class="btn btn--ghost btn--sm" data-ant-toggle aria-pressed="false">Сложить</button>
-        </figure>
+        <div class="net" data-net data-scene="fold">
+          <div class="net__head mono" aria-hidden="true">
+            <span class="net__led"></span><span data-net-tag>NC3 · антенны</span>
+            <span class="net__bars" data-net-bars><i></i><i></i><i></i><i></i></span>
+            <span data-net-gen>5G</span>
+          </div>
+
+          <!-- 01. Антенны на сгибе -->
+          <figure class="net__scene net__scene--fold ant" data-ant data-ant-state="open">
+            <svg class="ant__svg" viewBox="0 0 300 380" role="img" aria-labelledby="ant-cap">
+              <defs>
+                <radialGradient id="ant-fade"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+              </defs>
+              <g class="ant__phone">
+                <g class="ant__top">
+                  <rect class="ant__half" x="90" y="30" width="120" height="156" rx="16"/>
+                  <rect class="ant__glass" x="100" y="40" width="100" height="136" rx="10"/>
+                </g>
+                <rect class="ant__half" x="90" y="194" width="120" height="156" rx="16"/>
+                <rect class="ant__glass" x="100" y="204" width="100" height="136" rx="10"/>
+                <rect class="ant__hinge" x="98" y="184" width="104" height="12" rx="6"/>
+              </g>
+              <g class="ant__set ant__set--open">
+                <path d="M90 70v40"/><path d="M210 130v44"/><path d="M90 250v50"/><path d="M210 300v26"/><path d="M130 350h40"/>
+              </g>
+              <g class="ant__set ant__set--folded">
+                <path d="M90 214v40"/><path d="M210 214v60"/><path d="M98 190h104"/><path d="M130 350h40"/>
+              </g>
+              <g class="ant__set ant__set--fist">
+                <path d="M90 60v44"/><path d="M210 110v50"/><path d="M98 190h104"/>
+              </g>
+              <g class="ant__waves" aria-hidden="true">
+                <circle class="ant__wave" cx="150" cy="190" r="60"/>
+                <circle class="ant__wave" cx="150" cy="190" r="60"/>
+                <circle class="ant__wave" cx="150" cy="190" r="60"/>
+              </g>
+              <g class="ant__fist">
+                <path class="ant__palm" d="M200 216h28a28 28 0 0 1 28 28v96a38 38 0 0 1-38 38h-18z"/>
+                <rect class="ant__finger" x="128" y="224" width="106" height="29" rx="14.5"/>
+                <rect class="ant__finger" x="114" y="256" width="120" height="31" rx="15.5"/>
+                <rect class="ant__finger" x="118" y="290" width="116" height="30" rx="15"/>
+                <rect class="ant__finger" x="134" y="323" width="100" height="27" rx="13.5"/>
+                <path class="ant__nail" d="M134 230h10a6 6 0 0 1 0 17h-10zM120 262h11a6.5 6.5 0 0 1 0 19h-11zM124 296h10a6 6 0 0 1 0 18h-10zM140 329h9a5.5 5.5 0 0 1 0 15h-9z"/>
+                <path class="ant__crease" d="M174 229v19M162 261v21M166 295v20M178 328v17M206 229v19M204 261v21M204 295v20M206 328v17"/>
+                <rect class="ant__finger ant__thumb" x="64" y="236" width="30" height="96" rx="15" transform="rotate(10 79 284)"/>
+                <path class="ant__nail" d="M70 242h18v8a9 9 0 0 1-18 0z" transform="rotate(10 79 284)"/>
+              </g>
+            </svg>
+            <div class="seg" role="radiogroup" aria-label="Как держат Moth" data-ant-switch>
+              <button type="button" role="radio" data-value="open" aria-checked="true">Разложен</button>
+              <button type="button" role="radio" data-value="folded" aria-checked="false" tabindex="-1">Сложен</button>
+              <button type="button" role="radio" data-value="fist" aria-checked="false" tabindex="-1">В&nbsp;кулаке</button>
+            </div>
+            <figcaption class="ant__cap mono" id="ant-cap" aria-live="polite" data-ant-cap>Разложен: работают антенны по&nbsp;краям</figcaption>
+          </figure>
+
+          <!-- 02. Сотовая + Wi-Fi -->
+          <figure class="net__scene net__scene--bond bond" data-bond hidden>
+            <svg class="bond__svg" viewBox="0 0 360 250" aria-hidden="true">
+              <path class="bond__wire bond__wire--cell" d="M40 50C150 50 170 125 250 125"/>
+              <path class="bond__wire bond__wire--wifi" d="M40 200C150 200 170 125 250 125"/>
+              <path class="bond__flow bond__flow--cell" d="M40 50C150 50 170 125 250 125"/>
+              <path class="bond__flow bond__flow--wifi" d="M40 200C150 200 170 125 250 125"/>
+              <path class="bond__out" d="M250 125h70"/>
+              <path class="bond__flow bond__flow--out" d="M250 125h70"/>
+              <circle class="bond__node" cx="250" cy="125" r="9"/>
+              <g class="bond__src" transform="translate(28 50)"><circle r="20"/><text y="4">5G</text></g>
+              <g class="bond__src bond__src--wifi" transform="translate(28 200)"><circle r="20"/><text y="4">Wi-Fi</text></g>
+              <rect class="bond__phone" x="318" y="95" width="30" height="60" rx="7"/>
+            </svg>
+            <div class="bond__rows">
+              <p class="bond__row"><span class="mono">Сотовая</span><span class="bond__bar"><i data-bond-cell style="--v:.45"></i></span><b data-bond-cell-n>210</b></p>
+              <p class="bond__row"><span class="mono">Wi-Fi</span><span class="bond__bar bond__bar--wifi"><i data-bond-wifi style="--v:.8"></i></span><b data-bond-wifi-n>380</b></p>
+              <p class="bond__row bond__row--sum"><span class="mono">Вместе</span><span class="bond__bar bond__bar--sum"><i data-bond-sum style="--v:1"></i></span><b data-bond-sum-n>590</b></p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" data-bond-walk aria-pressed="false">Уйти от&nbsp;роутера</button>
+            <figcaption class="ant__cap mono" aria-live="polite" data-bond-cap>Дома: Wi-Fi и&nbsp;5G тянут вместе, Мбит/с</figcaption>
+          </figure>
+
+          <!-- 03. Звонок важнее скорости -->
+          <figure class="net__scene net__scene--call call" data-call hidden>
+            <div class="call__card">
+              <span class="call__ava" aria-hidden="true">М</span>
+              <p class="call__who"><b>Мама</b><span class="mono" data-call-time>00:00</span></p>
+              <span class="call__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <ol class="ladder mono" aria-label="Поколения сети" data-ladder>
+              <li class="is-on">5G</li><li>4G</li><li>3G</li><li>2G</li>
+            </ol>
+            <button type="button" class="btn btn--ghost btn--sm" data-call-go>Уехать за&nbsp;город</button>
+            <figcaption class="ant__cap mono" aria-live="polite" data-call-cap>Город, 5G. Звонок идёт.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -405,7 +502,7 @@
           <p class="eyebrow mono">08 · Шесть цветов&nbsp;— впервые у&nbsp;OY</p>
           <h2 class="h2 ch__h" id="colors-title" data-color-name>Жёлтый.</h2>
           <p class="lead" data-color-desc>Цвет лампы, на&nbsp;которую летит мотылёк. Мы выбрали его первым.</p>
-          <p class="lamp-hint mono" data-lamp-hint>Ведите лампу курсором или&nbsp;зажгите лампочку на&nbsp;гирлянде</p>
+          <p class="lamp-hint mono" data-lamp-hint>Зажгите лампочку на&nbsp;гирлянде: у&nbsp;Moth сменятся корпус и&nbsp;обои</p>
           <div class="color-switch color-switch--big" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
             <button type="button" role="radio" class="color-opt" data-value="yellow" aria-checked="true"><span class="swatch swatch--yellow" aria-hidden="true"></span><span>Жёлтый</span></button>
             <button type="button" role="radio" class="color-opt" data-value="red" aria-checked="false" tabindex="-1"><span class="swatch swatch--red" aria-hidden="true"></span><span>Красный</span></button>
