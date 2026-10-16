@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="ru" data-color="dryice">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>eXtream Y1 — Горячо в игре. Холодно в руке.</title>
+  <meta name="description" content="eXtream Y1 — первый игровой телефон суббренда OY. Snapdragon 8 Elite Extreme Gen 6, «Вьюга»: трёхслойная испарительная камера и два вентилятора, курки, «Рубильник», чип Erbium, eXOS 4 с сервисами Google. Концепт. От $749.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#05070A">
+  <link rel="canonical" href="https://oy0x.online/extream/y1/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="eXtream by OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/extream/y1/">
+  <meta property="og:title" content="eXtream Y1 — Горячо в игре. Холодно в руке.">
+  <meta property="og:description" content="Концепт игрового телефона: Snapdragon 8 Elite Extreme Gen 6, два вентилятора, курки, «Рубильник», Erbium, eXOS 4. От $749 / €849.">
+  <meta property="og:image" content="https://oy0x.online/og-extream.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Прозрачная спинка eXtream Y1 с двумя вентиляторами и светящимся кольцом вокруг камер">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2305070A'/%3E%3Cg fill='none' stroke='%234FF0FF' stroke-width='5'%3E%3Ccircle cx='32' cy='32' r='17'/%3E%3Cpath d='M32 4v16M32 44v16M4 32h16M44 32h16'/%3E%3C/g%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/tektur-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
+  <link rel="stylesheet" href="/css/extream.css?v=958adb83a7">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=130676e706",
+      "/js/data/products.js": "/js/data/products.js?v=a8920caaae",
+      "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=7e2a169dd7",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=0328234549",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=6149c88dc8",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=ec6142f2ce",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=47aa3f2034",
+      "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=f5d541bfe5",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=4d88ee3ff5",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=6baba8ea28",
+      "/js/pages/base.js": "/js/pages/base.js?v=d565cf9bf8",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=8c108fa7f7",
+      "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
+      "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
+      "/js/pages/home.js": "/js/pages/home.js?v=ffa4d4dc1e",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=f2cb99d87c",
+      "/js/pages/os.js": "/js/pages/os.js?v=c836f83ed8",
+      "/js/pages/os3.js": "/js/pages/os3.js?v=b5d0199164",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76",
+      "/js/pages/y1-demos.js": "/js/pages/y1-demos.js?v=f1e54f0d07",
+      "/js/pages/y1.js": "/js/pages/y1.js?v=f4d84080ba"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/y1.js?v=f4d84080ba"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Загрузка: «компиляция шейдеров» -->
+  <div class="x-boot" id="boot" role="status" aria-live="polite">
+    <svg class="x-boot__mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="18"/><path d="M32 4v14M32 46v14M4 32h14M46 32h14"/></svg>
+    <span class="x-boot__label">Компиляция шейдеров <b data-boot-pct>0</b>%</span>
+    <span class="x-boot__bar" aria-hidden="true"><i></i></span>
+    <p class="x-boot__tip" data-boot-tip>Совет: «Рубильник» глушит всё, кроме тех, кого вы оставили в белом списке.</p>
+  </div>
+
+  <header class="x-header">
+    <a class="x-logo" href="/extream/" aria-label="eXtream — главная суббренда">
+      <span>e</span><svg class="x-logo__x" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9"/><path d="M16 1v9M16 22v9M1 16h9M22 16h9"/></svg><span>tream</span>
+      <small>by OY</small>
+    </a>
+    <nav class="x-nav" aria-label="eXtream">
+      <a href="/extream/y1/" aria-current="page">Y1</a>
+      <a href="#exos">eXOS 4</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/?models=moth,y1,0x2pro">Сравнить</a>
+      <a class="x-nav__oy" href="/">← OY</a>
+    </nav>
+    <a class="x-btn x-btn--sm" href="#buy">Купить</a>
+    <button class="x-btn x-btn--ghost x-btn--sm x-menu" type="button" aria-expanded="false" aria-controls="x-sheet" data-menu>Меню</button>
+  </header>
+  <nav class="x-sheet" id="x-sheet" aria-label="eXtream" hidden>
+    <a href="/extream/"><span class="x-brand">eXtream</span></a>
+    <a href="#exos">eXOS 4</a>
+    <a href="/accessories/">Аксессуары</a>
+    <a href="/compare/?models=moth,y1,0x2pro">Сравнить</a>
+    <a href="/">← OY</a>
+  </nav>
+
+  <div class="x-level" aria-hidden="true">
+    <span>Уровень <b class="x-level__name" data-level-n>1</b> / 13 · <span class="x-level__name" data-level-name>Старт</span></span>
+    <span class="x-level__bar"><i data-level-bar></i></span>
+    <span class="x-level__xp" data-xp>0 XP</span>
+  </div>
+
+  <dl class="x-hud" aria-hidden="true">
+    <div class="x-hud__fps"><dt>FPS</dt><dd data-hud="fps">—</dd></div>
+    <div data-hud-box="temp"><dt>°C</dt><dd data-hud="temp">31</dd></div>
+    <div><dt>ОБ/МИН</dt><dd data-hud="rpm">0</dd></div>
+    <div><dt>ПИНГ</dt><dd data-hud="ping">9</dd></div>
+  </dl>
+  <p class="x-controls" aria-hidden="true">
+    <span><i class="x-key">W</i><i class="x-key">S</i> уровни</span>
+    <span><i class="x-key">Q</i><i class="x-key">E</i> курки</span>
+    <span class="x-controls__pad" data-pad-hint>геймпад: подключите</span>
+  </p>
+  <div class="x-ach" aria-live="polite" data-ach></div>
+  <p class="x-toast" role="status" data-toast hidden></p>
+  <div class="x-blackout" data-blackout hidden aria-hidden="true"><span><i></i></span></div>
+
+  <canvas class="x-stage" id="stage" aria-hidden="true"></canvas>
+
+  <main id="main">
+
+    <!-- 1. СТАРТ -->
+    <section class="lvl" id="start" data-level="Старт" aria-labelledby="start-title">
+      <span class="lvl__num" aria-hidden="true">01</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker"><span class="x-brand">eXtream</span> by OY · первый</p>
+          <h1 class="x-h1" id="start-title"><span class="x-brand">eXtream</span><br><span class="x-accent x-glow">Y1</span></h1>
+          <p class="x-lead">Горячо в&nbsp;игре. Холодно в&nbsp;руке. Snapdragon 8&nbsp;Elite Extreme Gen&nbsp;6, два вентилятора под прозрачной спинкой, курки и&nbsp;«Рубильник».</p>
+          <p class="x-note">От <b data-price-from>$749</b> · лето 2030 · США, Евросоюз и&nbsp;— впервые у&nbsp;OY&nbsp;— <a href="#china">Китай</a></p>
+          <div class="x-actions">
+            <a class="x-btn" href="#buy">Купить</a>
+            <a class="x-btn x-btn--ghost" href="#power">Начать <kbd>S</kbd></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. МОЩЬ -->
+    <section class="lvl lvl--right" id="power" data-level="Мощь" aria-labelledby="power-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">02</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker">Уровень 2 · Мощь</p>
+          <h2 class="x-h2" id="power-title">Первый OY за&nbsp;<span class="x-accent" data-count="5.1">5,1</span>&nbsp;млн</h2>
+          <p class="x-lead">Snapdragon 8&nbsp;Elite Extreme Gen&nbsp;6&nbsp;— отборные кристаллы обычного Gen&nbsp;6. Большие ядра до&nbsp;5,2&nbsp;ГГц, графика Adreno&nbsp;850 с&nbsp;разгоном.</p>
+          <ul class="x-bars" data-bars>
+            <li><span>Большие ядра</span><span class="x-bars__track" data-v="10"></span><b>5,2 ГГц</b></li>
+            <li><span>Графика</span><span class="x-bars__track" data-v="10"></span><b>A850</b></li>
+            <li><span>AnTuTu</span><span class="x-bars__track" data-v="10"></span><b>5,1 млн</b></li>
+            <li><span>Без вентиляторов</span><span class="x-bars__track" data-v="8"></span><b>4,9 ГГц</b></li>
+          </ul>
+          <div class="x-stats">
+            <div class="x-stat is-accent"><span class="x-stat__n">Neon&nbsp;1</span><span class="x-stat__l">сопроцессор: кадры 60 → 165 fps, апскейл до 1,5K, касания на 3000 Гц</span></div>
+            <div class="x-stat"><span class="x-stat__n">+8<small>мс</small></span><span class="x-stat__l">столько стоит генерация кадров. Пишем честно</span></div>
+          </div>
+          <p class="x-note"><b>Полную частоту чип держит только с&nbsp;включёнными вентиляторами.</b> Без них&nbsp;— уровень обычного Gen&nbsp;6. А&nbsp;почему не&nbsp;Argon? Графике Argon&nbsp;1 пока не&nbsp;хватает игровых драйверов. Neon&nbsp;1 сделала команда ABC Processors&nbsp;— первый её чип после Argon, 6&nbsp;нм TSMC.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. «ВЬЮГА» -->
+    <section class="lvl" id="blizzard" data-level="«Вьюга»" aria-labelledby="blizzard-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">03</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker">Уровень 3 · «Вьюга»</p>
+          <h2 class="x-h2" id="blizzard-title">Три слоя холода и&nbsp;два вентилятора</h2>
+          <p class="x-lead">Испарительная камера в&nbsp;три слоя&nbsp;— около 31&nbsp;000&nbsp;мм², в&nbsp;4,4 раза больше, чем у&nbsp;0X2&nbsp;Pro. Сверху её продувают два центробежных вентилятора.</p>
+          <ol class="layers" data-layers>
+            <li data-at="0.18"><span class="layers__n">01</span><span><b>Медь на&nbsp;чипе</b><span>0,3 мм, прямо на&nbsp;Snapdragon, через жидкий металл</span></span></li>
+            <li data-at="0.36"><span class="layers__n">02</span><span><b>Средний слой</b><span>9800 мм², ведёт тепло к&nbsp;вентиляторам</span></span></li>
+            <li data-at="0.54"><span class="layers__n">03</span><span><b>Нижний слой</b><span>21&nbsp;000 мм² под экраном, отдаёт тепло рамке</span></span></li>
+            <li data-at="0.72"><span class="layers__n">04</span><span><b>Два вентилятора</b><span>до 22&nbsp;000 об/мин, воздух выходит из&nbsp;щелей на&nbsp;грани&nbsp;— вверх, мимо ладоней</span></span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. СТРЕСС-ТЕСТ -->
+    <section class="lvl lvl--wide lvl--flat" id="stress" data-level="Стресс-тест" aria-labelledby="stress-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">04</span>
+      <div class="x-wrap">
+        <p class="x-kicker">Уровень 4 · Стресс-тест</p>
+        <h2 class="x-h2" id="stress-title">Час тяжёлой игры. За&nbsp;минуту.</h2>
+        <p class="x-lead">Тепловизор смотрит на&nbsp;спинку. Запустите нагрузку, а&nbsp;потом выключите вентиляторы&nbsp;— и&nbsp;посмотрите, что будет с&nbsp;частотой.</p>
+        <div class="thermo" data-thermo>
+          <div class="thermo__view">
+            <canvas width="360" height="560" data-thermo-canvas aria-label="Тепловизор: спинка телефона"></canvas>
+            <p class="thermo__scale"><span>20 °C</span><i></i><span>70 °C</span></p>
+          </div>
+          <div class="thermo__side">
+            <p class="thermo__row"><span>Время</span><b><span data-t-time>0</span> мин</b></p>
+            <p class="thermo__row"><span>Частота</span><b><span data-t-clock>5,20</span> ГГц</b></p>
+            <p class="thermo__row"><span>Кадры</span><b><span data-t-fps>165</span> fps</b></p>
+            <p class="thermo__row" data-t-backrow><span>Спинка</span><b><span data-t-back>25</span> °C</b></p>
+            <canvas class="thermo__graph" width="420" height="120" data-t-graph aria-hidden="true"></canvas>
+            <div class="thermo__ctl">
+              <div class="x-seg" role="radiogroup" aria-label="Какой телефон" data-t-phone>
+                <button type="button" role="radio" data-value="y1" aria-checked="true"><span class="x-brand">eXtream</span> Y1</button>
+                <button type="button" role="radio" data-value="flagship" aria-checked="false" tabindex="-1">Обычный флагман</button>
+              </div>
+              <div class="x-actions" style="margin-top:0">
+                <button class="x-btn" type="button" data-t-run>Нагрузка <kbd>Space</kbd></button>
+                <button class="x-btn x-btn--ghost" type="button" data-t-fans aria-pressed="true">Вентиляторы: вкл</button>
+                <button class="x-btn x-btn--ghost x-btn--sm" type="button" data-t-reset>Сброс</button>
+              </div>
+            </div>
+            <p class="thermo__vs" data-t-verdict>Нажмите «Нагрузка». Секунда здесь&nbsp;— минута игры.</p>
+          </div>
+        </div>
+        <p class="x-note">Модель упрощённая: цифры показывают характер, а&nbsp;не&nbsp;результат лабораторного замера. Через час под нагрузкой спинка Y1 не&nbsp;горячее 39&nbsp;°C.</p>
+      </div>
+    </section>
+
+    <!-- 5. ВЕНТИЛЯТОРЫ -->
+    <section class="lvl" id="fans" data-level="Вентиляторы" aria-labelledby="fans-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">05</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker">Уровень 5 · Вентиляторы</p>
+          <h2 class="x-h2" id="fans-title">От&nbsp;тишины до&nbsp;«Бури»</h2>
+          <p class="x-lead">Четыре режима, и&nbsp;«Предохлаждение»: вентиляторы раскручиваются, как только вы&nbsp;открыли игру,&nbsp;— до&nbsp;того, как чип нагрелся.</p>
+          <div class="x-seg" role="radiogroup" aria-label="Режим вентиляторов" data-fan-mode>
+            <button type="button" role="radio" data-value="off" aria-checked="false" tabindex="-1">Выкл</button>
+            <button type="button" role="radio" data-value="quiet" aria-checked="false" tabindex="-1">Тихо</button>
+            <button type="button" role="radio" data-value="auto" aria-checked="true">Авто</button>
+            <button type="button" role="radio" data-value="storm" aria-checked="false" tabindex="-1">Буря</button>
+          </div>
+          <div class="x-stats">
+            <div class="x-stat is-accent"><span class="x-stat__n" data-fan-rpm>14 000</span><span class="x-stat__l">об/мин</span></div>
+            <div class="x-stat"><span class="x-stat__n" data-fan-db>30<small>дБ</small></span><span class="x-stat__l" data-fan-like>как шёпот в&nbsp;метре</span></div>
+          </div>
+          <div class="x-actions">
+            <button class="x-btn x-btn--ghost" type="button" data-fan-sound aria-pressed="false">Звук: выкл</button>
+            <button class="x-btn x-btn--ghost" type="button" data-fan-purge>Продувка</button>
+          </div>
+          <p class="x-note">Раз в&nbsp;неделю, пока телефон заряжается, вентиляторы 10&nbsp;секунд крутятся в&nbsp;обратную сторону и&nbsp;выдувают пыль. Меняются в&nbsp;сервисе за&nbsp;15&nbsp;минут, гарантия на&nbsp;них&nbsp;— 3&nbsp;года.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ЭКРАН -->
+    <section class="lvl lvl--right" id="screen" data-level="Экран" aria-labelledby="screen-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">06</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker">Уровень 6 · Экран</p>
+          <h2 class="x-h2" id="screen-title">Ни&nbsp;одной дырки в&nbsp;кадре</h2>
+          <p class="x-lead">6,85" плоский LTPO AMOLED, 1–165&nbsp;Гц, касания до&nbsp;3000&nbsp;Гц, 4500&nbsp;нит. Фронталка 16&nbsp;МП&nbsp;— под экраном: над ней те&nbsp;же 446&nbsp;ppi, только пиксели мельче.</p>
+          <div class="hz">
+            <canvas width="900" height="180" data-hz aria-label="Сравнение плавности: 60, 120 и 165 Гц"></canvas>
+            <div class="hz__ctl">
+              <div class="x-seg" role="radiogroup" aria-label="Частота" data-hz-rate>
+                <button type="button" role="radio" data-value="60" aria-checked="false" tabindex="-1">60 Гц</button>
+                <button type="button" role="radio" data-value="120" aria-checked="false" tabindex="-1">120 Гц</button>
+                <button type="button" role="radio" data-value="165" aria-checked="true">165 Гц</button>
+              </div>
+            </div>
+          </div>
+          <div class="react" data-react data-state="idle">
+            <button class="react__btn" type="button" data-react-btn>
+              <span class="react__big" data-react-big>Тест реакции</span>
+              <span class="react__small" data-react-small>Нажмите, а&nbsp;когда экран загорится&nbsp;— нажмите ещё раз</span>
+            </button>
+            <svg class="react__target" viewBox="0 0 44 44" aria-hidden="true" data-react-target><circle cx="22" cy="22" r="12"/><path d="M22 2v10M22 32v10M2 22h10M32 22h10"/></svg>
+          </div>
+          <p class="x-note">Честно: на&nbsp;белом фоне под углом пятно над фронталкой видно. Для стрима с&nbsp;лицом 1080p/60 хватает. Плавность выше симулирована&nbsp;— ваш монитор может показывать меньше 165&nbsp;Гц.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. КУРКИ И «РУБИЛЬНИК» -->
+    <section class="lvl" id="triggers" data-level="Курки" aria-labelledby="triggers-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">07</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker">Уровень 7 · Курки и&nbsp;«Рубильник»</p>
+          <h2 class="x-h2" id="triggers-title">Плечи и&nbsp;выключатель мира</h2>
+          <p class="x-lead">Два ультразвуковых курка, 1000&nbsp;Гц, в&nbsp;две ступени: полунажатие и&nbsp;до&nbsp;упора. У&nbsp;каждого своя отдача.</p>
+          <div class="trig">
+            <button class="trig__pad" type="button" data-trig="0" data-v="0"><b>L <i class="x-key">Q</i></b><span>Нажмите&nbsp;— полунажатие, держите&nbsp;— до&nbsp;упора</span><span class="trig__meter" aria-hidden="true"><i></i><i></i></span></button>
+            <button class="trig__pad" type="button" data-trig="1" data-v="0"><b>R <i class="x-key">E</i></b><span>На&nbsp;геймпаде&nbsp;— LT и&nbsp;RT, аналогово</span><span class="trig__meter" aria-hidden="true"><i></i><i></i></span></button>
+          </div>
+          <div class="x-actions">
+            <button class="x-switch" type="button" role="switch" aria-checked="false" data-rubilnik><span class="x-switch__track" aria-hidden="true"></span>«Рубильник»</button>
+          </div>
+          <div class="feed" data-feed>
+            <ul class="feed__list" data-feed-list aria-live="off"></ul>
+            <div class="feed__quiet" aria-hidden="true"><b>Мир затих</b><span>«Арена» открыта. Дозвонится только белый список.</span></div>
+          </div>
+          <p class="x-note">У&nbsp;OY kill switch отключал микрофон. У&nbsp;eXtream он&nbsp;отключает мир: уведомления, звонки и&nbsp;фоновые загрузки&nbsp;— кроме тех, кого вы&nbsp;оставили.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ЗВУК И ОТДАЧА -->
+    <section class="lvl lvl--wide lvl--flat" id="sound" data-level="Звук" aria-labelledby="sound-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">08</span>
+      <div class="x-wrap">
+        <p class="x-kicker">Уровень 8 · Звук и&nbsp;отдача</p>
+        <h2 class="x-h2" id="sound-title">Шаги слышно раньше, чем видно</h2>
+        <p class="x-lead">Стерео-динамики выходят в&nbsp;углах&nbsp;— ладонь их&nbsp;не&nbsp;закрывает. 3,5&nbsp;мм с&nbsp;Hi-Fi ЦАП. «Шаги» поднимают частоты шагов над шумом боя.</p>
+        <div class="wave">
+          <canvas width="1200" height="220" data-wave aria-label="Звук боя и шаги"></canvas>
+          <div class="wave__ctl">
+            <button class="x-btn x-btn--ghost" type="button" data-steps aria-pressed="false">«Шаги»: выкл</button>
+            <button class="x-btn x-btn--ghost" type="button" data-haptic>Отдача</button>
+          </div>
+        </div>
+        <div class="x-stats">
+          <div class="x-stat is-accent"><span class="x-stat__n">2</span><span class="x-stat__l">больших мотора по&nbsp;оси X&nbsp;— по&nbsp;одному в&nbsp;каждой руке</span></div>
+          <div class="x-stat"><span class="x-stat__n">3,5<small>мм</small></span><span class="x-stat__l">разъём с&nbsp;Hi-Fi ЦАП, на&nbsp;верхней грани</span></div>
+          <div class="x-stat"><span class="x-stat__n">3</span><span class="x-stat__l">микрофона и&nbsp;шумодав голосового чата</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. ПИТАНИЕ -->
+    <section class="lvl lvl--wide lvl--flat" id="charge" data-level="Питание" aria-labelledby="charge-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">09</span>
+      <div class="x-wrap">
+        <p class="x-kicker">Уровень 9 · Питание</p>
+        <h2 class="x-h2" id="charge-title">165&nbsp;Вт. Как 165&nbsp;Гц.</h2>
+        <p class="x-lead">8000&nbsp;мАч в&nbsp;двух ячейках Si-C, от&nbsp;0 до&nbsp;100&nbsp;% за&nbsp;22&nbsp;минуты. Играете с&nbsp;кабелем&nbsp;— «Прямое питание» ведёт ток мимо батареи, и&nbsp;она не&nbsp;греется.</p>
+        <div class="power">
+          <div class="power__box">
+            <svg viewBox="0 0 420 200" data-power-svg aria-label="Схема питания">
+              <path class="power__path" d="M70 100H180M240 100H350M210 128v34"/>
+              <path class="power__flow" data-flow-direct d="M70 100H350"/>
+              <path class="power__flow" data-flow-battery d="M70 100H210v62M210 162V128" style="display:none"/>
+              <g class="power__node"><rect x="10" y="78" width="60" height="44"/><text x="40" y="104" text-anchor="middle">165 ВТ</text></g>
+              <g class="power__node"><rect x="180" y="78" width="60" height="44"/><text x="210" y="104" text-anchor="middle">ПЛАТА</text></g>
+              <g class="power__node"><rect x="350" y="78" width="60" height="44"/><text x="380" y="104" text-anchor="middle">ИГРА</text></g>
+              <g class="power__node" data-battery-node><rect x="170" y="162" width="80" height="30"/><text x="210" y="182" text-anchor="middle" data-battery-temp>31 °C</text></g>
+            </svg>
+            <div class="x-actions">
+              <button class="x-switch" type="button" role="switch" aria-checked="true" data-direct><span class="x-switch__track" aria-hidden="true"></span>«Прямое питание»</button>
+            </div>
+          </div>
+          <div class="power__box">
+            <ul class="x-list">
+              <li><b>Два USB-C.</b> Снизу&nbsp;— USB 3.2 и&nbsp;вывод на&nbsp;монитор 4K/120. Сбоку&nbsp;— для зарядки в&nbsp;горизонтальном хвате.</li>
+              <li><b>Кабель с&nbsp;Г-образным штекером</b> и&nbsp;зарядка 165&nbsp;Вт&nbsp;— в&nbsp;коробке. Чехол тоже.</li>
+              <li><b>«Консоль»:</b> нижний USB-C на&nbsp;телевизор, интерфейс под геймпад.</li>
+            </ul>
+            <ul class="x-list x-list--no">
+              <li><b>XMagnum нет.</b> Место катушки занял тоннель вентиляторов. Честно.</li>
+            </ul>
+          </div>
+          <div class="charge">
+            <div class="charge__bar" data-charge-bar aria-hidden="true"></div>
+            <p class="charge__read"><span><b data-charge-pct>0</b>%</span><span><b data-charge-min>0</b> мин из&nbsp;22</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ERBIUM И CLAW G -->
+    <section class="lvl lvl--wide lvl--flat" id="erbium" data-level="Erbium" aria-labelledby="erbium-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">10</span>
+      <div class="x-wrap">
+        <p class="x-kicker">Уровень 10 · Erbium и&nbsp;Claw&nbsp;G</p>
+        <h2 class="x-h2" id="erbium-title">Erbium сторожит. Claw&nbsp;G держит пинг.</h2>
+        <p class="x-lead">Erbium&nbsp;— отдельный чип со&nbsp;своим процессором и&nbsp;защищённой памятью, как Null Chip&nbsp;2.0, только заточенный под игры. Хранит ключи, отпечаток, оплату и&nbsp;ключи игровых аккаунтов.</p>
+        <ul class="ptable" aria-label="Чипы OY">
+          <li><small>10</small><b>Ne</b><span>Neon 1</span></li>
+          <li><small>18</small><b>Ar</b><span>Argon 1</span></li>
+          <li class="is-me"><small>68</small><b>Er</b><span>Erbium</span></li>
+          <li class="is-ghost" aria-hidden="true"><small>1</small><b><sup>2</sup>H</b><span></span></li>
+        </ul>
+        <div class="x-table-wrap">
+          <table class="x-table">
+            <caption class="sr-only">Null Chip 2.0, Erbium и MSC</caption>
+            <thead><tr><th scope="col"><span class="sr-only">Возможность</span></th><th scope="col">Null Chip 2.0 · 0X1Q</th><th scope="col" class="is-me">Erbium · Y1</th><th scope="col">MSC · Moth</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Отдельный кристалл</th><td>Да</td><td class="is-me">Да</td><td>Нет, внутри Argon</td></tr>
+              <tr><th scope="row">Свой процессор и&nbsp;память</th><td>Да</td><td class="is-me">Да</td><td>Нет</td></tr>
+              <tr><th scope="row">Свой накопитель</th><td>—</td><td class="is-me">64 ГБ</td><td>—</td></tr>
+              <tr><th scope="row">Своё питание</th><td>Нет</td><td class="is-me">Нет</td><td>Нет</td></tr>
+              <tr><th scope="row">Ключи, отпечаток, оплата</th><td>Да</td><td class="is-me">Да</td><td>Да</td></tr>
+              <tr><th scope="row">Проверка подлинности</th><td>Модуль камеры</td><td class="is-me">«Хватка» и&nbsp;«Сугроб»</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="x-note">Свой накопитель&nbsp;— 64&nbsp;ГБ. Ключам хватило бы и&nbsp;мегабайта.</p>
+        <div class="lvl__grid" style="margin-top:40px; align-items:start">
+          <div>
+            <h3 class="x-h3">Google&nbsp;— полный, но&nbsp;под присмотром</h3>
+            <p class="x-lead" style="font-size:16px">eXOS&nbsp;4&nbsp;— первая система OY с&nbsp;сервисами Google: без них половина игр не&nbsp;запустится. Их&nbsp;запросы к&nbsp;геолокации, микрофону и&nbsp;камере идут через Erbium, и&nbsp;каждый виден в&nbsp;журнале.</p>
+            <ol class="journal" data-journal>
+              <li><time>21:40</time><span>Геолокация · для поиска матча</span><span class="ok">город, разрешено</span></li>
+              <li><time>21:41</time><span>Микрофон · вне игры</span><span class="no">отклонено</span></li>
+              <li><time>21:44</time><span>Список приложений · античит</span><span class="no">не выдан</span></li>
+              <li><time>21:47</time><span>Целостность системы · античит</span><span class="ok">подтверждено Erbium</span></li>
+            </ol>
+            <p class="x-note">Трекеров eXtream&nbsp;— ноль. Google&nbsp;— по&nbsp;вашему выбору. В&nbsp;<a href="#china">версии для Китая</a> его нет совсем.</p>
+          </div>
+          <div>
+            <h3 class="x-h3">Claw&nbsp;G · «Двойной канал»</h3>
+            <p class="x-lead" style="font-size:16px">Восемь антенн расставлены под горизонтальный хват. Игровые пакеты идут по&nbsp;Wi-Fi и&nbsp;5G одновременно&nbsp;— засчитывается тот, что пришёл первым.</p>
+            <div class="race">
+              <canvas width="800" height="300" data-race aria-label="Пакеты по Wi-Fi и 5G"></canvas>
+              <p class="race__read"><span>Пинг <b data-race-ping>9</b> мс</span><span>Потеряно <b data-race-lost>0</b></span></p>
+              <div class="race__ctl"><button class="x-switch" type="button" role="switch" aria-checked="true" data-dual><span class="x-switch__track" aria-hidden="true"></span>«Двойной канал»</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. eXOS 4 -->
+    <section class="lvl lvl--wide lvl--flat" id="exos" data-level="eXOS 4" aria-labelledby="exos-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">11</span>
+      <div class="x-wrap">
+        <p class="x-kicker">Уровень 11 · eXOS 4</p>
+        <h2 class="x-h2" id="exos-title">Дерево навыков</h2>
+        <p class="x-lead">eXOS&nbsp;4&nbsp;— игровая система на&nbsp;основе OY&nbsp;OS&nbsp;4: «Граница», «Чужие руки» и&nbsp;OY&nbsp;Assist на&nbsp;месте. Сверху&nbsp;— шестнадцать игровых навыков. Откройте каждый.</p>
+        <div class="tree" data-tree>
+          <div class="tree__map" data-tree-map></div>
+          <div class="tree__info" aria-live="polite">
+            <p class="x-kicker" data-tree-branch>Бой</p>
+            <h3 data-tree-title>«Арена»</h3>
+            <p data-tree-text>Игровой хаб. Открывается «Рубильником»: все игры, профили и&nbsp;статистика сессий.</p>
+            <p class="tree__count"><span data-tree-seen>1</span> из&nbsp;<span data-tree-total>16</span> навыков открыто</p>
+          </div>
+        </div>
+        <noscript>
+          <ul class="x-list">
+            <li><b>«Арена»</b>&nbsp;— игровой хаб, открывается «Рубильником».</li>
+            <li><b>«Телеметрия»</b>&nbsp;— fps, время кадра, температура, обороты, пинг и&nbsp;ватты поверх игры.</li>
+            <li><b>«Форсаж»</b>&nbsp;— профили «Эко», «Баланс», «Форсаж» и&nbsp;кадры Neon&nbsp;1.</li>
+            <li><b>«Предохлаждение»</b>, <b>«Раскладка»</b> (без макросов), <b>«Запас»</b> на&nbsp;пять игр.</li>
+            <li><b>«Стрим-шторка»</b>, <b>«Повтор»</b> на&nbsp;60&nbsp;секунд, <b>«Тишина в&nbsp;бою»</b>.</li>
+            <li><b>«Честная игра»</b>, <b>«Кошелёк на&nbsp;замке»</b>, трекеров&nbsp;— ноль.</li>
+            <li><b>«Чистый пинг»</b>, <b>«Консоль»</b>, <b>«Пульс»</b>, <b>«Отдача»</b>, <b>«Шаги»</b>.</li>
+          </ul>
+        </noscript>
+
+        <div class="collab" id="china" aria-labelledby="china-title">
+          <div class="collab__main x-panel">
+            <p class="x-kicker">Коллаб · впервые у&nbsp;OY&nbsp;— Китай</p>
+            <h3 class="collab__title" id="china-title">Y1 сделан вместе с&nbsp;крупным китайским брендом</h3>
+            <p>Наш партнёр&nbsp;— один из&nbsp;главных издателей игр в&nbsp;мире. Его разработчики вместе с&nbsp;нами настроили профили «Форсажа» для своих самых популярных игр: 165&nbsp;fps в&nbsp;них&nbsp;— с&nbsp;первого дня. А&nbsp;Y1 стал первым OY, который выходит в&nbsp;Китае.</p>
+          </div>
+          <div class="collab__cn x-panel">
+            <p class="x-kicker">Версия для Китая</p>
+            <ul class="x-list">
+              <li><b>Две физические nano-SIM</b>, обе активны, два 5G сразу. eSIM нет&nbsp;— так удобнее в&nbsp;Китае. Китайские частоты 5G на&nbsp;месте.</li>
+              <li><b>Без сервисов Google.</b> Вместо них&nbsp;— магазин приложений, аккаунт и&nbsp;облачные сохранения партнёра.</li>
+              <li><b>Erbium сторожит и&nbsp;их:</b> запросы к&nbsp;геолокации, микрофону и&nbsp;камере идут через журнал, как у&nbsp;Google в&nbsp;остальном мире.</li>
+              <li><b>В один день</b> с&nbsp;США и&nbsp;Евросоюзом. От&nbsp;¥4999.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. ПОБОЧНЫЙ КВЕСТ — КАМЕРЫ -->
+    <section class="lvl lvl--right" id="cameras" data-level="Побочный квест" aria-labelledby="cameras-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">12</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker">Уровень 12 · Побочный квест</p>
+          <h2 class="x-h2" id="cameras-title">Это не&nbsp;камерофон</h2>
+          <p class="x-lead">Деньги ушли в&nbsp;холод. Две камеры сзади&nbsp;— чтобы были, и&nbsp;чтобы красиво смотрелись в&nbsp;круглом модуле.</p>
+          <ul class="x-bars" data-bars>
+            <li><span>Охлаждение</span><span class="x-bars__track" data-v="10"></span><b>10</b></li>
+            <li><span>Экран</span><span class="x-bars__track" data-v="9"></span><b>9</b></li>
+            <li><span>Камеры</span><span class="x-bars__track" data-v="3" data-bad></span><b>3</b></li>
+          </ul>
+          <div class="x-stats">
+            <div class="x-stat"><span class="x-stat__n">50<small>МП</small></span><span class="x-stat__l">основная, 1/1,95", f/1.9, без OIS&nbsp;— только электронная стабилизация. 4K/30</span></div>
+            <div class="x-stat"><span class="x-stat__n">8<small>МП</small></span><span class="x-stat__l">сверхширокая, 112°, без автофокуса</span></div>
+          </div>
+          <p class="x-note">Для скриншотов реальной жизни&nbsp;— хватит. Для всего остального есть 0X2&nbsp;Pro.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. СКИНЫ И СНАРЯЖЕНИЕ -->
+    <section class="lvl" id="skins" data-level="Снаряжение" aria-labelledby="skins-title">
+      <span class="lvl__divider" aria-hidden="true"></span>
+      <span class="lvl__num" aria-hidden="true">13</span>
+      <div class="x-wrap lvl__grid">
+        <div class="lvl__text">
+          <p class="x-kicker">Уровень 13 · Скины</p>
+          <h2 class="x-h2" id="skins-title">Три скина</h2>
+          <p class="x-lead">Под прозрачной спинкой меняются крышки, а&nbsp;вместе с&nbsp;ними&nbsp;— свет «Пульса», курки и&nbsp;«Рубильник». Модель можно крутить.</p>
+          <div class="skins" role="radiogroup" aria-label="Цвет" data-color-switch>
+            <button type="button" role="radio" class="skin" data-value="dryice" aria-checked="true" style="--c:#15181D"><i></i><span>Сухой лёд<small>свет — лёд</small></span></button>
+            <button type="button" role="radio" class="skin" data-value="frost" aria-checked="false" tabindex="-1" style="--c:#E6ECF0"><i></i><span>Иней<small>свет — жар</small></span></button>
+            <button type="button" role="radio" class="skin" data-value="plasma" aria-checked="false" tabindex="-1" style="--c:#3A2366"><i></i><span>Плазма<small>свет — кислота</small></span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lvl lvl--wide lvl--flat" id="buy" data-level="Снаряжение" aria-labelledby="buy-title">
+      <div class="x-wrap">
+        <p class="x-kicker">Финал · Снаряжение</p>
+        <h2 class="x-h2" id="buy-title">Соберите свой Y1</h2>
+        <div class="loadout">
+          <div class="loadout__opts">
+            <div>
+              <p class="loadout__label">Память</p>
+              <div class="x-seg" role="radiogroup" aria-label="Память" data-mem-switch>
+                <button type="button" role="radio" data-value="16/512" aria-checked="true">16 / 512 ГБ</button>
+                <button type="button" role="radio" data-value="24/1024" aria-checked="false" tabindex="-1">24 ГБ / 1 ТБ</button>
+                <button type="button" role="radio" data-value="32/2048" aria-checked="false" tabindex="-1">32 ГБ / 2 ТБ</button>
+              </div>
+            </div>
+            <div>
+              <p class="loadout__label">Скин</p>
+              <div class="x-seg" role="radiogroup" aria-label="Цвет" data-color-switch>
+                <button type="button" role="radio" data-value="dryice" aria-checked="true">Сухой лёд</button>
+                <button type="button" role="radio" data-value="frost" aria-checked="false" tabindex="-1">Иней</button>
+                <button type="button" role="radio" data-value="plasma" aria-checked="false" tabindex="-1">Плазма</button>
+              </div>
+            </div>
+            <div>
+              <p class="loadout__label">Валюта</p>
+              <div class="x-seg" role="radiogroup" aria-label="Валюта" data-currency>
+                <button type="button" role="radio" data-value="usd" aria-checked="true">$ США</button>
+                <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">€ Евросоюз</button>
+                <button type="button" role="radio" data-value="cny" aria-checked="false" tabindex="-1">¥ Китай</button>
+              </div>
+            </div>
+            <p class="x-note" data-cn-note hidden><b>Версия для Китая:</b> две физические nano-SIM, без сервисов Google&nbsp;— магазин, аккаунт и&nbsp;сохранения партнёра под присмотром Erbium.</p>
+            <p class="x-note">LPDDR6 и&nbsp;UFS&nbsp;5.0&nbsp;— впервые у&nbsp;OY. Обновления&nbsp;— 7&nbsp;лет, гарантия&nbsp;— 24&nbsp;месяца, на&nbsp;вентиляторы&nbsp;— 3&nbsp;года.</p>
+          </div>
+          <div class="loadout__sum x-brackets">
+            <p class="loadout__name"><span class="x-brand">eXtream</span> Y1</p>
+            <p class="loadout__cfg"><span data-cfg-mem>16 ГБ · 512 ГБ</span> · <span data-cfg-color>Сухой лёд</span></p>
+            <p class="loadout__price" data-price>$749</p>
+            <p class="loadout__alt" data-price-alt>€849 в&nbsp;Евросоюзе</p>
+            <ul class="loadout__box">
+              <li>зарядка 165&nbsp;Вт</li>
+              <li>кабель с&nbsp;Г-образным штекером</li>
+              <li>чехол «Броня Y»</li>
+            </ul>
+            <button class="x-btn" type="button" data-buy>В корзину</button>
+            <a class="x-btn x-btn--ghost x-btn--sm" href="/accessories/">Аксессуары: «Сугроб», «Хватка»</a>
+          </div>
+        </div>
+
+        <details class="stats-sheet" id="specs">
+          <summary>Статы персонажа · все характеристики</summary>
+          <div class="x-table-wrap">
+            <table class="x-table">
+              <caption class="sr-only">Технические характеристики eXtream Y1</caption>
+              <tbody>
+                <tr><th scope="row">Процессор</th><td>Snapdragon 8 Elite Extreme Gen 6, 2 нм: 2 + 6 ядер Oryon, большие до 5,2 ГГц, Adreno 850 с разгоном. Около 5,1 млн AnTuTu. Полная частота — только с включёнными вентиляторами</td></tr>
+                <tr><th scope="row">Сопроцессор</th><td>Neon 1, 6 нм TSMC: генерация кадров 60 → 165 fps (+8 мс), апскейл до 1,5K, касания 3000 Гц, вентиляторы и подсветка</td></tr>
+                <tr><th scope="row">Безопасность</th><td>Erbium — отдельный чип: свой процессор, защищённая память, накопитель 64 ГБ; ключи, отпечаток, оплата NFC, ключи игровых аккаунтов, «Честная игра», присмотр за сервисами Google</td></tr>
+                <tr><th scope="row">Охлаждение</th><td>«Вьюга»: трёхслойная испарительная камера около 31 000 мм² (медь 0,3 мм на чипе через жидкий металл, средний слой 9800 мм², нижний 21 000 мм²) и два центробежных вентилятора до 22 000 об/мин; «Тихо» 24 дБ — «Буря» 36 дБ</td></tr>
+                <tr><th scope="row">Экран</th><td>6,85" плоский LTPO AMOLED, 1264×2780, 446 ppi, 1–165 Гц, касания до 3000 Гц, пик 4500 нит, ШИМ 2880 Гц, рамки 1,25 мм, «Антиблик 2». Ни одного отверстия</td></tr>
+                <tr><th scope="row">Фронтальная</th><td>16 МП под экраном, 1080p/60</td></tr>
+                <tr><th scope="row">Камеры сзади</th><td>Основная 50 МП, 1/1,95", f/1.9, без OIS · сверхширокая 8 МП, 112°, без автофокуса. Видео 4K/30 и 1080p/30</td></tr>
+                <tr><th scope="row">Курки</th><td>Два ультразвуковых, 1000 Гц, двухступенчатые, у каждого своя отдача</td></tr>
+                <tr><th scope="row">«Рубильник»</th><td>Физический ползунок: «Арена», тишина для всех, кроме белого списка</td></tr>
+                <tr><th scope="row">Звук и отдача</th><td>Симметричные стерео-динамики, 3,5 мм с Hi-Fi ЦАП, «Шаги», три микрофона; два мотора по оси X</td></tr>
+                <tr><th scope="row">Память</th><td>16/512, 24/1024, 32/2048 ГБ; LPDDR6 и UFS 5.0 — впервые у OY</td></tr>
+                <tr><th scope="row">Батарея</th><td>8000 мАч, две ячейки Si-C; 165 Вт, 0–100 % за 22 минуты; «Прямое питание». Беспроводной зарядки нет</td></tr>
+                <tr><th scope="row">Разъёмы</th><td>Два USB-C: снизу USB 3.2 с выводом 4K/120, сбоку — для зарядки; 3,5 мм сверху</td></tr>
+                <tr><th scope="row">Связь</th><td>Модем Snapdragon X90; Claw G: 8 антенн, «Двойной канал»; Wi-Fi 7, Bluetooth 6.0, NFC, eSIM + физическая SIM (в Китае — две физические nano-SIM). Спутника, UWB и ИК нет</td></tr>
+                <tr><th scope="row">Биометрия</th><td>Ультразвуковой отпечаток под экраном, хранится в Erbium. Лица нет</td></tr>
+                <tr><th scope="row">Корпус</th><td>Матовая алюминиевая рамка, прозрачная стеклянная спинка, кольцо «Пульс» вокруг камер и вентиляторов. IP54. 164,3 × 76,6 × 9,4 мм, 244 г</td></tr>
+                <tr><th scope="row">Цвета</th><td>Сухой лёд, Иней, Плазма</td></tr>
+                <tr><th scope="row">Система</th><td>eXOS 4 на основе OY OS 4, сервисы Google в полном объёме; в Китае — без Google, с магазином, аккаунтом и сохранениями партнёра</td></tr>
+                <tr><th scope="row">В коробке</th><td>Зарядка 165 Вт, кабель с Г-образным штекером, чехол</td></tr>
+                <tr><th scope="row">Обновления · гарантия</th><td>7 лет · 24 месяца; вентиляторы — 3 года</td></tr>
+                <tr><th scope="row">Выход</th><td>Лето 2030, в один день: США, Евросоюз и Китай — первый OY в Китае</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="x-footer">
+    <div class="x-wrap x-footer__grid">
+      <a class="x-logo" href="/extream/"><span>e</span><svg class="x-logo__x" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9"/><path d="M16 1v9M16 22v9M1 16h9M22 16h9"/></svg><span>tream</span><small>by OY</small></a>
+      <p>Трекеров eXtream — ноль, cookies — тоже. Сервисы Google работают на телефоне, а не на этом сайте.</p>
+      <p>Концепт. eXtream, eXtream Y1, eXOS и компания OY вымышлены: это демонстрационный сайт, телефон не продаётся. Snapdragon — товарный знак своего владельца, использован для антуража. <a href="/">Вернуться к OY</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

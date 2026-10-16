@@ -757,3 +757,8 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
 .os4-plate i { font-style: normal; color: #F6D44A; transition: transform .3s var(--ease); }
 .os4-plate:hover { border-color: #F6D44A; background: rgba(246, 212, 74, .14); }
 .os4-plate:hover i { transform: translateX(4px); }
+/* eXOS 4 — игровая OY OS 4 суббренда eXtream: ледяной акцент вместо жёлтого */
+.os4-plate--x { display: flex; width: fit-content; margin-top: -12px; border-color: rgba(79, 240, 255, .45); background: rgba(79, 240, 255, .06); }
+.os4-plate--x b { background: #4FF0FF; color: #021014; }
+.os4-plate--x i { color: #4FF0FF; }
+.os4-plate--x:hover { border-color: #4FF0FF; background: rgba(79, 240, 255, .12); }

@@ -782,6 +782,130 @@ if want("faraday"):
     shot("faraday", c, (0.55, -1.0, 0.35), pad=1.06)
 
 
+# 10. Аксессуары eXtream Y1: корпус 164,3 × 76,6 × 9,4 мм, курки на +X, «Рубильник» на −X,
+#     модуль камер Ø35,6 по центру спинки на высоте 58 мм
+Y1_W, Y1_H, Y1_D = 76.6, 164.3, 9.4
+Y1_CAM_Z, Y1_CAM_R = 58.0, 17.8
+M_ICE = make_mat("IceAccent", "#4FF0FF", rough=0.3, emission="#4FF0FF", strength=2.0)
+M_GRAPHITE = make_mat("GraphiteSoft", "#1C1F24", rough=0.72)
+M_RUBBER = make_mat("GripRubber", "#121417", rough=0.78)
+
+# 10a. Чехол «Броня Y»: дымчатый прозрачный TPU, открыты модуль камер, курки, щели воздуха,
+#      «Рубильник» и оба USB-C — тоннель вентиляторов дышит и в чехле
+if want("case-y1"):
+    c = new_coll("case-y1")
+    import_glb("extreamy1.glb", c)
+    tpu = clear_tpu("SmokeTPU")
+    nodes_of(tpu)[1].inputs["Base Color"].default_value = hex_rgba("#9AA6B2")
+    make_case("CaseY1", tpu, Y1_W, Y1_H, -4.7, 4.7, 4.5, [
+        back(-Y1_CAM_R - 1.2, Y1_CAM_R + 1.2, Y1_CAM_Z - Y1_CAM_R - 1.2, Y1_CAM_Z + Y1_CAM_R + 1.2, Y1_CAM_R + 1.19, 4.7),
+        side(53.5, 70.5, 1.9, 30, 46),                             # Trigger_L
+        side(-70.5, -53.5, 1.9, 30, 46),                           # Trigger_R
+        side(10.0, 34.0, 1.6, 30, 46),                             # щели выхода воздуха
+        side(43.0, 61.0, 1.7, -46, -30),                           # «Рубильник»
+        side(5.0, 44.0, 1.7, -46, -30),                            # питание и громкость
+        side(-20.0, -8.0, 2.0, -46, -30),                          # боковой USB-C
+        end(-26.0, 26.0, 1.8, -96, -78),                           # USB-C и динамики
+        end(-26.0, 26.0, 1.6, 78, 96),                             # 3,5 мм и динамики
+    ], t=1.2, tb=1.0, lip=0.8)
+    put(bpy.data.objects["CaseY1"], c)
+    bpy.context.view_layer.update()
+    shot("case-y1", c, (-0.55, 1.0, 0.32), light={"Key": 0.6})
+
+# 10b. Охлаждающая насадка «Сугроб»: элемент Пельтье, свой вентилятор, прищепка на корпус
+if want("cooler-y1"):
+    c = new_coll("cooler-y1")
+    b = Builder("Cooler", ["SoftWhite", "AluGraphite", "IceAccent", "Port", "BlackGlass", "EtchLight"])
+    b.prism(rrect(52.0, 48.0, 14.0, seg=14), "Y", 0.0, 17.0, "SoftWhite", bevel_end=3.0, bevel_start=2.0, seg=5)
+    # решётка вентилятора на лицевой стороне (−Y) и светящееся кольцо
+    b.prism(circle(17.0, 96, 0.0, 2.0), "Y", -0.4, 0.2, "BlackGlass")
+    b.band(circle(18.6, 96, 0.0, 2.0), circle(17.4, 96, 0.0, 2.0), "Y", -0.5, 0.3, "IceAccent")
+    for k in range(-6, 7):
+        b.box(k * 2.5, -0.45, 2.0, 0.6, 0.3, 2 * math.sqrt(max(0.0, 16.5 ** 2 - (k * 2.5) ** 2)), "AluGraphite")
+    b.prism(circle(4.0, 48, 0.0, 2.0), "Y", -0.7, 0.0, "AluGraphite")
+    # прищепка: перекладина за корпусом и две лапы, которые обхватывают телефон по бокам
+    b.box(0, 17.5, 0.0, 90.0, 5.0, 12.0, "AluGraphite")
+    for s in (-1, 1):
+        b.box(s * 43.5, 24.0, 0.0, 3.0, 18.0, 12.0, "AluGraphite")
+        b.box(s * 41.0, 32.0, 0.0, 5.0, 2.4, 12.0, "Port")
+    b.prism(rrect(9.2, 3.4, 1.6, seg=8), "Z", -24.0, -20.0, "Port")       # USB-C снизу
+    b.prism(rrect(18.0, 1.2, 0.5, seg=4, cy=-17.0), "Y", -0.3, 0.1, "EtchLight")
+    ob = mm(b.build())
+    ob.rotation_euler = (0, 0, math.radians(-24))
+    put(ob, c)
+    shot("cooler-y1", c, (-0.45, -1.0, 0.55), pad=1.1, lens=70, light={"Key": 0.6, "Top": 0.6})
+
+# 10c. Контроллер «Хватка»: Y1 в горизонтальном хвате между двумя ручками на телескопе
+if want("grip-y1"):
+    c = new_coll("grip-y1")
+    objs = import_glb("extreamy1.glb", c)
+    phone = named(objs, "eXtreamY1")
+    phone.rotation_mode = "XYZ"                          # импортёр glTF ставит кватернион
+    phone.rotation_euler = (0, math.radians(-90), 0)     # горизонтальный хват: верх телефона — влево
+    scr = make_mat("GripScreen", "#05090C", rough=0.2, emission="#0E4652", strength=1.6)
+    for o in objs:
+        if o.type == "MESH" and o.name.split(".")[0] == "Screen":
+            o.data.materials[0] = scr
+    b = Builder("Grip", ["GripRubber", "AluGraphite", "IceAccent", "BlackGlass", "Port"])
+    for s in (-1, 1):
+        x0 = s * (Y1_H / 2 + 15.0)
+        b.prism(rrect(34.0, 50.0, 13.0, seg=14, cx=x0, cy=-4.0), "Y", -9.0, 10.0, "GripRubber", bevel_end=4.0, bevel_start=4.0, seg=5)
+        # стик с одной стороны и кнопки с другой
+        sx, sz = x0 - s * 1.0, 8.0
+        b.prism(circle(7.0, 48, sx, sz), "Y", -9.6, -9.0, "AluGraphite")
+        b.prism(circle(4.6, 40, sx, sz), "Y", -12.5, -9.6, "BlackGlass", bevel_start=0.8, seg=2)
+        if s < 0:
+            for dx, dz in ((0, 4.2), (0, -4.2), (4.2, 0), (-4.2, 0)):
+                b.box(x0 + dx, -9.6, -12.0 + dz, 3.0 if dz else 4.0, 1.0, 4.0 if dz else 3.0, "AluGraphite")
+        else:
+            for k, (dx, dz) in enumerate(((0, 4.4), (0, -4.4), (4.4, 0), (-4.4, 0))):
+                b.prism(circle(1.9, 24, x0 + dx, -12.0 + dz), "Y", -10.3, -9.0, "IceAccent" if k == 0 else "AluGraphite")
+        # плечевые кнопки
+        b.box(x0, 1.0, 22.5, 20.0, 9.0, 3.0, "AluGraphite")
+    # телескоп за телефоном и USB-C сквозной зарядки
+    b.box(0, 7.5, -4.0, Y1_H + 30.0, 3.0, 8.0, "AluGraphite")
+    b.prism(rrect(9.2, 3.4, 1.6, seg=8, cx=Y1_H / 2 + 15.0), "Z", -30.0, -29.0, "Port")
+    grip = mm(b.build())
+    put(grip, c)
+    bpy.context.view_layer.update()
+    shot("grip-y1", c, (0.12, -1.0, 0.42), pad=1.05, lens=70, light={"Key": 0.45, "Top": 0.5, "Fill": 0.7})
+
+# 10d. Зарядка 165 Вт с Г-образным кабелем: в горизонтальном хвате штекер не упирается в ладонь
+if want("power-165"):
+    c = new_coll("power-165")
+    b = Builder("Power165", ["GraphiteSoft", "Port", "Steel", "IceAccent", "EtchLight"])
+    b.prism(rrect(44.0, 44.0, 6.0, seg=10), "Y", 0.0, 32.0, "GraphiteSoft", bevel_end=2.2, bevel_start=1.6, seg=4)
+    b.prism(rrect(3.4, 9.2, 1.6, seg=8, cy=2.0), "Y", -0.05, 6.0, "Port")
+    b.band(rrect(30.0, 1.6, 0.6, seg=4, cy=-13.0), rrect(28.6, 0.6, 0.25, seg=4, cy=-13.0), "Y", -0.06, 0.1, "IceAccent")
+    for cx in (-6.35, 6.35):
+        b.box(cx, 32.0 + 8.0, 4.0, 1.5, 16.0, 6.3, "Steel")
+    ob = mm(b.build())
+    ob.rotation_euler = (0, 0, math.radians(-24))
+    put(ob, c)
+    cd = bpy.data.curves.new("CableCurve165", "CURVE")
+    cd.dimensions = "3D"
+    cd.bevel_depth = 1.8 * MM
+    cd.bevel_resolution = 6
+    sp = cd.splines.new("BEZIER")
+    pts = [(2, -4, 2.5), (10, -40, 2.0), (52, -64, 1.8), (92, -40, 1.8), (104, -6, 6.0)]
+    sp.bezier_points.add(len(pts) - 1)
+    for bp, p in zip(sp.bezier_points, pts):
+        bp.co = Vector(p) * MM
+        bp.handle_left_type = bp.handle_right_type = "AUTO"
+    cable = bpy.data.objects.new("Cable165", cd)
+    cd.materials.append(M_BRAID)
+    c.objects.link(cable)
+    # Г-образный штекер на конце кабеля
+    b = Builder("PlugL", ["GraphiteSoft", "Steel", "IceAccent"])
+    b.prism(rrect(8.0, 6.0, 2.4, seg=8), "Z", 0.0, 16.0, "GraphiteSoft", bevel_end=1.0, seg=3)
+    b.prism(rrect(6.0, 8.0, 2.4, seg=8, cy=12.0), "X", -0.1, 10.0, "GraphiteSoft", bevel_end=1.0, seg=3)
+    b.prism(rrect(2.6, 8.4, 1.2, seg=6, cy=12.0), "X", 10.0, 16.5, "Steel")
+    b.box(0, -3.05, 8.0, 5.0, 0.1, 0.8, "IceAccent")
+    plug = mm(b.build(location=(104.0, -6.0, 6.0)))
+    put(plug, c)
+    shot("power-165", c, (-0.2, -1.0, 0.75), pad=1.1, lens=70, light={"Key": 0.5, "Top": 0.6})
+
+
 # ----------------------------------------------------------------------------
 # Свет, камера, пол-тень
 # ----------------------------------------------------------------------------

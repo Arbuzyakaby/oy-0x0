@@ -20,6 +20,7 @@ import { createOY0X2 } from '../models/oy0x2.js';
 import { createOY0X2Q } from '../models/oy0x2q.js';
 import { createOY0X2Pro } from '../models/oy0x2pro.js';
 import { createOYMoth } from '../models/oymoth.js';
+import { createExtreamY1 } from '../models/extreamy1.js';
 import { createPro } from '../models/pro.js';
 import { $, $$, initRadioGroup, syncRadio } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -38,10 +39,10 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, '0x1pro': createOY0X1Pro, pro: createPro };
+const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, y1: createExtreamY1, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
-const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, '0x1pro': 163.5, pro: 150 };
-const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, y1: 164.3, '0x1pro': 163.5, pro: 150 };
+const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, y1: -PI + 0.4, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1 });
 
 /* ---------- Иконки строк, как у Apple: у каждой модели своя ---------- */
@@ -78,6 +79,8 @@ const ROW_ICON = {
     return m ? badge(m[1], m[2]) : badge(name, '');
   },
   'Аппаратное отключение': (v) => {
+    // «Рубильник» eXtream: ползунок в положении «вкл»
+    if (v.startsWith('«Рубильник»')) return svg('<rect class="cx-ico__line" x="21" y="6" width="14" height="44" rx="3"/><rect class="cx-ico__fill is-accent" x="24" y="10" width="8" height="15" rx="2"/>');
     const n = num(v.match(/^\d+ kill/)?.[0] || 0);
     if (v.startsWith('Нет')) return svg('<rect class="cx-ico__line is-dash" x="10" y="19" width="36" height="18" rx="9"/>');
     if (n) {
@@ -119,6 +122,7 @@ const ROW_ICON = {
   },
   'Процессор': (v) => {
     if (v.startsWith('Argon')) return badge('Argon 1', 'OY · свой', { accent: true });
+    if (v.includes('Extreme')) return badge('8 Elite Extreme', 'Snapdragon · Gen 6', { accent: true });
     if (v.startsWith('Snapdragon')) return badge(v.replace('Snapdragon ', ''), 'Snapdragon');
     return badge(v.replace('Dimensity ', ''), 'Dimensity');
   },
@@ -127,6 +131,8 @@ const ROW_ICON = {
     return svg(`<rect class="cx-ico__line" x="5" y="15" width="50" height="26" rx="7"/><path class="cx-ico__line" d="M60 23v10"/><rect class="cx-ico__fill is-accent" x="9.5" y="19.5" width="${(41 * k).toFixed(1)}" height="17" rx="3.5"/>${/две ячейки/.test(v) ? '<path class="cx-ico__gap" d="M30 16v24"/>' : ''}`, { w: 64 });
   },
   'Зарядка': (v) => svg(`<path class="cx-ico__line" d="M32 4L14 30h12l-3 22 20-29H31z"/>${tag(72, `${num(v)} Вт`)}`, { w: 72 }),
+  'Вентиляторы': (v) => (v === '—' ? null : svg(`${[17, 39].map((cx) => `<circle class="cx-ico__line" cx="${cx}" cy="28" r="10"/><circle class="cx-ico__dot" cx="${cx}" cy="28" r="2.6"/>`).join('')}${tag(64, '2')}`, { w: 64 })),
+  'Курки': (v) => (v === '—' ? null : svg('<rect class="cx-ico__line" x="6" y="18" width="44" height="22" rx="4"/><rect class="cx-ico__fill is-accent" x="9" y="12" width="12" height="5" rx="1.5"/><rect class="cx-ico__fill is-accent" x="35" y="12" width="12" height="5" rx="1.5"/>')),
   'Защита': (v) => svg(`<path class="cx-ico__line" d="M28 3s18 17 18 29a18 18 0 0 1-36 0C10 20 28 3 28 3z"/>${text(28, 38, v, v.length > 4 ? 9.5 : 11, ' cx-ico__t--big')}`),
   'Толщина · вес': (v) => {
     const mm = num(v);

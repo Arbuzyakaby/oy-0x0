@@ -39,7 +39,10 @@ const ver = {};
 for (const p of [...walk(join(ROOT, 'js'), '.js'), ...walk(join(ROOT, 'css'), '.css')]) ver[web(p)] = hash(p);
 const jsList = Object.keys(ver).filter((k) => k.endsWith('.js')).sort();
 
-const pages = ['index.html', '404.html', ...readdirSync(ROOT).map((d) => join(d, 'index.html'))]
+// страницы первого уровня и вложенные — /extream/y1/
+const dirs = readdirSync(ROOT).filter((d) => !d.startsWith('.') && d !== 'node_modules' && statSync(join(ROOT, d)).isDirectory());
+const nested = dirs.flatMap((d) => readdirSync(join(ROOT, d)).filter((n) => statSync(join(ROOT, d, n)).isDirectory()).map((n) => join(d, n, 'index.html')));
+const pages = ['index.html', '404.html', ...dirs.map((d) => join(d, 'index.html')), ...nested]
   .map((f) => join(ROOT, f))
   .filter((p, i, a) => existsSync(p) && a.indexOf(p) === i && !p.includes('.baseline') && !p.includes('node_modules'));
 

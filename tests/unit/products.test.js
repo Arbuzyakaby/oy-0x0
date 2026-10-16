@@ -134,7 +134,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', '0x2pro']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', 'y1', '0x2pro']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -195,4 +195,38 @@ test('сравнение: у Moth — Argon 1, MSC, раскладушка и в
     assert.equal(get('Форма')[2 + k], 'Моноблок', id);
     assert.equal(get('Внешний экран')[2 + k], '—', id);
   });
+});
+
+test('eXtream Y1: от $749 / €849, три цвета, суббренд вне витрины OY', async () => {
+  const { ON_SALE, ON_SALE_ALL, COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
+  const y1 = PRODUCTS.y1;
+  assert.deepEqual(
+    y1.configs.map((c) => [c.id, c.usd, c.eur]),
+    [['16/512', 749, 849], ['24/1024', 899, 1019], ['32/2048', 1099, 1249]],
+  );
+  assert.deepEqual(y1.colors, { dryice: 'Сухой лёд', frost: 'Иней', plasma: 'Плазма' });
+  assert.equal(y1.defaultColor, 'dryice');
+  assert.equal(y1.brand, 'extream');
+  assert.equal(y1.href, '/extream/y1/');
+  assert.ok(!ON_SALE.includes('y1'));
+  assert.ok(ON_SALE_ALL.includes('y1'));
+  // в сравнении — после Moth, и у новых строк значение есть только у Y1
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('moth') + 1], 'y1');
+  assert.equal(SHORT_NAMES.y1, 'eXtream Y1');
+  const i = 2 + COMPARE_MODELS.indexOf('y1');
+  for (const name of ['Вентиляторы', 'Курки']) {
+    const row = COMPARE.find((r) => r[1] === name);
+    assert.ok(row, name);
+    row.slice(2, 2 + COMPARE_MODELS.length).forEach((v, k) => assert.equal(v !== '—', k + 2 === i, `${name}: ${COMPARE_MODELS[k]}`));
+  }
+  assert.match(COMPARE.find((r) => r[1] === 'Чип безопасности')[i], /^Erbium/);
+  assert.equal(COMPARE.find((r) => r[1] === 'Система')[i], 'eXOS 4 · сервисы Google; в Китае — сервисы партнёра');
+});
+
+test('eXtream Y1 — первый OY в Китае: цены в юанях и строка «Китай» только у него', async () => {
+  const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
+  assert.deepEqual(PRODUCTS.y1.configs.map((c) => c.cny), [4999, 5999, 7299]);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.cn).map((p) => p.id), ['y1']);
+  const row = COMPARE.find((r) => r[1] === 'Китай');
+  COMPARE_MODELS.forEach((id, k) => assert.equal(row[2 + k].startsWith(`от ¥${PRODUCTS.y1.configs[0].cny}`), id === 'y1', id));
 });

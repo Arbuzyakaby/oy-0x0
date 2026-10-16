@@ -7,7 +7,11 @@ import { PRODUCTS, ON_SALE } from '../../js/data/products.js';
 import { ACCESSORIES } from '../../js/data/accessories.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
-const PAGES = ['index.html', ...readdirSync(ROOT).filter((d) => existsSync(join(ROOT, d, 'index.html')) && !d.startsWith('.')).map((d) => `${d}/index.html`)];
+const TOP = readdirSync(ROOT).filter((d) => existsSync(join(ROOT, d, 'index.html')) && !d.startsWith('.'));
+// вложенные страницы: /extream/y1/
+const NESTED = TOP.flatMap((d) => readdirSync(join(ROOT, d), { withFileTypes: true })
+  .filter((e) => e.isDirectory() && existsSync(join(ROOT, d, e.name, 'index.html'))).map((e) => `${d}/${e.name}/index.html`));
+const PAGES = ['index.html', ...TOP.map((d) => `${d}/index.html`), ...NESTED];
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 
 test('import map каждой страницы — валидный JSON, локальные модули существуют', () => {
@@ -93,3 +97,53 @@ test('у каждого аксессуара есть рендер', () => {
   for (const a of ACCESSORIES) assert.ok(existsSync(join(ROOT, 'img', 'accessories', `${a.id}.webp`)), a.id);
 });
 
+
+test('страницы eXtream: хаб и Y1 на месте, в шапке каждой страницы OY есть ссылка на eXtream', () => {
+  assert.ok(PAGES.includes('extream/index.html'));
+  assert.ok(PAGES.includes('extream/y1/index.html'));
+  for (const p of PAGES) {
+    const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
+    if (!nav) continue;
+    assert.ok(nav[1].includes('href="/extream/"'), `${p}: нет ссылки на eXtream`);
+  }
+  // у eXtream своя шапка, шапки OY там нет
+  for (const p of ['extream/index.html', 'extream/y1/index.html']) {
+    const html = read(p);
+    assert.ok(!html.includes('class="site-nav"'), p);
+    assert.ok(html.includes('/css/extream.css'), p);
+    assert.ok(!html.includes('/css/core.css'), p);
+  }
+  assert.ok(read('extream/index.html').includes('href="/extream/y1/"'));
+});
+
+test('страница eXtream Y1: тринадцать уровней и финал, одна h1, якоря ведут к существующим id, цвета — из данных', () => {
+  const html = read('extream/y1/index.html');
+  const levels = [...html.matchAll(/<section class="lvl[^"]*" id="([^"]+)" data-level="([^"]+)"/g)];
+  assert.equal(levels.length, 14);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const id of Object.keys(PRODUCTS.y1.colors)) assert.ok(html.includes(`data-value="${id}"`), id);
+  for (const c of PRODUCTS.y1.configs) assert.ok(html.includes(`data-value="${c.id}"`), c.id);
+  // намёки — без единого слова: 64 ГБ у Erbium и пустая клетка ²H
+  assert.ok(html.includes('Ключам хватило бы и&nbsp;мегабайта'));
+  assert.ok(html.includes('<sup>2</sup>H'));
+  // версия для Китая: юани в покупке и блок коллаба
+  assert.ok(html.includes('data-value="cny"'));
+  assert.ok(html.includes('id="china"'));
+});
+
+test('о том, что прячет Erbium, и об имени партнёра на сайте ни слова', () => {
+  // docs/, README и blender/ — не сайт, там можно; партнёр по коллабу на сайте — только «крупный китайский бренд»
+  const banned = [/deuterium/i, /дейтери/i, /эмулят/i, /emulat/i, /windows/i, /playstation/i, /\bps ?[123]\b/i, /xbox/i, /tencent/i, /т[еэ]нс[еэ]нт/i, /wechat/i, /weixin/i];
+  const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((d) => {
+    const rel = `${dir}/${d.name}`;
+    return d.isDirectory() ? walk(rel) : /\.(html|js|css|json)$/.test(d.name) ? [rel] : [];
+  });
+  const files = [...PAGES, '404.html', ...walk('js'), ...walk('css')];
+  for (const f of files) {
+    if (!existsSync(join(ROOT, f))) continue;
+    const text = read(f);
+    for (const re of banned) assert.ok(!re.test(text), `${f}: ${re}`);
+  }
+});
