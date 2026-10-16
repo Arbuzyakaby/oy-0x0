@@ -59,10 +59,10 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('сняты с продажи 0X1, 0X1Q, 0X0 Pro, 0X1 Pro и 0X1 Essential, в продаже шесть моделей по цене', async () => {
+test('сняты с продажи 0X1, 0X1Q, 0X0 Pro, 0X1 Pro и 0X1 Essential, в продаже семь моделей по цене', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
   for (const id of ['0x1', '0x1q', 'pro', '0x1pro', '0x1e']) assert.equal(PRODUCTS[id].discontinued, true, id);
-  assert.deepEqual(ON_SALE, ['0x2e', '0x0', '0x2', 'moth', '0x2q', '0x2pro']);
+  assert.deepEqual(ON_SALE, ['0x2e', '0x0', '0x2', 'moth', '0x2q', '0x2pro', 'nova']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
@@ -134,7 +134,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', 'y1', '0x2pro']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', 'y1', '0x2pro', 'nova']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -229,4 +229,32 @@ test('eXtream Y1 — первый OY в Китае: цены в юанях и с
   assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.cn).map((p) => p.id), ['y1']);
   const row = COMPARE.find((r) => r[1] === 'Китай');
   COMPARE_MODELS.forEach((id, k) => assert.equal(row[2 + k].startsWith(`от ¥${PRODUCTS.y1.configs[0].cny}`), id === 'y1', id));
+});
+
+test('0X Nova: новый флагман от $999 / €1149, один цвет «Сверхновая»', async () => {
+  const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
+  const nova = PRODUCTS.nova;
+  assert.deepEqual(nova.configs.map((c) => [c.id, c.usd, c.eur]), [['16/512', 999, 1149], ['16/1024', 1149, 1319]]);
+  assert.deepEqual(nova.colors, { supernova: 'Сверхновая' });
+  assert.equal(nova.defaultColor, 'supernova');
+  assert.equal(nova.eu, true);
+  // дороже всех моделей в продаже
+  for (const p of Object.values(PRODUCTS)) if (p !== nova && !p.discontinued) assert.ok(p.configs[0].usd < 999, p.id);
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x2pro') + 1], 'nova');
+  assert.equal(SHORT_NAMES.nova, 'Nova');
+  const i = 2 + COMPARE_MODELS.indexOf('nova');
+  const get = (label) => COMPARE.find((r) => r[1] === label);
+  assert.match(get('Процессор')[i], /^Argon 1 Nova/);
+  assert.match(get('Чип безопасности')[i], /^Citadel 4 Plus/);
+  assert.match(get('Всего')[i], /пять сзади/);
+  assert.match(get('3,5 мм · USB-C')[i], /^Нет/);
+  assert.match(get('Система')[i], /игры заблокированы/);
+  // новые строки — только у Nova
+  for (const name of ['Стилус', 'Монохромная', 'Датчики камеры']) {
+    get(name).slice(2, 2 + COMPARE_MODELS.length).forEach((v, k) => assert.equal(v !== '—', k + 2 === i, `${name}: ${COMPARE_MODELS[k]}`));
+  }
+});
+
+test('после выхода Nova метка «Новинка» только у неё', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['nova']);
 });

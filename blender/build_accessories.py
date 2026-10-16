@@ -906,6 +906,114 @@ if want("power-165"):
     shot("power-165", c, (-0.2, -1.0, 0.75), pad=1.1, lens=70, light={"Key": 0.5, "Top": 0.6})
 
 
+# 5j. Аксессуары 0X Nova. Остров «Обсерватории» — со спины слева сверху,
+#     слот 0Pen — снизу слева (со стороны экрана), кнопки — справа
+NOVA_IX, NOVA_IZ = 77.2 / 2 - 5.2 - 15.5, 164.8 / 2 - 5.2 - 25.0
+
+
+def nova_wallpaper(name):
+    """Ночное небо на экране: снизу тьма, к верху — фиолет и золото «Сверхновой»."""
+    m = make_mat(name, "#000000", rough=0.3)
+    nt, bsdf = nodes_of(m)
+    co = obj_coords(nt, 1.0)
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(co, sep.inputs["Vector"])
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 6.0
+    noise.inputs["Detail"].default_value = 1.5
+    nt.links.new(co, noise.inputs["Vector"])
+    mix = nt.nodes.new("ShaderNodeMath")
+    mix.operation = "MULTIPLY_ADD"
+    nt.links.new(sep.outputs["Z"], mix.inputs[0])
+    mix.inputs[1].default_value = 4.0
+    nt.links.new(noise.outputs["Fac"], mix.inputs[2])
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    els = ramp.color_ramp.elements
+    els[0].position, els[0].color = 0.1, hex_rgba("#04050C")
+    els[1].position, els[1].color = 0.95, hex_rgba("#F4D79C")
+    mid = els.new(0.6)
+    mid.color = hex_rgba("#2A2350")
+    nt.links.new(mix.outputs["Value"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], bsdf.inputs["Emission Color"])
+    bsdf.inputs["Emission Strength"].default_value = 0.9
+    return m
+
+
+if want("case-nova"):
+    c = new_coll("case-nova")
+    import_glb("oynova.glb", c)
+    make_case("CaseNova", silicone("Silicone_Night", "#0C0D18"), 77.2, 164.8, -3.8, 3.8, 7.0, [
+        back(NOVA_IX - 16.2, NOVA_IX + 16.2, NOVA_IZ - 25.7, NOVA_IZ + 25.7, 6.7, 3.8),   # остров целиком
+        end(-7.5, 7.5, 1.7, 76, 94),                                 # фонарь на верхней грани
+        side(9.5, 51.5, 1.6, 30, 46),                                # питание и громкость
+        end(-12.0, 23.5, 1.6, -94, -76),                             # USB-C и динамик
+        end(-31.0, -23.0, 2.7, -94, -76),                            # слот 0Pen
+    ], t=1.0, tb=0.9, lip=0.7)
+    put(bpy.data.objects["CaseNova"], c)
+    shot("case-nova", c, (0.55, 1.0, 0.3))
+
+# Стекло на водопад: копия переднего стекла телефона — та же кривизна, приподнята над экраном
+if want("glass-nova"):
+    c = new_coll("glass-nova")
+    objs = import_glb("oynova.glb", c)
+    phone = named(objs, "OYNova")
+    named(objs, "Pen").hide_render = True
+    scr = named(objs, "Screen")
+    scr.data.materials.clear()
+    scr.data.materials.append(nova_wallpaper("WallNova"))
+    src = named(objs, "Glass")
+    g = src.copy()
+    g.data = src.data.copy()
+    g.name = "GlassNova"
+    g.data.materials.clear()
+    g.data.materials.append(M_GLASS)
+    for poly in g.data.polygons:
+        poly.material_index = 0
+    sol = g.modifiers.new("thick", "SOLIDIFY")
+    sol.thickness = 0.4 * MM
+    sol.offset = -1.0
+    g.parent = phone
+    g.location = (0.0, -12.0 * MM, -18.0 * MM)
+    g.rotation_euler = (math.radians(4), 0, math.radians(1.5))
+    put(g, c)
+    phone.rotation_euler = (math.radians(-90), 0, math.radians(28))
+    bpy.context.view_layer.update()
+    shot("glass-nova", c, (0.55, -1.0, 0.62), pad=1.03, lens=70, roll_floor=False, light={"Top": 0.5, "Key": 1.2, "Rim": 1.4})
+
+# Запасной OY 0Pen — перо из модели телефона, лежит наискосок
+if want("pen-nova"):
+    c = new_coll("pen-nova")
+    objs = import_glb("oynova.glb", c)
+    pen = named(objs, "Pen")
+    pen.parent = None
+    for o in objs:
+        if o is not pen:
+            bpy.data.objects.remove(o)
+    pen.location = (0, 0, 0)
+    pen.rotation_euler = (0, math.radians(90), math.radians(-32))
+    bpy.context.view_layer.update()
+    shot("pen-nova", c, (0.25, -0.6, 1.0), pad=1.12, lens=70)
+
+# Наконечники 0Pen: пять мягких наконечников и щипцы-кольцо
+if want("tips-nova"):
+    c = new_coll("tips-nova")
+    make_mat("NovaGold", "#C9A46E", metallic=0.6, rough=0.35)
+    make_mat("TipSoft", "#2A2B30", rough=0.7)
+    for i in range(5):
+        b = Builder(f"Tip{i}", ["TipSoft", "NovaGold"])
+        b.prism(circle(0.55, 24), "Y", 0.0, 9.0, "NovaGold")
+        b.lathe([(0.55, 9.0), (0.9, 9.0), (0.9, 12.0), (0.6, 13.6), (0.02, 14.2)], 0, 0, "TipSoft", seg=48)
+        tip = b.build(location=((i - 2) * 4.2, -7.0, 0.95))
+        put(mm(tip), c)
+    b = Builder("TipTool", ["NovaGold"])
+    b.tube(3.0, 4.2, "Z", 0.0, 0.0, 0.0, 1.6, "NovaGold", seg=64)
+    b.box(0.0, 8.5, 0.8, 2.4, 9.0, 1.6, "NovaGold")
+    tool = b.build(location=(16.0, -6.0, 0.0))
+    tool.rotation_euler = (0, 0, math.radians(-20))
+    put(mm(tool), c)
+    shot("tips-nova", c, (0.2, -0.7, 1.0), pad=1.2, lens=70)
+
+
 # ----------------------------------------------------------------------------
 # Свет, камера, пол-тень
 # ----------------------------------------------------------------------------

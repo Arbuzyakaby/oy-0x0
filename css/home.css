@@ -21,7 +21,7 @@
 
 .lineup {
   position: relative; margin-top: clamp(28px, 5vh, 56px);
-  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0;
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0;
   border-top: 1px solid var(--line);
 }
 /* общий «пол», на котором стоят телефоны */
@@ -29,9 +29,9 @@
 .lineup__item { position: relative; display: grid; text-decoration: none; color: inherit; outline-offset: -2px; }
 .lineup__item + .lineup__item { border-left: 1px solid var(--line); }
 .lineup__canvas { display: block; width: 100%; height: clamp(300px, 42vh, 480px); }
-.lineup__label { display: grid; gap: 6px; align-content: start; padding: 18px 20px 6px; }
+.lineup__label { display: grid; gap: 6px; align-content: start; padding: 18px 16px 6px; }
 .lineup__n { font-size: 11px; color: var(--muted); letter-spacing: .08em; }
-.lineup__name { font-size: clamp(26px, 2.3vw, 38px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; }
+.lineup__name { font-size: clamp(22px, 1.95vw, 34px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; }
 .lineup__new { font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #5FE0CF; vertical-align: super; margin-left: 4px; }
 .lineup__tag { color: var(--muted); font-size: 15px; line-height: 1.4; min-height: 2.8em; max-width: 26ch; }
 .lineup__facts { font-size: 12px; color: var(--muted); letter-spacing: .02em; padding-top: 8px; border-top: 1px solid var(--line); margin-top: 6px; }
@@ -60,6 +60,12 @@
 .choose__grid--5 .pick__name { font-size: clamp(26px, 2.2vw, 38px); }
 .choose__grid--5 .pick__lead { font-size: 16px; }
 .choose__grid--5 .pick__list li { font-size: 14px; }
+/* Nova — флагман: карточка во всю ширину, золото «Сверхновой» и звёздная пыль */
+.choose__grid--7 .pick--nova { grid-column: 1 / -1; }
+.pick--nova { background: radial-gradient(1.5px 1.5px at 72% 22%, rgba(255,240,210,.9), transparent 60%), radial-gradient(1px 1px at 84% 60%, rgba(255,255,255,.7), transparent 60%), radial-gradient(1px 1px at 63% 78%, rgba(255,255,255,.55), transparent 60%), radial-gradient(120% 90% at 90% 0%, rgba(201, 164, 110, .28), transparent 60%), #0B0A12; border-color: rgba(201, 164, 110, .35); }
+.pick--nova .pick__list li::before { background: #E9C98C; }
+.pick--nova .btn--accent { background: #C9A46E; color: #1A1206; box-shadow: 0 10px 40px -10px rgba(201, 164, 110, .5); }
+@media (min-width: 900px) { .choose__grid--7 .pick--nova .pick__list { columns: 2; column-gap: 32px; } }
 .pick--moth { background: radial-gradient(120% 80% at 90% 0%, rgba(246, 212, 74, .2), transparent 60%), var(--bg-2); }
 .pick--moth .pick__list li::before { background: #F6D44A; }
 .pick--moth .btn--accent { background: #F6D44A; color: #1A1505; box-shadow: 0 10px 40px -10px rgba(246, 212, 74, .45); }

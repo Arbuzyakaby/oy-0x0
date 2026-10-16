@@ -93,6 +93,18 @@ test('Moth — только «мотылёк»: другого слова для
   for (const f of files) if (existsSync(join(ROOT, f))) assert.ok(!word.test(read(f)), f);
 });
 
+test('страница 0X Nova: тринадцать глав «Обсерватории», одна h1, якоря ведут к существующим id', () => {
+  const html = read('nova/index.html');
+  const chapters = [...html.matchAll(/<section class="nv[^"]*" id="([^"]+)" data-chapter="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['nova', 'observatory', 'zoom', 'sensors', 'selfie', 'pen', 'display', 'argon', 'nogames', 'torch', 'citadel', 'power', 'buy']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  // цена на странице — из данных
+  assert.ok(html.includes(`data-usd="${PRODUCTS.nova.configs[0].usd}" data-eur="${PRODUCTS.nova.configs[0].eur}"`));
+  for (const c of PRODUCTS.nova.configs) assert.ok(html.includes(`data-value="${c.id}"`), c.id);
+});
+
 test('у каждого аксессуара есть рендер', () => {
   for (const a of ACCESSORIES) assert.ok(existsSync(join(ROOT, 'img', 'accessories', `${a.id}.webp`)), a.id);
 });
