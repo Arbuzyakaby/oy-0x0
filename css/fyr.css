@@ -1,0 +1,177 @@
+/* =========================================================================
+   Fyr — «Перехват». Подключается на всех страницах последним. Пока
+   html[data-brand="fyr"] нет, здесь работает только щит-кнопка в подвале.
+   Палитра Fyr: почти чёрный, сигнальный синий, белый. Красного нет совсем.
+   ========================================================================= */
+
+/* ---------- Щит в подвале: пять касаний — и сайт перехвачен ---------- */
+
+.fyr-shield {
+  display: inline-grid; place-items: center; flex: none;
+  width: 44px; height: 44px; margin: -12px -8px -12px -12px; padding: 0;
+  border: 0; border-radius: 50%; background: none; color: inherit; font: inherit;
+  cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.fyr-shield svg { pointer-events: none; }
+.fyr-shield:focus-visible { outline: 2px solid currentColor; outline-offset: -6px; }
+.fyr-shield.is-twitch svg { animation: fyr-twitch .2s steps(3) 1; }
+@keyframes fyr-twitch {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(-1.5px, .5px) rotate(-6deg); }
+  66% { transform: translate(1.5px, -.5px) rotate(5deg); }
+  100% { transform: none; }
+}
+
+/* eXtream: свой подвал без спрайта */
+.x-footer__privacy { display: flex; align-items: center; gap: 8px; }
+.x-footer .fyr-shield { margin: -12px -6px -12px -12px; }
+.x-footer .fyr-shield svg { width: 18px; height: 18px; fill: none; stroke: var(--x-accent); stroke-width: 1.8; stroke-linejoin: round; }
+
+/* ---------- Палитра Fyr (перебивает цвета страниц и корпусов) ---------- */
+
+html:root[data-brand="fyr"] {
+  --bg: #05070A;
+  --bg-2: #0A0E15;
+  --bg-3: #101622;
+  --fg: #F4F7FF;
+  --muted: #7D8799;
+  --line: rgba(160, 190, 255, .12);
+  --line-2: rgba(160, 190, 255, .22);
+  --accent: #2F6BFF;
+  --accent-text: #7FA4FF;
+  --accent-strong: #2F6BFF;
+  --accent-ink: #FFFFFF;
+  --glow: rgba(47, 107, 255, .36);
+  --bg-tint: #070A10;
+  --ok: #7FA4FF;
+  --bad: #7FA4FF;
+  /* OY 0X Nova */
+  --gold: #7FA4FF;
+  --gold-2: #2F6BFF;
+  --ink: #F4F7FF;
+  --night-line: rgba(127, 164, 255, .16);
+  /* eXtream */
+  --x-bg: #05070A;
+  --x-text: #F4F7FF;
+  --x-dim: #7D8799;
+  --x-ice: #7FA4FF;
+  --x-heat: #2F6BFF;
+  --x-acid: #F4F7FF;
+  --x-red: #2F6BFF;
+  --x-accent: #2F6BFF;
+  --x-ink: #FFFFFF;
+}
+html[data-brand="fyr"] body { background-color: var(--bg); }
+/* 404 со своим фоном */
+html[data-brand="fyr"] body.page-404 { background: radial-gradient(60% 50% at 50% 38%, rgba(47, 107, 255, .2), transparent 70%), var(--bg); }
+html[data-brand="fyr"] .page-404 .mark circle { stroke: var(--accent-text); }
+
+/* Градиентные заголовки с цветами, вписанными прямо в страницу */
+html[data-brand="fyr"] .nv-hero__big {
+  background-image: linear-gradient(100deg, #FFFFFF 10%, #7FA4FF 55%, #2F6BFF 100%);
+}
+
+/* Модели и фото не перерисовываем: синий дуотон фильтром */
+html[data-brand="fyr"]:not([data-fyr-page]) canvas,
+html[data-brand="fyr"]:not([data-fyr-page]) main img,
+html[data-brand="fyr"]:not([data-fyr-page]) main video {
+  filter: grayscale(1) sepia(.55) hue-rotate(178deg) saturate(1.7) brightness(.96);
+}
+
+/* Вкладка уже перехвачена: страница не показывается в цветах OY, пока
+   словарь не лёг. Если скрипт не загрузился — всё равно видна через 1,2 с */
+html.fyr-pending body { visibility: hidden; animation: fyr-unhide 0s 1.2s forwards; }
+@keyframes fyr-unhide { to { visibility: visible; } }
+
+/* ---------- Логотип fyr ---------- */
+
+.fyr-logo { display: none; }
+html[data-brand="fyr"] .fyr-logo {
+  display: block; flex: none; width: 46px; height: 30px; overflow: visible;
+  fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+}
+html[data-brand="fyr"] .fyr-logo__beam {
+  fill: var(--accent); stroke: none; opacity: .45;
+  transform-box: view-box; transform-origin: 23px 6px;
+  animation: fyr-beam 8s linear infinite;
+}
+html[data-brand="fyr"] .fyr-logo__lamp { fill: var(--accent-text); stroke: none; }
+html[data-brand="fyr"] a:hover > .fyr-logo .fyr-logo__beam { opacity: .9; }
+@keyframes fyr-beam { to { transform: rotate(360deg); } }
+
+html[data-brand="fyr"] .brand__mark,
+html[data-brand="fyr"] .brand__name,
+html[data-brand="fyr"] .x-logo > span,
+html[data-brand="fyr"] .x-logo > .x-logo__x { display: none; }
+html[data-brand="fyr"] .brand { gap: 0; }
+html[data-brand="fyr"] .x-logo { display: inline-flex; align-items: center; }
+html[data-brand="fyr"] .x-logo .fyr-logo { color: var(--x-text); }
+
+html.fyr-swap .fyr-logo { animation: fyr-logo-in .9s steps(9) 1; }
+@keyframes fyr-logo-in {
+  0% { clip-path: inset(0 0 70% 0); transform: translateX(-6px); }
+  25% { clip-path: inset(40% 0 20% 0); transform: translateX(5px); }
+  50% { clip-path: inset(10% 0 50% 0); transform: translateX(-3px); }
+  75% { clip-path: inset(60% 0 0 0); transform: translateX(2px); }
+  100% { clip-path: inset(0); transform: none; }
+}
+
+/* ---------- Подпись в подвале и кнопка возврата ---------- */
+
+.fyr-sig {
+  display: none;
+  font-family: var(--mono, 'JetBrains Mono', monospace); font-size: 13px; letter-spacing: .06em;
+  color: var(--accent-text, #7FA4FF); text-decoration: none;
+}
+html[data-brand="fyr"] .fyr-sig { display: inline-block; }
+.fyr-sig:hover { color: var(--fg, #F4F7FF); }
+.footer__inner > .fyr-sig { grid-column: 1 / -1; justify-self: center; }
+html.fyr-swap .fyr-sig { animation: fyr-logo-in .9s steps(9) 1; }
+
+.fyr-return {
+  position: fixed; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 2147483000;
+  height: 34px; padding: 0 14px; border: 1px solid rgba(160, 190, 255, .22); border-radius: 999px;
+  background: rgba(5, 7, 10, .82); color: #7D8799;
+  font: 500 12px/1 var(--mono, 'JetBrains Mono', monospace); letter-spacing: .04em;
+  cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  animation: fyr-fade .6s ease both;
+}
+.fyr-return:hover, .fyr-return:focus-visible { color: #F4F7FF; border-color: #2F6BFF; outline: none; }
+@keyframes fyr-fade { from { opacity: 0; transform: translateY(6px); } }
+
+/* ---------- Сцена ---------- */
+
+.fyr-glitch {
+  position: fixed; inset: 0; z-index: 2147483100; pointer-events: none; overflow: hidden;
+  transition: background-color .3s, opacity .3s;
+}
+.fyr-glitch.is-fade { background: #000; }
+.fyr-glitch.is-out { opacity: 0; }
+.fyr-glitch__scan {
+  position: absolute; inset: 0; opacity: .35; mix-blend-mode: multiply;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, .55) 2px 3px);
+}
+.fyr-glitch.is-fade .fyr-glitch__scan { display: none; }
+.fyr-glitch__slice {
+  position: absolute; left: -10%; width: 120%;
+  -webkit-backdrop-filter: invert(1) hue-rotate(180deg); backdrop-filter: invert(1) hue-rotate(180deg);
+  background: rgba(47, 107, 255, .08);
+}
+.fyr-glitch__slice.is-black { background: #000; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.fyr-bar { position: absolute; background: #000; box-shadow: 0 0 0 1px rgba(255, 255, 255, .04); }
+
+html.fyr-glitching body * { text-shadow: -2px 0 rgba(255, 30, 70, .75), 2px 0 rgba(30, 140, 255, .75); }
+html.fyr-glitching main,
+html.fyr-glitching .site-footer,
+html.fyr-glitching .x-footer,
+html.fyr-glitching body > footer { animation: fyr-shake .14s steps(2) infinite; }
+@keyframes fyr-shake {
+  0% { translate: 3px 0; }
+  50% { translate: -4px 1px; }
+  100% { translate: 2px -1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-brand="fyr"] .fyr-logo__beam { animation: none; }
+  html.fyr-swap .fyr-logo, html.fyr-swap .fyr-sig, .fyr-return { animation: none; }
+}

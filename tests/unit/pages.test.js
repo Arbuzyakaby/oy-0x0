@@ -159,3 +159,37 @@ test('о том, что прячет Erbium, и об имени партнёра
     for (const re of banned) assert.ok(!re.test(text), `${f}: ${re}`);
   }
 });
+
+test('«Перехват» Fyr: загрузчик, стили и щит-кнопка — на каждой странице, загрузчик раньше скрипта страницы', () => {
+  for (const p of [...PAGES, '404.html']) {
+    const html = read(p);
+    assert.ok(html.includes('/css/fyr.css'), `${p}: нет fyr.css`);
+    const hijack = html.indexOf('/js/fyr/hijack.js');
+    assert.ok(hijack > 0, `${p}: нет hijack.js`);
+    const page = html.search(/<script type="module" src="\/js\/(pages|core)\//);
+    if (page > 0) assert.ok(hijack < page, `${p}: hijack.js после скрипта страницы`);
+    if (p === 'fyr/index.html') continue;
+    assert.ok(html.includes("sessionStorage.getItem('fyr')"), `${p}: нет проверки вкладки`);
+    assert.ok(/<button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит">/.test(html), `${p}: нет щита`);
+  }
+  // 404 без скриптов не обходится: CSP пускает свои
+  assert.ok(read('404.html').includes("script-src 'self' 'unsafe-inline'"));
+});
+
+test('страница /fyr/: скрытая, десять глав, одна h1, якоря ведут к существующим id, вне шапки и витрины OY', () => {
+  const html = read('fyr/index.html');
+  assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
+  assert.ok(html.includes('data-fyr-page'));
+  const chapters = [...html.matchAll(/<section class="fy fy--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['intercept', 'eight', 'choice', 'case', 'tritium', 'gfc', 'quiet', 'missing', 'specs', 'price']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.ok(existsSync(join(ROOT, 'og-fyr.jpg')));
+  assert.ok(existsSync(join(ROOT, 'models', 'fyrosmium.glb')));
+  assert.ok(!Object.values(PRODUCTS).some((p) => /fyr/i.test(p.href)), 'Fyr не продукт OY');
+  for (const p of PAGES) {
+    const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
+    if (nav) assert.ok(!nav[1].includes('/fyr/'), `${p}: Fyr в шапке OY`);
+  }
+});

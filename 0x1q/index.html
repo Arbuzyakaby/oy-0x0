@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="/css/pro.css?v=4c516458eb">
   <link rel="stylesheet" href="/css/0x1.css?v=53a3639a44">
   <link rel="stylesheet" href="/css/0x1q.css?v=8533bbaf59">
+  <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
 
   <script type="importmap">
   {
@@ -50,7 +51,11 @@
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=85be94a749",
       "/js/data/products.js": "/js/data/products.js?v=6ebef9e2cc",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=06d2b17c28",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
       "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
       "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
       "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
@@ -61,7 +66,7 @@
       "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
       "/js/models/oymoth.js": "/js/models/oymoth.js?v=47aa3f2034",
-      "/js/models/oynova.js": "/js/models/oynova.js?v=5dd25dc829",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=43d09e6e8b",
       "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
       "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
       "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
@@ -77,6 +82,7 @@
       "/js/pages/compare.js": "/js/pages/compare.js?v=0ecfda1232",
       "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
       "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=4b681775a1",
       "/js/pages/home.js": "/js/pages/home.js?v=7a0737e4f7",
       "/js/pages/moth.js": "/js/pages/moth.js?v=f2cb99d87c",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
@@ -90,6 +96,8 @@
   }
   </script>
   <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-0x1q-color');if(c==='wave'||c==='moon'||c==='graphite')document.documentElement.dataset.color=c}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
   <script type="module" src="/js/core/subnav.js?v=2b8a463a67"></script>
   <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
   <script type="module" src="/js/pages/0x1q.js?v=3765c96438"></script>
@@ -667,7 +675,7 @@
         <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
         <span>OY · французский стартап</span>
       </div>
-      <p class="footer__privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
       <p class="footer__small mono">OY 0X1Q · 1st Gen · Лето 2028 · США · снят с продажи · <a href="/0x2q/">OY 0X2Q</a></p>
       <p class="footer__concept">Концепт. OY&nbsp;0X1Q и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>

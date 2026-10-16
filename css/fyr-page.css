@@ -1,0 +1,265 @@
+/* =========================================================================
+   Fyr Osmium X0 — «Перехват». Своя страница бывших инженеров OY: почти
+   чёрный, сигнальный синий, белый. Больше моно: подписи, цифры, hex.
+   Заголовки строчные и плотные. Часы — одна 3D-модель за главами.
+   ========================================================================= */
+
+:root[data-fyr-page] {
+  --bg: #05070A;
+  --bg-2: #0A0E15;
+  --bg-3: #101622;
+  --fg: #F4F7FF;
+  --muted: #7D8799;
+  --line: rgba(160, 190, 255, .12);
+  --line-2: rgba(160, 190, 255, .22);
+  --accent: #2F6BFF;
+  --accent-text: #7FA4FF;
+  --accent-strong: #2F6BFF;
+  --accent-ink: #FFFFFF;
+  --glow: rgba(47, 107, 255, .36);
+  --header-h: 60px;
+}
+
+html, body { background: var(--bg); }
+body { color: var(--fg); }
+::selection { background: var(--accent); color: #fff; }
+
+/* ---------- Лоадер ---------- */
+
+.fy-loader__sig { font-size: clamp(16px, 2.4vw, 24px); letter-spacing: .12em; color: var(--accent-text); animation: fy-flicker 1.2s steps(6) infinite; }
+@keyframes fy-flicker { 0%, 100% { opacity: 1; } 40% { opacity: .35; } 60% { opacity: .9; } 80% { opacity: .5; } }
+
+/* ---------- Шапка ---------- */
+
+.fy-header {
+  position: fixed; inset: 0 0 auto; z-index: 50; height: var(--header-h);
+  display: flex; align-items: center; gap: 28px; padding: 0 var(--gutter);
+  background: linear-gradient(to bottom, rgba(5, 7, 10, .9), rgba(5, 7, 10, .55));
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.fy-brand { display: inline-flex; color: var(--fg); }
+.fy-logo {
+  width: 46px; height: 30px; overflow: visible;
+  fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+}
+.fy-logo--sm { width: 38px; height: 25px; }
+.fy-nav { display: flex; gap: 22px; margin-left: auto; font-size: 14px; }
+.fy-nav a { color: var(--muted); text-decoration: none; transition: color .2s; }
+.fy-nav a:hover, .fy-nav a:focus-visible { color: var(--fg); }
+.fy-back {
+  height: 32px; padding: 0 14px; display: inline-flex; align-items: center;
+  border: 1px solid var(--line-2); border-radius: 999px;
+  font-size: 12px; color: var(--muted); text-decoration: none;
+}
+.fy-back:hover, .fy-back:focus-visible { color: var(--fg); border-color: var(--accent); }
+/* на /fyr/ своя кнопка в шапке — плавающая не нужна */
+:root[data-fyr-page] .fyr-return { display: none; }
+
+/* ---------- Главы ---------- */
+
+.fy { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding: calc(var(--header-h) + 48px) 0 clamp(60px, 10vh, 120px); }
+.fy__inner { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+.fy__text { max-width: min(540px, 44vw); position: relative; }
+.fy--left .fy__text { margin-left: auto; }
+.fy--wide .fy__text, .fy__text--center { max-width: 920px; }
+.fy__text--center { margin: 0 auto; text-align: center; }
+.fy__text--center .lead { margin-inline: auto; }
+.fy__h { margin-top: 10px; font-size: clamp(34px, 4.2vw, 66px); line-height: 1.02; letter-spacing: -.04em; text-transform: lowercase; max-width: 16ch; }
+.fy__text--center .fy__h { margin-inline: auto; }
+.fy .lead { margin-top: 18px; color: rgba(244, 247, 255, .72); max-width: 44ch; }
+.fy .eyebrow { color: var(--accent-text); }
+.fy-small { margin-top: 18px; font-size: 14px; line-height: 1.55; color: var(--muted); max-width: 56ch; }
+.fy-small--center { margin-inline: auto; text-align: center; }
+.fy-list { display: grid; gap: 12px; margin-top: 26px; max-width: 48ch; }
+.fy-list li { position: relative; padding-left: 22px; color: rgba(244, 247, 255, .72); font-size: 16px; line-height: 1.5; }
+.fy-list li::before { content: '0x'; position: absolute; left: 0; top: .2em; font: 500 10px/1 var(--mono); color: var(--accent-text); }
+.fy-list b { color: var(--fg); font-weight: 600; }
+
+/* 0. Перехват */
+.fy--hero { align-items: end; overflow: hidden; }
+.fy-type { font-size: 13px; letter-spacing: .1em; color: var(--accent-text); min-height: 1.2em; }
+.fy-type::after { content: '▌'; margin-left: 2px; animation: fy-caret 1s steps(2) infinite; }
+@keyframes fy-caret { 50% { opacity: 0; } }
+.fy-hero__title { display: grid; gap: 8px; margin-top: 16px; }
+.fy-hero__model { font-size: clamp(20px, 1.8vw, 28px); font-weight: 600; letter-spacing: -.02em; color: var(--accent-text); }
+.fy-hero__big {
+  font-size: clamp(54px, 8vw, 140px); font-weight: 760; letter-spacing: -.055em; line-height: .92; text-transform: lowercase;
+  background: linear-gradient(100deg, #FFFFFF 15%, #7FA4FF 60%, #2F6BFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.fy-hero__buy { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+.fy-price { font-size: 20px; margin-right: 6px; }
+.fy-note { margin-top: 22px; font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+.fy-beam {
+  position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background: conic-gradient(from 200deg at 72% 18%, transparent 0deg, rgba(47, 107, 255, .16) 14deg, transparent 30deg);
+  animation: fy-sweep 9s linear infinite; transform-origin: 72% 18%;
+}
+@keyframes fy-sweep { from { transform: rotate(-30deg); } 50% { transform: rotate(30deg); } to { transform: rotate(-30deg); } }
+
+/* Цена в hex: при наведении/касании — плашка с десятичной */
+.fy-hex {
+  position: relative; padding: 0; border: 0; background: none; cursor: help;
+  font: 700 30px/1 var(--mono); letter-spacing: -.01em; color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+.fy-hex--big { font-size: clamp(40px, 4.4vw, 68px); letter-spacing: -.03em; }
+.fy-hex__tip {
+  position: absolute; left: 50%; bottom: calc(100% + 18px); z-index: 5; translate: -50% 8px;
+  display: grid; justify-items: start; gap: 8px; min-width: 210px; padding: 16px 20px 18px;
+  border: 1px solid var(--accent); border-radius: 16px;
+  background: linear-gradient(160deg, rgba(47, 107, 255, .16), rgba(47, 107, 255, 0) 60%), #070A10;
+  box-shadow: 0 0 0 5px rgba(47, 107, 255, .1), 0 24px 60px -18px rgba(47, 107, 255, .65);
+  text-align: left; white-space: nowrap; letter-spacing: 0;
+  opacity: 0; pointer-events: none; transition: opacity .22s, translate .22s var(--ease);
+}
+.fy-hex__tip::after {
+  content: ''; position: absolute; left: 50%; top: 100%; width: 14px; height: 14px; translate: -50% -50%; rotate: 45deg;
+  background: #070A10; border: solid var(--accent); border-width: 0 1px 1px 0;
+}
+.fy-hex__tip-head { display: flex; align-items: center; gap: 8px; font: 500 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); }
+.fy-hex__tip-head::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.fy-hex__tip-val { font: 750 34px/1 var(--sans); letter-spacing: -.03em; color: var(--fg); }
+.fy-hex__tip-note { font: 500 11px/1 var(--mono); letter-spacing: .06em; color: var(--muted); }
+.fy-hex--big .fy-hex__tip { min-width: 250px; padding: 20px 24px 22px; bottom: auto; top: calc(100% + 20px); translate: -50% -8px; }
+.fy-hex--big .fy-hex__tip::after { top: 0; border-width: 1px 0 0 1px; }
+.fy-hex--big .fy-hex__tip-val { font-size: 44px; }
+.fy-hex:hover .fy-hex__tip, .fy-hex:focus-visible .fy-hex__tip, .fy-hex.is-open .fy-hex__tip { opacity: 1; translate: -50% 0; }
+/* у кнопки в первом экране плашка не уезжает за левый край */
+.fy-hero__buy .fy-hex__tip { left: 0; translate: 0 8px; }
+.fy-hero__buy .fy-hex__tip::after { left: 36px; }
+.fy-hero__buy .fy-hex:hover .fy-hex__tip, .fy-hero__buy .fy-hex:focus-visible .fy-hex__tip, .fy-hero__buy .fy-hex.is-open .fy-hex__tip { translate: 0 0; }
+
+/* 1. Восемь */
+.fy--eight { display: block; padding: 0; min-height: 0; }
+.fy-pin { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; gap: 36px; padding: calc(var(--header-h) + 32px) 0 48px; }
+.eight { position: relative; height: clamp(220px, 34vh, 340px); margin: 0 auto; width: min(100% - 2 * var(--gutter), 980px); }
+.eight__place { position: absolute; top: 0; bottom: 0; width: 30%; border: 1px dashed var(--line-2); border-radius: 20px; display: grid; align-content: end; justify-items: center; padding-bottom: 14px; }
+.eight__place span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 8px; }
+.eight__place--oy { left: 0; }
+.eight__place--abc { left: 35%; }
+.eight__place--sto { right: 0; border-color: rgba(47, 107, 255, .45); background: rgba(47, 107, 255, .05); }
+.eight__dots { position: absolute; inset: 0; }
+.eight__dot { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: #E9ECF2; box-shadow: 0 0 0 4px rgba(255, 255, 255, .04); transition: background-color .4s; }
+.eight__dot.is-fyr { background: var(--accent); box-shadow: 0 0 18px rgba(47, 107, 255, .7); }
+.eight__count { position: absolute; right: 0; width: 30%; top: 50%; translate: 0 -60%; display: grid; justify-items: center; gap: 4px; opacity: var(--o, 0); }
+.eight__num { font-size: clamp(40px, 6vw, 76px); font-weight: 700; color: var(--fg); line-height: 1; }
+.eight__cap { font-size: 12px; color: var(--muted); }
+.fy-facts { display: flex; justify-content: center; gap: clamp(20px, 6vw, 80px); flex-wrap: wrap; }
+.fy-facts div { text-align: center; }
+.fy-facts dt { font-size: 12px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.fy-facts dd { margin-top: 6px; font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: var(--fg); }
+
+/* 2. Выбор */
+.choice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.choice__item { position: relative; padding: 28px 24px; border: 1px solid var(--line); border-radius: 22px; background: var(--bg-2); }
+.choice__item svg { width: 120px; height: 80px; margin: 0 auto 18px; fill: none; stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.choice__item h3 { font-size: 22px; letter-spacing: -.02em; text-align: center; }
+.choice__item p { margin-top: 10px; font-size: 15px; line-height: 1.5; color: var(--muted); text-align: center; }
+.choice__item.is-in { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 20px 60px -30px rgba(47, 107, 255, .8); }
+.choice__item.is-in svg { stroke: var(--accent-text); }
+.choice__item.is-out::after {
+  content: ''; position: absolute; left: 10%; right: 10%; top: 50%; height: 3px; border-radius: 3px; background: var(--fg);
+  transform: rotate(-8deg) scaleX(var(--cross, 0)); transform-origin: left;
+}
+.choice__item.is-out { opacity: calc(1 - var(--cross, 0) * .5); }
+
+/* 3. Корпус */
+.fy--case .fy__text { max-width: min(500px, 42vw); }
+.fy-readout { margin-top: 26px; font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+.fy-readout b { color: var(--accent-text); font-weight: 600; }
+
+/* Переключатели */
+.fy-switch { display: inline-flex; gap: 4px; margin-top: 26px; padding: 4px; border: 1px solid var(--line-2); border-radius: 999px; background: rgba(10, 14, 21, .7); flex-wrap: wrap; }
+.fy-switch button {
+  height: 38px; padding: 0 16px; border: 0; border-radius: 999px; background: none; cursor: pointer;
+  font-size: 14px; font-weight: 600; color: var(--muted); transition: background-color .25s, color .25s;
+}
+.fy-switch [aria-checked="true"], .fy-switch [aria-selected="true"] { background: var(--accent); color: #fff; }
+.fy-switch button:hover { color: var(--fg); }
+
+/* 4. Тритий: страница тоже гаснет */
+html.is-dark .fy--tritium { background: radial-gradient(60% 50% at 70% 50%, rgba(47, 107, 255, .06), transparent 70%); }
+html.is-dark .fy--tritium .lead, html.is-dark .fy--tritium .fy-small { color: rgba(244, 247, 255, .4); }
+
+/* 5. GFC 1 */
+.doc { margin-top: 24px; padding: 22px 22px 20px; border: 1px solid var(--line-2); border-radius: 18px; background: rgba(10, 14, 21, .82); display: grid; gap: 10px; font-size: 16px; line-height: 1.55; color: rgba(244, 247, 255, .78); max-width: 520px; }
+.doc__head { font-size: 11px; letter-spacing: .12em; color: var(--accent-text); }
+.redact { position: relative; display: inline; padding: 0 2px; border: 0; background: #000; color: transparent; font: inherit; cursor: pointer; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .06); }
+.redact__text { transition: color .25s; }
+.redact:hover .redact__text, .redact:focus-visible .redact__text, .redact.is-open .redact__text { color: var(--fg); }
+.redact--static { cursor: default; color: #000; user-select: none; }
+.safe { margin-top: 26px; display: grid; justify-items: start; gap: 14px; }
+.safe__hint { font-size: 12px; letter-spacing: .08em; color: var(--muted); }
+.safe__dial { position: relative; width: 200px; aspect-ratio: 1; touch-action: none; cursor: grab; border-radius: 50%; }
+.safe__dial:active { cursor: grabbing; }
+.safe__dial svg { width: 100%; height: 100%; overflow: visible; }
+.safe__ring { fill: rgba(16, 22, 34, .9); stroke: var(--line-2); stroke-width: 9; }
+.safe__digits text { fill: var(--fg); font: 700 7px var(--mono); text-anchor: middle; dominant-baseline: central; }
+.safe__digits .is-top { fill: var(--accent-text); }
+.safe__digits { transition: transform .25s cubic-bezier(.3, 1.4, .5, 1); }
+.safe__mark { fill: var(--accent); }
+.safe__digit { position: absolute; inset: 0; display: grid; place-items: center; font-size: 46px; font-weight: 700; color: var(--fg); pointer-events: none; }
+.safe__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.safe__status { font-size: 13px; color: var(--muted); min-height: 1.4em; }
+.safe__status.is-ok { color: var(--accent-text); }
+
+/* 6. Тихие функции */
+.tabs__panel { min-height: 5.5em; }
+
+/* 7. Лог */
+.fy--missing .fy__inner { display: grid; justify-items: center; }
+.log {
+  margin: 40px 0 0; width: min(100%, 720px); padding: 24px 26px; overflow-x: auto;
+  border: 1px solid var(--line-2); border-radius: 18px; background: #03050A;
+  font-size: 13px; line-height: 1.75; color: rgba(244, 247, 255, .7); white-space: normal;
+}
+.log span { display: block; white-space: pre; opacity: var(--o, 1); }
+.log b { color: var(--accent-text); font-weight: 600; }
+
+/* 8. Характеристики */
+.fy--specs .fy__text--specs { max-width: min(620px, 52vw); }
+.spec { width: 100%; margin-top: 26px; border-collapse: collapse; font-size: 14px; }
+.spec th, .spec td { padding: 11px 0; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+.spec th { width: 32%; padding-right: 16px; font-weight: 500; color: var(--muted); }
+.spec td { color: rgba(244, 247, 255, .86); }
+
+/* 9. Цена */
+.prices { display: flex; justify-content: center; gap: clamp(24px, 6vw, 90px); flex-wrap: wrap; margin-top: 56px; }
+.prices li { display: grid; justify-items: center; gap: 12px; }
+.prices__where { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.fy-cta { display: grid; justify-items: center; gap: 4px; margin-top: 48px; }
+
+/* Подвал */
+.fy-footer .footer__privacy { color: var(--accent-text); font-weight: 500; letter-spacing: .06em; }
+.fy-footer .footer__small a { color: var(--muted); text-decoration: none; }
+.fy-footer .footer__small a:hover { color: var(--fg); }
+
+/* Без JS — всё видно, демо прячутся */
+html:not(.js) .safe, html:not(.js) .fy-switch, html:not(.js) .eight { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fy-beam, .fy-type::after, .fy-loader__sig { animation: none; }
+  .safe__digits { transition: none; }
+}
+
+@media (max-width: 1100px) {
+  .fy-nav { display: none; }
+  .fy-back { margin-left: auto; }
+}
+
+@media (max-width: 760px) {
+  /* часы — в верхней части экрана, текст ниже */
+  .fy { align-items: end; padding-top: calc(var(--header-h) + 40vh); }
+  .fy--hero { padding-top: calc(var(--header-h) + 46vh); }
+  .fy--wide, .fy--price, .fy--eight .fy-pin { padding-top: calc(var(--header-h) + 48px); }
+  .fy__text, .fy--left .fy__text, .fy--case .fy__text, .fy--specs .fy__text--specs { max-width: none; margin-left: 0; }
+  .fy__text:not(.fy__text--center)::before { content: ''; position: absolute; inset: -30px calc(-1 * var(--gutter)) -20px; background: linear-gradient(to top, rgba(5, 7, 10, .94) 70%, rgba(5, 7, 10, 0)); z-index: -1; pointer-events: none; }
+  .choice { grid-template-columns: 1fr; }
+  .prices { flex-direction: column; align-items: center; gap: 40px; }
+  .fy-hex--big .fy-hex__tip { min-width: min(250px, calc(100vw - 32px)); }
+  .eight__place span { font-size: 9px; }
+  .eight__dot { width: 12px; height: 12px; margin: -6px 0 0 -6px; }
+  .safe__dial { width: 180px; }
+  .spec th { width: 36%; }
+}

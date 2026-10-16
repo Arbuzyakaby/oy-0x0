@@ -27,6 +27,7 @@
   <link rel="preload" href="/fonts/tektur-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
   <link rel="stylesheet" href="/css/extream.css?v=958adb83a7">
+  <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
 
   <script type="importmap">
   {
@@ -46,7 +47,11 @@
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=85be94a749",
       "/js/data/products.js": "/js/data/products.js?v=6ebef9e2cc",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=06d2b17c28",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
       "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=bd78beeb82",
       "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=8b85f8390e",
       "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
@@ -57,7 +62,7 @@
       "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=1e4faef77b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=c032a2ae5e",
       "/js/models/oymoth.js": "/js/models/oymoth.js?v=47aa3f2034",
-      "/js/models/oynova.js": "/js/models/oynova.js?v=5dd25dc829",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=43d09e6e8b",
       "/js/models/pro.js": "/js/models/pro.js?v=3bc5ff7946",
       "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
       "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
@@ -73,6 +78,7 @@
       "/js/pages/compare.js": "/js/pages/compare.js?v=0ecfda1232",
       "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
       "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=4b681775a1",
       "/js/pages/home.js": "/js/pages/home.js?v=7a0737e4f7",
       "/js/pages/moth.js": "/js/pages/moth.js?v=f2cb99d87c",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
@@ -86,6 +92,8 @@
   }
   </script>
   <script>document.documentElement.classList.add('js')</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
   <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
   <script type="module" src="/js/pages/y1.js?v=f4d84080ba"></script>
 </head>
@@ -622,7 +630,7 @@
   <footer class="x-footer">
     <div class="x-wrap x-footer__grid">
       <a class="x-logo" href="/extream/"><span>e</span><svg class="x-logo__x" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9"/><path d="M16 1v9M16 22v9M1 16h9M22 16h9"/></svg><span>tream</span><small>by OY</small></a>
-      <p>Трекеров eXtream — ноль, cookies — тоже. Сервисы Google работают на телефоне, а не на этом сайте.</p>
+      <p class="x-footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></svg></button> Трекеров eXtream — ноль, cookies — тоже. Сервисы Google работают на телефоне, а не на этом сайте.</p>
       <p>Концепт. eXtream, eXtream Y1, eXOS и компания OY вымышлены: это демонстрационный сайт, телефон не продаётся. Snapdragon — товарный знак своего владельца, использован для антуража. <a href="/">Вернуться к OY</a>.</p>
     </div>
   </footer>
