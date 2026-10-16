@@ -343,7 +343,7 @@ export function createOY0X2E({ phone, scale, isRunning }) {
     }
 
     const sig = clamp01(cur.signal);
-    if (parts.signalMat) { parts.signalMat.emissive.copy(signalCur); parts.signalMat.emissiveIntensity = 0.25 + sig * 9; }
+    if (parts.signalMat) { parts.signalMat.color.copy(signalCur).multiplyScalar(0.93); parts.signalMat.emissive.copy(signalCur); parts.signalMat.emissiveIntensity = 0.25 + sig * (1.2 + 7.8 * signalCur.g * signalCur.g); }
     beamMat.uniforms.uIntensity.value = sig;
     beamMat.uniforms.uColor.value.copy(signalCur);
     beam.visible = sig > 0.002;

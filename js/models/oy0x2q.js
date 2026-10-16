@@ -495,8 +495,10 @@ export function createOY0X2Q({ phone, scale, isRunning }) {
     // Фонарь
     const sig = clamp01(cur.signal);
     if (parts.signalMat) {
+      // красный не выгорает в белый: у насыщенного цвета пик ниже, рассеиватель — в цвет света
+      parts.signalMat.color.copy(signalCur).multiplyScalar(0.93);
       parts.signalMat.emissive.copy(signalCur);
-      parts.signalMat.emissiveIntensity = 0.25 + sig * 9;
+      parts.signalMat.emissiveIntensity = 0.25 + sig * (1.2 + 7.8 * signalCur.g * signalCur.g);
     }
     // «Луч» — самый мощный фонарь OY: тот же луч, но втрое ярче
     beamMat.uniforms.uIntensity.value = sig * (parts.active === 'beam' ? 1.6 : 1);

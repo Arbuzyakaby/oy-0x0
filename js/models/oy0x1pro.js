@@ -424,8 +424,10 @@ export function createOY0X1Pro({ phone, scale, isRunning }) {
       sig = Math.max(sig, sos * (reduced ? 0.8 : on ? 1 : 0.04));
     }
     if (parts.signalMat) {
+      // красный не выгорает в белый: у насыщенного цвета пик ниже, рассеиватель — в цвет света
+      parts.signalMat.color.copy(signalCur).multiplyScalar(0.93);
       parts.signalMat.emissive.copy(signalCur);
-      parts.signalMat.emissiveIntensity = 0.25 + sig * 9;
+      parts.signalMat.emissiveIntensity = 0.25 + sig * (1.2 + 7.8 * signalCur.g * signalCur.g);
     }
     beamMat.uniforms.uIntensity.value = sig;
     beamMat.uniforms.uColor.value.copy(signalCur);
