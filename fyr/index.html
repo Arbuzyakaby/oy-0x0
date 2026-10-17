@@ -25,7 +25,7 @@
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
   <link rel="stylesheet" href="/css/core.css?v=fc2a8cdc6d">
-  <link rel="stylesheet" href="/css/fyr-page.css?v=f35682f06f">
+  <link rel="stylesheet" href="/css/fyr-page.css?v=439cf63167">
   <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
 
   <script type="importmap">
@@ -50,6 +50,7 @@
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
       "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=21c8377dd3",
       "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
       "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
@@ -77,6 +78,8 @@
       "/js/pages/compare.js": "/js/pages/compare.js?v=6c51a02b86",
       "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
       "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
       "/js/pages/home.js": "/js/pages/home.js?v=954ba74200",
       "/js/pages/moth.js": "/js/pages/moth.js?v=101ccfb826",
@@ -152,6 +155,7 @@
             <h2 class="h2 fy__h" id="eight-title">Нас было восемь.</h2>
             <p class="lead" data-eight-text>Восемь основателей OY. Пятеро ушли в&nbsp;ABC Processors. Потом OY купила ABC&nbsp;— и&nbsp;пятеро ушли ещё раз. На&nbsp;этот раз&nbsp;— в&nbsp;Стокгольм. Трое оставшихся продержались до&nbsp;нового CEO из&nbsp;Xiaomi. Теперь в&nbsp;Стокгольме все восемь.</p>
             <p class="fy-small fy-small--center">Новый CEO OY пообещал поднять продажи. Первыми он поднял трёх основателей&nbsp;— со&nbsp;стульев.</p>
+            <p class="fy-small fy-small--center">Восьмой задержался в&nbsp;ABC на&nbsp;восемь дней&nbsp;→ <a href="/fyr/kbook/#days">KBook&nbsp;1</a></p>
           </div>
           <div class="eight" data-eight aria-hidden="true">
             <div class="eight__place eight__place--oy"><span class="mono">OY</span></div>
@@ -182,6 +186,7 @@
             <svg viewBox="0 0 120 80" aria-hidden="true"><rect x="22" y="10" width="76" height="50" rx="4"/><path d="M10 66h100l-6 6H16z"/></svg>
             <h3>Ноутбук</h3>
             <p>Его закрывают и&nbsp;оставляют на&nbsp;столе. Секреты так не&nbsp;хранят.</p>
+            <a class="choice__back mono" href="/fyr/kbook/">Потом вернулись → KBook&nbsp;1</a>
           </li>
           <li class="choice__item is-in">
             <svg viewBox="0 0 120 80" aria-hidden="true"><rect x="46" y="2" width="28" height="18" rx="4"/><rect x="46" y="60" width="28" height="18" rx="4"/><circle cx="60" cy="40" r="22"/><path d="M60 40V28M60 40l8 5"/></svg>
@@ -390,9 +395,9 @@
           <p class="fy-small fy-small--center">Слоган <span class="mono">0x2556FA10290A6F</span> мы не&nbsp;расшифровываем. Расшифровка&nbsp;— в&nbsp;часах.</p>
         </div>
         <div class="fy-next" aria-labelledby="next-title">
-          <p class="eyebrow mono" id="next-title">Новый слоган · сигнал не&nbsp;опознан</p>
-          <p class="fy-next__hex mono">0x0A050A14060F0117150B0E1D14061106121E030E06131406</p>
-          <p class="fy-small fy-small--center">Он пока никуда не&nbsp;ведёт. Это не&nbsp;часы. Это следующее.</p>
+          <p class="eyebrow mono" id="next-title">Новый слоган · сигнал опознан</p>
+          <a class="fy-next__hex mono" href="/fyr/kbook/">0x0A050A14060F0117150B0E1D14061106121E030E06131406</a>
+          <p class="fy-small fy-small--center">Теперь ведёт. Это не&nbsp;часы. Это ноутбук&nbsp;— <a href="/fyr/kbook/">Fyr KBook&nbsp;1</a>.</p>
         </div>
       </div>
     </section>
@@ -417,7 +422,7 @@
         </svg>
         <span>Fyr · Стокгольм</span>
       </div>
-      <p class="footer__privacy mono">0x2556FA10290A6F · 0x0A050A14060F0117150B0E1D14061106121E030E06131406</p>
+      <p class="footer__privacy mono">0x2556FA10290A6F · <a href="/fyr/kbook/">0x0A050A14060F0117150B0E1D14061106121E030E06131406</a></p>
       <p class="footer__small mono"><a href="/" data-fyr-return>Вернуть OY</a></p>
       <p class="footer__concept">Концепт. Fyr, Fyr Osmium X0, τρίτος 1, GFC 1, компания OY и&nbsp;её телефоны вымышлены: это демонстрационный сайт, часы не&nbsp;продаются. Эта страница тоже ничего не&nbsp;считает. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>

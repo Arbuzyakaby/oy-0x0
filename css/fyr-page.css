@@ -71,10 +71,13 @@ body { color: var(--fg); }
 .fy .eyebrow { color: var(--accent-text); }
 .fy-small { margin-top: 18px; font-size: 14px; line-height: 1.55; color: var(--muted); max-width: 56ch; }
 .fy-small--center { margin-inline: auto; text-align: center; }
-/* новый слоган — следующий продукт Fyr, пока без страницы */
+/* новый слоган — ведёт на KBook 1 */
 .fy-next { margin: 56px auto 0; max-width: 760px; padding: 26px clamp(18px, 4vw, 34px); text-align: center; border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 18px; }
 .fy-next .eyebrow { margin: 0 0 12px; }
-.fy-next__hex { font-size: clamp(15px, 2.3vw, 24px); letter-spacing: .06em; line-height: 1.5; color: var(--accent-text, var(--accent)); overflow-wrap: anywhere; }
+.fy-next__hex { display: block; font-size: clamp(15px, 2.3vw, 24px); letter-spacing: .06em; line-height: 1.5; color: var(--accent-text, var(--accent)); overflow-wrap: anywhere; text-decoration: none; }
+a.fy-next__hex:hover, a.fy-next__hex:focus-visible { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
+.fy-next .fy-small a, .fy-small a { color: var(--accent-text); }
+.footer__privacy a { color: inherit; }
 .fy-next .fy-small { margin-top: 12px; }
 .footer__privacy { overflow-wrap: anywhere; }
 .fy-list { display: grid; gap: 12px; margin-top: 26px; max-width: 48ch; }
@@ -169,6 +172,9 @@ body { color: var(--fg); }
   transform: rotate(-8deg) scaleX(var(--cross, 0)); transform-origin: left;
 }
 .choice__item.is-out { opacity: calc(1 - var(--cross, 0) * .5); }
+/* ноутбук потом вернулся: KBook 1 — ссылка не тускнеет вместе с карточкой */
+.choice__back { position: relative; z-index: 1; display: block; margin-top: 14px; text-align: center; font-size: 12px; letter-spacing: .04em; color: var(--accent-text); text-decoration: none; }
+.choice__back:hover, .choice__back:focus-visible { color: var(--fg); }
 
 /* 3. Корпус */
 .fy--case .fy__text { max-width: min(500px, 42vw); }

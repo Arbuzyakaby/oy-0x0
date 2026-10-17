@@ -155,10 +155,16 @@ test('о том, что прячет Erbium, и об имени партнёра
     return d.isDirectory() ? walk(rel) : /\.(html|js|css|json)$/.test(d.name) ? [rel] : [];
   });
   const files = [...PAGES, '404.html', ...walk('js'), ...walk('css')];
+  // Fyr KBook 1 честно запускает Windows 11 рядом с CamelOS и x86 через «Мираж» — к Erbium это не относится
+  const kbook = /^(fyr\/kbook\/|js\/pages\/fyr-kbook|js\/models\/fyrkbook|css\/fyr-kbook)/;
+  const kbookOk = ['эмулят', 'emulat', 'windows'];
   for (const f of files) {
     if (!existsSync(join(ROOT, f))) continue;
     const text = read(f);
-    for (const re of banned) assert.ok(!re.test(text), `${f}: ${re}`);
+    for (const re of banned) {
+      if (kbook.test(f) && kbookOk.includes(re.source)) continue;
+      assert.ok(!re.test(text), `${f}: ${re}`);
+    }
   }
 });
 
@@ -170,7 +176,7 @@ test('«Перехват» Fyr: загрузчик, стили и щит-кно�
     assert.ok(hijack > 0, `${p}: нет hijack.js`);
     const page = html.search(/<script type="module" src="\/js\/(pages|core)\//);
     if (page > 0) assert.ok(hijack < page, `${p}: hijack.js после скрипта страницы`);
-    if (p === 'fyr/index.html') continue;
+    if (p.startsWith('fyr/')) continue;   // страницы Fyr «перехвачены» всегда
     assert.ok(html.includes("sessionStorage.getItem('fyr')"), `${p}: нет проверки вкладки`);
     assert.ok(/<button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит">/.test(html), `${p}: нет щита`);
   }
@@ -193,6 +199,35 @@ test('страница /fyr/: скрытая, десять глав, одна h1
   for (const p of PAGES) {
     const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
     if (nav) assert.ok(!nav[1].includes('/fyr/'), `${p}: Fyr в шапке OY`);
+  }
+});
+
+test('страница /fyr/kbook/: скрытая, главы по порядку, одна h1, якоря и hex-цены сходятся, слоган со /fyr/ ведёт сюда', () => {
+  const html = read('fyr/kbook/index.html');
+  assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
+  assert.ok(html.includes('data-fyr-page'));
+  const chapters = [...html.matchAll(/<section class="fy fy--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['intercept', 'days', 'back', 'case', 'chip', 'd1', 'shutter', 'open', 'boot', 'setup', 'rtds', 'mirage', 'watch', 'trash', 'compare', 'specs', 'price']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.ok((html.match(/class="fy-jab"/g) || []).length >= 30, 'подколов меньше 30');
+  assert.ok(!/touch\s*(&nbsp;)?\s*id/i.test(html), 'Touch ID — чужая марка, у Fyr «Печать»');
+  assert.ok(!/microsoft\.com|class="[^"]*windows-logo/i.test(html), 'вторая система RTDS — без интерфейса и логотипов Microsoft');
+  // hex на кнопках цен совпадает с десятичной подписью
+  for (const [, dec, hex] of html.matchAll(/data-hex="([^"]+)">(0x[0-9A-F]+)/g)) {
+    assert.equal(parseInt(hex, 16), Number(dec.replace(/[^0-9]/g, '')), `${hex} ≠ ${dec}`);
+  }
+  // сделка: неустойка 31 млн, выкуп 0,9 млн, итог 30,1 млн
+  assert.equal(0x1D905C0, 31_000_000);
+  assert.equal(0xDBBA0, 900_000);
+  assert.ok(html.includes('+0x1D905C0 $') && html.includes('−0xDBBA0 $'));
+  assert.ok(existsSync(join(ROOT, 'og-fyr-kbook.jpg')));
+  assert.ok(existsSync(join(ROOT, 'models', 'fyrkbook.glb')));
+  assert.ok(read('fyr/index.html').includes('<a class="fy-next__hex mono" href="/fyr/kbook/">'), 'слоган «Это следующее» не ведёт на KBook');
+  for (const p of PAGES) {
+    const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
+    if (nav) assert.ok(!nav[1].includes('/fyr/kbook/'), `${p}: KBook в шапке OY`);
   }
 });
 
