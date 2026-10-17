@@ -72,7 +72,7 @@
 .lt-steps { margin-top: 30px; display: grid; gap: 12px; }
 .lt-steps li { padding: 16px 18px; background: #0B0B0C; color: var(--lt-paper); font-size: 17px; line-height: 1.5; display: grid; grid-template-columns: 84px 1fr; gap: 14px; align-items: start; }
 .lt-steps li b.mono { color: var(--lt-red); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; padding-top: 3px; }
-.lt-steps li b:not(.mono) { color: #fff; }
+.lt-steps li span b { color: #fff; }
 .lt-note { margin-top: 22px !important; color: #0B0B0C !important; font-weight: 700; }
 
 /* подписи */
