@@ -15,7 +15,7 @@ test('цвета 0X0', () => {
 });
 
 test('getConfig находит конфигурацию и возвращает null для неизвестной', () => {
-  assert.deepEqual(getConfig('0x0', '12/256'), { id: '12/256', usd: 519, eur: 609 });
+  assert.deepEqual(getConfig('0x0', '12/256'), { id: '12/256', usd: 519, eur: 609, cny: 3399 });
   assert.equal(getConfig('0x0', '16/1024'), null);
   assert.equal(getConfig('nope', '8/128'), null);
 });
@@ -42,7 +42,7 @@ test('getPrice учитывает наценку за мрамор', () => {
   assert.deepEqual(getPrice('pro', '16/512', 'marble'), { usd: 1029, eur: 1169 });
   assert.deepEqual(getPrice('pro', '20/1024', 'marble'), { usd: 1199, eur: 1359 });
   assert.equal(getPrice('pro', '10/256', 'marble'), null);
-  assert.deepEqual(getPrice('0x0', '8/128', 'red'), { usd: 449, eur: 539 });
+  assert.deepEqual(getPrice('0x0', '8/128', 'red'), { usd: 449, eur: 539, cny: 2899 });
 });
 
 test('сравнение: цены совпадают с конфигурациями', async () => {
@@ -59,16 +59,23 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('сняты с продажи 0X1, 0X1Q, 0X0 Pro, 0X1 Pro и 0X1 Essential, в продаже семь моделей по цене', async () => {
-  const { ON_SALE } = await import('../../js/data/products.js');
-  for (const id of ['0x1', '0x1q', 'pro', '0x1pro', '0x1e']) assert.equal(PRODUCTS[id].discontinued, true, id);
-  assert.deepEqual(ON_SALE, ['0x2e', '0x0', '0x2', 'moth', '0x2q', '0x2pro', 'nova']);
+test('в продаже одиннадцать моделей OY: линейка 0X1 вернулась, снят только 0X0 Pro', async () => {
+  const { ON_SALE, LINEUP, RETURNED } = await import('../../js/data/products.js');
+  assert.equal(PRODUCTS.pro.discontinued, true);
+  for (const id of ['0x1', '0x1q', '0x1pro', '0x1e']) {
+    assert.ok(!PRODUCTS[id].discontinued, id);
+    assert.equal(PRODUCTS[id].returned, true, id);
+    assert.ok(!PRODUCTS[id].successor && !PRODUCTS[id].tag, id);
+  }
+  assert.deepEqual(ON_SALE, ['0x1e', '0x2e', '0x0', '0x1', '0x2', 'moth', '0x1q', '0x2q', '0x2pro', '0x1pro', 'nova']);
+  assert.deepEqual(RETURNED, ['0x1e', '0x1', '0x1q', '0x1pro']);
+  assert.deepEqual(LINEUP, ['0x2e', '0x0', '0x2', 'moth', '0x2q', '0x2pro', 'nova']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['0x1e', '0x2e'], ['0x1', '0x2'], ['0x1q', '0x2q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
+    [['pro', '0x2pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
@@ -96,7 +103,7 @@ test('цены и цвета 0X2Q', () => {
     [['17/512', 799, 919], ['21/1024', 949, 1079]],
   );
   assert.deepEqual(PRODUCTS['0x2q'].colors, { sand: 'Песочный Белый', tesseract: 'Тессеракт' });
-  assert.deepEqual(getPrice('0x2q', '21/1024', 'sand'), { usd: 949, eur: 1079 });
+  assert.deepEqual(getPrice('0x2q', '21/1024', 'sand'), { usd: 949, eur: 1079, cny: 6199 });
 });
 
 test('сравнение: цвета совпадают с моделями', async () => {
@@ -210,8 +217,9 @@ test('eXtream Y1: от $749 / €849, три цвета, суббренд вне
   assert.equal(y1.href, '/extream/y1/');
   assert.ok(!ON_SALE.includes('y1'));
   assert.ok(ON_SALE_ALL.includes('y1'));
-  // в сравнении — после Moth, и у новых строк значение есть только у Y1
-  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('moth') + 1], 'y1');
+  // в сравнении по цене: между 0X1Q ($719) и 0X2Q ($799), и у новых строк значение есть только у Y1
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x1q') + 1], 'y1');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('y1') + 1], '0x2q');
   assert.equal(SHORT_NAMES.y1, 'eXtream Y1');
   const i = 2 + COMPARE_MODELS.indexOf('y1');
   for (const name of ['Вентиляторы', 'Курки']) {
@@ -223,12 +231,25 @@ test('eXtream Y1: от $749 / €849, три цвета, суббренд вне
   assert.equal(COMPARE.find((r) => r[1] === 'Система')[i], 'eXOS 4 · сервисы Google; в Китае — сервисы партнёра');
 });
 
-test('eXtream Y1 — первый OY в Китае: цены в юанях и строка «Китай» только у него', async () => {
+test('Китай: цены в юанях у всех моделей в продаже, кроме вернувшейся 0X1 (только США)', async () => {
   const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
   assert.deepEqual(PRODUCTS.y1.configs.map((c) => c.cny), [4999, 5999, 7299]);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.cn).map((p) => p.id), ['y1']);
+  assert.deepEqual(
+    Object.values(PRODUCTS).filter((p) => p.cn).map((p) => p.id),
+    ['0x2e', '0x0', '0x2', 'moth', 'y1', '0x2q', '0x2pro', 'nova'],
+  );
+  for (const p of Object.values(PRODUCTS)) {
+    for (const c of p.configs) assert.equal(c.cny != null, !!p.cn, `${p.id} ${c.id}`);
+    // юань дешевле доллара в 6–7 раз, ступени цен те же
+    if (p.cn) p.configs.forEach((c, i) => {
+      assert.ok(c.cny / c.usd > 6 && c.cny / c.usd < 7, `${p.id} ${c.id}`);
+      if (i) assert.ok(c.cny > p.configs[i - 1].cny, `${p.id} ${c.id}`);
+    });
+  }
   const row = COMPARE.find((r) => r[1] === 'Китай');
-  COMPARE_MODELS.forEach((id, k) => assert.equal(row[2 + k].startsWith(`от ¥${PRODUCTS.y1.configs[0].cny}`), id === 'y1', id));
+  COMPARE_MODELS.forEach((id, k) => assert.equal(row[2 + k].startsWith(`от ¥${PRODUCTS[id].configs[0].cny}`), !!PRODUCTS[id].cn, id));
+  assert.deepEqual(getPrice('moth', '12/512', 'red'), { usd: 799, eur: 909, cny: 5199 });
+  assert.equal(getPrice('0x1', '8/256', 'violet').cny, undefined);
 });
 
 test('0X Nova: новый флагман от $999 / €1149, один цвет «Сверхновая»', async () => {
@@ -240,7 +261,7 @@ test('0X Nova: новый флагман от $999 / €1149, один цвет 
   assert.equal(nova.eu, true);
   // дороже всех моделей в продаже
   for (const p of Object.values(PRODUCTS)) if (p !== nova && !p.discontinued) assert.ok(p.configs[0].usd < 999, p.id);
-  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x2pro') + 1], 'nova');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('nova') + 1], 'pro');
   assert.equal(SHORT_NAMES.nova, 'Nova');
   const i = 2 + COMPARE_MODELS.indexOf('nova');
   const get = (label) => COMPARE.find((r) => r[1] === label);

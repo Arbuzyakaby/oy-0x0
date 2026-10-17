@@ -449,14 +449,15 @@ $$('[data-garland] li').forEach((li) => li.addEventListener('click', () => {
 
 // выбор валюты общий для страниц, где есть евро; старый ключ 0X2 Pro тоже понимаем
 const CUR_KEY = 'oy-currency';
-let currency = (store.get(CUR_KEY) || store.get('oy-0x2pro-currency')) === 'eur' ? 'eur' : 'usd';
-const money = (usd, eur) => (currency === 'eur' ? `€${eur}` : `$${usd}`);
+const savedCur = store.get(CUR_KEY) || store.get('oy-0x2pro-currency');
+let currency = ['eur', 'cny'].includes(savedCur) ? savedCur : 'usd';
+const money = (usd, eur, cny) => (currency === 'eur' ? `€${eur}` : currency === 'cny' ? `¥${cny}` : `$${usd}`);
 let cfgId = PRODUCT.configs[0].id;
 const totalEl = $('[data-total]');
 let shownTotal = '';
 function renderTotal(animate = true) {
   const c = getConfig(PRODUCT.id, cfgId);
-  const text = money(c.usd, c.eur);
+  const text = money(c.usd, c.eur, c.cny);
   totalEl.setAttribute('aria-label', `Цена: ${text}`);
   if (text === shownTotal) return;
   const old = shownTotal;
@@ -471,9 +472,9 @@ function renderTotal(animate = true) {
 }
 function applyCurrency() {
   $$('[data-currency]').forEach((g) => syncRadio(g, currency));
-  $$('[data-price]').forEach((el) => { el.textContent = money(el.dataset.usd, el.dataset.eur); });
+  $$('[data-price]').forEach((el) => { el.textContent = money(el.dataset.usd, el.dataset.eur, el.dataset.cny); });
   const c0 = PRODUCT.configs[0];
-  $$('[data-price-from]').forEach((el) => { el.textContent = money(c0.usd, c0.eur); });
+  $$('[data-price-from]').forEach((el) => { el.textContent = money(c0.usd, c0.eur, c0.cny); });
   renderTotal(true);
 }
 $$('[data-currency]').forEach((g) => initRadioGroup(g, (v) => {
@@ -491,7 +492,7 @@ $$('[data-currency]').forEach((g) => initRadioGroup(g, (v) => {
     renderTotal(true);
   });
   $('[data-price-table]').innerHTML = PRODUCT.configs
-    .map((c) => `<tr><td>${c.id} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td></tr>`).join('');
+    .map((c) => `<tr><td>${c.id} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td><td>¥${c.cny}</td></tr>`).join('');
 }
 bindStubs(toast);
 

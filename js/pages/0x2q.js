@@ -48,6 +48,7 @@ const colorGroups = $$('[data-color-switch]');
 const memGroup = $('[data-mem-switch]');
 const usdEl = $('[data-price-usd]');
 const eurEl = $('[data-price-eur]');
+const cnyEl = $('[data-price-cny]');
 const cfgNameEl = $('[data-cfg-name]');
 let currentMem = PRODUCT.configs[0].id;
 let currentColor = PRODUCT.defaultColor;
@@ -58,6 +59,7 @@ function updatePrice(animate = true) {
   if (!price) return;
   cfgNameEl.textContent = `${currentMem} ГБ`;
   eurEl.textContent = `€${price.eur.toLocaleString('ru-RU')}`;
+  cnyEl.textContent = `¥${price.cny.toLocaleString('ru-RU')}`;
   const fmt = (n) => `$${Math.round(n).toLocaleString('en-US')}`;
   if (!animate || reduceMQ.matches) { usdEl.textContent = fmt(price.usd); shownUsd = price.usd; return; }
   const o = { n: shownUsd };
@@ -93,7 +95,7 @@ setColor(store.get('oy-0x2q-color') || root.dataset.color || PRODUCT.defaultColo
 const priceBody = $('[data-price-table]');
 if (priceBody) {
   priceBody.innerHTML = PRODUCT.configs
-    .map((c) => `<tr><th scope="row">${c.id} ГБ</th><td>$${c.usd.toLocaleString('en-US')}</td><td>€${c.eur.toLocaleString('ru-RU')}</td></tr>`).join('');
+    .map((c) => `<tr><th scope="row">${c.id} ГБ</th><td>$${c.usd.toLocaleString('en-US')}</td><td>€${c.eur.toLocaleString('ru-RU')}</td><td>¥${c.cny.toLocaleString('ru-RU')}</td></tr>`).join('');
 }
 
 bindStubs(toast);

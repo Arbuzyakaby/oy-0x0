@@ -211,7 +211,7 @@ function renderCol(i) {
   const c0 = p.configs[0];
   $('[data-price]', col).textContent = p.discontinued ? `Был от $${c0.usd}` : `От $${c0.usd.toLocaleString('en-US')}`;
   const next = p.successor && PRODUCTS[p.successor];
-  $('[data-eur]', col).textContent = next ? `Преемник — ${SHORT_NAMES[next.id]}` : (p.eu ? `€${c0.eur} · в Европе — уже в продаже` : `€${c0.eur} · Европа — скоро`);
+  $('[data-eur]', col).textContent = next ? `Преемник — ${SHORT_NAMES[next.id]}` : (`€${c0.eur} · ${p.eu ? 'в Европе — уже в продаже' : 'Европа — скоро'}${c0.cny ? ` · ¥${c0.cny.toLocaleString('ru-RU')} — Китай` : ''}`);
   const buy = $('[data-buy]', col);
   buy.textContent = next ? `Смотреть ${SHORT_NAMES[next.id]}` : 'Купить';
   buy.href = next ? next.href : `${p.href}#buy`;

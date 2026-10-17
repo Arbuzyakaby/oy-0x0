@@ -506,22 +506,22 @@ $$('[data-check]').forEach((b) => b.addEventListener('click', () => {
 /* ---------- 12. Память и валюта ---------- */
 
 const CUR_KEY = 'oy-currency';
-let currency = store.get(CUR_KEY) === 'eur' ? 'eur' : 'usd';
+let currency = ['eur', 'cny'].includes(store.get(CUR_KEY)) ? store.get(CUR_KEY) : 'usd';
 let mem = PRODUCT.configs[0].id;
 const memGroup = $('[data-mem-switch]');
-const money = (usd, eur) => (currency === 'eur' ? `€${eur}` : `$${usd}`);
+const money = (usd, eur, cny) => (currency === 'eur' ? `€${eur}` : currency === 'cny' ? `¥${cny}` : `$${usd}`);
 function renderPrice() {
   const c = getConfig('nova', mem);
-  $('[data-total]').textContent = money(c.usd, c.eur);
+  $('[data-total]').textContent = money(c.usd, c.eur, c.cny);
   $('[data-cfg-name]').textContent = `OY 0X Nova · ${mem} ГБ`;
   syncRadio(memGroup, mem);
   $$('[data-currency]').forEach((g) => syncRadio(g, currency));
-  $$('[data-price]').forEach((el) => { el.textContent = money(Number(el.dataset.usd), Number(el.dataset.eur)); });
+  $$('[data-price]').forEach((el) => { el.textContent = money(Number(el.dataset.usd), Number(el.dataset.eur), Number(el.dataset.cny)); });
 }
 initRadioGroup(memGroup, (v) => { mem = v; renderPrice(); });
 $$('[data-currency]').forEach((g) => initRadioGroup(g, (v) => { currency = v; store.set(CUR_KEY, v); renderPrice(); }));
 $('[data-price-table]').innerHTML = PRODUCT.configs
-  .map((c) => `<tr><td>${c.id.replace('/', ' / ')} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td></tr>`).join('');
+  .map((c) => `<tr><td>${c.id.replace('/', ' / ')} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td><td>¥${c.cny}</td></tr>`).join('');
 renderPrice();
 
 /* ---------- Каждый тик: прокрутка → небо и модель ---------- */

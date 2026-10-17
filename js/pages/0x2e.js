@@ -90,6 +90,7 @@ const PRODUCT = PRODUCTS['0x2e'];
   const usd = $('[data-price-usd]');
   const total = $('[data-price-total]');
   const eur = $('[data-price-eur]');
+  const cny = $('[data-price-cny]');
   const name = $('[data-cfg-name]');
   let shown = PRODUCT.configs[0].usd;
   const set = (v, animate = true) => {
@@ -98,6 +99,7 @@ const PRODUCT = PRODUCTS['0x2e'];
     syncRadio(group, v);
     name.textContent = `${v} ГБ`;
     eur.textContent = `€${cfg.eur}`;
+    cny.textContent = `¥${cfg.cny}`;
     usd.textContent = `$${cfg.usd}`;
     if (!animate || reduceMQ.matches) { total.textContent = `$${cfg.usd}`; shown = cfg.usd; return; }
     const o = { n: shown };
@@ -108,7 +110,7 @@ const PRODUCT = PRODUCTS['0x2e'];
   set(PRODUCT.configs[0].id, false);
 
   $('[data-price-table]').innerHTML = PRODUCT.configs
-    .map((c) => `<tr><td>${c.id} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td></tr>`).join('');
+    .map((c) => `<tr><td>${c.id} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td><td>¥${c.cny}</td></tr>`).join('');
 }
 
 bindStubs(toast);

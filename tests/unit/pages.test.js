@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { PRODUCTS, ON_SALE } from '../../js/data/products.js';
+import { PRODUCTS, ON_SALE, LINEUP, RETURNED } from '../../js/data/products.js';
 import { ACCESSORIES } from '../../js/data/accessories.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
@@ -47,7 +47,9 @@ test('шапка всех страниц ведёт на модели в про�
   for (const p of PAGES) {
     const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
     if (!nav) continue;
-    for (const id of ON_SALE) assert.ok(nav[1].includes(`href="${PRODUCTS[id].href}"`), `${p}: нет ${id}`);
+    // вернувшаяся 0X1 — одной ссылкой «0X1» на витрину, остальные модели — каждая своей
+    for (const id of LINEUP) assert.ok(nav[1].includes(`href="${PRODUCTS[id].href}"`), `${p}: нет ${id}`);
+    assert.ok(nav[1].includes('href="/#returned"'), `${p}: нет ссылки на вернувшуюся 0X1`);
     for (const p2 of Object.values(PRODUCTS).filter((x) => x.discontinued)) {
       assert.ok(!nav[1].includes(`href="${p2.href}"`), `${p}: снятый ${p2.id} в шапке`);
     }
@@ -191,5 +193,41 @@ test('страница /fyr/: скрытая, десять глав, одна h1
   for (const p of PAGES) {
     const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
     if (nav) assert.ok(!nav[1].includes('/fyr/'), `${p}: Fyr в шапке OY`);
+  }
+});
+
+test('вернувшиеся 0X1: на страницах нет плашки «снят с продажи», есть конфигуратор и цена из данных', () => {
+  for (const id of RETURNED) {
+    const html = read(`${PRODUCTS[id].href.slice(1)}index.html`);
+    assert.ok(!html.includes('disc-plate'), `${id}: плашка`);
+    assert.ok(!html.includes('price-card--disc'), `${id}: карточка снятой модели`);
+    assert.ok(html.includes('data-mem-switch'), `${id}: нет выбора памяти`);
+    for (const c of PRODUCTS[id].configs) assert.ok(html.includes(`data-value="${c.id}"`), `${id}: ${c.id}`);
+    assert.ok(html.includes(`data-price-usd>$${PRODUCTS[id].configs[0].usd}<`), `${id}: цена`);
+    assert.ok(!/(?<!Не )снят с продажи/i.test(html.replace(/<footer[\s\S]*$/, '')), `${id}: упоминание снятия`);
+  }
+});
+
+test('витрина: все вернувшиеся модели на втором ряду и в карточках, есть блок про нового CEO и Китай', () => {
+  const html = read('index.html');
+  assert.match(html, /<title>OY — Одиннадцать телефонов/);
+  for (const id of RETURNED) {
+    assert.ok(html.includes(`data-model="${id}"`), `${id}: нет на витрине`);
+    assert.ok(html.includes(`href="${PRODUCTS[id].href}#buy"`), `${id}: нет карточки`);
+  }
+  assert.ok(html.includes('id="returned"'));
+  assert.ok(html.includes('id="shift"'));
+  assert.match(html, /топ-менеджер Xiaomi/);
+  assert.ok(html.includes(`¥${PRODUCTS['0x2e'].configs[0].cny}`));
+  assert.ok(html.includes(`¥${PRODUCTS['0x2pro'].configs.at(-1).cny}`));
+});
+
+test('страницы моделей, вышедших в Китай, показывают цену в юанях из данных', () => {
+  for (const p of Object.values(PRODUCTS).filter((x) => x.cn && !x.brand)) {
+    const html = read(`${p.href.slice(1)}index.html`);
+    assert.match(html, /Китай/, `${p.id}: нет слова «Китай»`);
+    const first = p.configs[0].cny;
+    assert.ok(html.includes(`¥${first}`) || html.includes(`data-cny="${first}"`), `${p.id}: нет ¥${first}`);
+    assert.ok(html.includes('data-cny=') || html.includes('data-price-cny') || html.includes('data-value="cny"'), `${p.id}: нет юаней в разметке`);
   }
 });
