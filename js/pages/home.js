@@ -63,8 +63,8 @@ $$('.lineup__item').forEach((item) => {
   const rest = pose(id);
   // при наведении телефон разворачивается к вам экраном вполоборота;
   // у 0X2Q заодно выезжает модуль, 0X2 Pro поворачивается экраном и поднимает фронталку из-под CPix,
-  // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам, а у Nova выезжает перо
-  const near = id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth' || id === 'moth2' ? { ry: -0.35, fold: 1, rz: PI, fy: 0 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
+  // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам (камера чуть дальше: сложенный он шире колонки), а у Nova выезжает перо
+  const near = id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth' || id === 'moth2' ? { ry: -0.28, fold: 1, rz: PI, fy: 0, dist: DIST * 1.2 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
   stage.setTarget(rest);
   stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);
