@@ -9,7 +9,7 @@
   --wall: url("/img/moth/wall-yellow.webp");
   --accent: #F6D44A;
   --accent-text: #FFDE5C;
-  --accent-strong: #8A6D00;
+  --accent-strong: #7A6000;
   --accent-ink: #1A1505;
   --glow: rgba(246, 212, 74, .34);
   --bg-tint: #13100A;
@@ -39,7 +39,7 @@
   --wall: url("/img/moth/wall-apple.webp");
   --accent: #8DC63F;
   --accent-text: #A8E05A;
-  --accent-strong: #4D7A14;
+  --accent-strong: #456E12;
   --accent-ink: #0F1A04;
   --glow: rgba(141, 198, 63, .3);
   --bg-tint: #0C110A;
@@ -305,6 +305,13 @@ html.is-fold .site-header { position: absolute; }
 .m2-box__item b { font-size: 18px; letter-spacing: -.02em; }
 .m2-box__item span { font-size: 14px; line-height: 1.45; color: var(--light-muted, var(--muted)); }
 .m2-vs { margin-top: 40px; }
+/* «Купить» — светлый раздел: таблица и иконки берут светлую палитру, акцент — тёмный оттенок цвета */
+.ch--buy .m2-vs th, .ch--buy .m2-vs td { border-bottom-color: var(--light-line); }
+.ch--buy .m2-vs td, .ch--buy .m2-vs thead th { color: var(--light-fg); }
+.ch--buy .m2-vs tbody th { color: var(--light-muted); }
+.ch--buy .m2-vs .is-moth { color: var(--accent-strong); font-weight: 600; }
+.ch--buy .m2-box__item svg { stroke: var(--accent-strong); }
+.ch--buy .m2-box__item { background: color-mix(in srgb, var(--accent) 12%, #fff); border-color: color-mix(in srgb, var(--accent-strong) 30%, transparent); }
 @media (max-width: 760px) {
   .m2-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .m2-box { grid-template-columns: 1fr; }
