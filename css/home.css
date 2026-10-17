@@ -230,3 +230,14 @@
 @media (max-width: 400px) {
   .header-actions .btn--sm { display: none; }
 }
+
+/* ---------- Открытое письмо сотрудников: баннер на витрине ---------- */
+.letter-banner { padding-block: clamp(40px, 6vw, 80px); }
+.letter-banner__card { position: relative; display: grid; gap: 12px; padding: clamp(26px, 3.4vw, 48px) clamp(22px, 3.4vw, 48px); background: #ECE6D8; color: #0B0B0C; text-decoration: none; overflow: hidden; box-shadow: 10px 10px 0 #E5352B; transition: transform .25s var(--ease); }
+.letter-banner__card:hover, .letter-banner__card:focus-visible { transform: translate(-3px, -3px) rotate(-.3deg); }
+.letter-banner__card:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.letter-banner__tape { position: absolute; top: 0; left: 0; right: 0; height: 14px; background: repeating-linear-gradient(-45deg, #E5352B 0 14px, #0B0B0C 14px 28px); }
+.letter-banner__k { margin-top: 10px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #E5352B; font-weight: 700; }
+.letter-banner__t { font-size: clamp(28px, 4.4vw, 62px); font-weight: 800; letter-spacing: -.04em; line-height: 1; text-wrap: balance; }
+.letter-banner__p { font-size: clamp(15px, 1.3vw, 18px); line-height: 1.5; max-width: 62ch; color: #2A2A2E; }
+.letter-banner__go { font-weight: 800; color: #E5352B; }

@@ -1,0 +1,103 @@
+/* =========================================================================
+   Открытое письмо сотрудников OY — плакат: чёрное, красное, бумага,
+   машинопись, сигнальная лента. Свой язык, без компонентов моделей.
+   ========================================================================= */
+
+:root { --lt-red: #E5352B; --lt-paper: #ECE6D8; --lt-ink: #0B0B0C; }
+.lt { background: #0B0B0C; }
+.lt-header { position: absolute; top: 0; left: 0; right: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; }
+.lt-header__tag { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #8A8A90; padding-right: var(--gutter); max-width: 34ch; text-align: right; }
+
+/* сигнальная лента */
+.lt-tape { height: 22px; background: repeating-linear-gradient(-45deg, #E5352B 0 18px, #0B0B0C 18px 36px); }
+.lt-tape--b { transform: rotate(-1.2deg) scale(1.02); margin-top: 8px; }
+
+.lt-hero { padding-top: 64px; padding-bottom: 36px; background: radial-gradient(70% 60% at 20% 20%, rgba(229, 53, 43, .28), transparent 70%); }
+.lt-hero .container { padding-top: clamp(44px, 8vh, 96px); padding-bottom: clamp(36px, 6vh, 72px); position: relative; }
+.lt-stamp {
+  display: inline-block; padding: 6px 16px; border: 3px solid var(--lt-red); color: var(--lt-red);
+  font-weight: 700; font-size: clamp(14px, 1.6vw, 20px); letter-spacing: .24em; text-transform: uppercase; transform: rotate(-3deg);
+}
+.lt-to { margin-top: 26px; font-size: 13px; letter-spacing: .04em; color: #A3A3A8; max-width: 60ch; }
+.lt-title { margin-top: 14px; font-size: clamp(40px, 8.6vw, 128px); font-weight: 800; letter-spacing: -.05em; line-height: .92; text-wrap: balance; }
+.lt-title em { font-style: normal; color: var(--lt-red); }
+.lt-lead { margin-top: 26px; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.4; max-width: 46ch; color: #D8D4C8; }
+.lt-from { margin-top: 22px; font-size: 13px; line-height: 1.7; color: #8A8A90; }
+.lt-from b { color: var(--lt-red); font-weight: 700; }
+.lt-btn {
+  display: inline-block; margin-top: 30px; padding: 14px 22px; border: 2px solid var(--lt-paper); color: var(--lt-paper);
+  font: 700 15px var(--sans); text-decoration: none; letter-spacing: .02em; background: transparent; cursor: pointer; transition: background .2s, color .2s;
+}
+.lt-btn:hover, .lt-btn:focus-visible { background: var(--lt-paper); color: var(--lt-ink); }
+.lt-btn--solid { background: var(--lt-red); border-color: var(--lt-red); color: #fff; }
+.lt-btn--solid:hover, .lt-btn--solid:focus-visible { background: #fff; color: var(--lt-red); border-color: #fff; }
+.lt-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+/* разделы */
+.lt-sec { padding: clamp(56px, 9vw, 120px) 0; border-top: 1px solid rgba(255, 255, 255, .12); }
+.lt-sec--dark { background: #060607; }
+.lt-sec--red { background: var(--lt-red); color: #0B0B0C; border-top: 0; }
+.lt-sec--sign { background: var(--lt-paper); color: var(--lt-ink); text-align: center; }
+.lt-cols { display: grid; grid-template-columns: minmax(120px, 220px) minmax(0, 1fr); gap: clamp(20px, 4vw, 64px); }
+.lt-col-k { position: sticky; top: 24px; align-self: start; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--lt-red); display: grid; gap: 6px; }
+.lt-col-k span { font-size: clamp(40px, 5vw, 72px); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.lt-sec--red .lt-col-k { color: #0B0B0C; }
+.lt-col-b { max-width: 70ch; }
+.lt-col-b p { margin-top: 18px; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: #D8D4C8; }
+.lt-col-b p b { color: #fff; }
+.lt-h2 { font-size: clamp(30px, 4.4vw, 60px); font-weight: 800; letter-spacing: -.04em; line-height: 1; text-wrap: balance; }
+
+/* находки: папки с делом */
+.lt-file { margin-top: 38px; padding: clamp(20px, 2.6vw, 34px); background: var(--lt-paper); color: var(--lt-ink); position: relative; box-shadow: 8px 8px 0 var(--lt-red); }
+.lt-file:nth-of-type(even) { transform: rotate(.4deg); }
+.lt-file:nth-of-type(odd) { transform: rotate(-.35deg); }
+.lt-file__k { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--lt-red); font-weight: 700; }
+.lt-file h3 { margin-top: 10px; font-size: clamp(22px, 2.4vw, 32px); font-weight: 800; letter-spacing: -.03em; line-height: 1.06; }
+.lt-col-b .lt-file p { color: #1F1F22; }
+.lt-col-b .lt-file p b { color: var(--lt-ink); background: rgba(229, 53, 43, .18); padding: 0 .12em; }
+.lt-redact { background: var(--lt-ink); color: var(--lt-ink); padding: 0 .3em; border-radius: 2px; transition: color .3s; cursor: help; }
+.lt-redact:hover, .lt-redact:focus-visible { color: var(--lt-paper); }
+.lt-log { margin-top: 18px; padding: 14px 16px; background: #0B0B0C; color: #79F0A0; font-size: 12.5px; line-height: 1.7; overflow-x: auto; white-space: pre; }
+
+/* требования */
+.lt-dem { margin-top: 36px; display: grid; gap: 14px; counter-reset: d; }
+.lt-dem li { display: grid; gap: 6px; padding: 20px 22px; border: 2px solid var(--lt-paper); }
+.lt-dem li b:first-child { font-size: clamp(20px, 2vw, 28px); color: var(--lt-red); letter-spacing: -.02em; }
+.lt-dem li span { font-size: 17px; line-height: 1.55; color: #D8D4C8; }
+.lt-dem li span b { color: #fff; }
+
+/* ультиматум */
+.lt-sec--red .lt-h2 { font-size: clamp(44px, 8vw, 120px); }
+.lt-sec--red .lt-ult { color: #0B0B0C; font-weight: 600; }
+.lt-steps { margin-top: 30px; display: grid; gap: 12px; }
+.lt-steps li { padding: 16px 18px; background: #0B0B0C; color: var(--lt-paper); font-size: 17px; line-height: 1.5; display: grid; grid-template-columns: 84px 1fr; gap: 14px; align-items: start; }
+.lt-steps li b.mono { color: var(--lt-red); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; padding-top: 3px; }
+.lt-steps li b:not(.mono) { color: #fff; }
+.lt-note { margin-top: 22px !important; color: #0B0B0C !important; font-weight: 700; }
+
+/* подписи */
+.lt-sign { max-width: 760px; }
+.lt-sign .lt-lead { margin-inline: auto; color: #2A2A2E; }
+.lt-count { margin-top: 22px !important; display: grid; gap: 4px; justify-items: center; }
+.lt-count b { font-size: clamp(64px, 12vw, 160px); font-weight: 800; letter-spacing: -.05em; color: var(--lt-red); line-height: .9; font-variant-numeric: tabular-nums; }
+.lt-count span { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #55555B; }
+.lt-sign__done { margin-top: 16px; font-size: 13px; color: #2A2A2E; }
+.lt-links { margin-top: 34px; font-size: 13px; color: #55555B; }
+.lt-links a { color: var(--lt-ink); text-decoration: underline; text-underline-offset: 3px; margin: 0 4px; }
+
+/* появление */
+.js .lt [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.js .lt [data-reveal].is-in { opacity: 1; transform: none; }
+.js .lt .lt-file[data-reveal].is-in:nth-of-type(odd) { transform: rotate(-.35deg); }
+.js .lt .lt-file[data-reveal].is-in:nth-of-type(even) { transform: rotate(.4deg); }
+@media (prefers-reduced-motion: reduce) {
+  .js .lt [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .lt-file { transform: none !important; }
+}
+@media (max-width: 760px) {
+  .lt-cols { grid-template-columns: 1fr; }
+  .lt-col-k { position: static; grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 14px; }
+  .lt-header__tag { display: none; }
+  .lt-steps li { grid-template-columns: 1fr; gap: 4px; }
+  .lt-file { box-shadow: 5px 5px 0 var(--lt-red); }
+}

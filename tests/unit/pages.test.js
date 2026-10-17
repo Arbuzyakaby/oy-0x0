@@ -146,7 +146,7 @@ test('страница eXtream Y1: тринадцать уровней и фин
   assert.ok(html.includes('id="china"'));
 });
 
-test('о том, что прячет Erbium, и об имени партнёра на сайте ни слова', () => {
+test('о том, что прячет Erbium, — только в открытом письме и в его анонсах; имени партнёра на сайте нет нигде', () => {
   // docs/, README и blender/ — не сайт, там можно; партнёр по коллабу на сайте — только «крупный китайский бренд»
   const banned = [/deuterium/i, /дейтери/i, /эмулят/i, /emulat/i, /windows/i, /playstation/i, /\bps ?[123]\b/i, /xbox/i, /tencent/i, /т[еэ]нс[еэ]нт/i, /wechat/i, /weixin/i];
   const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((d) => {
@@ -157,14 +157,32 @@ test('о том, что прячет Erbium, и об имени партнёра
   // Fyr KBook 1 честно запускает Windows 11 рядом с CamelOS и x86 через «Мираж» — к Erbium это не относится
   const kbook = /^(fyr\/kbook\/|js\/pages\/fyr-kbook|js\/models\/fyrkbook|css\/fyr-kbook)/;
   const kbookOk = ['эмулят', 'emulat', 'windows'];
+  // письмо сотрудников OY раскрывает эмулятор: на странице письма и в анонсах слова про эмулятор можно
+  const letter = /^(letter\/|js\/pages\/letter|css\/letter|index\.html$|extream\/index\.html$|extream\/y1\/index\.html$)/;
+  const letterOk = ['deuterium', 'дейтери', 'эмулят', 'emulat'];
   for (const f of files) {
     if (!existsSync(join(ROOT, f))) continue;
     const text = read(f);
     for (const re of banned) {
       if (kbook.test(f) && kbookOk.includes(re.source)) continue;
+      if (letter.test(f) && letterOk.includes(re.source)) continue;
       assert.ok(!re.test(text), `${f}: ${re}`);
     }
   }
+});
+
+test('открытое письмо сотрудников OY: требования, три находки, ультиматум, анонсы на витрине и в eXtream, 14 ступеней у Moth 2', () => {
+  const html = read('letter/index.html');
+  for (const id of ['why', 'found', 'demands', 'ultimatum', 'sign']) assert.ok(html.includes(`id="${id}"`), id);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.equal((html.match(/<li data-reveal><b>0\d · /g) || []).length, 4, 'четыре требования');
+  for (const re of [/слияни[ея] с&nbsp;Fyr/i, /Стоп Китаю/, /облака/, /телеметри/, /Deuterium/, /Erbium/, /голодовк/, /баррикадир/, /воевать/, /четырнадцать ступеней/]) assert.match(html, re);
+  assert.ok(html.includes('вымышленный документ вымышленной компании'));
+  assert.ok(read('index.html').includes('href="/letter/"'));
+  assert.ok(read('extream/index.html').includes('href="/letter/"'));
+  assert.ok(read('extream/y1/index.html').includes('href="/letter/"'));
+  assert.match(read('moth2/index.html'), /14 ступеней/);
+  assert.ok(existsSync(join(ROOT, 'og-letter.jpg')));
 });
 
 test('«Перехват» Fyr: загрузчик, стили и щит-кнопка — на каждой странице, загрузчик раньше скрипта страницы', () => {

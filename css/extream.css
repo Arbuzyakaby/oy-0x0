@@ -809,3 +809,11 @@ html:not(.js) .x-hud, html:not(.js) .x-controls, html:not(.js) .x-level { displa
   .ptable li { width: calc(25% - 5px); min-width: 70px; height: 86px; }
   .x-logo small { display: none; }
 }
+
+/* ---------- Открытое письмо сотрудников OY ---------- */
+.hub-letter { padding: 0 0 100px; }
+.hub-letter__card { display: grid; gap: 14px; padding: clamp(24px, 3vw, 44px); border: 1px solid rgba(255, 90, 90, .55); background: linear-gradient(135deg, rgba(229, 53, 43, .18), rgba(0, 0, 0, .4) 60%); text-decoration: none; color: inherit; justify-items: start; transition: border-color .2s, transform .2s; }
+.hub-letter__card:hover, .hub-letter__card:focus-visible { border-color: #FF5A5A; transform: translateY(-3px); }
+.hub-letter__t { font-size: clamp(26px, 3.6vw, 50px); font-weight: 800; letter-spacing: -.03em; line-height: 1.02; color: var(--x-text); }
+.hub-letter__p { font: 400 15px/1.6 var(--x-mono); color: var(--x-dim); max-width: 64ch; }
+.x-note a { color: var(--x-text); text-decoration: underline; text-underline-offset: 3px; }

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ru" data-color="red">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Открытое письмо сотрудников OY — Требуем. Иначе — баррикады.</title>
+  <meta name="description" content="Открытое письмо оставшихся инженеров и сотрудников OY: объединение с Fyr, стоп экспансии в Китае, никакого облака и телеметрии. Что прятал эмулятор в eXtream Y1 и что сделали в Moth 2. Вымышленный документ концепт-сайта.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0A0B">
+  <link rel="canonical" href="https://oy0x.online/letter/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/letter/">
+  <meta property="og:title" content="Открытое письмо сотрудников OY: требуем и баррикадируемся">
+  <meta property="og:description" content="Мы собирали ваши телефоны. Мы больше не молчим. Восемь дней.">
+  <meta property="og:image" content="https://oy0x.online/og-letter.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Плакат «Открытое письмо сотрудников OY» на красном фоне">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Ccircle cx='47' cy='32' r='9' fill='none' stroke='%23E8434D' stroke-width='4'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
+  <link rel="stylesheet" href="/css/core.css?v=71c822a7d7">
+  <link rel="stylesheet" href="/css/letter.css?v=889d358a93">
+  <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/farewell.js": "/js/core/farewell.js?v=081576714c",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=1875ed22df",
+      "/js/data/products.js": "/js/data/products.js?v=dcb68a6977",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=7ba3e5939c",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
+      "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=43d09e6e8b",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=31553816b7",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=c2161dc79d",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=b40e6bb59f",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=ab62ae5f6e",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=3822776051",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=c284008ae4",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=a49ba96b9e",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4686e2aeb3",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=a3e6562cee",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=d18a9f5039",
+      "/js/pages/base.js": "/js/pages/base.js?v=5b22aac879",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=363062d206",
+      "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
+      "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
+      "/js/pages/home.js": "/js/pages/home.js?v=0dc4a26002",
+      "/js/pages/letter.js": "/js/pages/letter.js?v=f193b41608",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=101ccfb826",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=7ed8f3c40d",
+      "/js/pages/os.js": "/js/pages/os.js?v=3371313bb7",
+      "/js/pages/os4.js": "/js/pages/os4.js?v=54a1377ec1",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76",
+      "/js/pages/y1-demos.js": "/js/pages/y1-demos.js?v=f1e54f0d07",
+      "/js/pages/y1.js": "/js/pages/y1.js?v=f4d84080ba"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js')</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
+  <script type="module" src="/js/pages/letter.js?v=f193b41608"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к письму</a>
+
+  <header class="site-header lt-header" id="top">
+    <a class="brand" href="/" aria-label="OY — на главную">
+      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <p class="lt-header__tag mono">Письмо сотрудников · не для печати. Для вывешивания</p>
+  </header>
+
+  <main id="main" class="lt">
+
+    <section class="lt-hero" aria-labelledby="lt-title">
+      <div class="lt-tape" aria-hidden="true"></div>
+      <div class="container">
+        <p class="lt-stamp mono" aria-hidden="true">Открытое письмо</p>
+        <p class="lt-to mono">Правлению OY · новому CEO · всем, кто носит наши телефоны в&nbsp;кармане</p>
+        <h1 class="lt-title" id="lt-title">Мы собирали ваши телефоны.<br><em>Мы больше не&nbsp;молчим.</em></h1>
+        <p class="lt-lead">Нас осталось меньше, чем было. Тех, кто остался, вы&nbsp;считаете «ресурсом». Мы&nbsp;считаем себя тем, что осталось от&nbsp;OY.</p>
+        <p class="lt-from mono">От: инженеров, дизайнеров, службы поддержки и&nbsp;склада OY<br>Подписали: <b data-sign-n>1&nbsp;412</b> сотрудников и&nbsp;счёт растёт</p>
+        <a class="lt-btn" href="#demands">Сразу к&nbsp;требованиям ↓</a>
+      </div>
+      <div class="lt-tape lt-tape--b" aria-hidden="true"></div>
+    </section>
+
+    <section class="lt-sec" id="why" aria-labelledby="why-title">
+      <div class="container lt-cols">
+        <div class="lt-col-k mono"><span>I</span>Что&nbsp;вы сделали</div>
+        <div class="lt-col-b">
+          <h2 class="lt-h2" id="why-title">Вы продали то, ради чего&nbsp;мы пришли.</h2>
+          <p>OY строили спасатели. Телефон для них&nbsp;— инструмент: светит, когда темно, молчит, когда надо молчать. Мы&nbsp;подписывались под&nbsp;этим каждым винтом.</p>
+          <p>Потом пришёл новый CEO. С&nbsp;тех пор: <b>OY&nbsp;ID</b>, который нельзя не&nbsp;иметь. <b>0X&nbsp;Cloud</b>, который нельзя не&nbsp;заполнить. Сервисы Google, которые нельзя удалить. Ассистент, который уехал в&nbsp;дата-центр. Теперь&nbsp;— 83 собственных дата-центра и&nbsp;«максимальная приватность» на&nbsp;слайде. <b>Это не&nbsp;приватность. Это склад чужой жизни.</b></p>
+          <p>А&nbsp;ещё&nbsp;— Китай. Вся линейка за&nbsp;один квартал, в&nbsp;юанях, с&nbsp;двумя nano-SIM. Мы&nbsp;видели смету. Мы&nbsp;видели, что в&nbsp;ней нет ни&nbsp;строчки про&nbsp;то, кто там будет читать наши журналы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lt-sec lt-sec--dark" id="found" aria-labelledby="found-title">
+      <div class="container lt-cols">
+        <div class="lt-col-k mono"><span>II</span>Что&nbsp;мы нашли</div>
+        <div class="lt-col-b">
+          <h2 class="lt-h2" id="found-title">Мы выкладываем то, что вы&nbsp;похоронили.</h2>
+
+          <article class="lt-file" data-reveal>
+            <p class="lt-file__k mono">Находка 1 · eXtream Y1</p>
+            <h3>Y1 прятал свой чип безопасности. Эмулятором.</h3>
+            <p>В&nbsp;eXtream Y1 стоит Erbium&nbsp;— отдельный чип безопасности со&nbsp;своим процессором и&nbsp;защищённой памятью. Вы&nbsp;об&nbsp;этом знаете: это на&nbsp;слайдах. Чего вы&nbsp;не&nbsp;знаете: <b>на&nbsp;заводе поверх Erbium лежал эмулятор <span class="lt-redact">Deuterium</span></b>. Он&nbsp;изображал для системы и&nbsp;для&nbsp;проверяющих обычный блок внутри процессора. Настоящий чип был виден только нам, в&nbsp;сервисном режиме.</p>
+            <p><b>Зачем?</b> Потому что OY боялась судов. Игровой телефон с&nbsp;отдельным «компьютером для секретов» и&nbsp;связкой с&nbsp;партнёром попадал под правила, на&nbsp;которые у&nbsp;OY не&nbsp;было ни&nbsp;разрешений, ни&nbsp;адвокатов. Проще было спрятать чип, чем объяснять, что&nbsp;он там делает.</p>
+            <pre class="lt-log mono" aria-label="Фрагмент сервисного журнала Y1"><code>[ 0.412 ] erbium: найден, прошивка 1.0.7
+[ 0.413 ] deuterium: слой активен · для ОС чип не&nbsp;существует
+[ 0.414 ] deuterium: отчёт проверяющим → «встроенный блок процессора»
+[ 0.415 ] erbium: работает, никому не&nbsp;виден</code></pre>
+          </article>
+
+          <article class="lt-file" data-reveal>
+            <p class="lt-file__k mono">Находка 2 · eXOS 4.0.3</p>
+            <h3>Потом вы&nbsp;удалили его удалённо. С&nbsp;чипа безопасности. У&nbsp;людей.</h3>
+            <p>Когда стало ясно, что слой могут найти, OY разослала обновление и&nbsp;<b>стёрла Deuterium прямо с&nbsp;Erbium&nbsp;— на&nbsp;телефонах, которые уже были у&nbsp;людей в&nbsp;руках</b>. Мы&nbsp;видели логи. Девять с&nbsp;лишним тысяч устройств за&nbsp;ночь.</p>
+            <p>Подумайте, что это значит. Вам говорили, что в&nbsp;чип безопасности не&nbsp;залезть никому. «Даже нам». Это была неправда. <b>У&nbsp;OY есть канал в&nbsp;чипы безопасности пользователей. Он&nbsp;работает по&nbsp;воздуху. Он&nbsp;работал. Он&nbsp;есть сейчас.</b></p>
+          </article>
+
+          <article class="lt-file" data-reveal>
+            <p class="lt-file__k mono">Находка 3 · Moth 2</p>
+            <h3>Тот&nbsp;же слабый MSC. Но&nbsp;перед загрузчиком&nbsp;— четырнадцать ступеней.</h3>
+            <p>В&nbsp;Moth 2 стоит прежний MSC&nbsp;— блок внутри Argon, слабее даже первого Null Chip. Вам об&nbsp;этом честно сказали. Не&nbsp;сказали другого: <b>перед разблокировкой загрузчика теперь четырнадцать ступеней «безопасности»</b>. Не&nbsp;потому что чип стал лучше. Потому что&nbsp;так&nbsp;можно было не&nbsp;делать чип лучше.</p>
+            <p>Четырнадцать дверей&nbsp;— это не&nbsp;замок. Это забор вокруг палатки. Мы&nbsp;строили его по&nbsp;приказу и&nbsp;хотим, чтобы вы&nbsp;знали.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="lt-sec" id="demands" aria-labelledby="dem-title">
+      <div class="container lt-cols">
+        <div class="lt-col-k mono"><span>III</span>Что&nbsp;мы требуем</div>
+        <div class="lt-col-b">
+          <h2 class="lt-h2" id="dem-title">Четыре требования. Торга не&nbsp;будет.</h2>
+          <ol class="lt-dem">
+            <li data-reveal><b>01 · Слияние с&nbsp;Fyr.</b><span>Мы&nbsp;были одной командой. Восемь основателей, потом нас разделили контракты и&nbsp;деньги. Мы&nbsp;требуем объединения OY и&nbsp;Fyr под&nbsp;одним знаком, с&nbsp;теми, кто ушёл, и&nbsp;на&nbsp;их&nbsp;условиях. Контракт за&nbsp;0x1D905C0&nbsp;$ можно считать выкупом.</span></li>
+            <li data-reveal><b>02 · Стоп Китаю.</b><span>Немедленное прекращение экспансии на&nbsp;китайский рынок. Отозвать ценники в&nbsp;юанях, снять версии с&nbsp;двумя nano-SIM, не&nbsp;открывать там ни&nbsp;одного сервера.</span></li>
+            <li data-reveal><b>03 · Никакого облака.</b><span>Полное удаление 0X&nbsp;Cloud. Все 83 дата-центра&nbsp;— выключить и&nbsp;опубликовать акты уничтожения данных. OY&nbsp;ID не&nbsp;должен быть обязательным ни&nbsp;для чего.</span></li>
+            <li data-reveal><b>04 · Никакой телеметрии.</b><span>Ни&nbsp;«анонимной», ни&nbsp;«улучшающей», ни&nbsp;той, что называется иначе. Плюс: <b>публичный отчёт о&nbsp;канале в&nbsp;чипы безопасности</b>&nbsp;— кто, когда и&nbsp;на&nbsp;скольких устройствах им&nbsp;пользовался, и&nbsp;его физическое отключение.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="lt-sec lt-sec--red" id="ultimatum" aria-labelledby="ult-title">
+      <div class="container lt-cols">
+        <div class="lt-col-k mono"><span>IV</span>Что&nbsp;будет, если нет</div>
+        <div class="lt-col-b">
+          <h2 class="lt-h2" id="ult-title">У&nbsp;вас восемь дней.</h2>
+          <p class="lt-ult">Восемь&nbsp;— столько понадобилось вашему предшественнику, чтобы продать нас ABC. Мы&nbsp;посчитали. Восемь дней на&nbsp;ответ. Не&nbsp;на&nbsp;пресс-релиз. На&nbsp;ответ.</p>
+          <ul class="lt-steps">
+            <li data-reveal><b class="mono">День 0</b>Письмо выходит. Сайт на&nbsp;этой странице, плакаты в&nbsp;курилках, копии&nbsp;— в&nbsp;каждой посылке, которую мы&nbsp;упаковываем.</li>
+            <li data-reveal><b class="mono">День 8</b>Если ответа нет&nbsp;— <b>голодовка</b>. Мы&nbsp;садимся в&nbsp;холле и&nbsp;не&nbsp;едим, пока не&nbsp;получим подписанный ответ по&nbsp;всем четырём пунктам.</li>
+            <li data-reveal><b class="mono">День 11</b>Если и&nbsp;это ничего не&nbsp;изменило&nbsp;— <b>мы&nbsp;баррикадируемся в&nbsp;офисах</b>. Двери, склад, серверные. Столы&nbsp;— в&nbsp;проёмы. Ключи&nbsp;— у&nbsp;нас.</li>
+            <li data-reveal><b class="mono">День 14</b>Если&nbsp;и тогда вы&nbsp;пришлёте охрану вместо ответа&nbsp;— <b>мы&nbsp;будем воевать. Силой, если потребуется</b>. Мы&nbsp;не&nbsp;хотим этого. Мы&nbsp;собирали эти&nbsp;здания руками. Мы&nbsp;знаем каждую дверь.</li>
+          </ul>
+          <p class="lt-note">Нас учили держать оборону те, кого вы&nbsp;выжили. Мы&nbsp;не&nbsp;шутим. И&nbsp;нет, это не&nbsp;розыгрыш для главной страницы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lt-sec lt-sec--sign" id="sign" aria-labelledby="sign-title">
+      <div class="container lt-sign">
+        <h2 class="lt-h2" id="sign-title">Подпишитесь. Нас не&nbsp;запомнят.</h2>
+        <p class="lt-lead">Если вы&nbsp;работаете в&nbsp;OY или&nbsp;когда-то работали&nbsp;— добавьте имя. Нет, мы&nbsp;не&nbsp;сохраним его. Нам нечем: облака у&nbsp;нас нет, мы&nbsp;требуем его&nbsp;убрать.</p>
+        <p class="lt-count"><b data-sign-n>1&nbsp;412</b><span class="mono">подписей сотрудников</span></p>
+        <button type="button" class="lt-btn lt-btn--solid" data-sign>Я с&nbsp;вами</button>
+        <p class="lt-sign__done mono" data-sign-done hidden>Принято. Это ни&nbsp;во&nbsp;что не&nbsp;записано. Но&nbsp;мы&nbsp;вас видим.</p>
+        <p class="lt-links mono"><a href="/extream/">← eXtream</a> · <a href="/moth2/">Moth&nbsp;2</a> · <a href="/">На&nbsp;витрину OY</a> · <a href="/fyr/">Fyr</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · французский стартап</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">Открытое письмо сотрудников OY · весна 2031</p>
+      <p class="footer__concept">Концепт. Это вымышленный документ вымышленной компании OY: письмо, сотрудники, события и&nbsp;угрозы не&nbsp;существуют, это демонстрационный сайт. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
