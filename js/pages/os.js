@@ -1,13 +1,15 @@
 /* =========================================================================
-   OY — страница OY OS 2. Без 3D: подменю с подсветкой раздела, параллакс
-   макетов в герое, галерея «Что нового», демо OY Assist, карта запросов,
-   призрачный профиль, PIN под принуждением, проверка хеша и терминал.
+   OY — страница OY OS 4. Без 3D: подменю с подсветкой раздела, параллакс
+   макетов в герое, галерея «Что нового», OY Assist 4 с лимитом запросов,
+   призрачный профиль, PIN под принуждением и терминал. Демо OY ID,
+   0X Cloud, «Линзы», Google, главного экрана, «Воспоминаний» и ночного
+   обновления — в os4.js.
    ========================================================================= */
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { $, $$, createToast, initRadioGroup, syncRadio } from '../core/ui.js';
+import { $, $$, createToast } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals, wrapWords, scrubWords } from '../core/text.js';
 import { initCarousel } from '../core/carousel.js';
@@ -55,12 +57,12 @@ $$('[data-typer]').forEach((el) => {
   }, 42);
 });
 
-/* ---------- OY Assist: облако против устройства ---------- */
+/* ---------- OY Assist 4: запрос летит в 0X Cloud, запросов — 10 в день ---------- */
 
 const ANSWERS = [
   ['Сократи письмо от начальника до трёх строк', 'Отчёт нужен к пятнице. Цифры — из таблицы за третий квартал. Созвон переносится на четверг, 11:00.'],
-  ['Что я обещал Марку на прошлой неделе?', 'В переписке от 4 ноября: вернуть дрель и скинуть фото с дачи. Дрель, судя по фото, всё ещё у вас.'],
-  ['Найди фото чека из аптеки', 'Нашёл два снимка от 29 октября, сумма 1 240 ₽. Фото не покидали галерею.'],
+  ['Что я обещал Марку на прошлой неделе?', 'В переписке от 4 ноября: вернуть дрель и скинуть фото с дачи. Дрель, судя по фото в 0X Cloud, всё ещё у вас.'],
+  ['Найди фото чека из аптеки', 'Нашёл два снимка от 29 октября в 0X Cloud, сумма 1 240 ₽.'],
   ['Переведи с французского меню на фото', '«Magret de canard» — утиная грудка. «Tarte Tatin» — перевёрнутый яблочный пирог. Берите второе.'],
 ];
 const chat = $('[data-chat]');
@@ -70,6 +72,10 @@ const cloudBytes = $('[data-cloud-bytes]');
 const cloudOut = $('[data-cloud-out]');
 const plane = $('[data-plane]');
 const qBtns = $$('[data-q]');
+const quotaEl = $('[data-quota]');
+// Как будто семь запросов сегодня уже ушло: до лимита — три
+const QUOTA = 10;
+let used = 7;
 let cloudTotal = 0;
 
 const fmtBytes = (b) => (b < 1024 ? `${Math.round(b)} Б` : b < 1048576 ? `${(b / 1024).toFixed(0)} КБ` : `${(b / 1048576).toFixed(1).replace('.', ',')} МБ`);
@@ -84,25 +90,39 @@ function bubble(cls, text) {
 }
 plane.addEventListener('change', () => {
   duel.classList.toggle('is-offline', plane.checked);
-  cloudOut.textContent = plane.checked ? 'Нет сети. «Попробуйте позже».' : 'Ждёт вопроса.';
+  cloudOut.textContent = plane.checked ? 'Нет сети. OY Assist 4 работает в 0X Cloud.' : 'Ждёт вопроса.';
 });
 qBtns.forEach((b) => b.addEventListener('click', async () => {
   const [q, a] = ANSWERS[+b.dataset.q];
   qBtns.forEach((x) => { x.disabled = true; x.setAttribute('aria-pressed', String(x === b)); });
   bubble('chat__q', q);
-  const think = bubble('chat__a is-thinking', 'Думаю на нейроядре…');
+  const done = () => qBtns.forEach((x) => { x.disabled = false; });
+
+  // Без сети облачному ассистенту думать негде
+  if (plane.checked) {
+    bubble('chat__a chat__a--err', 'Нет подключения к 0X Cloud. OY Assist 4 работает в облаке — так он в сто раз мощнее. Подключитесь к интернету.');
+    cloudOut.textContent = 'Нет сети. Запрос не отправлен.';
+    return done();
+  }
+  if (used >= QUOTA) {
+    bubble('chat__a chat__a--err', 'Лимит на сегодня исчерпан: 10 из 10. Обновится в 00:00 — или подключите 0X Cloud Pro: 100 запросов в день за $9,99 в месяц.');
+    cloudOut.textContent = 'Запрос не отправлен: лимит.';
+    toast('Хотите больше? 0X Cloud Pro — 100 запросов в день.');
+    return done();
+  }
+  used += 1;
+  quotaEl.textContent = String(QUOTA - used);
+  const think = bubble('chat__a is-thinking', 'Думаю в 0X Cloud…');
   island.classList.add('is-thinking');
 
-  // Облачный ассистент: голос и контекст уходят на сервер
-  if (!plane.checked) {
+  // Запрос, голос и контекст уходят в 0X Cloud
+  {
     duel.classList.add('is-sending');
-    cloudOut.textContent = 'Отправляю запрос, голос и «контекст для персонализации»…';
+    cloudOut.textContent = 'Отправляю запрос, голос и контекст из 0X Cloud, чтобы ответ был точнее…';
     const add = 180000 + Math.random() * 260000;
     const o = { v: cloudTotal };
     cloudTotal += add;
     gsap.to(o, { v: cloudTotal, duration: reducedMode ? 0 : 1.4, ease: 'power2.out', onUpdate: () => { cloudBytes.textContent = fmtBytes(o.v); } });
-  } else {
-    cloudOut.textContent = 'Нет сети. «Попробуйте позже».';
   }
 
   await wait(1100);
@@ -115,90 +135,11 @@ qBtns.forEach((b) => b.addEventListener('click', async () => {
   }
   think.textContent = a;
   duel.classList.remove('is-sending');
-  if (!plane.checked) cloudOut.textContent = 'Ответ получен. Копия запроса сохранена «для улучшения качества».';
-  qBtns.forEach((x) => { x.disabled = false; });
+  cloudOut.textContent = used >= QUOTA
+    ? 'Ответ получен. Это был последний бесплатный запрос на сегодня.'
+    : 'Ответ получен и сохранён в историю OY Assist в 0X Cloud.';
+  done();
 }));
-
-/* ---------- Карта запросов ---------- */
-
-const C = { x: 320, y: 200 };
-const APPS = {
-  weather: [['api.meteo.oy', 120, 70, 0]],
-  taxi: [['api.taxi.city', 110, 90, 0], ['tiles.oypos.eu', 520, 80, 0], ['app-measurement.com', 540, 300, 1], ['sdk.adjust.io', 120, 320, 1]],
-  farm: [['cdn.farm.games', 110, 70, 0], ['ads.doubleclick.net', 540, 70, 1], ['graph.facebook.com', 560, 220, 1], ['app-measurement.com', 470, 340, 1], ['ads.unity3d.com', 160, 340, 1], ['sdk.appsflyer.com', 80, 210, 1]],
-  chat: [['xpush.oy.eu', 140, 80, 0], ['relay.msg.net', 510, 110, 0]],
-};
-const blocked = new Set();
-const svg = $('[data-req-svg]');
-const reqStatus = $('[data-req-status]');
-const blockBtn = $('[data-req-block]');
-const appsGroup = $('[data-req-apps]');
-let curApp = 'weather';
-const NS = 'http://www.w3.org/2000/svg';
-const el = (tag, attrs = {}, parent = svg) => {
-  const n = document.createElementNS(NS, tag);
-  for (const k in attrs) n.setAttribute(k, attrs[k]);
-  parent.append(n);
-  return n;
-};
-
-const trackers = (app) => APPS[app].filter((h) => h[3]);
-const isBlocked = (app) => blocked.has(app);
-const plural = (n, one, few, many) => {
-  const m10 = n % 10, m100 = n % 100;
-  const w = m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? few : many;
-  return `${n} ${w}`;
-};
-const nHosts = (n) => plural(n, 'адрес', 'адреса', 'адресов');
-const nTrackers = (n) => plural(n, 'трекер', 'трекера', 'трекеров');
-function updateMeta() {
-  for (const app in APPS) {
-    const m = $(`[data-req-meta="${app}"]`);
-    const t = trackers(app).length;
-    const hosts = APPS[app].length;
-    m.classList.toggle('has-bad', t > 0 && !isBlocked(app));
-    m.classList.toggle('is-clean', t === 0 || isBlocked(app));
-    m.textContent = t === 0 ? `${nHosts(hosts)} · трекеров нет`
-      : isBlocked(app) ? `${nTrackers(t)} перекрыто` : `${nHosts(hosts)} · ${nTrackers(t)}`;
-  }
-}
-function drawMap() {
-  svg.textContent = '';
-  const grid = el('g', { class: 'rq-grid' });
-  for (let x = 20; x < 640; x += 30) for (let y = 20; y < 400; y += 30) el('circle', { cx: x, cy: y, r: 1.2 }, grid);
-  const hosts = APPS[curApp];
-  for (const [, x, y, bad] of hosts) {
-    const cls = `rq-line${bad ? ' bad' : ''}${bad && isBlocked(curApp) ? ' blocked' : ''}`;
-    el('path', { class: cls, d: `M${C.x} ${C.y} Q ${(C.x + x) / 2} ${(C.y + y) / 2 - 40} ${x} ${y}` });
-  }
-  for (const [name, x, y, bad] of hosts) {
-    const g = el('g', { class: `rq-node${bad ? ' bad' : ''}${bad && isBlocked(curApp) ? ' blocked' : ''}` });
-    el('circle', { cx: x, cy: y, r: 9 }, g);
-    el('path', { class: 'rq-x', d: `M${x - 5} ${y - 5}l10 10M${x + 5} ${y - 5}l-10 10` }, g);
-    const t = el('text', { x, y: y + (y > C.y ? 28 : -18), 'text-anchor': 'middle' }, g);
-    t.textContent = name;
-  }
-  const ph = el('g', { class: 'rq-phone' });
-  el('rect', { x: C.x - 22, y: C.y - 38, width: 44, height: 76, rx: 10 }, ph);
-  const lbl = el('text', { x: C.x, y: C.y + 4, 'text-anchor': 'middle' }, ph);
-  lbl.textContent = 'OY';
-
-  const t = trackers(curApp).length;
-  if (t === 0) reqStatus.textContent = 'Трекеров нет. Перекрывать нечего.';
-  else if (isBlocked(curApp)) reqStatus.textContent = `Перекрыто: ${t}. Приложение работает как раньше.`;
-  else reqStatus.textContent = `Трекеров: ${t} из ${nHosts(APPS[curApp].length)}.`;
-  blockBtn.disabled = t === 0;
-  blockBtn.textContent = isBlocked(curApp) ? 'Вернуть как было' : 'Перекрыть трекеры';
-  updateMeta();
-}
-function pickApp(v) { curApp = v; syncRadio(appsGroup, v); drawMap(); }
-initRadioGroup(appsGroup, pickApp);
-blockBtn.addEventListener('click', () => {
-  if (isBlocked(curApp)) blocked.delete(curApp); else blocked.add(curApp);
-  drawMap();
-  if (isBlocked(curApp) && curApp === 'farm') toast('«Ферма» больше не рассказывает пяти компаниям, когда вы поливаете морковь.');
-});
-pickApp('weather');
 
 /* ---------- Призрачный профиль ---------- */
 
@@ -219,23 +160,6 @@ ghostBtn.addEventListener('click', async () => {
   ghostBtn.lastChild.textContent = 'Наполнить снова';
   ghostBtn.disabled = false;
 });
-
-/* ---------- Фото без следов: метаданные при отправке ---------- */
-
-// Остаются только ориентация и цветовой профиль — без них фото выглядело бы иначе
-const EXIF_ALL = 14;
-const EXIF_KEPT = 2;
-const exifBox = $('.exif');
-const exifN = $('[data-exif-n]');
-function paintExif(clean) {
-  exifBox.classList.toggle('is-clean', clean);
-  exifN.textContent = String(clean ? EXIF_KEPT : EXIF_ALL);
-}
-$('[data-exif]').addEventListener('change', (e) => {
-  paintExif(e.target.checked);
-  if (!e.target.checked) toast('Без OY OS получатель узнал бы, что вы были у Эйфелевой башни в 18:42.');
-});
-paintExif(true);
 
 /* ---------- PIN под принуждением ---------- */
 
@@ -279,34 +203,6 @@ pin.addEventListener('click', (e) => {
   if (code.length === 4) pinCheck();
 });
 
-/* ---------- Воспроизводимая сборка: сравнение хеша ---------- */
-
-const HASH = 'sha256:9f3ac1e07b52d4e8a6f01c93b7d2e5f48a0c6b1d97e3f2a5c8b4d06e1f7a93c2';
-const hashPub = $('[data-hash-pub]');
-const hashMine = $('[data-hash-mine]');
-const hashRes = $('[data-hash-res]');
-const hashBtn = $('[data-hash-run]');
-hashPub.textContent = HASH;
-hashBtn.addEventListener('click', async () => {
-  hashBtn.disabled = true;
-  hashRes.textContent = '';
-  const hex = '0123456789abcdef';
-  const prefix = 'sha256:';
-  for (let i = prefix.length; i <= HASH.length; i += 2) {
-    let tail = '';
-    for (let k = i; k < HASH.length; k++) tail += hex[(Math.random() * 16) | 0];
-    hashMine.textContent = '';
-    const ok = document.createElement('span');
-    ok.className = 'm';
-    ok.textContent = HASH.slice(0, i);
-    hashMine.append(ok, tail);
-    await wait(28);
-  }
-  hashRes.textContent = '✓ Совпадает до байта';
-  hashBtn.disabled = false;
-  hashBtn.textContent = 'Собрать ещё раз';
-});
-
 /* ---------- Пасхалка: терминал ---------- */
 
 const term = $('[data-term]');
@@ -314,21 +210,23 @@ const termOut = $('[data-term-out]');
 const termIn = $('[data-term-in]');
 let lastFocus = null;
 const CMDS = {
-  help: 'Команды: whoami, ls, cat /telemetry, uname, uptime, google, ads, sudo, cloud, clear, exit',
-  whoami: 'Мы не знаем. Это и есть фича.',
-  ls: 'assist/  citadel/  ghost/  sandbox/  xpush/\n(папки telemetry/ нет. Искали.)',
-  'ls -a': '.  ..  assist/  citadel/  ghost/  sandbox/  xpush/\n.nothing_to_hide',
-  'cat /telemetry': ['cat: /telemetry: Нет такого файла или каталога', 'e'],
-  uname: 'OY OS 2.0 · aosp · aarch64 · reproducible build',
-  'uname -a': 'OY OS 2.0 · aosp · aarch64 · reproducible build · sha256:9f3ac1e0…',
-  uptime: 'Без разблокировки 2 ч. Через 16 ч перезагрузимся сами — для надёжности.',
-  google: ['google: команда не найдена', 'e'],
-  ads: ['ads: команда не найдена. И не будет.', 'e'],
-  sudo: 'Вы и так владелец телефона. Права root — в настройках разработчика, без звонка в поддержку.',
-  cloud: 'Облако — это чужой компьютер. У вас есть свой.',
-  'rm -rf /': 'Ого. Нет. Для этого есть «Сброс» в настройках — с подтверждением.',
-  siri: ['siri: команда не найдена. Попробуйте assist.', 'e'],
-  assist: 'OY Assist: работаю локально. Сеть: 0 Б. Чем помочь?',
+  help: 'Команды: whoami, ls, cat /telemetry, uname, uptime, google, ads, sudo, cloud, pro, assist, clear, exit',
+  whoami: 'anna@oyid.oy — вы вошли в OY ID. Приятно познакомиться.',
+  ls: 'assist/  citadel/  cloud/  ghost/  gms/  oyid/  xpush/',
+  'ls -a': '.  ..  assist/  citadel/  cloud/  ghost/  gms/  oyid/  xpush/\n.nothing_to_hide.bak',
+  'cat /telemetry': ['cat: /telemetry: Отказано в доступе. Файл есть, просто он не ваш.', 'e'],
+  uname: 'OY OS 4.0 «Линза» · aosp · aarch64 · reproducible build (системная часть)',
+  'uname -a': 'OY OS 4.0 «Линза» · aosp · aarch64 · gms · oyid · 0x-cloud · sha256:9f3ac1e0…',
+  uptime: 'Без разблокировки 2 ч. Резервная копия в 0X Cloud — через 4 ч.',
+  google: 'com.google.android.gms: встроен в систему. Отключить — можно. Удалить — нельзя.',
+  'rm -rf /system/gms': ['rm: /system/gms: Отказано. Сервисы Google — часть OY OS 4.', 'e'],
+  ads: ['ads: команда не найдена. Пока.', 'e'],
+  sudo: 'Вы и так владелец телефона. Права root — в настройках разработчика, после входа в OY ID.',
+  cloud: '0X Cloud: занято 27,4 из 30 ГБ. Наберите pro — станет 240.',
+  pro: '0X Cloud Pro: 240 ГБ и 100 запросов к OY Assist в день. $9,99 в месяц, оплата по OY ID.',
+  'rm -rf /': 'Ого. Нет. Для этого есть «Сброс» в настройках — с подтверждением по OY ID.',
+  siri: ['siri: команда не найдена. Хотя выглядим мы теперь похоже.', 'e'],
+  assist: 'OY Assist 4: подключаюсь к 0X Cloud… Осталось запросов на сегодня: 3.',
 };
 function termPrint(text, cls = '') {
   const p = document.createElement('div');
@@ -343,7 +241,7 @@ function termOpen() {
   term.hidden = false;
   smooth.lenis?.stop();
   if (!termOut.childElementCount) {
-    termPrint('OY OS 2.0 — терминал. Вы ничего не отправляете, мы ничего не получаем.', 'd');
+    termPrint('OY OS 4.0 — терминал. Вы вошли как anna@oyid.oy.', 'd');
     termPrint('Наберите help.', 'd');
   }
   termIn.focus();
