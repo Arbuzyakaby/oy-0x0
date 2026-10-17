@@ -56,7 +56,7 @@ let shownUsd = getPrice(PRODUCT.id, currentMem, currentColor).usd;
 
 function updatePrice(animate = true) {
   const price = getPrice(PRODUCT.id, currentMem, currentColor);
-  if (!price) return;
+  if (!price || !usdEl) return;   // снят с продажи: конфигуратора на странице нет
   cfgNameEl.textContent = `${currentMem} ГБ`;
   eurEl.textContent = `€${price.eur.toLocaleString('ru-RU')}`;
   cnyEl.textContent = `¥${price.cny.toLocaleString('ru-RU')}`;

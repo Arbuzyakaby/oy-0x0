@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="ru" data-subnav data-color="radium">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X3 Essential — Ноль слежки. Ноль компромиссов. Снова.</title>
+  <meta name="description" content="OY 0X3 Essential — реверанс первому OY: четыре kill switch, сигнальный фонарь до 5000 м, две камеры, собственный процессор Cesium 1 с Palladium 1 на кристалле, OY OS 4.5 с OY Assist на устройстве, пять цветов. Концепт. От $399.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0A0B">
+  <link rel="canonical" href="https://oy0x.online/0x3e/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x3e/">
+  <meta property="og:title" content="OY 0X3 Essential — Ноль слежки. Ноль компромиссов. Снова.">
+  <meta property="og:description" content="Концепт смартфона: четыре kill switch и фонарь на 5000 м, как у 0X0; Cesium 1, две камеры, пять цветов. От $399.">
+  <meta property="og:image" content="https://oy0x.online/og-0x3e.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Смартфон OY 0X3 Essential в цвете «Радиевый» и заголовок «0X3 Essential»">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Ccircle cx='17' cy='32' r='9' fill='none' stroke='%23A6E05A' stroke-width='4'/%3E%3Ccircle cx='47' cy='32' r='9' fill='none' stroke='%23A6E05A' stroke-width='4'/%3E%3Cpath d='M28 25l8 14M36 25l-8 14' stroke='%23F2F2F0' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
+  <link rel="stylesheet" href="/css/core.css?v=71c822a7d7">
+  <link rel="stylesheet" href="/css/0x0.css?v=88ed9b22c1">
+  <link rel="stylesheet" href="/css/0x3e.css?v=e42d166073">
+  <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/farewell.js": "/js/core/farewell.js?v=081576714c",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=1875ed22df",
+      "/js/data/products.js": "/js/data/products.js?v=c67f324f3b",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=f3a2c29f9f",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
+      "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=43d09e6e8b",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=31553816b7",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=c2161dc79d",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=b40e6bb59f",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=ab62ae5f6e",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=3822776051",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=c284008ae4",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=a49ba96b9e",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4686e2aeb3",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=a3e6562cee",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=d18a9f5039",
+      "/js/pages/base.js": "/js/pages/base.js?v=5b22aac879",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=692680b465",
+      "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
+      "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
+      "/js/pages/home.js": "/js/pages/home.js?v=0dc4a26002",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=101ccfb826",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=7ed8f3c40d",
+      "/js/pages/os.js": "/js/pages/os.js?v=3371313bb7",
+      "/js/pages/os4.js": "/js/pages/os4.js?v=54a1377ec1",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76",
+      "/js/pages/y1-demos.js": "/js/pages/y1-demos.js?v=f1e54f0d07",
+      "/js/pages/y1.js": "/js/pages/y1.js?v=f4d84080ba"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-color');if(/^(radium|mustard|rocky|iberian|penguin)$/.test(c))document.documentElement.dataset.color=c}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
+  <script type="module" src="/js/core/subnav.js?v=2b8a463a67"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x3e.js?v=a3e6562cee"></script>
+</head>
+<body>
+  <!-- Иконки -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+      <symbol id="i-network" viewBox="0 0 24 24"><path d="M3.5 9.5a12 12 0 0 1 17 0M6.5 12.5a7.8 7.8 0 0 1 11 0M9.5 15.5a3.6 3.6 0 0 1 5 0"/><circle cx="12" cy="18.5" r="1.2"/></symbol>
+      <symbol id="i-location" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+      <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2.5"/><path d="M7.5 12h.01M10.5 12h.01M13.5 12h.01M16.5 12h.01"/></symbol>
+      <symbol id="i-usb" viewBox="0 0 24 24"><path d="M12 3v14M12 3l-2.2 3M12 3l2.2 3M8 9v2.5l4 2.5M16 8.5v2l-4 2.5"/><circle cx="12" cy="19" r="2"/></symbol>
+      <symbol id="i-restart" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v4.5H15"/></symbol>
+      <symbol id="i-finger" viewBox="0 0 24 24"><path d="M7.5 18.5c1-2 1.5-4 1.5-6.5a3 3 0 0 1 6 0c0 1.2-.1 2.4-.3 3.5M12 12c0 3.2-.8 6-2.3 8.5M5.5 14.5c.4-1 .5-1.8.5-2.5a6 6 0 0 1 10.3-4.2M17.8 10.4c.1.5.2 1 .2 1.6 0 2.2-.4 4.3-1.1 6.2M14.2 19.8c.4-.7.7-1.5 1-2.3"/></symbol>
+      <symbol id="i-face" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M9 10v1M15 10v1M12 10v3h-1M9.5 15.5a3.5 3.5 0 0 0 5 0"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-contacts" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5H7z"/><path d="M14 3.5V8h4.5"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15zM10 20.5a2 2 0 0 0 4 0"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></symbol>
+      <symbol id="i-store" viewBox="0 0 24 24"><path d="M4.5 8.5h15l-1.2 11h-12.6z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5L5.5 13.5h6l-1 8 7.5-11h-6z"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z"/></symbol>
+      <symbol id="i-jack" viewBox="0 0 24 24"><path d="M12 2.5v9M10 11.5h4v4.5a2 2 0 0 1-4 0zM12 18v3.5"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></symbol>
+      <symbol id="i-update" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 13-5.1M19.5 12a7.5 7.5 0 0 1-13 5.1M17.5 3.5v3.4h-3.4M6.5 20.5v-3.4h3.4"/></symbol>
+      <symbol id="i-warranty" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></symbol>
+      <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 7.7-1.5"/></symbol>
+      <symbol id="i-ir" viewBox="0 0 24 24"><rect x="9" y="9" width="6" height="12" rx="1.5"/><path d="M8 6.5a5.5 5.5 0 0 1 8 0M5.5 4a9 9 0 0 1 13 0"/></symbol>
+      <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4.5 9.5h3.5l4.5-4v13l-4.5-4H4.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+      <symbol id="i-wireless" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="7.5" ry="2.5"/><path d="M8.5 10.5a5 5 0 0 1 7 0M6 8a8.5 8.5 0 0 1 12 0"/></symbol>
+      <symbol id="i-nfc" viewBox="0 0 24 24"><path d="M7 17V7l10 10V7"/><rect x="3.5" y="3.5" width="17" height="17" rx="3"/></symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24"><rect x="3" y="7.5" width="16" height="9" rx="2"/><path d="M21 10.5v3"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+      <symbol id="i-tor" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><circle cx="12" cy="13" r="4.8"/><circle cx="12" cy="13" r="2"/><path d="M12 5.5c0-1.5.8-2.5 2-3"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: два круга и X, как у 0X0 -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <svg class="loader__mark" viewBox="0 0 120 44" aria-hidden="true">
+      <circle class="loader__o loader__o--l" cx="20" cy="22" r="16"/>
+      <path class="loader__x" d="M52 12l16 20M68 12L52 32"/>
+      <circle class="loader__o loader__o--r" cx="100" cy="22" r="16"/>
+    </svg>
+    <span class="loader__label">Загружаем модель…</span>
+  </div>
+
+  <!-- Фон и 3D-сцена -->
+  <div class="bgfx" id="bgfx" aria-hidden="true">
+    <div class="bgfx__glow bgfx__glow--a"></div>
+    <div class="bgfx__glow bgfx__glow--b"></div>
+    <div class="bgfx__shade" id="bgfx-shade"></div>
+  </div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="/" aria-label="OY — на главную">
+      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a href="/0x3e/" aria-current="page">0X3 Essential</a>
+      <a href="/0x2/">0X2</a>
+      <a href="/moth2/">0X Moth 2</a>
+      <a href="/0x2q/">0X2Q</a>
+      <a href="/0x2pro/">0X2 Pro</a>
+      <a href="/nova/">0X Nova</a>
+      <a href="/os/">OY OS</a>
+      <a class="site-nav__x" href="/extream/">eXtream</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+  </header>
+
+  <nav class="subnav" aria-label="Разделы страницы OY 0X3 Essential" data-subnav>
+    <div class="subnav__inner">
+      <a class="subnav__title" href="#top">0X3 Essential</a>
+      <button type="button" class="subnav__toggle" aria-expanded="false" aria-controls="subnav-menu" data-subnav-toggle>
+        <span class="sr-only">Разделы</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+      </button>
+      <div class="subnav__menu" id="subnav-menu">
+        <a href="#switches">Kill switch</a>
+        <a href="#signal">Фонарь</a>
+        <a href="#cesium">Cesium&nbsp;1</a>
+        <a href="#camera">Камеры</a>
+        <a href="#farewell">0X0</a>
+        <a href="#specs">Характеристики</a>
+      </div>
+      <div class="subnav__actions">
+        <div class="color-switch color-switch--mini" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+          <button type="button" role="radio" class="swatch swatch--radium" data-value="radium" aria-checked="true"><span class="sr-only">Радиевый</span></button>
+          <button type="button" role="radio" class="swatch swatch--mustard" data-value="mustard" aria-checked="false"><span class="sr-only">Горчичный</span></button>
+          <button type="button" role="radio" class="swatch swatch--rocky" data-value="rocky" aria-checked="false"><span class="sr-only">Скалистый</span></button>
+          <button type="button" role="radio" class="swatch swatch--iberian" data-value="iberian" aria-checked="false"><span class="sr-only">Иберийский</span></button>
+          <button type="button" role="radio" class="swatch swatch--penguin" data-value="penguin" aria-checked="false"><span class="sr-only">Пингвиний</span></button>
+        </div>
+        <a class="btn btn--accent btn--sm" href="#buy">Купить</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- 1. ПЕРВЫЙ ЭКРАН — как у 0X0 -->
+    <section class="section hero" id="hero" data-3d aria-labelledby="hero-title">
+      <div class="hero__inner container">
+        <p class="eyebrow" data-reveal>Новинка · весна 2031 · США, Евросоюз и&nbsp;Китай</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="split grad" data-split>OY 0X3</span>
+        </h1>
+        <p class="hero__slogan" data-split>Ноль&nbsp;слежки. Ноль&nbsp;компромиссов. Снова.</p>
+        <p class="hero__pron" data-reveal>Essential. Четыре kill switch, фонарь на&nbsp;5000&nbsp;м и&nbsp;две камеры одна над другой. Всё, за&nbsp;что любили первый OY&nbsp;— в&nbsp;корпусе 0X2&nbsp;Essential.</p>
+        <div class="hero__buy" data-reveal>
+          <p class="hero__price"><span class="muted">от</span> <strong>$399</strong></p>
+          <a class="btn btn--accent" href="#buy">Купить</a>
+          <a class="btn btn--ghost" href="#zero">Смотреть</a>
+        </div>
+        <p class="hero__nod mono" data-reveal>Посвящается <a href="/0x0/">OY&nbsp;0X0</a>, 2027–2031</p>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- 2. 0X0 → 0X3 -->
+    <section class="section pinned zero" id="zero" data-3d aria-labelledby="zero-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Имя, которое видно со&nbsp;спины</p>
+          <h2 class="mega" id="zero-title"><span class="zero-word"><span>0</span><span class="zero-x">X</span><span class="zero-was"><s>0</s></span><span class="zero-now">3</span></span></h2>
+          <ul class="zero-list" role="list">
+            <li class="zero-item"><span class="zero-num">4</span> kill switch</li>
+            <li class="zero-item"><span class="zero-num">5</span> км&nbsp;— фонарь</li>
+            <li class="zero-item"><span class="zero-num">0</span> трекеров</li>
+          </ul>
+          <p class="lead zero-note">Два круглых модуля один над другим и&nbsp;гравировка «X» под ними. Лицо 0X0, только теперь&nbsp;— у&nbsp;Essential.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ЧЕТЫРЕ KILL SWITCH -->
+    <section class="section pinned switches" id="switches" data-3d aria-labelledby="switches-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Kill Switches · левая грань · впервые у&nbsp;Essential</p>
+          <h2 class="h2" id="switches-title" data-split>Четыре ползунка. Ноль&nbsp;уговоров.</h2>
+          <ol class="ks-list ks-list--4" role="list">
+            <li class="ks-item" data-ks="1">
+              <span class="ks-item__n">01</span>
+              <span class="ks-item__body"><strong>Камеры</strong><span>Обе задние и&nbsp;фронтальная — без питания.</span></span>
+              <span class="ks-item__state" aria-hidden="true"><span class="on">вкл</span><span class="off">выкл</span></span>
+            </li>
+            <li class="ks-item" data-ks="2">
+              <span class="ks-item__n">02</span>
+              <span class="ks-item__body"><strong>Микрофоны</strong><span>Все три. Обрыв цепи, а&nbsp;не&nbsp;запрет.</span></span>
+              <span class="ks-item__state" aria-hidden="true"><span class="on">вкл</span><span class="off">выкл</span></span>
+            </li>
+            <li class="ks-item" data-ks="3">
+              <span class="ks-item__n">03</span>
+              <span class="ks-item__body"><strong>Связь</strong><span>Сотовая сеть, Wi-Fi, Bluetooth и&nbsp;NFC.</span></span>
+              <span class="ks-item__state" aria-hidden="true"><span class="on">вкл</span><span class="off">выкл</span></span>
+            </li>
+            <li class="ks-item" data-ks="4">
+              <span class="ks-item__n">04</span>
+              <span class="ks-item__body"><strong>Геолокация и&nbsp;датчики</strong><span>GPS, компас, барометр, акселерометр.</span></span>
+              <span class="ks-item__state" aria-hidden="true"><span class="on">вкл</span><span class="off">выкл</span></span>
+            </li>
+          </ol>
+          <div class="ks-icons" aria-hidden="true">
+            <span class="ks-icon" data-ks-icon="1"><svg><use href="#i-camera"/></svg></span>
+            <span class="ks-icon" data-ks-icon="2"><svg><use href="#i-mic"/></svg></span>
+            <span class="ks-icon" data-ks-icon="3"><svg><use href="#i-network"/></svg></span>
+            <span class="ks-icon" data-ks-icon="4"><svg><use href="#i-location"/></svg></span>
+          </div>
+          <p class="note">Как у&nbsp;флагманского 0X0&nbsp;Pro. У&nbsp;0X0 было три, у&nbsp;0X2&nbsp;Essential&nbsp;— два.</p>
+          <p class="jab">«Режим полёта» — это просьба. Kill switch — это приказ. С&nbsp;2027-го.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3b. Шторки нет — есть ползунок -->
+    <section class="section solid light compare" id="compare" aria-labelledby="compare-title">
+      <div class="container">
+        <h2 class="h2" id="compare-title" data-split>Шторки нет. Есть ползунок.</h2>
+        <div class="compare__grid">
+          <article class="compare__card compare__card--was" data-reveal>
+            <p class="compare__tag mono">Шторка</p>
+            <h3>Видно, что закрыто</h3>
+            <p>Пластина над объективами. Честно, но&nbsp;камера под ней оставалась под питанием.</p>
+          </article>
+          <div class="compare__plus" aria-hidden="true">→</div>
+          <article class="compare__card compare__card--now" data-reveal>
+            <p class="compare__tag mono">Kill switch камер</p>
+            <h3>Нечем смотреть</h3>
+            <p>Ползунок рвёт цепь питания всех трёх камер. Положение видно и&nbsp;чувствуется пальцем.</p>
+          </article>
+        </div>
+        <p class="compare__honest" data-reveal>Почему убрали: две камеры одна над другой под одну шторку не&nbsp;помещаются, а&nbsp;две шторки&nbsp;— это уже не&nbsp;Essential. Поэтому камеры получили свой kill switch.</p>
+      </div>
+    </section>
+
+    <!-- 4. СИГНАЛЬНЫЙ ФОНАРЬ — тот самый -->
+    <section class="section pinned signal" id="signal" data-3d aria-labelledby="signal-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--right">
+          <p class="eyebrow">Сигнальный фонарь · верхняя грань</p>
+          <h2 class="h2" id="signal-title"><span class="signal-num grad">Видно за&nbsp;5000&nbsp;м. Снова.</span></h2>
+          <p class="lead">Тот самый фонарь 0X0: белый и&nbsp;красный, заявленная видимость&nbsp;— до&nbsp;5000&nbsp;м<sup class="fn"><a href="#fn-1" id="fnr-1">1</a></sup>. У&nbsp;0X2 Essential было 3000&nbsp;м. Мы&nbsp;вернули легенду.</p>
+          <p class="note">Основатели OY&nbsp;— бывшие спасатели. Человека должно быть видно издалека, сколько&nbsp;бы ни&nbsp;стоил его телефон.</p>
+          <div class="seg" role="radiogroup" aria-label="Цвет сигнального фонаря" data-signal-switch>
+            <button type="button" role="radio" class="seg__btn" data-value="white" aria-checked="true">Белый</button>
+            <button type="button" role="radio" class="seg__btn" data-value="red" aria-checked="false">Красный</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ЭКРАН -->
+    <section class="section pinned display" id="display" data-3d aria-labelledby="display-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">6,3" LTPO AMOLED · 1080×2400</p>
+          <h2 class="sr-only" id="display-title">Экран от 2600 до 0,5 нит</h2>
+          <div class="nits">
+            <div class="nits__state nits__state--day">
+              <p class="nits__value"><span>2600</span> нит<sup class="fn"><a href="#fn-2" id="fnr-2">2</a></sup></p>
+              <p class="lead">Пиковая яркость. «Антиблик 2» отражает меньше 1&nbsp;% света.</p>
+            </div>
+            <div class="nits__state nits__state--night">
+              <p class="nits__value"><span>0,5</span> нита</p>
+              <p class="lead">Как у&nbsp;0X0. Красный режим и&nbsp;минимальная яркость берегут ночное зрение. «Радиевый» корпус в&nbsp;темноте чуть светится&nbsp;— без радия.</p>
+            </div>
+          </div>
+          <ul class="chips" role="list">
+            <li class="chip mono">1–144 Гц</li>
+            <li class="chip mono">ШИМ 3840 Гц</li>
+            <li class="chip mono">«Антиблик 2»</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CESIUM 1 -->
+    <section class="section solid perf" id="cesium" aria-labelledby="perf-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Производительность</p>
+        <h2 class="h2" id="perf-title" data-split>Cesium&nbsp;1. Свой.</h2>
+        <p class="lead" data-reveal>Первый Essential на&nbsp;процессоре OY. Младший в&nbsp;семействе: Argon стоит в&nbsp;Moth и&nbsp;Nova, Beryllium&nbsp;— посередине, Cesium&nbsp;— здесь.</p>
+        <ol class="family" role="list" aria-label="Семейство процессоров OY">
+          <li class="family__el" data-reveal><sup class="mono">18</sup><b>Ar</b><span>Argon</span></li>
+          <li class="family__el" data-reveal><sup class="mono">4</sup><b>Be</b><span>Beryllium</span></li>
+          <li class="family__el family__el--me" data-reveal><sup class="mono">55</sup><b>Cs</b><span>Cesium · 0X3&nbsp;E</span></li>
+        </ol>
+        <div class="perf-grid">
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">4&nbsp;нм</p><p class="perf-cell__k mono">техпроцесс</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">Palladium&nbsp;1</p><p class="perf-cell__k mono">чип безопасности на&nbsp;кристалле</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">NC3</p><p class="perf-cell__k mono">модем внутри</p></div>
+          <div class="perf-cell" data-reveal><p class="perf-cell__v">до 12&nbsp;ГБ</p><p class="perf-cell__k mono">LPDDR5X · UFS&nbsp;4.0</p></div>
+        </div>
+        <p class="perf__honest" data-reveal>Честно о&nbsp;Palladium&nbsp;1: это блок внутри Cesium&nbsp;1, а&nbsp;не&nbsp;отдельный компьютер, как Tesseract в&nbsp;0X2 Essential. Ключи, отпечаток, оплата и&nbsp;«Мёртвая рука» на&nbsp;месте, своего аккумулятора и&nbsp;памяти нет. Зато четыре kill switch не&nbsp;зависят ни&nbsp;от&nbsp;какого чипа&nbsp;— это просто провода.</p>
+      </div>
+    </section>
+
+    <!-- 7. OY ASSIST НА УСТРОЙСТВЕ -->
+    <section class="section solid assist" id="assist" aria-labelledby="assist-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>OY OS 4.5 из&nbsp;коробки</p>
+        <h2 class="h2" id="assist-title" data-split>OY Assist больше не&nbsp;летает в&nbsp;дата-центр.</h2>
+        <p class="lead" data-reveal>Нейроблок Cesium&nbsp;1 тянет OY Assist целиком на&nbsp;телефоне. Без лимита запросов и&nbsp;в&nbsp;авиарежиме&nbsp;— как было до&nbsp;OY&nbsp;OS&nbsp;4. «Линзу» теперь можно выключить.</p>
+        <div class="assist__grid">
+          <article class="assist__card" data-reveal>
+            <p class="assist__tag mono">OY OS 4 · облако</p>
+            <h3>10 запросов в&nbsp;день</h3>
+            <div class="assist__chat">
+              <p class="q">Где я&nbsp;оставил велосипед?</p>
+              <p class="a">Нет сети. Попробуйте позже.</p>
+            </div>
+          </article>
+          <article class="assist__card assist__card--now" data-reveal>
+            <p class="assist__tag mono">OY OS 4.5 · на&nbsp;устройстве</p>
+            <h3>Сколько угодно</h3>
+            <div class="assist__chat">
+              <p class="q">Где я&nbsp;оставил велосипед?</p>
+              <p class="a">У&nbsp;пекарни на&nbsp;углу, 14:02. Фото&nbsp;— в&nbsp;галерее.</p>
+            </div>
+            <p class="assist__meta mono">Авиарежим · Cesium&nbsp;1 · запрос не&nbsp;покинул телефон</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. КАМЕРЫ -->
+    <section class="section solid camera" id="camera" aria-labelledby="camera-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Камеры</p>
+        <h2 class="sr-only" id="camera-title">Камеры: 50 МП и 8 МП</h2>
+        <div class="cam-hero">
+          <p class="giant" data-split>50&nbsp;МП</p>
+          <p class="giant giant--accent" data-split>+&nbsp;8</p>
+        </div>
+        <div class="cam-grid">
+          <div class="cam-fact" data-reveal><p class="cam-fact__k mono">Основная</p><p>50 МП, сенсор 1/1,56", f/1.7, оптическая стабилизация&nbsp;— та&nbsp;же, что в&nbsp;0X2 Essential</p></div>
+          <div class="cam-fact" data-reveal><p class="cam-fact__k mono">Сверхширокоугольная</p><p>8 МП, 112°, без автофокуса. Посредственная, и&nbsp;мы&nbsp;это пишем</p></div>
+          <div class="cam-fact" data-reveal><p class="cam-fact__k mono">Видео</p><p>4K/60 на&nbsp;основной, 1080p/30 на&nbsp;сверхширокой, 4K/30 на&nbsp;фронтальной 16&nbsp;МП</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. БАТАРЕЯ -->
+    <section class="section solid light battery" id="battery" aria-labelledby="battery-title">
+      <div class="container battery__grid">
+        <div>
+          <p class="eyebrow" data-reveal>Аккумулятор и зарядка</p>
+          <h2 class="h2" id="battery-title"><span data-split>6200&nbsp;мАч.</span> <span class="accent-text" data-split>80&nbsp;Вт.</span><sup class="fn"><a href="#fn-3" id="fnr-3">3</a></sup></h2>
+          <p class="lead" data-reveal>Кремний-углеродный аккумулятор, как в&nbsp;0X2 Essential, и&nbsp;меняется так&nbsp;же: два винта у&nbsp;USB-C, отвёртка в&nbsp;коробке, 10&nbsp;минут. Зарядка 80&nbsp;Вт&nbsp;— от&nbsp;0 до&nbsp;100&nbsp;% за&nbsp;38&nbsp;минут<sup class="fn"><a href="#fn-4" id="fnr-4">4</a></sup>.</p>
+          <p class="jab" data-reveal>Блока в&nbsp;коробке нет. У&nbsp;0X0 был. Мы&nbsp;помним.</p>
+        </div>
+        <div class="charge" role="img" aria-label="Анимация зарядки: от 0 до 100 процентов за 38 минут">
+          <div class="charge__cell" aria-hidden="true">
+            <div class="charge__fill"></div>
+            <svg class="charge__bolt"><use href="#i-bolt"/></svg>
+          </div>
+          <p class="charge__pct mono" aria-hidden="true"><span data-charge-pct>0</span>%</p>
+          <p class="charge__time mono" aria-hidden="true"><span data-charge-min>0</span> / 38 минут</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ВНУТРИ: разлёт по слоям -->
+    <section class="section pinned inside" id="inside" data-3d aria-labelledby="inside-title">
+      <div class="pin-wrap container">
+        <div class="stage-text">
+          <p class="eyebrow">Устройство</p>
+          <h2 class="h2" id="inside-title">8,8&nbsp;мм. По&nbsp;слоям.</h2>
+          <ol class="layers" role="list">
+            <li class="layer"><span class="layer__n mono">01</span><span class="layer__body"><b>Стекло</b><span>«Антиблик 2»</span></span></li>
+            <li class="layer"><span class="layer__n mono">02</span><span class="layer__body"><b>Экран</b><span>6,3" LTPO · 1–144&nbsp;Гц · до&nbsp;2600&nbsp;нит</span></span></li>
+            <li class="layer"><span class="layer__n mono">03</span><span class="layer__body"><b>Алюминиевая рамка</b><span>Четыре kill switch, фонарь на&nbsp;5000&nbsp;м, IP68</span></span></li>
+            <li class="layer"><span class="layer__n mono">04</span><span class="layer__body"><b>Плата</b><span>Cesium&nbsp;1 · LPDDR5X · UFS&nbsp;4.0</span></span></li>
+            <li class="layer"><span class="layer__n mono">05</span><span class="layer__body"><b>Palladium&nbsp;1</b><span>На&nbsp;том&nbsp;же кристалле, что и&nbsp;процессор</span></span></li>
+            <li class="layer"><span class="layer__n mono">06</span><span class="layer__body"><b>Аккумулятор</b><span>6200&nbsp;мАч, меняется за&nbsp;10&nbsp;минут</span></span></li>
+            <li class="layer"><span class="layer__n mono">07</span><span class="layer__body"><b>Спинка</b><span>50 + 8&nbsp;МП, гравировка X&nbsp;— как у&nbsp;0X0</span></span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ЦВЕТА -->
+    <section class="section pinned colors" id="colors" data-3d aria-labelledby="colors-title">
+      <div class="pin-wrap container">
+        <div class="stage-text stage-text--bottom">
+          <p class="eyebrow">Корпус · пять цветов</p>
+          <h2 class="h2" id="colors-title" data-split>Без красного. Пять&nbsp;других.</h2>
+          <p class="lead">Алюминий под лаком, острые углы. «Сигнальный Красный» ушёл вместе с&nbsp;0X0. «Радиевый»&nbsp;— без радия, честно. «Пингвиний»&nbsp;— спецверсия: чёрная спинка, белая рамка, жёлтая кнопка.</p>
+          <div class="color-switch color-switch--big" role="radiogroup" aria-label="Цвет корпуса" data-color-switch>
+            <button type="button" role="radio" class="color-opt" data-value="radium" aria-checked="true"><span class="swatch swatch--radium" aria-hidden="true"></span><span>Радиевый</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="mustard" aria-checked="false"><span class="swatch swatch--mustard" aria-hidden="true"></span><span>Горчичный</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="rocky" aria-checked="false"><span class="swatch swatch--rocky" aria-hidden="true"></span><span>Скалистый</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="iberian" aria-checked="false"><span class="swatch swatch--iberian" aria-hidden="true"></span><span>Иберийский</span></button>
+            <button type="button" role="radio" class="color-opt" data-value="penguin" aria-checked="false"><span class="swatch swatch--penguin" aria-hidden="true"></span><span>Пингвиний</span></button>
+          </div>
+          <p class="drag-hint mono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M4 12h16"/></svg>Потяните, чтобы повернуть</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. ПРОЩАНИЕ С 0X0 -->
+    <section class="section solid story farewell" id="farewell" aria-labelledby="farewell-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Посвящение</p>
+        <h2 class="h2" id="farewell-title" data-split>Спасибо, 0X0.</h2>
+        <p class="farewell__years mono" data-reveal><span>2027</span><i></i><span>2031</span></p>
+        <p class="manifest" data-scrub-words>Первый OY вышел в&nbsp;конце 2027 года с&nbsp;шторкой на&nbsp;камерах, тремя ползунками на&nbsp;левой грани и&nbsp;фонарём, который видно за&nbsp;пять километров. Он&nbsp;продавался дольше любого другого OY и&nbsp;пережил две линейки, которые пришли ему на&nbsp;смену. Весной 2031-го он&nbsp;уходит. 0X3 Essential забирает у&nbsp;него всё, что можно унести: ползунки, фонарь, вертикальную пару камер и&nbsp;гравировку «X».</p>
+        <ul class="farewell__list" role="list">
+          <li class="farewell__item" data-reveal><b>Шторка</b><span>Осталась у&nbsp;0X0. Вместо неё&nbsp;— kill switch камер</span></li>
+          <li class="farewell__item farewell__item--back" data-reveal><b>Фонарь 5000&nbsp;м</b><span>Вернулся на&nbsp;верхнюю грань</span></li>
+          <li class="farewell__item farewell__item--back" data-reveal><b>Ползунки</b><span>Было три, стало четыре</span></li>
+          <li class="farewell__item" data-reveal><b>«Сигнальный Красный»</b><span>Ушёл вместе с&nbsp;ним</span></li>
+        </ul>
+        <div class="farewell__cta" data-reveal>
+          <a class="btn btn--ghost" href="/0x0/">Посмотреть на&nbsp;0X0 ещё раз</a>
+          <a class="btn btn--ghost" href="/compare/?models=0x0,0x3e,0x2e">Сравнить 0X0 и&nbsp;0X3 Essential</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. ЧЕСТНОСТЬ -->
+    <section class="section solid light honest" id="honest" aria-labelledby="honest-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Честно</p>
+        <h2 class="h2" id="honest-title" data-split>Что вернули от&nbsp;0X0, а&nbsp;чего у&nbsp;нас больше нет.</h2>
+        <div class="honest__grid">
+          <div class="honest__col">
+            <h3 class="honest__head mono">Что есть</h3>
+            <ul class="honest__list" role="list">
+              <li data-reveal><svg aria-hidden="true"><use href="#i-lock"/></svg>Четыре kill switch, как у&nbsp;флагманов</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-sun"/></svg>Сигнальный фонарь до&nbsp;5000&nbsp;м<sup class="fn"><a href="#fn-1">1</a></sup></li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-update"/></svg>8 лет обновлений безопасности<sup class="fn"><a href="#fn-5" id="fnr-5">5</a></sup></li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-battery"/></svg>Аккумулятор меняется за&nbsp;10&nbsp;минут</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-nfc"/></svg>NFC с&nbsp;оплатой через Palladium&nbsp;1</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-jack"/></svg>Разъём 3,5 мм и&nbsp;ИК-порт</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-drop"/></svg>Защита IP68<sup class="fn"><a href="#fn-6" id="fnr-6">6</a></sup></li>
+            </ul>
+          </div>
+          <div class="honest__col honest__col--no">
+            <h3 class="honest__head mono">Чего нет</h3>
+            <ul class="honest__list" role="list">
+              <li data-reveal><svg aria-hidden="true"><use href="#i-camera"/></svg>Шторки на&nbsp;камерах</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-chip"/></svg>Отдельного чипа безопасности</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-wireless"/></svg>Беспроводной зарядки</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-bolt"/></svg>Блока питания в&nbsp;коробке</li>
+              <li data-reveal><svg aria-hidden="true"><use href="#i-face"/></svg>Разблокировки по&nbsp;лицу</li>
+            </ul>
+            <p class="honest__foot" data-reveal>И&nbsp;красного цвета. Но&nbsp;о&nbsp;нём мы&nbsp;уже сказали.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. ХАРАКТЕРИСТИКИ И КОНФИГУРАЦИИ -->
+    <section class="section solid light buy" id="buy" aria-labelledby="buy-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Весна 2031 · США, Евросоюз и&nbsp;Китай</p>
+        <h2 class="h2" id="buy-title" data-split>Выберите свой 0X3&nbsp;Essential.</h2>
+        <div class="configurator">
+          <div class="configurator__opts">
+            <p class="cfg-label mono" id="mem-label">Память</p>
+            <div class="mem-switch" role="radiogroup" aria-labelledby="mem-label" data-mem-switch>
+              <button type="button" role="radio" class="mem-opt" data-value="8/128" aria-checked="true"><span class="mono">8/128</span><span class="mem-opt__unit">ГБ</span></button>
+              <button type="button" role="radio" class="mem-opt" data-value="8/256" aria-checked="false"><span class="mono">8/256</span><span class="mem-opt__unit">ГБ</span></button>
+              <button type="button" role="radio" class="mem-opt" data-value="12/256" aria-checked="false"><span class="mono">12/256</span><span class="mem-opt__unit">ГБ</span></button>
+            </div>
+            <p class="cfg-label mono" id="color-label">Цвет</p>
+            <div class="color-switch color-switch--big" role="radiogroup" aria-labelledby="color-label" data-color-switch>
+              <button type="button" role="radio" class="color-opt" data-value="radium" aria-checked="true"><span class="swatch swatch--radium" aria-hidden="true"></span><span>Радиевый</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="mustard" aria-checked="false"><span class="swatch swatch--mustard" aria-hidden="true"></span><span>Горчичный</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="rocky" aria-checked="false"><span class="swatch swatch--rocky" aria-hidden="true"></span><span>Скалистый</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="iberian" aria-checked="false"><span class="swatch swatch--iberian" aria-hidden="true"></span><span>Иберийский</span></button>
+              <button type="button" role="radio" class="color-opt" data-value="penguin" aria-checked="false"><span class="swatch swatch--penguin" aria-hidden="true"></span><span>Пингвиний</span></button>
+            </div>
+          </div>
+          <div class="price-card" aria-live="polite">
+            <p class="price-card__cfg mono"><span data-cfg-name>8/128 ГБ</span> · <span data-cfg-color>Радиевый</span></p>
+            <p class="price-card__usd" data-price-usd>$399</p>
+            <p class="price-card__eur mono"><span data-price-eur>€469</span> · Европа — в&nbsp;продаже</p>
+            <p class="price-card__eur mono"><span data-price-cny>¥2599</span> · Китай — в&nbsp;продаже</p>
+            <button type="button" class="btn btn--accent btn--wide" data-stub="Это демонстрационная страница: покупка здесь не подключена.">Купить</button>
+            <p class="price-card__note">Продажи — в&nbsp;США, Евросоюзе и&nbsp;Китае (в&nbsp;юанях, с&nbsp;двумя nano-SIM) с&nbsp;первого дня. OY&nbsp;OS&nbsp;4.5 из&nbsp;коробки.</p>
+            <p class="price-card__concept">Это концепт-сайт: OY&nbsp;0X3&nbsp;Essential и&nbsp;компания OY вымышлены, продажи не&nbsp;ведутся.</p>
+          </div>
+        </div>
+
+        <h3 class="h3 specs-title" id="specs">Характеристики</h3>
+        <div class="specs-wrap">
+          <table class="specs">
+            <caption class="sr-only">Технические характеристики OY 0X3 Essential</caption>
+            <tbody>
+              <tr><th scope="row">Процессор</th><td>OY Cesium 1 (4 нм) — собственный процессор OY, младший в&nbsp;семействе Argon / Beryllium / Cesium; модем NC3 внутри</td></tr>
+              <tr><th scope="row">Чип безопасности</th><td>Palladium 1 — на&nbsp;кристалле Cesium 1: ключи шифрования, отпечаток, оплата, «Мёртвая рука». Своих памяти и&nbsp;аккумулятора нет</td></tr>
+              <tr><th scope="row">Экран</th><td>6,3" LTPO AMOLED, 1080×2400, 1–144 Гц; пиковая яркость 2600 нит, минимальная 0,5 нит; ШИМ 3840 Гц; «Антиблик 2»</td></tr>
+              <tr><th scope="row">Память</th><td>8/128, 8/256, 12/256 ГБ; LPDDR5X + UFS 4.0</td></tr>
+              <tr><th scope="row">Основная камера</th><td>50 МП, сенсор 1/1,56", f/1.7, оптическая стабилизация</td></tr>
+              <tr><th scope="row">Сверхширокоугольная</th><td>8 МП, 112°, без автофокуса</td></tr>
+              <tr><th scope="row">Фронтальная</th><td>16 МП, точка-вырез по&nbsp;центру</td></tr>
+              <tr><th scope="row">Видео</th><td>4K/60 на&nbsp;основной, 1080p/30 на&nbsp;сверхширокой, 4K/30 на&nbsp;фронтальной</td></tr>
+              <tr><th scope="row">Kill Switches</th><td>Четыре физических ползунка на&nbsp;левой грани: камеры; микрофоны; связь (сотовая, Wi-Fi, Bluetooth, NFC); геолокация и&nbsp;датчики. Шторки на&nbsp;камерах нет</td></tr>
+              <tr><th scope="row">Фонари</th><td>Вспышка под камерами; сигнальный фонарь на&nbsp;верхней грани — белый и&nbsp;красный, заявленная видимость до&nbsp;5000 м</td></tr>
+              <tr><th scope="row">Аккумулятор</th><td>6200 мАч, кремний-углеродный (Si-C); меняется за&nbsp;10&nbsp;минут, отвёртка в&nbsp;комплекте</td></tr>
+              <tr><th scope="row">Зарядка</th><td>Проводная 80 Вт, 0–100 % за&nbsp;38 минут. Беспроводной зарядки нет</td></tr>
+              <tr><th scope="row">Связь</th><td>5G, eSIM + физическая SIM (обе активны), Wi-Fi 7, Bluetooth 5.4, NFC, ИК-порт; Claw 2.0 Lite — 6 антенн, переход до&nbsp;2G</td></tr>
+              <tr><th scope="row">Биометрия</th><td>Сканер отпечатка в&nbsp;кнопке питания, отпечаток хранится в&nbsp;Palladium 1. Разблокировки по&nbsp;лицу нет</td></tr>
+              <tr><th scope="row">Система</th><td>OY OS 4.5 из&nbsp;коробки: OY Assist на&nbsp;устройстве, «Линза» отключается, OY ID и&nbsp;0X Cloud, встроенные сервисы Google</td></tr>
+              <tr><th scope="row">Звук и&nbsp;разъёмы</th><td>Стерео-динамики, 3,5 мм, USB-C</td></tr>
+              <tr><th scope="row">Защита</th><td>IP68</td></tr>
+              <tr><th scope="row">Корпус</th><td>Алюминиевые спинка и&nbsp;рамка под лаком, острые углы — корпус 0X2 Essential; 150 × 71 × 8,8 мм; 198 г</td></tr>
+              <tr><th scope="row">Цвета</th><td>«Радиевый», «Горчичный», «Скалистый», «Иберийский», «Пингвиний» (спецверсия)</td></tr>
+              <tr><th scope="row">Комплект</th><td>Кабель USB-C, отвёртка и&nbsp;присоска для замены аккумулятора, скрепка для SIM, документация. Блока питания нет</td></tr>
+              <tr><th scope="row">Обновления и&nbsp;гарантия</th><td>8 лет обновлений безопасности · 20 месяцев гарантии</td></tr>
+              <tr><th scope="row">Продажи</th><td>США, Евросоюз и&nbsp;Китай (в&nbsp;юанях, с&nbsp;двумя nano-SIM). Выход — весна 2031 года</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="specs-wrap">
+          <table class="prices">
+            <caption class="prices__cap mono">Цены по конфигурациям</caption>
+            <thead><tr><th scope="col">Конфигурация</th><th scope="col">США</th><th scope="col">Европа</th><th scope="col">Китай</th></tr></thead>
+            <tbody data-price-table></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. ФИНАЛ -->
+    <section class="section final" id="final" data-3d aria-labelledby="final-title">
+      <div class="container final__inner">
+        <h2 class="mega final__title" id="final-title"><span class="grad" data-split>Ноль слежки.</span> <span class="grad" data-split>Ноль компромиссов.</span></h2>
+        <div class="final__cta" data-reveal>
+          <a class="btn btn--accent" href="#buy">Купить — от $399</a>
+          <a class="btn btn--ghost" href="/compare/?models=0x0,0x3e,0x2e">Сравнить с&nbsp;0X0</a>
+        </div>
+        <p class="final__thanks mono" data-reveal>Спасибо, 0X0. 2027–2031.</p>
+      </div>
+    </section>
+
+    <!-- СНОСКИ -->
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">Дальность видимости красного огня ночью при ясной погоде и&nbsp;прямой видимости, оценка OY по&nbsp;методике IALA для навигационных огней — та&nbsp;же, что для 0X0 в&nbsp;2027 году. Белый режим виден примерно на&nbsp;3000&nbsp;м. <a href="#fnr-1" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-2">Пиковая яркость при показе HDR-контента на&nbsp;3&nbsp;% площади экрана. Яркость во&nbsp;весь экран ниже: 1400&nbsp;нит. <a href="#fnr-2" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-3">Типичная ёмкость. Минимальная номинальная — 6020&nbsp;мАч. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-4">Зарядка выключенного телефона блоком OY на&nbsp;80&nbsp;Вт и&nbsp;кабелем из&nbsp;коробки при 25&nbsp;°C. Блок продаётся отдельно. <a href="#fnr-4" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-5">Обновления OY&nbsp;OS и&nbsp;ежемесячные патчи безопасности в&nbsp;течение 8&nbsp;лет с&nbsp;начала продаж модели. <a href="#fnr-5" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-6">Защита IP68 по&nbsp;IEC&nbsp;60529: погружение в&nbsp;пресную воду на&nbsp;глубину до&nbsp;1,5&nbsp;м на&nbsp;30&nbsp;минут, в&nbsp;том числе после замены аккумулятора с&nbsp;родным уплотнителем. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+        </ol>
+        <p class="footnotes__more">Все характеристики и&nbsp;результаты испытаний — предварительные: это концепт, телефоны не&nbsp;выпускаются.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · французский стартап</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X3 Essential · Весна 2031 · США, Евросоюз и&nbsp;Китай · посвящается <a href="/0x0/">OY 0X0</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X3&nbsp;Essential и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

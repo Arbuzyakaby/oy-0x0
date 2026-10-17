@@ -397,6 +397,11 @@ export function createFyrKBook() {
     name: 'Screen', color: 0x000000, roughness: 0.18, emissive: 0xffffff, emissiveMap: scrTex, emissiveIntensity: 1,
   });
   screenMat.toneMapped = false;
+  // экран лежит на 0,02 мм ниже чёрной рамки: на расстоянии буфер глубины их путает,
+  // и по экрану бегут тёмные полосы. Сдвиг глубины держит экран всегда поверх рамки
+  screenMat.polygonOffset = true;
+  screenMat.polygonOffsetFactor = -2;
+  screenMat.polygonOffsetUnits = -8;
 
   const bodyMat = new THREE.MeshPhysicalMaterial({ name: 'Body', color: KB_COLORS.polarnatt.body, metalness: 0.85, roughness: 0.34, clearcoat: 0.15, envMapIntensity: 1.3 });
   const deckMat = new THREE.MeshPhysicalMaterial({ name: 'Deck', color: KB_COLORS.polarnatt.deck, metalness: 0.8, roughness: 0.4, envMapIntensity: 1.2 });

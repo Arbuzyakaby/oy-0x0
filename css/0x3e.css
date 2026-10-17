@@ -1,0 +1,129 @@
+/* =========================================================================
+   OY 0X3 Essential — страница-реверанс 0X0: тот же сюжет прокрутки и те же
+   компоненты (css/0x0.css), свои пять цветов, четыре kill switch,
+   «Шторки нет — есть ползунок» и прощание с 0X0.
+   ========================================================================= */
+
+:root[data-color="radium"] {
+  --accent: #A6E05A;
+  --accent-text: #BDF07E;
+  --accent-strong: #4E7A1E;
+  --accent-ink: #0A0A0B;
+  --glow: rgba(150, 224, 90, .3);
+  --bg-tint: #0A0D08;
+}
+:root[data-color="mustard"] {
+  --accent: #D19A26;
+  --accent-text: #F2B83A;
+  --accent-strong: #8A5F0E;
+  --accent-ink: #0A0A0B;
+  --glow: rgba(209, 154, 38, .34);
+  --bg-tint: #0D0B07;
+}
+:root[data-color="rocky"] {
+  --accent: #A39C91;
+  --accent-text: #D3CABA;
+  --accent-strong: #5A554E;
+  --accent-ink: #0A0A0B;
+  --glow: rgba(160, 150, 135, .26);
+  --bg-tint: #0B0B0A;
+}
+:root[data-color="iberian"] {
+  --accent: #2A62C4;
+  --accent-text: #86AEF6;
+  --accent-strong: #1B4C9E;
+  --accent-ink: #FFFFFF;
+  --glow: rgba(42, 98, 196, .4);
+  --bg-tint: #080A0F;
+}
+:root[data-color="penguin"] {
+  --accent: #F2B321;
+  --accent-text: #F6C653;
+  --accent-strong: #8F6406;
+  --accent-ink: #0A0A0B;
+  --glow: rgba(242, 179, 33, .28);
+  --bg-tint: #0A0A0A;
+}
+
+.swatch--radium { background: radial-gradient(circle at 35% 30%, #E4F7B8, #B4D673 55%, #6E8E36); box-shadow: 0 0 10px rgba(150, 255, 110, .35); }
+.swatch--mustard { background: radial-gradient(circle at 35% 30%, #F1CC74, #C28E22 55%, #7C5810); }
+.swatch--rocky { background: radial-gradient(circle at 35% 30%, #B6AEA3, #77716A 55%, #45413C); }
+.swatch--iberian { background: radial-gradient(circle at 35% 30%, #7FA6EC, #1B4C9E 55%, #0E2C60); }
+/* «Пингвиний»: чёрная спинка, белая рамка, жёлтая кнопка */
+.swatch--penguin { background: radial-gradient(circle at 70% 72%, #F2B321 0 14%, transparent 15%), linear-gradient(135deg, #1A1C20 0 52%, #ECEDE8 52% 100%); }
+
+/* ---------- Первый экран: 0X0 → 0X3 ---------- */
+
+.hero__nod { margin-top: 14px; font-size: 13px; color: var(--muted); }
+.hero__nod a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+
+.zero-word .zero-was { position: relative; display: inline-block; }
+.zero-word .zero-was s { color: var(--muted); text-decoration-thickness: .06em; opacity: .5; }
+.zero-word .zero-now { color: var(--accent-text); }
+
+/* ---------- Четыре kill switch ---------- */
+
+.ks-list--4 { gap: 6px; margin-top: 20px; }
+.ks-list--4 .ks-item { padding-top: 10px; padding-bottom: 10px; }
+.switches .h2 { font-size: clamp(36px, 4.4vw, 64px); }
+
+/* ---------- Шторки нет — есть ползунок ---------- */
+
+.compare__card--was { opacity: .72; }
+.compare__card--was .compare__tag::after { content: ' · 0X0, 2027'; color: #8A8A90; }
+.compare__card--now .compare__tag::after { content: ' · 0X3 Essential'; color: #8A8A90; }
+.compare__arrow { font-size: 40px; line-height: 1; color: #8A8A90; align-self: center; text-align: center; }
+.compare__honest { margin-top: 28px; max-width: 62ch; color: #55555B; font-size: 15px; }
+
+/* ---------- Cesium 1 и Palladium 1 ---------- */
+
+.family { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.family__el { position: relative; width: 104px; height: 104px; padding: 10px; border: 1px solid var(--line, rgba(255, 255, 255, .14)); border-radius: 12px; display: grid; align-content: space-between; }
+.family__el sup { font-size: 11px; color: var(--muted); }
+.family__el b { font-size: 34px; letter-spacing: -.03em; line-height: 1; }
+.family__el span { font-size: 12px; color: var(--muted); }
+.family__el--me { border-color: var(--accent-text); box-shadow: 0 0 0 1px var(--accent-text), 0 0 30px var(--glow); }
+.family__el--me b { color: var(--accent-text); }
+.perf__honest { margin-top: 26px; max-width: 64ch; color: var(--muted); }
+
+/* ---------- OY Assist на устройстве ---------- */
+
+.assist { position: relative; }
+.assist__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px; }
+.assist__card { padding: 26px; border-radius: var(--radius); background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .08); }
+.assist__card h3 { font-size: 22px; letter-spacing: -.02em; margin: 6px 0 10px; }
+.assist__card p { color: var(--muted); }
+.assist__card--now { border-color: var(--accent-text); background: linear-gradient(160deg, var(--glow), rgba(255, 255, 255, .02) 60%); }
+.assist__tag { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.assist__chat { margin-top: 18px; display: grid; gap: 8px; font-size: 14px; }
+.assist__chat p { padding: 10px 14px; border-radius: 14px; max-width: 34ch; }
+.assist__chat .q { justify-self: end; background: var(--accent); color: var(--accent-ink); }
+.assist__chat .a { background: rgba(255, 255, 255, .07); color: var(--fg); }
+.assist__meta { margin-top: 10px; font-size: 12px; color: var(--muted); }
+
+/* ---------- Прощание с 0X0 ---------- */
+
+.farewell { text-align: left; }
+.farewell__years { display: flex; align-items: baseline; gap: 18px; margin: 10px 0 28px; font-variant-numeric: tabular-nums; }
+.farewell__years span { font-size: clamp(56px, 11vw, 150px); font-weight: 700; letter-spacing: -.05em; line-height: .9; }
+.farewell__years i { flex: 1; height: 2px; background: linear-gradient(90deg, var(--accent-text), transparent); max-width: 240px; }
+.farewell__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+.farewell__item { padding: 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, .1); }
+.farewell__item b { display: block; font-size: 26px; letter-spacing: -.02em; margin-bottom: 6px; }
+.farewell__item span { color: var(--muted); font-size: 14px; }
+.farewell__item--back b { color: var(--accent-text); }
+.farewell__cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+.final__thanks { margin-top: 18px; color: var(--muted); font-size: 14px; letter-spacing: .04em; }
+
+@media (max-width: 760px) {
+  .assist__grid { grid-template-columns: 1fr; }
+  .farewell__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .farewell__item { padding: 14px; }
+  .farewell__item b { font-size: 18px; overflow-wrap: anywhere; }
+  .family__el { width: 84px; height: 84px; }
+  .family__el b { font-size: 28px; }
+}
+
+.perf .lead, .assist .lead { margin-top: 18px; max-width: 60ch; }
+.family { list-style: none; padding: 0; }

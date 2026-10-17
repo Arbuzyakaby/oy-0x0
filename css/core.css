@@ -562,3 +562,25 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .2s !important; }
   .loader__o, .loader__x { stroke-dashoffset: 0; }
 }
+
+/* ---------- Прощальный салют 0X0 (js/core/farewell.js) ---------- */
+
+.salute {
+  position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+  background: radial-gradient(ellipse at 50% 40%, rgba(20, 8, 10, .82), rgba(5, 5, 6, .94));
+  opacity: 0; transition: opacity .6s var(--ease); cursor: pointer;
+}
+.salute.is-in { opacity: 1; }
+.salute.is-out { opacity: 0; }
+.salute__sky { position: absolute; inset: 0; width: 100%; height: 100%; }
+.salute__text { position: relative; text-align: center; padding: 0 16px; pointer-events: none; }
+.salute__mark { width: 96px; height: 36px; fill: none; stroke: #E2505A; stroke-width: 2.2; stroke-linecap: round; }
+.salute__title { margin-top: 18px; font-size: clamp(44px, 9vw, 120px); font-weight: 750; letter-spacing: -.05em; line-height: .95; color: #F2F2F0; text-shadow: 0 0 40px rgba(226, 80, 90, .45); }
+.salute__sub { margin-top: 14px; font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #CFE3EE; }
+.salute__link { display: inline-block; margin-top: 22px; color: #F2F2F0; text-decoration: underline; text-underline-offset: 4px; pointer-events: auto; }
+.salute__close {
+  position: absolute; top: max(16px, env(safe-area-inset-top)); right: 16px;
+  font: 500 13px var(--mono); color: #F2F2F0; background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .2); border-radius: 999px; padding: 8px 14px; cursor: pointer;
+}
+.salute__close:focus-visible { outline: 2px solid #F2F2F0; outline-offset: 2px; }

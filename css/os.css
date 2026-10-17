@@ -1010,3 +1010,38 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
 @media (prefers-reduced-motion: reduce) {
   .mem__box.is-run .mem__tiles i::after, .mem__tags li, .upd4__log li { animation: none; }
 }
+
+/* ---------- OY OS 4.5 ---------- */
+
+.os4-mark__dot { font-size: clamp(64px, 8vw, 124px); line-height: .8; font-weight: 750; letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .7); margin-left: -.06em; }
+
+.os45__grid { margin-top: 44px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.os45c { padding: 28px; border-radius: 26px; display: grid; gap: 10px; align-content: start; }
+.os45c h3 { font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -.03em; line-height: 1.05; }
+.os45c p { color: var(--muted); }
+.os45c__k { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg) !important; }
+.os45c__k svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.os45c__quote { margin: 8px 0 0; padding: 14px 16px; border-left: 2px solid #2F6BFF; background: rgba(47, 107, 255, .08); border-radius: 0 14px 14px 0; font-size: 16px; line-height: 1.45; }
+.os45c__quote cite { display: block; margin-top: 8px; font-style: normal; font-size: 12px; color: var(--muted); }
+
+/* карта США из точек: 83 дата-центра загораются по одному */
+.dcmap { position: relative; margin-top: 10px; aspect-ratio: 2 / 1; border-radius: 16px; background: rgba(255, 255, 255, .04); overflow: hidden; }
+.dcmap i { position: absolute; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: rgba(255, 255, 255, .14); }
+.dcmap i.is-dc { background: #64D2FF; box-shadow: 0 0 10px #64D2FF; transition: background .4s, box-shadow .4s; }
+.dcmap b { position: absolute; right: 12px; bottom: 10px; font: 600 13px var(--mono); color: var(--fg); }
+
+.assist__where { display: inline-flex; margin-top: 24px; padding: 4px; border-radius: 999px; background: rgba(255, 255, 255, .08); border: 1px solid var(--line); }
+.assist__where button { height: 36px; padding: 0 16px; border: 0; border-radius: 999px; background: none; color: var(--fg); font: 600 14px var(--sans); cursor: pointer; }
+.assist__where button[aria-checked="true"] { background: rgba(255, 255, 255, .24); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55); }
+.duel.is-local .duel__route { opacity: .2; filter: grayscale(1); }
+
+.lens__off { margin-right: 18px; }
+/* «Линза» выключена: стекло становится плоским и непрозрачным по всей странице */
+:root.lens-off .glass, :root.lens-off .ophone--glass .ophone__screen > *, :root.lens-off .os-tabs__track, :root.lens-off .os4-badge {
+  backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: #1C1C20 !important; box-shadow: none !important;
+}
+:root.lens-off .lens__glass { opacity: 0; }
+
+@media (max-width: 760px) {
+  .os45__grid { grid-template-columns: 1fr; }
+}

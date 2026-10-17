@@ -9,7 +9,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { $, $$, createToast } from '../core/ui.js';
+import { $, $$, createToast, syncRadio, initRadioGroup } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals, wrapWords, scrubWords } from '../core/text.js';
 import { initCarousel } from '../core/carousel.js';
@@ -57,7 +57,7 @@ $$('[data-typer]').forEach((el) => {
   }, 42);
 });
 
-/* ---------- OY Assist 4: запрос летит в 0X Cloud, запросов — 10 в день ---------- */
+/* ---------- OY Assist: в OY OS 4.5 — на устройстве или в 0X Cloud (10 запросов в день) ---------- */
 
 const ANSWERS = [
   ['Сократи письмо от начальника до трёх строк', 'Отчёт нужен к пятнице. Цифры — из таблицы за третий квартал. Созвон переносится на четверг, 11:00.'],
@@ -77,6 +77,21 @@ const quotaEl = $('[data-quota]');
 const QUOTA = 10;
 let used = 7;
 let cloudTotal = 0;
+// OY OS 4.5: по умолчанию ассистент думает на телефоне — без лимита и без сети
+let where = 'device';
+const sysEl = $('[data-assist-sys]');
+const footDevice = $('[data-quota-foot]');
+const footCloud = $('[data-quota-cloud]');
+const whereGrp = $('[data-assist-where]');
+const setWhere = (v) => {
+  where = v;
+  syncRadio(whereGrp, v);
+  duel.classList.toggle('is-local', v === 'device');
+  sysEl.textContent = v === 'device' ? 'OY Assist · на устройстве' : 'OY Assist 4 · в 0X Cloud';
+  footDevice.hidden = v !== 'device';
+  footCloud.hidden = v === 'device';
+  cloudOut.textContent = v === 'device' ? 'На устройстве: в облако ничего не уходит.' : plane.checked ? 'Нет сети. OY Assist 4 работает в 0X Cloud.' : 'Ждёт вопроса.';
+};
 
 const fmtBytes = (b) => (b < 1024 ? `${Math.round(b)} Б` : b < 1048576 ? `${(b / 1024).toFixed(0)} КБ` : `${(b / 1048576).toFixed(1).replace('.', ',')} МБ`);
 function bubble(cls, text) {
@@ -90,13 +105,28 @@ function bubble(cls, text) {
 }
 plane.addEventListener('change', () => {
   duel.classList.toggle('is-offline', plane.checked);
+  if (where === 'device') return;
   cloudOut.textContent = plane.checked ? 'Нет сети. OY Assist 4 работает в 0X Cloud.' : 'Ждёт вопроса.';
 });
+initRadioGroup(whereGrp, setWhere);
+setWhere('device');
 qBtns.forEach((b) => b.addEventListener('click', async () => {
   const [q, a] = ANSWERS[+b.dataset.q];
   qBtns.forEach((x) => { x.disabled = true; x.setAttribute('aria-pressed', String(x === b)); });
   bubble('chat__q', q);
   const done = () => qBtns.forEach((x) => { x.disabled = false; });
+
+  // OY OS 4.5: на устройстве — ни сети, ни лимита, ни байтов в облако
+  if (where === 'device') {
+    const think = bubble('chat__a is-thinking', 'Думаю на Cesium… то есть на телефоне');
+    island.classList.add('is-thinking');
+    await wait(reducedMode ? 0 : 900);
+    island.classList.remove('is-thinking');
+    think.classList.remove('is-thinking');
+    think.textContent = a.replace(/ в 0X Cloud/g, ' в галерее');
+    cloudOut.textContent = plane.checked ? 'Авиарежим, а ответ есть: запрос не покинул телефон.' : 'Запрос не покинул телефон. Отправлено в облако: 0 Б.';
+    return done();
+  }
 
   // Без сети облачному ассистенту думать негде
   if (plane.checked) {
@@ -140,6 +170,36 @@ qBtns.forEach((b) => b.addEventListener('click', async () => {
     : 'Ответ получен и сохранён в историю OY Assist в 0X Cloud.';
   done();
 }));
+
+/* ---------- OY OS 4.5: «Линзу» можно выключить ---------- */
+
+const lensOff = $('[data-lens-off]');
+lensOff?.addEventListener('change', () => {
+  document.documentElement.classList.toggle('lens-off', lensOff.checked);
+  toast(lensOff.checked ? '«Линза» выключена. Стекло стало просто стеклом. То есть непрозрачным.' : '«Линза» снова включена.');
+});
+
+/* ---------- OY OS 4.5: 83 дата-центра 0X Cloud на карте США ---------- */
+
+const dcmap = $('[data-dcmap]');
+if (dcmap) {
+  // грубый контур континентальных США: строки сетки 20×10, у каждой — от и до по x
+  const ROWS = [[2, 17], [1, 18], [1, 19], [1, 19], [1, 18], [2, 18], [3, 17], [4, 16], [6, 12], [12, 15]];
+  const dots = [];
+  ROWS.forEach(([a, b], y) => { for (let x = a; x <= b; x++) dots.push([x, y]); });
+  dcmap.innerHTML = dots.map(([x, y]) => `<i style="left:${(x + 0.5) * 5}%;top:${(y + 0.5) * 10}%"></i>`).join('') + '<b data-dc-n>0</b>';
+  const cells = Array.from(dcmap.querySelectorAll('i'));
+  // 83 из 168 точек: детерминированный порядок, чтобы карта была одинаковой
+  const order = cells.map((_, i) => [Math.sin(i * 12.9898) * 43758.5453 % 1, i]).sort((p, q) => p[0] - q[0]).slice(0, 83).map((p) => p[1]);
+  const nEl = dcmap.querySelector('[data-dc-n]');
+  let lit = false;
+  const light = () => {
+    if (lit) return;
+    lit = true;
+    order.forEach((idx, k) => setTimeout(() => { cells[idx].classList.add('is-dc'); nEl.textContent = String(k + 1); }, reducedMode ? 0 : k * 28));
+  };
+  new IntersectionObserver(([e], io) => { if (e.isIntersecting) { light(); io.disconnect(); } }, { threshold: 0.4 }).observe(dcmap);
+}
 
 /* ---------- Призрачный профиль ---------- */
 

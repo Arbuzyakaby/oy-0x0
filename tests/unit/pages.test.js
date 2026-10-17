@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { PRODUCTS, ON_SALE, LINEUP, RETURNED } from '../../js/data/products.js';
+import { PRODUCTS, ON_SALE } from '../../js/data/products.js';
 import { ACCESSORIES } from '../../js/data/accessories.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
@@ -47,9 +47,8 @@ test('шапка всех страниц ведёт на модели в про�
   for (const p of PAGES) {
     const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
     if (!nav) continue;
-    // вернувшаяся 0X1 — одной ссылкой «0X1» на витрину, остальные модели — каждая своей
-    for (const id of LINEUP) assert.ok(nav[1].includes(`href="${PRODUCTS[id].href}"`), `${p}: нет ${id}`);
-    assert.ok(nav[1].includes('href="/#returned"'), `${p}: нет ссылки на вернувшуюся 0X1`);
+    for (const id of ON_SALE) assert.ok(nav[1].includes(`href="${PRODUCTS[id].href}"`), `${p}: нет ${id}`);
+    assert.ok(!nav[1].includes('#returned'), `${p}: ссылка на вернувшуюся 0X1`);
     for (const p2 of Object.values(PRODUCTS).filter((x) => x.discontinued)) {
       assert.ok(!nav[1].includes(`href="${p2.href}"`), `${p}: снятый ${p2.id} в шапке`);
     }
@@ -231,29 +230,52 @@ test('страница /fyr/kbook/: скрытая, главы по порядк
   }
 });
 
-test('вернувшиеся 0X1: на страницах нет плашки «снят с продажи», есть конфигуратор и цена из данных', () => {
-  for (const id of RETURNED) {
-    const html = read(`${PRODUCTS[id].href.slice(1)}index.html`);
-    assert.ok(!html.includes('disc-plate'), `${id}: плашка`);
-    assert.ok(!html.includes('price-card--disc'), `${id}: карточка снятой модели`);
-    assert.ok(html.includes('data-mem-switch'), `${id}: нет выбора памяти`);
-    for (const c of PRODUCTS[id].configs) assert.ok(html.includes(`data-value="${c.id}"`), `${id}: ${c.id}`);
-    assert.ok(html.includes(`data-price-usd>$${PRODUCTS[id].configs[0].usd}<`), `${id}: цена`);
-    assert.ok(!/(?<!Не )снят с продажи/i.test(html.replace(/<footer[\s\S]*$/, '')), `${id}: упоминание снятия`);
+test('снятые весной 2031-го: на страницах плашка, нет выбора памяти, кнопки ведут к преемнику', () => {
+  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro']) {
+    const p = PRODUCTS[id];
+    const html = read(`${p.href.slice(1)}index.html`);
+    assert.ok(html.includes('disc-plate'), `${id}: нет плашки`);
+    assert.ok(!html.includes('data-mem-switch'), `${id}: выбор памяти`);
+    assert.ok(html.includes(`href="${PRODUCTS[p.successor].href}"`), `${id}: нет ссылки на преемника`);
+    assert.ok(!/вернулся в продажу|Снова в продаже/.test(html.replace(/<footer[\s\S]*$/, '').replace(/class="price-card__note">[^<]*/, '')), `${id}: «снова в продаже»`);
   }
 });
 
-test('витрина: все вернувшиеся модели на втором ряду и в карточках, есть блок про нового CEO и Китай', () => {
+test('0X3 Essential — реверанс 0X0: тот же сюжет прокрутки, четыре ползунка, фонарь на 5000 м и прощание с 0X0', () => {
+  const html = read('0x3e/index.html');
+  for (const id of ['hero', 'zero', 'switches', 'compare', 'signal', 'display', 'cesium', 'assist', 'camera', 'inside', 'colors', 'farewell', 'buy', 'final']) assert.ok(html.includes(`id="${id}"`), id);
+  assert.equal((html.match(/class="ks-item" data-ks="\d"/g) || []).length, 4);
+  assert.match(html, /5000&nbsp;м/);
+  assert.match(html, /Спасибо, 0X0\./);
+  assert.ok(html.includes('href="/0x0/"'));
+  assert.ok(html.includes('/js/pages/0x3e.js'));
+  for (const c of PRODUCTS['0x3e'].configs) assert.ok(html.includes(`data-value="${c.id}"`), c.id);
+  for (const c of Object.keys(PRODUCTS['0x3e'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.ok(existsSync(join(ROOT, 'models', 'oy0x3e.glb')));
+});
+
+test('прощальный салют 0X0: на витрине и странице 0X0, раз за сессию', () => {
+  const js = read('js/core/farewell.js');
+  assert.match(js, /sessionStorage/);
+  assert.match(js, /prefers-reduced-motion/);
+  assert.match(read('js/pages/home.js'), /playFarewell\(\)/);
+  assert.match(read('js/pages/base.js'), /playFarewell\(\)/);
+  assert.ok(read('index.html').includes('data-salute'));
+});
+
+test('витрина: шесть телефонов в продаже, блок «Перемены в OY» с новостями весны 2031-го', () => {
   const html = read('index.html');
-  assert.match(html, /<title>OY — Одиннадцать телефонов/);
-  for (const id of RETURNED) {
+  assert.match(html, /<title>OY — Шесть телефонов/);
+  for (const id of ON_SALE) {
     assert.ok(html.includes(`data-model="${id}"`), `${id}: нет на витрине`);
     assert.ok(html.includes(`href="${PRODUCTS[id].href}#buy"`), `${id}: нет карточки`);
   }
-  assert.ok(html.includes('id="returned"'));
+  for (const p of Object.values(PRODUCTS).filter((x) => x.discontinued)) assert.ok(!html.includes(`data-model="${p.id}"`), `${p.id}: снят, а на витрине`);
+  assert.ok(!html.includes('id="returned"'));
   assert.ok(html.includes('id="shift"'));
-  assert.match(html, /топ-менеджер Xiaomi/);
-  assert.ok(html.includes(`¥${PRODUCTS['0x1e'].configs[0].cny}`));
+  for (const re of [/83 дата-центра/, /Fyr Connect/, /OY Assist снова/, /0X0 снят с&nbsp;продажи/]) assert.match(html, re);
+  assert.ok(html.includes(`¥${PRODUCTS['0x3e'].configs[0].cny}`));
   assert.ok(html.includes(`¥${PRODUCTS['0x2pro'].configs.at(-1).cny}`));
 });
 
@@ -267,18 +289,19 @@ test('страницы моделей, вышедших в Китай, пока�
   }
 });
 
-test('OY OS 4: «Линза», OY ID, 0X Cloud Pro за $9,99, Google не удаляется, обновятся все 13 смартфонов OY', () => {
+test('OY OS 4.5: Assist на устройстве, «Линза» выключается, 83 дата-центра, Fyr Connect; обновятся все 14 смартфонов OY', () => {
   const html = read('os/index.html');
   assert.match(html, /class="os4-page"/);
   assert.doesNotMatch(html, /aurora|os3\.js|data-hash|data-req-svg|data-exif/);
-  for (const id of ['oyid', 'cloud', 'assist', 'lens', 'google', 'home', 'memories', 'devices']) assert.ok(html.includes(`id="${id}"`), id);
+  for (const id of ['os45', 'oyid', 'cloud', 'assist', 'lens', 'google', 'home', 'memories', 'devices']) assert.ok(html.includes(`id="${id}"`), id);
+  for (const re of [/OY OS 4\.5/, /data-assist-where/, /data-lens-off/, /83 собственных дата-центра/, /Fyr Connect/, /дружба народов/]) assert.match(html, re);
   assert.match(html, /\$9,99/);
   assert.match(html, /240&nbsp;ГБ/);
   assert.match(html, /Удалить сервисы Google/);
   // все смартфоны OY, которые когда-либо выходили, — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS).filter((p) => !p.brand);
-  assert.equal(phones.length, 13);
+  assert.equal(phones.length, 14);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке OY OS 4`);
   // цены в юанях у карточек — только у моделей в продаже
   for (const p of phones.filter((x) => !x.discontinued)) assert.ok(html.includes(`¥${p.configs[0].cny}`), `${p.id}: нет ¥`);

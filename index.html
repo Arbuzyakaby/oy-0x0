@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>OY — Одиннадцать телефонов. Ни одного трекера.</title>
-  <meta name="description" content="Флагман OY 0X Nova с пятью камерами и стилусом, OY 0X2 Essential, OY 0X0, OY 0X2, раскладушка OY 0X Moth, OY 0X2Q и OY 0X2 Pro — теперь и в Китае, плюс вернувшаяся линейка 0X1. Смартфоны на OY OS 4: «Линза», OY ID и 0X Cloud. Концепт.">
+  <title>OY — Шесть телефонов. Ни одного трекера.</title>
+  <meta name="description" content="Новый OY 0X3 Essential с четырьмя kill switch и фонарём на 5000 м — реверанс первому 0X0, флагман OY 0X Nova, раскладушка OY 0X Moth 2, OY 0X2, OY 0X2Q и OY 0X2 Pro. OY OS 4.5: OY Assist на устройстве и «Линза», которую можно выключить. 0X0 ушёл на покой. Концепт.">
   <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#0A0A0B">
   <link rel="canonical" href="https://oy0x.online/">
@@ -12,8 +12,8 @@
   <meta property="og:site_name" content="OY">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:url" content="https://oy0x.online/">
-  <meta property="og:title" content="OY — Одиннадцать телефонов. Ни одного трекера.">
-  <meta property="og:description" content="OY 0X Nova, OY 0X2 Essential, OY 0X0, OY 0X2, OY 0X Moth, OY 0X2Q и OY 0X2 Pro — теперь и в Китае, а линейка 0X1 вернулась в продажу. Смартфоны на OY OS 4: «Линза», OY ID и 0X Cloud. Концепт.">
+  <meta property="og:title" content="OY — Шесть телефонов. Ни одного трекера.">
+  <meta property="og:description" content="OY 0X3 Essential, OY 0X2, OY 0X Moth 2, OY 0X2Q, OY 0X2 Pro и OY 0X Nova на OY OS 4.5. Спасибо, 0X0: 2027–2031. Концепт.">
   <meta property="og:image" content="https://oy0x.online/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -24,8 +24,8 @@
 
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
-  <link rel="stylesheet" href="/css/core.css?v=fc2a8cdc6d">
-  <link rel="stylesheet" href="/css/home.css?v=e276379a71">
+  <link rel="stylesheet" href="/css/core.css?v=71c822a7d7">
+  <link rel="stylesheet" href="/css/home.css?v=bd96c4057f">
   <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
 
   <script type="importmap">
@@ -38,6 +38,7 @@
       "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
       "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
       "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/farewell.js": "/js/core/farewell.js?v=081576714c",
       "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
       "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
       "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
@@ -45,12 +46,12 @@
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=1875ed22df",
-      "/js/data/products.js": "/js/data/products.js?v=b15ae21e92",
-      "/js/fyr/dict.js": "/js/fyr/dict.js?v=40ce08e479",
+      "/js/data/products.js": "/js/data/products.js?v=c67f324f3b",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=f3a2c29f9f",
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
       "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
-      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=21c8377dd3",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
       "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
       "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
@@ -61,31 +62,33 @@
       "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
       "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
       "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
       "/js/models/oynova.js": "/js/models/oynova.js?v=43d09e6e8b",
       "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
-      "/js/pages/0x1.js": "/js/pages/0x1.js?v=9a087db029",
-      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=b239fc1c71",
-      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=d7251504bd",
-      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=30c3a5e16f",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=31553816b7",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=c2161dc79d",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=b40e6bb59f",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=ab62ae5f6e",
       "/js/pages/0x2.js": "/js/pages/0x2.js?v=3822776051",
-      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=70772357a3",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=c284008ae4",
       "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
       "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=a49ba96b9e",
       "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4686e2aeb3",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=a3e6562cee",
       "/js/pages/accessories.js": "/js/pages/accessories.js?v=d18a9f5039",
-      "/js/pages/base.js": "/js/pages/base.js?v=19eb2d7b93",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=6c51a02b86",
+      "/js/pages/base.js": "/js/pages/base.js?v=5b22aac879",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=692680b465",
       "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
       "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
       "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
       "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
-      "/js/pages/home.js": "/js/pages/home.js?v=954ba74200",
+      "/js/pages/home.js": "/js/pages/home.js?v=0dc4a26002",
       "/js/pages/moth.js": "/js/pages/moth.js?v=101ccfb826",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
       "/js/pages/nova.js": "/js/pages/nova.js?v=7ed8f3c40d",
-      "/js/pages/os.js": "/js/pages/os.js?v=cbd83edd64",
+      "/js/pages/os.js": "/js/pages/os.js?v=3371313bb7",
       "/js/pages/os4.js": "/js/pages/os4.js?v=54a1377ec1",
       "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76",
       "/js/pages/y1-demos.js": "/js/pages/y1-demos.js?v=f1e54f0d07",
@@ -96,7 +99,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
   <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
-  <script type="module" src="/js/pages/home.js?v=954ba74200"></script>
+  <script type="module" src="/js/pages/home.js?v=0dc4a26002"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -152,14 +155,12 @@
       <span class="brand__name">OY</span>
     </a>
     <nav class="site-nav" aria-label="Модели">
-      <a href="/0x2e/">0X2 Essential</a>
-      <a href="/0x0/">0X0</a>
+      <a href="/0x3e/">0X3 Essential</a>
       <a href="/0x2/">0X2</a>
       <a href="/moth2/">0X Moth 2</a>
       <a href="/0x2q/">0X2Q</a>
       <a href="/0x2pro/">0X2 Pro</a>
       <a href="/nova/">0X Nova</a>
-      <a href="/#returned">0X1</a>
       <a href="/os/">OY OS</a>
       <a class="site-nav__x" href="/extream/">eXtream</a>
       <a href="/accessories/">Аксессуары</a>
@@ -173,18 +174,28 @@
   <main id="main">
     <section class="section home-hero" id="hero" aria-labelledby="home-title">
       <div class="container home-hero__head">
-        <h1 class="home-title" id="home-title"><span data-split>Одиннадцать телефонов.</span> <span class="muted" data-split>Ни&nbsp;одного трекера.</span></h1>
+        <h1 class="home-title" id="home-title"><span data-split>Шесть телефонов.</span> <span class="muted" data-split>Ни&nbsp;одного трекера.</span></h1>
         <div class="home-hero__aside" data-reveal>
-          <p>Французский стартап, основатели&nbsp;— бывшие спасатели. С&nbsp;OY&nbsp;OS&nbsp;4&nbsp;— с&nbsp;OY&nbsp;ID, облаком 0X&nbsp;Cloud и&nbsp;встроенными сервисами Google. Продажи&nbsp;— в&nbsp;США, с&nbsp;конца 2027&nbsp;года. 0X&nbsp;Moth&nbsp;2, 0X&nbsp;Nova и&nbsp;0X2&nbsp;Pro продаются и&nbsp;в&nbsp;Евросоюзе. Теперь вся актуальная линейка выходит ещё и&nbsp;в&nbsp;Китае, а&nbsp;вся 0X1 вернулась в&nbsp;продажу.</p>
+          <p>Французский стартап, основатели&nbsp;— бывшие спасатели. С&nbsp;OY&nbsp;OS&nbsp;4.5&nbsp;— OY Assist снова на&nbsp;устройстве. Продажи&nbsp;— в&nbsp;США и&nbsp;Китае; 0X3&nbsp;Essential, 0X&nbsp;Moth&nbsp;2, 0X&nbsp;Nova и&nbsp;0X2&nbsp;Pro&nbsp;— и&nbsp;в&nbsp;Евросоюзе. Весной 2031-го с&nbsp;продажи ушли первый 0X0, 0X2&nbsp;Essential и&nbsp;вся линейка 0X1.</p>
           <a class="link mono" href="/compare/">Сравнить все →</a>
         </div>
       </div>
-      <div class="container lineup" aria-label="Модельный ряд OY">
-          <a class="lineup__item lineup__item--moth lineup__item--moth2" href="/moth2/" data-model="moth2">
+      <div class="container lineup lineup--6" aria-label="Модельный ряд OY">
+          <a class="lineup__item lineup__item--e3" href="/0x3e/" data-model="0x3e">
             <canvas class="lineup__canvas" aria-hidden="true"></canvas>
             <span class="lineup__label">
               <span class="lineup__n mono">01</span>
-              <span class="lineup__name">0X Moth 2 <sup class="lineup__new mono">новинка</sup></span>
+              <span class="lineup__name">0X3 Essential <sup class="lineup__new mono">новинка</sup></span>
+              <span class="lineup__tag">Четыре kill switch и&nbsp;фонарь на&nbsp;5000&nbsp;м&nbsp;— в&nbsp;честь 0X0. Cesium&nbsp;1 и&nbsp;пять цветов.</span>
+              <span class="lineup__facts mono">150 мм · 8,8 мм</span>
+              <span class="lineup__price"><span class="muted">от</span> $399 <span class="lineup__go" aria-hidden="true">→</span></span>
+            </span>
+          </a>
+          <a class="lineup__item lineup__item--moth lineup__item--moth2" href="/moth2/" data-model="moth2">
+            <canvas class="lineup__canvas" aria-hidden="true"></canvas>
+            <span class="lineup__label">
+              <span class="lineup__n mono">02</span>
+              <span class="lineup__name">0X Moth 2</span>
               <span class="lineup__tag">Argon&nbsp;2 Semi, три камеры, 144&nbsp;Гц, IP67 и&nbsp;двенадцать цветов.</span>
               <span class="lineup__facts mono">167 мм · 85,6 мм сложен</span>
               <span class="lineup__price"><span class="muted">от</span> $749 <span class="lineup__go" aria-hidden="true">→</span></span>
@@ -193,37 +204,17 @@
           <a class="lineup__item lineup__item--nova" href="/nova/" data-model="nova">
             <canvas class="lineup__canvas" aria-hidden="true"></canvas>
             <span class="lineup__label">
-              <span class="lineup__n mono">02</span>
+              <span class="lineup__n mono">03</span>
               <span class="lineup__name">0X Nova</span>
               <span class="lineup__tag">Лучшая камера OY: пять камер, OY&nbsp;0Pen и&nbsp;экран-водопад.</span>
               <span class="lineup__facts mono">165 мм · 7,6 мм</span>
               <span class="lineup__price"><span class="muted">от</span> $999 <span class="lineup__go" aria-hidden="true">→</span></span>
             </span>
           </a>
-          <a class="lineup__item lineup__item--e2" href="/0x2e/" data-model="0x2e">
-            <canvas class="lineup__canvas" aria-hidden="true"></canvas>
-            <span class="lineup__label">
-              <span class="lineup__n mono">03</span>
-              <span class="lineup__name">0X2 Essential</span>
-              <span class="lineup__tag">Одна камера под шторкой, два тумблера и полный Tesseract.</span>
-              <span class="lineup__facts mono">150 мм · 8,8 мм</span>
-              <span class="lineup__price"><span class="muted">от</span> $399 <span class="lineup__go" aria-hidden="true">→</span></span>
-            </span>
-          </a>
-          <a class="lineup__item" href="/0x0/" data-model="0x0">
-            <canvas class="lineup__canvas" aria-hidden="true"></canvas>
-            <span class="lineup__label">
-              <span class="lineup__n mono">04</span>
-              <span class="lineup__name">0X0</span>
-              <span class="lineup__tag">Шторка на камерах и три kill switch.</span>
-              <span class="lineup__facts mono">146 мм · 7000 мАч</span>
-              <span class="lineup__price"><span class="muted">от</span> $449 <span class="lineup__go" aria-hidden="true">→</span></span>
-            </span>
-          </a>
           <a class="lineup__item" href="/0x2/" data-model="0x2">
             <canvas class="lineup__canvas" aria-hidden="true"></canvas>
             <span class="lineup__label">
-              <span class="lineup__n mono">05</span>
+              <span class="lineup__n mono">04</span>
               <span class="lineup__name">0X2</span>
               <span class="lineup__tag">Tesseract, пять камер, NFC и 11, 17, 21 ГБ.</span>
               <span class="lineup__facts mono">161 мм · 7,9 мм</span>
@@ -233,7 +224,7 @@
           <a class="lineup__item lineup__item--q" href="/0x2q/" data-model="0x2q">
             <canvas class="lineup__canvas" aria-hidden="true"></canvas>
             <span class="lineup__label">
-              <span class="lineup__n mono">06</span>
+              <span class="lineup__n mono">05</span>
               <span class="lineup__name">0X2Q</span>
               <span class="lineup__tag">Модуль выезжает на моторе. Четыре модуля и Citadel 3.</span>
               <span class="lineup__facts mono">142 мм · 7,6 мм</span>
@@ -243,7 +234,7 @@
           <a class="lineup__item lineup__item--pro2" href="/0x2pro/" data-model="0x2pro">
             <canvas class="lineup__canvas" aria-hidden="true"></canvas>
             <span class="lineup__label">
-              <span class="lineup__n mono">07</span>
+              <span class="lineup__n mono">06</span>
               <span class="lineup__name">0X2 Pro</span>
               <span class="lineup__tag">Фронталки под пикселями CPix, шайба с двумя дюймами, Citadel 4.</span>
               <span class="lineup__facts mono">166 мм · 9000 мАч</span>
@@ -251,77 +242,48 @@
             </span>
           </a>
       </div>
-      <div class="container lineup lineup--returned" id="returned" aria-label="Снова в продаже: линейка 0X1">
-          <a class="lineup__item lineup__item--e" href="/0x1e/" data-model="0x1e">
-            <canvas class="lineup__canvas" aria-hidden="true"></canvas>
-            <span class="lineup__label">
-              <span class="lineup__n mono">08</span>
-              <span class="lineup__name">0X1 Essential <sup class="lineup__new mono">вернулся</sup></span>
-              <span class="lineup__tag">Кнопка «0», Null Chip и 7 лет обновлений.</span>
-              <span class="lineup__facts mono">152 мм · 6000 мАч</span>
-              <span class="lineup__price"><span class="muted">от</span> $349 <span class="lineup__go" aria-hidden="true">→</span></span>
-            </span>
-          </a>
-          <a class="lineup__item" href="/0x1/" data-model="0x1">
-            <canvas class="lineup__canvas" aria-hidden="true"></canvas>
-            <span class="lineup__label">
-              <span class="lineup__n mono">09</span>
-              <span class="lineup__name">0X1 <sup class="lineup__new mono">вернулся</sup></span>
-              <span class="lineup__tag">Кнопки «0» и «1» и связь через спутник.</span>
-              <span class="lineup__facts mono">161 мм · 7300 мАч</span>
-              <span class="lineup__price"><span class="muted">от</span> $499 <span class="lineup__go" aria-hidden="true">→</span></span>
-            </span>
-          </a>
-          <a class="lineup__item lineup__item--q" href="/0x1q/" data-model="0x1q">
-            <canvas class="lineup__canvas" aria-hidden="true"></canvas>
-            <span class="lineup__label">
-              <span class="lineup__n mono">10</span>
-              <span class="lineup__name">0X1Q <sup class="lineup__new mono">вернулся</sup></span>
-              <span class="lineup__tag">Камеры в модуле на магните. Ни одного разъёма.</span>
-              <span class="lineup__facts mono">142 мм · 7,45 мм</span>
-              <span class="lineup__price"><span class="muted">от</span> $719 <span class="lineup__go" aria-hidden="true">→</span></span>
-            </span>
-          </a>
-          <a class="lineup__item lineup__item--pro" href="/0x1pro/" data-model="0x1pro">
-            <canvas class="lineup__canvas" aria-hidden="true"></canvas>
-            <span class="lineup__label">
-              <span class="lineup__n mono">11</span>
-              <span class="lineup__name">0X1 Pro <sup class="lineup__new mono">вернулся</sup></span>
-              <span class="lineup__tag">Citadel 2, «шайба» с перископом 6× и кнопки с фиксацией.</span>
-              <span class="lineup__facts mono">163 мм · 7800 мАч</span>
-              <span class="lineup__price"><span class="muted">от</span> $899 <span class="lineup__go" aria-hidden="true">→</span></span>
-            </span>
-          </a>
-          <div class="lineup__aside">
-            <p class="eyebrow">Снова в продаже</p>
-            <h2 class="lineup__aside-title">Вернулась вся линейка 0X1.</h2>
-            <p>Essential, 0X1, 0X1Q и&nbsp;Pro. Цены прежние, продажи&nbsp;— в&nbsp;США и&nbsp;Китае.</p>
-          </div>
-      </div>
       <p class="container lineup__note mono" aria-hidden="true">Телефоны показаны в одном масштабе</p>
+      <p class="container lineup__bye mono"><a href="/0x0/">Спасибо, 0X0 · 2027–2031</a> · <button type="button" class="lineup__salute" data-salute>Салют ещё раз</button></p>
     </section>
 
     <section class="section solid shift" id="shift" aria-labelledby="shift-title">
       <div class="container">
-        <p class="eyebrow" data-reveal>Перемены в OY</p>
-        <h2 class="h2" id="shift-title" data-split>Новый CEO. Новый рынок. Старая линейка.</h2>
+        <p class="eyebrow" data-reveal>Перемены в OY · весна 2031</p>
+        <h2 class="h2" id="shift-title" data-split>Ушла эпоха. Пришла 4.5.</h2>
         <div class="shift__grid">
+          <article class="shift__item shift__item--bye" data-reveal>
+            <span class="shift__k mono">01 · Прощание</span>
+            <h3>0X0 снят с&nbsp;продажи</h3>
+            <p>Первый OY продавался с&nbsp;конца 2027 года&nbsp;— дольше всех. Вместе с&nbsp;ним ушли 0X2&nbsp;Essential и&nbsp;вся линейка 0X1: Essential, 0X1, 0X1Q и&nbsp;Pro. Страницы остались.</p>
+            <a class="link mono" href="/0x0/">Посмотреть на 0X0 →</a>
+          </article>
           <article class="shift__item" data-reveal>
-            <span class="shift__k mono">01 · Руководство</span>
-            <h3>Новый CEO&nbsp;— из&nbsp;Xiaomi</h3>
-            <p>OY возглавил бывший топ-менеджер Xiaomi. Задача у&nbsp;него одна и&nbsp;понятная: поднять продажи.</p>
+            <span class="shift__k mono">02 · Новинка</span>
+            <h3>0X3 Essential&nbsp;— реверанс 0X0</h3>
+            <p>Четыре kill switch, фонарь на&nbsp;5000&nbsp;м и&nbsp;вертикальная пара камер. Внутри&nbsp;— Cesium&nbsp;1 и&nbsp;Palladium&nbsp;1 на&nbsp;том&nbsp;же кристалле. От&nbsp;$399.</p>
+            <a class="link mono" href="/0x3e/">Смотреть →</a>
+          </article>
+          <article class="shift__item" data-reveal>
+            <span class="shift__k mono">03 · OY OS 4.5</span>
+            <h3>Assist вернулся в&nbsp;телефон</h3>
+            <p>OY Assist снова работает на&nbsp;устройстве, без лимита запросов. «Линзу» можно выключить. Из&nbsp;коробки на&nbsp;0X3&nbsp;Essential, обновлением&nbsp;— на&nbsp;всех остальных.</p>
+            <a class="link mono" href="/os/">Что нового →</a>
+          </article>
+          <article class="shift__item" data-reveal>
+            <span class="shift__k mono">04 · Облако</span>
+            <h3>83 дата-центра в&nbsp;США</h3>
+            <p>OY отчиталась о&nbsp;постройке 83&nbsp;дата-центров в&nbsp;США. Данные 0X&nbsp;Cloud крутятся там «с&nbsp;максимальной приватностью». Своих серверов у&nbsp;OY раньше не&nbsp;было, потому что не&nbsp;было облака.</p>
+          </article>
+          <article class="shift__item" data-reveal>
+            <span class="shift__k mono">05 · Дружба народов</span>
+            <h3>Fyr Connect&nbsp;— в&nbsp;OY&nbsp;Store</h3>
+            <p>Приложение для часов стокгольмской Fyr допустили в&nbsp;OY&nbsp;Store. Новый CEO упомянул это отдельно: «Мы открыты для всех. Даже для тех, кто от&nbsp;нас ушёл».</p>
           </article>
           <article class="shift__item shift__item--cn" data-reveal>
-            <span class="shift__k mono">02 · Китай</span>
-            <h3>Вся линейка выходит в&nbsp;Китае</h3>
-            <p>Все модели в&nbsp;продаже теперь и&nbsp;на&nbsp;китайском рынке: от <strong>¥2299</strong> за&nbsp;0X1&nbsp;Essential до&nbsp;<strong>¥8399</strong> за&nbsp;старшую 0X2&nbsp;Pro. Версия для Китая&nbsp;— с&nbsp;двумя физическими nano-SIM.</p>
+            <span class="shift__k mono">06 · Китай и Европа</span>
+            <h3>0X3 Essential&nbsp;— везде с&nbsp;первого дня</h3>
+            <p>США, Евросоюз и&nbsp;Китай одновременно: от <strong>$399</strong>, <strong>€469</strong> и&nbsp;<strong>¥2599</strong>. Старшая 0X2&nbsp;Pro в&nbsp;Китае&nbsp;— до&nbsp;<strong>¥8399</strong>.</p>
             <a class="link mono" href="/compare/">Цены в юанях →</a>
-          </article>
-          <article class="shift__item" data-reveal>
-            <span class="shift__k mono">03 · Возвращение</span>
-            <h3>0X1 снова в&nbsp;продаже</h3>
-            <p>Вся линейка 0X1&nbsp;— Essential, 0X1, 0X1Q и&nbsp;Pro&nbsp;— вернулась на&nbsp;прилавок. Цены прежние, продажи&nbsp;— в&nbsp;США и&nbsp;теперь в&nbsp;Китае.</p>
-            <a class="link mono" href="#returned">Смотреть →</a>
           </article>
         </div>
       </div>
@@ -330,8 +292,20 @@
     <section class="section solid choose" id="choose" aria-labelledby="choose-title">
       <div class="container">
         <p class="eyebrow" data-reveal>Какой ваш</p>
-        <h2 class="h2" id="choose-title" data-split>Один принцип. Одиннадцать характеров.</h2>
-        <div class="choose__grid choose__grid--6 choose__grid--7">
+        <h2 class="h2" id="choose-title" data-split>Один принцип. Шесть характеров.</h2>
+        <div class="choose__grid choose__grid--6">
+          <article class="pick pick--0x3e" data-reveal>
+            <h3 class="pick__name">0X3 Essential</h3>
+            <p class="pick__lead">Для тех, кто помнит первый OY.</p>
+            <ul class="pick__list" role="list">
+              <li>Четыре kill switch, как у флагманов</li>
+              <li>Сигнальный фонарь до 5000 м, как у 0X0</li>
+              <li>Cesium 1 с Palladium 1 на кристалле, OY Assist на устройстве</li>
+              <li>Две камеры, пять цветов, «Пингвиний» — спецверсия</li>
+            </ul>
+            <p class="pick__price"><span class="muted">от</span> <strong>$399</strong></p>
+            <div class="pick__cta"><a class="btn btn--ghost" href="/0x3e/">Подробнее</a><a class="btn btn--accent" href="/0x3e/#buy">Купить</a></div>
+          </article>
           <article class="pick pick--moth pick--moth2" data-reveal>
             <h3 class="pick__name">0X Moth 2</h3>
             <p class="pick__lead">Для тех, кто полюбил Moth и&nbsp;хочет того&nbsp;же, только лучше.</p>
@@ -355,30 +329,6 @@
             </ul>
             <p class="pick__price"><span class="muted">от</span> <strong>$999</strong></p>
             <div class="pick__cta"><a class="btn btn--ghost" href="/nova/">Подробнее</a><a class="btn btn--accent" href="/nova/#buy">Купить</a></div>
-          </article>
-          <article class="pick pick--0x2e" data-reveal>
-            <h3 class="pick__name">0X2 Essential</h3>
-            <p class="pick__lead">Для тех, кому нужна защита 0X2 без пяти камер.</p>
-            <ul class="pick__list" role="list">
-              <li>Полный Tesseract — тот же, что в 0X2 за $579</li>
-              <li>Шторка на камере и два kill switch</li>
-              <li>LTPO 1–144 Гц, «Антиблик 2» и «Красный режим»</li>
-              <li>Аккумулятор меняется за 10 минут; один цвет — красный</li>
-            </ul>
-            <p class="pick__price"><span class="muted">от</span> <strong>$399</strong></p>
-            <div class="pick__cta"><a class="btn btn--ghost" href="/0x2e/">Подробнее</a><a class="btn btn--accent" href="/0x2e/#buy">Купить</a></div>
-          </article>
-          <article class="pick" data-reveal>
-            <h3 class="pick__name">0X0</h3>
-            <p class="pick__lead">Для всех, кто не хочет, чтобы за ним следили.</p>
-            <ul class="pick__list" role="list">
-              <li>Шторка камер и три kill switch</li>
-              <li>Сигнальный фонарь — видно за 5000 м</li>
-              <li>7000 мАч и 130 Вт</li>
-              <li>OY OS 4: «Линза», OY ID и 0X Cloud — обновлением</li>
-            </ul>
-            <p class="pick__price"><span class="muted">от</span> <strong>$449</strong></p>
-            <div class="pick__cta"><a class="btn btn--ghost" href="/0x0/">Подробнее</a><a class="btn btn--accent" href="/0x0/#buy">Купить</a></div>
           </article>
           <article class="pick pick--0x2" data-reveal>
             <h3 class="pick__name">0X2</h3>
@@ -417,59 +367,8 @@
             <div class="pick__cta"><a class="btn btn--ghost" href="/0x2pro/">Подробнее</a><a class="btn btn--accent" href="/0x2pro/#buy">Купить</a></div>
           </article>
         </div>
-        <p class="jab" data-reveal>Pro&nbsp;— это не&nbsp;«на 10&nbsp;% ярче за&nbsp;$300 сверху». Это отдельный компьютер для ваших секретов. С&nbsp;продажи снят только <a class="link" href="/pro/">0X0&nbsp;Pro</a>: его место занял 0X2&nbsp;Pro.</p>
+        <p class="jab" data-reveal>Pro&nbsp;— это не&nbsp;«на 10&nbsp;% ярче за&nbsp;$300 сверху». Это отдельный компьютер для ваших секретов. Сняты с&nbsp;продажи <a class="link" href="/pro/">0X0&nbsp;Pro</a>, <a class="link" href="/0x0/">0X0</a>, <a class="link" href="/0x2e/">0X2&nbsp;Essential</a> и&nbsp;вся 0X1: <a class="link" href="/0x1e/">Essential</a>, <a class="link" href="/0x1/">0X1</a>, <a class="link" href="/0x1q/">0X1Q</a>, <a class="link" href="/0x1pro/">Pro</a>.</p>
 
-        <h3 class="h3 choose__sub" data-reveal>Вернулись в&nbsp;продажу: линейка 0X1</h3>
-        <div class="choose__grid choose__grid--4">
-          <article class="pick pick--0x1e" data-reveal>
-            <h3 class="pick__name">0X1 Essential</h3>
-            <p class="pick__lead">Для тех, кому приватность нужна без доплаты.</p>
-            <ul class="pick__list" role="list">
-              <li>Кнопка «0»: одно долгое нажатие&nbsp;— и&nbsp;всё без питания</li>
-              <li>Null Chip и&nbsp;7&nbsp;лет обновлений, как у&nbsp;старших</li>
-              <li>6,4", 120&nbsp;Гц; две камеры, обе в&nbsp;4K</li>
-              <li>Dimensity 8350, 6000&nbsp;мАч и&nbsp;67&nbsp;Вт</li>
-            </ul>
-            <p class="pick__price"><span class="muted">от</span> <strong>$349</strong></p>
-            <div class="pick__cta"><a class="btn btn--ghost" href="/0x1e/">Подробнее</a><a class="btn btn--accent" href="/0x1e/#buy">Купить</a></div>
-          </article>
-          <article class="pick pick--0x1" data-reveal>
-            <h3 class="pick__name">0X1</h3>
-            <p class="pick__lead">Для тех, кто хочет решать сам&nbsp;— одной кнопкой.</p>
-            <ul class="pick__list" role="list">
-              <li>Кнопки «0» и&nbsp;«1»: любое действие или аппаратное отключение</li>
-              <li>Claw 2.0&nbsp;— связь даже через спутник</li>
-              <li>6,6", 3600&nbsp;нит и&nbsp;«Антиблик 2»; перископ 3×</li>
-              <li>Dimensity 8550, от&nbsp;256&nbsp;ГБ, 7300&nbsp;мАч и&nbsp;140&nbsp;Вт</li>
-            </ul>
-            <p class="pick__price"><span class="muted">от</span> <strong>$499</strong></p>
-            <div class="pick__cta"><a class="btn btn--ghost" href="/0x1/">Подробнее</a><a class="btn btn--accent" href="/0x1/#buy">Купить</a></div>
-          </article>
-          <article class="pick pick--0x1q" data-reveal>
-            <h3 class="pick__name">0X1Q</h3>
-            <p class="pick__lead">Для тех, кто хочет решать, когда у&nbsp;телефона есть камера.</p>
-            <ul class="pick__list" role="list">
-              <li>Три камеры в&nbsp;модуле на&nbsp;магните: снял&nbsp;— камер нет</li>
-              <li>Модем NC1 и&nbsp;Null Chip 2.0</li>
-              <li>5,95" водопад, 7,45&nbsp;мм, ни&nbsp;одного разъёма</li>
-              <li>XMagnum 65&nbsp;Вт, гарантия 26&nbsp;месяцев</li>
-            </ul>
-            <p class="pick__price"><span class="muted">от</span> <strong>$719</strong></p>
-            <div class="pick__cta"><a class="btn btn--ghost" href="/0x1q/">Подробнее</a><a class="btn btn--accent" href="/0x1q/#buy">Купить</a></div>
-          </article>
-          <article class="pick pick--pro" data-reveal>
-            <h3 class="pick__name">0X1 Pro</h3>
-            <p class="pick__lead">Для тех, кому нельзя потерять ни&nbsp;связь, ни&nbsp;данные.</p>
-            <ul class="pick__list" role="list">
-              <li>Citadel 2: свой процессор, 64&nbsp;ГБ и&nbsp;«Последнее слово»</li>
-              <li>Шифратор звонков 2, сквозной со&nbsp;всеми Pro</li>
-              <li>«Шайба»: сенсор 1", телевик 3× и&nbsp;перископ 6×</li>
-              <li>Кнопки с&nbsp;фиксацией, испарительная камера, 7800&nbsp;мАч</li>
-            </ul>
-            <p class="pick__price"><span class="muted">от</span> <strong>$899</strong></p>
-            <div class="pick__cta"><a class="btn btn--ghost" href="/0x1pro/">Подробнее</a><a class="btn btn--accent" href="/0x1pro/#buy">Купить</a></div>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -480,7 +379,7 @@
         <div class="specs-wrap">
           <table class="cmp cmp--mini">
             <caption class="sr-only">Основные различия моделей OY в продаже</caption>
-            <thead><tr><th scope="col"><span class="sr-only">Параметр</span></th><th scope="col">0X2 Essential</th><th scope="col">0X0</th><th scope="col">0X2</th><th scope="col">0X Moth</th><th scope="col">0X2Q</th><th scope="col">0X2 Pro</th><th scope="col">0X Nova</th></tr></thead>
+            <thead><tr><th scope="col"><span class="sr-only">Параметр</span></th><th scope="col">0X3 Essential</th><th scope="col">0X2</th><th scope="col">0X Moth 2</th><th scope="col">0X2Q</th><th scope="col">0X2 Pro</th><th scope="col">0X Nova</th></tr></thead>
             <tbody data-mini></tbody>
           </table>
         </div>
@@ -503,16 +402,16 @@
 
     <section class="section solid os2h" id="os" aria-labelledby="os-title">
       <div class="container">
-        <p class="eyebrow" data-reveal>OY OS 4 · новая система</p>
-        <h2 class="h2" id="os-title" data-split>Новая система. Теперь&nbsp;— в&nbsp;облаке.</h2>
+        <p class="eyebrow" data-reveal>OY OS 4.5 · обновление</p>
+        <h2 class="h2" id="os-title" data-split>Облако никуда не&nbsp;делось. Ассистент вернулся.</h2>
         <div class="os2h__grid">
-          <div class="os2h__item" data-reveal><h3>«Линза»</h3><p>Новый дизайн из&nbsp;живого стекла: кнопки, док и&nbsp;уведомления преломляют то, что под ними.</p></div>
-          <div class="os2h__item" data-reveal><h3>OY ID</h3><p>Один вход во&nbsp;всё: телефон, часы, облако, магазин и&nbsp;ассистент узнают вас сразу.</p></div>
-          <div class="os2h__item" data-reveal><h3>0X Cloud</h3><p>30&nbsp;ГБ бесплатно. С&nbsp;0X&nbsp;Cloud&nbsp;Pro&nbsp;— 240&nbsp;ГБ за&nbsp;$9,99 в&nbsp;месяц.</p></div>
-          <div class="os2h__item" data-reveal><h3>OY Assist 4</h3><p>В&nbsp;сто раз мощнее: теперь думает в&nbsp;облаке. Десять запросов в&nbsp;день, сто&nbsp;— с&nbsp;Pro.</p></div>
+          <div class="os2h__item" data-reveal><h3>«Линза» выключается</h3><p>Живое стекло можно сменить на&nbsp;плоский «Чистый» вид. Одним переключателем, без перезагрузки.</p></div>
+          <div class="os2h__item" data-reveal><h3>OY Store</h3><p>Fyr Connect теперь в&nbsp;магазине. Часы Fyr подключаются к&nbsp;OY без обходных путей.</p></div>
+          <div class="os2h__item" data-reveal><h3>0X Cloud</h3><p>83 своих дата-центра в&nbsp;США. 30&nbsp;ГБ бесплатно, Pro&nbsp;— 240&nbsp;ГБ за&nbsp;$9,99.</p></div>
+          <div class="os2h__item" data-reveal><h3>OY Assist на&nbsp;устройстве</h3><p>Думает на&nbsp;телефоне: без лимита запросов и&nbsp;в&nbsp;авиарежиме. Облако&nbsp;— по&nbsp;желанию.</p></div>
         </div>
-        <p class="note" data-reveal>OY OS 4 получат все 12 смартфонов OY, которые когда-либо выходили: из&nbsp;коробки&nbsp;— на&nbsp;Moth и&nbsp;Nova, обновлением&nbsp;— на&nbsp;остальных, от&nbsp;первого 0X0 до&nbsp;вернувшихся 0X1.</p>
-        <p class="mini__more" data-reveal><a class="btn btn--ghost" href="/os/">Всё об OY OS 4</a></p>
+        <p class="note" data-reveal>OY OS 4.5 получат все 14 смартфонов OY, которые когда-либо выходили: из&nbsp;коробки&nbsp;— на&nbsp;0X3&nbsp;Essential, обновлением&nbsp;— на&nbsp;остальных, от&nbsp;первого 0X0 до&nbsp;снятых 0X1.</p>
+        <p class="mini__more" data-reveal><a class="btn btn--ghost" href="/os/">Всё об OY OS 4.5</a></p>
       </div>
     </section>
 
@@ -523,7 +422,7 @@
         <ul class="nothing__grid" role="list">
           <li class="nope nope--new" data-reveal><span class="nope__k mono">Подписка</span><p>0X&nbsp;Cloud&nbsp;Pro&nbsp;— $9,99 в&nbsp;месяц. Фонарик пока бесплатно.</p></li>
           <li class="nope nope--new" data-reveal><span class="nope__k mono">Аккаунт</span><p>OY&nbsp;ID&nbsp;— один вход во&nbsp;всё. Раньше было странно писать, что он не&nbsp;нужен. Теперь&nbsp;— что нужен.</p></li>
-          <li class="nope nope--new" data-reveal><span class="nope__k mono">Облако</span><p>30&nbsp;ГБ бесплатно. Бесплатное облако&nbsp;— это когда платите вы. С&nbsp;Pro&nbsp;— ещё и&nbsp;деньгами.</p></li>
+          <li class="nope nope--new" data-reveal><span class="nope__k mono">Облако</span><p>83 дата-центра в&nbsp;США и&nbsp;«максимальная приватность». Раньше максимальной было отсутствие облака.</p></li>
           <li class="nope nope--new" data-reveal><span class="nope__k mono">Google</span><p>Сервисы Google встроены в&nbsp;систему. Отказаться&nbsp;— одна кнопка. Удалить&nbsp;— ни&nbsp;одной.</p></li>
           <li class="nope" data-reveal><span class="nope__k mono">Рекламный ID</span><p>Рекламный идентификатор? Нечего сбрасывать&nbsp;— его нет. Пока.</p></li>
           <li class="nope" data-reveal><span class="nope__k mono">Чехол за $59</span><p>Чехол в&nbsp;комплекте. Бесплатно. Это мы оставили.</p></li>
@@ -539,8 +438,8 @@
         <span>OY · французский стартап</span>
       </div>
       <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-      <p class="footer__small mono">OY 0X2 Essential · OY 0X0 · OY 0X2 · OY 0X Moth · OY 0X2Q · OY 0X2 Pro · OY 0X Nova · США; 0X Moth, 0X2 Pro и 0X Nova — и Евросоюз; все они и eXtream Y1 — и Китай, в юанях · Игровой суббренд: <a href="/extream/">eXtream Y1</a> · Снова в продаже (США и Китай): <a href="/0x1pro/">OY 0X1 Pro</a>, <a href="/0x1e/">OY 0X1 Essential</a>, <a href="/0x1/">OY 0X1</a>, <a href="/0x1q/">OY 0X1Q</a> · Снят с продажи: <a href="/pro/">OY 0X0 Pro</a></p>
-      <p class="footer__concept">Концепт. OY&nbsp;0X2&nbsp;Essential, OY&nbsp;0X0, OY&nbsp;0X2, OY&nbsp;0X&nbsp;Moth, OY&nbsp;0X2Q, OY&nbsp;0X2&nbsp;Pro, OY&nbsp;0X&nbsp;Nova, OY&nbsp;0X1&nbsp;Pro, OY&nbsp;0X1&nbsp;Essential, OY&nbsp;0X1, OY&nbsp;0X1Q, OY&nbsp;0X0&nbsp;Pro и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефоны не&nbsp;продаются. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+      <p class="footer__small mono">OY 0X3 Essential · OY 0X2 · OY 0X Moth 2 · OY 0X2Q · OY 0X2 Pro · OY 0X Nova · США и Китай, в юанях; 0X3 Essential, Moth 2, 0X2 Pro и Nova — и Евросоюз · Игровой суббренд: <a href="/extream/">eXtream Y1</a> · Сняты с продажи: <a href="/0x0/">OY 0X0</a>, <a href="/0x2e/">OY 0X2 Essential</a>, <a href="/0x1e/">OY 0X1 Essential</a>, <a href="/0x1/">OY 0X1</a>, <a href="/0x1q/">OY 0X1Q</a>, <a href="/0x1pro/">OY 0X1 Pro</a>, <a href="/moth/">OY 0X Moth</a>, <a href="/pro/">OY 0X0 Pro</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X3&nbsp;Essential, OY&nbsp;0X2&nbsp;Essential, OY&nbsp;0X0, OY&nbsp;0X2, OY&nbsp;0X&nbsp;Moth, OY&nbsp;0X2Q, OY&nbsp;0X2&nbsp;Pro, OY&nbsp;0X&nbsp;Nova, OY&nbsp;0X1&nbsp;Pro, OY&nbsp;0X1&nbsp;Essential, OY&nbsp;0X1, OY&nbsp;0X1Q, OY&nbsp;0X0&nbsp;Pro и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефоны не&nbsp;продаются. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>
 

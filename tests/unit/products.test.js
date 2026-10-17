@@ -60,33 +60,29 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('в продаже одиннадцать моделей OY: линейка 0X1 вернулась, сняты 0X0 Pro и первый Moth', async () => {
-  const { ON_SALE, LINEUP, RETURNED } = await import('../../js/data/products.js');
-  assert.equal(PRODUCTS.pro.discontinued, true);
-  for (const id of ['0x1', '0x1q', '0x1pro', '0x1e']) {
-    assert.ok(!PRODUCTS[id].discontinued, id);
-    assert.equal(PRODUCTS[id].returned, true, id);
-    assert.ok(!PRODUCTS[id].successor && !PRODUCTS[id].tag, id);
+test('в продаже шесть моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1', async () => {
+  const { ON_SALE } = await import('../../js/data/products.js');
+  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth']) {
+    assert.equal(PRODUCTS[id].discontinued, true, id);
+    assert.equal(PRODUCTS[id].tag, 'Снят с продажи', id);
+    assert.ok(!PRODUCTS[id].returned, id);
   }
-  assert.deepEqual(ON_SALE, ['0x1e', '0x2e', '0x0', '0x1', '0x2', '0x1q', 'moth2', '0x2q', '0x2pro', '0x1pro', 'nova']);
-  assert.deepEqual(RETURNED, ['0x1e', '0x1', '0x1q', '0x1pro']);
-  assert.deepEqual(LINEUP, ['0x2e', '0x0', '0x2', 'moth2', '0x2q', '0x2pro', 'nova']);
+  assert.deepEqual(ON_SALE, ['0x3e', '0x2', 'moth2', '0x2q', '0x2pro', 'nova']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['moth', 'moth2'], ['pro', '0x2pro']],
+    [['0x1e', '0x3e'], ['0x2e', '0x3e'], ['0x0', '0x3e'], ['moth', 'moth2'], ['0x1', '0x2'], ['0x1q', '0x2q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
 
-test('лестница цен: модели в продаже идут по возрастанию, 0X0 заканчивается дешевле 0X2', async () => {
+test('лестница цен: модели в продаже идут по возрастанию, 0X3 Essential заканчивается дешевле 0X2', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
   const from = ON_SALE.map((id) => PRODUCTS[id].configs[0].usd);
   assert.deepEqual(from, [...from].sort((a, b) => a - b));
-  // 0X0 заканчивается дешевле, чем начинается 0X2
-  assert.ok(PRODUCTS['0x0'].configs.at(-1).usd < PRODUCTS['0x2'].configs[0].usd);
+  assert.ok(PRODUCTS['0x3e'].configs.at(-1).usd < PRODUCTS['0x2'].configs[0].usd);
 });
 
 test('цены и цвета 0X2: память 11, 17, 21', () => {
@@ -142,7 +138,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', 'moth2', 'y1', '0x2pro', 'nova']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', 'moth', 'moth2', 'y1', '0x2pro', 'nova']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -242,7 +238,7 @@ test('Китай: цены в юанях у всех моделей, что та
   assert.deepEqual(PRODUCTS.y1.configs.map((c) => c.cny), [4999, 5999, 7299]);
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.cn).map((p) => p.id),
-    ['0x1e', '0x2e', '0x0', '0x2', 'moth', 'moth2', 'y1', '0x2q', '0x2pro', 'nova', '0x1', '0x1q', '0x1pro'],
+    ['0x1e', '0x2e', '0x3e', '0x0', '0x2', 'moth', 'moth2', 'y1', '0x2q', '0x2pro', 'nova', '0x1', '0x1q', '0x1pro'],
   );
   for (const p of Object.values(PRODUCTS)) {
     for (const c of p.configs) assert.equal(c.cny != null, !!p.cn, `${p.id} ${c.id}`);
@@ -284,8 +280,28 @@ test('0X Nova: новый флагман от $999 / €1149, один цвет 
   }
 });
 
-test('после выхода Moth 2 метка «Новинка» только у него', () => {
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['moth2']);
+test('после выхода 0X3 Essential метка «Новинка» только у него', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x3e']);
+});
+
+test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, от $399 / €469 / ¥2599', async () => {
+  const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
+  const p = PRODUCTS['0x3e'];
+  assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur, c.cny]), [['8/128', 399, 469, 2599], ['8/256', 449, 519, 2899], ['12/256', 499, 579, 3199]]);
+  assert.deepEqual(p.colors, { radium: 'Радиевый', mustard: 'Горчичный', rocky: 'Скалистый', iberian: 'Иберийский', penguin: 'Пингвиний' });
+  assert.ok(!Object.values(p.colors).some((c) => /красн/i.test(c)), 'легендарного красного больше нет');
+  assert.ok(p.eu && p.cn);
+  assert.equal(SHORT_NAMES['0x3e'], '0X3 Essential');
+  const i = 2 + COMPARE_MODELS.indexOf('0x3e');
+  const get = (label) => COMPARE.find((r) => r[1] === label)[i];
+  assert.match(get('Процессор'), /^Cesium 1/);
+  assert.match(get('Чип безопасности'), /^Palladium 1.*кристалле Cesium 1/);
+  assert.match(get('Аппаратное отключение'), /^4 kill switch/);
+  assert.match(get('Сигнальный фонарь'), /5000 м/);
+  assert.match(get('Шторка камер'), /^—/);
+  assert.match(get('Всего'), /две сзади/);
+  assert.match(get('Система'), /^OY OS 4\.5/);
+  assert.equal(get('Цвета'), Object.values(p.colors).join(', '));
 });
 
 test('0X Moth 2: от $749 / €849 / ¥4899, двенадцать цветов, Китай с первого дня, обещаний «без Google» нет', async () => {

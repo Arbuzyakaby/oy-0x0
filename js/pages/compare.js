@@ -14,6 +14,7 @@ import { createOY0X0 } from '../models/oy0x0.js';
 import { createOY0X1 } from '../models/oy0x1.js';
 import { createOY0X1E } from '../models/oy0x1e.js';
 import { createOY0X2E } from '../models/oy0x2e.js';
+import { createOY0X3E } from '../models/oy0x3e.js';
 import { createOY0X1Pro } from '../models/oy0x1pro.js';
 import { createOY0X1Q } from '../models/oy0x1q.js';
 import { createOY0X2 } from '../models/oy0x2.js';
@@ -40,10 +41,10 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, y1: createExtreamY1, '0x1pro': createOY0X1Pro, pro: createPro };
+const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, y1: createExtreamY1, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
-const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, y1: 164.3, '0x1pro': 163.5, pro: 150 };
-const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, y1: -PI + 0.4, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, y1: 164.3, '0x1pro': 163.5, pro: 150 };
+const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, y1: -PI + 0.4, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1 });
 
 /* ---------- Иконки строк, как у Apple: у каждой модели своя ---------- */

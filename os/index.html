@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>OY OS 4 — новый облик, новое облако</title>
-  <meta name="description" content="OY OS 4: дизайн «Линза» из живого стекла, OY ID — один вход во всё, 0X Cloud на 30 ГБ бесплатно и 0X Cloud Pro на 240 ГБ за $9,99 в месяц, OY Assist 4 в облаке, встроенные сервисы Google. Концепт.">
+  <title>OY OS 4.5 — ассистент дома, стекло по желанию</title>
+  <meta name="description" content="OY OS 4.5: OY Assist снова работает на устройстве, «Линзу» можно выключить, 0X Cloud — в 83 собственных дата-центрах в США, Fyr Connect в OY Store. Плюс всё из OY OS 4: OY ID, 0X Cloud Pro за $9,99, встроенные сервисы Google. Из коробки на 0X3 Essential. Концепт.">
   <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#05070D">
   <link rel="canonical" href="https://oy0x.online/os/">
@@ -12,8 +12,8 @@
   <meta property="og:site_name" content="OY">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:url" content="https://oy0x.online/os/">
-  <meta property="og:title" content="OY OS 4 — новый облик, новое облако">
-  <meta property="og:description" content="«Линза» из живого стекла, OY ID, 0X Cloud и OY Assist 4 в облаке. Самое большое обновление в истории OY.">
+  <meta property="og:title" content="OY OS 4.5 — ассистент дома, стекло по желанию">
+  <meta property="og:description" content="OY Assist на устройстве, выключаемая «Линза», 83 дата-центра 0X Cloud и Fyr Connect в OY Store.">
   <meta property="og:image" content="https://oy0x.online/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -24,8 +24,8 @@
 
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
-  <link rel="stylesheet" href="/css/core.css?v=fc2a8cdc6d">
-  <link rel="stylesheet" href="/css/os.css?v=52396216b5">
+  <link rel="stylesheet" href="/css/core.css?v=71c822a7d7">
+  <link rel="stylesheet" href="/css/os.css?v=43b80f90bc">
   <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
 
   <script type="importmap">
@@ -36,6 +36,7 @@
       "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
       "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
       "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/farewell.js": "/js/core/farewell.js?v=081576714c",
       "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
       "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
       "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
@@ -43,12 +44,12 @@
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=1875ed22df",
-      "/js/data/products.js": "/js/data/products.js?v=b15ae21e92",
-      "/js/fyr/dict.js": "/js/fyr/dict.js?v=40ce08e479",
+      "/js/data/products.js": "/js/data/products.js?v=c67f324f3b",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=f3a2c29f9f",
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
       "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
-      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=21c8377dd3",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
       "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
       "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
@@ -59,31 +60,33 @@
       "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
       "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
       "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
       "/js/models/oynova.js": "/js/models/oynova.js?v=43d09e6e8b",
       "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
-      "/js/pages/0x1.js": "/js/pages/0x1.js?v=9a087db029",
-      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=b239fc1c71",
-      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=d7251504bd",
-      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=30c3a5e16f",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=31553816b7",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=c2161dc79d",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=b40e6bb59f",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=ab62ae5f6e",
       "/js/pages/0x2.js": "/js/pages/0x2.js?v=3822776051",
-      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=70772357a3",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=c284008ae4",
       "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
       "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=a49ba96b9e",
       "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4686e2aeb3",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=a3e6562cee",
       "/js/pages/accessories.js": "/js/pages/accessories.js?v=d18a9f5039",
-      "/js/pages/base.js": "/js/pages/base.js?v=19eb2d7b93",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=6c51a02b86",
+      "/js/pages/base.js": "/js/pages/base.js?v=5b22aac879",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=692680b465",
       "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
       "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
       "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
       "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
-      "/js/pages/home.js": "/js/pages/home.js?v=954ba74200",
+      "/js/pages/home.js": "/js/pages/home.js?v=0dc4a26002",
       "/js/pages/moth.js": "/js/pages/moth.js?v=101ccfb826",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
       "/js/pages/nova.js": "/js/pages/nova.js?v=7ed8f3c40d",
-      "/js/pages/os.js": "/js/pages/os.js?v=cbd83edd64",
+      "/js/pages/os.js": "/js/pages/os.js?v=3371313bb7",
       "/js/pages/os4.js": "/js/pages/os4.js?v=54a1377ec1",
       "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76",
       "/js/pages/y1-demos.js": "/js/pages/y1-demos.js?v=f1e54f0d07",
@@ -95,7 +98,7 @@
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
   <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
   <script type="module" src="/js/pages/os4.js?v=54a1377ec1"></script>
-  <script type="module" src="/js/pages/os.js?v=cbd83edd64"></script>
+  <script type="module" src="/js/pages/os.js?v=3371313bb7"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -137,14 +140,12 @@
       <span class="brand__name">OY</span>
     </a>
     <nav class="site-nav" aria-label="Разделы">
-      <a href="/0x2e/">0X2 Essential</a>
-      <a href="/0x0/">0X0</a>
+      <a href="/0x3e/">0X3 Essential</a>
       <a href="/0x2/">0X2</a>
       <a href="/moth2/">0X Moth 2</a>
       <a href="/0x2q/">0X2Q</a>
       <a href="/0x2pro/">0X2 Pro</a>
       <a href="/nova/">0X Nova</a>
-      <a href="/#returned">0X1</a>
       <a href="/os/" aria-current="page">OY OS</a>
       <a class="site-nav__x" href="/extream/">eXtream</a>
       <a href="/accessories/">Аксессуары</a>
@@ -159,7 +160,8 @@
   <nav class="os-tabs" aria-label="Разделы OY OS">
     <div class="os-tabs__track">
       <a class="os-tab" href="#overview" aria-current="true">Обзор</a>
-      <a class="os-tab" href="#os4">Новое в OY OS 4</a>
+      <a class="os-tab" href="#os45">Новое в 4.5</a>
+      <a class="os-tab" href="#os4">OY OS 4</a>
       <a class="os-tab" href="#oyid">OY ID</a>
       <a class="os-tab" href="#cloud">0X Cloud</a>
       <a class="os-tab" href="#assist">OY Assist</a>
@@ -180,21 +182,21 @@
     <section class="section os-hero os4-hero" id="overview" aria-labelledby="hero-title">
       <div class="container os4-hero__grid">
         <div class="os4-hero__copy">
-          <p class="os4-badge mono" data-reveal><span></span>Новая версия · для всех 13 смартфонов OY</p>
-          <p class="os4-mark" aria-label="OY OS 4"><span class="os4-mark__oy" aria-hidden="true">OY&nbsp;OS</span><span class="os4-mark__n" aria-hidden="true">4</span></p>
-          <h1 class="os4-hero__title" id="hero-title" data-split>Новый облик. Новое облако. Новая&nbsp;OY.</h1>
-          <p class="os4-hero__sub" data-reveal>Самое большое обновление в&nbsp;истории OY. Дизайн «Линза» из&nbsp;живого стекла. OY&nbsp;ID&nbsp;— один вход во&nbsp;всё. 0X&nbsp;Cloud на&nbsp;30&nbsp;ГБ бесплатно. И&nbsp;OY&nbsp;Assist&nbsp;4, который думает на&nbsp;серверах в&nbsp;сто раз мощнее телефона<sup class="fn"><a href="#fn-1" id="fnr-1">1</a></sup>.</p>
+          <p class="os4-badge mono" data-reveal><span></span>Обновление 4.5 · для всех 14 смартфонов OY</p>
+          <p class="os4-mark" aria-label="OY OS 4.5"><span class="os4-mark__oy" aria-hidden="true">OY&nbsp;OS</span><span class="os4-mark__n" aria-hidden="true">4</span><span class="os4-mark__dot" aria-hidden="true">.5</span></p>
+          <h1 class="os4-hero__title" id="hero-title" data-split>Ассистент&nbsp;— дома. Стекло&nbsp;— по&nbsp;желанию.</h1>
+          <p class="os4-hero__sub" data-reveal>OY&nbsp;Assist снова умеет думать на&nbsp;телефоне&nbsp;— без лимита и&nbsp;в&nbsp;авиарежиме. «Линзу» можно выключить. 0X&nbsp;Cloud переехал в&nbsp;83 собственных дата-центра в&nbsp;США. И&nbsp;всё, что пришло с&nbsp;OY&nbsp;OS&nbsp;4: OY&nbsp;ID, 0X&nbsp;Cloud и&nbsp;облачный OY&nbsp;Assist&nbsp;4, который в&nbsp;сто раз мощнее телефона<sup class="fn"><a href="#fn-1" id="fnr-1">1</a></sup>.</p>
           <div class="os4-hero__cta" data-reveal>
-            <a class="btn btn--accent" href="#os4">Что нового</a>
+            <a class="btn btn--accent" href="#os45">Что нового в&nbsp;4.5</a>
             <a class="btn btn--ghost" href="#oyid">Создать OY&nbsp;ID</a>
           </div>
           <ul class="os4-stats" role="list" data-reveal>
-            <li><b class="mono">1</b><span>OY&nbsp;ID на&nbsp;всё</span></li>
-            <li><b class="mono">30&nbsp;ГБ</b><span>в&nbsp;0X&nbsp;Cloud бесплатно</span></li>
-            <li><b class="mono">100×</b><span>мощнее OY&nbsp;Assist</span></li>
+            <li><b class="mono">0</b><span>лимитов на&nbsp;устройстве</span></li>
+            <li><b class="mono">83</b><span>дата-центра 0X&nbsp;Cloud</span></li>
+            <li><b class="mono">1</b><span>переключатель «Линзы»</span></li>
           </ul>
           <div class="os4-plates" data-reveal>
-            <a class="os4-plate" href="/moth2/"><b class="mono">Moth 2</b><span>Из коробки на&nbsp;0X&nbsp;Moth&nbsp;2: «Крыло», «Палатка» и&nbsp;«Пыльца» в&nbsp;двенадцати цветах</span><i aria-hidden="true">→</i></a>
+            <a class="os4-plate" href="/0x3e/"><b class="mono">0X3 E</b><span>Из коробки на&nbsp;0X3&nbsp;Essential: OY&nbsp;Assist на&nbsp;Cesium&nbsp;1 и&nbsp;четыре kill switch в&nbsp;настройках</span><i aria-hidden="true">→</i></a>
             <a class="os4-plate os4-plate--x" href="/extream/y1/#exos"><b class="mono">eXOS 4</b><span>Игровая OY&nbsp;OS&nbsp;4 на&nbsp;eXtream&nbsp;Y1</span><i aria-hidden="true">→</i></a>
           </div>
         </div>
@@ -230,7 +232,7 @@
               </div>
               <div class="g-note">
                 <b><svg><use href="#i-spark"/></svg>OY Assist</b>
-                <span>Осталось 3 запроса на&nbsp;сегодня</span>
+                <span>На&nbsp;устройстве · без лимита</span>
               </div>
               <div class="g-dock"><i style="--c:#0A84FF"><svg><use href="#i-phone-call"/></svg></i><i style="--c:#30D158"><svg><use href="#i-bell"/></svg></i><i style="--c:#FF9F0A"><svg><use href="#i-camera"/></svg></i><i style="--c:#BF5AF2"><svg><use href="#i-cloud"/></svg></i></div>
             </div>
@@ -254,6 +256,42 @@
           <span class="os-chip os-chip--2" data-par="-60">30&nbsp;ГБ в&nbsp;0X&nbsp;Cloud</span>
           <span class="os-chip os-chip--3" data-par="-150">живое стекло</span>
         </div>
+      </div>
+    </section>
+
+
+    <!-- 1b. НОВОЕ В OY OS 4.5 -->
+    <section class="section solid os45" id="os45" aria-labelledby="os45-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal>OY OS 4.5 · весна 2031</p>
+        <h2 class="h2" id="os45-title" data-split>Мы&nbsp;вас услышали. Частично.</h2>
+        <div class="os45__grid">
+          <article class="glass os45c" data-reveal>
+            <p class="os45c__k mono"><svg aria-hidden="true"><use href="#i-spark"/></svg>OY Assist</p>
+            <h3>Снова на&nbsp;устройстве</h3>
+            <p>Модель снова помещается в&nbsp;телефон. Без лимита запросов и&nbsp;в&nbsp;авиарежиме. Облачный OY&nbsp;Assist&nbsp;4 никуда не&nbsp;делся&nbsp;— выбирайте, где ему думать.</p>
+            <a class="link mono" href="#assist">Попробовать →</a>
+          </article>
+          <article class="glass os45c" data-reveal>
+            <p class="os45c__k mono"><svg aria-hidden="true"><use href="#i-glass"/></svg>«Линза»</p>
+            <h3>Выключается</h3>
+            <p>Один переключатель&nbsp;— и&nbsp;живое стекло становится плоским и&nbsp;непрозрачным. Батарея говорит спасибо, глаза тоже.</p>
+            <a class="link mono" href="#lens">Выключить →</a>
+          </article>
+          <article class="glass os45c os45c--dc" data-reveal>
+            <p class="os45c__k mono"><svg aria-hidden="true"><use href="#i-cloud"/></svg>0X Cloud</p>
+            <h3>83 дата-центра в&nbsp;США</h3>
+            <p>OY построила 83 собственных дата-центра. Ваши фото, переписка и&nbsp;история ассистента крутятся там «с&nbsp;максимальной приватностью»<sup class="fn"><a href="#fn-8" id="fnr-8">8</a></sup>.</p>
+            <div class="dcmap" aria-label="83 дата-центра 0X Cloud на карте США" role="img" data-dcmap></div>
+          </article>
+          <article class="glass os45c os45c--fyr" data-reveal>
+            <p class="os45c__k mono"><svg aria-hidden="true"><use href="#i-store"/></svg>OY Store</p>
+            <h3>Fyr Connect&nbsp;— в&nbsp;магазине</h3>
+            <p>Приложение для часов Fyr&nbsp;Osmium&nbsp;X0 допустили в&nbsp;OY&nbsp;Store. Часы подключаются к&nbsp;OY без обходных путей.</p>
+            <blockquote class="os45c__quote">«Мы открыты для всех. Даже для тех, кто от&nbsp;нас ушёл. Это и&nbsp;есть дружба народов».<cite class="mono">— новый CEO OY</cite></blockquote>
+          </article>
+        </div>
+        <p class="note" data-reveal>Из&nbsp;коробки&nbsp;— на&nbsp;<a class="link" href="/0x3e/">0X3&nbsp;Essential</a>. Обновлением&nbsp;— на&nbsp;всех остальных OY, в&nbsp;том числе снятых с&nbsp;продажи.</p>
       </div>
     </section>
 
@@ -480,15 +518,20 @@
     <section class="section solid assist" id="assist" aria-labelledby="assist-title">
       <div class="container assist__grid">
         <div class="assist__copy">
-          <p class="eyebrow" data-reveal>OY Assist 4</p>
-          <h2 class="h2" id="assist-title" data-split>Умнее в&nbsp;сто раз. Десять раз в&nbsp;день.</h2>
-          <p class="lead" data-reveal>OY&nbsp;Assist переехал с&nbsp;нейроядра телефона в&nbsp;0X&nbsp;Cloud: там помещается модель в&nbsp;сто раз крупнее. Задайте вопрос и&nbsp;смотрите, как запрос летит в&nbsp;дата-центр<sup class="fn"><a href="#fn-3" id="fnr-3">3</a></sup>.</p>
+          <p class="eyebrow" data-reveal>OY Assist · OY OS 4.5</p>
+          <h2 class="h2" id="assist-title" data-split>В&nbsp;облаке&nbsp;— умнее. Дома&nbsp;— свободнее.</h2>
+          <p class="lead" data-reveal>В&nbsp;OY&nbsp;OS&nbsp;4 ассистент переехал в&nbsp;0X&nbsp;Cloud: там модель в&nbsp;сто раз крупнее, но&nbsp;десять запросов в&nbsp;день. В&nbsp;4.5 он&nbsp;снова умеет думать на&nbsp;телефоне. Выберите, где, задайте вопрос и&nbsp;смотрите, куда летит запрос<sup class="fn"><a href="#fn-3" id="fnr-3">3</a></sup>.</p>
 
           <div class="assist__prompts" role="group" aria-label="Вопросы ассистенту" data-reveal>
             <button type="button" class="chip-btn" data-q="0">Сократи письмо от&nbsp;начальника до&nbsp;трёх строк</button>
             <button type="button" class="chip-btn" data-q="1">Что я обещал Марку на&nbsp;прошлой неделе?</button>
             <button type="button" class="chip-btn" data-q="2">Найди фото чека из&nbsp;аптеки</button>
             <button type="button" class="chip-btn" data-q="3">Переведи с&nbsp;французского меню на&nbsp;фото</button>
+          </div>
+
+          <div class="assist__where" role="radiogroup" aria-label="Где думает OY Assist" data-assist-where data-reveal>
+            <button type="button" role="radio" data-value="device" aria-checked="true">На&nbsp;устройстве · 4.5</button>
+            <button type="button" role="radio" data-value="cloud" aria-checked="false" tabindex="-1">В&nbsp;0X&nbsp;Cloud · 4</button>
           </div>
 
           <label class="cmp-toggle assist__plane" data-reveal>
@@ -510,15 +553,15 @@
             <div class="ophone__screen wall wall--lens">
               <span class="ophone__island" data-assist-island></span>
               <div class="chat" data-chat aria-live="polite">
-                <p class="chat__sys mono">OY Assist 4 · в 0X Cloud</p>
+                <p class="chat__sys mono" data-assist-sys>OY Assist · на устройстве</p>
               </div>
-              <div class="chat__foot mono">Осталось сегодня: <span data-quota>3</span> из&nbsp;10</div>
+              <div class="chat__foot mono" data-quota-foot>На&nbsp;устройстве: без лимита</div><div class="chat__foot mono" data-quota-cloud hidden>Осталось сегодня: <span data-quota>3</span> из&nbsp;10</div>
             </div>
           </div>
         </div>
       </div>
       <div class="container">
-        <p class="jab" data-reveal>Раньше ассистент думал на&nbsp;телефоне. Теперь он думает о&nbsp;вас&nbsp;— в&nbsp;облаке.</p>
+        <p class="jab" data-reveal>Раньше ассистент думал на&nbsp;телефоне. Потом&nbsp;— о&nbsp;вас, в&nbsp;облаке. Теперь&nbsp;— где скажете.</p>
       </div>
     </section>
 
@@ -545,6 +588,7 @@
           </div>
           <div class="lens__glass" data-lens aria-hidden="true"><div class="lens__inner" data-lens-inner></div></div>
           <div class="lens__bar">
+            <label class="cmp-toggle lens__off"><input type="checkbox" data-lens-off><span class="cmp-toggle__track" aria-hidden="true"></span><span>Выключить «Линзу» · 4.5</span></label>
             <label class="lens__label" for="lens-tint">Стекло</label>
             <input id="lens-tint" type="range" min="0" max="100" value="35" data-lens-tint>
             <span class="lens__val mono" data-lens-val>Тонированное</span>
@@ -554,7 +598,7 @@
         <ul class="photos__more lens__more" role="list">
           <li data-reveal><svg aria-hidden="true"><use href="#i-glass"/></svg><b>Преломление в&nbsp;реальном времени</b><span>Стекло считает изгиб для каждого кадра. Иконки и&nbsp;текст под кнопкой видны, как через линзу.</span></li>
           <li data-reveal><svg aria-hidden="true"><use href="#i-phone"/></svg><b>Плавающие панели</b><span>Вкладки и&nbsp;кнопки парят над содержимым и&nbsp;уступают ему место при прокрутке.</span></li>
-          <li data-reveal><svg aria-hidden="true"><use href="#i-star"/></svg><b>Регулятор «Стекло»</b><span>От&nbsp;«Тонированного» до&nbsp;«Чистого». Выберите, сколько стекла вам нужно.</span></li>
+          <li data-reveal><svg aria-hidden="true"><use href="#i-star"/></svg><b>Регулятор «Стекло» и&nbsp;выключатель</b><span>От&nbsp;«Тонированного» до&nbsp;«Чистого», а&nbsp;с&nbsp;OY&nbsp;OS&nbsp;4.5&nbsp;— совсем без стекла.</span></li>
         </ul>
       </div>
     </section>
@@ -812,37 +856,27 @@
     <section class="section solid devices" id="devices" aria-labelledby="dev-title">
       <div class="container">
         <p class="eyebrow" data-reveal>Совместимость</p>
-        <h2 class="h2" id="dev-title" data-split>OY&nbsp;OS&nbsp;4 на&nbsp;всех OY. Даже на&nbsp;первых.</h2>
-        <p class="lead devices__lead" data-reveal>Четвёртую версию получат все смартфоны OY, которые когда-либо выходили,&nbsp;— все тринадцать. От&nbsp;самого первого 0X0 и&nbsp;снятого с&nbsp;продажи 0X0&nbsp;Pro до&nbsp;Moth&nbsp;2.</p>
+        <h2 class="h2" id="dev-title" data-split>OY&nbsp;OS&nbsp;4.5 на&nbsp;всех OY. Даже на&nbsp;ушедших.</h2>
+        <p class="lead devices__lead" data-reveal>OY&nbsp;OS&nbsp;4.5 получат все смартфоны OY, которые когда-либо выходили,&nbsp;— все четырнадцать. От&nbsp;первого 0X0, который весной 2031-го ушёл с&nbsp;продажи, до&nbsp;0X3&nbsp;Essential, на&nbsp;котором она стоит из&nbsp;коробки.</p>
         <ul class="devices__all mono" role="list" data-reveal>
-          <li><a href="/0x0/">0X0</a></li><li><a href="/pro/">0X0 Pro</a></li><li><a href="/0x1e/">0X1 Essential</a></li><li><a href="/0x1/">0X1</a></li><li><a href="/0x1q/">0X1Q</a></li><li><a href="/0x1pro/">0X1 Pro</a></li><li><a href="/0x2e/">0X2 Essential</a></li><li><a href="/0x2/">0X2</a></li><li><a href="/0x2q/">0X2Q</a></li><li><a href="/0x2pro/">0X2 Pro</a></li><li><a href="/moth/">0X Moth</a></li><li><a href="/nova/">0X Nova</a></li><li><a href="/moth2/">0X Moth 2</a></li>
+          <li><a href="/0x0/">0X0</a></li><li><a href="/pro/">0X0 Pro</a></li><li><a href="/0x1e/">0X1 Essential</a></li><li><a href="/0x1/">0X1</a></li><li><a href="/0x1q/">0X1Q</a></li><li><a href="/0x1pro/">0X1 Pro</a></li><li><a href="/0x2e/">0X2 Essential</a></li><li><a href="/0x2/">0X2</a></li><li><a href="/0x2q/">0X2Q</a></li><li><a href="/0x2pro/">0X2 Pro</a></li><li><a href="/moth/">0X Moth</a></li><li><a href="/nova/">0X Nova</a></li><li><a href="/moth2/">0X Moth 2</a></li><li><a href="/0x3e/">0X3 Essential</a></li>
         </ul>
         <div class="devices__grid">
-          <a class="dev dev--0x2e" href="/0x2e/" data-reveal>
-            <p class="dev__name">OY 0X2 Essential</p>
-            <p class="dev__price mono">от $399 · ¥2599 · обновлением</p>
+          <a class="dev dev--0x3e" href="/0x3e/" data-reveal>
+            <p class="dev__name">OY 0X3 Essential</p>
+            <p class="dev__price mono">от $399 · €469 · ¥2599 · из коробки</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Линза», OY&nbsp;ID и&nbsp;0X&nbsp;Cloud</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY&nbsp;Assist&nbsp;4 в&nbsp;облаке</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Полный Tesseract и&nbsp;«Красный режим»</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY&nbsp;Assist на&nbsp;Cesium&nbsp;1&nbsp;— без лимита</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Четыре kill switch в&nbsp;настройках и&nbsp;журнале</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Palladium&nbsp;1: ключи, оплата, «Мёртвая рука»</li>
             </ul>
-            <span class="dev__more">Подробнее о&nbsp;0X2 Essential →</span>
-          </a>
-          <a class="dev" href="/0x0/" data-reveal>
-            <p class="dev__name">OY 0X0</p>
-            <p class="dev__price mono">от $449 · ¥2899 · обновлением</p>
-            <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Линза», OY&nbsp;ID и&nbsp;0X&nbsp;Cloud</li>
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>OY&nbsp;Assist&nbsp;4 в&nbsp;облаке</li>
-              <li class="n"><svg aria-hidden="true"><use href="#i-minus"/></svg>«Двойник» и&nbsp;«Кошелёк» в&nbsp;чипе</li>
-            </ul>
-            <span class="dev__more">Подробнее о&nbsp;0X0 →</span>
+            <span class="dev__more">Подробнее о&nbsp;0X3 Essential →</span>
           </a>
           <a class="dev dev--0x2" href="/0x2/" data-reveal>
             <p class="dev__name">OY 0X2</p>
             <p class="dev__price mono">от $579 · ¥3799 · обновлением</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё новое в&nbsp;OY&nbsp;OS&nbsp;4</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё новое в&nbsp;OY&nbsp;OS&nbsp;4.5</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Двойник», «Кошелёк», «Мёртвая рука» в&nbsp;Tesseract</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>8&nbsp;лет обновлений</li>
             </ul>
@@ -850,7 +884,7 @@
           </a>
           <a class="dev dev--moth" href="/moth2/" data-reveal>
             <p class="dev__name">OY 0X Moth 2</p>
-            <p class="dev__price mono">от $749 · ¥4899 · из коробки</p>
+            <p class="dev__price mono">от $749 · ¥4899 · обновлением</p>
             <ul class="dev__list">
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>LTPO 144&nbsp;Гц на&nbsp;складном экране</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Пыльца» в&nbsp;двенадцати цветах</li>
@@ -872,7 +906,7 @@
             <p class="dev__name">OY 0X2 Pro</p>
             <p class="dev__price mono">от $889 · ¥5799 · обновлением</p>
             <ul class="dev__list">
-              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё новое в&nbsp;OY&nbsp;OS&nbsp;4 с&nbsp;функциями Citadel&nbsp;4</li>
+              <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Всё новое в&nbsp;OY&nbsp;OS&nbsp;4.5 с&nbsp;функциями Citadel&nbsp;4</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>«Веко», «Занавес» и&nbsp;«Ловец вышек»</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Шифратор 3; 8&nbsp;лет обновлений</li>
             </ul>
@@ -880,7 +914,7 @@
           </a>
           <a class="dev dev--nova dev--wide" href="/nova/" data-reveal>
             <p class="dev__name">OY 0X Nova</p>
-            <p class="dev__price mono">от $999 · ¥6499 · из коробки</p>
+            <p class="dev__price mono">от $999 · ¥6499 · обновлением</p>
             <ul class="dev__list">
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>Камера OY&nbsp;OS&nbsp;4: пять камер, RAW и&nbsp;Log</li>
               <li class="y"><svg aria-hidden="true"><use href="#i-check"/></svg>0Pen в&nbsp;системе, заметки синхронизируются с&nbsp;0X&nbsp;Cloud</li>
@@ -889,7 +923,7 @@
             <span class="dev__more">Подробнее о&nbsp;Nova →</span>
           </a>
         </div>
-        <p class="note devices__note" data-reveal>На&nbsp;Moth и&nbsp;Nova OY&nbsp;OS&nbsp;4 стоит из&nbsp;коробки, на&nbsp;остальных десяти приходит обновлением. Бесплатно&nbsp;— нужно только войти в&nbsp;OY&nbsp;ID и&nbsp;принять новые условия. Вернувшиеся в&nbsp;продажу <a class="link" href="/0x1e/">0X1 Essential</a> (от&nbsp;$349 · ¥2299), <a class="link" href="/0x1/">0X1</a> (от&nbsp;$499 · ¥3299), <a class="link" href="/0x1q/">0X1Q</a> (от&nbsp;$719 · ¥4699) и&nbsp;<a class="link" href="/0x1pro/">0X1&nbsp;Pro</a> (от&nbsp;$899 · ¥5899) получают её вместе со&nbsp;всеми. eXtream&nbsp;Y1 обновится до&nbsp;eXOS&nbsp;4 на&nbsp;её основе.</p>
+        <p class="note devices__note" data-reveal>На&nbsp;0X3&nbsp;Essential OY&nbsp;OS&nbsp;4.5 стоит из&nbsp;коробки, на&nbsp;остальных тринадцати приходит обновлением. Бесплатно&nbsp;— нужно только войти в&nbsp;OY&nbsp;ID и&nbsp;принять новые условия. Снятые с&nbsp;продажи весной 2031-го <a class="link" href="/0x0/">0X0</a>, <a class="link" href="/0x2e/">0X2 Essential</a>, <a class="link" href="/0x1e/">0X1 Essential</a>, <a class="link" href="/0x1/">0X1</a>, <a class="link" href="/0x1q/">0X1Q</a> и&nbsp;<a class="link" href="/0x1pro/">0X1&nbsp;Pro</a> получают её вместе со&nbsp;всеми&nbsp;— обновления безопасности идут все обещанные годы. eXtream&nbsp;Y1 обновится до&nbsp;eXOS&nbsp;4.5 на&nbsp;её основе.</p>
         <button type="button" class="term-hint mono" data-term-open><svg aria-hidden="true"><use href="#i-terminal"/></svg>Для любопытных: нажмите <kbd>`</kbd></button>
       </div>
     </section>
@@ -902,8 +936,9 @@
           <li id="fn-3">10 запросов в&nbsp;сутки в&nbsp;бесплатном плане, 100&nbsp;— с&nbsp;0X&nbsp;Cloud&nbsp;Pro. Лимит обновляется в&nbsp;00:00 по&nbsp;времени сервера. Запросы, звонки с&nbsp;ассистентом и&nbsp;действия агента считаются одинаково. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
           <li id="fn-4">Сервисы Google входят в&nbsp;системный раздел OY&nbsp;OS&nbsp;4 и&nbsp;не&nbsp;удаляются. Отключённые сервисы не&nbsp;показывают уведомления и&nbsp;не&nbsp;синхронизируют аккаунт; системные компоненты, нужные приложениям, продолжают работать. <a href="#fnr-4" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
           <li id="fn-5">Распознавание лиц, мест и&nbsp;событий работает в&nbsp;0X&nbsp;Cloud и&nbsp;включено по&nbsp;умолчанию. Фильмы собираются из&nbsp;снимков, загруженных в&nbsp;облако; запросы к&nbsp;OY&nbsp;Assist на&nbsp;это не&nbsp;тратятся. <a href="#fnr-5" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
-          <li id="fn-6">Новые версии OY&nbsp;OS и&nbsp;ежемесячные патчи безопасности в&nbsp;течение 7&nbsp;лет с&nbsp;начала продаж каждой модели в&nbsp;США. Срок записан в&nbsp;гарантийных условиях. OY&nbsp;OS&nbsp;4 получают все модели, в&nbsp;том числе те, у&nbsp;которых срок уже подходит к&nbsp;концу. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-6">Новые версии OY&nbsp;OS и&nbsp;ежемесячные патчи безопасности в&nbsp;течение 7&nbsp;лет с&nbsp;начала продаж каждой модели в&nbsp;США. Срок записан в&nbsp;гарантийных условиях. OY&nbsp;OS&nbsp;4.5 получают все модели, в&nbsp;том числе снятые с&nbsp;продажи и&nbsp;те, у&nbsp;которых срок уже подходит к&nbsp;концу. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
           <li id="fn-7">Медиана OY&nbsp;Bench по&nbsp;20 прогонам на&nbsp;каждой модели в&nbsp;одинаковых условиях: запуск приложений, прокрутка, камера. OY&nbsp;Assist в&nbsp;замер больше не&nbsp;входит: он работает в&nbsp;облаке. <a href="#fnr-7" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-8">«Максимальная приватность»&nbsp;— формулировка из&nbsp;отчёта OY о&nbsp;постройке дата-центров. Данные 0X&nbsp;Cloud шифруются при передаче и&nbsp;хранении; ключи хранятся в&nbsp;тех&nbsp;же 83 дата-центрах. OY&nbsp;Assist на&nbsp;устройстве в&nbsp;OY&nbsp;OS&nbsp;4.5 работает без 0X&nbsp;Cloud. <a href="#fnr-8" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
         </ol>
         <p class="footnotes__more">Функции и&nbsp;результаты испытаний предварительные: это концепт, OY&nbsp;OS не&nbsp;выпускается.</p>
       </div>
@@ -917,7 +952,7 @@
         <span>OY · французский стартап</span>
       </div>
       <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-      <p class="footer__small mono">OY OS 4 · все модели OY · 0X Cloud Pro — $9,99 в месяц</p>
+      <p class="footer__small mono">OY OS 4.5 · все модели OY · 0X Cloud Pro — $9,99 в месяц</p>
       <p class="footer__concept">Концепт. OY&nbsp;0X2&nbsp;Essential, OY&nbsp;0X0, OY&nbsp;0X2, OY&nbsp;0X&nbsp;Moth, OY&nbsp;0X2Q, OY&nbsp;0X2&nbsp;Pro, OY&nbsp;0X&nbsp;Nova, OY&nbsp;0X1&nbsp;Essential, OY&nbsp;0X1&nbsp;Pro, OY&nbsp;0X1, OY&nbsp;0X1Q, OY&nbsp;0X0&nbsp;Pro, OY&nbsp;OS, OY&nbsp;ID, 0X&nbsp;Cloud и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефоны не&nbsp;продаются, облака нет. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>

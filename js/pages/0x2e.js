@@ -85,7 +85,8 @@ renderCtl();
 /* ---------- 10: чек ---------- */
 
 const PRODUCT = PRODUCTS['0x2e'];
-{
+// снят с продажи: чек аннулирован, выбора памяти нет — остаётся только таблица цен
+if ($('[data-mem-switch]')) {
   const group = $('[data-mem-switch]');
   const usd = $('[data-price-usd]');
   const total = $('[data-price-total]');
@@ -108,7 +109,8 @@ const PRODUCT = PRODUCTS['0x2e'];
   };
   initRadioGroup(group, (v) => set(v));
   set(PRODUCT.configs[0].id, false);
-
+}
+{
   $('[data-price-table]').innerHTML = PRODUCT.configs
     .map((c) => `<tr><td>${c.id} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td><td>¥${c.cny}</td></tr>`).join('');
 }

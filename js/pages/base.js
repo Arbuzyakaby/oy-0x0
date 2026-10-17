@@ -18,6 +18,7 @@ import { $, $$, clamp01, store, createToast, syncRadio, initRadioGroup, bindTogg
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals, wrapWords, scrubWords } from '../core/text.js';
 import { initCarousel } from '../core/carousel.js';
+import { playFarewell } from '../core/farewell.js';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -87,8 +88,11 @@ function setMemory(v, animate = true) {
   });
   gsap.fromTo(usdEl, { y: 8, opacity: 0.6 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
 }
-initRadioGroup(memGroup, (v) => setMemory(v));
-setMemory('8/128', false);
+// снят с продажи: конфигуратора на странице нет
+if (memGroup) {
+  initRadioGroup(memGroup, (v) => setMemory(v));
+  setMemory('8/128', false);
+}
 
 // Сигнальный фонарь
 const signalGroup = $('[data-signal-switch]');
@@ -623,3 +627,6 @@ async function boot() {
   }
 }
 boot();
+// 0X0 снят с продажи: на его странице — тот же прощальный салют, что и на витрине
+const farewell = () => setTimeout(() => playFarewell(), 900);
+if (document.readyState === 'complete') farewell(); else window.addEventListener('load', farewell, { once: true });
