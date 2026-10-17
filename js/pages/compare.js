@@ -125,7 +125,8 @@ const ROW_ICON = {
   },
   'Процессор': (v) => {
     if (v.startsWith('Argon 1 Nova')) return badge('Argon 1 Nova', 'OY · под камеру', { accent: true });
-    if (v.startsWith('Argon')) return badge('Argon 1', 'OY · свой', { accent: true });
+    // свои процессоры OY: Argon 1, Argon 2 Semi, Cesium 1 — имя до тире
+    if (/^(Argon|Beryllium|Cesium)/.test(v)) return badge(v.split(' — ')[0].trim(), 'OY · свой', { accent: true });
     if (v.includes('Extreme')) return badge('8 Elite Extreme', 'Snapdragon · Gen 6', { accent: true });
     if (v.startsWith('Snapdragon')) return badge(v.replace('Snapdragon ', ''), 'Snapdragon');
     return badge(v.replace('Dimensity ', ''), 'Dimensity');
