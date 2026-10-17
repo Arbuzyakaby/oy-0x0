@@ -124,34 +124,37 @@ const home = (place, i, n) => {
   const rows = Math.ceil(n / 2);
   return [cx + (col - 0.5) * 9, 50 + (row - (rows - 1) / 2) * 17];
 };
-const FYR = [0, 2, 3, 5, 7];   // пятеро, что ушли
-const REST = [1, 4, 6];        // трое остались в OY
+const FYR = [0, 2, 3, 5, 7];   // пятеро, что ушли первыми
+const REST = [1, 4, 6];        // трое, что дождались нового CEO OY
 const ease = (t) => { const c = clamp01(t); return c * c * (3 - 2 * c); };
 function setEight(p) {
-  // 0–0.3: все в OY · 0.3–0.55: пятеро → ABC · 0.6–0.85: → Стокгольм · дальше — 146
-  const t1 = ease((p - 0.18) / 0.27), t2 = ease((p - 0.55) / 0.27);
+  // 0–0.3: все в OY · 0.3–0.55: пятеро → ABC · 0.55–0.8: → Стокгольм,
+  // следом трое прямо из OY · дальше — 146
+  const t1 = ease((p - 0.18) / 0.27), t2 = ease((p - 0.55) / 0.22), t3 = ease((p - 0.6) / 0.18);
   dots.forEach((d, i) => {
     const k = FYR.indexOf(i);
     const a = home(0, i, 8);
     let [x, y] = a;
     if (k >= 0) {
-      const b = home(1, k, 5), c = home(2, k, 5);
+      const b = home(1, k, 5), c = home(2, k, 8);
       x = a[0] + (b[0] - a[0]) * t1 + (c[0] - b[0]) * t2;
       y = a[1] + (b[1] - a[1]) * t1 + (c[1] - b[1]) * t2;
       d.classList.toggle('is-fyr', t2 > 0.5);
       d.style.opacity = String(1 - ease((p - 0.74) / 0.1));
     } else {
-      const b = home(0, REST.indexOf(i), 3);
-      x = a[0] + (b[0] - a[0]) * t1;
-      y = a[1] + (b[1] - a[1]) * t1;
-      d.style.opacity = String(1 - t1 * 0.55);
+      const j = REST.indexOf(i);
+      const b = home(0, j, 3), c = home(2, 5 + j, 8);
+      x = a[0] + (b[0] - a[0]) * t1 + (c[0] - b[0]) * t3;
+      y = a[1] + (b[1] - a[1]) * t1 + (c[1] - b[1]) * t3;
+      d.classList.toggle('is-fyr', t3 > 0.5);
+      d.style.opacity = String((1 - t1 * 0.55 + t3 * 0.55) * (1 - ease((p - 0.76) / 0.1)));
     }
     d.style.left = `${x}%`;
     d.style.top = `${y}%`;
   });
   const g = ease((p - 0.76) / 0.16);
   count.style.setProperty('--o', g.toFixed(3));
-  num.textContent = String(Math.round(5 + g * 141));
+  num.textContent = String(Math.round(8 + g * 138));
 }
 
 /* ---------- 3. Корпус: безель по прокрутке ---------- */

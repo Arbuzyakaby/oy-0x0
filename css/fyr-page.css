@@ -263,3 +263,18 @@ html:not(.js) .safe, html:not(.js) .fy-switch, html:not(.js) .eight { display: n
   .safe__dial { width: 180px; }
   .spec th { width: 36%; }
 }
+
+/* ---------- OY OS 4 против Fyr OS 0 ---------- */
+
+.vs { margin-top: 36px; max-width: 640px; }
+.vs__title { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px; }
+.vs__table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.45; }
+.vs__table th, .vs__table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.vs__table thead th { font: 600 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.vs__table tbody th { font-weight: 600; color: var(--fg); white-space: nowrap; }
+.vs__table td:nth-child(2) { color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(127, 164, 255, .45); }
+.vs__table td:nth-child(3) { color: var(--fg); }
+@media (max-width: 600px) {
+  .vs__table { font-size: 13px; }
+  .vs__table tbody th { white-space: normal; }
+}
