@@ -27,7 +27,7 @@
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
   <link rel="stylesheet" href="/css/core.css?v=fc2a8cdc6d">
-  <link rel="stylesheet" href="/css/moth.css?v=5aac46b458">
+  <link rel="stylesheet" href="/css/moth.css?v=f9ed0b6b86">
   <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
 
   <script type="importmap">
@@ -46,8 +46,8 @@
       "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
-      "/js/data/accessories.js": "/js/data/accessories.js?v=85be94a749",
-      "/js/data/products.js": "/js/data/products.js?v=dc1e0d152e",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=1875ed22df",
+      "/js/data/products.js": "/js/data/products.js?v=b15ae21e92",
       "/js/fyr/dict.js": "/js/fyr/dict.js?v=40ce08e479",
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
@@ -62,7 +62,7 @@
       "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
       "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
       "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
-      "/js/models/oymoth.js": "/js/models/oymoth.js?v=47aa3f2034",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
       "/js/models/oynova.js": "/js/models/oynova.js?v=43d09e6e8b",
       "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
       "/js/pages/0x1.js": "/js/pages/0x1.js?v=9a087db029",
@@ -74,14 +74,14 @@
       "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
       "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=a49ba96b9e",
       "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4686e2aeb3",
-      "/js/pages/accessories.js": "/js/pages/accessories.js?v=6baba8ea28",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=d18a9f5039",
       "/js/pages/base.js": "/js/pages/base.js?v=19eb2d7b93",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=209cfc2341",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=6c51a02b86",
       "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
       "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
-      "/js/pages/home.js": "/js/pages/home.js?v=940914db76",
-      "/js/pages/moth.js": "/js/pages/moth.js?v=5eb3d82905",
+      "/js/pages/home.js": "/js/pages/home.js?v=5fdc1ff380",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=101ccfb826",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
       "/js/pages/nova.js": "/js/pages/nova.js?v=7ed8f3c40d",
       "/js/pages/os.js": "/js/pages/os.js?v=cbd83edd64",
@@ -96,7 +96,7 @@
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
   <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
   <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
-  <script type="module" src="/js/pages/moth.js?v=5eb3d82905"></script>
+  <script type="module" src="/js/pages/moth.js?v=101ccfb826"></script>
 </head>
 <body>
   <!-- Иконки -->
@@ -129,7 +129,7 @@
     </a>
     <p class="hinge-gauge__now mono" aria-hidden="true"><span data-gauge-no>1</span><i>/ 9</i><b data-gauge-deg>180°</b></p>
     <ol class="hinge-gauge__list" data-gauge-list></ol>
-    <a class="hinge-gauge__buy btn btn--accent btn--sm" href="#buy" data-price-from>$699</a>
+    <a class="hinge-gauge__buy btn btn--accent btn--sm" href="/moth2/">Moth 2</a>
   </nav>
   <p class="sr-only" aria-live="polite" data-announce></p>
 
@@ -147,7 +147,7 @@
           <a href="/0x2e/">0X2 Essential</a>
           <a href="/0x0/">0X0</a>
           <a href="/0x2/">0X2</a>
-          <a href="/moth/" aria-current="page">0X Moth</a>
+          <a href="/moth2/">0X Moth 2</a>
           <a href="/0x2q/">0X2Q</a>
           <a href="/0x2pro/">0X2 Pro</a>
           <a href="/nova/">0X Nova</a>
@@ -157,16 +157,17 @@
           <a href="/accessories/">Аксессуары</a>
           <a href="/compare/">Сравнить</a>
         </nav>
-        <a class="btn btn--accent btn--sm" href="#buy" data-price-from>$699</a>
+        <a class="btn btn--accent btn--sm" href="/moth2/">Moth 2</a>
       </header>
       <div class="ch__inner">
         <div class="ch__text">
+          <p class="disc-plate mono">Снят с&nbsp;продажи · преемник&nbsp;— <a href="/moth2/">0X Moth 2</a></p>
           <p class="eyebrow mono">Весна 2030 · США, Евросоюз и&nbsp;Китай · OY&nbsp;OS&nbsp;4</p>
           <h1 class="light__title" id="light-title"><span class="light__model">0X Moth</span><span class="light__big">Летит на&nbsp;свет.</span></h1>
           <p class="lead">Первая раскладушка OY. Складывается вдвое и&nbsp;помещается в&nbsp;любой карман. Внутри первый собственный процессор OY, снаружи шесть цветов, а&nbsp;на&nbsp;крышке целый экран.</p>
           <div class="light__buy">
             <p class="price"><span class="muted">от</span> <strong data-price data-usd="699" data-eur="799" data-cny="4599">$699</strong></p>
-            <a class="btn btn--accent" href="#buy">Купить</a>
+            <a class="btn btn--accent" href="/moth2/">Смотреть Moth 2</a>
             <button type="button" class="btn btn--ghost" data-fold-toggle aria-pressed="false">Сложить</button>
           </div>
           <p class="hint mono" aria-hidden="true">Листайте — страница сложится, как&nbsp;Moth <span>↓</span></p>
@@ -548,8 +549,8 @@
     <section class="ch ch--buy" id="buy" data-chapter="Купить" aria-labelledby="buy-title">
       <div class="ch__scroll">
         <div class="container">
-          <p class="eyebrow mono">09 · Предзаказ</p>
-          <h2 class="h2" id="buy-title">Самая доступная раскладушка с&nbsp;семью годами обновлений.</h2>
+          <p class="eyebrow mono">09 · Снят с&nbsp;продажи</p>
+          <h2 class="h2" id="buy-title">Самая продаваемая раскладушка Европы. Теперь&nbsp;— Moth&nbsp;2.</h2>
           <div class="order">
             <div class="order__opts">
               <p class="cfg-label mono" id="mem-label">Память</p>
@@ -575,8 +576,8 @@
                 <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">€</button>
                 <button type="button" role="radio" data-value="cny" aria-checked="false" tabindex="-1">¥</button>
               </div>
-              <button type="button" class="btn btn--accent btn--wide" data-stub="Это демонстрационная страница: оформление предзаказа здесь не подключено.">Оформить предзаказ</button>
-              <p class="order__note">США, Евросоюз и&nbsp;Китай, с&nbsp;весны 2030&nbsp;года. Это концепт: OY&nbsp;0X&nbsp;Moth и&nbsp;компания OY вымышлены, предзаказ не&nbsp;ведётся.</p>
+              <a class="btn btn--accent btn--wide" href="/moth2/#buy">Купить 0X Moth 2</a>
+              <p class="order__note">Снят с&nbsp;продажи с&nbsp;выходом <a href="/moth2/">0X&nbsp;Moth&nbsp;2</a>; цены&nbsp;— на&nbsp;момент продаж. Обновления и&nbsp;гарантия сохраняются. Продавался в&nbsp;США, Евросоюзе и&nbsp;Китае с&nbsp;весны 2030&nbsp;года. Это концепт: OY&nbsp;0X&nbsp;Moth и&nbsp;компания OY вымышлены, предзаказ не&nbsp;ведётся.</p>
             </div>
           </div>
 
@@ -619,8 +620,8 @@
             </table>
           </div>
           <div class="specs-cta">
-            <a class="btn btn--accent" href="#buy" data-to-top>Купить — от&nbsp;<span data-price data-usd="699" data-eur="799" data-cny="4599">$699</span></a>
-            <a class="btn btn--ghost btn--dark" href="/compare/?models=0x2,moth,0x2q">Сравнить с&nbsp;0X2 и&nbsp;0X2Q</a>
+            <a class="btn btn--accent" href="/moth2/">0X Moth 2 — от&nbsp;<span data-price data-usd="749" data-eur="849" data-cny="4899">$749</span></a>
+            <a class="btn btn--ghost btn--dark" href="/compare/?models=moth,moth2,0x2">Сравнить с&nbsp;Moth&nbsp;2</a>
             <a class="btn btn--ghost btn--dark" href="/os/">Что такое OY OS</a>
           </div>
         </div>
@@ -646,7 +647,7 @@
               <span>OY · французский стартап</span>
             </div>
             <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-            <p class="footer__small mono">OY 0X Moth · Весна 2030 · США, Евросоюз и Китай</p>
+            <p class="footer__small mono">OY 0X Moth · Весна 2030 · Снят с продажи</p>
             <p class="footer__concept">Концепт. OY&nbsp;0X&nbsp;Moth и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
           </div>
         </footer>

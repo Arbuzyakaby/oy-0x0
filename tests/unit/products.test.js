@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { PRODUCTS, getConfig, getPrice, colorAvailable } from '../../js/data/products.js';
 
 test('цены 0X0: 14/512 убран, чтобы не спорить с 0X2', () => {
@@ -59,7 +60,7 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('в продаже одиннадцать моделей OY: линейка 0X1 вернулась, снят только 0X0 Pro', async () => {
+test('в продаже одиннадцать моделей OY: линейка 0X1 вернулась, сняты 0X0 Pro и первый Moth', async () => {
   const { ON_SALE, LINEUP, RETURNED } = await import('../../js/data/products.js');
   assert.equal(PRODUCTS.pro.discontinued, true);
   for (const id of ['0x1', '0x1q', '0x1pro', '0x1e']) {
@@ -67,15 +68,15 @@ test('в продаже одиннадцать моделей OY: линейка
     assert.equal(PRODUCTS[id].returned, true, id);
     assert.ok(!PRODUCTS[id].successor && !PRODUCTS[id].tag, id);
   }
-  assert.deepEqual(ON_SALE, ['0x1e', '0x2e', '0x0', '0x1', '0x2', 'moth', '0x1q', '0x2q', '0x2pro', '0x1pro', 'nova']);
+  assert.deepEqual(ON_SALE, ['0x1e', '0x2e', '0x0', '0x1', '0x2', '0x1q', 'moth2', '0x2q', '0x2pro', '0x1pro', 'nova']);
   assert.deepEqual(RETURNED, ['0x1e', '0x1', '0x1q', '0x1pro']);
-  assert.deepEqual(LINEUP, ['0x2e', '0x0', '0x2', 'moth', '0x2q', '0x2pro', 'nova']);
+  assert.deepEqual(LINEUP, ['0x2e', '0x0', '0x2', 'moth2', '0x2q', '0x2pro', 'nova']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['pro', '0x2pro']],
+    [['moth', 'moth2'], ['pro', '0x2pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
@@ -141,7 +142,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', 'y1', '0x2pro', 'nova']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['moth', 'moth2', 'y1', '0x2pro', 'nova']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -196,9 +197,14 @@ test('сравнение: у Moth — Argon 1, MSC, раскладушка и в
   assert.match(get('Форма')[i], /Раскладушка/);
   assert.match(get('Внешний экран')[i], /«Крыло»/);
   assert.match(get('Система')[i], /OY OS 4/);
+  // у Moth 2 — Argon 2 Semi, тот же MSC и тоже «Крыло»
+  const j = 2 + COMPARE_MODELS.indexOf('moth2');
+  assert.match(get('Процессор')[j], /^Argon 2 Semi/);
+  assert.match(get('Чип безопасности')[j], /^MSC/);
+  assert.match(get('Внешний экран')[j], /«Крыло»/);
   // у остальных — моноблок и без внешнего экрана
   COMPARE_MODELS.forEach((id, k) => {
-    if (id === 'moth') return;
+    if (id === 'moth' || id === 'moth2') return;
     assert.equal(get('Форма')[2 + k], 'Моноблок', id);
     assert.equal(get('Внешний экран')[2 + k], '—', id);
   });
@@ -217,8 +223,8 @@ test('eXtream Y1: от $749 / €849, три цвета, суббренд вне
   assert.equal(y1.href, '/extream/y1/');
   assert.ok(!ON_SALE.includes('y1'));
   assert.ok(ON_SALE_ALL.includes('y1'));
-  // в сравнении по цене: между 0X1Q ($719) и 0X2Q ($799), и у новых строк значение есть только у Y1
-  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x1q') + 1], 'y1');
+  // в сравнении по цене: после Moth 2 (тоже $749) и перед 0X2Q ($799), и у новых строк значение есть только у Y1
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('moth2') + 1], 'y1');
   assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('y1') + 1], '0x2q');
   assert.equal(SHORT_NAMES.y1, 'eXtream Y1');
   const i = 2 + COMPARE_MODELS.indexOf('y1');
@@ -231,12 +237,12 @@ test('eXtream Y1: от $749 / €849, три цвета, суббренд вне
   assert.equal(COMPARE.find((r) => r[1] === 'Система')[i], 'eXOS 4 · сервисы Google; в Китае — сервисы партнёра');
 });
 
-test('Китай: цены в юанях у всех моделей в продаже, у снятого 0X0 Pro их нет', async () => {
+test('Китай: цены в юанях у всех моделей, что там продавались; у 0X0 Pro их нет', async () => {
   const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
   assert.deepEqual(PRODUCTS.y1.configs.map((c) => c.cny), [4999, 5999, 7299]);
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.cn).map((p) => p.id),
-    ['0x1e', '0x2e', '0x0', '0x2', 'moth', 'y1', '0x2q', '0x2pro', 'nova', '0x1', '0x1q', '0x1pro'],
+    ['0x1e', '0x2e', '0x0', '0x2', 'moth', 'moth2', 'y1', '0x2q', '0x2pro', 'nova', '0x1', '0x1q', '0x1pro'],
   );
   for (const p of Object.values(PRODUCTS)) {
     for (const c of p.configs) assert.equal(c.cny != null, !!p.cn, `${p.id} ${c.id}`);
@@ -247,7 +253,8 @@ test('Китай: цены в юанях у всех моделей в прод�
     });
   }
   const row = COMPARE.find((r) => r[1] === 'Китай');
-  COMPARE_MODELS.forEach((id, k) => assert.equal(row[2 + k].startsWith(`от ¥${PRODUCTS[id].configs[0].cny}`), !!PRODUCTS[id].cn, id));
+  // снятый Moth продавался в Китае: в сравнении — «был от ¥…»
+  COMPARE_MODELS.forEach((id, k) => assert.equal(row[2 + k].includes(`от ¥${PRODUCTS[id].configs[0].cny}`), !!PRODUCTS[id].cn, id));
   assert.deepEqual(getPrice('moth', '12/512', 'red'), { usd: 799, eur: 909, cny: 5199 });
   assert.equal(getPrice('0x1', '8/256', 'violet').cny, 3299);
   assert.equal(getPrice('pro', '16/512', 'emerald').cny, undefined);
@@ -277,6 +284,24 @@ test('0X Nova: новый флагман от $999 / €1149, один цвет 
   }
 });
 
-test('после выхода Nova метка «Новинка» только у неё', () => {
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['nova']);
+test('после выхода Moth 2 метка «Новинка» только у него', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['moth2']);
+});
+
+test('0X Moth 2: от $749 / €849 / ¥4899, двенадцать цветов, Китай с первого дня, обещаний «без Google» нет', async () => {
+  const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
+  const m = PRODUCTS.moth2;
+  assert.deepEqual(m.configs.map((c) => [c.id, c.usd, c.eur, c.cny]), [['12/256', 749, 849, 4899], ['12/512', 849, 959, 5499]]);
+  assert.equal(Object.keys(m.colors).length, 12);
+  for (const id of Object.keys(PRODUCTS.moth.colors)) assert.ok(m.colors[id], id);
+  assert.ok(m.eu && m.cn);
+  const i = 2 + COMPARE_MODELS.indexOf('moth2');
+  const get = (label) => COMPARE.find((r) => r[1] === label)[i];
+  assert.equal(get('Защита'), 'IP67');
+  assert.match(get('Частота'), /144/);
+  assert.match(get('Аккумулятор'), /^5100/);
+  assert.match(get('Охлаждение'), /Испарительная/);
+  const html = readFileSync(new URL('../../moth2/index.html', import.meta.url), 'utf8');
+  assert.doesNotMatch(html, /Без Google|без обязательного аккаунта/);
+  assert.match(html, /data-product="moth2"/);
 });

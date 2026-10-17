@@ -20,6 +20,13 @@ export const MOTH_COLORS = {
   apple: { body: 0x8DC63F, frame: 0x8AB84A, accent: '#A8E05A', ink: '#0F1A04' },
   blue: { body: 0x2F6FDB, frame: 0x3A6CC8, accent: '#5B95FF', ink: '#FFFFFF' },
   cloud: { body: 0xEEF1F4, frame: 0xD9DEE3, accent: '#DDE6F0', ink: '#16191C' },
+  // ещё шесть — только у 0X Moth 2
+  orange: { body: 0xF28C28, frame: 0xE08A33, accent: '#FFA040', ink: '#1F0E00' },
+  lavender: { body: 0xB79CE8, frame: 0xAE9AD6, accent: '#C7B0FF', ink: '#170D2A' },
+  mint: { body: 0x7FD8C4, frame: 0x86CDBD, accent: '#8EF0DA', ink: '#04201A' },
+  midnight: { body: 0x23252C, frame: 0x3A3D46, accent: '#8A93A6', ink: '#FFFFFF' },
+  teal: { body: 0x1FA3A8, frame: 0x2A9EA2, accent: '#3CC9CF', ink: '#FFFFFF' },
+  sand: { body: 0xD8C3A0, frame: 0xCDBB98, accent: '#E8D3AE', ink: '#1E170A' },
 };
 
 // Геометрия (мм) — как в blender/build_oymoth.py
@@ -28,8 +35,11 @@ const GAP = 0.7;
 export const PIVOT_Z = (HD + 0.5) * MM;           // ось петли — перед экраном (glTF: экран смотрит в +Z)
 const SCR = { w: 72, h: 163.5 };                   // складной экран
 const WING = { w: 68, h: 76, cy: (GAP + 4 + HH - 3.6) / 2 };
-const CAMS = [[22.5, 70.5], [8.5, 70.5]];          // со спины, мм
-const FLASH = [-3.2, 72.6];
+// со спины, мм; у Moth 2 третья камера под первой, буквой Г (blender/build_oymoth2.py)
+const LAYOUT = {
+  1: { cams: [[22.5, 70.5], [8.5, 70.5]], flash: [-3.2, 72.6] },
+  2: { cams: [[22.5, 70.5], [8.5, 70.5], [22.5, 57]], flash: [9.6, 58.6] },
+};
 export const FOLDED_CENTER_Y = -HH / 2 * MM;       // центр сложенного Moth — середина нижней половины
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
@@ -184,9 +194,9 @@ function drawContinued(g, Wc, Hc, app, c, ink, dim) {
 
 /* ---------- «Крыло»: внешний экран ---------- */
 
-export const WING_MODES = ['clock', 'assist', 'player', 'camera', 'camera-wide', 'off'];
+export const WING_MODES = ['clock', 'assist', 'player', 'camera', 'camera-wide', 'camera-tele', 'off'];
 
-function drawWing(canvas, mode, c, wall = null) {
+function drawWing(canvas, mode, c, wall = null, { cams: CAMS, flash: FLASH } = LAYOUT[1]) {
   const g = canvas.getContext('2d');
   const Wc = canvas.width, Hc = canvas.height;
   const px = Wc / WING.w;
@@ -252,6 +262,27 @@ function drawWing(canvas, mode, c, wall = null) {
     for (const s of [-1, 1]) {
       g.fillRect(Wc / 2 + s * 150 - 4, y - 22, 8, 44);
     }
+  } else if (mode === 'camera-tele') {
+    // телевик 3× у Moth 2: портрет крупно, фон размыт в огни
+    const sky = g.createLinearGradient(0, 0, 0, Hc);
+    sky.addColorStop(0, '#1E2236'); sky.addColorStop(0.55, '#8A5A3C'); sky.addColorStop(1, '#2A1A12');
+    g.fillStyle = sky; g.fillRect(0, 0, Wc, Hc);
+    const bokeh = [[0.12, 0.2, 60], [0.3, 0.12, 38], [0.82, 0.18, 70], [0.68, 0.34, 34], [0.08, 0.5, 46], [0.92, 0.52, 54], [0.45, 0.06, 30]];
+    for (const [bx, by, br] of bokeh) {
+      const bg = g.createRadialGradient(Wc * bx, Hc * by, 0, Wc * bx, Hc * by, br);
+      bg.addColorStop(0, c.accent + 'AA'); bg.addColorStop(0.7, c.accent + '44'); bg.addColorStop(1, c.accent + '00');
+      g.fillStyle = bg; g.beginPath(); g.arc(Wc * bx, Hc * by, br, 0, Math.PI * 2); g.fill();
+    }
+    g.fillStyle = '#1B1412';
+    g.beginPath(); g.ellipse(Wc * 0.5, Hc * 0.5, 190, 235, 0, 0, Math.PI * 2); g.fill();
+    g.beginPath(); g.ellipse(Wc * 0.5, Hc * 1.08, 360, 260, 0, 0, Math.PI * 2); g.fill();
+    g.strokeStyle = c.accent; g.lineWidth = 4;
+    const fw = 150, fx0 = Wc * 0.5 - fw / 2, fy0 = Hc * 0.36;
+    for (const [x, y, dx, dy] of [[fx0, fy0, 1, 1], [fx0 + fw, fy0, -1, 1], [fx0, fy0 + fw, 1, -1], [fx0 + fw, fy0 + fw, -1, -1]]) {
+      g.beginPath(); g.moveTo(x + dx * 30, y); g.lineTo(x, y); g.lineTo(x, y + dy * 30); g.stroke();
+    }
+    g.fillStyle = ink; g.textAlign = 'center'; g.font = `600 26px ${MONO}`;
+    g.fillText('3× · телевик 12 МП · портрет', Wc / 2, Hc * 0.9);
   } else if (mode === 'camera' || mode === 'camera-wide') {
     // видоискатель: селфи основной камерой или вся компания на сверхширокой
     const wide = mode === 'camera-wide';
@@ -282,7 +313,7 @@ function drawWing(canvas, mode, c, wall = null) {
 
 /* ---------- Резервная процедурная модель ---------- */
 
-function buildFallback() {
+function buildFallback({ cams: CAMS, flash: FLASH } = LAYOUT[1]) {
   const mats = {
     Body: new THREE.MeshPhysicalMaterial({ name: 'Body', color: 0xF6D44A, metalness: 0.1, roughness: 0.28, clearcoat: 1 }),
     Frame: new THREE.MeshStandardMaterial({ name: 'Frame', color: 0xE3C243, metalness: 1, roughness: 0.22 }),
@@ -353,7 +384,11 @@ function buildFallback() {
 
 /* ---------- Описание модели для сцены ---------- */
 
-export function createOYMoth({ isRunning }) {
+const MOTH_URL = { url: '/models/oymoth.glb?v=7e4e95d775' }.url;
+const MOTH2_URL = { url: '/models/oymoth2.glb?v=8ebc96a775' }.url;
+
+export function createOYMoth({ isRunning }, gen = 1) {
+  const layout = LAYOUT[gen];
   const mkCanvas = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
   const mkTex = (c) => {
     const t = new THREE.CanvasTexture(c);
@@ -381,7 +416,7 @@ export function createOYMoth({ isRunning }) {
   let colorName = 'yellow';
   let wingMode = 'clock';
   let mainApp = 'clock';
-  // обои грузятся сразу все шесть, чтобы смена цвета была мгновенной
+  // обои грузятся сразу все, чтобы смена цвета была мгновенной
   const walls = {};
   for (const name of Object.keys(MOTH_COLORS)) {
     const img = new Image();
@@ -393,7 +428,7 @@ export function createOYMoth({ isRunning }) {
   function redrawScreen() {
     const c = MOTH_COLORS[colorName];
     drawMain(mainCanvas, c, mainApp, walls[colorName]);
-    drawWing(wingCanvas, wingMode, c, walls[colorName]);
+    drawWing(wingCanvas, wingMode, c, walls[colorName], layout);
     mainTex.needsUpdate = true;
     wingTex.needsUpdate = true;
   }
@@ -452,7 +487,7 @@ export function createOYMoth({ isRunning }) {
   }
 
   return {
-    url: '/models/oymoth.glb?v=7e4e95d775',
+    url: gen === 2 ? MOTH2_URL : MOTH_URL,
     state: { fold: 0, screen: 1, wing: 1, flash: 0, redFlash: 0 },
     parts,
     setup,
@@ -469,7 +504,7 @@ export function createOYMoth({ isRunning }) {
       setWing(mode) {
         if (!WING_MODES.includes(mode) || mode === wingMode) return;
         wingMode = mode;
-        drawWing(wingCanvas, wingMode, MOTH_COLORS[colorName], walls[colorName]);
+        drawWing(wingCanvas, wingMode, MOTH_COLORS[colorName], walls[colorName], layout);
         wingTex.needsUpdate = true;
       },
       setMainApp(app) {
@@ -483,3 +518,6 @@ export function createOYMoth({ isRunning }) {
     },
   };
 }
+
+// OY 0X Moth 2: та же раскладушка, три камеры и фронталка крупнее
+export const createOYMoth2 = (o) => createOYMoth(o, 2);

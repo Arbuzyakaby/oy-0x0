@@ -625,6 +625,36 @@ if want("glass-wing"):
     bpy.context.view_layer.update()
     shot("glass-wing", c, (0.45, 1.0, 0.5), pad=1.04, lens=70, light={"Top": 0.6, "Key": 1.2, "Rim": 1.4})
 
+# 5j. Аксессуары 0X Moth 2: тот же «Кокон», но под модель с тремя камерами; стекло — с третьим вырезом
+MOTH2_CAMS = ((22.5, 70.5), (8.5, 70.5), (22.5, 57.0))
+MOTH2_FLASH = (9.6, 58.6)
+
+if want("case-moth2"):
+    c = new_coll("case-moth2")
+    import_glb("oymoth2.glb", c)
+    pc = make_mat("Moth2PC", "#F28C28", rough=0.32, coat=0.5)
+    for sign, nm in ((1, "CaseMoth2Top"), (-1, "CaseMoth2Bottom")):
+        put(moth_half_case(nm, pc, sign), c)
+    bpy.context.view_layer.update()
+    shot("case-moth2", c, (0.55, 1.0, 0.3))
+
+if want("glass-wing2"):
+    c = new_coll("glass-wing2")
+    import_glb("oymoth2.glb", c)
+    gw, gh = 68.6, 76.6
+    b = Builder("GlassWing2", ["ScreenGlass", "GlassPrint"])
+    b.prism(rrect(gw, gh, 7.4, seg=16), "Y", 0.0, 0.4, "ScreenGlass", bevel_end=0.12, bevel_start=0.12, seg=3)
+    b.band(rrect(gw - 0.6, gh - 0.6, 7.1, seg=16), rrect(gw - 3.0, gh - 3.0, 6.0, seg=16), "Y", 0.405, 0.43, "GlassPrint")
+    glass = b.build()
+    holes = [rprism("h", circle(6.1, 64, x, z - MOTH_WING_Z), "Y", -1.0, 1.0) for x, z in MOTH2_CAMS]
+    holes.append(rprism("h", circle(2.0, 32, MOTH2_FLASH[0], MOTH2_FLASH[1] - MOTH_WING_Z), "Y", -1.0, 1.0))
+    cut(glass, holes)
+    glass.location = (4.0, 3.7 + 11.0, MOTH_WING_Z + 14.0)
+    glass.rotation_euler = (math.radians(-6), 0, math.radians(-3))
+    put(mm(glass), c)
+    bpy.context.view_layer.update()
+    shot("glass-wing2", c, (0.45, 1.0, 0.5), pad=1.04, lens=70, light={"Top": 0.6, "Key": 1.2, "Rim": 1.4})
+
 # 5e. Шайба XMagnum 80 Вт — графитовая, с голубым кольцом; старые OY заряжает на 65 Вт
 if want("puck-80"):
     c = new_coll("puck-80")

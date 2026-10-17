@@ -232,7 +232,7 @@ test('страницы моделей, вышедших в Китай, пока�
   }
 });
 
-test('OY OS 4: «Линза», OY ID, 0X Cloud Pro за $9,99, Google не удаляется, обновятся все 12 смартфонов OY', () => {
+test('OY OS 4: «Линза», OY ID, 0X Cloud Pro за $9,99, Google не удаляется, обновятся все 13 смартфонов OY', () => {
   const html = read('os/index.html');
   assert.match(html, /class="os4-page"/);
   assert.doesNotMatch(html, /aurora|os3\.js|data-hash|data-req-svg|data-exif/);
@@ -243,7 +243,7 @@ test('OY OS 4: «Линза», OY ID, 0X Cloud Pro за $9,99, Google не уд�
   // все смартфоны OY, которые когда-либо выходили, — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS).filter((p) => !p.brand);
-  assert.equal(phones.length, 12);
+  assert.equal(phones.length, 13);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке OY OS 4`);
   // цены в юанях у карточек — только у моделей в продаже
   for (const p of phones.filter((x) => !x.discontinued)) assert.ok(html.includes(`¥${p.configs[0].cny}`), `${p.id}: нет ¥`);

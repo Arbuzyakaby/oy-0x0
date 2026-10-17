@@ -9,7 +9,7 @@
 
 import { gsap } from 'gsap';
 import { createStage } from '../core/stage.js';
-import { createOYMoth, FOLDED_CENTER_Y } from '../models/oymoth.js';
+import { createOYMoth, createOYMoth2, FOLDED_CENTER_Y } from '../models/oymoth.js';
 import { PRODUCTS, getConfig } from '../data/products.js';
 import { $, $$, clamp01, store, createToast, syncRadio, initRadioGroup, bindStubs } from '../core/ui.js';
 
@@ -19,7 +19,8 @@ const reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
 const mobileMQ = window.matchMedia('(max-width: 760px)');
 const params = new URLSearchParams(location.search);
 const toast = createToast($('#toast'), gsap);
-const PRODUCT = PRODUCTS.moth;
+// одна страница на оба поколения: <html data-product="moth2"> у 0X Moth 2
+const PRODUCT = PRODUCTS[root.dataset.product] || PRODUCTS.moth;
 
 /* ---------- Главы ---------- */
 
@@ -36,9 +37,9 @@ root.classList.add('is-fold');
 const canvas = $('#stage');
 let stage = null;
 try {
-  stage = createStage(canvas, createOYMoth, { forceFallback: params.has('fallback') });
+  stage = createStage(canvas, PRODUCT.id === 'moth2' ? createOYMoth2 : createOYMoth, { forceFallback: params.has('fallback') });
 } catch (err) {
-  console.warn('[OY 0X Moth] WebGL недоступен, 3D отключено.', err);
+  console.warn(`[${PRODUCT.name}] WebGL недоступен, 3D отключено.`, err);
   canvas.style.display = 'none';
   root.classList.add('no-3d');
 }
@@ -211,7 +212,7 @@ function playScore() {
   void score.offsetWidth;
   score.classList.add('is-on');
   const o = { v: 0 };
-  gsap.to(o, { v: 1.5, duration: reduceMQ.matches ? 0.01 : 1.4, ease: 'power3.out', onUpdate: () => { scoreNum.textContent = o.v.toFixed(1).replace('.', ','); } });
+  gsap.to(o, { v: Number(scoreNum.dataset.count), duration: reduceMQ.matches ? 0.01 : 1.4, ease: 'power3.out', onUpdate: () => { scoreNum.textContent = o.v.toFixed(1).replace('.', ','); } });
 }
 
 // Блоки кристалла: нажали — внизу рассказ о блоке
@@ -369,13 +370,14 @@ const net = {};
 /* ---------- 7. Камеры: видоискатель на «Крыле» и лента снимков ---------- */
 
 let camLens = '1';
+const LENS_MODE = { 1: 'camera', 0.6: 'camera-wide', 3: 'camera-tele' };
 {
   const group = $('[data-cam-switch]');
   const roll = $('[data-roll]');
   initRadioGroup(group, (v) => {
     camLens = v;
     syncRadio(group, v);
-    stage?.setWing(v === '1' ? 'camera' : 'camera-wide');
+    stage?.setWing(LENS_MODE[v]);
   });
   let n = 0;
   $('[data-shot]').addEventListener('click', () => {
@@ -384,16 +386,17 @@ let camLens = '1';
       .to(fx, { flash: 0, duration: 0.5, ease: 'power2.out' });
     n += 1;
     $('.roll__empty', roll)?.remove();
-    const wide = camLens !== '1';
+    const wide = camLens === '0.6';
+    const tele = camLens === '3';
     const li = document.createElement('li');
-    li.className = `shot is-new${wide ? ' shot--wide' : ''}`;
+    li.className = `shot is-new${wide ? ' shot--wide' : ''}${tele ? ' shot--tele' : ''}`;
     li.style.setProperty('--r', `${[-4, 3, -2, 5][n % 4]}deg`);
     li.innerHTML = `<div class="shot__pic">${wide ? '<i></i><i></i><i></i>' : '<i></i>'}</div>
-      <p class="shot__cap"><span>${wide ? '0,6× · 12 МП' : '1× · 50 МП'}</span><span>№${n}</span></p>`;
-    li.setAttribute('aria-label', `Снимок ${n}: ${wide ? 'сверхширокая, вся компания' : 'основная камера, селфи'}; без геометки`);
+      <p class="shot__cap"><span>${wide ? '0,6× · 12 МП' : tele ? '3× · 12 МП' : '1× · 50 МП'}</span><span>№${n}</span></p>`;
+    li.setAttribute('aria-label', `Снимок ${n}: ${wide ? 'сверхширокая, вся компания' : tele ? 'телевик 3×, портрет' : 'основная камера, селфи'}; без геометки`);
     roll.prepend(li);
     while (roll.children.length > 3) roll.lastElementChild.remove();
-    toast(wide ? 'Вся компания в кадре. Без геометки и без данных о модели телефона.' : 'Селфи на основную, 50 МП. Без геометки и без данных о модели телефона.');
+    toast(tele ? 'Портрет на телевик 3×: фон размыт оптикой, а не нейросетью. Без геометки.' : wide ? 'Вся компания в кадре. Без геометки и без данных о модели телефона.' : 'Селфи на основную, 50 МП. Без геометки и без данных о модели телефона.');
   });
 }
 
@@ -406,8 +409,14 @@ const COLOR_DESC = {
   apple: ['Яблочный.', 'Зелёный, как кислое яблоко. Очень свежий.'],
   blue: ['Синий.', 'Яркий синий, как неоновая вывеска, вокруг которой кружат мотыльки.'],
   cloud: ['Облачный.', 'Белый, как облако под луной. Рамка в тон, почти серебро.'],
+  orange: ['Мандариновый.', 'Как фонарик над крыльцом в августе. Мотыльки его обожают.'],
+  lavender: ['Лавандовый.', 'Сиреневый, как вечер, когда фонари только зажглись.'],
+  mint: ['Мятный.', 'Прохладный, как стекло аптечной лампы.'],
+  midnight: ['Полночь.', 'Тёмный, почти чёрный. Время, когда мотыльки вылетают.'],
+  teal: ['Бирюзовый.', 'Как вода в бассейне под ночной подсветкой.'],
+  sand: ['Песочный.', 'Тёплый и спокойный, как абажур из льна.'],
 };
-const COLOR_KEY = 'oy-moth-color';
+const COLOR_KEY = `oy-${PRODUCT.id}-color`;
 const colorName = $('[data-color-name]');
 const colorDesc = $('[data-color-desc]');
 let color = PRODUCT.colors[store.get(COLOR_KEY)] ? store.get(COLOR_KEY) : PRODUCT.defaultColor;
@@ -488,7 +497,7 @@ $$('[data-currency]').forEach((g) => initRadioGroup(g, (v) => {
   initRadioGroup(group, (v) => {
     cfgId = v;
     syncRadio(group, v);
-    name.textContent = `OY 0X Moth · ${v} ГБ`;
+    name.textContent = `${PRODUCT.name} · ${v} ГБ`;
     renderTotal(true);
   });
   $('[data-price-table]').innerHTML = PRODUCT.configs
@@ -622,7 +631,7 @@ function onEnter(id) {
   }
   if (id === 'argon') playScore();
   if (id === 'claw') net.callRun(net.isCall());
-  if (id === 'cams') stage?.setWing(camLens === '1' ? 'camera' : 'camera-wide');
+  if (id === 'cams') stage?.setWing(LENS_MODE[camLens]);
   if (id === 'colors' && !lampPose.on) resetLamp();
 }
 function onLeave(id) {

@@ -65,7 +65,73 @@
   --bg-tint: #0C0D0F;
   --body: #EEF1F4;
 }
+/* ещё шесть цветов — у 0X Moth 2 их двенадцать */
+:root[data-color="orange"] {
+  --wall: url("/img/moth/wall-orange.webp");
+  --accent: #FFA040;
+  --accent-text: #FFB066;
+  --accent-strong: #9A4A00;
+  --accent-ink: #1F0E00;
+  --glow: rgba(242, 140, 40, .32);
+  --bg-tint: #130D07;
+  --body: #F28C28;
+}
+:root[data-color="lavender"] {
+  --wall: url("/img/moth/wall-lavender.webp");
+  --accent: #C7B0FF;
+  --accent-text: #CDB8FF;
+  --accent-strong: #5B3FA0;
+  --accent-ink: #170D2A;
+  --glow: rgba(183, 156, 232, .32);
+  --bg-tint: #100C15;
+  --body: #B79CE8;
+}
+:root[data-color="mint"] {
+  --wall: url("/img/moth/wall-mint.webp");
+  --accent: #8EF0DA;
+  --accent-text: #9AF2DE;
+  --accent-strong: #1E7563;
+  --accent-ink: #04201A;
+  --glow: rgba(127, 216, 196, .32);
+  --bg-tint: #0A1210;
+  --body: #7FD8C4;
+}
+:root[data-color="midnight"] {
+  --wall: url("/img/moth/wall-midnight.webp");
+  --accent: #8A93A6;
+  --accent-text: #B4BCCC;
+  --accent-strong: #3A4150;
+  --accent-ink: #FFFFFF;
+  --glow: rgba(138, 147, 166, .32);
+  --bg-tint: #0A0B0D;
+  --body: #23252C;
+}
+:root[data-color="teal"] {
+  --wall: url("/img/moth/wall-teal.webp");
+  --accent: #3CC9CF;
+  --accent-text: #6FDDE2;
+  --accent-strong: #0F6468;
+  --accent-ink: #FFFFFF;
+  --glow: rgba(31, 163, 168, .32);
+  --bg-tint: #08100F;
+  --body: #1FA3A8;
+}
+:root[data-color="sand"] {
+  --wall: url("/img/moth/wall-sand.webp");
+  --accent: #E8D3AE;
+  --accent-text: #EBD8B6;
+  --accent-strong: #7A6238;
+  --accent-ink: #1E170A;
+  --glow: rgba(216, 195, 160, .32);
+  --bg-tint: #110F0B;
+  --body: #D8C3A0;
+}
 :root { --gauge-w: 64px; }
+
+/* снятый с продажи Moth: плашка над заголовком */
+.disc-plate { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 6px 12px; border: 1px solid var(--line-2, rgba(255,255,255,.18)); border-radius: 999px; font-size: 12px; letter-spacing: .04em; color: var(--muted); }
+.disc-plate::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #FF5A5A; }
+.disc-plate a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
 
 .swatch--yellow { background: radial-gradient(circle at 35% 30%, #FFF0A0, #F6D44A 55%, #B89A1E); }
 .swatch--red { background: radial-gradient(circle at 35% 30%, #F2707F, #D7263D 55%, #8E1426); }
@@ -73,6 +139,12 @@
 .swatch--apple { background: radial-gradient(circle at 35% 30%, #C8EE8E, #8DC63F 55%, #5A8A1E); }
 .swatch--blue { background: radial-gradient(circle at 35% 30%, #7FA8F0, #2F6FDB 55%, #1A428C); }
 .swatch--cloud { background: radial-gradient(circle at 35% 30%, #FFFFFF, #EEF1F4 55%, #B9C1C9); }
+.swatch--orange { background: radial-gradient(circle at 35% 30%, #FFC27A, #F28C28 55%, #A9560C); }
+.swatch--lavender { background: radial-gradient(circle at 35% 30%, #E4D8FF, #B79CE8 55%, #7A62B0); }
+.swatch--mint { background: radial-gradient(circle at 35% 30%, #C8F5EA, #7FD8C4 55%, #3F9C88); }
+.swatch--midnight { background: radial-gradient(circle at 35% 30%, #5A5E6B, #23252C 55%, #0E0F12); }
+.swatch--teal { background: radial-gradient(circle at 35% 30%, #7FE0E4, #1FA3A8 55%, #0E6266); }
+.swatch--sand { background: radial-gradient(circle at 35% 30%, #F5EAD6, #D8C3A0 55%, #9C8560); }
 
 /* ---------- Главы: без JS — обычная страница ---------- */
 
@@ -220,6 +292,23 @@ html.is-fold .site-header { position: absolute; }
 .light__buy { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
 .price { font-size: 22px; margin-right: 6px; }
 .price strong { font-size: 32px; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+/* ---------- 0X Moth 2: «было → стало», коробка, сравнение поколений ---------- */
+.m2-up { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 26px; max-width: 560px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 16px; overflow: hidden; background: rgba(255, 255, 255, .12); }
+.m2-up li { display: grid; gap: 2px; padding: 12px 14px; background: color-mix(in srgb, var(--bg-tint) 88%, transparent); backdrop-filter: blur(8px); }
+.m2-up span { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.m2-up s { font-size: 12px; color: var(--muted); text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); }
+.m2-up b { font-size: 17px; font-weight: 700; letter-spacing: -.02em; color: var(--accent-text); }
+.m2-box__title { margin-top: 70px; }
+.m2-box { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+.m2-box__item { display: grid; gap: 8px; align-content: start; padding: 22px; border-radius: 20px; background: color-mix(in srgb, var(--accent) 10%, rgba(255, 255, 255, .03)); border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent); }
+.m2-box__item svg { width: 46px; height: 46px; fill: none; stroke: var(--accent-text); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.m2-box__item b { font-size: 18px; letter-spacing: -.02em; }
+.m2-box__item span { font-size: 14px; line-height: 1.45; color: var(--light-muted, var(--muted)); }
+.m2-vs { margin-top: 40px; }
+@media (max-width: 760px) {
+  .m2-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .m2-box { grid-template-columns: 1fr; }
+}
 .hint { margin-top: 30px; font-size: 12px; letter-spacing: .06em; color: var(--muted); }
 .hint span { display: inline-block; color: var(--accent-text); animation: hint-down 1.6s var(--ease) infinite; }
 @keyframes hint-down { 50% { transform: translateY(5px); } }
@@ -248,6 +337,8 @@ html:not(.is-fold) .hint { display: none; }
 .wing__cam { top: 22px; width: 42px; height: 42px; }
 .wing__cam--a { left: 22px; }
 .wing__cam--b { left: 74px; }
+.wing__cam--c { top: 76px; left: 22px; }
+.wing__flash--m2 { top: 92px; left: 88px; }
 .wing__flash { top: 30px; left: 128px; width: 14px; height: 14px; background: #F3EAD6; box-shadow: 0 0 0 2px #2B2D31; }
 .wing__time { font-size: 72px; font-weight: 700; letter-spacing: -.05em; line-height: 1; }
 .wing__date { margin-top: 6px; font-size: 14px; color: rgba(244, 243, 239, .62); }
@@ -574,6 +665,9 @@ input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; cu
 .shot--wide .shot__pic i { width: 26%; height: 44%; left: 37%; }
 .shot--wide .shot__pic i:nth-child(2) { left: 8%; height: 38%; }
 .shot--wide .shot__pic i:nth-child(3) { left: 66%; height: 40%; }
+.shot--tele .shot__pic { background: radial-gradient(14% 14% at 18% 22%, color-mix(in srgb, var(--accent) 60%, transparent), transparent), radial-gradient(18% 18% at 84% 30%, color-mix(in srgb, var(--accent) 50%, transparent), transparent), linear-gradient(#1E2236, #8A5A3C 58%, #2A1A12); }
+.shot--tele .shot__pic i { width: 76%; height: 62%; left: 12%; bottom: -22%; }
+.shot--tele .shot__pic i::before { left: 26%; top: -52%; width: 48%; }
 .shot__pic::after { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 50% at 70% 20%, color-mix(in srgb, var(--accent) 45%, transparent), transparent 70%); }
 .shot__cap { position: absolute; left: 8px; right: 8px; bottom: 6px; font: 500 9px var(--mono); color: #555; display: flex; justify-content: space-between; }
 .shot.is-new { animation: shot-in .9s var(--ease) both; }
