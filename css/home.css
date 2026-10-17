@@ -186,6 +186,10 @@
 .nope__k { position: relative; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .nope__k::after { content: ''; position: absolute; left: -2px; right: -2px; top: 50%; height: 1.5px; background: #FF5C64; }
 .nope p { margin-top: 14px; font-size: 18px; font-weight: 600; line-height: 1.35; }
+/* OY OS 4: то, чего не было, — появилось. Зачёркивания нет, метка «новое» */
+.nope--new { border-color: rgba(10, 132, 255, .4); background: radial-gradient(120% 90% at 100% 0%, rgba(10, 132, 255, .16), transparent 60%), var(--bg-2); }
+.nope--new .nope__k { color: #64B5FF; }
+.nope--new .nope__k::after { content: 'новое'; position: static; display: inline-block; height: auto; margin-left: 10px; padding: 2px 8px; border-radius: 999px; background: #0A84FF; color: #fff; font-size: 10px; letter-spacing: .06em; vertical-align: 1px; }
 
 /* =========================================================================
    Адаптив
