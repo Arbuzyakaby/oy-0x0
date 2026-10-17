@@ -71,6 +71,12 @@ body { color: var(--fg); }
 .fy .eyebrow { color: var(--accent-text); }
 .fy-small { margin-top: 18px; font-size: 14px; line-height: 1.55; color: var(--muted); max-width: 56ch; }
 .fy-small--center { margin-inline: auto; text-align: center; }
+/* новый слоган — следующий продукт Fyr, пока без страницы */
+.fy-next { margin: 56px auto 0; max-width: 760px; padding: 26px clamp(18px, 4vw, 34px); text-align: center; border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 18px; }
+.fy-next .eyebrow { margin: 0 0 12px; }
+.fy-next__hex { font-size: clamp(15px, 2.3vw, 24px); letter-spacing: .06em; line-height: 1.5; color: var(--accent-text, var(--accent)); overflow-wrap: anywhere; }
+.fy-next .fy-small { margin-top: 12px; }
+.footer__privacy { overflow-wrap: anywhere; }
 .fy-list { display: grid; gap: 12px; margin-top: 26px; max-width: 48ch; }
 .fy-list li { position: relative; padding-left: 22px; color: rgba(244, 247, 255, .72); font-size: 16px; line-height: 1.5; }
 .fy-list li::before { content: '0x'; position: absolute; left: 0; top: .2em; font: 500 10px/1 var(--mono); color: var(--accent-text); }
