@@ -215,8 +215,10 @@ mm.add({ reduce: '(prefers-reduced-motion: reduce)', motion: '(prefers-reduced-m
   // VI. Ключ падает, вода принимает, круги и пузыри, глубиномер, подпись
   const key = $('[data-key]');
   const water = $('.chr-key__water');
-  // центр ключа приходит на линию воды
-  const fall = () => water.offsetTop - key.offsetTop - key.offsetHeight * 0.5 + 24;
+  // центр ключа приходит на линию воды. Ключ — <svg>, у него нет offsetTop/offsetHeight:
+  // место и размер берём из вычисленных стилей (без transform, который крутит GSAP)
+  const keyBox = () => { const cs = getComputedStyle(key); return { top: parseFloat(cs.top) || 0, h: parseFloat(cs.height) || 0 }; };
+  const fall = () => { const k = keyBox(); return water.offsetTop - k.top - k.h * 0.5 + 24; };
   const DEPTH = ['над водой', 'падает', 'падает', 'тонет', 'на дне'];
   gsap.timeline({
     scrollTrigger: {
@@ -226,7 +228,7 @@ mm.add({ reduce: '(prefers-reduced-motion: reduce)', motion: '(prefers-reduced-m
   })
     .fromTo(key, { y: -40, rotate: -18, opacity: 1 }, { y: () => fall() * 0.55, rotate: 120, ease: 'none', duration: 0.4 }, 0.05)
     .to(key, { y: () => fall(), rotate: 200, ease: 'power1.in', duration: 0.18 }, 0.45)
-    .to(key, { y: () => fall() + key.offsetHeight * 0.9, opacity: 0, ease: 'none', duration: 0.12 }, 0.63)
+    .to(key, { y: () => fall() + keyBox().h * 0.9, opacity: 0, ease: 'none', duration: 0.12 }, 0.63)
     .fromTo('[data-ripples] i', { scale: 0.05, opacity: 0.9 }, { scale: 1.6, opacity: 0, stagger: 0.07, duration: 0.25, ease: 'none' }, 0.62)
     .fromTo('[data-bubbles] i', { y: 60, opacity: 0 }, { y: -10, opacity: 0.9, stagger: 0.03, duration: 0.15, ease: 'none' }, 0.66)
     .to('[data-bubbles] i', { opacity: 0, duration: 0.08 }, 0.86)
