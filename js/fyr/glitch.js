@@ -127,7 +127,7 @@ function inject(parent, html, where = 'append') {
 function dress() {
   document.querySelectorAll('.brand, .footer__brand, .x-logo').forEach((b) => inject(b, LOGO, 'prepend'));
   const foot = ['.footer__inner', '.x-footer__grid', 'body > footer'].map((q) => document.querySelector(q)).find(Boolean);
-  inject(foot, `<a class="fyr-sig mono" href="/fyr/" aria-label="Fyr Osmium X0 — страница Fyr">${SIG}<span aria-hidden="true"> →</span></a>`);
+  inject(foot, `<a class="fyr-sig mono" href="/fyr/chronicle/" aria-label="Хроника: как OY стала Fyr">${SIG}<span aria-hidden="true"> →</span></a>`);
   const back = inject(document.body, '<button type="button" class="fyr-return">Вернуть OY</button>');
   back.addEventListener('click', () => revert());
 
@@ -352,8 +352,8 @@ export async function revert() {
   running = false;
 }
 
-// Страница /fyr/: «Вернуть OY» снимает режим и уводит на главную OY
+// Страницы Fyr: Fyr теперь легальна и режим на всю вкладку не включает.
+// Ссылки [data-fyr-return] (если остались) просто снимают режим пасхалки
 export function mountPage() {
-  session.set();
   document.querySelectorAll('[data-fyr-return]').forEach((a) => a.addEventListener('click', () => session.clear()));
 }

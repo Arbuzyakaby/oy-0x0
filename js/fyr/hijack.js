@@ -18,7 +18,7 @@ const session = {
 
 const fire = () => { if (root.dataset.brand !== 'fyr') hijack(); };
 
-// Страница /fyr/ уже «перехвачена»: там нужна только кнопка «Вернуть OY»
+// Страницы Fyr — свои: «Перехват» там не нужен
 if (root.hasAttribute('data-fyr-page')) {
   mountPage();
 } else {

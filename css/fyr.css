@@ -99,6 +99,8 @@ html[data-brand="fyr"] .fyr-logo__lamp { fill: var(--accent-text); stroke: none;
 html[data-brand="fyr"] a:hover > .fyr-logo .fyr-logo__beam { opacity: .9; }
 @keyframes fyr-beam { to { transform: rotate(360deg); } }
 
+html[data-brand="fyr"] .brand__fyr,
+html[data-brand="fyr"] .brand__sep,
 html[data-brand="fyr"] .brand__mark,
 html[data-brand="fyr"] .brand__name,
 html[data-brand="fyr"] .x-logo > span,

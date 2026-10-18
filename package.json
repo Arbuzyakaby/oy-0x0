@@ -1,8 +1,8 @@
 {
-  "name": "oy0x0-site",
+  "name": "oy-site",
   "private": true,
   "type": "module",
-  "description": "Промо-сайт OY 0X0. Сборщик не нужен; package.json только для тестов.",
+  "description": "Сайт Fyr и телефонов OY. Сборщик не нужен; package.json только для тестов.",
   "scripts": {
     "stamp": "node tools/stamp.mjs",
     "test": "node tools/stamp.mjs --check && node --test \"tests/unit/**/*.test.js\""

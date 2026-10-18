@@ -24,10 +24,10 @@
 
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=3ac5287b33">
-  <link rel="stylesheet" href="/css/core.css?v=71c822a7d7">
-  <link rel="stylesheet" href="/css/home.css?v=81b2c070ba">
+  <link rel="stylesheet" href="/css/core.css?v=2d5010d1f6">
+  <link rel="stylesheet" href="/css/home.css?v=9897554d0c">
   <link rel="stylesheet" href="/css/compare.css?v=0ac5120728">
-  <link rel="stylesheet" href="/css/fyr.css?v=70f3efc855">
+  <link rel="stylesheet" href="/css/fyr.css?v=b41b4911e6">
 
   <script type="importmap">
   {
@@ -48,9 +48,9 @@
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=1875ed22df",
       "/js/data/products.js": "/js/data/products.js?v=dcb68a6977",
-      "/js/fyr/dict.js": "/js/fyr/dict.js?v=7ba3e5939c",
-      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=7ae7e9f468",
-      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=0e1fd5c20e",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=8b0c31b593",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=a05ec40dc8",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=1d2cd94695",
       "/js/models/extreamy1.js": "/js/models/extreamy1.js?v=1dbf5e5d5c",
       "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
       "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
@@ -82,11 +82,11 @@
       "/js/pages/compare.js": "/js/pages/compare.js?v=363062d206",
       "/js/pages/extream-kit.js": "/js/pages/extream-kit.js?v=0240df119d",
       "/js/pages/extream.js": "/js/pages/extream.js?v=afa96b81d5",
+      "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=2e13755c12",
       "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
       "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
-      "/js/pages/home.js": "/js/pages/home.js?v=0dc4a26002",
-      "/js/pages/letter.js": "/js/pages/letter.js?v=f193b41608",
+      "/js/pages/home.js": "/js/pages/home.js?v=4360680954",
       "/js/pages/moth.js": "/js/pages/moth.js?v=101ccfb826",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
       "/js/pages/nova.js": "/js/pages/nova.js?v=7ed8f3c40d",
@@ -100,7 +100,7 @@
   </script>
   <script>document.documentElement.classList.add('js');</script>
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
-  <script type="module" src="/js/fyr/hijack.js?v=0e1fd5c20e"></script>
+  <script type="module" src="/js/fyr/hijack.js?v=1d2cd94695"></script>
   <script type="module" src="/js/pages/compare.js?v=363062d206"></script>
 </head>
 <body>
@@ -152,11 +152,13 @@
   </div>
 
   <header class="site-header" id="top">
-    <a class="brand" href="/" aria-label="OY — на главную">
-      <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+    <a class="brand" href="/" aria-label="Fyr и телефоны OY — на главную">
+      <svg class="brand__fyr" viewBox="0 0 46 30" aria-hidden="true"><path class="brand__fyr-beam" d="M23 6L42 0.5V11.5Z"/><path d="M8 24V10a4 4 0 0 1 4-4h3M4 13h9M19 12v6a4 4 0 0 0 8 0M27 12v12a4 4 0 0 1-7.4 2.2M34 24v-8a4 4 0 0 1 4-4h3"/><circle class="brand__fyr-lamp" cx="23" cy="6" r="1.8"/></svg><span class="brand__sep" aria-hidden="true">/</span><svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
       <span class="brand__name">OY</span>
     </a>
     <nav class="site-nav" aria-label="Модели">
+      <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
+      <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
       <a href="/0x3e/">0X3 Essential</a>
       <a href="/0x2/">0X2</a>
       <a href="/moth2/">0X Moth 2</a>
@@ -246,6 +248,7 @@
 
   <footer class="site-footer">
     <div class="container footer__inner">
+      <p class="transit-plate"><b>Переходный период</b> <span>OY&nbsp;Europe обанкротилась. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr. В&nbsp;Китае их&nbsp;продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
       <div class="footer__brand">
         <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
         <span>OY · французский стартап</span>

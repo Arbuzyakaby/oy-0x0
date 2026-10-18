@@ -95,6 +95,8 @@ a.fy-next__hex:hover, a.fy-next__hex:focus-visible { color: var(--fg); text-deco
 .fy-hero__big {
   font-size: clamp(54px, 8vw, 140px); font-weight: 760; letter-spacing: -.055em; line-height: .92; text-transform: lowercase;
   background: linear-gradient(100deg, #FFFFFF 15%, #7FA4FF 60%, #2F6BFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  /* градиент обрезается по строке: место под хвосты «у», «р» */
+  padding-bottom: .16em; margin-bottom: -.16em;
 }
 .fy-hero__buy { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
 .fy-price { font-size: 20px; margin-right: 6px; }

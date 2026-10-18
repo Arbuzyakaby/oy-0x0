@@ -288,6 +288,19 @@ main, .site-footer { position: relative; z-index: 2; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: -.02em; font-size: 18px; }
 .brand__mark { width: 46px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
 .brand__mark circle { stroke: var(--accent-text); }
+/* переходный период: сайт — Fyr, телефоны — OY. Логотип «fyr / OY» */
+.brand__fyr { width: 40px; height: 26px; flex: none; overflow: visible; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.brand__fyr-beam { fill: #2F6BFF; stroke: none; opacity: .5; transform-box: view-box; transform-origin: 23px 6px; animation: brand-beam 8s linear infinite; }
+.brand__fyr-lamp { fill: #7FA4FF; stroke: none; }
+.brand__sep { margin: 0 -2px; color: var(--muted); font-weight: 400; }
+@keyframes brand-beam { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .brand__fyr-beam { animation: none; } }
+.site-nav .site-nav__fyr { color: #7FA4FF; font-weight: 600; }
+.site-nav .site-nav__fyr:hover { color: #F4F7FF; }
+/* плашка переходного периода в подвале страниц OY */
+.transit-plate { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 14px 18px; border: 1px solid rgba(47, 107, 255, .45); border-radius: 14px; background: rgba(47, 107, 255, .08); color: var(--fg); font-size: 14px; line-height: 1.5; }
+.transit-plate b { color: #7FA4FF; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.transit-plate a { color: #7FA4FF; white-space: nowrap; }
 .site-nav { display: flex; gap: clamp(14px, 1.5vw, 26px); font-size: 14px; }
 .site-nav a { text-decoration: none; color: var(--muted); transition: color .2s; white-space: nowrap; }
 .site-nav a:hover { color: var(--fg); }
@@ -500,6 +513,13 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
    Адаптив (общие элементы)
    ========================================================================= */
 
+/* в меню двенадцать пунктов: на узких экранах прячем наименее нужные */
+@media (max-width: 1480px) {
+  .site-nav a:is([href="/0x2q/"], [href="/accessories/"]) { display: none; }
+}
+@media (max-width: 1280px) {
+  .site-nav a:is([href="/0x3e/"], [href="/os/"]) { display: none; }
+}
 @media (max-width: 1100px) {
   .site-nav { display: none; }
 }

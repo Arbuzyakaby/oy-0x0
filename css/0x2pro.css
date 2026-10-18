@@ -590,3 +590,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent-text); height: 28p
   .eu li b { font-size: 11px; }
   .curtain__pane figcaption, .curtain__meta { font-size: 10px; }
 }
+
+/* №1 в Евросоюзе: впервые OY первой среди всех смартфонов, а не только среди раскладушек */
+.win-chip { display: inline-flex; align-items: baseline; gap: 10px; margin-top: 14px; padding: 8px 14px; border: 1px solid #FFC857; border-radius: 999px; background: rgba(255, 200, 87, .1); color: #FFC857; font-size: 12px; letter-spacing: .04em; }
+.win-chip b { font-size: 15px; }

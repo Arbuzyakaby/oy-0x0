@@ -219,10 +219,10 @@
   .lineup__canvas { height: 360px; border-bottom: 1px solid var(--line-2); }
   .lineup__note { text-align: left; }
   .cmp td { font-size: 13px; }
-  .site-header .site-nav a:is(:nth-child(1), :nth-child(2), :nth-child(3), :nth-child(4), :nth-child(6), :nth-child(8), :nth-child(10)) { display: none; }
+  .site-header .site-nav a:not(.site-nav__fyr, [href="/compare/"]) { display: none; }
 }
 @media (max-width: 560px) {
-  .site-header .site-nav a:nth-child(5) { display: none; }
+  .site-header .site-nav a[href="/compare/"] { display: none; }
   .site-header .site-nav { gap: 14px; }
   .os2h__grid { grid-template-columns: 1fr; }
   .cmp th, .cmp td { padding-right: 10px; font-size: 13px; }
@@ -231,13 +231,82 @@
   .header-actions .btn--sm { display: none; }
 }
 
-/* ---------- Открытое письмо сотрудников: баннер на витрине ---------- */
-.letter-banner { padding-block: clamp(40px, 6vw, 80px); }
-.letter-banner__card { position: relative; display: grid; gap: 12px; padding: clamp(26px, 3.4vw, 48px) clamp(22px, 3.4vw, 48px); background: #ECE6D8; color: #0B0B0C; text-decoration: none; overflow: hidden; box-shadow: 10px 10px 0 #E5352B; transition: transform .25s var(--ease); }
-.letter-banner__card:hover, .letter-banner__card:focus-visible { transform: translate(-3px, -3px) rotate(-.3deg); }
-.letter-banner__card:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
-.letter-banner__tape { position: absolute; top: 0; left: 0; right: 0; height: 14px; background: repeating-linear-gradient(-45deg, #E5352B 0 14px, #0B0B0C 14px 28px); }
-.letter-banner__k { margin-top: 10px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #E5352B; font-weight: 700; }
-.letter-banner__t { font-size: clamp(28px, 4.4vw, 62px); font-weight: 800; letter-spacing: -.04em; line-height: 1; text-wrap: balance; }
-.letter-banner__p { font-size: clamp(15px, 1.3vw, 18px); line-height: 1.5; max-width: 62ch; color: #2A2A2E; }
-.letter-banner__go { font-weight: 800; color: #E5352B; }
+
+/* =========================================================================
+   Переходный период: Fyr на первом экране, хроника, №1 в Евросоюзе
+   ========================================================================= */
+
+.fyr-home {
+  position: relative; overflow: hidden; color: #F4F7FF;
+  padding-top: calc(var(--header-h) + clamp(36px, 7vh, 96px)); padding-bottom: clamp(48px, 8vh, 96px);
+  background: radial-gradient(70% 60% at 78% 10%, rgba(47, 107, 255, .22), transparent 70%), #05070A;
+  border-bottom: 1px solid rgba(160, 190, 255, .14);
+}
+.fyr-home::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: conic-gradient(from 200deg at 80% 0%, transparent 0deg, rgba(47, 107, 255, .14) 12deg, transparent 26deg);
+  animation: fyr-home-sweep 10s linear infinite; transform-origin: 80% 0%;
+}
+@keyframes fyr-home-sweep { 0%, 100% { transform: rotate(-26deg); } 50% { transform: rotate(26deg); } }
+.fyr-home__head { position: relative; display: grid; gap: 18px; }
+.fyr-home__k { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #7FA4FF; }
+.fyr-home__title { font-size: clamp(42px, 6.4vw, 108px); font-weight: 760; letter-spacing: -.055em; line-height: .95; text-transform: lowercase; max-width: 15ch; }
+.fyr-home__title span {
+  display: block; padding-bottom: .16em; margin-bottom: -.16em;
+  background: linear-gradient(100deg, #FFFFFF 10%, #7FA4FF 55%, #2F6BFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.fyr-home__lead { max-width: 58ch; color: rgba(244, 247, 255, .7); font-size: clamp(16px, 1.25vw, 19px); line-height: 1.5; }
+.fyr-duo { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: clamp(28px, 5vh, 56px); }
+.fyr-card {
+  position: relative; display: grid; grid-template-rows: auto 1fr; overflow: hidden; text-decoration: none; color: inherit;
+  border: 1px solid rgba(160, 190, 255, .18); border-radius: 26px; background: linear-gradient(180deg, #0B1019, #070A10);
+  transition: border-color .3s, transform .35s var(--ease), box-shadow .35s;
+}
+.fyr-card:hover, .fyr-card:focus-visible { border-color: #2F6BFF; transform: translateY(-4px); box-shadow: 0 30px 70px -36px #2F6BFF; }
+.fyr-card__canvas { display: block; width: 100%; height: clamp(260px, 36vh, 420px); }
+.fyr-card__label { display: grid; gap: 8px; padding: 0 clamp(20px, 2.4vw, 32px) clamp(22px, 2.4vw, 30px); }
+.fyr-card__k { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #7FA4FF; }
+.fyr-card__name { font-size: clamp(30px, 3.2vw, 50px); font-weight: 750; letter-spacing: -.045em; line-height: 1; }
+.fyr-card__tag { color: rgba(244, 247, 255, .66); font-size: 15px; line-height: 1.45; max-width: 44ch; }
+.fyr-card__price { margin-top: 4px; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.fyr-card__price .muted { font-size: 14px; font-weight: 400; color: #7D8799; }
+.fyr-card__go { display: inline-block; color: #7FA4FF; transition: transform .35s var(--ease); }
+.fyr-card:hover .fyr-card__go { transform: translateX(6px); }
+.fyr-home__chron { position: relative; margin-top: 16px; }
+.fyr-home__chron-link {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; padding: 18px 22px; border-radius: 18px;
+  border: 1px dashed rgba(47, 107, 255, .55); color: #F4F7FF; text-decoration: none; font-size: 17px; font-weight: 600; letter-spacing: -.01em;
+}
+.fyr-home__chron-link .mono { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #7FA4FF; }
+.fyr-home__chron-link:hover, .fyr-home__chron-link:focus-visible { border-style: solid; background: rgba(47, 107, 255, .08); }
+
+.lineup__new--win { color: #7FA4FF; }
+.shift__item--warn { border-color: rgba(255, 190, 70, .45); background: rgba(255, 190, 70, .05); }
+.shift__item--warn .shift__k { color: #FFC857; }
+.os2h__lead { margin-top: 18px; max-width: 62ch; color: var(--muted); font-size: 17px; line-height: 1.5; }
+
+.win-banner { padding-block: clamp(40px, 6vw, 80px); }
+.win-banner__card {
+  position: relative; display: grid; gap: 14px; padding: clamp(26px, 3.6vw, 52px); overflow: hidden; text-decoration: none; color: #F4F7FF;
+  border-radius: 28px; border: 1px solid rgba(127, 164, 255, .35);
+  background: radial-gradient(80% 120% at 100% 0%, rgba(47, 107, 255, .4), transparent 60%), linear-gradient(135deg, #0B1A3A, #070A10 70%);
+  transition: transform .3s var(--ease), box-shadow .3s;
+}
+.win-banner__card:hover, .win-banner__card:focus-visible { transform: translateY(-3px); box-shadow: 0 30px 70px -36px #2F6BFF; }
+.win-banner__k { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #FFC857; }
+.win-banner__t { font-size: clamp(36px, 5.4vw, 84px); font-weight: 780; letter-spacing: -.05em; line-height: .98; text-wrap: balance; }
+.win-banner__t span { color: #7FA4FF; }
+.win-banner__p { max-width: 64ch; color: rgba(244, 247, 255, .74); font-size: clamp(15px, 1.25vw, 18px); line-height: 1.5; }
+.win-banner__rank { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.win-banner__rank > span { display: inline-flex; gap: 10px; align-items: baseline; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(244, 247, 255, .18); font: 500 12px/1 var(--mono); letter-spacing: .04em; color: rgba(244, 247, 255, .6); }
+.win-banner__rank b { font-size: 16px; color: inherit; }
+.win-banner__rank .is-win { border-color: #FFC857; color: #FFC857; background: rgba(255, 200, 87, .08); }
+.win-banner__go { font-weight: 700; color: #7FA4FF; }
+
+@media (max-width: 860px) {
+  .fyr-duo { grid-template-columns: 1fr; }
+  .fyr-card__canvas { height: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fyr-home::before { animation: none; }
+}

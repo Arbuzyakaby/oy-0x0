@@ -146,7 +146,7 @@ test('страница eXtream Y1: тринадцать уровней и фин
   assert.ok(html.includes('id="china"'));
 });
 
-test('о том, что прячет Erbium, — только в открытом письме и в его анонсах; имени партнёра на сайте нет нигде', () => {
+test('о том, что прячет Erbium, на сайте ни слова; имени партнёра нет нигде', () => {
   // docs/, README и blender/ — не сайт, там можно; партнёр по коллабу на сайте — только «крупный китайский бренд»
   const banned = [/deuterium/i, /дейтери/i, /эмулят/i, /emulat/i, /windows/i, /playstation/i, /\bps ?[123]\b/i, /xbox/i, /tencent/i, /т[еэ]нс[еэ]нт/i, /wechat/i, /weixin/i];
   const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((d) => {
@@ -157,32 +157,20 @@ test('о том, что прячет Erbium, — только в открыто�
   // Fyr KBook 1 честно запускает Windows 11 рядом с CamelOS и x86 через «Мираж» — к Erbium это не относится
   const kbook = /^(fyr\/kbook\/|js\/pages\/fyr-kbook|js\/models\/fyrkbook|css\/fyr-kbook)/;
   const kbookOk = ['эмулят', 'emulat', 'windows'];
-  // письмо сотрудников OY раскрывает эмулятор: на странице письма и в анонсах слова про эмулятор можно
-  const letter = /^(letter\/|js\/pages\/letter|css\/letter|index\.html$|extream\/index\.html$|extream\/y1\/index\.html$)/;
-  const letterOk = ['deuterium', 'дейтери', 'эмулят', 'emulat'];
   for (const f of files) {
     if (!existsSync(join(ROOT, f))) continue;
     const text = read(f);
     for (const re of banned) {
       if (kbook.test(f) && kbookOk.includes(re.source)) continue;
-      if (letter.test(f) && letterOk.includes(re.source)) continue;
       assert.ok(!re.test(text), `${f}: ${re}`);
     }
   }
 });
 
-test('открытое письмо сотрудников OY: требования, три находки, ультиматум, анонсы на витрине и в eXtream, 14 ступеней у Moth 2', () => {
-  const html = read('letter/index.html');
-  for (const id of ['why', 'found', 'demands', 'ultimatum', 'sign']) assert.ok(html.includes(`id="${id}"`), id);
-  assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  assert.equal((html.match(/<li data-reveal><b>0\d · /g) || []).length, 4, 'четыре требования');
-  for (const re of [/слияни[ея] с&nbsp;Fyr/i, /Стоп Китаю/, /облака/, /телеметри/, /Deuterium/, /Erbium/, /голодовк/, /баррикадир/, /воевать/, /четырнадцать ступеней/]) assert.match(html, re);
-  assert.ok(html.includes('вымышленный документ вымышленной компании'));
-  assert.ok(read('index.html').includes('href="/letter/"'));
-  assert.ok(read('extream/index.html').includes('href="/letter/"'));
-  assert.ok(read('extream/y1/index.html').includes('href="/letter/"'));
-  assert.match(read('moth2/index.html'), /14 ступеней/);
-  assert.ok(existsSync(join(ROOT, 'og-letter.jpg')));
+test('открытого письма сотрудников OY больше нет: ни страницы, ни ссылок, ни анонсов', () => {
+  assert.ok(!existsSync(join(ROOT, 'letter')), 'папка letter/ осталась');
+  assert.ok(!existsSync(join(ROOT, 'og-letter.jpg')));
+  for (const p of [...PAGES, '404.html']) assert.ok(!read(p).includes('/letter/'), `${p}: ссылка на /letter/`);
 });
 
 test('«Перехват» Fyr: загрузчик, стили и щит-кнопка — на каждой странице, загрузчик раньше скрипта страницы', () => {
@@ -201,9 +189,10 @@ test('«Перехват» Fyr: загрузчик, стили и щит-кно�
   assert.ok(read('404.html').includes("script-src 'self' 'unsafe-inline'"));
 });
 
-test('страница /fyr/: скрытая, десять глав, одна h1, якоря ведут к существующим id, вне шапки и витрины OY', () => {
+test('страница /fyr/: открытая, десять глав, одна h1, якоря ведут к существующим id, в шапке каждой страницы OY', () => {
   const html = read('fyr/index.html');
-  assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
+  assert.ok(!html.includes('noindex'), 'Fyr больше не прячется');
+  assert.ok(!html.includes('data-fyr-return'), 'возвращать OY больше не нужно');
   assert.ok(html.includes('data-fyr-page'));
   const chapters = [...html.matchAll(/<section class="fy fy--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(chapters, ['intercept', 'eight', 'choice', 'case', 'tritium', 'gfc', 'quiet', 'missing', 'specs', 'price']);
@@ -215,13 +204,13 @@ test('страница /fyr/: скрытая, десять глав, одна h1
   assert.ok(!Object.values(PRODUCTS).some((p) => /fyr/i.test(p.href)), 'Fyr не продукт OY');
   for (const p of PAGES) {
     const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
-    if (nav) assert.ok(!nav[1].includes('/fyr/'), `${p}: Fyr в шапке OY`);
+    if (nav) assert.ok(nav[1].includes('<a class="site-nav__fyr" href="/fyr/">Osmium X0</a>'), `${p}: нет Osmium X0 в шапке`);
   }
 });
 
-test('страница /fyr/kbook/: скрытая, главы по порядку, одна h1, якоря и hex-цены сходятся, слоган со /fyr/ ведёт сюда', () => {
+test('страница /fyr/kbook/: открытая, главы по порядку, одна h1, якоря и hex-цены сходятся, слоган со /fyr/ ведёт сюда', () => {
   const html = read('fyr/kbook/index.html');
-  assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
+  assert.ok(!html.includes('noindex'));
   assert.ok(html.includes('data-fyr-page'));
   const chapters = [...html.matchAll(/<section class="fy fy--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(chapters, ['intercept', 'days', 'back', 'case', 'chip', 'd1', 'shutter', 'open', 'boot', 'setup', 'rtds', 'mirage', 'watch', 'trash', 'compare', 'specs', 'price']);
@@ -244,7 +233,7 @@ test('страница /fyr/kbook/: скрытая, главы по порядк
   assert.ok(read('fyr/index.html').includes('<a class="fy-next__hex mono" href="/fyr/kbook/">'), 'слоган «Это следующее» не ведёт на KBook');
   for (const p of PAGES) {
     const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
-    if (nav) assert.ok(!nav[1].includes('/fyr/kbook/'), `${p}: KBook в шапке OY`);
+    if (nav) assert.ok(nav[1].includes('<a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>'), `${p}: нет KBook 1 в шапке`);
   }
 });
 
@@ -282,9 +271,9 @@ test('прощальный салют 0X0: на витрине и страниц
   assert.ok(read('index.html').includes('data-salute'));
 });
 
-test('витрина: шесть телефонов в продаже, блок «Перемены в OY» с новостями весны 2031-го', () => {
+test('витрина: шесть телефонов OY в продаже под Fyr, блок «Хроника коротко» вместо «Перемен в OY»', () => {
   const html = read('index.html');
-  assert.match(html, /<title>OY — Шесть телефонов/);
+  assert.match(html, /<title>Fyr — Osmium X0, KBook 1 и телефоны OY<\/title>/);
   for (const id of ON_SALE) {
     assert.ok(html.includes(`data-model="${id}"`), `${id}: нет на витрине`);
     assert.ok(html.includes(`href="${PRODUCTS[id].href}#buy"`), `${id}: нет карточки`);
@@ -292,9 +281,7 @@ test('витрина: шесть телефонов в продаже, блок 
   for (const p of Object.values(PRODUCTS).filter((x) => x.discontinued)) assert.ok(!html.includes(`data-model="${p.id}"`), `${p.id}: снят, а на витрине`);
   assert.ok(!html.includes('id="returned"'));
   assert.ok(html.includes('id="shift"'));
-  for (const re of [/83 дата-центра/, /Fyr Connect/, /OY Assist снова/, /0X0 снят с&nbsp;продажи/]) assert.match(html, re);
-  assert.ok(html.includes(`¥${PRODUCTS['0x3e'].configs[0].cny}`));
-  assert.ok(html.includes(`¥${PRODUCTS['0x2pro'].configs.at(-1).cny}`));
+  for (const re of [/Xiaomi/, /XNA/, /XZF/, /Huawei/, /Манхэттенский залив/, /выгрузить свои данные/, /Fyr Connect/, /Спасибо, 0X0/]) assert.match(html, re);
 });
 
 test('страницы моделей, вышедших в Китай, показывают цену в юанях из данных', () => {
@@ -323,4 +310,39 @@ test('OY OS 4.5: Assist на устройстве, «Линза» выключа
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке OY OS 4`);
   // цены в юанях у карточек — только у моделей в продаже
   for (const p of phones.filter((x) => !x.discontinued)) assert.ok(html.includes(`¥${p.configs[0].cny}`), `${p.id}: нет ¥`);
+});
+
+test('хроника /fyr/chronicle/: восемь глав по порядку, одна h1, якоря сходятся, весь сюжет на месте', () => {
+  const html = read('fyr/chronicle/index.html');
+  assert.ok(html.includes('data-fyr-page'));
+  assert.ok(!html.includes('noindex'));
+  const chapters = [...html.matchAll(/<section class="chr-(?:ch|key|now)[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['arrest', 'split', 'xzf', 'cloud', 'exodus', 'key', 'win', 'now']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const re of [/Xiaomi/, /XNA/, /OY&nbsp;Europe/, /XZF/, /Huawei/, /70&nbsp;%/, /Манхэттенский залив/, /выгрузить свои данные из&nbsp;американских дата-центров/, /OY&nbsp;OS&nbsp;5/, /самым продаваемым смартфоном в&nbsp;Евросоюзе/, /Moth&nbsp;2/]) assert.match(html, re);
+  assert.ok(html.includes('/js/pages/fyr-chronicle.js'));
+  assert.ok(existsSync(join(ROOT, 'og-fyr-chronicle.jpg')));
+});
+
+test('главная — Fyr: Osmium X0 и KBook 1 в 3D над телефонами OY, одна h1, ссылка на хронику, 0X2 Pro — №1', () => {
+  const html = read('index.html');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.ok(html.indexOf('data-fyr-model="osmium"') < html.indexOf('id="phones"'));
+  assert.ok(html.includes('data-fyr-model="kbook"'));
+  assert.ok(html.includes('href="/fyr/chronicle/"'));
+  assert.ok(html.includes('id="win"') && html.includes('№1 в ЕС'));
+  assert.match(html, /OY&nbsp;OS&nbsp;5/);
+  assert.ok(read('0x2pro/index.html').includes('class="win-chip'));
+});
+
+test('страницы OY: в шапке логотип «fyr / OY», в подвале плашка переходного периода со ссылкой на хронику', () => {
+  for (const p of PAGES) {
+    if (p.startsWith('fyr/') || p === 'index.html') continue;
+    const html = read(p);
+    assert.ok(html.includes('<p class="transit-plate">'), `${p}: нет плашки`);
+    assert.ok(/class="transit-plate">[\s\S]*?href="\/fyr\/chronicle\/"/.test(html), `${p}: плашка не ведёт на хронику`);
+    if (html.includes('<nav class="site-nav"')) assert.ok(html.includes('class="brand__fyr"'), `${p}: нет fyr в логотипе`);
+  }
 });

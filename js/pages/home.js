@@ -1,5 +1,5 @@
 /* =========================================================================
-   OY — витрина семейства: модельный ряд в 3D, выбор, мини-сравнение.
+   Fyr и телефоны OY — главная: часы и ноутбук Fyr, модельный ряд OY в 3D, выбор, мини-сравнение.
    ========================================================================= */
 
 import { gsap } from 'gsap';
@@ -12,6 +12,8 @@ import { createOY0X3E } from '../models/oy0x3e.js';
 import { createOY0X2Pro } from '../models/oy0x2pro.js';
 import { createOYMoth2 } from '../models/oymoth.js';
 import { createOYNova } from '../models/oynova.js';
+import { createFyrOsmium } from '../models/fyrosmium.js';
+import { createFyrKBook } from '../models/fyrkbook.js';
 import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -78,8 +80,52 @@ $$('.lineup__item').forEach((item) => {
   stages.push(stage);
 });
 
+/* ---------- Fyr: часы и ноутбук над телефонами ---------- */
+
+// Часы смотрят циферблатом вполоборота, ноутбук открыт и показывает рабочий стол CamelOS;
+// при наведении часы разворачиваются к вам, а крышка KBook раскрывается шире
+const FYR = {
+  osmium: {
+    create: createFyrOsmium, screen: 'face',
+    rest: { x: 0, y: 0.02, fx: 0, fy: 0, fz: 0, rx: 0.6, ry: -0.5, rz: 0.1, dist: 2.45, float: 0.6, vis: 1, crown: 0, spin: 0, screen: 1 },
+    near: { rx: 0.12, ry: -0.12, rz: 0.02, dist: 2.15 },
+  },
+  kbook: {
+    create: createFyrKBook, screen: 'desk',
+    rest: { x: 0, y: -0.04, fx: 0, fy: 0, fz: 0, rx: 0.36, ry: -0.5, rz: 0.02, dist: 10.2, float: 0.4, vis: 1, spin: 0, lid: 0.78, keys: 0.5, screen: 1 },
+    near: { rx: 0.3, ry: -0.18, lid: 0.9, keys: 0.9, dist: 9.4 },
+  },
+};
+$$('[data-fyr-model]').forEach((item) => {
+  const cfg = FYR[item.dataset.fyrModel];
+  const canvas = $('.fyr-card__canvas', item);
+  let stage = null;
+  try {
+    stage = createStage(canvas, cfg.create, { forceFallback: params.has('fallback'), fitCanvas: true });
+  } catch (err) {
+    console.warn('[Fyr] WebGL недоступен, 3D отключено.', err);
+    canvas.style.visibility = 'hidden';
+    return;
+  }
+  stage.setTarget(cfg.rest);
+  stage.setBodyColor('polarnatt', true);
+  stage.setReduced(reduceMQ.matches);
+  stage.ready.then(() => { stage.setScreen(cfg.screen, { accent: '#2F6BFF' }); stage.redrawScreen?.(); stage.snap(); });
+  const turn = (on) => stage.setTarget(on ? { ...cfg.rest, ...cfg.near } : cfg.rest);
+  item.addEventListener('pointerenter', () => turn(true));
+  item.addEventListener('pointerleave', () => { turn(false); stage.setPointer(0, 0); });
+  item.addEventListener('focus', () => turn(true));
+  item.addEventListener('blur', () => turn(false));
+  item.addEventListener('pointermove', (e) => {
+    if (reduceMQ.matches || e.pointerType === 'touch') return;
+    const r = canvas.getBoundingClientRect();
+    stage.setPointer(((e.clientX - r.left) / r.width) * 2 - 1, ((e.clientY - r.top) / r.height) * 2 - 1);
+  });
+  stages.push(stage);
+});
+
 // Рендер только пока первый экран виден
-const rows = $$('.lineup');
+const rows = $$('.lineup, .fyr-duo');
 const setActive = (v) => stages.forEach((s) => s.setActive(v && !document.hidden));
 const rowsVisible = new Set(rows);
 const lineupVisible = () => rowsVisible.size > 0;
