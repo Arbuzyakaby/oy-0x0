@@ -22,11 +22,6 @@
   100% { transform: none; }
 }
 
-/* eXtream: свой подвал без спрайта */
-.x-footer__privacy { display: flex; align-items: center; gap: 8px; }
-.x-footer .fyr-shield { margin: -12px -6px -12px -12px; }
-.x-footer .fyr-shield svg { width: 18px; height: 18px; fill: none; stroke: var(--x-accent); stroke-width: 1.8; stroke-linejoin: round; }
-
 /* ---------- Палитра Fyr (перебивает цвета страниц и корпусов) ---------- */
 
 html:root[data-brand="fyr"] {
@@ -50,16 +45,6 @@ html:root[data-brand="fyr"] {
   --gold-2: #2F6BFF;
   --ink: #F4F7FF;
   --night-line: rgba(127, 164, 255, .16);
-  /* eXtream */
-  --x-bg: #05070A;
-  --x-text: #F4F7FF;
-  --x-dim: #7D8799;
-  --x-ice: #7FA4FF;
-  --x-heat: #2F6BFF;
-  --x-acid: #F4F7FF;
-  --x-red: #2F6BFF;
-  --x-accent: #2F6BFF;
-  --x-ink: #FFFFFF;
 }
 html[data-brand="fyr"] body { background-color: var(--bg); }
 /* 404 со своим фоном */
@@ -102,12 +87,8 @@ html[data-brand="fyr"] a:hover > .fyr-logo .fyr-logo__beam { opacity: .9; }
 html[data-brand="fyr"] .brand__fyr,
 html[data-brand="fyr"] .brand__sep,
 html[data-brand="fyr"] .brand__mark,
-html[data-brand="fyr"] .brand__name,
-html[data-brand="fyr"] .x-logo > span,
-html[data-brand="fyr"] .x-logo > .x-logo__x { display: none; }
+html[data-brand="fyr"] .brand__name { display: none; }
 html[data-brand="fyr"] .brand { gap: 0; }
-html[data-brand="fyr"] .x-logo { display: inline-flex; align-items: center; }
-html[data-brand="fyr"] .x-logo .fyr-logo { color: var(--x-text); }
 
 html.fyr-swap .fyr-logo { animation: fyr-logo-in .9s steps(9) 1; }
 @keyframes fyr-logo-in {
@@ -165,7 +146,6 @@ html.fyr-swap .fyr-sig { animation: fyr-logo-in .9s steps(9) 1; }
 html.fyr-glitching body * { text-shadow: -2px 0 rgba(255, 30, 70, .75), 2px 0 rgba(30, 140, 255, .75); }
 html.fyr-glitching main,
 html.fyr-glitching .site-footer,
-html.fyr-glitching .x-footer,
 html.fyr-glitching body > footer { animation: fyr-shake .14s steps(2) infinite; }
 @keyframes fyr-shake {
   0% { translate: 3px 0; }

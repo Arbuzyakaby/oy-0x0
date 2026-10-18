@@ -8,7 +8,7 @@ import { ACCESSORIES } from '../../js/data/accessories.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 const TOP = readdirSync(ROOT).filter((d) => existsSync(join(ROOT, d, 'index.html')) && !d.startsWith('.'));
-// вложенные страницы: /extream/y1/
+// вложенные страницы: /fyr/kbook/, /fyr/chronicle/
 const NESTED = TOP.flatMap((d) => readdirSync(join(ROOT, d), { withFileTypes: true })
   .filter((e) => e.isDirectory() && existsSync(join(ROOT, d, e.name, 'index.html'))).map((e) => `${d}/${e.name}/index.html`));
 const PAGES = ['index.html', ...TOP.map((d) => `${d}/index.html`), ...NESTED];
@@ -110,41 +110,6 @@ test('у каждого аксессуара есть рендер', () => {
   for (const a of ACCESSORIES) assert.ok(existsSync(join(ROOT, 'img', 'accessories', `${a.id}.webp`)), a.id);
 });
 
-
-test('страницы eXtream: хаб и Y1 на месте, в шапке каждой страницы OY есть ссылка на eXtream', () => {
-  assert.ok(PAGES.includes('extream/index.html'));
-  assert.ok(PAGES.includes('extream/y1/index.html'));
-  for (const p of PAGES) {
-    const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
-    if (!nav) continue;
-    assert.ok(nav[1].includes('href="/extream/"'), `${p}: нет ссылки на eXtream`);
-  }
-  // у eXtream своя шапка, шапки OY там нет
-  for (const p of ['extream/index.html', 'extream/y1/index.html']) {
-    const html = read(p);
-    assert.ok(!html.includes('class="site-nav"'), p);
-    assert.ok(html.includes('/css/extream.css'), p);
-    assert.ok(!html.includes('/css/core.css'), p);
-  }
-  assert.ok(read('extream/index.html').includes('href="/extream/y1/"'));
-});
-
-test('страница eXtream Y1: тринадцать уровней и финал, одна h1, якоря ведут к существующим id, цвета — из данных', () => {
-  const html = read('extream/y1/index.html');
-  const levels = [...html.matchAll(/<section class="lvl[^"]*" id="([^"]+)" data-level="([^"]+)"/g)];
-  assert.equal(levels.length, 14);
-  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
-  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
-  assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  for (const id of Object.keys(PRODUCTS.y1.colors)) assert.ok(html.includes(`data-value="${id}"`), id);
-  for (const c of PRODUCTS.y1.configs) assert.ok(html.includes(`data-value="${c.id}"`), c.id);
-  // намёки — без единого слова: 64 ГБ у Erbium и пустая клетка ²H
-  assert.ok(html.includes('Ключам хватило бы и&nbsp;мегабайта'));
-  assert.ok(html.includes('<sup>2</sup>H'));
-  // версия для Китая: юани в покупке и блок коллаба
-  assert.ok(html.includes('data-value="cny"'));
-  assert.ok(html.includes('id="china"'));
-});
 
 test('о том, что прячет Erbium, на сайте ни слова; имени партнёра нет нигде', () => {
   // docs/, README и blender/ — не сайт, там можно; партнёр по коллабу на сайте — только «крупный китайский бренд»
@@ -284,14 +249,22 @@ test('витрина: шесть телефонов OY в продаже под 
   for (const re of [/Xiaomi/, /XNA/, /XZF/, /Huawei/, /Манхэттенский залив/, /выгрузить свои данные/, /Fyr Connect/, /Спасибо, 0X0/]) assert.match(html, re);
 });
 
-test('страницы моделей, вышедших в Китай, показывают цену в юанях из данных', () => {
-  for (const p of Object.values(PRODUCTS).filter((x) => x.cn && !x.brand)) {
-    const html = read(`${p.href.slice(1)}index.html`);
-    assert.match(html, /Китай/, `${p.id}: нет слова «Китай»`);
-    const first = p.configs[0].cny;
-    assert.ok(html.includes(`¥${first}`) || html.includes(`data-cny="${first}"`), `${p.id}: нет ¥${first}`);
-    assert.ok(html.includes('data-cny=') || html.includes('data-price-cny') || html.includes('data-value="cny"'), `${p.id}: нет юаней в разметке`);
+test('ни юаней, ни eXtream: ни на одной странице, ни в скриптах и стилях', () => {
+  const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((d) => {
+    const rel = `${dir}/${d.name}`;
+    return d.isDirectory() ? walk(rel) : /\.(html|js|css)$/.test(d.name) ? [rel] : [];
+  });
+  assert.ok(!existsSync(join(ROOT, 'extream')), 'папка extream/ осталась');
+  for (const f of ['og-extream.jpg', 'models/extreamy1.glb', 'css/extream.css', 'js/models/extreamy1.js', 'fonts/tektur-latin.woff2']) assert.ok(!existsSync(join(ROOT, f)), f);
+  for (const f of [...PAGES, '404.html', ...walk('js'), ...walk('css')]) {
+    // словарь «Перехвата» по-прежнему умеет переводить любые цены в hex, юани тоже
+    const text = f === 'js/fyr/dict.js' ? '' : read(f);
+    assert.ok(!/¥|data-cny|data-price-cny|в(&nbsp;| )юанях,/.test(text), `${f}: юани`);
+    assert.ok(!/\/extream\/|site-nav__x|xbanner|Tektur/.test(text), `${f}: eXtream`);
   }
+  // о продаже eXtream сказано в хронике и на главной
+  assert.match(read('fyr/chronicle/index.html'), /eXtream, игровой суббренд OY, продан XZF/);
+  assert.match(read('index.html'), /eXtream продан XZF/);
 });
 
 test('OY OS 4.5: Assist на устройстве, «Линза» выключается, 83 дата-центра, Fyr Connect; обновятся все 14 смартфонов OY', () => {
@@ -305,11 +278,9 @@ test('OY OS 4.5: Assist на устройстве, «Линза» выключа
   assert.match(html, /Удалить сервисы Google/);
   // все смартфоны OY, которые когда-либо выходили, — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
-  const phones = Object.values(PRODUCTS).filter((p) => !p.brand);
+  const phones = Object.values(PRODUCTS);
   assert.equal(phones.length, 14);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке OY OS 4`);
-  // цены в юанях у карточек — только у моделей в продаже
-  for (const p of phones.filter((x) => !x.discontinued)) assert.ok(html.includes(`¥${p.configs[0].cny}`), `${p.id}: нет ¥`);
 });
 
 test('хроника /fyr/chronicle/: восемь глав по порядку, одна h1, якоря сходятся, весь сюжет на месте', () => {

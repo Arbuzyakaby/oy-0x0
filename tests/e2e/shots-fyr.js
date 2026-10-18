@@ -82,7 +82,7 @@ async (page) => {
     session: sessionStorage.getItem('fyr'),
   }));
 
-  // 404 и eXtream: тот же триггер
+  // 404: тот же триггер
   await page.goto(`${HOST}/404.html`, { waitUntil: 'load' });
   await page.waitForTimeout(600);
   await typeX0('404');
@@ -91,17 +91,6 @@ async (page) => {
   checks.page404 = await page.evaluate(() => document.querySelector('h1').textContent.trim());
   await back();
 
-  await page.goto(`${HOST}/extream/`, { waitUntil: 'load' });
-  await page.waitForTimeout(2500);
-  await toFooter();
-  await typeX0('extream');
-  await page.waitForTimeout(3000);
-  await shot('.playwright-mcp/fyr-hijack-extream.png', 200);
-  checks.extream = await page.evaluate(() => ({
-    brand: document.documentElement.dataset.brand,
-    by: document.querySelector('.x-footer .x-logo small')?.textContent.trim(),
-  }));
-  await back();
 
   // телефон: пять касаний щита
   await page.setViewportSize({ width: 390, height: 844 });

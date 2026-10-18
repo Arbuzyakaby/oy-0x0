@@ -27,7 +27,7 @@ if (root.hasAttribute('data-fyr-page')) {
 
   /* ---------- Подвал на экране ---------- */
   let footerSeen = false;
-  const footers = document.querySelectorAll('.site-footer, .x-footer, body > footer');
+  const footers = document.querySelectorAll('.site-footer, body > footer');
   const io = new IntersectionObserver((entries) => {
     footerSeen = entries.some((e) => e.isIntersecting && (e.intersectionRatio >= 0.2 || e.intersectionRect.height >= 120));
   }, { threshold: [0, 0.2, 0.5] });

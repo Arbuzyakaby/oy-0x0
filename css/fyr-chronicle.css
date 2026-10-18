@@ -63,6 +63,8 @@
 .chr-scene__cap span { color: var(--fg); }
 .chr-alert { margin-top: 22px; padding: 16px 18px; max-width: 52ch; border: 1px solid rgba(255, 190, 70, .45); border-radius: 14px; background: rgba(255, 190, 70, .07); color: rgba(244, 247, 255, .82); font-size: 15px; line-height: 1.5; }
 .chr-alert b { color: var(--warn); }
+.chr-news { margin-top: 18px; padding: 14px 18px; max-width: 52ch; border-left: 3px solid var(--cn); background: rgba(255, 90, 78, .08); color: rgba(244, 247, 255, .82); font-size: 15px; line-height: 1.5; }
+.chr-news b { color: var(--cn); }
 .chr-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; list-style: none; padding: 0; }
 .chr-tags li { padding: 6px 12px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 11px; letter-spacing: .06em; color: var(--accent-text); }
 

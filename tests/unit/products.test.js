@@ -16,7 +16,7 @@ test('цвета 0X0', () => {
 });
 
 test('getConfig находит конфигурацию и возвращает null для неизвестной', () => {
-  assert.deepEqual(getConfig('0x0', '12/256'), { id: '12/256', usd: 519, eur: 609, cny: 3399 });
+  assert.deepEqual(getConfig('0x0', '12/256'), { id: '12/256', usd: 519, eur: 609 });
   assert.equal(getConfig('0x0', '16/1024'), null);
   assert.equal(getConfig('nope', '8/128'), null);
 });
@@ -43,7 +43,7 @@ test('getPrice учитывает наценку за мрамор', () => {
   assert.deepEqual(getPrice('pro', '16/512', 'marble'), { usd: 1029, eur: 1169 });
   assert.deepEqual(getPrice('pro', '20/1024', 'marble'), { usd: 1199, eur: 1359 });
   assert.equal(getPrice('pro', '10/256', 'marble'), null);
-  assert.deepEqual(getPrice('0x0', '8/128', 'red'), { usd: 449, eur: 539, cny: 2899 });
+  assert.deepEqual(getPrice('0x0', '8/128', 'red'), { usd: 449, eur: 539 });
 });
 
 test('сравнение: цены совпадают с конфигурациями', async () => {
@@ -100,7 +100,7 @@ test('цены и цвета 0X2Q', () => {
     [['17/512', 799, 919], ['21/1024', 949, 1079]],
   );
   assert.deepEqual(PRODUCTS['0x2q'].colors, { sand: 'Песочный Белый', tesseract: 'Тессеракт' });
-  assert.deepEqual(getPrice('0x2q', '21/1024', 'sand'), { usd: 949, eur: 1079, cny: 6199 });
+  assert.deepEqual(getPrice('0x2q', '21/1024', 'sand'), { usd: 949, eur: 1079 });
 });
 
 test('сравнение: цвета совпадают с моделями', async () => {
@@ -138,7 +138,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', 'moth', 'moth2', 'y1', '0x2pro', 'nova']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', 'moth', 'moth2', '0x2pro', 'nova']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -148,7 +148,7 @@ test('цены и цвета 0X1 Pro', () => {
   );
   assert.deepEqual(PRODUCTS['0x1pro'].colors, { obsidian: 'Обсидиан', titan: 'Титан', cobalt: 'Кобальт' });
   assert.equal(PRODUCTS['0x1pro'].defaultColor, 'obsidian');
-  assert.deepEqual(getPrice('0x1pro', '24/1024', 'cobalt'), { usd: 1199, eur: 1359, cny: 7799 });
+  assert.deepEqual(getPrice('0x1pro', '24/1024', 'cobalt'), { usd: 1199, eur: 1359 });
 });
 
 test('цены и цвета 0X1', () => {
@@ -158,7 +158,7 @@ test('цены и цвета 0X1', () => {
   );
   assert.deepEqual(PRODUCTS['0x1'].colors, { violet: 'Фиалка', polar: 'Полярная Ночь', concrete: 'Бетон' });
   assert.equal(PRODUCTS['0x1'].defaultColor, 'violet');
-  assert.deepEqual(getPrice('0x1', '12/512', 'concrete'), { usd: 629, eur: 719, cny: 4099 });
+  assert.deepEqual(getPrice('0x1', '12/512', 'concrete'), { usd: 629, eur: 719 });
 });
 
 test('цены и цвета 0X1Q', () => {
@@ -168,7 +168,7 @@ test('цены и цвета 0X1Q', () => {
   );
   assert.deepEqual(PRODUCTS['0x1q'].colors, { wave: 'Морская Волна', moon: 'Лунный Камень', graphite: 'Графит' });
   assert.equal(PRODUCTS['0x1q'].defaultColor, 'wave');
-  assert.deepEqual(getPrice('0x1q', '20/512', 'graphite'), { usd: 849, eur: 969, cny: 5499 });
+  assert.deepEqual(getPrice('0x1q', '20/512', 'graphite'), { usd: 849, eur: 969 });
 });
 
 test('0X Moth: от $699, шесть цветов, между 0X2 и 0X2Q, продаётся в Европе', () => {
@@ -206,56 +206,6 @@ test('сравнение: у Moth — Argon 1, MSC, раскладушка и в
   });
 });
 
-test('eXtream Y1: от $749 / €849, три цвета, суббренд вне витрины OY', async () => {
-  const { ON_SALE, ON_SALE_ALL, COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
-  const y1 = PRODUCTS.y1;
-  assert.deepEqual(
-    y1.configs.map((c) => [c.id, c.usd, c.eur]),
-    [['16/512', 749, 849], ['24/1024', 899, 1019], ['32/2048', 1099, 1249]],
-  );
-  assert.deepEqual(y1.colors, { dryice: 'Сухой лёд', frost: 'Иней', plasma: 'Плазма' });
-  assert.equal(y1.defaultColor, 'dryice');
-  assert.equal(y1.brand, 'extream');
-  assert.equal(y1.href, '/extream/y1/');
-  assert.ok(!ON_SALE.includes('y1'));
-  assert.ok(ON_SALE_ALL.includes('y1'));
-  // в сравнении по цене: после Moth 2 (тоже $749) и перед 0X2Q ($799), и у новых строк значение есть только у Y1
-  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('moth2') + 1], 'y1');
-  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('y1') + 1], '0x2q');
-  assert.equal(SHORT_NAMES.y1, 'eXtream Y1');
-  const i = 2 + COMPARE_MODELS.indexOf('y1');
-  for (const name of ['Вентиляторы', 'Курки']) {
-    const row = COMPARE.find((r) => r[1] === name);
-    assert.ok(row, name);
-    row.slice(2, 2 + COMPARE_MODELS.length).forEach((v, k) => assert.equal(v !== '—', k + 2 === i, `${name}: ${COMPARE_MODELS[k]}`));
-  }
-  assert.match(COMPARE.find((r) => r[1] === 'Чип безопасности')[i], /^Erbium/);
-  assert.equal(COMPARE.find((r) => r[1] === 'Система')[i], 'eXOS 4 · сервисы Google; в Китае — сервисы партнёра');
-});
-
-test('Китай: цены в юанях у всех моделей, что там продавались; у 0X0 Pro их нет', async () => {
-  const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
-  assert.deepEqual(PRODUCTS.y1.configs.map((c) => c.cny), [4999, 5999, 7299]);
-  assert.deepEqual(
-    Object.values(PRODUCTS).filter((p) => p.cn).map((p) => p.id),
-    ['0x1e', '0x2e', '0x3e', '0x0', '0x2', 'moth', 'moth2', 'y1', '0x2q', '0x2pro', 'nova', '0x1', '0x1q', '0x1pro'],
-  );
-  for (const p of Object.values(PRODUCTS)) {
-    for (const c of p.configs) assert.equal(c.cny != null, !!p.cn, `${p.id} ${c.id}`);
-    // юань дешевле доллара в 6–7 раз, ступени цен те же
-    if (p.cn) p.configs.forEach((c, i) => {
-      assert.ok(c.cny / c.usd > 6 && c.cny / c.usd < 7, `${p.id} ${c.id}`);
-      if (i) assert.ok(c.cny > p.configs[i - 1].cny, `${p.id} ${c.id}`);
-    });
-  }
-  const row = COMPARE.find((r) => r[1] === 'Китай');
-  // снятый Moth продавался в Китае: в сравнении — «был от ¥…»
-  COMPARE_MODELS.forEach((id, k) => assert.equal(row[2 + k].includes(`от ¥${PRODUCTS[id].configs[0].cny}`), !!PRODUCTS[id].cn, id));
-  assert.deepEqual(getPrice('moth', '12/512', 'red'), { usd: 799, eur: 909, cny: 5199 });
-  assert.equal(getPrice('0x1', '8/256', 'violet').cny, 3299);
-  assert.equal(getPrice('pro', '16/512', 'emerald').cny, undefined);
-});
-
 test('0X Nova: новый флагман от $999 / €1149, один цвет «Сверхновая»', async () => {
   const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
   const nova = PRODUCTS.nova;
@@ -284,10 +234,10 @@ test('после выхода 0X3 Essential метка «Новинка» тол
   assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x3e']);
 });
 
-test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, от $399 / €469 / ¥2599', async () => {
+test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, от $399 / €469', async () => {
   const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
   const p = PRODUCTS['0x3e'];
-  assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur, c.cny]), [['8/128', 399, 469, 2599], ['8/256', 449, 519, 2899], ['12/256', 499, 579, 3199]]);
+  assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['8/128', 399, 469], ['8/256', 449, 519], ['12/256', 499, 579]]);
   assert.deepEqual(p.colors, { radium: 'Радиевый', mustard: 'Горчичный', rocky: 'Скалистый', iberian: 'Иберийский', penguin: 'Пингвиний' });
   assert.ok(!Object.values(p.colors).some((c) => /красн/i.test(c)), 'легендарного красного больше нет');
   assert.ok(p.eu && p.cn);
@@ -304,10 +254,10 @@ test('0X3 Essential: реверанс 0X0 — четыре kill switch и фон
   assert.equal(get('Цвета'), Object.values(p.colors).join(', '));
 });
 
-test('0X Moth 2: от $749 / €849 / ¥4899, двенадцать цветов, Китай с первого дня, обещаний «без Google» нет', async () => {
+test('0X Moth 2: от $749 / €849, двенадцать цветов, Китай с первого дня, обещаний «без Google» нет', async () => {
   const { COMPARE, COMPARE_MODELS } = await import('../../js/data/products.js');
   const m = PRODUCTS.moth2;
-  assert.deepEqual(m.configs.map((c) => [c.id, c.usd, c.eur, c.cny]), [['12/256', 749, 849, 4899], ['12/512', 849, 959, 5499]]);
+  assert.deepEqual(m.configs.map((c) => [c.id, c.usd, c.eur]), [['12/256', 749, 849], ['12/512', 849, 959]]);
   assert.equal(Object.keys(m.colors).length, 12);
   for (const id of Object.keys(PRODUCTS.moth.colors)) assert.ok(m.colors[id], id);
   assert.ok(m.eu && m.cn);
@@ -320,4 +270,18 @@ test('0X Moth 2: от $749 / €849 / ¥4899, двенадцать цветов,
   const html = readFileSync(new URL('../../moth2/index.html', import.meta.url), 'utf8');
   assert.doesNotMatch(html, /Без Google|без обязательного аккаунта/);
   assert.match(html, /data-product="moth2"/);
+});
+
+test('юаней больше нет: в Китае цены назначает XZF; eXtream Y1 продан XZF и пропал из данных', async () => {
+  const { COMPARE, COMPARE_MODELS, SHORT_NAMES, ON_SALE } = await import('../../js/data/products.js');
+  for (const p of Object.values(PRODUCTS)) for (const c of p.configs) assert.equal(c.cny, undefined, `${p.id} ${c.id}`);
+  assert.deepEqual(Object.keys(getPrice('moth', '12/512', 'red')), ['usd', 'eur']);
+  assert.ok(!COMPARE.some((r) => r.some((v) => String(v).includes('¥'))), '¥ в сравнении');
+  assert.ok(!COMPARE.some((r) => r[0] === 'Цена' && r[1] === 'Китай'));
+  assert.equal(PRODUCTS.y1, undefined);
+  assert.ok(!COMPARE_MODELS.includes('y1') && !ON_SALE.includes('y1') && !SHORT_NAMES.y1);
+  assert.ok(!Object.values(PRODUCTS).some((p) => p.brand || /extream/i.test(p.href)));
+  // строки, которые были только у Y1, ушли вместе с ним
+  for (const name of ['Вентиляторы', 'Курки']) assert.ok(!COMPARE.some((r) => r[1] === name), name);
+  for (const r of COMPARE) assert.equal(r.length, 2 + COMPARE_MODELS.length + (r.length > 2 + COMPARE_MODELS.length ? 1 : 0), r[1]);
 });

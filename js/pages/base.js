@@ -67,7 +67,6 @@ setColor(store.get('oy-color') || root.dataset.color || 'red', { save: false, in
 const memGroup = $('[data-mem-switch]');
 const usdEl = $('[data-price-usd]');
 const eurEl = $('[data-price-eur]');
-const cnyEl = $('[data-price-cny]');
 const cfgNameEl = $('[data-cfg-name]');
 let currentMem = '8/128';
 function setMemory(v, animate = true) {
@@ -76,10 +75,9 @@ function setMemory(v, animate = true) {
   const prev = getConfig(PRODUCT.id, currentMem).usd;
   currentMem = v;
   syncRadio(memGroup, v);
-  const { usd, eur, cny } = cfg;
+  const { usd, eur } = cfg;
   cfgNameEl.textContent = `${v} ГБ`;
   eurEl.textContent = `€${eur}`;
-  cnyEl.textContent = `¥${cny.toLocaleString('ru-RU')}`;
   if (!animate || reduceMQ.matches) { usdEl.textContent = `$${usd}`; return; }
   const o = { n: prev };
   gsap.to(o, {

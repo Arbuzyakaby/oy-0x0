@@ -871,7 +871,7 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
 .os4-page .timeline__bar--sec span { background: var(--blue); }
 .os4-page .reqmap__svg .rq-phone rect { fill: rgba(255, 255, 255, .12); }
 
-/* Плашки Moth и eXOS 4 — тоже стеклянные */
+/* Плашки на стекле: 0X3 Essential и Moth */
 .os4-plate {
   display: inline-flex; align-items: center; gap: 12px; padding: 7px 16px 7px 7px; max-width: 100%; border-radius: 999px;
   border: 1px solid rgba(246, 212, 74, .45); background: rgba(246, 212, 74, .1); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3);
@@ -882,11 +882,6 @@ kbd { font-family: var(--mono); padding: 1px 7px; border-radius: 6px; border: 1p
 .os4-plate i { font-style: normal; color: #F6D44A; transition: transform .3s var(--ease); }
 .os4-plate:hover { border-color: #F6D44A; background: rgba(246, 212, 74, .16); }
 .os4-plate:hover i { transform: translateX(4px); }
-/* eXOS 4 — игровая OY OS 4 суббренда eXtream: ледяной акцент вместо жёлтого */
-.os4-plate--x { border-color: rgba(79, 240, 255, .45); background: rgba(79, 240, 255, .08); }
-.os4-plate--x b { background: #4FF0FF; color: #021014; }
-.os4-plate--x i { color: #4FF0FF; }
-.os4-plate--x:hover { border-color: #4FF0FF; background: rgba(79, 240, 255, .14); }
 
 @media (max-width: 1000px) {
   .oyid__grid { grid-template-columns: 1fr; }

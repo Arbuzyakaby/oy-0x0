@@ -39,7 +39,7 @@ const ver = {};
 for (const p of [...walk(join(ROOT, 'js'), '.js'), ...walk(join(ROOT, 'css'), '.css')]) ver[web(p)] = hash(p);
 const jsList = Object.keys(ver).filter((k) => k.endsWith('.js')).sort();
 
-// страницы первого уровня и вложенные — /extream/y1/
+// страницы первого уровня и вложенные — /fyr/kbook/, /fyr/chronicle/
 const dirs = readdirSync(ROOT).filter((d) => !d.startsWith('.') && d !== 'node_modules' && statSync(join(ROOT, d)).isDirectory());
 const nested = dirs.flatMap((d) => readdirSync(join(ROOT, d)).filter((n) => statSync(join(ROOT, d, n)).isDirectory()).map((n) => join(d, n, 'index.html')));
 const pages = ['index.html', '404.html', ...dirs.map((d) => join(d, 'index.html')), ...nested]

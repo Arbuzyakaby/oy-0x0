@@ -125,8 +125,8 @@ function inject(parent, html, where = 'append') {
 }
 
 function dress() {
-  document.querySelectorAll('.brand, .footer__brand, .x-logo').forEach((b) => inject(b, LOGO, 'prepend'));
-  const foot = ['.footer__inner', '.x-footer__grid', 'body > footer'].map((q) => document.querySelector(q)).find(Boolean);
+  document.querySelectorAll('.brand, .footer__brand').forEach((b) => inject(b, LOGO, 'prepend'));
+  const foot = ['.footer__inner', 'body > footer'].map((q) => document.querySelector(q)).find(Boolean);
   inject(foot, `<a class="fyr-sig mono" href="/fyr/chronicle/" aria-label="Хроника: как OY стала Fyr">${SIG}<span aria-hidden="true"> →</span></a>`);
   const back = inject(document.body, '<button type="button" class="fyr-return">Вернуть OY</button>');
   back.addEventListener('click', () => revert());

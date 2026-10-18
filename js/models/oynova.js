@@ -202,7 +202,7 @@ export function drawNovaScreen(canvas, mode, { zoom = 1, stop = 1, accent = NOVA
     g.fillStyle = '#F2F2F0'; g.fill();
     g.fillStyle = '#111';
     g.font = `700 26px ${sans}`;
-    g.fillText('Для игр — eXtream Y1', w / 2, 762);
+    g.fillText('eXtream теперь у XZF', w / 2, 762);
     return;
   }
 

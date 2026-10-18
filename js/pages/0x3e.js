@@ -67,7 +67,6 @@ setColor(store.get('oy-color') || root.dataset.color || PRODUCT.defaultColor, { 
 const memGroup = $('[data-mem-switch]');
 const usdEl = $('[data-price-usd]');
 const eurEl = $('[data-price-eur]');
-const cnyEl = $('[data-price-cny]');
 const cfgNameEl = $('[data-cfg-name]');
 let currentMem = '8/128';
 function setMemory(v, animate = true) {
@@ -76,10 +75,9 @@ function setMemory(v, animate = true) {
   const prev = getConfig(PRODUCT.id, currentMem).usd;
   currentMem = v;
   syncRadio(memGroup, v);
-  const { usd, eur, cny } = cfg;
+  const { usd, eur } = cfg;
   cfgNameEl.textContent = `${v} ГБ`;
   eurEl.textContent = `€${eur}`;
-  cnyEl.textContent = `¥${cny.toLocaleString('ru-RU')}`;
   if (!animate || reduceMQ.matches) { usdEl.textContent = `$${usd}`; return; }
   const o = { n: prev };
   gsap.to(o, {
@@ -91,7 +89,7 @@ function setMemory(v, animate = true) {
 initRadioGroup(memGroup, (v) => setMemory(v));
 setMemory('8/128', false);
 $('[data-price-table]').innerHTML = PRODUCT.configs
-  .map((c) => `<tr><th scope="row">${c.id} ГБ</th><td>$${c.usd}</td><td>€${c.eur}</td><td>¥${c.cny.toLocaleString('ru-RU')}</td></tr>`).join('');
+  .map((c) => `<tr><th scope="row">${c.id} ГБ</th><td>$${c.usd}</td><td>€${c.eur}</td></tr>`).join('');
 
 // Сигнальный фонарь
 const signalGroup = $('[data-signal-switch]');

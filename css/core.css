@@ -304,9 +304,6 @@ main, .site-footer { position: relative; z-index: 2; }
 .site-nav { display: flex; gap: clamp(14px, 1.5vw, 26px); font-size: 14px; }
 .site-nav a { text-decoration: none; color: var(--muted); transition: color .2s; white-space: nowrap; }
 .site-nav a:hover { color: var(--fg); }
-/* суббренд eXtream — своим шрифтом и своим цветом */
-.site-nav .site-nav__x { color: #4FF0FF; font-family: 'Tektur', var(--sans); font-weight: 700; }
-.site-nav .site-nav__x:hover { color: #B8FF3A; }
 .header-actions { display: flex; align-items: center; gap: 14px; }
 /* Прячем через top: transform шапки анимирует GSAP при появлении */
 .site-header { transition: top .4s var(--ease); }

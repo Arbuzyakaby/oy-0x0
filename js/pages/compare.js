@@ -22,7 +22,6 @@ import { createOY0X2Q } from '../models/oy0x2q.js';
 import { createOY0X2Pro } from '../models/oy0x2pro.js';
 import { createOYMoth, createOYMoth2 } from '../models/oymoth.js';
 import { createOYNova } from '../models/oynova.js';
-import { createExtreamY1 } from '../models/extreamy1.js';
 import { createPro } from '../models/pro.js';
 import { $, $$, initRadioGroup, syncRadio } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -41,10 +40,10 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, y1: createExtreamY1, '0x1pro': createOY0X1Pro, pro: createPro };
+const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
-const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, y1: 164.3, '0x1pro': 163.5, pro: 150 };
-const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, y1: -PI + 0.4, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, '0x1pro': 163.5, pro: 150 };
+const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1 });
 
 /* ---------- Иконки строк, как у Apple: у каждой модели своя ---------- */
@@ -82,8 +81,6 @@ const ROW_ICON = {
     return m ? badge(m[1], m[2]) : badge(name, '');
   },
   'Аппаратное отключение': (v) => {
-    // «Рубильник» eXtream: ползунок в положении «вкл»
-    if (v.startsWith('«Рубильник»')) return svg('<rect class="cx-ico__line" x="21" y="6" width="14" height="44" rx="3"/><rect class="cx-ico__fill is-accent" x="24" y="10" width="8" height="15" rx="2"/>');
     const n = num(v.match(/^\d+ kill/)?.[0] || 0);
     if (v.startsWith('Нет')) return svg('<rect class="cx-ico__line is-dash" x="10" y="19" width="36" height="18" rx="9"/>');
     if (n) {
@@ -213,7 +210,7 @@ function renderCol(i) {
   const c0 = p.configs[0];
   $('[data-price]', col).textContent = p.discontinued ? `Был от $${c0.usd}` : `От $${c0.usd.toLocaleString('en-US')}`;
   const next = p.successor && PRODUCTS[p.successor];
-  $('[data-eur]', col).textContent = next ? `Преемник — ${SHORT_NAMES[next.id]}` : (`€${c0.eur} · ${p.eu ? 'в Европе — уже в продаже' : 'Европа — скоро'}${c0.cny ? ` · ¥${c0.cny.toLocaleString('ru-RU')} — Китай` : ''}`);
+  $('[data-eur]', col).textContent = next ? `Преемник — ${SHORT_NAMES[next.id]}` : (`€${c0.eur} · ${p.eu ? 'в Европе — уже в продаже' : 'Европа — скоро'}`);
   const buy = $('[data-buy]', col);
   buy.textContent = next ? `Смотреть ${SHORT_NAMES[next.id]}` : 'Купить';
   buy.href = next ? next.href : `${p.href}#buy`;
