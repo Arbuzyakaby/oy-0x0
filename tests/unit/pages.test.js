@@ -324,3 +324,31 @@ test('страницы OY: в шапке логотип «fyr / OY», в под�
     if (html.includes('<nav class="site-nav"')) assert.ok(html.includes('class="brand__fyr"'), `${p}: нет fyr в логотипе`);
   }
 });
+
+test('страница /fyr/h1/: первый телефон Fyr — главы по порядку, одна h1, якоря и hex-цены сходятся, ссылки со всего сайта', () => {
+  const html = read('fyr/h1/index.html');
+  assert.ok(html.includes('data-fyr-page') && html.includes('data-h1'));
+  const chapters = [...html.matchAll(/<section class="h1s h1s--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['intro', 'promise', 'body', 'frost-glass', 'display', 'chip', 'cores', 'camera', 'kodak', 'citadel', 'rubilnik', 'torch', 'camelos', 'colors', 'specs', 'price']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  // hex на кнопках цен совпадает с десятичной подписью, у старшей версии тоже
+  const num = (s) => Number(s.replace(/[^0-9]/g, ''));
+  for (const [, dec, hex] of html.matchAll(/data-hex="([^"]+)"[^>]*>(0x[0-9A-F]+)/g)) assert.equal(parseInt(hex, 16), num(dec), `${hex} ≠ ${dec}`);
+  for (const [, hex, dec] of html.matchAll(/data-alt-hex="(0x[0-9A-F]+)[^"]*" data-alt-dec="([^"]+)"/g)) assert.equal(parseInt(hex, 16), num(dec), `${hex} ≠ ${dec}`);
+  assert.equal(0x1B7, 439);
+  // пять цветов, у всех — радиокнопка; Kodak — с оговоркой о товарном знаке
+  for (const c of ['sea', 'mars', 'sunset', 'mountain', 'kodak']) assert.ok(html.includes(`data-value="${c}"`), c);
+  assert.match(html, /Kodak&nbsp;— товарный знак Eastman Kodak Company/);
+  assert.match(html, /Snapdragon 8 Elite Extreme Gen/);
+  assert.ok(existsSync(join(ROOT, 'models', 'fyrh1.glb')));
+  assert.ok(existsSync(join(ROOT, 'og-fyr-h1.jpg')));
+  assert.ok(!Object.values(PRODUCTS).some((p) => p.href === '/fyr/h1/'), 'H1 — телефон Fyr, не OY');
+  for (const p of PAGES) {
+    const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
+    if (nav) assert.ok(nav[1].includes('<a class="site-nav__fyr" href="/fyr/h1/">H1</a>'), `${p}: нет H1 в шапке`);
+  }
+  assert.ok(read('index.html').includes('data-fyr-model="h1"'), 'нет карточки H1 на главной');
+  assert.ok(read('os/index.html').includes('href="/fyr/h1/"'), 'H1 нет в списке CamelOS 2.0');
+});

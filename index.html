@@ -25,7 +25,7 @@
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
   <link rel="stylesheet" href="/css/core.css?v=ab2ab23689">
-  <link rel="stylesheet" href="/css/home.css?v=f6df9aed88">
+  <link rel="stylesheet" href="/css/home.css?v=917f39cb56">
   <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
 
   <script type="importmap">
@@ -49,6 +49,7 @@
       "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
+      "/js/models/fyrh1.js": "/js/models/fyrh1.js?v=cd8e7d3a55",
       "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
       "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
       "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
@@ -79,10 +80,11 @@
       "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
       "/js/pages/compare.js": "/js/pages/compare.js?v=58974147a8",
       "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
+      "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=8eba237f2e",
       "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
       "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
-      "/js/pages/home.js": "/js/pages/home.js?v=d2356b7cfc",
+      "/js/pages/home.js": "/js/pages/home.js?v=eb2f6d9064",
       "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
       "/js/pages/nova.js": "/js/pages/nova.js?v=308e117d8e",
@@ -93,7 +95,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
   <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
-  <script type="module" src="/js/pages/home.js?v=d2356b7cfc"></script>
+  <script type="module" src="/js/pages/home.js?v=eb2f6d9064"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -151,6 +153,7 @@
     <nav class="site-nav" aria-label="Модели">
       <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
       <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
+      <a class="site-nav__fyr" href="/fyr/h1/">H1</a>
       <a href="/0x3e/">0X3 Essential</a>
       <a href="/0x2/">0X2</a>
       <a href="/moth2/">0X Moth 2</a>
@@ -171,9 +174,18 @@
       <div class="container fyr-home__head">
         <p class="fyr-home__k mono">Fyr · Стокгольм · теперь официально</p>
         <h1 class="fyr-home__title" id="fyr-title">Fyr больше не&nbsp;взлом. <span>Это теперь мы.</span></h1>
-        <p class="fyr-home__lead">OY не&nbsp;стало, и&nbsp;к&nbsp;нам пришли почти все, кто её делал. Этот сайт теперь наш. Наверху&nbsp;— то, что мы сделали сами. Телефоны ниже пока подписаны «OY», и&nbsp;это нормально.</p>
+        <p class="fyr-home__lead">OY не&nbsp;стало, и&nbsp;к&nbsp;нам пришли почти все, кто её делал. Этот сайт теперь наш. Наверху&nbsp;— то, что мы сделали сами, и&nbsp;теперь среди этого есть телефон. Телефоны ниже пока подписаны «OY», и&nbsp;это нормально.</p>
       </div>
-      <div class="container fyr-duo">
+      <div class="container fyr-duo fyr-duo--3">
+        <a class="fyr-card fyr-card--h1" href="/fyr/h1/" data-fyr-model="h1">
+          <canvas class="fyr-card__canvas" aria-hidden="true"></canvas>
+          <span class="fyr-card__label">
+            <span class="fyr-card__k mono">Телефон · новинка · третье устройство Fyr</span>
+            <span class="fyr-card__name">Fyr H1</span>
+            <span class="fyr-card__tag">Мы разморозили 0X00. Snapdragon 8 Elite Extreme Gen&nbsp;6, 6,94"&nbsp;до&nbsp;165&nbsp;Гц, цвет снимка с&nbsp;Kodak, «Рубильник» и&nbsp;фонарь. 199&nbsp;г.</span>
+            <span class="fyr-card__price mono"><span class="muted">от</span> 0x1B7&nbsp;$ <span class="fyr-card__go" aria-hidden="true">→</span></span>
+          </span>
+        </a>
         <a class="fyr-card fyr-card--watch" href="/fyr/" data-fyr-model="osmium">
           <canvas class="fyr-card__canvas" aria-hidden="true"></canvas>
           <span class="fyr-card__label">
@@ -459,7 +471,7 @@
         <span>Fyr · Стокгольм · телефоны OY в&nbsp;переходный период</span>
       </div>
       <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-      <p class="footer__small mono"><a href="/fyr/">Fyr Osmium X0</a> · <a href="/fyr/kbook/">Fyr KBook 1</a> · <a href="/fyr/chronicle/">Хроника</a> · OY 0X3 Essential · OY 0X2 · OY 0X Moth 2 · OY 0X2Q · OY 0X2 Pro · OY 0X Nova · США и Китай; 0X3 Essential, Moth 2, 0X2 Pro и Nova — и Евросоюз · Сняты с продажи: <a href="/0x0/">OY 0X0</a>, <a href="/0x2e/">OY 0X2 Essential</a>, <a href="/0x1e/">OY 0X1 Essential</a>, <a href="/0x1/">OY 0X1</a>, <a href="/0x1q/">OY 0X1Q</a>, <a href="/0x1pro/">OY 0X1 Pro</a>, <a href="/moth/">OY 0X Moth</a>, <a href="/pro/">OY 0X0 Pro</a></p>
+      <p class="footer__small mono"><a href="/fyr/h1/">Fyr H1</a> · <a href="/fyr/">Fyr Osmium X0</a> · <a href="/fyr/kbook/">Fyr KBook 1</a> · <a href="/fyr/chronicle/">Хроника</a> · OY 0X3 Essential · OY 0X2 · OY 0X Moth 2 · OY 0X2Q · OY 0X2 Pro · OY 0X Nova · США и Китай; 0X3 Essential, Moth 2, 0X2 Pro и Nova — и Евросоюз · Сняты с продажи: <a href="/0x0/">OY 0X0</a>, <a href="/0x2e/">OY 0X2 Essential</a>, <a href="/0x1e/">OY 0X1 Essential</a>, <a href="/0x1/">OY 0X1</a>, <a href="/0x1q/">OY 0X1Q</a>, <a href="/0x1pro/">OY 0X1 Pro</a>, <a href="/moth/">OY 0X Moth</a>, <a href="/pro/">OY 0X0 Pro</a></p>
       <p class="footer__concept">Концепт. OY&nbsp;0X3&nbsp;Essential, OY&nbsp;0X2&nbsp;Essential, OY&nbsp;0X0, OY&nbsp;0X2, OY&nbsp;0X&nbsp;Moth, OY&nbsp;0X2Q, OY&nbsp;0X2&nbsp;Pro, OY&nbsp;0X&nbsp;Nova, OY&nbsp;0X1&nbsp;Pro, OY&nbsp;0X1&nbsp;Essential, OY&nbsp;0X1, OY&nbsp;0X1Q, OY&nbsp;0X0&nbsp;Pro компания OY, Fyr, XNA, OY&nbsp;Europe и&nbsp;XZF вымышлены: это демонстрационный сайт, телефоны не&nbsp;продаются. Мы не&nbsp;знаем, сколько у&nbsp;нас посетителей. Серьёзно, нам нечем считать. Исходный код — на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>

@@ -14,6 +14,7 @@ import { createOYMoth2 } from '../models/oymoth.js';
 import { createOYNova } from '../models/oynova.js';
 import { createFyrOsmium } from '../models/fyrosmium.js';
 import { createFyrKBook } from '../models/fyrkbook.js';
+import { createFyrH1 } from '../models/fyrh1.js';
 import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -84,6 +85,11 @@ $$('.lineup__item').forEach((item) => {
 // Часы смотрят циферблатом вполоборота, ноутбук открыт и показывает рабочий стол CamelOS;
 // при наведении часы разворачиваются к вам, а крышка KBook раскрывается шире
 const FYR = {
+  h1: {
+    create: createFyrH1, screen: 'lock',
+    rest: { x: 0, y: 0, fx: 0, fy: 0, fz: 0, rx: 0.14, ry: Math.PI - 0.55, rz: 0.06, dist: 5.6, float: 0.6, vis: 1, spin: 0, screen: 1 },
+    near: { rx: 0.06, ry: Math.PI + 0.3, rz: 0.02, dist: 5.1 },
+  },
   osmium: {
     create: createFyrOsmium, screen: 'face',
     rest: { x: 0, y: 0.02, fx: 0, fy: 0, fz: 0, rx: 0.6, ry: -0.5, rz: 0.1, dist: 2.45, float: 0.6, vis: 1, crown: 0, spin: 0, screen: 1 },
