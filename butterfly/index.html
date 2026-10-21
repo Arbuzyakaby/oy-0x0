@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ru" data-bf data-color="signal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X Butterfly — первый OY от Fyr</title>
+  <meta name="description" content="OY 0X Butterfly — первый телефон OY, который сделала Fyr. Складной: 7,8&quot; внутри, 5,6&quot; снаружи. Четыре камеры в «Глазу» с диафрагмой, три фронтальные, Fyr GP10 Semi на 2 нм, Citadel 5X, два «Рубильника», фонарь в петле, CamelOS 2. 229 г, от $1599. Концепт.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#05060B">
+  <link rel="canonical" href="https://oy0x.online/butterfly/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/butterfly/">
+  <meta property="og:title" content="OY 0X Butterfly — первый OY от Fyr">
+  <meta property="og:description" content="Мотылёк вырос. Складной OY с диафрагмой на камерах, Citadel 5X и двумя «Рубильниками». От $1599. Концепт.">
+  <meta property="og:image" content="https://oy0x.online/og-butterfly.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OY 0X Butterfly цвета «Сигнальный Красный»: сложенный спинкой с «Глазом» и раскрытый">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060B'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%237FA8FF' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%238E7CFF'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
+  <link rel="stylesheet" href="/css/core.css?v=ab2ab23689">
+  <link rel="stylesheet" href="/css/butterfly.css?v=fabf6cb29c">
+  <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=3239f2ad3a",
+      "/js/data/products.js": "/js/data/products.js?v=6c39d29bc6",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
+      "/js/models/fyrh1.js": "/js/models/fyrh1.js?v=cd8e7d3a55",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=9c8c25804e",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=3cb6753b62",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=011fcc2bd9",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=32504e740d",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=dd6052c460",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=d18a9f5039",
+      "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
+      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
+      "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=2722f9497c",
+      "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
+      "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=7ff0034627",
+      "/js/pages/home.js": "/js/pages/home.js?v=fc8783c75d",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=308e117d8e",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-bf-color');if(/^(signal|morpho|swallowtail|cabbage|admiral)$/.test(c))document.documentElement.dataset.color=c}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/butterfly.js?v=8ab57e476f"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: диафрагма раскрывается -->
+  <div class="loader bf-loader" id="loader" role="status" aria-live="polite">
+    <svg class="bf-loader__iris" viewBox="-30 -30 60 60" aria-hidden="true" data-loader-iris></svg>
+    <span class="loader__label">Раскрываем…</span>
+  </div>
+
+  <!-- Фон: перелив «Морфо», зерно и сцена -->
+  <div class="bf-sky" aria-hidden="true"><i class="bf-sky__a"></i><i class="bf-sky__b"></i><i class="bf-sky__c"></i></div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+  <div class="bf-grain" aria-hidden="true"></div>
+  <!-- Диафрагма на всё окно: закрывается в конце главы «Глаз» и открывается в «Камерах» -->
+  <svg class="bf-wipe" data-wipe aria-hidden="true"></svg>
+
+  <header class="site-header bf-header" id="top">
+    <a class="brand" href="/" aria-label="Fyr и телефоны OY — на главную">
+      <svg class="brand__fyr" viewBox="0 0 46 30" aria-hidden="true"><path class="brand__fyr-beam" d="M23 6L42 0.5V11.5Z"/><path d="M8 24V10a4 4 0 0 1 4-4h3M4 13h9M19 12v6a4 4 0 0 0 8 0M27 12v12a4 4 0 0 1-7.4 2.2M34 24v-8a4 4 0 0 1 4-4h3"/><circle class="brand__fyr-lamp" cx="23" cy="6" r="1.8"/></svg><span class="brand__sep" aria-hidden="true">/</span><svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
+      <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
+      <a class="site-nav__fyr" href="/fyr/h1/">H1</a>
+      <a href="/0x3e/">0X3 Essential</a>
+      <a href="/0x2/">0X2</a>
+      <a href="/moth2/">0X Moth 2</a>
+      <a href="/0x2q/">0X2Q</a>
+      <a href="/0x2pro/">0X2 Pro</a>
+      <a href="/nova/">0X Nova</a>
+      <a href="/butterfly/" aria-current="page">0X Butterfly</a>
+      <a href="/os/">CamelOS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+    <a class="btn btn--accent btn--sm bf-header__buy" href="#buy">от $1599</a>
+  </header>
+
+  <div class="bf-progress" aria-hidden="true"><i data-progress></i></div>
+
+  <nav class="bf-rail" aria-label="Главы страницы" data-rail>
+    <a href="#hero" data-rail-item="hero"><span>Butterfly</span></a>
+    <a href="#unfold" data-rail-item="unfold"><span>Раскрытие</span></a>
+    <a href="#screens" data-rail-item="screens"><span>Экраны</span></a>
+    <a href="#hinge" data-rail-item="hinge"><span>Петля</span></a>
+    <a href="#eye" data-rail-item="eye"><span>Глаз</span></a>
+    <a href="#cameras" data-rail-item="cameras"><span>Камеры</span></a>
+    <a href="#chip" data-rail-item="chip"><span>GP10 Semi</span></a>
+    <a href="#citadel" data-rail-item="citadel"><span>Citadel 5X</span></a>
+    <a href="#switches" data-rail-item="switches"><span>Рубильники</span></a>
+    <a href="#colors" data-rail-item="colors"><span>Цвета</span></a>
+    <a href="#power" data-rail-item="power"><span>Питание</span></a>
+    <a href="#buy" data-rail-item="buy"><span>Купить</span></a>
+  </nav>
+
+  <main id="main">
+    <!-- 0. ПЕРВЫЙ ЭКРАН: гигантская надпись за телефоном -->
+    <section class="bf bf--hero" id="hero" aria-labelledby="hero-title">
+      <div class="bf-mega" aria-hidden="true" data-mega><span>Butter</span><span>fly</span></div>
+      <div class="bf-hero">
+        <p class="bf-eyebrow mono" data-type>OY · сделано в&nbsp;Стокгольме · зима 2031</p>
+        <h1 class="bf-hero__title" id="hero-title">
+          <span class="bf-hero__model">OY 0X Butterfly</span>
+          <span class="bf-hero__big" data-split>Мотылёк вырос.</span>
+        </h1>
+        <div class="bf-hero__side">
+          <p class="bf-hero__lead">Первый OY, который сделала Fyr. Раскрывается книжкой в&nbsp;7,8&nbsp;дюйма, закрывает камеры диафрагмой и&nbsp;выключает лишнее двумя рубильниками.</p>
+          <div class="bf-hero__buy">
+            <p class="bf-price"><span>от</span> <button type="button" class="bf-hex" data-hex="0x63F $">$1599</button></p>
+            <a class="btn btn--accent" href="#buy">Купить</a>
+            <a class="btn btn--ghost" href="/butterfly/specs/">Характеристики</a>
+          </div>
+        </div>
+      </div>
+      <a class="bf-scroll mono" href="#promise"><span>Листайте: он раскроется</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <div class="bf-ticker mono" aria-hidden="true">
+      <div class="bf-ticker__track">
+        <span>7,8" внутри</span><span>5,6" снаружи</span><span>4,6 мм</span><span>229 г</span><span>4 камеры в «Глазу»</span><span>3 фронтальные</span><span>GP10 Semi · 2 нм</span><span>Citadel 5X</span><span>2 рубильника</span><span>0 аккаунтов</span>
+        <span>7,8" внутри</span><span>5,6" снаружи</span><span>4,6 мм</span><span>229 г</span><span>4 камеры в «Глазу»</span><span>3 фронтальные</span><span>GP10 Semi · 2 нм</span><span>Citadel 5X</span><span>2 рубильника</span><span>0 аккаунтов</span>
+      </div>
+    </div>
+
+    <!-- 1. ОБЕЩАНИЕ -->
+    <section class="bf bf--promise" id="promise" aria-labelledby="promise-title">
+      <div class="bf-pin">
+        <div class="bf-center">
+          <p class="bf-eyebrow mono">01 · Метаморфоза</p>
+          <h2 class="bf-promise" id="promise-title" data-scrub-words>Moth был мотыльком и&nbsp;летел на&nbsp;лампу. Мотылёк вырос: теперь это бабочка, и&nbsp;делаем её&nbsp;мы.</h2>
+          <dl class="bf-count mono">
+            <div><dt>Телефонов OY от&nbsp;Fyr</dt><dd>0x1</dd></div>
+            <div><dt>Крыльев</dt><dd>0x2</dd></div>
+            <div><dt>Рубильников</dt><dd>0x2</dd></div>
+            <div><dt>Аккаунтов</dt><dd>0x0</dd></div>
+          </dl>
+          <p class="bf-note">Марку OY Fyr сохранила: телефоны OY знают, а&nbsp;делают их&nbsp;всё&nbsp;те&nbsp;же люди. Почти все, кто придумал OY, теперь работают в&nbsp;Стокгольме.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. РАСКРЫТИЕ: 5,6″ превращается в 7,8″ -->
+    <section class="bf bf--unfold" id="unfold" aria-labelledby="unfold-title">
+      <div class="bf-pin">
+        <div class="bf-unfold" data-unfold>
+          <p class="bf-eyebrow mono">02 · Раскрытие</p>
+          <h2 class="sr-only" id="unfold-title">От 5,6 до 7,8 дюйма</h2>
+          <div class="bf-diag" aria-hidden="true"><b data-diag>5,6</b><i>″</i></div>
+          <div class="bf-unfold__row mono" aria-hidden="true">
+            <span><b data-thick>9,9</b> мм</span>
+            <span><b data-angle>0</b>°</span>
+            <span data-unfold-state>сложен</span>
+          </div>
+        </div>
+        <p class="bf-unfold__l" data-unfold-l>Сложен&nbsp;— обычный телефон в&nbsp;руке.</p>
+        <p class="bf-unfold__r" data-unfold-r>Раскрыт&nbsp;— планшет толщиной 4,6&nbsp;мм.</p>
+      </div>
+    </section>
+
+    <!-- 3. ЭКРАНЫ -->
+    <section class="bf bf--screens" id="screens" aria-labelledby="screens-title">
+      <div class="bf-wrap">
+        <header class="bf-head">
+          <p class="bf-eyebrow mono">03 · Экраны</p>
+          <h2 class="bf-h2" id="screens-title" data-split>Два экрана. Ни&nbsp;одной складки.</h2>
+          <p class="bf-lead">Внутри&nbsp;— «Размах» на&nbsp;7,8&nbsp;дюйма. Снаружи&nbsp;— полноценный экран на&nbsp;5,6, а&nbsp;не&nbsp;окошко для часов. Приложение, открытое снаружи, продолжит работу внутри с&nbsp;того&nbsp;же места.</p>
+        </header>
+        <div class="bf-sizes" data-sizes>
+          <figure class="bf-size bf-size--in">
+            <svg viewBox="0 0 330 244" aria-hidden="true">
+              <rect class="bf-size__body" x="3" y="3" width="324" height="238" rx="26"/>
+              <line class="bf-size__fold" x1="165" y1="10" x2="165" y2="234"/>
+              <line class="bf-size__diag" x1="20" y1="226" x2="310" y2="18"/>
+            </svg>
+            <figcaption><b>7,8″</b><span>«Размах» · 2048 × 2816 · 446 ppi</span></figcaption>
+          </figure>
+          <figure class="bf-size bf-size--out">
+            <svg viewBox="0 0 166 244" aria-hidden="true">
+              <path class="bf-size__body" d="M8 3h128a27 27 0 0 1 27 27v184a27 27 0 0 1-27 27H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5z"/>
+              <rect class="bf-size__pill" x="68" y="14" width="30" height="11" rx="5.5"/>
+              <line class="bf-size__diag" x1="16" y1="226" x2="148" y2="18"/>
+            </svg>
+            <figcaption><b>5,6″</b><span>Внешний · 1440 × 2156 · 465 ppi</span></figcaption>
+          </figure>
+        </div>
+        <div class="bf-facts">
+          <div class="bf-fact"><b>1–144<small>Гц</small></b><span>LTPO на&nbsp;обоих экранах: от&nbsp;кадра в&nbsp;секунду на&nbsp;заставке до&nbsp;144 в&nbsp;играх.</span></div>
+          <div class="bf-fact"><b>0,5<small>нит</small></b><span>Минимум яркости: в&nbsp;темноте экран не&nbsp;слепит. Спасатели это ценят.</span></div>
+          <div class="bf-fact"><b>4600<small>нит</small></b><span>На&nbsp;солнце. 1500 нит&nbsp;— обычная яркость, 2200&nbsp;— в&nbsp;HDR.</span></div>
+          <div class="bf-fact"><b>0,3<small>%</small></b><span>Столько света отражает «Антиблик&nbsp;3». ШИМ&nbsp;3840&nbsp;Гц, 10&nbsp;бит, 112&nbsp;% DCI-P3.</span></div>
+        </div>
+        <div class="bf-pillcard">
+          <svg class="bf-pillcard__pill" viewBox="0 0 120 44" aria-hidden="true"><rect x="2" y="2" width="116" height="40" rx="20"/><circle cx="38" cy="22" r="11"/><circle cx="38" cy="22" r="4"/><circle cx="84" cy="22" r="9"/><circle cx="84" cy="22" r="3.2"/></svg>
+          <div>
+            <h3>Две камеры в&nbsp;одной «пилюле»</h3>
+            <p>На&nbsp;внешнем экране&nbsp;— широкая 32&nbsp;Мп и&nbsp;сверхширокая 12&nbsp;Мп. Третья фронтальная, CPix&nbsp;2, спрятана под пикселями внутреннего экрана.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ПЕТЛЯ «КУКОЛКА» И ФОНАРЬ «МАЯК» -->
+    <section class="bf bf--hinge" id="hinge" aria-labelledby="hinge-title">
+      <div class="bf-dark" data-dark aria-hidden="true"></div>
+      <div class="bf-wrap bf-split">
+        <div class="bf-split__text">
+          <p class="bf-eyebrow mono">04 · Петля «Куколка»</p>
+          <h2 class="bf-h2" id="hinge-title" data-split>Из&nbsp;куколки&nbsp;— свет.</h2>
+          <p class="bf-lead">Петля изгибает экран каплей, поэтому складки не&nbsp;видно и&nbsp;не&nbsp;чувствуется пальцем. Телефон держит любой угол от&nbsp;15 до&nbsp;165°: поставьте его домиком, и&nbsp;он станет штативом.</p>
+          <p class="bf-lead">А&nbsp;в&nbsp;торце петли живёт фонарь «Маяк». OY начиналась с&nbsp;фонаря, Fyr&nbsp;— это маяк. Теперь фонарь там, где у&nbsp;других просто шарнир.</p>
+          <div class="bf-switch" role="radiogroup" aria-label="Режим фонаря" data-torch>
+            <button type="button" role="radio" data-value="off" aria-checked="true">Выкл</button>
+            <button type="button" role="radio" data-value="white" aria-checked="false" tabindex="-1">Белый</button>
+            <button type="button" role="radio" data-value="red" aria-checked="false" tabindex="-1">Красный</button>
+            <button type="button" role="radio" data-value="beacon" aria-checked="false" tabindex="-1">Маяк</button>
+            <button type="button" role="radio" data-value="sos" aria-checked="false" tabindex="-1">SOS</button>
+          </div>
+          <p class="bf-small mono" data-torch-note>Фонарь выключен. Нажмите «Белый».</p>
+          <dl class="bf-mini mono">
+            <div><dt>Углы</dt><dd>15–165°, любой</dd></div>
+            <div><dt>Фонарь</dt><dd>900 лм, белый и&nbsp;красный</dd></div>
+            <div><dt>Защита</dt><dd>IP68 и&nbsp;IP69, петля герметична</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. «ГЛАЗ» И ДИАФРАГМА: камера подлетает, кольцо поворачивается -->
+    <section class="bf bf--eye" id="eye" aria-labelledby="eye-title">
+      <div class="bf-pin">
+        <div class="bf-eye__cap" data-eye-cap>
+          <p class="bf-eyebrow mono">05 · «Глаз» и&nbsp;диафрагма</p>
+          <h2 class="bf-h2" id="eye-title" data-split>Поверните кольцо. Глаз закроется.</h2>
+          <p class="bf-lead">Вокруг четырёх камер&nbsp;— кольцо, как на&nbsp;объективе. Поверните его на&nbsp;60°, и&nbsp;шестнадцать стальных лепестков выйдут из-под него и&nbsp;закроют все объективы и&nbsp;вспышку. Шторка, которую видно с&nbsp;другого конца комнаты.</p>
+        </div>
+        <div class="bf-eye__dial mono" aria-hidden="true">
+          <svg viewBox="0 0 120 120"><circle class="bf-eye__track" cx="60" cy="60" r="52"/><circle class="bf-eye__arc" cx="60" cy="60" r="52" data-eye-arc/></svg>
+          <b data-eye-deg>0°</b>
+          <span data-eye-state>открыт</span>
+        </div>
+        <ul class="bf-eye__steps" role="list">
+          <li data-step-at="0.18"><b>0°</b> Открыт. Камеры работают.</li>
+          <li data-step-at="0.42"><b>30°</b> Лепестки выходят из-под кольца.</li>
+          <li data-step-at="0.66"><b>60°</b> Закрыт. Citadel&nbsp;5X обесточил камеры.</li>
+        </ul>
+        <button type="button" class="btn btn--ghost bf-eye__btn" data-iris-toggle aria-pressed="false">Закрыть глаз</button>
+      </div>
+    </section>
+
+    <!-- 6. КАМЕРЫ: видоискатель с зумом и семь камер -->
+    <section class="bf bf--cameras" id="cameras" aria-labelledby="cameras-title">
+      <div class="bf-wrap">
+        <header class="bf-head">
+          <p class="bf-eyebrow mono">06 · Камеры</p>
+          <h2 class="bf-h2" id="cameras-title" data-split>Четыре сзади. Три спереди.</h2>
+          <p class="bf-lead">Четыре камеры по&nbsp;50&nbsp;Мп от&nbsp;0,5× до&nbsp;6×&nbsp;— двенадцатикратный оптический диапазон в&nbsp;телефоне толщиной 4,6&nbsp;мм. Цвет снимка настраивали вместе с&nbsp;Kodak<sup class="fn"><a href="#fn-1">1</a></sup>, как у&nbsp;Fyr&nbsp;H1.</p>
+        </header>
+        <div class="bf-vf" data-vf>
+          <canvas class="bf-vf__scene" data-vf-scene aria-label="Видоискатель: дюны на закате с выбранным зумом" role="img"></canvas>
+          <div class="bf-vf__grid" aria-hidden="true"></div>
+          <div class="bf-vf__top mono" aria-hidden="true"><span class="bf-vf__rec">REC</span><span data-vf-ev>50 Мп · 24 мм · f/1.6</span><span>KODAK · ТЁПЛАЯ 200</span></div>
+          <div class="bf-vf__zoom" role="radiogroup" aria-label="Камера" data-zoom>
+            <button type="button" role="radio" data-value="wide" aria-checked="false" tabindex="-1">0,5×</button>
+            <button type="button" role="radio" data-value="main" aria-checked="true">1×</button>
+            <button type="button" role="radio" data-value="tele" aria-checked="false" tabindex="-1">3×</button>
+            <button type="button" role="radio" data-value="peri" aria-checked="false" tabindex="-1">6×</button>
+          </div>
+        </div>
+        <div class="bf-cams">
+          <article class="bf-cam" data-cam="main">
+            <p class="mono">Основная · 1×</p><h3>50&nbsp;Мп, 1/1,28″</h3>
+            <p>24&nbsp;мм, f/1.6, оптическая стабилизация сдвигом сенсора, фазовый автофокус по&nbsp;всем пикселям. Жёлтое кольцо&nbsp;— цвет от&nbsp;Kodak.</p>
+          </article>
+          <article class="bf-cam" data-cam="wide">
+            <p class="mono">Сверхширокая · 0,5×</p><h3>50&nbsp;Мп, 122°</h3>
+            <p>13&nbsp;мм, f/2.0, автофокус и&nbsp;макро с&nbsp;3&nbsp;см. Искажения по&nbsp;краям исправляются до&nbsp;сохранения.</p>
+          </article>
+          <article class="bf-cam" data-cam="tele">
+            <p class="mono">Телевик · 3×</p><h3>50&nbsp;Мп, 72&nbsp;мм</h3>
+            <p>f/2.4, оптическая стабилизация. Портреты без искажений и&nbsp;телемакро с&nbsp;20&nbsp;см.</p>
+          </article>
+          <article class="bf-cam" data-cam="peri">
+            <p class="mono">Перископ · 6×</p><h3>50&nbsp;Мп, 145&nbsp;мм</h3>
+            <p>f/3.2, стабилизация призмой, 12× без потерь из&nbsp;50&nbsp;Мп и&nbsp;до&nbsp;60× цифровой. Квадратная призма видна под сапфиром.</p>
+          </article>
+        </div>
+        <div class="bf-front">
+          <article class="bf-frontcard">
+            <p class="mono">Снаружи · в&nbsp;«пилюле»</p>
+            <h3>32&nbsp;Мп + 12&nbsp;Мп</h3>
+            <p>Широкая с&nbsp;автофокусом и&nbsp;4K/60. Сверхширокая на&nbsp;100° для «Всей компании»: кадр сам расширяется, когда в&nbsp;него входят люди.</p>
+          </article>
+          <article class="bf-frontcard">
+            <p class="mono">Внутри · под пикселями</p>
+            <h3>CPix&nbsp;2, 16&nbsp;Мп</h3>
+            <p>Пиксели над камерой уезжают в&nbsp;сторону, как пятнашки, и&nbsp;возвращаются, когда камера не&nbsp;нужна. Второе поколение снимает 4K/30: первое, в&nbsp;0X2&nbsp;Pro, снимало только фото.</p>
+          </article>
+          <article class="bf-frontcard">
+            <p class="mono">«Зеркало»</p>
+            <h3>Селфи на&nbsp;основную</h3>
+            <p>Сложите телефон и&nbsp;снимайте себя основной камерой: внешний экран покажет кадр. Снимаете друга&nbsp;— он увидит себя на&nbsp;внешнем экране.</p>
+          </article>
+        </div>
+        <ul class="bf-tags mono" role="list">
+          <li>8K/30</li><li>4K/120 HDR10+</li><li>10-битный Log</li><li>1080p/480</li><li>Ночной режим</li><li>RAW 12&nbsp;бит</li><li>Панорама 100&nbsp;Мп</li><li>Макро 50&nbsp;Мп</li><li>5 плёнок Kodak</li><li>«Кино» 4K/60</li><li>Две камеры сразу</li><li>Спектральный датчик</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. FYR GP10 SEMI -->
+    <section class="bf bf--chip" id="chip" aria-labelledby="chip-title">
+      <div class="bf-wrap">
+        <header class="bf-head bf-head--center">
+          <p class="bf-eyebrow mono">07 · Fyr GP10 Semi</p>
+          <h2 class="bf-h2" id="chip-title" data-split>Десять ядер. Ноль чужих секретов.</h2>
+          <p class="bf-lead">Первый процессор Fyr для телефонов. В&nbsp;нём нет ни&nbsp;одного блока ABC Processors: канал в&nbsp;чипы безопасности OY жил именно там, и&nbsp;мы знаем это лучше всех.</p>
+        </header>
+        <div class="bf-bento" data-bento>
+          <div class="bf-tile bf-tile--cores">
+            <p class="bf-tile__k mono">CPU · 2 + 4 + 4</p>
+            <div class="bf-cores" data-cores aria-label="Десять ядер: два больших, четыре производительных, четыре энергоэффективных" role="img">
+              <i class="is-big"></i><i class="is-big"></i><i class="is-perf"></i><i class="is-perf"></i><i class="is-perf"></i><i class="is-perf"></i><i></i><i></i><i></i><i></i>
+            </div>
+            <p class="bf-tile__big mono"><b data-ghz>0,0</b> ГГц</p>
+            <p class="bf-small">2 больших до&nbsp;4,6&nbsp;ГГц, 4 производительных до&nbsp;3,9, 4 энергоэффективных до&nbsp;2,8.</p>
+          </div>
+          <div class="bf-tile bf-tile--nm"><p class="bf-tile__k mono">Техпроцесс</p><p class="bf-tile__huge">2<small>нм</small></p><p class="bf-small">TSMC N2P</p></div>
+          <div class="bf-tile bf-tile--abc"><p class="bf-tile__k mono">Блоков ABC</p><p class="bf-tile__huge">0</p><p class="bf-small">Своя архитектура от&nbsp;и&nbsp;до.</p></div>
+          <div class="bf-tile bf-tile--gpu"><p class="bf-tile__k mono">Графика</p><p class="bf-tile__huge">FIG&nbsp;Two</p><p class="bf-small">10 ядер и&nbsp;аппаратная трассировка лучей. FIG&nbsp;One&nbsp;— в&nbsp;KBook&nbsp;1.</p></div>
+          <div class="bf-tile bf-tile--npu"><p class="bf-tile__k mono">Нейроядро</p><p class="bf-tile__huge">72<small>TOPS</small></p><p class="bf-small">«Погонщик» думает в&nbsp;телефоне, даже в&nbsp;авиарежиме.</p></div>
+          <div class="bf-tile bf-tile--semi"><p class="bf-tile__k mono">Почему Semi</p><p class="bf-small">Версия для тонких корпусов: та&nbsp;же архитектура, ниже частоты, тоньше упаковка. Испарительная камера 9200&nbsp;мм² идёт через обе половины и&nbsp;петлю.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CITADEL 5X -->
+    <section class="bf bf--citadel" id="citadel" aria-labelledby="citadel-title">
+      <div class="bf-wrap bf-split bf-split--right">
+        <div class="bf-split__text">
+          <p class="bf-eyebrow mono">08 · Citadel 5X</p>
+          <h2 class="bf-h2" id="citadel-title" data-split>Две двери. Два ключа.</h2>
+          <p class="bf-lead">Пятое поколение Citadel&nbsp;— отдельного компьютера для секретов. Своё питание, 512&nbsp;ГБ только для ключей, сетка от&nbsp;вскрытия через обе половины и&nbsp;петлю.</p>
+          <div class="bf-doors" role="radiogroup" aria-label="Какая дверь" data-doors>
+            <button type="button" role="radio" data-value="outer" aria-checked="true"><b>Внешняя дверь</b><span>Свой PIN и&nbsp;палец. Гостевой телефон: звонки, камера, карты.</span></button>
+            <button type="button" role="radio" data-value="inner" aria-checked="false" tabindex="-1"><b>Внутренняя дверь</b><span>Другой PIN и&nbsp;палец. Всё остальное&nbsp;— только раскрыв телефон.</span></button>
+          </div>
+          <p class="bf-small mono" data-doors-note>Снаружи открыта гостевая дверь. Внутренняя заперта.</p>
+        </div>
+      </div>
+      <div class="bf-wrap">
+        <ul class="bf-feats" role="list">
+          <li><b>«Шарнир»</b><span>Ключи от&nbsp;внутреннего экрана открываются, только когда телефон раскрыт. Сложенный показывает снаружи лишь то, что вы разрешили.</span></li>
+          <li><b>«Две двери»</b><span>Разные PIN и&nbsp;разные пальцы для внешнего и&nbsp;внутреннего экранов. Отдайте телефон сложенным&nbsp;— внутрь никто не&nbsp;заглянет.</span></li>
+          <li><b>«Веко»</b><span>Закрытая диафрагма обесточивает задние камеры. Датчик кольца подключён прямо к&nbsp;Citadel&nbsp;5X: система об&nbsp;этом только узнаёт.</span></li>
+          <li><b>«Мёртвая петля»</b><span>Вскрыли корпус или петлю&nbsp;— ключи стёрты раньше, чем до&nbsp;них доберутся.</span></li>
+          <li><b>«Кокон»</b><span>Пока телефон заблокирован, USB-C и&nbsp;NFC только заряжают и&nbsp;платят. Ни&nbsp;данных, ни&nbsp;отладки.</span></li>
+          <li><b>«Свидетель&nbsp;5»</b><span>Журнал каждого щелчка рубильников и&nbsp;кольца, подписанный чипом. Задним числом не&nbsp;подделать.</span></li>
+        </ul>
+        <p class="bf-note">Остались «Сторож» с&nbsp;хешем CamelOS при каждом запуске, «Кошелёк», «Двойник», «Мёртвая рука» и&nbsp;«Тревожный палец». Загрузчик открывается и&nbsp;закрывается снова, как у&nbsp;0X0: решает владелец.</p>
+      </div>
+    </section>
+
+    <!-- 9. ДВА РУБИЛЬНИКА -->
+    <section class="bf bf--switches" id="switches" aria-labelledby="switches-title">
+      <div class="bf-wrap bf-split">
+        <div class="bf-split__text">
+          <p class="bf-eyebrow mono">09 · Два рубильника</p>
+          <h2 class="bf-h2" id="switches-title" data-split>По&nbsp;рубильнику на&nbsp;крыло.</h2>
+          <p class="bf-lead">На&nbsp;верхней грани каждой половины&nbsp;— свой ползунок на&nbsp;три положения. Они не&nbsp;просят систему что-то выключить, а&nbsp;сами размыкают питание. В&nbsp;сложенном телефоне лежат рядом: на&nbsp;ощупь понятно, что выключено.</p>
+          <div class="bf-rubs">
+            <div class="bf-rub">
+              <p class="bf-rub__name">«Эфир» <span class="mono">левое крыло</span></p>
+              <div class="bf-rub__opts" role="radiogroup" aria-label="Рубильник «Эфир»" data-rub="rub2">
+                <button type="button" role="radio" data-value="0" aria-checked="true"><b>1</b> Всё работает</button>
+                <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1"><b>2</b> Без геолокации</button>
+                <button type="button" role="radio" data-value="2" aria-checked="false" tabindex="-1"><b>3</b> Эфир выключен</button>
+              </div>
+            </div>
+            <div class="bf-rub">
+              <p class="bf-rub__name">«Глаза и&nbsp;уши» <span class="mono">правое крыло</span></p>
+              <div class="bf-rub__opts" role="radiogroup" aria-label="Рубильник «Глаза и уши»" data-rub="rub">
+                <button type="button" role="radio" data-value="0" aria-checked="true"><b>1</b> Всё работает</button>
+                <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1"><b>2</b> Без микрофонов</button>
+                <button type="button" role="radio" data-value="2" aria-checked="false" tabindex="-1"><b>3</b> Без камер</button>
+              </div>
+            </div>
+          </div>
+          <ul class="bf-rub__list mono" data-rub-list>
+            <li data-rub-key="rub2" data-at="1">GNSS, UWB и&nbsp;NFC <b>вкл</b></li>
+            <li data-rub-key="rub2" data-at="2">Сотовая связь, Wi-Fi, Bluetooth, спутник <b>вкл</b></li>
+            <li data-rub-key="rub" data-at="1">5 микрофонов <b>вкл</b></li>
+            <li data-rub-key="rub" data-at="2">7 камер <b>вкл</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ЦВЕТА -->
+    <section class="bf bf--colors" id="colors" aria-labelledby="colors-title">
+      <div class="bf-wrap bf-split bf-split--right">
+        <div class="bf-split__text">
+          <p class="bf-eyebrow mono">10 · Цвета</p>
+          <h2 class="bf-h2" id="colors-title" data-split>Пять крыльев. Первое&nbsp;— красное.</h2>
+          <p class="bf-lead" data-color-note>«Сигнальный Красный». Главный цвет OY со&nbsp;времён первого 0X0: его видно издалека, как сигнальный огонь.</p>
+          <div class="bf-swatches" role="radiogroup" aria-label="Цвет" data-colors>
+            <button type="button" role="radio" data-value="signal" aria-checked="true" style="--sw: linear-gradient(135deg, #B3202A, #D7303C 55%, #8E1A22)"><i></i><span>Сигнальный</span></button>
+            <button type="button" role="radio" data-value="morpho" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #1D2B4F, #3A3F8C 60%, #2B5C8F)"><i></i><span>Морфо</span></button>
+            <button type="button" role="radio" data-value="swallowtail" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #E3D3A8 62%, #1C1C1E 63%)"><i></i><span>Махаон</span></button>
+            <button type="button" role="radio" data-value="cabbage" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #E9E8E3 62%, #C9CACC 63%)"><i></i><span>Капустница</span></button>
+            <button type="button" role="radio" data-value="admiral" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #1B1C1F 62%, #B3262E 63%)"><i></i><span>Адмирал</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. ПИТАНИЕ И CAMELOS -->
+    <section class="bf bf--power" id="power" aria-labelledby="power-title">
+      <div class="bf-wrap">
+        <header class="bf-head bf-head--center">
+          <p class="bf-eyebrow mono">11 · Питание и&nbsp;система</p>
+          <h2 class="bf-h2" id="power-title" data-split>Два аккумулятора. Одна система.</h2>
+        </header>
+        <div class="bf-bento bf-bento--power">
+          <div class="bf-tile"><p class="bf-tile__k mono">Аккумулятор</p><p class="bf-tile__huge">5600<small>мАч</small></p><p class="bf-small">Два элемента по&nbsp;половинам, кремний-углерод. До&nbsp;30 часов работы.</p></div>
+          <div class="bf-tile"><p class="bf-tile__k mono">По&nbsp;проводу</p><p class="bf-tile__huge">80<small>Вт</small></p><p class="bf-small">50&nbsp;% за&nbsp;14 минут. Блок в&nbsp;коробке.</p></div>
+          <div class="bf-tile"><p class="bf-tile__k mono">Без провода</p><p class="bf-tile__huge">50<small>Вт</small></p><p class="bf-small">XMagnum. Qi2.2 до&nbsp;25&nbsp;Вт, обратная 10&nbsp;Вт.</p></div>
+          <div class="bf-tile"><p class="bf-tile__k mono">Видео</p><p class="bf-tile__huge">52<small>ч</small></p><p class="bf-small">На&nbsp;внешнем экране. На&nbsp;внутреннем&nbsp;— 38.</p></div>
+          <div class="bf-tile bf-tile--os">
+            <p class="bf-tile__k mono">CamelOS&nbsp;2</p>
+            <p class="bf-tile__mid">Одно приложение&nbsp;— два экрана.</p>
+            <p class="bf-small">На&nbsp;ядре Oasis&nbsp;2, без аккаунта, облака и&nbsp;телеметрии. «Погонщик» в&nbsp;телефоне, «Караван» с&nbsp;часами и&nbsp;KBook, «Караван-сарай» для приложений Android. 8&nbsp;лет обновлений.</p>
+            <a class="bf-link" href="/os/">Всё про CamelOS&nbsp;2 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. КУПИТЬ -->
+    <section class="bf bf--buy" id="buy" aria-labelledby="buy-title">
+      <div class="bf-wrap bf-buy">
+        <div class="bf-buy__head">
+          <p class="bf-eyebrow mono">12 · Купить</p>
+          <h2 class="bf-h2" id="buy-title" data-split>Раскройте кошелёк. Медленно.</h2>
+          <p class="bf-lead">Швеция, Евросоюз и&nbsp;США с&nbsp;зимы 2031 года. В&nbsp;Китае Butterfly нет: там телефоны OY продаёт XZF.</p>
+        </div>
+        <div class="bf-buy__panel">
+          <p class="bf-buy__k mono">Память</p>
+          <div class="bf-mem" role="radiogroup" aria-label="Память" data-mem>
+            <button type="button" role="radio" data-value="12/256" data-usd="1599" data-eur="1799" data-sek="17 990" aria-checked="true"><b>256&nbsp;ГБ</b><span>12&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="16/512" data-usd="1799" data-eur="1999" data-sek="19 990" aria-checked="false" tabindex="-1"><b>512&nbsp;ГБ</b><span>16&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="16/1024" data-usd="1999" data-eur="2199" data-sek="21 990" aria-checked="false" tabindex="-1"><b>1&nbsp;ТБ</b><span>16&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="24/2048" data-usd="2399" data-eur="2599" data-sek="26 990" aria-checked="false" tabindex="-1"><b>2&nbsp;ТБ</b><span>24&nbsp;ГБ ОЗУ</span></button>
+          </div>
+          <p class="bf-buy__k mono">Цвет: <span data-buy-color>Сигнальный Красный</span></p>
+          <div class="bf-swatches bf-swatches--sm" role="radiogroup" aria-label="Цвет" data-colors-buy>
+            <button type="button" role="radio" data-value="signal" aria-checked="true" aria-label="Сигнальный Красный" style="--sw: linear-gradient(135deg, #B3202A, #D7303C 55%, #8E1A22)"><i></i></button>
+            <button type="button" role="radio" data-value="morpho" aria-checked="false" tabindex="-1" aria-label="Морфо" style="--sw: linear-gradient(135deg, #1D2B4F, #3A3F8C 60%, #2B5C8F)"><i></i></button>
+            <button type="button" role="radio" data-value="swallowtail" aria-checked="false" tabindex="-1" aria-label="Махаон" style="--sw: linear-gradient(135deg, #E3D3A8 62%, #1C1C1E 63%)"><i></i></button>
+            <button type="button" role="radio" data-value="cabbage" aria-checked="false" tabindex="-1" aria-label="Капустница" style="--sw: linear-gradient(135deg, #E9E8E3 62%, #C9CACC 63%)"><i></i></button>
+            <button type="button" role="radio" data-value="admiral" aria-checked="false" tabindex="-1" aria-label="Адмирал" style="--sw: linear-gradient(135deg, #1B1C1F 62%, #B3262E 63%)"><i></i></button>
+          </div>
+          <ul class="bf-prices" role="list" data-prices>
+            <li><span class="mono">США</span><button type="button" class="bf-hex bf-hex--big" data-cur="usd">$1599</button></li>
+            <li><span class="mono">Евросоюз</span><button type="button" class="bf-hex bf-hex--big" data-cur="eur">€1799</button></li>
+            <li><span class="mono">Швеция</span><button type="button" class="bf-hex bf-hex--big" data-cur="sek">17 990 kr</button></li>
+          </ul>
+          <p class="bf-small">Нажмите на&nbsp;цену: Fyr переведёт её&nbsp;в&nbsp;шестнадцатеричную, как привыкла. В&nbsp;коробке блок на&nbsp;80&nbsp;Вт и&nbsp;кабель. Подписок нет.</p>
+          <button type="button" class="btn btn--accent btn--wide" data-buy>Купить</button>
+          <p class="bf-small bf-small--center">Купить здесь нельзя: это концепт. Но&nbsp;крылья уже раскрылись.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. ХАРАКТЕРИСТИКИ КОРОТКО -->
+    <section class="bf bf--specs" id="specs" aria-labelledby="specs-title">
+      <div class="bf-wrap">
+        <header class="bf-head bf-head--center">
+          <p class="bf-eyebrow mono">13 · Характеристики</p>
+          <h2 class="bf-h2" id="specs-title" data-split>OY 0X Butterfly. Коротко.</h2>
+        </header>
+        <dl class="bf-specs">
+          <div><dt>Экраны</dt><dd>7,8″ LTPO AMOLED внутри, 5,6″ снаружи, 1–144&nbsp;Гц, 0,5–4600&nbsp;нит</dd></div>
+          <div><dt>Процессор</dt><dd>Fyr GP10 Semi, 2&nbsp;нм, 10 ядер, графика FIG&nbsp;Two</dd></div>
+          <div><dt>Камеры сзади</dt><dd>4 × 50&nbsp;Мп: 0,5×, 1×, 3×, 6×; диафрагма-шторка</dd></div>
+          <div><dt>Фронтальные</dt><dd>32 + 12&nbsp;Мп снаружи, CPix&nbsp;2 16&nbsp;Мп внутри</dd></div>
+          <div><dt>Безопасность</dt><dd>Citadel&nbsp;5X, два «Рубильника», отпечаток в&nbsp;кнопке</dd></div>
+          <div><dt>Корпус</dt><dd>4,6&nbsp;мм раскрыт, 9,9&nbsp;мм сложен, 229&nbsp;г, IP68 и&nbsp;IP69</dd></div>
+          <div><dt>Питание</dt><dd>5600&nbsp;мАч, 80&nbsp;Вт, XMagnum 50&nbsp;Вт</dd></div>
+          <div><dt>Память</dt><dd>12/256, 16/512, 16/1024, 24/2048&nbsp;ГБ</dd></div>
+          <div><dt>Система</dt><dd>CamelOS&nbsp;2, 8 лет обновлений, 26 месяцев гарантии</dd></div>
+        </dl>
+        <a class="btn btn--accent bf-specs__all" href="/butterfly/specs/">Все характеристики</a>
+      </div>
+    </section>
+
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">Kodak&nbsp;— товарный знак Eastman Kodak Company. Партнёрство на&nbsp;этой странице вымышлено, как и&nbsp;сам телефон. TSMC&nbsp;— товарный знак Taiwan Semiconductor Manufacturing Company; HDR10+&nbsp;— HDR10+ Technologies; Qi2&nbsp;— Wireless Power Consortium.</li>
+          <li id="fn-2">Диагонали экранов измерены по&nbsp;прямоугольнику; из-за скруглённых углов видимая площадь меньше: 7,76″ и&nbsp;5,57″.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <p class="transit-plate"><b>Переходный период</b> <span>OY&nbsp;Europe обанкротилась. Butterfly сделала Fyr; обновления, гарантию и&nbsp;поддержку всех телефонов OY ведёт она&nbsp;же, на&nbsp;CamelOS&nbsp;2.0. В&nbsp;Китае телефоны OY продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · сделано Fyr в&nbsp;Стокгольме</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X Butterfly · зима 2031 · Швеция, Евросоюз, США · <a href="/butterfly/specs/">Характеристики</a> · <a href="/moth2/">0X Moth 2</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X&nbsp;Butterfly, Fyr, Fyr GP10 Semi, Citadel&nbsp;5X, CamelOS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Эта страница ничего не&nbsp;считает. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

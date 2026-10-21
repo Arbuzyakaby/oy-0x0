@@ -84,14 +84,11 @@ test('страница 0X Moth: девять глав, у каждой id и п�
   for (const id of Object.keys(PRODUCTS.moth.colors)) assert.ok(html.includes(`data-value="${id}"`), id);
 });
 
-test('Moth — только «мотылёк»: другого слова для него нет ни в одном файле сайта', () => {
+test('Moth — только «мотылёк»: на страницах и в коде Moth другого слова для него нет', () => {
+  // «бабочка» на сайте теперь есть — это OY 0X Butterfly; Moth по-прежнему только мотылёк
   const word = new RegExp('бабоч' + 'к', 'i');
-  const walk = (dir) => readdirSync(join(ROOT, dir), { withFileTypes: true }).flatMap((d) => {
-    const rel = `${dir}/${d.name}`;
-    return d.isDirectory() ? walk(rel) : /\.(html|js|css)$/.test(d.name) ? [rel] : [];
-  });
-  const files = [...PAGES, '404.html', ...walk('js'), ...walk('css')];
-  for (const f of files) if (existsSync(join(ROOT, f))) assert.ok(!word.test(read(f)), f);
+  const files = ['moth/index.html', 'moth2/index.html', 'js/pages/moth.js', 'js/models/oymoth.js', 'css/moth.css'];
+  for (const f of files) assert.ok(!word.test(read(f)), f);
 });
 
 test('страница 0X Nova: тринадцать глав «Обсерватории», одна h1, якоря ведут к существующим id', () => {
@@ -234,7 +231,7 @@ test('салюта больше нет: ни модуля, ни вызовов, 
   }
 });
 
-test('витрина: шесть телефонов OY в продаже под Fyr, блок «Хроника коротко» вместо «Перемен в OY»', () => {
+test('витрина: семь телефонов OY в продаже под Fyr, блок «Хроника коротко» вместо «Перемен в OY»', () => {
   const html = read('index.html');
   assert.match(html, /<title>Fyr — Osmium X0, KBook 1 и телефоны OY<\/title>/);
   for (const id of ON_SALE) {
@@ -265,7 +262,7 @@ test('ни юаней, ни eXtream: ни на одной странице, ни
   assert.match(read('index.html'), /eXtream продан XZF/);
 });
 
-test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все 14 смартфонов OY, часы и ноутбук', () => {
+test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все 14 смартфонов OY, часы и ноутбук, Butterfly — из коробки', () => {
   const html = read('os/index.html');
   assert.match(html, /class="cm-page"/);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
@@ -280,7 +277,7 @@ test('CamelOS 2.0: одна система Fyr без аккаунта и обл
   // все смартфоны OY, которые когда-либо выходили, и оба устройства Fyr — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS);
-  assert.equal(phones.length, 14);
+  assert.equal(phones.length, 15);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке CamelOS 2.0`);
   for (const href of ['/fyr/', '/fyr/kbook/']) assert.ok(all.includes(`href="${href}"`), href);
   // в шапке всех страниц раздел называется CamelOS
@@ -352,4 +349,31 @@ test('страница /fyr/h1/: первый телефон Fyr — главы 
   }
   assert.ok(read('index.html').includes('data-fyr-model="h1"'), 'нет карточки H1 на главной');
   assert.ok(read('os/index.html').includes('href="/fyr/h1/"'), 'H1 нет в списке CamelOS 2.0');
+});
+
+test('страница /butterfly/: первый OY от Fyr — главы по порядку, одна h1, якоря сходятся, пять цветов и четыре версии памяти из данных', () => {
+  const html = read('butterfly/index.html');
+  const chapters = [...html.matchAll(/<section class="bf bf--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['hero', 'promise', 'unfold', 'screens', 'hinge', 'eye', 'cameras', 'chip', 'citadel', 'switches', 'colors', 'power', 'buy', 'specs']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const c of Object.keys(PRODUCTS.butterfly.colors)) assert.ok(html.includes(`data-value="${c}"`), c);
+  for (const c of PRODUCTS.butterfly.configs) {
+    assert.ok(html.includes(`data-value="${c.id}" data-usd="${c.usd}" data-eur="${c.eur}"`), c.id);
+  }
+  for (const re of [/Fyr GP10 Semi/, /Citadel&nbsp;5X/, /«Две двери»/, /«Шарнир»/, /«Веко»/, /«Мёртвая петля»/, /«Кокон»/, /«Эфир»/, /«Глаза и&nbsp;уши»/, /CPix&nbsp;2/, /Kodak&nbsp;— товарный знак Eastman Kodak Company/]) assert.match(html, re);
+  assert.ok(html.includes('href="/butterfly/specs/"'));
+  assert.ok(existsSync(join(ROOT, 'models', 'oybutterfly.glb')));
+  assert.ok(existsSync(join(ROOT, 'og-butterfly.jpg')));
+});
+
+test('страница /butterfly/specs/: все разделы характеристик, одна h1, оглавление ведёт к существующим id', () => {
+  const html = read('butterfly/specs/index.html');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  const rows = [...html.matchAll(/<section class="bf-sp__row" id="([^"]+)"/g)].map((m) => m[1]);
+  for (const id of ['capacity', 'size', 'displays', 'water', 'chip', 'camera', 'video', 'front', 'power', 'security', 'switches', 'peace', 'cellular', 'location', 'buttons', 'sensors', 'sim', 'wallet', 'calls', 'media', 'os', 'a11y', 'apps', 'environment', 'languages', 'box']) assert.ok(rows.includes(id), id);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const c of PRODUCTS.butterfly.configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
 });

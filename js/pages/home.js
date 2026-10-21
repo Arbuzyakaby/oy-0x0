@@ -12,6 +12,7 @@ import { createOY0X3E } from '../models/oy0x3e.js';
 import { createOY0X2Pro } from '../models/oy0x2pro.js';
 import { createOYMoth2 } from '../models/oymoth.js';
 import { createOYNova } from '../models/oynova.js';
+import { createOYButterfly } from '../models/oybutterfly.js';
 import { createFyrOsmium } from '../models/fyrosmium.js';
 import { createFyrKBook } from '../models/fyrkbook.js';
 import { createFyrH1 } from '../models/fyrh1.js';
@@ -37,15 +38,15 @@ const PI = Math.PI;
 
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
-/* ---------- Модельный ряд: шесть телефонов в одном масштабе ---------- */
+/* ---------- Модельный ряд: семь телефонов в одном масштабе ---------- */
 
 // У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
 // поэтому разница в росте настоящая: 0X2 Pro — 166 мм, 0X2Q — 142,4 мм.
-const HEIGHT = { '0x3e': 150, '0x2': 161, moth2: 166.7, '0x2q': 142.4, '0x2pro': 166, nova: 164.8 };
-const TURN = { '0x3e': -PI + 0.5, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x2q': -PI + 0.5, '0x2pro': -PI - 0.4, nova: -PI + 0.42 };
+const HEIGHT = { '0x3e': 150, '0x2': 161, moth2: 166.7, '0x2q': 142.4, '0x2pro': 166, nova: 164.8, butterfly: 120 };
+const TURN = { '0x3e': -PI + 0.5, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x2q': -PI + 0.5, '0x2pro': -PI - 0.4, nova: -PI + 0.42, butterfly: -PI + 0.45 };
 const DIST = 4.05;
-const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1 });
-const MODELS = { '0x3e': [createOY0X3E, 'radium'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x2q': [createOY0X2Q, 'tesseract'], '0x2pro': [createOY0X2Pro, 'sky'], nova: [createOYNova, 'supernova'] };
+const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1, ...(id === 'butterfly' ? { fold: 1 } : {}) });
+const MODELS = { '0x3e': [createOY0X3E, 'radium'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x2q': [createOY0X2Q, 'tesseract'], '0x2pro': [createOY0X2Pro, 'sky'], nova: [createOYNova, 'supernova'], butterfly: [createOYButterfly, 'signal'] };
 const stages = [];
 $$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
@@ -61,8 +62,9 @@ $$('.lineup__item').forEach((item) => {
   const rest = pose(id);
   // при наведении телефон разворачивается к вам экраном вполоборота;
   // у 0X2Q заодно выезжает модуль, 0X2 Pro поворачивается экраном и поднимает фронталку из-под CPix,
-  // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам (камера чуть дальше: сложенный он шире колонки), а у Nova выезжает перо
-  const near = id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth2' ? { ry: -0.28, fold: 1, rz: PI, fy: 0, dist: DIST * 1.2 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
+  // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам (камера чуть дальше: сложенный он шире колонки), у Nova выезжает перо,
+  // а Butterfly закрывает «Глаз» диафрагмой
+  const near = id === 'butterfly' ? { ry: -PI + 0.15, iris: 1 } : id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth2' ? { ry: -0.28, fold: 1, rz: PI, fy: 0, dist: DIST * 1.2 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
   stage.setTarget(rest);
   stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);
