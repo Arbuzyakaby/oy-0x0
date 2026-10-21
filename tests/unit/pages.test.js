@@ -329,7 +329,7 @@ test('страница /fyr/h1/: первый телефон Fyr — главы 
   const html = read('fyr/h1/index.html');
   assert.ok(html.includes('data-fyr-page') && html.includes('data-h1'));
   const chapters = [...html.matchAll(/<section class="h1s h1s--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(chapters, ['intro', 'promise', 'body', 'frost-glass', 'display', 'chip', 'cores', 'camera', 'kodak', 'citadel', 'rubilnik', 'torch', 'camelos', 'colors', 'specs', 'price']);
+  assert.deepEqual(chapters, ['intro', 'promise', 'design', 'colors', 'frost-glass', 'display', 'chip', 'cores', 'camera', 'kodak', 'citadel', 'rubilnik', 'torch', 'camelos', 'specs', 'price']);
   const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
   for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
@@ -337,7 +337,8 @@ test('страница /fyr/h1/: первый телефон Fyr — главы 
   const num = (s) => Number(s.replace(/[^0-9]/g, ''));
   for (const [, dec, hex] of html.matchAll(/data-hex="([^"]+)"[^>]*>(0x[0-9A-F]+)/g)) assert.equal(parseInt(hex, 16), num(dec), `${hex} ≠ ${dec}`);
   for (const [, hex, dec] of html.matchAll(/data-alt-hex="(0x[0-9A-F]+)[^"]*" data-alt-dec="([^"]+)"/g)) assert.equal(parseInt(hex, 16), num(dec), `${hex} ≠ ${dec}`);
-  assert.equal(0x1B7, 439);
+  assert.equal(0x2BB, 699);
+  assert.equal(0x31F, 799);
   // пять цветов, у всех — радиокнопка; Kodak — с оговоркой о товарном знаке
   for (const c of ['sea', 'mars', 'sunset', 'mountain', 'kodak']) assert.ok(html.includes(`data-value="${c}"`), c);
   assert.match(html, /Kodak&nbsp;— товарный знак Eastman Kodak Company/);
