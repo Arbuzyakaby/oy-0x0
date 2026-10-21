@@ -227,13 +227,11 @@ test('0X3 Essential — реверанс 0X0: тот же сюжет прокр�
   assert.ok(existsSync(join(ROOT, 'models', 'oy0x3e.glb')));
 });
 
-test('прощальный салют 0X0: на витрине и странице 0X0, раз за сессию', () => {
-  const js = read('js/core/farewell.js');
-  assert.match(js, /sessionStorage/);
-  assert.match(js, /prefers-reduced-motion/);
-  assert.match(read('js/pages/home.js'), /playFarewell\(\)/);
-  assert.match(read('js/pages/base.js'), /playFarewell\(\)/);
-  assert.ok(read('index.html').includes('data-salute'));
+test('салюта больше нет: ни модуля, ни вызовов, ни кнопки на витрине', () => {
+  assert.ok(!existsSync(join(ROOT, 'js', 'core', 'farewell.js')));
+  for (const f of ['js/pages/home.js', 'js/pages/base.js', 'css/core.css', 'css/home.css', 'index.html']) {
+    assert.doesNotMatch(read(f), /playFarewell|salute/i, f);
+  }
 });
 
 test('витрина: шесть телефонов OY в продаже под Fyr, блок «Хроника коротко» вместо «Перемен в OY»', () => {
@@ -246,7 +244,7 @@ test('витрина: шесть телефонов OY в продаже под 
   for (const p of Object.values(PRODUCTS).filter((x) => x.discontinued)) assert.ok(!html.includes(`data-model="${p.id}"`), `${p.id}: снят, а на витрине`);
   assert.ok(!html.includes('id="returned"'));
   assert.ok(html.includes('id="shift"'));
-  for (const re of [/Xiaomi/, /XNA/, /XZF/, /Huawei/, /Манхэттенский залив/, /выгрузить свои данные/, /Fyr Connect/, /Спасибо, 0X0/]) assert.match(html, re);
+  for (const re of [/Xiaomi/, /XNA/, /XZF/, /Huawei/, /Манхэттенский залив/, /выгрузить свои данные/, /CamelOS&nbsp;2\.0/, /Спасибо, 0X0/]) assert.match(html, re);
 });
 
 test('ни юаней, ни eXtream: ни на одной странице, ни в скриптах и стилях', () => {
@@ -267,20 +265,29 @@ test('ни юаней, ни eXtream: ни на одной странице, ни
   assert.match(read('index.html'), /eXtream продан XZF/);
 });
 
-test('OY OS 4.5: Assist на устройстве, «Линза» выключается, 83 дата-центра, Fyr Connect; обновятся все 14 смартфонов OY', () => {
+test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все 14 смартфонов OY, часы и ноутбук', () => {
   const html = read('os/index.html');
-  assert.match(html, /class="os4-page"/);
-  assert.doesNotMatch(html, /aurora|os3\.js|data-hash|data-req-svg|data-exif/);
-  for (const id of ['os45', 'oyid', 'cloud', 'assist', 'lens', 'google', 'home', 'memories', 'devices']) assert.ok(html.includes(`id="${id}"`), id);
-  for (const re of [/OY OS 4\.5/, /data-assist-where/, /data-lens-off/, /83 собственных дата-центра/, /Fyr Connect/, /дружба народов/]) assert.match(html, re);
-  assert.match(html, /\$9,99/);
-  assert.match(html, /240&nbsp;ГБ/);
-  assert.match(html, /Удалить сервисы Google/);
-  // все смартфоны OY, которые когда-либо выходили, — в списке обновления
+  assert.match(html, /class="cm-page"/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const id of ['overview', 'cut', 'setup', 'caravan', 'features', 'guard', 'oasis', 'devices', 'move']) assert.ok(html.includes(`id="${id}"`), id);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const re of [/CamelOS 2\.0/, /Oasis&nbsp;2/, /Караван/, /Погонщик/, /Маяк/, /Сторож/, /Колодец/, /Привал/, /data-race-go/, /data-setup-next/, /data-hash-go/, /Проверьте хеш/]) assert.match(html, re);
+  // шага входа нет: в первой настройке ни почты, ни пароля
+  const setup = html.slice(html.indexOf('id="setup"'), html.indexOf('id="caravan"'));
+  assert.doesNotMatch(setup, /type="(email|password)"/);
+  assert.ok(!existsSync(join(ROOT, 'js', 'pages', 'os4.js')) && !existsSync(join(ROOT, 'css', 'os.css')), 'остатки OY OS 4.5');
+  // все смартфоны OY, которые когда-либо выходили, и оба устройства Fyr — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS);
   assert.equal(phones.length, 14);
-  for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке OY OS 4`);
+  for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке CamelOS 2.0`);
+  for (const href of ['/fyr/', '/fyr/kbook/']) assert.ok(all.includes(`href="${href}"`), href);
+  // в шапке всех страниц раздел называется CamelOS
+  for (const p of PAGES) {
+    const nav = read(p).match(/<nav class="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
+    if (nav && nav[1].includes('href="/os/"')) assert.ok(/href="\/os\/"[^>]*>CamelOS</.test(nav[1]), `${p}: в шапке не CamelOS`);
+  }
 });
 
 test('хроника /fyr/chronicle/: восемь глав по порядку, одна h1, якоря сходятся, весь сюжет на месте', () => {
@@ -304,7 +311,7 @@ test('главная — Fyr: Osmium X0 и KBook 1 в 3D над телефона
   assert.ok(html.includes('data-fyr-model="kbook"'));
   assert.ok(html.includes('href="/fyr/chronicle/"'));
   assert.ok(html.includes('id="win"') && html.includes('№1 в ЕС'));
-  assert.match(html, /OY&nbsp;OS&nbsp;5/);
+  assert.match(html, /Обещали OY&nbsp;OS&nbsp;5\. Выпустили CamelOS&nbsp;2\.0\./);
   assert.ok(read('0x2pro/index.html').includes('class="win-chip'));
 });
 

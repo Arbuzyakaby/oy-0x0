@@ -18,7 +18,6 @@ import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
 import { $, $$ } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals } from '../core/text.js';
-import { playFarewell } from '../core/farewell.js';
 
 // Старые ссылки на секции страницы 0X0 (/#buy и т. п.) — туда, где они теперь живут
 const OLD_IDS = ['hero', 'zero', 'shutter', 'switches', 'compare', 'nogoogle', 'journal', 'os', 'features', 'network', 'security',
@@ -171,9 +170,3 @@ mm.add({ reduce: '(prefers-reduced-motion: reduce)', motion: '(prefers-reduced-m
   return () => splits.unsplitAll();
 });
 window.addEventListener('load', () => ScrollTrigger.refresh());
-
-/* ---------- Прощальный салют 0X0: раз за сессию и по кнопке ---------- */
-
-const farewell = () => setTimeout(() => playFarewell(), 600);
-if (document.readyState === 'complete') farewell(); else window.addEventListener('load', farewell, { once: true });
-$('[data-salute]')?.addEventListener('click', () => playFarewell({ force: true }));

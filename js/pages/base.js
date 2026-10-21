@@ -18,7 +18,6 @@ import { $, $$, clamp01, store, createToast, syncRadio, initRadioGroup, bindTogg
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals, wrapWords, scrubWords } from '../core/text.js';
 import { initCarousel } from '../core/carousel.js';
-import { playFarewell } from '../core/farewell.js';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -625,6 +624,3 @@ async function boot() {
   }
 }
 boot();
-// 0X0 снят с продажи: на его странице — тот же прощальный салют, что и на витрине
-const farewell = () => setTimeout(() => playFarewell(), 900);
-if (document.readyState === 'complete') farewell(); else window.addEventListener('load', farewell, { once: true });
