@@ -43,7 +43,7 @@
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=3239f2ad3a",
-      "/js/data/products.js": "/js/data/products.js?v=1db33b0ec2",
+      "/js/data/products.js": "/js/data/products.js?v=da2d749f2c",
       "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
@@ -105,7 +105,7 @@
       <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M2.5 18.5h19"/></symbol>
       <symbol id="i-camel" viewBox="0 0 24 24"><path d="M3 20v-5.5c0-1.6 1-2.6 2.4-2.6 1.4 0 2-1.9 3.1-3.6 1-1.5 2.4-1.5 3.3 0 .8 1.4 1.4 2.6 2.4 2.6s1.6-1.7 2.6-3.1c.6-.9 1.4-1.6 2.2-1.6V9c-.6 0-1 .6-1 1.4V20M7 20v-4.5M16 20v-4.5"/></symbol>
       <symbol id="i-beacon" viewBox="0 0 24 24"><path d="M10 21l1-9h2l1 9M9.5 12h5M12 9.5V8"/><path d="M5 5.5a9.5 9.5 0 0 0 0 9M19 5.5a9.5 9.5 0 0 1 0 9M8 8a5 5 0 0 0 0 4.5M16 8a5 5 0 0 1 0 4.5"/></symbol>
-      <symbol id="i-well" viewBox="0 0 24 24"><path d="M4 11h16M6 11v8.5h12V11M8 11V7.5h8V11M5 7.5h14L12 3.5z"/></symbol>
+      <symbol id="i-sarai" viewBox="0 0 24 24"><path d="M3 20.5h18M4.5 20.5V9.5L12 4l7.5 5.5v11M9 20.5v-5a3 3 0 0 1 6 0v5M7.5 11.5h1.5M15 11.5h1.5"/></symbol><symbol id="i-well" viewBox="0 0 24 24"><path d="M4 11h16M6 11v8.5h12V11M8 11V7.5h8V11M5 7.5h14L12 3.5z"/></symbol>
       <symbol id="i-guard" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
       <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></symbol>
       <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z"/></symbol>
@@ -282,7 +282,7 @@
         <ul class="cm-gone" role="list" data-reveal>
           <li><s>OY ID</s><span>Входа нет. Устройство знает своего владельца по&nbsp;отпечатку и&nbsp;PIN, и&nbsp;этого достаточно.</span></li>
           <li><s>0X Cloud</s><span>Облако осталось у&nbsp;XNA. Нам оно не&nbsp;нужно: всё лежит у&nbsp;вас.</span></li>
-          <li><s>Сервисы Google</s><span>Вырезаны из&nbsp;системного раздела. Захотите&nbsp;— поставите сами в&nbsp;песочницу.</span></li>
+          <li><s>Сервисы Google</s><span>Вырезаны из&nbsp;системного раздела. Захотите&nbsp;— поставите сами в&nbsp;«Караван-сарай».</span></li>
           <li><s>Телеметрия</s><span>Не&nbsp;«выключена по&nbsp;умолчанию». Её&nbsp;нет в&nbsp;коде. Проверьте сами.</span></li>
           <li><s>0X Cloud Pro за&nbsp;$9,99</s><span>Подписок в&nbsp;системе нет ни&nbsp;одной.</span></li>
           <li><s>148 страниц условий</s><span>Условия CamelOS умещаются на&nbsp;экран и&nbsp;не&nbsp;меняются задним числом.</span></li>
@@ -429,7 +429,7 @@
 
           <article class="cm-cell cm-cell--well" data-reveal>
             <div class="cm-cell__top"><svg aria-hidden="true"><use href="#i-well"/></svg><h3>Колодец</h3></div>
-            <p>Резервная копия телефона на&nbsp;ваш KBook, флешку или домашний диск. Ключ остаётся у&nbsp;вас.</p>
+            <p>Резервная копия телефона на&nbsp;ваш KBook, флешку или домашний диск. У&nbsp;0X1Q и&nbsp;0X2Q разъёмов нет, они сохраняются на&nbsp;KBook по&nbsp;воздуху. Ключ остаётся у&nbsp;вас.</p>
             <div class="cm-well" aria-hidden="true"><span style="--w:.82"></span><em class="mono">KBook 1 · 82 % · зашифровано</em></div>
           </article>
 
@@ -441,12 +441,17 @@
 
           <article class="cm-cell cm-cell--switch" data-reveal>
             <div class="cm-cell__top"><svg aria-hidden="true"><use href="#i-shield"/></svg><h3>Рубильники в&nbsp;шторке</h3></div>
-            <p>Kill switch на&nbsp;0X0 и&nbsp;0X3 Essential, рубильник в&nbsp;коронке Osmium и&nbsp;на&nbsp;торце KBook видны прямо в&nbsp;строке состояния. Система не&nbsp;притворяется, что может их&nbsp;обойти.</p>
+            <p>Kill switch на&nbsp;0X0, 0X0 Pro, 0X2 Essential и&nbsp;0X3 Essential, кнопки «0» и&nbsp;«1» с&nbsp;фиксацией на&nbsp;0X1 Pro и&nbsp;0X2 Pro, рубильник в&nbsp;коронке Osmium и&nbsp;на&nbsp;торце KBook видны прямо в&nbsp;строке состояния. Система не&nbsp;притворяется, что может их&nbsp;обойти.</p>
           </article>
 
           <article class="cm-cell cm-cell--mirage" data-reveal>
             <div class="cm-cell__top"><svg aria-hidden="true"><use href="#i-spark"/></svg><h3>Одно приложение, три экрана</h3></div>
-            <p>Приложения CamelOS собираются один раз и&nbsp;работают на&nbsp;телефоне, часах и&nbsp;ноутбуке. Android-приложения запускаются в&nbsp;песочнице. Контакты и&nbsp;фото в&nbsp;песочнице пусты, пока вы не&nbsp;дадите их&nbsp;сами.</p>
+            <p>Приложения CamelOS собираются один раз и&nbsp;работают на&nbsp;телефоне, часах и&nbsp;ноутбуке. Пишет разработчик один раз, а&nbsp;интерфейс сам подстраивается под&nbsp;экран.</p>
+          </article>
+
+          <article class="cm-cell cm-cell--mirage cm-cell--sarai" data-reveal>
+            <div class="cm-cell__top"><svg aria-hidden="true"><use href="#i-sarai"/></svg><h3>Караван-сарай</h3></div>
+            <p>Android-приложения живут на&nbsp;постоялом дворе: у&nbsp;каждого своя комната, но&nbsp;в&nbsp;дом их&nbsp;не&nbsp;пускают. Контакты и&nbsp;фото там пусты, пока вы не&nbsp;дадите их&nbsp;сами. Внутри&nbsp;— старая OY OS без OY&nbsp;ID, облака и&nbsp;Google: теперь она здесь гостья.<sup class="fn"><a href="#fn-6" id="fnr-6">6</a></sup></p>
           </article>
         </div>
       </div>
@@ -491,7 +496,7 @@
         <dl class="cm-facts" data-reveal>
           <div><dt>Открытого кода</dt><dd class="mono">100&nbsp;%</dd></div>
           <div><dt>Подписей на&nbsp;обновление</dt><dd class="mono">2 из&nbsp;3</dd><p>Двое инженеров Fyr из&nbsp;разных команд, у&nbsp;каждого свой ключ в&nbsp;своём чипе.</p></div>
-          <div><dt>Ключей от&nbsp;чипов безопасности у&nbsp;Fyr</dt><dd class="mono">0</dd><p>Последний лежит на&nbsp;дне Манхэттенского залива.</p></div>
+          <div><dt>Ключей от&nbsp;тайного канала в&nbsp;чипы</dt><dd class="mono">0</dd><p>Последний лежит на&nbsp;дне Манхэттенского залива. Обновления чипов идут только открыто, с&nbsp;подписью «2 из&nbsp;3».</p></div>
         </dl>
       </div>
     </section>
@@ -537,7 +542,7 @@
           <li class="cm-all__fyr"><a href="/fyr/">Osmium X0</a></li>
           <li class="cm-all__fyr"><a href="/fyr/kbook/">KBook 1</a></li>
         </ul>
-        <p class="cm-note" data-reveal>Обещанные сроки обновлений Fyr продлила каждой модели на&nbsp;два года. Телефоны, проданные в&nbsp;Китае, обновляет XZF.<sup class="fn"><a href="#fn-6" id="fnr-6">6</a></sup></p>
+        <p class="cm-note" data-reveal>Обещанные сроки обновлений Fyr продлила каждой модели на&nbsp;два года. Телефоны, проданные в&nbsp;Китае, обновляет XZF.<sup class="fn"><a href="#fn-7" id="fnr-7">7</a></sup></p>
       </div>
     </section>
 
@@ -552,7 +557,7 @@
           </li>
           <li data-reveal>
             <h3>Обновитесь</h3>
-            <p>Настройки → Система → CamelOS&nbsp;2.0. Около 3,4&nbsp;ГБ на&nbsp;телефоне, 410&nbsp;МБ на&nbsp;часах. Входить никуда не&nbsp;нужно.<sup class="fn"><a href="#fn-7" id="fnr-7">7</a></sup></p>
+            <p>Настройки → Система → CamelOS&nbsp;2.0. Около 3,4&nbsp;ГБ на&nbsp;телефоне, 410&nbsp;МБ на&nbsp;часах. Входить никуда не&nbsp;нужно.<sup class="fn"><a href="#fn-8" id="fnr-8">8</a></sup></p>
           </li>
           <li data-reveal>
             <h3>Посмотрите, что осталось</h3>
@@ -569,11 +574,12 @@
         <ol class="footnotes__list">
           <li id="fn-1">Номер у&nbsp;системы один на&nbsp;все устройства. CamelOS&nbsp;1 вышла вместе с&nbsp;KBook&nbsp;1, поэтому на&nbsp;телефонах и&nbsp;часах первая CamelOS сразу вторая. <a href="#fnr-1" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
           <li id="fn-2">Замер Fyr: первая минута после первого включения двух 0X2 Pro. На&nbsp;OY OS 4.5 выполнен вход в&nbsp;OY ID, настройки по&nbsp;умолчанию. Считались исходящие соединения на&nbsp;уровне сетевого стека. Время CamelOS берёт из&nbsp;сотовой сети и&nbsp;GNSS, без запросов в&nbsp;интернет. <a href="#fnr-2" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
-          <li id="fn-3">Wi-Fi Direct и&nbsp;Bluetooth LE. Устройства знакомятся лицом к&nbsp;лицу по&nbsp;QR-коду и&nbsp;обмениваются ключами, которые хранятся в&nbsp;их&nbsp;чипах безопасности. Дальность&nbsp;— как у&nbsp;домашнего Wi-Fi. Через интернет «Караван» не&nbsp;ходит. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-3">Wi-Fi Direct и&nbsp;Bluetooth LE; у&nbsp;часов Wi-Fi нет, с&nbsp;ними только Bluetooth LE. Устройства знакомятся лицом к&nbsp;лицу по&nbsp;QR-коду и&nbsp;обмениваются ключами, которые хранятся в&nbsp;их&nbsp;чипах безопасности. Дальность&nbsp;— как у&nbsp;домашнего Wi-Fi. Через интернет «Караван» не&nbsp;ходит. <a href="#fnr-3" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
           <li id="fn-4">На&nbsp;0X0, 0X0 Pro и&nbsp;0X1 Essential нейроядро слабее: ответы короче и&nbsp;медленнее. На&nbsp;Osmium X0 «Погонщик» отвечает голосом через телефон, если тот рядом. <a href="#fnr-4" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
           <li id="fn-5">Потерянное устройство раз в&nbsp;две минуты передаёт зашифрованный маячок с&nbsp;меняющимся адресом. Расшифровать его могут только ваши устройства. Чужие телефоны его не&nbsp;пересылают, поэтому «Маяк» ищет в&nbsp;радиусе Bluetooth, примерно до&nbsp;100&nbsp;м. Дальше выручит сигнальный фонарь, если он у&nbsp;вашего OY есть. <a href="#fnr-5" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
-          <li id="fn-6">Китайские телефоны OY продаёт и&nbsp;обслуживает XZF (Huawei). Код CamelOS&nbsp;2.0 открыт, и&nbsp;XZF может его взять. Пока не&nbsp;взяла. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
-          <li id="fn-7">CamelOS ставится во&nbsp;второй системный слот. Тридцать дней можно вернуться на&nbsp;OY OS 4.5 одной кнопкой. Вместе с&nbsp;ней вернутся OY&nbsp;ID и&nbsp;0X&nbsp;Cloud, так что подумайте дважды. <a href="#fnr-7" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-6">Это не&nbsp;«Мираж»: телефоны OY и&nbsp;Android-приложения работают на&nbsp;ARM, переводить нечего. Android-слой запускается рядом с&nbsp;CamelOS через RTDS, как вторая система на&nbsp;KBook, а&nbsp;изолирует его чип безопасности телефона. Google Play нет: приложения ставятся из&nbsp;APK и&nbsp;открытых каталогов. Уведомления приходят через XPush&nbsp;Plus из&nbsp;первой OY OS, без аккаунта. Банки, которые требуют сертификацию Google, и&nbsp;игры с&nbsp;античитом на&nbsp;уровне ядра не&nbsp;запустятся. Большинство остальных приложений работают. <a href="#fnr-6" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-7">Китайские телефоны OY продаёт и&nbsp;обслуживает XZF (Huawei). Код CamelOS&nbsp;2.0 открыт, и&nbsp;XZF может его взять. Пока не&nbsp;взяла. <a href="#fnr-7" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
+          <li id="fn-8">CamelOS ставится во&nbsp;второй системный слот. Тридцать дней можно вернуться на&nbsp;OY OS 4.5 одной кнопкой. Вместе с&nbsp;ней вернутся OY&nbsp;ID и&nbsp;0X&nbsp;Cloud, так что подумайте дважды. <a href="#fnr-8" class="footnotes__back" aria-label="Вернуться к тексту">↩</a></li>
         </ol>
         <p class="footnotes__more">Функции и&nbsp;результаты замеров предварительные: это концепт, CamelOS не&nbsp;выпускается.</p>
       </div>
