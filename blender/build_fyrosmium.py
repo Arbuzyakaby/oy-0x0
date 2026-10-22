@@ -14,9 +14,16 @@ Fyr Osmium X0 — процедурная модель часов для стра
 с четырьмя колбами трития на 12, 3, 6 и 9. Коронка из осмиридия справа.
 Ремешок-петля из фторэластомера уходит вверх и вниз и загибается за запястье.
 
+Внутри корпуса — то, что страница /fyr/ разносит по слоям: плата Board с
+процессором ChipT (τρίτος 1) и чипом безопасности ChipG (GFC 1), круглый
+аккумулятор Battery и катушка зарядки Coil. Снаружи их не видно.
+Вместо ремешка можно показать титановый браслет Bracelet (по умолчанию сайт
+его прячет): звенья идут по той же дуге, что и ремешок.
+
 Оси — как у телефонов OY (oy_common): X — ширина, Z — высота, Y — толщина,
 циферблат смотрит в −Y. Ноды для сайта: Case, Bezel, Crown, Screen,
-Rehaut, Glow_12, Glow_3, Glow_6, Glow_9, Glass, Strap, Caseback.
+Rehaut, Glow_12, Glow_3, Glow_6, Glow_9, Glass, Strap, Bracelet, Caseback,
+Board, ChipT, ChipG, Battery, Coil.
 """
 
 import math
@@ -67,6 +74,14 @@ make_mat("Strap", "#0E1014", rough=0.7)
 make_mat("Stitch", "#2F6BFF", rough=0.6)
 make_mat("Sensor", "#05060A", rough=0.1, coat=1.0)
 make_mat("Dark", "#0B0B0C", rough=0.6)
+make_mat("Board", "#0C0F14", rough=0.55)
+make_mat("Gold", "#C9A35A", metallic=1.0, rough=0.3)
+make_mat("Die", "#14171D", metallic=0.4, rough=0.25, coat=0.6)
+make_mat("FyrBlue", "#2F6BFF", rough=0.35, emission="#2F6BFF", strength=0.6)
+make_mat("Cell", "#1C2027", metallic=0.7, rough=0.4)
+make_mat("Copper", "#B8683A", metallic=1.0, rough=0.28)
+make_mat("Bracelet", "#2A2E35", metallic=1.0, rough=0.42)
+make_mat("BraceletPol", "#4A505A", metallic=1.0, rough=0.12)
 
 root = bpy.data.objects.new("FyrOsmium", None)
 coll().objects.link(root)
@@ -128,6 +143,40 @@ b.lathe([(0.01, 6.3), (6.0, 6.2), (10.5, 5.9), (13.0, 5.2)], 0.0, 0.0, "Sensor",
 for i in range(4):
     a = math.pi / 4 + i * math.pi / 2
     b.prism(circle(0.7, 16, 11.8 * math.cos(a), 11.8 * math.sin(a)), "Y", 5.2, 5.75, "Case")
+done(b)
+
+# ----------------------------------------------------------------------------
+# Внутри: плата с τρίτος 1 и GFC 1, аккумулятор, катушка зарядки
+# ----------------------------------------------------------------------------
+
+b = Builder("Board", ["Board", "Gold"])
+b.prism(circle(16.2, 96), "Y", -3.0, -2.2, "Board", bevel_end=0.2, bevel_start=0.2)
+for i in range(18):                       # контакты по краю платы
+    a = 2 * math.pi * i / 18
+    b.prism(circle(0.55, 12, 14.9 * math.cos(a), 14.9 * math.sin(a)), "Y", -3.08, -2.95, "Gold")
+for x0, x1, z in ((-12.0, -5.0, 6.5), (-12.0, -6.5, 4.5), (4.0, 11.0, -7.5), (2.0, 10.0, -9.5)):   # дорожки
+    b.prism(rrect(x1 - x0, 0.35, 0.15, seg=2, cx=(x0 + x1) / 2, cy=z), "Y", -3.04, -2.98, "Gold")
+done(b)
+
+# τρίτος 1 — крупный квадрат, GFC 1 — маленький, с синим кантом: у него своё питание
+b = Builder("ChipT", ["Die", "Gold"])
+b.prism(rrect(8.4, 8.4, 0.6, seg=4), "Y", -3.0, -3.9, "Die", bevel_end=0.15)
+b.prism(rrect(5.6, 0.25, 0.1, seg=2, cy=-3.4), "Y", -3.92, -3.95, "Gold")
+done(b, location=(-3.6, 0.0, 2.8))
+
+b = Builder("ChipG", ["Die", "FyrBlue"])
+b.band(rrect(5.6, 5.6, 0.5, seg=4), rrect(4.9, 4.9, 0.3, seg=4), "Y", -3.0, -3.55, "FyrBlue")
+b.prism(rrect(4.8, 4.8, 0.3, seg=4), "Y", -3.0, -3.7, "Die", bevel_end=0.1)
+done(b, location=(6.2, 0.0, -2.6))
+
+b = Builder("Battery", ["Cell", "FyrBlue"])
+b.prism(circle(15.0, 96), "Y", -1.8, 3.4, "Cell", bevel_end=0.6, bevel_start=0.6, seg=2)
+b.band(circle(15.03, 96), circle(14.0, 96), "Y", 0.4, 1.0, "FyrBlue")
+done(b)
+
+b = Builder("Coil", ["Copper"])
+b.tube(9.6, 12.4, "Y", 0.0, 0.0, 3.8, 4.5, "Copper", seg=96)
+b.tube(7.4, 8.2, "Y", 0.0, 0.0, 3.8, 4.5, "Copper", seg=96)
 done(b)
 
 # ----------------------------------------------------------------------------
@@ -246,6 +295,62 @@ b = Builder("Strap", ["Strap", "Stitch"])
 strap_half(b, 1)
 strap_half(b, -1)
 done(b, sharp_angle=60.0)
+
+# ----------------------------------------------------------------------------
+# Титановый браслет: звенья по той же дуге, что ремешок. Крайние звенья
+# матовые, среднее — полированное; браслет сужается от 22 до 18 мм
+# ----------------------------------------------------------------------------
+
+def strap_point(s, bend=26.0):
+    """Точка дуги ремешка на расстоянии s от шпильки: (z, y, угол)."""
+    if s < 10.0:
+        return 21.6 + s, 0.2, 0.0
+    phi = (s - 10.0) / bend
+    return 31.6 + bend * math.sin(phi), 0.2 + bend * (1 - math.cos(phi)), phi
+
+
+def link_box(bm, idx, cx, w, s0, s1, sign, thick, crown=0.0):
+    """Звено между s0 и s1 по дуге: брусок шириной w с центром по X в cx.
+    crown — насколько середина звена выпуклее краёв (полированный центр)."""
+    corners = []
+    for s in (s0, s1):
+        z, y, ang = strap_point(s)
+        nz, ny = -math.sin(ang), math.cos(ang)
+        for dn in (-thick / 2 - crown, thick / 2):
+            for dx in (-w / 2, w / 2):
+                corners.append(Vector((cx + dx, y + ny * dn, sign * (z + nz * dn))))
+    v = [bm.verts.new(c) for c in corners]
+    quads = ((0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3))
+    faces = [bm.faces.new([v[i] for i in q]) for q in quads]
+    for f in faces:
+        f.material_index = idx
+    bmesh.ops.recalc_face_normals(bm, faces=faces)
+    bmesh.ops.bevel(bm, geom=list({e for f in faces for e in f.edges}), offset=0.28, segments=2,
+                    profile=0.5, affect="EDGES", clamp_overlap=True)
+
+
+b = Builder("Bracelet", ["Bracelet", "BraceletPol"])
+LINK, GAPL = 5.6, 0.35
+for sign in (1, -1):
+    s = 0.6
+    k = 0
+    while s + LINK < 62.0:
+        t = s / 62.0
+        w = LUG_W - 0.4 - 3.6 * t           # сужение к застёжке
+        mid = w * 0.34
+        side = (w - mid) / 2 - 0.25
+        link_box(b.bm, b.mi("Bracelet"), -(mid / 2 + 0.25 + side / 2), side, s, s + LINK, sign, 2.8)
+        link_box(b.bm, b.mi("Bracelet"), (mid / 2 + 0.25 + side / 2), side, s, s + LINK, sign, 2.8)
+        # центральное звено сдвинуто на полшага: так браслет гнётся
+        if k == 0:
+            link_box(b.bm, b.mi("BraceletPol"), 0.0, mid, s, s + LINK / 2 - GAPL / 2, sign, 2.6, crown=0.35)
+        c0 = s + LINK / 2 + GAPL / 2
+        c1 = min(c0 + LINK, 62.0)
+        if c1 - c0 > 1.0:
+            link_box(b.bm, b.mi("BraceletPol"), 0.0, mid, c0, c1, sign, 2.6, crown=0.35)
+        s += LINK + GAPL
+        k += 1
+done(b, sharp_angle=50.0)
 
 # ----------------------------------------------------------------------------
 

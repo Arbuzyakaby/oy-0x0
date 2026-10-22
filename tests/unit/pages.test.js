@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PRODUCTS, ON_SALE } from '../../js/data/products.js';
-import { ACCESSORIES } from '../../js/data/accessories.js';
+import { ACCESSORIES, DEVICES } from '../../js/data/accessories.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 const TOP = readdirSync(ROOT).filter((d) => existsSync(join(ROOT, d, 'index.html')) && !d.startsWith('.'));
@@ -103,8 +103,16 @@ test('страница 0X Nova: тринадцать глав «Обсерват
   for (const c of PRODUCTS.nova.configs) assert.ok(html.includes(`data-value="${c.id}"`), c.id);
 });
 
-test('у каждого аксессуара есть рендер', () => {
-  for (const a of ACCESSORIES) assert.ok(existsSync(join(ROOT, 'img', 'accessories', `${a.id}.webp`)), a.id);
+test('у каждого аксессуара есть рендер, цены в $ и €, совместимость — известные устройства', () => {
+  for (const a of ACCESSORIES) {
+    assert.ok(existsSync(join(ROOT, 'img', 'accessories', `${a.id}.webp`)), a.id);
+    assert.ok(Number.isInteger(a.usd) && Number.isInteger(a.eur), `${a.id}: цена`);
+    assert.ok(a.fits.length > 0 && a.fits.every((f) => DEVICES[f]), `${a.id}: совместимость`);
+    if (a.stock === 'warehouse') assert.ok(a.was > a.usd, `${a.id}: склад без скидки`);
+  }
+  assert.equal(new Set(ACCESSORIES.map((a) => a.id)).size, ACCESSORIES.length, 'повторяется id');
+  assert.ok(existsSync(join(ROOT, 'img', 'accessories', 'hero.webp')));
+  assert.ok(existsSync(join(ROOT, 'og-accessories.jpg')));
 });
 
 
@@ -151,13 +159,19 @@ test('«Перехват» Fyr: загрузчик, стили и щит-кно�
   assert.ok(read('404.html').includes("script-src 'self' 'unsafe-inline'"));
 });
 
-test('страница /fyr/: открытая, десять глав, одна h1, якоря ведут к существующим id, в шапке каждой страницы OY', () => {
+test('страница /fyr/: открытая, одиннадцать глав «Год спустя», одна h1, якоря ведут к существующим id, в шапке каждой страницы OY', () => {
   const html = read('fyr/index.html');
   assert.ok(!html.includes('noindex'), 'Fyr больше не прячется');
   assert.ok(!html.includes('data-fyr-return'), 'возвращать OY больше не нужно');
   assert.ok(html.includes('data-fyr-page'));
   const chapters = [...html.matchAll(/<section class="fy fy--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(chapters, ['intercept', 'eight', 'choice', 'case', 'tritium', 'gfc', 'quiet', 'missing', 'specs', 'price']);
+  assert.deepEqual(chapters, ['hero', 'year', 'osmium', 'inside', 'tritium', 'gfc', 'camel', 'bands', 'family', 'specs', 'price']);
+  // часы на CamelOS 2.0; hex-цены сходятся с десятичными подписями
+  assert.ok(html.includes('CamelOS'));
+  for (const [, dec, hex] of html.matchAll(/data-hex="([^"]+)">(0x[0-9A-F]+)/g)) {
+    assert.equal(parseInt(hex, 16), Number(dec.replace(/[^0-9]/g, '')), `${hex} ≠ ${dec}`);
+  }
+  assert.ok(existsSync(join(ROOT, 'img', 'fyr', 'family.webp')));
   const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
   for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);

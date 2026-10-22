@@ -1,9 +1,10 @@
 /* =========================================================================
-   Fyr Osmium X0 — «Перехват». Скрытая страница бывших инженеров OY.
-   Обычная прокрутка; сцены держит GSAP ScrollTrigger, поза часов —
-   ключевые кадры по главам (js/core/keys.js). В «Корпусе» прокрутка крутит
-   безель на полный оборот и утапливает коронку-рубильник, в «GFC 1» безель
-   крутят руками: код — три hex-цифры.
+   Fyr Osmium X0 — «Год спустя». Обычная прокрутка; сцены держит GSAP
+   ScrollTrigger, поза часов — ключевые кадры по главам (js/core/keys.js).
+   В «Осмии» прокрутка крутит безель на полный оборот и утапливает коронку,
+   за часами проступает плотность осмия. «Внутри» разносит часы на восемь
+   слоёв. В «GFC 1» безель крутят руками: код — три hex-цифры. В «CamelOS»
+   шесть функций рисуются на экране часов, в «Ремешках» — ремешок или браслет.
    ========================================================================= */
 
 import { gsap } from 'gsap';
@@ -35,17 +36,22 @@ try {
   canvas.style.display = 'none';
 }
 
-/* ---------- Главы ---------- */
+/* ---------- Главы и прогресс ---------- */
 
-const CHAPTERS = ['intercept', 'eight', 'choice', 'case', 'tritium', 'gfc', 'quiet', 'missing', 'specs', 'price'];
+const CHAPTERS = ['hero', 'year', 'osmium', 'inside', 'tritium', 'gfc', 'camel', 'bands', 'family', 'specs', 'price'];
 const sections = Object.fromEntries(CHAPTERS.map((id) => [id, document.getElementById(id)]));
-let current = 'intercept';
+let current = 'hero';
+
+const progress = $('[data-progress]');
+progress.innerHTML = CHAPTERS.map(() => '<li></li>').join('');
+const marks = $$('li', progress);
 
 function detectChapter() {
   const line = window.innerHeight * 0.5;
   let id = CHAPTERS[0];
   for (const c of CHAPTERS) if (sections[c].getBoundingClientRect().top <= line) id = c;
   if (id !== current) { current = id; updateScreen(); }
+  marks.forEach((m, i) => m.classList.toggle('is-on', CHAPTERS[i] === current));
 }
 
 /* ---------- Экран часов ---------- */
@@ -61,13 +67,12 @@ function updateScreen() {
   if (!stage) return;
   let mode = 'face';
   let extra = {};
-  if (current === 'intercept') mode = 'intercept';
-  else if (current === 'case') mode = radioOff ? 'radio' : 'face';
+  if (current === 'osmium') mode = radioOff ? 'radio' : 'face';
   else if (current === 'tritium') mode = dark ? 'off' : 'face';
   else if (current === 'gfc') {
     mode = safe.state === 'open' ? 'open' : safe.state === 'wiped' ? 'wiped' : 'safe';
     extra = { code: [...safe.code], digit: digitAt(safe.step), tries: safe.tries };
-  } else if (current === 'quiet') mode = quiet;
+  } else if (current === 'camel') mode = quiet;
   const key = mode + JSON.stringify(extra);
   if (key === lastScreen) return;
   lastScreen = key;
@@ -77,17 +82,21 @@ function updateScreen() {
 /* ---------- Позы ---------- */
 
 // x/y — доля половины видимой ширины/высоты; fx/fy/fz — точка модели, которая ставится в (x, y)
-const BASE = { x: 0, y: 0, fx: 0, fy: 0, fz: 0, rx: 0, ry: 0, rz: 0, dist: 3.2, float: 1, vis: 1, crown: 0, spin: 0 };
+const BASE = { x: 0, y: 0, fx: 0, fy: 0, fz: 0, rx: 0, ry: 0, rz: 0, dist: 3.2, float: 1, vis: 1, crown: 0, spin: 0, explode: 0 };
 function makePoses(mobile) {
   const P = {
     hero: { x: 0.42, y: 0.02, rx: 0.32, ry: -0.55, rz: 0.12, dist: 3.1 },
     hidden: { x: 0.42, rx: 0.3, ry: -0.9, dist: 4.4, float: 0, vis: 0 },
-    caseA: { x: 0.44, rx: 0.12, ry: -1.1, rz: 0.05, dist: 1.9, float: 0.3 },
-    caseB: { x: 0.48, rx: 0.05, ry: 0.15, dist: 1.8, float: 0.3 },
-    caseC: { x: 0.48, rx: 0.12, ry: -0.75, dist: 1.6, float: 0.2, fx: 0.012 },
+    osA: { x: 0.44, rx: 0.12, ry: -1.1, rz: 0.05, dist: 1.9, float: 0.3 },
+    osB: { x: 0.48, rx: 0.05, ry: 0.15, dist: 1.8, float: 0.3 },
+    osC: { x: 0.48, rx: 0.12, ry: -0.75, dist: 1.6, float: 0.2, fx: 0.012 },
+    inA: { x: 0.42, rx: -0.55, ry: 0.35, rz: 0.1, dist: 2.6, float: 0.2 },
+    inB: { x: 0.42, rx: -1.05, ry: 0.55, rz: 0.15, dist: 2.7, float: 0.15, explode: 1 },
+    inC: { x: 0.42, rx: -1.0, ry: 0.95, rz: 0.15, dist: 2.7, float: 0.15, explode: 1 },
     tritium: { x: -0.58, rx: 0.08, ry: 0.32, dist: 2.1, float: 0.5 },
     gfc: { x: 0.52, rx: 0.02, ry: -0.05, dist: 1.7, float: 0.15 },
-    quiet: { x: -0.5, rx: 0.1, ry: 0.28, dist: 1.9, float: 0.4 },
+    camel: { x: -0.52, rx: 0.1, ry: 0.28, dist: 1.9, float: 0.4 },
+    bands: { x: 0.44, rx: -0.2, ry: -0.75, rz: 0.08, dist: 3.5, float: 0.6 },
     specs: { x: 0.46, rx: 0.3, ry: -0.6, rz: 0.1, dist: 3.4 },
   };
   for (const k in P) P[k] = { ...BASE, ...P[k] };
@@ -104,64 +113,15 @@ const Keys = createKeys();
 const sts = {};
 let reducedMode = reduceMQ.matches;
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
-
-/* ---------- 1. «Нас было восемь» ---------- */
-
-const dotsBox = $('[data-eight-dots]');
-const dots = Array.from({ length: 8 }, (_, i) => {
-  const d = document.createElement('span');
-  d.className = 'eight__dot';
-  d.dataset.i = String(i);
-  dotsBox.append(d);
-  return d;
-});
-const num = $('[data-eight-num]');
-const count = $('.eight__count');
-// домики: OY 0–30 %, ABC 35–65 %, Стокгольм 70–100 % ширины
-const home = (place, i, n) => {
-  const cx = place === 0 ? 15 : place === 1 ? 50 : 85;
-  const col = i % 2, row = Math.floor(i / 2);
-  const rows = Math.ceil(n / 2);
-  return [cx + (col - 0.5) * 9, 50 + (row - (rows - 1) / 2) * 17];
-};
-const FYR = [0, 2, 3, 5, 7];   // пятеро, что ушли первыми
-const REST = [1, 4, 6];        // трое, что дождались нового CEO OY
 const ease = (t) => { const c = clamp01(t); return c * c * (3 - 2 * c); };
-function setEight(p) {
-  // 0–0.3: все в OY · 0.3–0.55: пятеро → ABC · 0.55–0.8: → Стокгольм,
-  // следом трое прямо из OY · дальше — 146
-  const t1 = ease((p - 0.18) / 0.27), t2 = ease((p - 0.55) / 0.22), t3 = ease((p - 0.6) / 0.18);
-  dots.forEach((d, i) => {
-    const k = FYR.indexOf(i);
-    const a = home(0, i, 8);
-    let [x, y] = a;
-    if (k >= 0) {
-      const b = home(1, k, 5), c = home(2, k, 8);
-      x = a[0] + (b[0] - a[0]) * t1 + (c[0] - b[0]) * t2;
-      y = a[1] + (b[1] - a[1]) * t1 + (c[1] - b[1]) * t2;
-      d.classList.toggle('is-fyr', t2 > 0.5);
-      d.style.opacity = String(1 - ease((p - 0.74) / 0.1));
-    } else {
-      const j = REST.indexOf(i);
-      const b = home(0, j, 3), c = home(2, 5 + j, 8);
-      x = a[0] + (b[0] - a[0]) * t1 + (c[0] - b[0]) * t3;
-      y = a[1] + (b[1] - a[1]) * t1 + (c[1] - b[1]) * t3;
-      d.classList.toggle('is-fyr', t3 > 0.5);
-      d.style.opacity = String((1 - t1 * 0.55 + t3 * 0.55) * (1 - ease((p - 0.76) / 0.1)));
-    }
-    d.style.left = `${x}%`;
-    d.style.top = `${y}%`;
-  });
-  const g = ease((p - 0.76) / 0.16);
-  count.style.setProperty('--o', g.toFixed(3));
-  num.textContent = String(Math.round(8 + g * 138));
-}
 
-/* ---------- 3. Корпус: безель по прокрутке ---------- */
+/* ---------- 2. Осмий: безель по прокрутке, плотность за часами ---------- */
 
 const bezelOut = $('[data-bezel-readout]');
 const radioOut = $('[data-radio-readout]');
-function setCase(p) {
+const giant = $('[data-giant]');
+const caseState = { bezel: 0, crown: 0 };
+function setOsmium(p) {
   const steps = Math.min(16, Math.floor(ease(p / 0.75) * 16.999));
   const crown = ease((p - 0.8) / 0.15);
   caseState.bezel = steps;
@@ -174,7 +134,33 @@ function setCase(p) {
     updateScreen();
   }
 }
-const caseState = { bezel: 0, crown: 0 };
+function setGiant(o) { giant.style.setProperty('--o', o.toFixed(3)); }
+
+/* ---------- 3. Внутри: какой слой подписан ---------- */
+
+const layers = $$('[data-layers] li');
+function setInside(p) {
+  const k = p < 0.22 ? -1 : Math.min(layers.length - 1, Math.floor(((p - 0.22) / 0.62) * layers.length));
+  layers.forEach((l, i) => l.classList.toggle('is-on', i === k));
+}
+
+/* ---------- 4. Тритий: кривая яркости за двадцать лет ---------- */
+
+const HALF = 12.3;
+const bright = (y) => 2 ** (-y / HALF);
+const dx = (y) => y * 15, dy = (y) => 20 + (1 - bright(y)) * 80;
+$('[data-decay] .os-decay__curve').setAttribute('d', Array.from({ length: 41 }, (_, i) => `${i ? 'L' : 'M'}${dx(i / 2).toFixed(1)} ${dy(i / 2).toFixed(1)}`).join(''));
+const decayDot = $('[data-decay] .os-decay__dot');
+const decayYear = $('[data-decay-year]');
+const decayVal = $('[data-decay-val]');
+function setDecay(p) {
+  const y = p * 20;
+  decayDot.setAttribute('cx', dx(y).toFixed(1));
+  decayDot.setAttribute('cy', dy(y).toFixed(1));
+  decayDot.style.opacity = String(0.4 + bright(y) * 0.6);
+  decayYear.textContent = String(Math.round(y));
+  decayVal.textContent = `${Math.round(bright(y) * 100)} %`;
+}
 
 /* ---------- Хореография ---------- */
 
@@ -186,13 +172,13 @@ function buildChoreography({ isMobile, reduce }) {
   const P = makePoses(isMobile);
 
   for (const id of CHAPTERS) {
-    if (id === 'eight' || id === 'case') {
+    if (id === 'osmium' || id === 'inside') {
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
-          trigger: id === 'eight' ? sections.eight : sections.case,
+          trigger: sections[id],
           start: 'top top', end: reduce ? 'bottom top' : '+=220%', pin: !reduce, scrub: reduce ? false : true, anticipatePin: 1,
-          onUpdate: (st) => (id === 'eight' ? setEight(st.progress) : setCase(st.progress)),
+          onUpdate: (st) => (id === 'osmium' ? setOsmium(st.progress) : setInside(st.progress)),
         },
       });
       tl.set({}, {}, 1);
@@ -201,45 +187,51 @@ function buildChoreography({ isMobile, reduce }) {
       sts[id] = ScrollTrigger.create({ trigger: sections[id], start: 'top top', end: 'bottom top' });
     }
   }
-  if (reduce) { setEight(1); setCase(0); }
+  if (reduce) { setOsmium(0); setInside(1); }
 
   const K = (id, f, props) => Keys.add(sts[id], f, props);
   const hold = (id, pose) => { K(id, -0.4, pose); K(id, 0.55, pose); };
-  K('intercept', -1, P.hero);
-  hold('intercept', P.hero);
-  hold('eight', P.hidden);
-  hold('choice', P.hidden);
-  K('case', -0.15, P.caseA);
-  K('case', 0.0, P.caseA);
-  K('case', 0.45, P.caseB);
-  K('case', 0.8, P.caseC);
-  K('case', 1, P.caseC);
+  K('hero', -1, P.hero);
+  hold('hero', P.hero);
+  hold('year', P.hidden);
+  K('osmium', -0.15, P.osA);
+  K('osmium', 0.0, P.osA);
+  K('osmium', 0.45, P.osB);
+  K('osmium', 0.8, P.osC);
+  K('osmium', 1, P.osC);
+  K('inside', -0.3, P.inA);
+  K('inside', 0.05, P.inA);
+  K('inside', 0.3, P.inB);
+  K('inside', 0.85, P.inC);
+  K('inside', 1, { ...P.inC, explode: 0 });
   hold('tritium', P.tritium);
   hold('gfc', P.gfc);
-  hold('quiet', P.quiet);
-  hold('missing', P.hidden);
+  hold('camel', P.camel);
+  hold('bands', P.bands);
+  hold('family', P.hidden);
   hold('specs', P.specs);
   K('price', -0.2, P.hidden);
   K('price', 1, P.hidden);
 
-  // Ноутбук и планшет зачёркиваются
-  $$('.choice__item.is-out').forEach((el, i) => {
-    if (reduce) { el.style.setProperty('--cross', '1'); return; }
-    gsap.fromTo(el, { '--cross': 0 }, { '--cross': 1, duration: 0.6, delay: i * 0.25, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 72%', toggleActions: 'play none none reverse' } });
-  });
-  // Лог печатается строка за строкой
-  const lines = $$('[data-log] span');
-  if (reduce) lines.forEach((l) => l.style.setProperty('--o', '1'));
+  // Плотность осмия проступает, пока безель крутится
+  if (reduce) setGiant(0);
   else {
     ScrollTrigger.create({
-      trigger: $('[data-log]'), start: 'top 85%', end: 'bottom 55%', scrub: true,
-      onUpdate: (st) => lines.forEach((l, i) => l.style.setProperty('--o', String(clamp01(st.progress * (lines.length + 2) - i)))),
+      trigger: sections.osmium, start: 'top 60%', end: () => `+=${sts.osmium.end - sts.osmium.start + window.innerHeight * 0.9}`,
+      onUpdate: (st) => setGiant(Math.min(ease(st.progress / 0.18), 1 - ease((st.progress - 0.82) / 0.18))),
+      onLeave: () => setGiant(0), onLeaveBack: () => setGiant(0),
     });
   }
-
+  // Тритий: точка катится по кривой
+  if (reduce) setDecay(1);
+  else ScrollTrigger.create({ trigger: $('[data-decay]'), start: 'top 85%', end: 'bottom 35%', scrub: true, onUpdate: (st) => setDecay(st.progress) });
+  // Линия времени дорисовывается слева направо
+  const time = $('[data-time]');
+  if (reduce) time.style.setProperty('--line', '1');
+  else gsap.fromTo(time, { '--line': 0 }, { '--line': 1, ease: 'none', scrollTrigger: { trigger: time, start: 'top 80%', end: 'bottom 50%', scrub: true } });
   // Появление текста глав — короткий сдвиг
   if (!reduce) {
-    $$('.fy__text > *').forEach((el) => {
+    $$('.fy__text > *, .os-time__item, .os-family, .os-family__list li').forEach((el) => {
       gsap.fromTo(el, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' } });
     });
   }
@@ -282,7 +274,7 @@ $$('.fy-hex').forEach((b) => {
     b.classList.toggle('is-open', open);
   });
 });
-$('[data-calm]').addEventListener('click', () => toast('Мы тоже не торопились. Часы вышли в один день с 0X Nova — осенью 2030.'));
+$('[data-calm]').addEventListener('click', () => toast('Мы тоже не торопились: от часов до телефона прошёл год.'));
 $$('.fy-hero__buy a[href="#price"]').forEach((a) => a.addEventListener('click', () => setTimeout(() => toast('Не торопитесь. Сначала посмотрите на часы.'), 300)));
 
 /* ---------- 4. Темно ---------- */
@@ -402,7 +394,7 @@ dial.addEventListener('pointerup', endDrag);
 dial.addEventListener('pointercancel', endDrag);
 renderDial();
 
-/* ---------- 6. Тихие функции ---------- */
+/* ---------- 6. CamelOS: шесть функций ---------- */
 
 const quietTabs = $$('[data-quiet] [role="tab"]');
 function setQuiet(v) {
@@ -426,8 +418,18 @@ quietTabs.forEach((t, i) => {
   });
 });
 
-/* ---------- 8. Цвет ---------- */
+/* ---------- 7. Ремешок или браслет, цвет ---------- */
 
+const BANDS = {
+  strap: 'Фторэластомер с&nbsp;синей строчкой и&nbsp;пряжка из&nbsp;титана DLC. Не&nbsp;впитывает воду и&nbsp;пот.',
+  bracelet: 'Титан Grade&nbsp;5, как корпус: крайние звенья матовые, средние полированные и&nbsp;сдвинуты на&nbsp;полшага. Гнётся, как ткань.',
+};
+const bandGrp = $('[data-band-switch]');
+initRadioGroup(bandGrp, (v) => {
+  syncRadio(bandGrp, v);
+  $('[data-band-note]').innerHTML = BANDS[v];
+  stage?.setBand(v);
+});
 const NOTES = {
   polarnatt: 'Чёрный титан DLC, тёмный осмиридий, синий тритий.',
   stral: 'Светлый шлифованный титан, светлый осмиридий, белый тритий.',
@@ -448,8 +450,8 @@ function tick() {
   if (y !== lastY) { lastY = y; detectChapter(); }
   if (Keys.empty || !stage) return;
   const v = Keys.sample(y, reducedMode);
-  v.bezel = current === 'gfc' ? safe.step : current === 'case' ? caseState.bezel : 0;
-  v.crown = current === 'case' ? caseState.crown : 0;
+  v.bezel = current === 'gfc' ? safe.step : current === 'osmium' ? caseState.bezel : 0;
+  v.crown = current === 'osmium' ? caseState.crown : 0;
   v.dark = current === 'tritium' && dark ? 1 : 0;
   v.screen = current === 'tritium' && dark ? 0 : 1;
   const vis = clamp01(v.vis ?? 1);

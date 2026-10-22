@@ -1,8 +1,10 @@
 /* =========================================================================
    Fyr Osmium X0 — описание 3D-модели: круглый титановый корпус 44 мм,
    вращающийся безель из осмиридия с делениями 0–F (шаг 22,5°), коронка-
-   рубильник, колбы трития на 12/3/6/9, экран Fyr OS 0 и ремешок-петля.
-   Два цвета: «Полярная ночь» и «Луч». Процедурная резервная модель.
+   рубильник, колбы трития на 12/3/6/9, экран CamelOS 2.0, ремешок-петля
+   и титановый браслет (по умолчанию спрятан). Внутри — плата с τρίτος 1
+   и GFC 1, аккумулятор и катушка: state.explode разносит слои по оси
+   циферблата. Два цвета: «Полярная ночь» и «Луч». Процедурная резервная модель.
    ========================================================================= */
 
 import * as THREE from 'three';
@@ -14,8 +16,13 @@ export const FYR_COLORS = {
 };
 export const HEX = '0123456789ABCDEF';
 export const BEZEL_STEP = (Math.PI * 2) / 16;
-export const SCREEN_MODES = ['face', 'intercept', 'safe', 'open', 'wiped', 'radar', 'morse', 'radio', 'off'];
+export const SCREEN_MODES = ['face', 'intercept', 'safe', 'open', 'wiped', 'radar', 'morse', 'radio', 'caravan', 'beacon', 'halt', 'off'];
 const CROWN_TRAVEL = 1.2 * MM;
+// «Разлёт»: насколько каждый слой уходит по оси циферблата (мм, + — к стеклу)
+const EXPLODE = {
+  Glass: 17, Bezel: 12, Glow_12: 7, Glow_3: 7, Glow_6: 7, Glow_9: 7, Rehaut: 7, Screen: 6,
+  ChipT: 2.5, ChipG: 2.5, Board: 0, Battery: -8, Coil: -15, Case: -24, Crown: -24, Caseback: -32,
+};
 const R_SCREEN = 16.8, R_BEZEL = 22.0;
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
@@ -68,7 +75,7 @@ export function drawBezel(canvas, color = 'polarnatt') {
   g.restore();
 }
 
-/* ---------- Экран Fyr OS 0 ---------- */
+/* ---------- Экран CamelOS 2.0 (до неё — Fyr OS 0) ---------- */
 
 const hex2 = (n) => n.toString(16).toUpperCase().padStart(2, '0');
 
@@ -112,7 +119,7 @@ export function drawScreen(canvas, mode, st = {}) {
     g.font = mono(s * 0.036, 500);
     g.fillText(`0x${hex2(d.getDate())}·${hex2(d.getMonth() + 1)}·${d.getFullYear().toString(16).toUpperCase()}`, m, m + s * 0.27);
     g.font = mono(s * 0.03, 500);
-    g.fillText(mode === 'open' ? 'GFC 1 · ОТКРЫТО' : 'FYR OS 0', m, m - s * 0.3);
+    g.fillText(mode === 'open' ? 'GFC 1 · ОТКРЫТО' : 'CAMELOS 2.0', m, m - s * 0.3);
     if (mode === 'open') {
       g.strokeStyle = accent;
       g.lineWidth = s * 0.008;
@@ -219,6 +226,72 @@ export function drawScreen(canvas, mode, st = {}) {
     g.beginPath();
     g.arc(m, m, s * 0.02, 0, Math.PI * 2);
     g.fill();
+  } else if (mode === 'caravan') {
+    // «Караван»: часы в центре, телефон и ноутбук на орбите, по дуге бегут пакеты
+    const a0 = now / 2600;
+    const nodes = [['H1', -Math.PI / 2], ['KBOOK', Math.PI / 6], ['BUTTERFLY', Math.PI * 5 / 6]];
+    g.strokeStyle = 'rgba(127,164,255,.22)';
+    g.lineWidth = s * 0.004;
+    g.beginPath();
+    g.arc(m, m, m * 0.6, 0, Math.PI * 2);
+    g.stroke();
+    nodes.forEach(([name, a], i) => {
+      const x = m + Math.cos(a) * m * 0.6, y = m + Math.sin(a) * m * 0.6;
+      const t = (a0 + i / 3) % 1;
+      g.fillStyle = accent;
+      g.beginPath();
+      g.arc(m + (x - m) * t, m + (y - m) * t, s * 0.012, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = '#F4F7FF';
+      g.beginPath();
+      g.arc(x, y, s * 0.03, 0, Math.PI * 2);
+      g.fill();
+      g.font = mono(s * 0.03, 600);
+      g.fillStyle = 'rgba(244,247,255,.7)';
+      g.fillText(name, x, y + s * 0.065);
+    });
+    g.fillStyle = accent;
+    g.beginPath();
+    g.arc(m, m - s * 0.03, s * 0.045, 0, Math.PI * 2);
+    g.fill();
+    g.fillStyle = 'rgba(244,247,255,.75)';
+    g.font = mono(s * 0.032, 600);
+    g.fillText('КАРАВАН · 3 РЯДОМ', m, m + s * 0.1);
+  } else if (mode === 'beacon') {
+    // «Маяк»: ищем потерянный телефон — расходящиеся кольца и метры
+    const t = (now / 1800) % 1;
+    for (let k = 0; k < 3; k++) {
+      const r = ((t + k / 3) % 1) * m * 0.88;
+      g.strokeStyle = `rgba(47,107,255,${(1 - r / (m * 0.88)) * 0.7})`;
+      g.lineWidth = s * 0.008;
+      g.beginPath();
+      g.arc(m, m, r, 0, Math.PI * 2);
+      g.stroke();
+    }
+    g.fillStyle = '#F4F7FF';
+    g.font = mono(s * 0.15, 700);
+    g.fillText('0x2A', m, m - s * 0.02);
+    g.font = mono(s * 0.034, 600);
+    g.fillStyle = 'rgba(244,247,255,.6)';
+    g.fillText('МЕТРА · ТЕЛЕФОН', m, m + s * 0.1);
+    g.fillStyle = accent;
+    g.fillText('МАЯК', m, m - s * 0.22);
+  } else if (mode === 'halt') {
+    // «Привал»: все устройства замолкли разом
+    g.fillStyle = '#F4F7FF';
+    g.beginPath();
+    g.arc(m, m - s * 0.05, s * 0.12, 0, Math.PI * 2);
+    g.fill();
+    g.fillStyle = '#000';
+    g.beginPath();
+    g.arc(m + s * 0.055, m - s * 0.09, s * 0.11, 0, Math.PI * 2);
+    g.fill();
+    g.fillStyle = 'rgba(244,247,255,.85)';
+    g.font = mono(s * 0.04, 700);
+    g.fillText('ПРИВАЛ', m, m + s * 0.15);
+    g.fillStyle = 'rgba(244,247,255,.45)';
+    g.font = mono(s * 0.028, 500);
+    g.fillText('часы · телефон · ноутбук', m, m + s * 0.21);
   } else if (mode === 'radio') {
     g.strokeStyle = 'rgba(244,247,255,.85)';
     g.lineWidth = s * 0.012;
@@ -343,6 +416,7 @@ export function createFyrOsmium() {
   const caseMat = new THREE.MeshPhysicalMaterial({ name: 'Case', color: FYR_COLORS.polarnatt.case, metalness: 1, roughness: 0.3, clearcoat: 0.3, envMapIntensity: 1.4 });
   const bezelMat = new THREE.MeshPhysicalMaterial({ name: 'Bezel', color: FYR_COLORS.polarnatt.bezel, metalness: 1, roughness: 0.2, envMapIntensity: 1.6 });
   const strapMat = new THREE.MeshStandardMaterial({ name: 'Strap', color: FYR_COLORS.polarnatt.strap, roughness: 0.72, metalness: 0 });
+  const braceletMat = new THREE.MeshPhysicalMaterial({ name: 'Bracelet', color: FYR_COLORS.polarnatt.case, metalness: 1, roughness: 0.4, envMapIntensity: 1.4 });
   const glassMat = new THREE.MeshPhysicalMaterial({
     name: 'Glass', color: 0xffffff, roughness: 0.02, metalness: 0, transparent: true, opacity: 0.16,
     clearcoat: 1, clearcoatRoughness: 0.02, depthWrite: false, envMapIntensity: 1.6,
@@ -362,7 +436,8 @@ export function createFyrOsmium() {
   drawBezel(bezCanvas, color);
   redrawScreen();
 
-  const parts = { bezel: null, crown: null, crownBase: 0 };
+  const parts = { bezel: null, crown: null, crownBase: 0, strap: null, bracelet: null, layers: [] };
+  let band = 'strap';
   let lastDark = -1;
 
   function setup(root) {
@@ -377,6 +452,8 @@ export function createFyrOsmium() {
           case 'Glass': return glassMat;
           case 'Tritium': return tritMat;
           case 'Strap': return strapMat;
+          case 'Bracelet': return braceletMat;
+          case 'BraceletPol': return bezelMat;
           case 'Stitch': {
             const s = m.clone();
             s.color.set(0x2F6BFF);
@@ -391,12 +468,25 @@ export function createFyrOsmium() {
     parts.bezel = root.getObjectByName('Bezel');
     parts.crown = root.getObjectByName('Crown');
     parts.crownBase = parts.crown ? parts.crown.position.x : 0;
+    parts.strap = root.getObjectByName('Strap');
+    parts.bracelet = root.getObjectByName('Bracelet');
+    parts.layers = Object.entries(EXPLODE).map(([n, mm]) => {
+      const o = root.getObjectByName(n);
+      return o && { o, z: o.position.z, d: mm * MM };
+    }).filter(Boolean);
+    applyBand();
     applyColor();
+  }
+
+  function applyBand() {
+    if (parts.strap) parts.strap.visible = band === 'strap';
+    if (parts.bracelet) parts.bracelet.visible = band === 'bracelet';
   }
 
   function applyColor() {
     const c = FYR_COLORS[color];
     caseMat.color.setHex(c.case);
+    braceletMat.color.setHex(c.case);
     bezelMat.color.setHex(c.bezel);
     strapMat.color.setHex(c.strap);
     tritMat.emissive.setHex(c.tritOn);
@@ -410,6 +500,11 @@ export function createFyrOsmium() {
     // против часовой: под меткой на 12 встаёт цифра номер cur.bezel
     if (parts.bezel) parts.bezel.rotation.z = cur.bezel * BEZEL_STEP;
     if (parts.crown) parts.crown.position.x = parts.crownBase - clamp01(cur.crown) * CROWN_TRAVEL;
+    // слои уходят по оси циферблата; ремешок и браслет на это время прячутся
+    const ex = clamp01(cur.explode);
+    for (const l of parts.layers) l.o.position.z = l.z + l.d * ex;
+    if (parts.strap) parts.strap.visible = band === 'strap' && ex < 0.04;
+    if (parts.bracelet) parts.bracelet.visible = band === 'bracelet' && ex < 0.04;
     screenMat.emissiveIntensity = clamp01(cur.screen) * 1.05;
     // тритий светится всегда; в темноте — ярче, с медленным дыханием
     const breath = reduced ? 1 : 0.92 + 0.08 * Math.sin(now / 900);
@@ -423,15 +518,16 @@ export function createFyrOsmium() {
       caseMat.color.setHex(c.case).multiplyScalar(k);
       bezelMat.color.setHex(c.bezel).multiplyScalar(k);
       strapMat.color.setHex(c.strap).multiplyScalar(k);
+      braceletMat.color.setHex(c.case).multiplyScalar(k);
       bezelTopMat.color.setScalar(k);
-      for (const m of [caseMat, bezelMat, bezelTopMat, screenMat, glassMat]) m.envMapIntensity = (m.userData.env ??= m.envMapIntensity) * k;
+      for (const m of [caseMat, bezelMat, bezelTopMat, screenMat, glassMat, braceletMat]) m.envMapIntensity = (m.userData.env ??= m.envMapIntensity) * k;
     }
     if (animated() && now - lastDraw > (screen.mode === 'face' ? 500 : 33)) redrawScreen(now);
   }
 
   return {
-    url: '/models/fyrosmium.glb?v=231b174213',
-    state: { bezel: 0, crown: 0, screen: 1, dark: 0 },
+    url: '/models/fyrosmium.glb?v=3823fcc8e7',
+    state: { bezel: 0, crown: 0, screen: 1, dark: 0, explode: 0 },
     parts,
     setup,
     buildFallback,
@@ -439,6 +535,7 @@ export function createFyrOsmium() {
     snap: applyColor,
     api: {
       setBodyColor(name) { if (FYR_COLORS[name]) { color = name; applyColor(); } },
+      setBand(name) { band = name === 'bracelet' ? 'bracelet' : 'strap'; applyBand(); },
       setScreen(mode, extra = {}) {
         screen.mode = SCREEN_MODES.includes(mode) ? mode : 'face';
         Object.assign(screen, extra);

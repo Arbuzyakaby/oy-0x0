@@ -27,7 +27,7 @@ sys.path.insert(0, SCRIPT_DIR)
 import bpy  # noqa: E402
 import bmesh  # noqa: E402
 from mathutils import Vector, Matrix, Euler  # noqa: E402
-from oy_common import Builder, make_mat, rrect, circle, hex_rgba, MATS  # noqa: E402
+from oy_common import Builder, make_mat, rrect, circle, rounded_poly, hex_rgba, MATS  # noqa: E402
 
 ROOT = os.path.normpath(os.path.join(SCRIPT_DIR, ".."))
 ARGV = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
@@ -41,6 +41,7 @@ OUT_DIR = os.path.abspath(arg("--out", os.path.join(ROOT, "img", "accessories"))
 ONLY = set(filter(None, (arg("--only", "") or "").split(",")))
 SAMPLES = int(arg("--samples", "128"))
 RES = int(arg("--res", "1000"))
+EXPOSURE = float(arg("--exposure", "-2.0"))   # студийный свет без пересвета: чёрное остаётся чёрным
 MM = 0.001
 
 # ----------------------------------------------------------------------------
@@ -61,6 +62,7 @@ scene.render.image_settings.color_mode = "RGBA"
 for vt in ("Khronos PBR Neutral", "AgX"):
     try:
         scene.view_settings.view_transform = vt
+        scene.view_settings.exposure = EXPOSURE
         break
     except TypeError:
         continue
@@ -309,9 +311,9 @@ def back(x0, x1, z0, z1, r, yB):
 SHOTS = []   # (id, коллекция, направление взгляда, объекты для кадрирования или None, запас)
 
 
-def shot(sid, c, view, frame=None, pad=1.08, lens=85, roll_floor=True, light=None):
-    """light — множители мощности ламп этого кадра, например {"Top": 0.3}."""
-    SHOTS.append(dict(id=sid, coll=c, view=Vector(view).normalized(), frame=frame, pad=pad, lens=lens, floor=roll_floor, light=light or {}))
+def shot(sid, c, view, frame=None, pad=1.08, lens=85, roll_floor=True, light=None, res=None):
+    """light — множители мощности ламп этого кадра, например {"Top": 0.3}; res — (ширина, высота), если кадр не квадратный."""
+    SHOTS.append(dict(id=sid, coll=c, view=Vector(view).normalized(), frame=frame, pad=pad, lens=lens, floor=roll_floor, light=light or {}, res=res))
 
 
 def want(sid):
@@ -921,6 +923,566 @@ if want("tips-nova"):
 
 
 # ----------------------------------------------------------------------------
+# Аксессуары эпохи Fyr: H1, 0X3 Essential, Butterfly, Osmium X0, KBook 1
+# ----------------------------------------------------------------------------
+
+def frost(name, color="#E3EEF6", rough=0.34):
+    """Матовый прозрачный TPU: просвечивает, но не блестит, как замороженное стекло H1."""
+    m = make_mat(name, color, rough=rough, transmission=1.0)
+    nt, bsdf = nodes_of(m)
+    bsdf.inputs["IOR"].default_value = 1.49
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 260.0
+    nt.links.new(obj_coords(nt, 1.0), noise.inputs["Vector"])
+    add_bump(m, noise.outputs["Fac"], 0.04, 0.02)
+    return m
+
+
+def leather(name, color, rough=0.5):
+    """Кожа из мицелия: мелкая зернистость ячейками Вороного и лёгкий бархат."""
+    m = make_mat(name, color, rough=rough, coat=0.15)
+    nt, bsdf = nodes_of(m)
+    vor = nt.nodes.new("ShaderNodeTexVoronoi")
+    vor.inputs["Scale"].default_value = 900.0
+    nt.links.new(obj_coords(nt, 1.0), vor.inputs["Vector"])
+    add_bump(m, vor.outputs["Distance"], 0.18, 0.05)
+    bsdf.inputs["Sheen Weight"].default_value = 0.2
+    return m
+
+
+def felt(name, color):
+    """Войлок: крупный шум без блеска и много бархата по краям."""
+    m = make_mat(name, color, rough=0.95)
+    nt, bsdf = nodes_of(m)
+    co = obj_coords(nt, 1.0)
+    fine = nt.nodes.new("ShaderNodeTexNoise")
+    fine.inputs["Scale"].default_value = 700.0
+    fine.inputs["Detail"].default_value = 8.0
+    nt.links.new(co, fine.inputs["Vector"])
+    big = nt.nodes.new("ShaderNodeTexNoise")
+    big.inputs["Scale"].default_value = 40.0
+    nt.links.new(co, big.inputs["Vector"])
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    ramp.color_ramp.elements[0].color = hex_rgba(color)
+    c2 = hex_rgba(color)
+    ramp.color_ramp.elements[1].color = (c2[0] * 1.2, c2[1] * 1.2, c2[2] * 1.2, 1)
+    nt.links.new(big.outputs["Fac"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], bsdf.inputs["Base Color"])
+    add_bump(m, fine.outputs["Fac"], 0.35, 0.1)
+    bsdf.inputs["Sheen Weight"].default_value = 0.25
+    bsdf.inputs["Sheen Roughness"].default_value = 0.5
+    bsdf.inputs["Sheen Tint"].default_value = hex_rgba(color)
+    return m
+
+
+def wallpaper(name, lo, mid, hi, scale=7.0, k=4.5):
+    """Обои на экране: градиент по высоте с шумом, светятся сами."""
+    m = make_mat(name, "#000000", rough=0.3)
+    nt, bsdf = nodes_of(m)
+    co = obj_coords(nt, 1.0)
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(co, sep.inputs["Vector"])
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = scale
+    noise.inputs["Detail"].default_value = 0.5
+    nt.links.new(co, noise.inputs["Vector"])
+    mix = nt.nodes.new("ShaderNodeMath")
+    mix.operation = "MULTIPLY_ADD"
+    nt.links.new(sep.outputs["Z"], mix.inputs[0])
+    mix.inputs[1].default_value = k
+    nt.links.new(noise.outputs["Fac"], mix.inputs[2])
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    els = ramp.color_ramp.elements
+    els[0].position, els[0].color = 0.05, hex_rgba(lo)
+    els[1].position, els[1].color = 0.95, hex_rgba(hi)
+    md = els.new(0.5)
+    md.color = hex_rgba(mid)
+    nt.links.new(mix.outputs["Value"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], bsdf.inputs["Emission Color"])
+    bsdf.inputs["Emission Strength"].default_value = 0.9
+    return m
+
+
+M_FYR_BLUE = make_mat("FyrBlueAcc", "#2F6BFF", rough=0.35, emission="#2F6BFF", strength=1.5)
+M_TRIT = make_mat("TritiumAcc", "#9FB8FF", emission="#3D7BFF", strength=6.0)
+M_TI = make_mat("Titanium", "#8C9096", metallic=1.0, rough=0.3)
+M_TI_DARK = make_mat("TitaniumDLC", "#2A2E35", metallic=1.0, rough=0.34)
+M_MATTE = make_mat("FyrMatte", "#141619", rough=0.62)
+M_GOLDPIN = make_mat("GoldPin", "#C9A35A", metallic=1.0, rough=0.25)
+
+
+def once(name, fn, *args, **kw):
+    """Материал создаётся один раз: make_case ищет его по имени."""
+    return MATS[name] if name in MATS else fn(name, *args, **kw)
+
+
+def built(c, fn, *args, **kw):
+    """Вызывает сборщик и возвращает новые объекты верхнего уровня."""
+    before = set(bpy.data.objects)
+    fn(c, *args, **kw)
+    bpy.context.view_layer.update()
+    return [o for o in bpy.data.objects if o not in before and o.parent is None]
+
+
+def group(c, roots, loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Пустышка над готовой сборкой: двигает и крутит её целиком (в мм и градусах)."""
+    e = bpy.data.objects.new("Group", None)
+    c.objects.link(e)
+    for r in roots:
+        mw = r.matrix_world.copy()
+        r.parent = e
+        r.matrix_world = mw
+    e.location = Vector(loc) * MM
+    e.rotation_euler = tuple(math.radians(a) for a in rot)
+    bpy.context.view_layer.update()
+    return e
+
+
+def hide_nodes(objs, names):
+    for n in names:
+        o = next((x for x in objs if x.name.split(".")[0] == n), None)
+        if o is not None:
+            o.hide_render = True
+            for ch in o.children_recursive:
+                ch.hide_render = True
+
+
+# Чехол Fyr H1 «Иней»: матовый прозрачный TPU поверх замороженного стекла;
+# «Рубильник» слева открыт целиком, фонарь на верхней грани тоже
+def build_case_h1(c):
+    import_glb("fyrh1.glb", c)
+    case = make_case("CaseH1", once("FrostTPU", frost), 74.0, 162.8, -4.1, 4.35, 10.5, [   # спинка 4,2 мм: зазор, чтобы стекло не сливалось с чехлом
+        back(-10.8, 32.0, 31.6, 76.4, 8.6, 4.2),                    # остров камер
+        side(35.0, 50.0, 1.9, -46, -30),                             # «Рубильник» на три положения
+        side(14.0, 60.0, 1.7, 30, 46),                               # питание и громкость
+        end(-21.5, 22.5, 1.9, 78, 96),                               # фонарь и микрофоны
+        end(-29.5, 25.3, 1.6, -96, -78),                             # USB-C и динамик
+    ], t=1.2, tb=1.0, lip=0.8)
+    put(case, c)   # во второй раз (для обложки) Blender назовёт его CaseH1.001
+
+
+if want("case-h1"):
+    c = new_coll("case-h1")
+    build_case_h1(c)
+    shot("case-h1", c, (0.55, 1.0, 0.3))
+
+# Чехол 0X3 Essential «Мягкий» — «Горчичный»: все четыре kill switch открыты
+if want("case-0x3e"):
+    c = new_coll("case-0x3e")
+    import_glb("oy0x3e.glb", c)
+    make_case("Case0X3E", once("Silicone_Mustard", silicone, "#C28E22"), 71.0, 150.0, -4.4, 4.5, 2.6, [
+        back(10.4, 31.6, 27.7, 62.1, 9.6, 4.5),                      # две камеры
+        back(18.6, 23.4, 14.3, 18.9, 2.3, 4.5),                      # вспышка
+        back(18.2, 23.8, 20.3, 25.9, 1.6, 4.5),                      # гравировка X
+        side(4.5, 51.5, 1.9, -45, -30),                              # четыре kill switch
+        side(9.5, 51.0, 1.7, 30, 45),
+        end(-25.5, 25.5, 1.6, 70, 90),                               # фонарь на 5000 м и ИК
+        end(-23.5, 23.5, 1.6, -90, -70),                             # USB-C и винты
+    ], t=1.2, tb=1.0, lip=0.8)
+    put(bpy.data.objects["Case0X3E"], c)
+    shot("case-0x3e", c, (-0.55, 1.0, 0.3))
+
+# OY 0X Butterfly. Модель приходит раскрытой: правая половина (с «Глазом»)
+# в +X, левая (с внешним экраном) — под пустышкой Left на оси петли.
+BF_W, BF_H, BF_GAP = 81.0, 120.0, 0.3
+BF_RF, BF_RH = 15.0, 2.4              # углы у свободного края и у петли
+BF_PIVOT_Y = -2.65
+BF_EYE = (40.8, 30.6, 26.0)           # центр и радиус окна под кольцо «Диафрагма»
+
+
+def butterfly_shell(name, mat, sign, cuts, t=1.1, tb=0.9):
+    """Половинка «Куколки»: спинка и три стенки. У петли стенки нет и спинка
+    не доходит до корешка: книжка складывается прямо в чехле."""
+    x0, x1 = BF_GAP, BF_GAP + BF_W
+
+    def outline(xa, xb, za, zb, rh, rf):
+        pts = [(xa, za), (xb, za), (xb, zb), (xa, zb)]
+        return rounded_poly(pts, [rh, rf, rf, rh], seg=12)
+
+    b = Builder(name, [mat.name])
+    b.prism(outline(5.6, x1 + t, -BF_H / 2 - t, BF_H / 2 + t, 1.0, BF_RF + t), "Y", -2.3, 2.5 + tb, mat.name,
+            bevel_end=1.0, bevel_start=0.5, seg=4)
+    shell = b.build()
+    cutters = [rprism("cav", outline(-10.0, x1 + 0.05, -BF_H / 2 - 0.05, BF_H / 2 + 0.05, BF_RH, BF_RF), "Y", -6.0, 2.52)]
+    for axis, (cu, cv, w, h, r), a0, a1 in cuts:
+        cutters.append(rprism("c", rrect(w, h, r, seg=12, cx=cu, cy=cv), axis, a0, a1))
+    ob = cut(shell, cutters)
+    if sign < 0:   # левая половина — зеркальная копия
+        ob.data.transform(Matrix.Scale(-1, 4, (1, 0, 0)))
+        ob.data.flip_normals()
+    return mm(ob)
+
+
+def butterfly_case(c, mat, fold):
+    objs = import_glb("oybutterfly.glb", c)
+    left = named(objs, "Left")
+    hinge = named(objs, "Hinge")
+    right = butterfly_shell("CocoonR", mat, 1, [
+        ("Y", (BF_EYE[0], BF_EYE[1], 2 * BF_EYE[2], 2 * BF_EYE[2], BF_EYE[2] - 0.01), 1.0, 9.0),   # «Глаз» и кольцо
+        ("Z", (36.5, 0.0, 52.0, 3.0, 1.4), 55.0, 70.0),                       # «Рубильник» сверху
+        ("Z", (41.8, 0.0, 61.0, 2.8, 1.3), -70.0, -55.0),                     # USB-C и динамик
+        ("X", (0.0, 6.0, 2.8, 49.0, 1.3), 75.0, 95.0),                        # питание и громкость
+    ])
+    lshell = butterfly_shell("CocoonL", mat, -1, [
+        ("Y", (42.7, 0.0, 72.6, 114.8, 12.5), 1.0, 9.0),                      # внешний экран целиком
+        ("Z", (21.0, 0.0, 21.0, 3.0, 1.4), 55.0, 70.0),                       # второй «Рубильник» и микрофон
+        ("Z", (43.8, 0.0, 57.0, 2.8, 1.3), -70.0, -55.0),
+    ])
+    for o in (right, lshell):
+        put(o, c)
+    bpy.context.view_layer.update()
+    # левая половинка чехла едет вместе с левой половиной телефона
+    mw = lshell.matrix_world.copy()
+    lshell.parent = left
+    lshell.matrix_world = mw
+    a = math.pi * fold
+    left.rotation_mode = hinge.rotation_mode = "XYZ"
+    left.rotation_euler[2] += a
+    hinge.rotation_euler[2] += a / 2
+    bpy.context.view_layer.update()
+    return objs
+
+
+if want("case-butterfly"):
+    c = new_coll("case-butterfly")
+    objs = butterfly_case(c, once("Mycelium_Morpho", leather, "#18264A"), 0.22)
+    root = next(o for o in objs if o.parent is None)
+    root.rotation_mode = "XYZ"
+    root.rotation_euler = (0, 0, math.radians(-14))
+    bpy.context.view_layer.update()
+    shot("case-butterfly", c, (0.25, 1.0, 0.32), pad=1.06)
+
+# Стекло на внешний экран 5,6": телефон сложен, внешний экран смотрит в камеру
+if want("glass-butterfly"):
+    c = new_coll("glass-butterfly")
+    objs = import_glb("oybutterfly.glb", c)
+    left = named(objs, "Left")
+    hinge = named(objs, "Hinge")
+    left.rotation_mode = hinge.rotation_mode = "XYZ"
+    left.rotation_euler[2] += math.pi
+    hinge.rotation_euler[2] += math.pi / 2
+    cover = named(objs, "Cover")
+    cover.data.materials.clear()
+    cover.data.materials.append(wallpaper("WallMorpho", "#04060E", "#1D3A8A", "#9FD6FF"))
+    b = Builder("GlassBF", ["ScreenGlass", "GlassPrint"])
+    gw, gh = 77.6, 116.6
+    pts = rounded_poly([(-gw / 2, -gh / 2), (gw / 2, -gh / 2), (gw / 2, gh / 2), (-gw / 2, gh / 2)], [BF_RH, BF_RF - 1, BF_RF - 1, BF_RH], seg=12)
+    b.prism(pts, "Y", 0.0, 0.4, "ScreenGlass", bevel_end=0.12, bevel_start=0.12, seg=3)
+    inner = rounded_poly([(-gw / 2 + 1.4, -gh / 2 + 1.4), (gw / 2 - 1.4, -gh / 2 + 1.4), (gw / 2 - 1.4, gh / 2 - 1.4), (-gw / 2 + 1.4, gh / 2 - 1.4)], [1.4, BF_RF - 2, BF_RF - 2, 1.4], seg=12)
+    outer = rounded_poly([(-gw / 2 + 0.3, -gh / 2 + 0.3), (gw / 2 - 0.3, -gh / 2 + 0.3), (gw / 2 - 0.3, gh / 2 - 0.3), (-gw / 2 + 0.3, gh / 2 - 0.3)], [2.1, BF_RF - 1.3, BF_RF - 1.3, 2.1], seg=12)
+    b.band(outer, inner, "Y", -0.03, -0.005, "GlassPrint")
+    glass = b.build()
+    glass.location = (40.8 + 3.0, -7.4 - 12.0, 13.0)
+    glass.rotation_euler = (math.radians(6), 0, math.radians(3))
+    put(mm(glass), c)
+    root = next(o for o in objs if o.parent is None)
+    bpy.context.view_layer.update()
+    shot("glass-butterfly", c, (0.45, -1.0, 0.5), pad=1.04, lens=70, light={"Top": 0.6, "Key": 1.2, "Rim": 1.4})
+
+
+# Fyr Osmium X0. Модель часов — models/fyrosmium.glb: циферблат смотрит в −Y,
+# ремешок уходит вверх и вниз и загибается за запястье (+Y)
+def osmium(c, hide=("Strap", "Bracelet")):
+    objs = import_glb("fyrosmium.glb", c)
+    hide_nodes(objs, hide)
+    scr = named(objs, "Screen")
+    scr.data.materials.clear()
+    face = make_mat("OsmFace", "#000000", rough=0.2)
+    nt, bsdf = nodes_of(face)
+    # циферблат CamelOS: тёмный экран и синее кольцо секунд
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    grad = nt.nodes.new("ShaderNodeTexGradient")
+    grad.gradient_type = "SPHERICAL"
+    mp = nt.nodes.new("ShaderNodeMapping")
+    mp.inputs["Scale"].default_value = (1.0 / 0.0175, 1.0 / 0.0175, 1.0 / 0.0175)
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nt.links.new(mp.outputs["Vector"], grad.inputs["Vector"])
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    els = ramp.color_ramp.elements
+    els[0].position, els[0].color = 0.0, hex_rgba("#000000")
+    els[1].position, els[1].color = 0.11, hex_rgba("#000000")
+    for pos, col in ((0.06, "#2F6BFF"), (0.085, "#000000")):
+        e = els.new(pos)
+        e.color = hex_rgba(col)
+    nt.links.new(grad.outputs["Fac"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], bsdf.inputs["Emission Color"])
+    bsdf.inputs["Emission Strength"].default_value = 1.2
+    scr.data.materials.append(face)
+    root = named(objs, "FyrOsmium")
+    root.rotation_mode = "XYZ"
+    # деления 0–F на безеле и hex-время на экране: на сайте их рисует canvas
+    ink = make_mat("BezelInk", "#E9EEF8", rough=0.4)
+    blue = make_mat("FaceBlue", "#2F6BFF", emission="#2F6BFF", strength=3.0)
+    white = make_mat("FaceWhite", "#F4F7FF", emission="#F4F7FF", strength=2.0)
+
+    def label(txt, mat, size, pos, ang, parent):
+        cu = bpy.data.curves.new(f"T{txt}", "FONT")
+        cu.body = txt
+        cu.align_x, cu.align_y = "CENTER", "CENTER"
+        cu.size = size * MM
+        cu.extrude = 0.02 * MM
+        cu.materials.append(mat)
+        ob = bpy.data.objects.new(f"T{txt}", cu)
+        ob.matrix_world = Matrix.Translation(Vector(pos) * MM) @ Matrix.Rotation(ang, 4, "Y") @ Matrix.Rotation(math.radians(90), 4, "X")
+        put(ob, c)
+        ob.parent = parent
+        ob.matrix_parent_inverse = parent.matrix_world.inverted()
+
+    bpy.context.view_layer.update()
+    bezel = named(objs, "Bezel")
+    for i, ch in enumerate("0123456789ABCDEF"):
+        a = i * math.pi / 8
+        if i == 0:
+            ch = "▼"
+        label(ch, blue if i == 0 else ink, 2.2, (20.25 * math.sin(a), -5.53, 20.25 * math.cos(a)), a, bezel)
+    label("0A", white, 7.0, (0.0, -4.64, 3.6), 0.0, root)
+    label("2F", blue, 7.0, (0.0, -4.64, -3.9), 0.0, root)
+    return objs
+
+
+def sweep(b, mat, path, width, thick, sign=1):
+    """Полоса прямоугольного сечения вдоль пути path: [(z, y), …] в плоскости ZY.
+    width(t) — ширина в доле пути t. Возвращает кольца вершин (для строчки)."""
+    bm = b.bm
+    n = len(path)
+    rings = []
+    for k, (z, y) in enumerate(path):
+        za, ya = path[max(k - 1, 0)]
+        zb, yb = path[min(k + 1, n - 1)]
+        tz, ty = zb - za, yb - ya
+        ln = math.hypot(tz, ty) or 1.0
+        nz, ny = -ty / ln, tz / ln
+        w = width(k / (n - 1))
+        ring = []
+        for dx, dn in ((-w / 2, -thick / 2), (w / 2, -thick / 2), (w / 2, thick / 2), (-w / 2, thick / 2)):
+            ring.append(bm.verts.new(Vector((dx, y + ny * dn, sign * (z + nz * dn)))))
+        rings.append(ring)
+    idx = b.mi(mat)
+    faces = []
+    for a, c2 in zip(rings, rings[1:]):
+        for i in range(4):
+            j = (i + 1) % 4
+            faces.append(bm.faces.new((a[i], a[j], c2[j], c2[i])))
+    faces.append(bm.faces.new(rings[0]))
+    faces.append(bm.faces.new(list(reversed(rings[-1]))))
+    for f in faces:
+        f.material_index = idx
+    bmesh.ops.recalc_face_normals(bm, faces=faces)
+    return rings
+
+
+def flat_path(length, drop=4.8, steps=60, tip=0.0):
+    """От шпильки (z = 21,6) полоса спускается на drop мм к столу и идёт прямо."""
+    pts = []
+    for k in range(steps + 1):
+        s = length * k / steps
+        u = min(s / 16.0, 1.0)
+        y = 0.2 + drop * (3 * u * u - 2 * u * u * u)
+        pts.append((21.6 + s, y))
+    return pts
+
+
+# Ремешок «Фьорд»: фторэластомер с синей строчкой и пряжка из титана DLC.
+# Часы лежат циферблатом вверх, ремешок расстёгнут
+def build_strap_osmium(c, turn=-58):
+    objs = osmium(c)
+    root = named(objs, "FyrOsmium")
+    if "FKM" not in MATS:
+        nodes_of(make_mat("FKM", "#0E1014", rough=0.55))[1].inputs["Sheen Weight"].default_value = 0.25
+        make_mat("FKMStitch", "#2F6BFF", rough=0.6)
+    b = Builder("StrapFjord", ["FKM", "FKMStitch", "Port", "TitaniumDLC"])
+    taper = lambda t: 21.6 - 3.6 * t
+    for sign, length in ((1, 78.0), (-1, 118.0)):
+        path = flat_path(length)
+        rings = sweep(b, "FKM", path, (lambda t, L=length: taper(t * L / 118.0)), 2.6, sign)
+        # строчка: короткие стежки по краям лицевой стороны (сторона −Y — к зрителю)
+        sidx = b.mi("FKMStitch")
+        for k in range(3, len(rings) - 3, 2):
+            a0, a1 = rings[k][0].co, rings[k + 1][0].co
+            w = abs(rings[k][1].co.x - rings[k][0].co.x)
+            for ex in (-w / 2 + 1.3, w / 2 - 2.0):
+                vs = [b.bm.verts.new(Vector((ex + dx, p.y - 0.03, p.z))) for p, dx in ((a0, 0), (a0, 0.7), (a1, 0.7), (a1, 0))]
+                f = b.bm.faces.new(vs if sign > 0 else list(reversed(vs)))
+                f.material_index = sidx
+        if sign < 0:
+            # отверстия под язычок: тёмные овалы на лицевой стороне
+            for hz in range(7):
+                zc = 21.6 + 46.0 + hz * 7.0
+                z, y = next(p for p in path if p[0] >= zc)
+                pts = [(0.0 + 1.1 * math.cos(2 * math.pi * i / 20), zc + 1.5 * math.sin(2 * math.pi * i / 20)) for i in range(20)]
+                vs = [b.bm.verts.new(Vector((u, y - 1.31, -v))) for u, v in pts]
+                f = b.bm.faces.new(list(reversed(vs)))
+                f.material_index = b.mi("Port")
+        else:
+            # пряжка: рамка из титана DLC и язычок
+            zc = 21.6 + length + 3.0
+            yb = path[-1][1]
+            b.band(rrect(22.0, 12.0, 3.4, seg=8, cx=0.0, cy=zc), rrect(17.6, 7.6, 1.6, seg=8, cx=0.0, cy=zc), "Y", yb - 1.7, yb + 1.3, "TitaniumDLC")
+            b.box(0.0, yb - 1.4, zc + 1.0, 1.8, 1.2, 12.0, "TitaniumDLC")
+            # шлёвка поверх ремешка
+            b.band(rrect(23.2, 4.6, 1.6, seg=6, cx=0.0, cy=yb), rrect(21.4, 2.8, 1.0, seg=6, cx=0.0, cy=yb), "Z", zc - 16.0, zc - 11.0, "FKM")
+    strap = b.build(sharp_angle=55.0)
+    mm(strap)
+    strap.parent = root
+    put(strap, c)
+    root.rotation_euler = (math.radians(-90), 0, math.radians(turn))
+    bpy.context.view_layer.update()
+
+
+if want("strap-osmium"):
+    c = new_coll("strap-osmium")
+    build_strap_osmium(c)
+    shot("strap-osmium", c, (0.2, -0.75, 1.0), pad=1.08, lens=70)
+
+# Титановый браслет: часы стоят, браслет уходит за «запястье»
+if want("bracelet-osmium"):
+    c = new_coll("bracelet-osmium")
+    objs = osmium(c, hide=("Strap",))
+    root = named(objs, "FyrOsmium")
+    root.rotation_euler = (math.radians(8), 0, math.radians(24))
+    bpy.context.view_layer.update()
+    shot("bracelet-osmium", c, (0.35, -1.0, 0.3), pad=1.1)
+
+# Шайба Osmium: часы лежат на ней спинкой, синее кольцо — заряд идёт
+if want("puck-osmium"):
+    c = new_coll("puck-osmium")
+    b = Builder("PuckOsm", ["TitaniumDLC", "FyrMatte", "GoldPin", "FyrBlueAcc"])
+    b.lathe([(0.0, 0.0), (17.0, 0.0), (18.6, 0.5), (19.2, 1.6), (19.2, 5.0), (18.6, 6.0), (17.4, 6.4)], 0, 0, "TitaniumDLC", seg=128)
+    b.lathe([(17.4, 6.4), (14.5, 6.4), (13.2, 5.9), (8.0, 5.2), (0.01, 5.0)], 0, 0, "FyrMatte", seg=128)
+    for i in range(4):
+        a = math.pi / 4 + i * math.pi / 2
+        b.prism(circle(0.75, 16, 11.8 * math.cos(a), 11.8 * math.sin(a)), "Y", 5.4, 6.05, "GoldPin", bevel_end=0.2)
+    b.band(circle(19.25, 128), circle(19.0, 128), "Y", 2.6, 3.6, "FyrBlueAcc")
+    b.prism(rrect(6.0, 3.2, 1.4, seg=8, cx=0.0, cy=3.0), "Z", 18.0, 26.0, "TitaniumDLC", bevel_end=0.6, seg=3)
+    puck = b.build()
+    puck.rotation_euler = (math.radians(90), 0, 0)
+    put(mm(puck), c)
+    cd = bpy.data.curves.new("CableOsm", "CURVE")
+    cd.dimensions = "3D"
+    cd.bevel_depth = 1.5 * MM
+    cd.bevel_resolution = 6
+    sp = cd.splines.new("BEZIER")
+    pts = [(0, -25.5, 3.0), (0, -45, 1.5), (-25, -70, 1.5), (-65, -62, 1.5), (-85, -25, 1.5)]
+    sp.bezier_points.add(len(pts) - 1)
+    for bp, p in zip(sp.bezier_points, pts):
+        bp.co = Vector(p) * MM
+        bp.handle_left_type = bp.handle_right_type = "AUTO"
+    cable = bpy.data.objects.new("CableOsm", cd)
+    cd.materials.append(M_BRAID)
+    c.objects.link(cable)
+    objs = osmium(c)
+    root = named(objs, "FyrOsmium")
+    root.rotation_euler = (math.radians(-90), 0, math.radians(18))
+    root.location = (0, 0, (6.4 + 6.3 - 1.2) * MM)
+    bpy.context.view_layer.update()
+    shot("puck-osmium", c, (0.35, -0.8, 0.8), pad=1.08, lens=70)
+
+# Чехол KBook 1 «Конверт»: войлок из шведской шерсти, ноутбук наполовину вынут
+if want("sleeve-kbook"):
+    c = new_coll("sleeve-kbook")
+    objs = import_glb("fyrkbook.glb", c)
+    kb = next(o for o in objs if o.parent is None)
+    M_FELT = felt("FeltGrey", "#2C3038")
+    M_TAB = leather("TabLeather", "#1B2A55", rough=0.45)
+    b = Builder("Sleeve", ["FeltGrey"])
+    b.prism(rrect(318.0, 229.0, 16.0, seg=14), "Z", -3.0, 14.6, "FeltGrey", bevel_end=4.0, bevel_start=3.0, seg=5)
+    sleeve = b.build()
+    cut(sleeve, [rprism("in", rrect(307.0, 260.0, 10.0, seg=12, cx=0.0, cy=17.0), "Z", -0.7, 11.9)])
+    put(mm(sleeve), c)
+    t = Builder("SleeveTab", ["TabLeather", "TritiumAcc"])
+    t.prism(rrect(44.0, 70.0, 10.0, seg=10, cx=0.0, cy=86.0), "Z", 14.5, 15.8, "TabLeather", bevel_end=0.5, seg=2)
+    t.prism(circle(1.6, 24, 0.0, 66.0), "Z", 15.7, 16.0, "TritiumAcc")
+    put(mm(t.build()), c)
+    kb.location = (0.0, 0.118, 0.0)
+    bpy.context.view_layer.update()
+    shot("sleeve-kbook", c, (0.4, 0.85, 0.95), pad=1.06, lens=60)
+
+# Блок Fyr 100 Вт: три USB-C, вилка Евросоюза и тритиевая точка — найдёте в темноте
+def build_power_fyr(c):
+    b = Builder("PowerFyr", ["FyrMatte", "Port", "FyrBlueAcc", "Steel", "TritiumAcc", "TitaniumDLC"])
+    b.prism(rrect(46.0, 46.0, 10.0, seg=14), "Y", 0.0, 30.0, "FyrMatte", bevel_end=3.0, bevel_start=2.0, seg=6)
+    for cx in (-11.0, 0.0, 11.0):
+        b.prism(rrect(3.6, 9.4, 1.7, seg=8, cx=cx, cy=3.0), "Y", -0.05, 6.0, "Port")
+        b.prism(rrect(0.8, 6.0, 0.35, seg=4, cx=cx, cy=3.0), "Y", 1.2, 6.1, "FyrBlueAcc")
+    b.prism(circle(0.9, 24, 0.0, -13.5), "Y", -0.08, 0.3, "TritiumAcc")
+    b.band(rrect(36.0, 0.9, 0.4, seg=3, cy=-8.5), rrect(35.0, 0.3, 0.1, seg=3, cy=-8.5), "Y", -0.06, 0.1, "TitaniumDLC")
+    for cx in (-9.5, 9.5):    # вилка Евросоюза: круглые штыри 4,8 мм
+        b.prism(circle(2.4, 32, cx, 0.0), "Y", 30.0, 49.0, "Steel", bevel_end=0.9, seg=3)
+    ob = mm(b.build())
+    put(ob, c)
+    return ob
+
+
+if want("power-fyr"):
+    c = new_coll("power-fyr")
+    build_power_fyr(c).rotation_euler = (0, 0, math.radians(-26))
+    shot("power-fyr", c, (-0.25, -1.0, 0.55), pad=1.15, lens=70)
+
+# Кабель «Колодец»: USB-C ↔ USB-C, 2 м, 40 Гбит/с — резервная копия телефона на KBook
+def build_cable_well(c):
+    cd = bpy.data.curves.new("WellCurve", "CURVE")
+    cd.dimensions = "3D"
+    cd.bevel_depth = 1.8 * MM
+    cd.bevel_resolution = 6
+    sp = cd.splines.new("BEZIER")
+    pts = [(-70.0, -78.0, 1.8), (-38.0, -58.0, 1.8)]
+    loops = 3
+    for i in range(loops * 8 + 1):
+        a = -math.pi / 2 - 2 * math.pi * i / 8
+        r = 40.0 - i * 0.55
+        cxl, cyl = i * 0.5, i * 0.35
+        pts.append((cxl + r * math.cos(a) * 1.05, cyl + r * math.sin(a), 1.8 + 3.3 * i / 8))
+    pts += [(28.0, -36.0, 1.8 + 3.3 * loops), (62.0, -62.0, 1.8), (88.0, -70.0, 1.8)]
+    sp.bezier_points.add(len(pts) - 1)
+    for bp, p in zip(sp.bezier_points, pts):
+        bp.co = Vector(p) * MM
+        bp.handle_left_type = bp.handle_right_type = "AUTO"
+    cable = bpy.data.objects.new("Well", cd)
+    M_BRAID_BLUE = MATS.get("BraidBlue") or fabric("BraidBlue", "#1A2340")
+    M_BRAID_BLUE.node_tree.nodes["Brick Texture"].inputs["Scale"].default_value = 0.6
+    cd.materials.append(M_BRAID_BLUE)
+    c.objects.link(cable)
+
+    def plug(name, p0, p1):
+        d = (Vector(p1[:2]) - Vector(p0[:2])).normalized()
+        ang = math.atan2(d.y, d.x)
+        pb = Builder(name, ["TitaniumDLC", "Steel", "FyrBlueAcc", "Port"])
+        pb.prism(rrect(8.6, 4.8, 2.4, seg=8), "X", 0.0, 21.0, "TitaniumDLC", bevel_end=1.0, bevel_start=0.6, seg=3)
+        pb.band(rrect(8.7, 4.9, 2.4, seg=8), rrect(8.5, 4.7, 2.3, seg=8), "X", 3.0, 4.2, "FyrBlueAcc")
+        pb.prism(rrect(8.3, 2.5, 1.2, seg=8), "X", 21.0, 27.5, "Steel", bevel_end=0.3, seg=2)
+        pb.prism(rrect(6.6, 0.7, 0.3, seg=4), "X", 25.0, 27.6, "Port")
+        ob = pb.build(location=(p0[0], p0[1], 2.4))
+        ob.rotation_euler = (0, 0, ang)
+        return mm(ob)
+
+    put(plug("PlugA", pts[0], (pts[0][0] - (pts[1][0] - pts[0][0]), pts[0][1] - (pts[1][1] - pts[0][1]))), c)
+    put(plug("PlugB", pts[-1], (2 * pts[-1][0] - pts[-2][0], 2 * pts[-1][1] - pts[-2][1])), c)
+    # липучка-стяжка поперёк витков
+    tie = Builder("Tie", ["FyrBlueAcc"])
+    tie.prism(rrect(30.0, 10.0, 2.0, seg=6), "Z", 0.0, 13.0, "FyrBlueAcc", bevel_end=1.5, bevel_start=1.5, seg=3)
+    tob = tie.build(location=(-41.0, 4.0, 0.0))
+    put(mm(tob), c)
+
+
+if want("cable-well"):
+    c = new_coll("cable-well")
+    build_cable_well(c)
+    shot("cable-well", c, (0.15, -0.6, 1.0), pad=1.12, lens=70)
+
+
+# Обложка страницы: раскладка новинок сверху — H1 в «Инее», Butterfly в «Куколке»,
+# Osmium на «Фьорде», блок Fyr 100 Вт и «Колодец». Кадр широкий
+if want("hero"):
+    c = new_coll("hero")
+    group(c, built(c, build_case_h1), loc=(-112, 18, 4.9), rot=(90, 0, 196))
+    group(c, built(c, butterfly_case, once("Mycelium_Morpho", leather, "#18264A"), 0.0), loc=(28, 28, 2.45), rot=(90, 0, 172))
+    group(c, built(c, build_strap_osmium, 90), loc=(-30, -128, 0), rot=(0, 0, 4))
+    group(c, built(c, build_power_fyr), loc=(-150, -112, 0), rot=(0, 0, 32))
+    group(c, built(c, build_cable_well), loc=(150, -108, 0), rot=(0, 0, -20))
+    shot("hero", c, (0.0, -0.42, 1.0), pad=1.04, lens=50, res=(1800, 1100))
+
+
+# ----------------------------------------------------------------------------
 # Свет, камера, пол-тень
 # ----------------------------------------------------------------------------
 
@@ -980,16 +1542,16 @@ def place_lights(center, view, r, mult):
         lo.data.energy = e * mult.get(nm, 1.0)
 
 
-def frame_fit(center, view, pts, lens, pad):
-    """Дистанция камеры, при которой все точки помещаются в квадратный кадр."""
-    fov = 2 * math.atan(18.0 / lens)
-    tan = math.tan(fov / 2)
+def frame_fit(center, view, pts, lens, pad, aspect=1.0):
+    """Дистанция камеры, при которой все точки помещаются в кадр (aspect = ширина / высота ≥ 1)."""
+    tan_x = 18.0 / lens
+    tan_y = tan_x / aspect
     q = view.to_track_quat("Z", "Y")
     rot = q.to_matrix().inverted()
     best = 0.0
     for p in pts:
         lp = rot @ (p - center)
-        need = max(abs(lp.x), abs(lp.y)) / tan + lp.z
+        need = max(abs(lp.x) / tan_x, abs(lp.y) / tan_y) + lp.z
         best = max(best, need)
     return best * pad
 
@@ -1005,7 +1567,9 @@ for sh in SHOTS:
     center = (fmn + fmx) / 2
     r = max((fmx - fmn).length / 2, 0.02)
     cam_data.lens = sh["lens"]
-    dist = frame_fit(center, sh["view"], fpts, sh["lens"], sh["pad"])
+    w, h = (round(sh["res"][0] * RES / 1000), round(sh["res"][1] * RES / 1000)) if sh["res"] else (RES, RES)
+    scene.render.resolution_x, scene.render.resolution_y = w, h
+    dist = frame_fit(center, sh["view"], fpts, sh["lens"], sh["pad"], w / h)
     look_at(cam, center + sh["view"] * dist, center)
     cam_data.clip_start = dist * 0.01
     cam_data.clip_end = dist * 10

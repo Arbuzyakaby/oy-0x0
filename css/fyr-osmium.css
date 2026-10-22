@@ -1,0 +1,163 @@
+/* =========================================================================
+   Fyr Osmium X0 — «Год спустя». Ночь, луч маяка над страницей, часы в 3D
+   за главами: осмий с гигантской плотностью за моделью, разлёт по слоям,
+   тритий в темноте, CamelOS на запястье, ремешок или браслет, «Караван».
+   Общее для страниц Fyr — в fyr-page.css, здесь только эта страница.
+   ========================================================================= */
+
+/* плашки hex-цен у края не раздвигают страницу вбок */
+main { overflow-x: clip; }
+
+/* ---------- Небо и луч маяка ---------- */
+
+.os-sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: radial-gradient(120% 70% at 70% 0%, #0B1222, var(--bg) 62%); transition: opacity .8s; }
+.os-sky__beam {
+  position: absolute; left: 78%; top: -12%; width: 240vmax; height: 240vmax; translate: -50% -50%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(47, 107, 255, .14) 8deg, rgba(127, 164, 255, .05) 16deg, transparent 22deg, transparent 360deg);
+  animation: os-sweep 14s linear infinite;
+}
+@keyframes os-sweep { to { rotate: 360deg; } }
+.os-sky__grain {
+  position: absolute; inset: -50%; opacity: .05;
+  background-image: radial-gradient(rgba(255, 255, 255, .9) 1px, transparent 1px); background-size: 3px 3px;
+}
+html.is-dark .os-sky { opacity: .2; }
+
+/* ---------- Гигантская плотность за часами ---------- */
+
+.os-giant {
+  position: fixed; right: 2vw; top: 50%; z-index: 0; translate: 0 -50%; pointer-events: none;
+  display: grid; justify-items: end; opacity: var(--o, 0); transition: opacity .3s;
+}
+.os-giant span {
+  font-size: clamp(120px, 24vw, 420px); font-weight: 800; line-height: .8; letter-spacing: -.06em;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(127, 164, 255, .28);
+}
+.os-giant small { margin-top: 18px; font-size: 13px; letter-spacing: .3em; color: rgba(127, 164, 255, .55); }
+
+/* ---------- Прогресс глав справа ---------- */
+
+.os-progress { position: fixed; right: 18px; top: 50%; translate: 0 -50%; z-index: 40; display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.os-progress li { width: 6px; height: 6px; border-radius: 50%; background: rgba(160, 190, 255, .25); transition: background-color .3s, height .4s var(--ease), border-radius .4s; }
+.os-progress li.is-on { height: 22px; border-radius: 3px; background: var(--accent); box-shadow: 0 0 10px rgba(47, 107, 255, .7); }
+
+/* ---------- Герой ---------- */
+
+.fy--hero .fy__text { max-width: min(600px, 48vw); }
+.fy--hero .fy-hero__big { font-size: clamp(54px, 7.4vw, 132px); }
+.os-scroll { position: absolute; left: 50%; bottom: 22px; translate: -50% 0; display: grid; justify-items: center; gap: 8px; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+.os-scroll span { width: 1px; height: 38px; background: linear-gradient(var(--accent-text), transparent); animation: os-drip 2s var(--ease) infinite; transform-origin: top; }
+@keyframes os-drip { 0% { scale: 1 0; } 50% { scale: 1 1; } 100% { scale: 1 1; opacity: 0; } }
+
+/* ---------- Год спустя ---------- */
+
+.os-time { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-top: 56px; }
+.os-time::before { content: ''; position: absolute; left: 4%; right: 4%; top: 30px; height: 1px; background: linear-gradient(90deg, var(--accent), rgba(127, 164, 255, .2)); transform-origin: left; scale: var(--line, 1) 1; }
+.os-time__item {
+  position: relative; display: grid; align-content: start; gap: 8px; padding: 52px 18px 20px;
+  border: 1px solid var(--line); border-radius: 18px; background: rgba(10, 14, 21, .72); backdrop-filter: blur(6px);
+}
+.os-time__item::before { content: ''; position: absolute; left: 18px; top: 24px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent-text); }
+.os-time__item.is-here { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 60px -30px rgba(47, 107, 255, .8); }
+.os-time__item.is-here::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.os-time__when { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); }
+.os-time__item b { font-size: 20px; letter-spacing: -.02em; color: var(--fg); }
+.os-time__item p { font-size: 14px; line-height: 1.45; color: var(--muted); }
+.os-time__tag { justify-self: start; margin-top: 4px; padding: 3px 8px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.os-time__link { justify-self: start; margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--accent-text); text-decoration: none; }
+.os-time__link:hover, .os-time__link:focus-visible { color: var(--fg); }
+
+/* ---------- Осмий ---------- */
+
+.fy--osmium { min-height: 0; display: block; padding: 0; }
+.fy--osmium > .fy__inner { min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding-top: calc(var(--header-h) + 40px); padding-bottom: 60px; }
+.fy--osmium .fy__text { max-width: min(470px, 40vw); }
+
+/* ---------- Внутри: слои ---------- */
+
+.fy--inside { min-height: 0; display: block; padding: 0; }
+.fy--inside > .fy__inner { min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding-top: calc(var(--header-h) + 40px); padding-bottom: 60px; }
+.fy--inside .fy__text { max-width: min(440px, 38vw); }
+.os-layers { display: grid; gap: 2px; margin-top: 28px; counter-reset: l; }
+.os-layers li {
+  display: grid; grid-template-columns: 44px 1fr; column-gap: 12px; align-items: baseline; padding: 10px 12px; border-radius: 12px;
+  color: var(--muted); transition: background-color .3s, color .3s;
+}
+.os-layers li > .mono { grid-row: span 2; font-size: 12px; color: rgba(127, 164, 255, .5); transition: color .3s; }
+.os-layers b { font-size: 16px; font-weight: 600; color: rgba(244, 247, 255, .55); transition: color .3s; }
+.os-layers li > span:last-child { font-size: 13px; }
+.os-layers li.is-on { background: rgba(47, 107, 255, .12); color: rgba(244, 247, 255, .8); }
+.os-layers li.is-on b { color: var(--fg); }
+.os-layers li.is-on > .mono { color: var(--accent-text); }
+
+/* ---------- Тритий: кривая яркости ---------- */
+
+.os-decay { margin-top: 26px; max-width: 360px; }
+.os-decay svg { width: 100%; height: auto; overflow: visible; }
+.os-decay__grid { stroke: var(--line); stroke-width: 1; fill: none; }
+.os-decay__curve { fill: none; stroke: #7FA4FF; stroke-width: 2.5; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(47, 107, 255, .8)); }
+.os-decay__dot { fill: #DDE8FF; filter: drop-shadow(0 0 8px #3D7BFF); }
+.os-decay figcaption { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.os-decay figcaption b { color: var(--fg); font-weight: 600; }
+
+/* ---------- CamelOS ---------- */
+
+.os-tabs { max-width: 560px; }
+.os-tabs button { height: 34px; padding: 0 12px; font-size: 13px; }
+.os-new { margin-left: 4px; font: 600 9px/1 var(--mono); font-style: normal; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); vertical-align: 2px; }
+.os-tabs [aria-selected="true"] .os-new { color: #fff; }
+.fy--camel .fy__text { max-width: min(580px, 48vw); }
+
+/* ---------- Ремешки ---------- */
+
+.os-bands__buy { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: 30px; font-size: 14px; color: var(--muted); }
+.os-bands__buy .fy-hex { font-size: 22px; margin-left: 8px; }
+.os-bands__buy .fy-hex__tip { left: 0; translate: 0 8px; }
+.os-bands__buy .fy-hex__tip::after { left: 36px; }
+.os-bands__buy .fy-hex:hover .fy-hex__tip, .os-bands__buy .fy-hex:focus-visible .fy-hex__tip, .os-bands__buy .fy-hex.is-open .fy-hex__tip { translate: 0 0; }
+/* вторая цена ближе к правому краю: плашка открывается влево */
+.os-bands__buy > span:nth-child(2) .fy-hex__tip { left: auto; right: 0; }
+.os-bands__buy > span:nth-child(2) .fy-hex__tip::after { left: auto; right: 30px; }
+
+/* ---------- Караван ---------- */
+
+.os-family { position: relative; margin: 34px auto 0; max-width: 1240px; }
+.os-family::before { content: ''; position: absolute; inset: 10% 8%; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgba(47, 107, 255, .22), transparent 75%); filter: blur(30px); }
+.os-family img { width: 100%; height: auto; }
+.os-family__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.os-family__list a {
+  display: grid; gap: 6px; height: 100%; padding: 18px 18px 20px; border: 1px solid var(--line); border-radius: 16px; background: rgba(10, 14, 21, .7);
+  color: var(--muted); text-decoration: none; font-size: 14px; line-height: 1.45; transition: border-color .25s, color .25s, translate .35s var(--ease);
+}
+.os-family__list a span { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+.os-family__list a:hover, .os-family__list a:focus-visible { border-color: var(--accent); color: var(--fg); translate: 0 -2px; }
+
+/* ---------- Без JS и без движения ---------- */
+
+html:not(.js) .os-progress, html:not(.js) .os-giant { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .os-sky__beam, .os-scroll span { animation: none; }
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 1100px) {
+  .os-time { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .os-time::before { display: none; }
+  .os-family__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .os-progress { display: none; }
+}
+@media (max-width: 760px) {
+  .fy--hero .fy__text { max-width: none; }
+  .fy--osmium > .fy__inner, .fy--inside > .fy__inner { align-items: end; padding-top: calc(var(--header-h) + 40vh); }
+  .fy--osmium .fy__text, .fy--inside .fy__text, .fy--camel .fy__text { max-width: none; }
+  .os-giant { right: 50%; top: 22%; translate: 50% -50%; justify-items: center; }
+  .os-giant span { font-size: 34vw; }
+  .os-time { grid-template-columns: 1fr; gap: 10px; }
+  .os-time__item { padding: 18px 18px 18px 46px; }
+  .os-time__item::before { left: 18px; top: 22px; }
+  .os-layers li { padding: 7px 10px; }
+  .os-layers li > span:last-child { font-size: 12px; }
+  .os-family__list { grid-template-columns: 1fr; }
+  .os-scroll { display: none; }
+}
