@@ -23,6 +23,7 @@ import { createOY0X2Pro } from '../models/oy0x2pro.js';
 import { createOYMoth, createOYMoth2 } from '../models/oymoth.js';
 import { createOYNova } from '../models/oynova.js';
 import { createOYButterfly } from '../models/oybutterfly.js';
+import { createOY0X4Q } from '../models/oy0x4q.js';
 import { createPro } from '../models/pro.js';
 import { $, $$, initRadioGroup, syncRadio } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -41,10 +42,10 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, butterfly: createOYButterfly, '0x1pro': createOY0X1Pro, pro: createPro };
+const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x4q': createOY0X4Q, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, butterfly: createOYButterfly, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
-const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, butterfly: 120, '0x1pro': 163.5, pro: 150 };
-const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x4q': 150.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, butterfly: 120, '0x1pro': 163.5, pro: 150 };
+const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x4q': -PI + 0.45, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
 // Butterfly стоит сложенным, «Глазом» к вам
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1, ...(id === 'butterfly' ? { fold: 1 } : {}) });
 
@@ -127,6 +128,8 @@ const ROW_ICON = {
     // свои процессоры OY: Argon 1, Argon 2 Semi, Cesium 1 — имя до тире
     if (/^(Argon|Beryllium|Cesium)/.test(v)) return badge(v.split(' — ')[0].trim(), 'OY · свой', { accent: true });
     // первый процессор Fyr для телефонов: имя без марки, марка — подписью
+    // 0X4Q: две версии — процессор Fyr в Европе, Snapdragon в Северной Америке
+    if (v.includes('GP20 Slim')) return badge('GP20 Slim · 8 Gen 5', 'Fyr · Snapdragon', { accent: true });
     if (v.startsWith('Fyr ')) return badge(v.split(' — ')[0].replace('Fyr ', '').trim(), 'Fyr · свой', { accent: true });
     if (v.includes('Extreme')) return badge('8 Elite Extreme', 'Snapdragon · Gen 6', { accent: true });
     if (v.startsWith('Snapdragon')) return badge(v.replace('Snapdragon ', ''), 'Snapdragon');

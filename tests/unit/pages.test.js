@@ -276,7 +276,7 @@ test('ни юаней, ни eXtream: ни на одной странице, ни
   assert.match(read('index.html'), /eXtream продан XZF/);
 });
 
-test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все 14 смартфонов OY, часы и ноутбук, Butterfly — из коробки', () => {
+test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все смартфоны OY, часы и ноутбук, Butterfly и 0X4Q — из коробки', () => {
   const html = read('os/index.html');
   assert.match(html, /class="cm-page"/);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
@@ -291,7 +291,7 @@ test('CamelOS 2.0: одна система Fyr без аккаунта и обл
   // все смартфоны OY, которые когда-либо выходили, и оба устройства Fyr — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS);
-  assert.equal(phones.length, 15);
+  assert.equal(phones.length, 16);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке CamelOS 2.0`);
   for (const href of ['/fyr/', '/fyr/kbook/']) assert.ok(all.includes(`href="${href}"`), href);
   // в шапке всех страниц раздел называется CamelOS
@@ -390,4 +390,34 @@ test('страница /butterfly/specs/: все разделы характер
   const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
   for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
   for (const c of PRODUCTS.butterfly.configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
+});
+
+test('страница /0x4q/: сделано в амбаре — главы по порядку, одна h1, якоря сходятся, линия метро ведёт на главы, цвета и память из данных', () => {
+  const html = read('0x4q/index.html');
+  const chapters = [...html.matchAll(/<section class="q q--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['hero', 'brand', 'design', 'planka', 'modules', 'regions', 'nc4', 'tesseract', 'keys', 'torch', 'camelos', 'power', 'colors', 'buy', 'specs']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const [, stop] of html.matchAll(/data-stop="([^"]+)"/g)) assert.ok(ids.has(stop), `станция ${stop}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const c of Object.keys(PRODUCTS['0x4q'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
+  for (const c of PRODUCTS['0x4q'].configs) assert.ok(html.includes(`data-value="${c.id}" data-usd="${c.usd}" data-eur="${c.eur}"`), c.id);
+  // шесть модулей, две версии, марка у Fyr — пока
+  for (const m of ['classic', 'shutter', 'night', 'thermal', 'beam', 'cap']) assert.ok(html.includes(`data-value="${m}"`), m);
+  for (const re of [/Fyr GP20 Slim/, /Snapdragon 8 Gen&nbsp;5/, /Tesseract&nbsp;5/, /NC4/, /CamelOS&nbsp;2\.5/, /Марка&nbsp;— у&nbsp;Fyr/, /<s>0X3Q<\/s>/, /«Эхо&nbsp;2»/]) assert.match(html, re);
+  assert.ok(html.includes('href="/0x4q/specs/"'));
+  assert.ok(existsSync(join(ROOT, 'models', 'oy0x4q.glb')));
+  assert.ok(existsSync(join(ROOT, 'og-0x4q.jpg')));
+  assert.ok(read('os/index.html').includes('href="/0x4q/"'), '0X4Q нет в списке CamelOS');
+});
+
+test('страница /0x4q/specs/: все разделы, одна h1, оглавление сходится, цены из данных, переключатель версий', () => {
+  const html = read('0x4q/specs/index.html');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  const rows = [...html.matchAll(/<section class="q-sp__row" id="([^"]+)"/g)].map((m) => m[1]);
+  for (const id of ['capacity', 'size', 'display', 'chip', 'bench', 'modem', 'modules', 'camera', 'video', 'power', 'security', 'keys', 'cellular', 'os', 'repair', 'box']) assert.ok(rows.includes(id), id);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const c of PRODUCTS['0x4q'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
+  assert.ok(html.includes('data-only="eu"') && html.includes('data-only="na"') && html.includes('data-ver-switch'));
 });

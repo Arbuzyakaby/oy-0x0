@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="ru" data-q4 data-color="tuile">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X4Q — сделано в амбаре</title>
+  <meta name="description" content="OY 0X4Q (4th Gen) — четвёртый Q, минуя 0X3Q. Первый OY, который сделала команда OY в Париже. Модуль «Планка» снимается со спинки, шесть модулей, Tesseract 5, свой модем NC4, CamelOS 2.5 — первый в мире. Fyr GP20 Slim в Европе, Snapdragon 8 Gen 5 в Северной Америке. От $649. Концепт.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#EEE7DC">
+  <link rel="canonical" href="https://oy0x.online/0x4q/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x4q/">
+  <meta property="og:title" content="OY 0X4Q — сделано в амбаре">
+  <meta property="og:description" content="Марка — у Fyr. Телефон — наш. Модуль «Планка», Tesseract 5, модем NC4 и CamelOS 2.5. От $649. Концепт.">
+  <meta property="og:image" content="https://oy0x.online/og-0x4q.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OY 0X4Q цвета «Черепица»: спинка с модулем «Планка» и лицо">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23EEE7DC'/%3E%3Crect x='10' y='12' width='44' height='14' rx='5' fill='%23B4532F'/%3E%3Ccircle cx='22' cy='19' r='3.4' fill='%23EEE7DC'/%3E%3Ccircle cx='34' cy='19' r='4.4' fill='%23EEE7DC'/%3E%3Ctext x='32' y='54' font-family='monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%231E1B18'%3E4Q%3C/text%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
+  <link rel="stylesheet" href="/css/core.css?v=ab2ab23689">
+  <link rel="stylesheet" href="/css/0x4q.css?v=0233464c66">
+  <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=e89a0ee4dc",
+      "/js/data/products.js": "/js/data/products.js?v=492fffa5fb",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
+      "/js/models/fyrh1.js": "/js/models/fyrh1.js?v=cd8e7d3a55",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=27e0885289",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oy0x4q.js": "/js/models/oy0x4q.js?v=e13ee7e681",
+      "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=3cb6753b62",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=be3144703f",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=011fcc2bd9",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=32504e740d",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=acdd2ac489",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=dd6052c460",
+      "/js/pages/0x4q.js": "/js/pages/0x4q.js?v=cc97149bba",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=7fa6737a96",
+      "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
+      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
+      "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=f414bfc559",
+      "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
+      "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=89f792cb34",
+      "/js/pages/home.js": "/js/pages/home.js?v=301b762240",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=308e117d8e",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-q4-color');if(/^(tuile|seine|calcaire|ardoise)$/.test(c))document.documentElement.dataset.color=c}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x4q.js?v=cc97149bba"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: «Планка» встаёт в гнездо -->
+  <div class="loader q-loader" id="loader" role="status" aria-live="polite">
+    <div class="q-loader__phone" aria-hidden="true"><i class="q-loader__bar"></i></div>
+    <span class="loader__label">Ставим модуль…</span>
+  </div>
+
+  <!-- Фон: известняк, черепица на первом экране, сцена -->
+  <div class="q-bg" aria-hidden="true"><i class="q-bg__tiles"></i><i class="q-bg__sun"></i></div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+  <div class="q-night" data-dark aria-hidden="true"></div>
+
+  <header class="site-header q-header" id="top">
+    <a class="brand" href="/" aria-label="Fyr и телефоны OY — на главную">
+      <svg class="brand__fyr" viewBox="0 0 46 30" aria-hidden="true"><path class="brand__fyr-beam" d="M23 6L42 0.5V11.5Z"/><path d="M8 24V10a4 4 0 0 1 4-4h3M4 13h9M19 12v6a4 4 0 0 0 8 0M27 12v12a4 4 0 0 1-7.4 2.2M34 24v-8a4 4 0 0 1 4-4h3"/><circle class="brand__fyr-lamp" cx="23" cy="6" r="1.8"/></svg><span class="brand__sep" aria-hidden="true">/</span><svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
+      <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
+      <a class="site-nav__fyr" href="/fyr/h1/">H1</a>
+      <a href="/0x3e/">0X3 Essential</a>
+      <a href="/0x2/">0X2</a>
+      <a href="/0x4q/" aria-current="page">0X4Q</a>
+      <a href="/moth2/">0X Moth 2</a>
+      <a href="/0x2q/">0X2Q</a>
+      <a href="/0x2pro/">0X2 Pro</a>
+      <a href="/nova/">0X Nova</a>
+      <a href="/butterfly/">0X Butterfly</a>
+      <a href="/os/">CamelOS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+    <a class="btn btn--accent btn--sm q-header__buy" href="#buy">от $649</a>
+  </header>
+
+  <!-- Линия метро: станции — главы страницы, поезд — где вы сейчас -->
+  <nav class="q-metro" aria-label="Главы страницы" data-metro>
+    <span class="q-metro__line" aria-hidden="true"><i data-metro-fill></i></span>
+    <span class="q-metro__train" aria-hidden="true" data-metro-train></span>
+    <ol class="q-metro__stops" role="list">
+      <li><a href="#hero" data-stop="hero"><i></i><span>Амбар</span></a></li>
+      <li><a href="#brand" data-stop="brand"><i></i><span>Марка</span></a></li>
+      <li><a href="#design" data-stop="design"><i></i><span>Дизайн</span></a></li>
+      <li><a href="#planka" data-stop="planka"><i></i><span>Планка</span></a></li>
+      <li><a href="#modules" data-stop="modules"><i></i><span>Модули</span></a></li>
+      <li><a href="#regions" data-stop="regions"><i></i><span>Две версии</span></a></li>
+      <li><a href="#nc4" data-stop="nc4"><i></i><span>NC4</span></a></li>
+      <li><a href="#tesseract" data-stop="tesseract"><i></i><span>Tesseract 5</span></a></li>
+      <li><a href="#keys" data-stop="keys"><i></i><span>0 · 1 · Q</span></a></li>
+      <li><a href="#torch" data-stop="torch"><i></i><span>Фонарь</span></a></li>
+      <li><a href="#camelos" data-stop="camelos"><i></i><span>CamelOS 2.5</span></a></li>
+      <li><a href="#power" data-stop="power"><i></i><span>Питание</span></a></li>
+      <li><a href="#colors" data-stop="colors"><i></i><span>Цвета</span></a></li>
+      <li><a href="#buy" data-stop="buy"><i></i><span>Купить</span></a></li>
+    </ol>
+  </nav>
+
+  <main id="main">
+    <!-- 0. АМБАР: телефон танцует перед гигантским 0X4Q -->
+    <section class="q q--hero" id="hero" aria-labelledby="hero-title">
+      <div class="q-mega" aria-hidden="true" data-mega><span>0X</span><span><s>3</s>4</span><span>Q</span></div>
+      <div class="q-hero">
+        <p class="q-plaque" aria-hidden="true"><small>4<sup>e</sup> génération</small>Rue du Grenier</p>
+        <h1 class="q-hero__title" id="hero-title">
+          <span class="q-hero__model">OY 0X4Q <span class="mono">4th Gen</span></span>
+          <span class="q-hero__big" data-split>Сделано в&nbsp;амбаре.</span>
+        </h1>
+        <p class="q-hero__lead">Четвёртый Q, минуя третий. Первый OY, который команда OY собрала в&nbsp;Париже: новый корпус, модуль «Планка» на&nbsp;спинке, свой модем, свой чип безопасности и&nbsp;CamelOS&nbsp;2.5 раньше всех.</p>
+        <div class="q-hero__buy">
+          <p class="q-price"><span>от</span> <b>$649</b> <span class="mono">· €749 · C$899</span></p>
+          <a class="btn btn--accent" href="#buy">Купить</a>
+          <a class="btn btn--ghost" href="/0x4q/specs/">Характеристики</a>
+        </div>
+      </div>
+      <a class="q-scroll mono" href="#brand"><span>Листайте. Он&nbsp;потанцует</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <!-- 1. МАРКА У FYR, ТЕЛЕФОН НАШ -->
+    <section class="q q--brand" id="brand" aria-labelledby="brand-title">
+      <div class="q-wrap q-split">
+        <div class="q-split__text">
+          <p class="q-plaque" aria-hidden="true"><small>1<sup>er</sup> arr.</small>Quai de la Marque</p>
+          <h2 class="q-h2" id="brand-title" data-split>Марка&nbsp;— у&nbsp;Fyr. Телефон&nbsp;— наш.</h2>
+          <p class="q-lead">Марка OY по-прежнему у&nbsp;Fyr: она платит аренду амбара и&nbsp;держит ключи обновлений. Но&nbsp;0X4Q придумали и&nbsp;собрали люди OY в&nbsp;Париже. Мы&nbsp;ещё не&nbsp;сами. Этот телефон мы сделали сами.</p>
+          <div class="q-stamp" data-stamp>
+            <p class="q-stamp__old"><s>0X3Q</s> <span>обещала старая OY: $599, Citadel&nbsp;3</span></p>
+            <p class="q-stamp__new"><b>0X4Q</b> <span>делаем&nbsp;мы</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="q-wrap q-wrap--tight">
+        <ol class="q-steps" role="list">
+          <li data-reveal><b>Свой чип безопасности</b><span>Tesseract&nbsp;5, а&nbsp;не&nbsp;Citadel из&nbsp;Стокгольма. Tesseract&nbsp;— имя OY со&nbsp;времён 0X2.</span></li>
+          <li data-reveal><b>Свой модем</b><span>NC4, а&nbsp;не&nbsp;Fyr&nbsp;FM. Модем Fyr на&nbsp;кристалле GP20&nbsp;Slim выключен перемычкой.</span></li>
+          <li data-reveal><b>Второй процессор</b><span>В&nbsp;Америке&nbsp;— Snapdragon. С&nbsp;Qualcomm договорились сами, без Стокгольма.</span></li>
+          <li data-reveal><b>Своя сборка системы</b><span>CamelOS&nbsp;— открытый код. Мы&nbsp;собрали 2.5 сами и&nbsp;раньше Fyr.</span></li>
+          <li data-reveal><b>ABC Processors</b><span>Fyr ей&nbsp;не&nbsp;доверяет. Мы&nbsp;позвали её настроить Snapdragon, как в&nbsp;2027-м настраивали Dimensity для&nbsp;0X0.</span></li>
+          <li data-reveal class="is-pending"><b>Ключи обновлений</b><span>Пока за&nbsp;Fyr: два из&nbsp;трёх. Один&nbsp;— наш. Впервые.</span></li>
+        </ol>
+        <p class="q-jab" data-reveal>Fyr ответила одной строкой: «Маяк светит всем. И&nbsp;тем, кто хочет плыть сам. Мы&nbsp;подождём у&nbsp;причала».</p>
+      </div>
+    </section>
+
+    <!-- 2. ДИЗАЙН: «мыло» кончилось -->
+    <section class="q q--design" id="design" aria-labelledby="design-title">
+      <div class="q-pin">
+        <div class="q-design" data-design>
+          <p class="q-plaque" aria-hidden="true"><small>2<sup>e</sup> arr.</small>Rue du Savon</p>
+          <h2 class="q-h2" id="design-title" data-split>«Мыло» кончилось.</h2>
+          <p class="q-lead">С&nbsp;2028 года Q&nbsp;были скруглённым мылом с&nbsp;экраном-водопадом. У&nbsp;0X4Q&nbsp;— плоские грани, плоское стекло и&nbsp;острый силуэт. Телефон стоит на&nbsp;столе ребром.</p>
+        </div>
+        <div class="q-gauge mono" aria-hidden="true">
+          <span class="q-gauge__k">толщина</span>
+          <b data-gauge>7,9</b><span>мм</span>
+          <span class="q-gauge__sub" data-gauge-sub>по корпусу</span>
+        </div>
+        <ul class="q-design__facts mono" role="list">
+          <li><b>150,4</b> мм в&nbsp;высоту</li>
+          <li><b>71,2</b> мм в&nbsp;ширину</li>
+          <li><b>193</b> г с&nbsp;модулем</li>
+          <li><b>IP68</b> до&nbsp;6&nbsp;м</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. ПЛАНКА: телефон лёг горизонтально, камера идёт по спинке к модулю -->
+    <section class="q q--planka" id="planka" aria-labelledby="planka-title">
+      <div class="q-pin">
+        <div class="q-planka__cap">
+          <p class="q-plaque" aria-hidden="true"><small>3<sup>e</sup> arr.</small>Boulevard de la Planche</p>
+          <h2 class="q-h2" id="planka-title" data-split>Прогулка по&nbsp;спинке.</h2>
+        </div>
+        <ol class="q-walk" role="list" data-walk>
+          <li data-at="0.08"><b>Матовое стекло</b><span>Тёплое на&nbsp;ощупь, не&nbsp;собирает отпечатки.</span></li>
+          <li data-at="0.3"><b>Знак OY</b><span>Круг, крест, круг. Тон в&nbsp;тон.</span></li>
+          <li data-at="0.48"><b>Шов 0,6&nbsp;мм</b><span>Здесь кончается спинка и&nbsp;начинается модуль.</span></li>
+          <li data-at="0.62"><b>«Планка»</b><span>Модуль во&nbsp;всю ширину. Ступенька 1,8&nbsp;мм&nbsp;— вместо горба, телефон на&nbsp;столе не&nbsp;качается.</span></li>
+          <li data-at="0.8"><b>Зажмите Q&nbsp;— и&nbsp;снимите</b><span>8,2&nbsp;мм глубины: модуль уходит в&nbsp;гнездо почти до&nbsp;экрана. Под ним 8&nbsp;контактов, два магнита и&nbsp;буква «Q».</span></li>
+        </ol>
+        <div class="q-ruler mono" aria-hidden="true">
+          <span class="q-ruler__track"><i data-ruler></i></span>
+          <span><b data-ruler-mm>0</b> мм по&nbsp;спинке</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. МОДУЛИ: шесть «Планок» по прокрутке -->
+    <section class="q q--modules" id="modules" aria-labelledby="modules-title">
+      <div class="q-pin">
+        <div class="q-mods">
+          <p class="q-plaque" aria-hidden="true"><small>4<sup>e</sup> arr.</small>Place des Modules</p>
+          <h2 class="q-h2" id="modules-title" data-split>Шесть «Планок».</h2>
+          <div class="q-mods__chips" role="radiogroup" aria-label="Модуль" data-mods>
+            <button type="button" role="radio" data-value="classic" aria-checked="true">Классика&nbsp;4</button>
+            <button type="button" role="radio" data-value="shutter" aria-checked="false" tabindex="-1">Шторка</button>
+            <button type="button" role="radio" data-value="night" aria-checked="false" tabindex="-1">Ночь</button>
+            <button type="button" role="radio" data-value="thermal" aria-checked="false" tabindex="-1">Тепло&nbsp;2</button>
+            <button type="button" role="radio" data-value="beam" aria-checked="false" tabindex="-1">Луч&nbsp;2</button>
+            <button type="button" role="radio" data-value="cap" aria-checked="false" tabindex="-1">Заглушка</button>
+          </div>
+          <article class="q-mod" data-mod-card aria-live="polite">
+            <p class="q-mod__n mono" data-mod-n>01 / 06 · в&nbsp;коробке</p>
+            <h3 class="q-mod__name" data-mod-name>«Классика&nbsp;4»</h3>
+            <p class="q-mod__text" data-mod-text>Сверхширокая 12&nbsp;Мп, основная 50&nbsp;Мп с&nbsp;сенсором 1/1,3″ и&nbsp;перископ 3×. Первая сверхширокая в&nbsp;линейке Q.</p>
+            <p class="q-mod__price mono" data-mod-price>$109 · €119 · C$149</p>
+          </article>
+        </div>
+        <p class="q-mods__note mono" aria-hidden="true">Модули 0X1Q и&nbsp;0X2Q сюда не&nbsp;подходят: форма другая. Честно.</p>
+      </div>
+    </section>
+
+    <!-- 5. ДВЕ ВЕРСИИ -->
+    <section class="q q--regions" id="regions" aria-labelledby="regions-title">
+      <div class="q-wrap">
+        <header class="q-head">
+          <p class="q-plaque" aria-hidden="true"><small>5<sup>e</sup> arr.</small>Avenue de l'Atlantique</p>
+          <h2 class="q-h2" id="regions-title" data-split>Две версии. Один телефон.</h2>
+          <p class="q-lead">Fyr делает GP20&nbsp;Slim столько, сколько TSMC даёт ей пластин: на&nbsp;Европу хватает, на&nbsp;Америку&nbsp;— нет. А&nbsp;американским операторам нужен mmWave. Поэтому в&nbsp;США и&nbsp;Канаде внутри Snapdragon. Связь у&nbsp;обеих версий наша.</p>
+        </header>
+        <div class="q-region" role="radiogroup" aria-label="Версия" data-region>
+          <button type="button" role="radio" data-value="eu" aria-checked="true"><span class="mono">OY-Q4E · Европа</span><b>Fyr GP20 Slim</b><small>2&nbsp;нм · 10 ядер · FIG&nbsp;Three · 96&nbsp;TOPS · LPDDR6</small></button>
+          <button type="button" role="radio" data-value="na" aria-checked="false" tabindex="-1"><span class="mono">OY-Q4A · США и&nbsp;Канада</span><b>Snapdragon 8 Gen&nbsp;5</b><small>3&nbsp;нм · 8 ядер · Adreno&nbsp;829 · LPDDR5X · mmWave</small></button>
+        </div>
+        <div class="q-bench" data-bench>
+          <div class="q-bench__head mono"><span>Тест</span><span>GP20 Slim</span><span>8 Gen 5</span></div>
+          <div class="q-bench__row" data-eu="2948622" data-na="3057215"><span>AnTuTu&nbsp;11</span><i><b></b><b></b></i><span class="mono" data-v></span></div>
+          <div class="q-bench__row" data-eu="948312" data-na="905159"><span>— процессор</span><i><b></b><b></b></i><span class="mono" data-v></span></div>
+          <div class="q-bench__row" data-eu="911804" data-na="1061006"><span>— графика</span><i><b></b><b></b></i><span class="mono" data-v></span></div>
+          <div class="q-bench__row" data-eu="2960" data-na="2833"><span>Geekbench&nbsp;6, одно ядро</span><i><b></b><b></b></i><span class="mono" data-v></span></div>
+          <div class="q-bench__row" data-eu="9480" data-na="9119"><span>Geekbench&nbsp;6, все ядра</span><i><b></b><b></b></i><span class="mono" data-v></span></div>
+          <div class="q-bench__row" data-eu="7720" data-na="9094"><span>3DMark Solar Bay</span><i><b></b><b></b></i><span class="mono" data-v></span></div>
+          <div class="q-bench__row" data-eu="19240" data-na="18388"><span>PCMark&nbsp;3.0</span><i><b></b><b></b></i><span class="mono" data-v></span></div>
+        </div>
+        <p class="q-motto" data-reveal>В&nbsp;Европе быстрее думает. В&nbsp;Америке быстрее играет.</p>
+        <p class="q-small">Snapdragon 8 Gen&nbsp;5&nbsp;— средние результаты чипа; GP20&nbsp;Slim&nbsp;— замеры OY. Частоты Snapdragon под корпус 0X4Q настроила ABC Processors. И&nbsp;да, Канада&nbsp;— впервые: основатели OY&nbsp;— спасатели оттуда, а&nbsp;телефонов OY там не&nbsp;продавали ни&nbsp;разу.</p>
+      </div>
+    </section>
+
+    <!-- 6. МОДЕМ NC4 И «ЭХО 2» -->
+    <section class="q q--nc4" id="nc4" aria-labelledby="nc4-title">
+      <div class="q-wrap q-split q-split--right">
+        <div class="q-split__text">
+          <p class="q-plaque" aria-hidden="true"><small>6<sup>e</sup> arr.</small>Rue de l'Écho</p>
+          <h2 class="q-h2" id="nc4-title" data-split>Связь у&nbsp;обеих версий наша.</h2>
+          <p class="q-lead">У&nbsp;обоих процессоров есть свой модем. В&nbsp;0X4Q его отключают на&nbsp;заводе перемычкой eFuse, и&nbsp;питания он&nbsp;не&nbsp;получает. Связью заведует только NC4&nbsp;— четвёртый модем OY, снова отдельным чипом.</p>
+          <div class="q-fuse" aria-hidden="true">
+            <span class="q-fuse__chip is-off"><b>FM2</b><small>в GP20 Slim</small></span>
+            <span class="q-fuse__chip is-off"><b>X80</b><small>в 8 Gen 5</small></span>
+            <span class="q-fuse__chip is-on"><b>NC4</b><small>OY · 4 нм</small></span>
+          </div>
+          <dl class="q-mini mono">
+            <div><dt>Сеть</dt><dd>5G-Advanced, до&nbsp;10&nbsp;Гбит/с</dd></div>
+            <div><dt>Спутник</dt><dd>сообщения и&nbsp;SOS</dd></div>
+            <div><dt>«Эхо&nbsp;2»</dt><dd>до&nbsp;10&nbsp;км без вышек</dd></div>
+            <div><dt>Claw&nbsp;4</dt><dd>10 антенн, до&nbsp;2G ради звонка</dd></div>
+          </dl>
+        </div>
+        <div class="q-echo" data-echo>
+          <canvas class="q-echo__map" data-echo-map role="img" aria-label="Два 0X4Q переписываются через «Эхо 2» на расстоянии до 10 километров без вышек"></canvas>
+          <p class="q-echo__msg mono" data-echo-msg>«Вижу фонарь. Иду к&nbsp;вам» · 9,6&nbsp;км · без вышек</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. TESSERACT 5: подпись 2 из 3 -->
+    <section class="q q--tesseract" id="tesseract" aria-labelledby="tesseract-title">
+      <div class="q-wrap q-split">
+        <div class="q-split__text">
+          <p class="q-plaque" aria-hidden="true"><small>7<sup>e</sup> arr.</small>Impasse du Tesseract</p>
+          <h2 class="q-h2" id="tesseract-title" data-split>Два ключа у&nbsp;Fyr. Один у&nbsp;нас. Пока.</h2>
+          <p class="q-lead">Tesseract&nbsp;5&nbsp;— отдельный компьютер для секретов: свой процессор на&nbsp;RISC-V, 128&nbsp;ГБ, своё питание 800&nbsp;мАч и&nbsp;сетка от&nbsp;вскрытия. Обновление системы он примет, только если его подписали двое из&nbsp;трёх.</p>
+          <div class="q-keys" data-sign>
+            <button type="button" class="q-key q-key--oy" data-key="0" aria-pressed="false"><svg aria-hidden="true"><use href="#i-key"/></svg><b>Париж · OY</b><span>подписать</span></button>
+            <button type="button" class="q-key" data-key="1" aria-pressed="false"><svg aria-hidden="true"><use href="#i-key"/></svg><b>Стокгольм · Fyr</b><span>подписать</span></button>
+            <button type="button" class="q-key" data-key="2" aria-pressed="false"><svg aria-hidden="true"><use href="#i-key"/></svg><b>Стокгольм · Fyr</b><span>подписать</span></button>
+          </div>
+          <p class="q-small mono" data-sign-note>Подписей: 0 из&nbsp;2. Нажмите на&nbsp;ключи.</p>
+        </div>
+      </div>
+      <div class="q-wrap q-wrap--tight">
+        <ul class="q-feats" role="list">
+          <li data-reveal><b>«Подпись 2 из&nbsp;3»</b><span>Каждый ключ живёт в&nbsp;своём чипе. «Свидетель» показывает, кто подписал. Впервые у&nbsp;OY вообще есть свой ключ.</span></li>
+          <li data-reveal><b>«Чужой кремний»</b><span>Процессор мы&nbsp;не&nbsp;делаем, поэтому проверяем хеш его прошивки при каждом запуске. Не&nbsp;совпало&nbsp;— телефон покажет, что изменилось.</span></li>
+          <li data-reveal><b>«Ключ модуля»</b><span>Чужая «Планка» не&nbsp;получит питания. Закрытая «Шторка» обесточивает сенсоры сама.</span></li>
+          <li data-reveal><b>«Ловец вышек&nbsp;2»</b><span>Вместе с&nbsp;NC4 узнаёт подставные вышки и&nbsp;принудительный переход на&nbsp;2G.</span></li>
+          <li data-reveal><b>«Карантин USB»</b><span>Разъём вернулся, и&nbsp;Tesseract&nbsp;5 его стережёт: заблокированный телефон только заряжается.</span></li>
+          <li data-reveal><b>Загрузчик&nbsp;— ваш</b><span>Открывается и&nbsp;закрывается снова, как у&nbsp;0X0. У&nbsp;0X2Q он был заблокирован навсегда.</span></li>
+        </ul>
+        <p class="q-small">Почему 5, а&nbsp;не&nbsp;2: Tesseract&nbsp;2, 3 и&nbsp;4 делать было некому. Номер&nbsp;— по&nbsp;поколению открытой прошивки, общей с&nbsp;Citadel&nbsp;5. Кремний и&nbsp;функции свои; делают его в&nbsp;Дрездене.</p>
+      </div>
+    </section>
+
+    <!-- 8. КНОПКИ 0, 1 И Q -->
+    <section class="q q--keys" id="keys" aria-labelledby="keys-title">
+      <div class="q-wrap q-split q-split--right">
+        <div class="q-split__text">
+          <p class="q-plaque" aria-hidden="true"><small>8<sup>e</sup> arr.</small>Passage du Zéro</p>
+          <h2 class="q-h2" id="keys-title" data-split>Ноль, один и&nbsp;Q.</h2>
+          <p class="q-lead">Слева&nbsp;— «0» и&nbsp;«1» с&nbsp;фиксацией, как у&nbsp;0X2&nbsp;Pro. В&nbsp;аппаратном режиме кнопка остаётся утопленной, а&nbsp;Tesseract&nbsp;5 обесточивает выбранное. Справа&nbsp;— латунная Q, как у&nbsp;первого 0X1Q.</p>
+          <div class="q-toggles">
+            <button type="button" class="q-toggle" data-tkey="key0" aria-pressed="false"><b>0</b><span>камеры и&nbsp;микрофоны</span></button>
+            <button type="button" class="q-toggle" data-tkey="key1" aria-pressed="false"><b>1</b><span>связь и&nbsp;геолокация</span></button>
+          </div>
+          <dl class="q-mini mono">
+            <div><dt>Q коротко</dt><dd>камера</dd></div>
+            <div><dt>Q долго</dt><dd>фонарь</dd></div>
+            <div><dt>Q дважды</dt><dd>«Погонщик»</dd></div>
+            <div><dt>Q + потянуть</dt><dd>снять «Планку»</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. ФОНАРЬ -->
+    <section class="q q--torch" id="torch" aria-labelledby="torch-title">
+      <div class="q-wrap q-split">
+        <div class="q-split__text">
+          <p class="q-plaque" aria-hidden="true"><small>9<sup>e</sup> arr.</small>Rue de la Lanterne</p>
+          <h2 class="q-h2" id="torch-title" data-split>Фонарь вернулся домой.</h2>
+          <p class="q-lead">У&nbsp;0X2Q сигнальный фонарь жил в&nbsp;модуле и&nbsp;уходил вместе с&nbsp;ним. Теперь он снова на&nbsp;верхней грани корпуса, как у&nbsp;0X0. Красный видно за&nbsp;5000&nbsp;м.</p>
+          <div class="q-switch" role="radiogroup" aria-label="Режим фонаря" data-torch>
+            <button type="button" role="radio" data-value="off" aria-checked="true">Выкл</button>
+            <button type="button" role="radio" data-value="white" aria-checked="false" tabindex="-1">Белый</button>
+            <button type="button" role="radio" data-value="red" aria-checked="false" tabindex="-1">Красный</button>
+            <button type="button" role="radio" data-value="sos" aria-checked="false" tabindex="-1">SOS</button>
+          </div>
+          <p class="q-small mono" data-torch-note>Фонарь выключен. Нажмите «Красный».</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CAMELOS 2.5 -->
+    <section class="q q--camelos" id="camelos" aria-labelledby="camelos-title">
+      <div class="q-wrap q-split q-split--right">
+        <div class="q-split__text">
+          <p class="q-plaque" aria-hidden="true"><small>10<sup>e</sup> arr.</small>Rue du Chameau</p>
+          <h2 class="q-h2" id="camelos-title" data-split>CamelOS&nbsp;2.5. Первыми.</h2>
+          <p class="q-lead">Код CamelOS открыт. Fyr выложила 2.5, и&nbsp;мы собрали её раньше, чем она дошла до&nbsp;H1 и&nbsp;Butterfly. 0X4Q&nbsp;— первый смартфон в&nbsp;мире, который выходит на&nbsp;ней из&nbsp;коробки. Без аккаунта, облака и&nbsp;телеметрии.</p>
+          <ul class="q-os" role="list">
+            <li><b>«Перекличка»</b> сообщения без вышек, цепочкой от&nbsp;телефона к&nbsp;телефону</li>
+            <li><b>«Караван»</b> с&nbsp;Osmium&nbsp;X0 и&nbsp;KBook&nbsp;1: дружат устройства, а&nbsp;не&nbsp;компании</li>
+            <li><b>«Погонщик&nbsp;2.5»</b> видит кадр и&nbsp;понимает тепловизор</li>
+            <li><b>Менеджер модулей</b> чей ключ, что подключено, сколько заряда в&nbsp;«Пульте»</li>
+          </ul>
+          <p class="q-small">«Не&nbsp;верьте нам. Проверьте хеш»: сборка воспроизводимая. 8&nbsp;лет обновлений, 26&nbsp;месяцев гарантии. <a class="q-link" href="/os/">Всё про CamelOS <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. ПИТАНИЕ: двенадцать винтов -->
+    <section class="q q--power" id="power" aria-labelledby="power-title">
+      <div class="q-pin">
+        <div class="q-power">
+          <p class="q-plaque" aria-hidden="true"><small>11<sup>e</sup> arr.</small>Rue des Douze Vis</p>
+          <h2 class="q-h2" id="power-title" data-split>Двенадцать винтов. Пятнадцать минут.</h2>
+          <div class="q-screws" data-screws aria-hidden="true"></div>
+          <p class="q-power__count mono"><b data-screws-n>0</b> / 12 · <span data-screws-state>крышка на&nbsp;месте</span></p>
+          <ul class="q-power__facts" role="list">
+            <li><b>6500<small>мАч</small></b><span>кремний-углерод; запасная ячейка&nbsp;$39</span></li>
+            <li><b>90<small>Вт</small></b><span>100&nbsp;% за&nbsp;36 минут; блок в&nbsp;коробке</span></li>
+            <li><b>50<small>Вт</small></b><span>XMagnum без провода, обратная 10&nbsp;Вт</span></li>
+            <li><b>USB-C</b><span>первый разъём в&nbsp;линейке Q</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. ЦВЕТА: телефон танцует, цвет меняется по прокрутке -->
+    <section class="q q--colors" id="colors" aria-labelledby="colors-title">
+      <div class="q-pin">
+        <div class="q-colors">
+          <p class="q-plaque" aria-hidden="true"><small>12<sup>e</sup> arr.</small>Place des Couleurs</p>
+          <h2 class="q-h2" id="colors-title" data-split>Цвета Парижа.</h2>
+          <p class="q-lead" data-color-note>«Черепица». Терракота парижских крыш и&nbsp;старого амбара, медная рамка.</p>
+          <div class="q-swatches" role="radiogroup" aria-label="Цвет" data-colors>
+            <button type="button" role="radio" data-value="tuile" aria-checked="true" style="--sw: linear-gradient(135deg, #9A4128 60%, #9A5A3A 61%)"><i></i><span>Черепица</span></button>
+            <button type="button" role="radio" data-value="seine" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #55665A 60%, #45494C 61%)"><i></i><span>Сена</span></button>
+            <button type="button" role="radio" data-value="calcaire" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #D3C8B2 60%, #BFC2C6 61%)"><i></i><span>Известняк</span></button>
+            <button type="button" role="radio" data-value="ardoise" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #24272B 60%, #34373C 61%)"><i></i><span>Сланец</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. КУПИТЬ -->
+    <section class="q q--buy" id="buy" aria-labelledby="buy-title">
+      <div class="q-wrap q-buy">
+        <div class="q-buy__head">
+          <p class="q-plaque" aria-hidden="true"><small>13<sup>e</sup> arr.</small>Rue de la Caisse</p>
+          <h2 class="q-h2" id="buy-title" data-split>Дешевле 0X2Q. Местами лучше.</h2>
+          <p class="q-lead">Весна 2032 года: Евросоюз, США и&nbsp;Канада в&nbsp;один день. В&nbsp;Китае 0X4Q нет: там телефоны OY продаёт XZF.</p>
+          <ul class="q-box" role="list">
+            <li>Телефон с&nbsp;модулем «Классика&nbsp;4» или «Шторка»</li>
+            <li>Блок OY Power 90&nbsp;Вт и&nbsp;кабель USB-C</li>
+            <li>Мягкий чехол и&nbsp;скрепка для&nbsp;SIM</li>
+            <li>Подписок нет</li>
+          </ul>
+        </div>
+        <div class="q-buy__panel">
+          <p class="q-buy__k mono">Где</p>
+          <div class="q-tabs" role="radiogroup" aria-label="Страна" data-cur>
+            <button type="button" role="radio" data-value="usd" aria-checked="true">США</button>
+            <button type="button" role="radio" data-value="cad" aria-checked="false" tabindex="-1">Канада</button>
+            <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">Евросоюз</button>
+          </div>
+          <p class="q-buy__k mono">Память</p>
+          <div class="q-mem" role="radiogroup" aria-label="Память" data-mem>
+            <button type="button" role="radio" data-value="12/256" data-usd="649" data-eur="749" data-cad="899" aria-checked="true"><b>256&nbsp;ГБ</b><span>12&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="12/512" data-usd="729" data-eur="829" data-cad="999" aria-checked="false" tabindex="-1"><b>512&nbsp;ГБ</b><span>12&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="16/1024" data-usd="849" data-eur="969" data-cad="1169" aria-checked="false" tabindex="-1"><b>1&nbsp;ТБ</b><span>16&nbsp;ГБ ОЗУ</span></button>
+          </div>
+          <p class="q-buy__k mono">Модуль в&nbsp;коробке</p>
+          <div class="q-mem q-mem--2" role="radiogroup" aria-label="Модуль в коробке" data-bundle>
+            <button type="button" role="radio" data-value="classic" data-usd="0" data-eur="0" data-cad="0" aria-checked="true"><b>«Классика&nbsp;4»</b><span>в&nbsp;цене</span></button>
+            <button type="button" role="radio" data-value="shutter" data-usd="20" data-eur="30" data-cad="30" aria-checked="false" tabindex="-1"><b>«Шторка»</b><span>+$20 · +€30 · +C$30</span></button>
+          </div>
+          <p class="q-buy__k mono">Цвет: <span data-buy-color>Черепица</span></p>
+          <div class="q-swatches q-swatches--sm" role="radiogroup" aria-label="Цвет" data-colors-buy>
+            <button type="button" role="radio" data-value="tuile" aria-checked="true" aria-label="Черепица" style="--sw: linear-gradient(135deg, #9A4128 60%, #9A5A3A 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="seine" aria-checked="false" tabindex="-1" aria-label="Сена" style="--sw: linear-gradient(135deg, #55665A 60%, #45494C 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="calcaire" aria-checked="false" tabindex="-1" aria-label="Известняк" style="--sw: linear-gradient(135deg, #D3C8B2 60%, #BFC2C6 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="ardoise" aria-checked="false" tabindex="-1" aria-label="Сланец" style="--sw: linear-gradient(135deg, #24272B 60%, #34373C 61%)"><i></i></button>
+          </div>
+          <p class="q-total"><span class="mono" data-total-k>Итого · США</span><b data-total>$649</b></p>
+          <p class="q-small" data-total-note>Версия OY-Q4A: Snapdragon 8 Gen&nbsp;5 и&nbsp;mmWave.</p>
+          <button type="button" class="btn btn--accent btn--wide" data-buy>Купить</button>
+          <p class="q-small q-small--center">Купить здесь нельзя: это концепт. Но&nbsp;амбар уже открыт.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. ХАРАКТЕРИСТИКИ КОРОТКО -->
+    <section class="q q--specs" id="specs" aria-labelledby="specs-title">
+      <div class="q-wrap">
+        <header class="q-head q-head--center">
+          <h2 class="q-h2" id="specs-title" data-split>OY 0X4Q. Коротко.</h2>
+        </header>
+        <dl class="q-specs">
+          <div><dt>Экран</dt><dd>6,3″ LTPO AMOLED, плоский, 1–144&nbsp;Гц, 0,5–4200&nbsp;нит</dd></div>
+          <div><dt>Процессор</dt><dd>Fyr GP20 Slim (Европа) или Snapdragon 8 Gen&nbsp;5 (США и&nbsp;Канада)</dd></div>
+          <div><dt>Модем</dt><dd>OY NC4: 5G-Advanced, спутник, «Эхо&nbsp;2» до&nbsp;10&nbsp;км</dd></div>
+          <div><dt>Камеры</dt><dd>«Классика&nbsp;4»: 12 + 50 + 50&nbsp;Мп (0,5×, 1×, 3×); фронтальная 32&nbsp;Мп</dd></div>
+          <div><dt>Безопасность</dt><dd>Tesseract&nbsp;5, кнопки «0» и&nbsp;«1» с&nbsp;фиксацией, отпечаток в&nbsp;кнопке</dd></div>
+          <div><dt>Корпус</dt><dd>150,4 × 71,2 × 7,9&nbsp;мм, 193&nbsp;г с&nbsp;модулем, IP68</dd></div>
+          <div><dt>Питание</dt><dd>6500&nbsp;мАч, меняется за&nbsp;15 минут; 90&nbsp;Вт, XMagnum 50&nbsp;Вт</dd></div>
+          <div><dt>Память</dt><dd>12/256, 12/512, 16/1024&nbsp;ГБ, UFS&nbsp;4.1</dd></div>
+          <div><dt>Система</dt><dd>CamelOS&nbsp;2.5, 8 лет обновлений, 26 месяцев гарантии</dd></div>
+        </dl>
+        <a class="btn btn--accent q-specs__all" href="/0x4q/specs/">Все характеристики</a>
+      </div>
+    </section>
+
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">Qualcomm и&nbsp;Snapdragon&nbsp;— товарные знаки Qualcomm Incorporated; TSMC&nbsp;— Taiwan Semiconductor Manufacturing Company; AnTuTu, Geekbench, 3DMark и&nbsp;PCMark&nbsp;— товарные знаки своих владельцев. Результаты GP20&nbsp;Slim вымышлены, как и&nbsp;сам телефон.</li>
+          <li id="fn-2">Диагональ экрана измерена по&nbsp;прямоугольнику; из-за скруглённых углов видимая площадь меньше: 6,26″.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <p class="transit-plate"><b>Переходный период</b> <span>Марка OY у&nbsp;Fyr; 0X4Q сделала команда OY в&nbsp;Париже. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr. В&nbsp;Китае телефоны OY продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · сделано в&nbsp;амбаре под Парижем</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X4Q · весна 2032 · Евросоюз, США, Канада · <a href="/0x4q/specs/">Характеристики</a> · <a href="/0x2q/">0X2Q</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X4Q, Tesseract&nbsp;5, NC4, Fyr, Fyr GP20 Slim, CamelOS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Эта страница ничего не&nbsp;считает. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
