@@ -60,20 +60,20 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('в продаже восемь моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q', async () => {
+test('в продаже семь моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
-  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth']) {
+  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q']) {
     assert.equal(PRODUCTS[id].discontinued, true, id);
     assert.equal(PRODUCTS[id].tag, 'Снят с продажи', id);
     assert.ok(!PRODUCTS[id].returned, id);
   }
-  assert.deepEqual(ON_SALE, ['0x3e', '0x2', '0x4q', 'moth2', '0x2q', '0x2pro', 'nova', 'butterfly']);
+  assert.deepEqual(ON_SALE, ['0x3e', '0x2', '0x4q', 'moth2', '0x2pro', 'nova', 'butterfly']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['0x1e', '0x3e'], ['0x2e', '0x3e'], ['0x0', '0x3e'], ['moth', 'moth2'], ['0x1', '0x2'], ['0x1q', '0x2q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
+    [['0x1e', '0x3e'], ['0x2e', '0x3e'], ['0x0', '0x3e'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x1', '0x2'], ['0x1q', '0x4q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });

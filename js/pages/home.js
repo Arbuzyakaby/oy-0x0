@@ -7,7 +7,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { createStage } from '../core/stage.js';
 import { createOY0X2 } from '../models/oy0x2.js';
-import { createOY0X2Q } from '../models/oy0x2q.js';
 import { createOY0X3E } from '../models/oy0x3e.js';
 import { createOY0X2Pro } from '../models/oy0x2pro.js';
 import { createOYMoth2 } from '../models/oymoth.js';
@@ -18,7 +17,7 @@ import { createFyrOsmium } from '../models/fyrosmium.js';
 import { createFyrKBook } from '../models/fyrkbook.js';
 import { createFyrH1 } from '../models/fyrh1.js';
 import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
-import { $, $$ } from '../core/ui.js';
+import { $, $$, initRadioGroup, syncRadio } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals } from '../core/text.js';
 
@@ -39,15 +38,15 @@ const PI = Math.PI;
 
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
-/* ---------- Модельный ряд: восемь телефонов в одном масштабе ---------- */
+/* ---------- Модельный ряд: семь телефонов в одном масштабе, по цене ---------- */
 
 // У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
 // поэтому разница в росте настоящая: 0X2 Pro — 166 мм, 0X2Q — 142,4 мм.
-const HEIGHT = { '0x3e': 150, '0x2': 161, moth2: 166.7, '0x2q': 142.4, '0x2pro': 166, nova: 164.8, butterfly: 120, '0x4q': 150.4 };
-const TURN = { '0x3e': -PI + 0.5, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x2q': -PI + 0.5, '0x2pro': -PI - 0.4, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x4q': -PI + 0.45 };
+const HEIGHT = { '0x3e': 150, '0x2': 161, moth2: 166.7, '0x2pro': 166, nova: 164.8, butterfly: 120, '0x4q': 150.4 };
+const TURN = { '0x3e': -PI + 0.5, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x2pro': -PI - 0.4, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x4q': -PI + 0.45 };
 const DIST = 4.05;
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1, ...(id === 'butterfly' ? { fold: 1 } : {}) });
-const MODELS = { '0x3e': [createOY0X3E, 'radium'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x2q': [createOY0X2Q, 'tesseract'], '0x2pro': [createOY0X2Pro, 'sky'], nova: [createOYNova, 'supernova'], butterfly: [createOYButterfly, 'signal'], '0x4q': [createOY0X4Q, 'tuile'] };
+const MODELS = { '0x3e': [createOY0X3E, 'radium'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x2pro': [createOY0X2Pro, 'sky'], nova: [createOYNova, 'supernova'], butterfly: [createOYButterfly, 'signal'], '0x4q': [createOY0X4Q, 'tuile'] };
 const stages = [];
 $$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
@@ -62,7 +61,7 @@ $$('.lineup__item').forEach((item) => {
   }
   const rest = pose(id);
   // при наведении телефон разворачивается к вам экраном вполоборота;
-  // у 0X2Q заодно выезжает модуль, 0X2 Pro поворачивается экраном и поднимает фронталку из-под CPix,
+  // 0X2 Pro поворачивается экраном и поднимает фронталку из-под CPix,
   // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам (камера чуть дальше: сложенный он шире колонки), у Nova выезжает перо,
   // а Butterfly закрывает «Глаз» диафрагмой
   // у 0X4Q «Планка» отходит от спинки
@@ -82,6 +81,36 @@ $$('.lineup__item').forEach((item) => {
     stage.setPointer(((e.clientX - r.left) / r.width) * 2 - 1, ((e.clientY - r.top) / r.height) * 2 - 1);
   });
   stages.push(stage);
+});
+
+/* ---------- Полка: шкала цен и фильтр ---------- */
+
+// Точка на шкале — там, где телефон стоит по деньгам; наведение на телефон зажигает его точку
+const shelf = $('[data-shelf]');
+const scale = $('[data-price-scale]');
+const dots = Object.fromEntries($$('[data-for]', scale).map((d) => [d.dataset.for, d]));
+const P_MIN = 300, P_MAX = 1700;
+for (const d of Object.values(dots)) d.style.setProperty('--p', ((Number(d.dataset.usd) - P_MIN) / (P_MAX - P_MIN)).toFixed(4));
+$$('.shelf__item', shelf).forEach((item) => {
+  const dot = dots[item.dataset.model];
+  const hot = (on) => dot?.classList.toggle('is-hot', on);
+  item.addEventListener('pointerenter', () => hot(true));
+  item.addEventListener('pointerleave', () => hot(false));
+  item.addEventListener('focus', () => hot(true));
+  item.addEventListener('blur', () => hot(false));
+});
+// фильтр не прячет телефоны, а гасит лишние: полка остаётся в одном масштабе
+const filterGrp = $('[data-shelf-filter]');
+initRadioGroup(filterGrp, (v) => {
+  syncRadio(filterGrp, v);
+  const all = v === 'all';
+  shelf.classList.toggle('is-filtered', !all);
+  scale.classList.toggle('is-filtered', !all);
+  $$('.shelf__item', shelf).forEach((item) => {
+    const match = all || item.dataset.kind.split(' ').includes(v);
+    item.classList.toggle('is-match', match);
+    dots[item.dataset.model]?.classList.toggle('is-match', match);
+  });
 });
 
 /* ---------- Fyr: часы и ноутбук над телефонами ---------- */

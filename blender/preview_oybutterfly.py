@@ -347,6 +347,16 @@ if wanted("cams"):
 
 # 4. Четыре цвета в ряд — спинкой
 if wanted("lineup"):
+    mid = (len(COLORS) - 1) / 2
     for i, color in enumerate(COLORS):
-        import_phone(color, fold=1.0, loc=((i - 1.5) * 0.105 + CX, 0.0, 0.0), rot=(0, 0, math.pi + math.radians((i - 1.5) * -6)))
-    shoot("lineup", (0.0, -1.1, 0.1), (0, 0, -0.005), lens=60, res=(2400, 1200))
+        import_phone(color, fold=1.0, loc=((i - mid) * 0.105 + CX, 0.0, 0.0), rot=(0, 0, math.pi + math.radians((i - mid) * -6)))
+    shoot("lineup", (0.0, -1.25, 0.1), (0, 0, -0.005), lens=60, res=(2600, 1200))
+    clear_phones()
+
+# 5. Каждый цвет: спинкой в три четверти и рядом раскрытый
+for color in COLORS:
+    if wanted(f"color_{color}"):
+        import_phone(color, fold=1.0, loc=(-0.035, 0.03, 0), rot=(0, 0, math.pi + math.radians(-20)))
+        import_phone(color, fold=0.1, loc=(0.075, -0.02, 0), rot=(0, 0, math.radians(-12)))
+        shoot(f"color_{color}", (0.0, -0.72, 0.07), (0.025, 0.0, 0.0), lens=62, res=(2000, 1200))
+        clear_phones()

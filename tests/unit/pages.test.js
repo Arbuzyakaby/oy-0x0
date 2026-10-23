@@ -315,15 +315,17 @@ test('хроника /fyr/chronicle/: восемь глав по порядку,
   assert.ok(existsSync(join(ROOT, 'og-fyr-chronicle.jpg')));
 });
 
-test('главная — Fyr: Osmium X0 и KBook 1 в 3D над телефонами OY, одна h1, ссылка на хронику, 0X2 Pro — №1', () => {
+test('главная — Fyr: Osmium X0 и KBook 1 в 3D над телефонами OY, одна h1, ссылка на хронику, 0X2 Pro — №1 только в хронике', () => {
   const html = read('index.html');
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.ok(html.indexOf('data-fyr-model="osmium"') < html.indexOf('id="phones"'));
   assert.ok(html.includes('data-fyr-model="kbook"'));
   assert.ok(html.includes('href="/fyr/chronicle/"'));
-  assert.ok(html.includes('id="win"') && html.includes('№1 в ЕС'));
+  // история о №1 осталась в хронике на главной, а плашки «№1 в ЕС» у самого 0X2 Pro больше нет
+  assert.ok(html.includes('id="win"') && html.includes('0X2 Pro&nbsp;— №1'));
+  assert.ok(!html.includes('№1 в ЕС'));
   assert.match(html, /Обещали OY&nbsp;OS&nbsp;5\. Выпустили CamelOS&nbsp;2\.0\./);
-  assert.ok(read('0x2pro/index.html').includes('class="win-chip'));
+  assert.ok(!read('0x2pro/index.html').includes('class="win-chip'));
 });
 
 test('страницы OY: в шапке логотип «fyr / OY», в подвале плашка переходного периода со ссылкой на хронику', () => {

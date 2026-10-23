@@ -55,7 +55,7 @@ let shownUsd = getPrice(PRODUCT.id, currentMem, currentColor).usd;
 
 function updatePrice(animate = true) {
   const price = getPrice(PRODUCT.id, currentMem, currentColor);
-  if (!price) return;
+  if (!price || !usdEl) return;   // снят с продажи: конфигуратора на странице нет
   cfgNameEl.textContent = `${currentMem} ГБ`;
   eurEl.textContent = `€${price.eur.toLocaleString('ru-RU')}`;
   const fmt = (n) => `$${Math.round(n).toLocaleString('en-US')}`;
@@ -80,13 +80,15 @@ function setColor(name, { save = true, instant = false, animate = true } = {}) {
 function setMemory(v, animate = true) {
   if (!getConfig(PRODUCT.id, v)) return;
   currentMem = v;
-  syncRadio(memGroup, v);
+  if (memGroup) syncRadio(memGroup, v);
   updatePrice(animate);
 }
 
 colorGroups.forEach((g) => initRadioGroup(g, (v) => setColor(v)));
-initRadioGroup(memGroup, (v) => setMemory(v));
-syncRadio(memGroup, currentMem);
+if (memGroup) {
+  initRadioGroup(memGroup, (v) => setMemory(v));
+  syncRadio(memGroup, currentMem);
+}
 setColor(store.get('oy-0x2q-color') || root.dataset.color || PRODUCT.defaultColor, { save: false, instant: true, animate: false });
 
 // Таблица цен из тех же данных
