@@ -131,6 +131,12 @@
 .pick--butterfly .pick__list li::before { background: #7FA8FF; }
 .pick--butterfly .btn--accent { background: #7FA8FF; color: #05060B; box-shadow: 0 10px 40px -10px rgba(127, 168, 255, .5); }
 @media (min-width: 900px) { .choose__grid--6 .pick--butterfly .pick__list { columns: 2; column-gap: 32px; } }
+/* 0X4 — пять семьдесят пять: во всю ширину, чертёж на миллиметровке */
+.choose__grid--6 .pick--0x4 { background: linear-gradient(rgba(43, 69, 216, .1) 1px, transparent 1px) 0 0 / 40px 40px, linear-gradient(90deg, rgba(43, 69, 216, .1) 1px, transparent 1px) 0 0 / 40px 40px, #F3F2EE; border-color: rgba(43, 69, 216, .45); color: #121316; }
+.pick--0x4 .pick__lead, .pick--0x4 .pick__list li, .pick--0x4 .muted { color: #55575D; }
+.pick--0x4 .pick__list li::before { background: #2B45D8; }
+.pick--0x4 .btn--accent { background: #2B45D8; color: #FFFFFF; box-shadow: 0 10px 40px -10px rgba(43, 69, 216, .5); }
+.pick--0x4 .btn--ghost { color: #121316; border-color: rgba(18, 19, 22, .25); }
 /* 0X4Q — сделано в амбаре: известняк и черепица */
 .choose__grid--6 .pick--0x4q { background: radial-gradient(circle at 50% 0, transparent 13px, rgba(180, 83, 47, .16) 14px, rgba(180, 83, 47, .16) 15px, transparent 16px) 0 0 / 30px 18px, radial-gradient(80% 120% at 100% 0%, rgba(255, 196, 140, .4), transparent 60%), #EEE7DC; border-color: rgba(180, 83, 47, .4); color: #1E1B18; }
 .pick--0x4q .pick__lead, .pick--0x4q .pick__list li, .pick--0x4q .muted { color: #5A5148; }

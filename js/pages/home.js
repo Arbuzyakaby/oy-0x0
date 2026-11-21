@@ -13,10 +13,11 @@ import { createOYMoth2 } from '../models/oymoth.js';
 import { createOYNova } from '../models/oynova.js';
 import { createOYButterfly } from '../models/oybutterfly.js';
 import { createOY0X4Q } from '../models/oy0x4q.js';
+import { createOY0X4 } from '../models/oy0x4.js';
 import { createFyrOsmium } from '../models/fyrosmium.js';
 import { createFyrKBook } from '../models/fyrkbook.js';
 import { createFyrH1 } from '../models/fyrh1.js';
-import { COMPARE, COMPARE_MODELS, ON_SALE } from '../data/products.js';
+import { COMPARE, COMPARE_MODELS, ON_SALE, PRODUCTS } from '../data/products.js';
 import { $, $$, initRadioGroup, syncRadio } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals } from '../core/text.js';
@@ -42,11 +43,11 @@ const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
 // У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
 // поэтому разница в росте настоящая: 0X2 Pro — 166 мм, 0X2Q — 142,4 мм.
-const HEIGHT = { '0x3e': 150, '0x2': 161, moth2: 166.7, '0x2pro': 166, nova: 164.8, butterfly: 120, '0x4q': 150.4 };
-const TURN = { '0x3e': -PI + 0.5, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x2pro': -PI - 0.4, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x4q': -PI + 0.45 };
+const HEIGHT = { '0x3e': 150, '0x2': 161, moth2: 166.7, '0x2pro': 166, nova: 164.8, butterfly: 120, '0x4q': 150.4, '0x4': 151.2 };
+const TURN = { '0x3e': -PI + 0.5, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x2pro': -PI - 0.4, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x4q': -PI + 0.45, '0x4': -PI + 0.45 };
 const DIST = 4.05;
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1, ...(id === 'butterfly' ? { fold: 1 } : {}) });
-const MODELS = { '0x3e': [createOY0X3E, 'radium'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x2pro': [createOY0X2Pro, 'sky'], nova: [createOYNova, 'supernova'], butterfly: [createOYButterfly, 'signal'], '0x4q': [createOY0X4Q, 'tuile'] };
+const MODELS = { '0x3e': [createOY0X3E, 'radium'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x2pro': [createOY0X2Pro, 'sky'], nova: [createOYNova, 'supernova'], butterfly: [createOYButterfly, 'signal'], '0x4q': [createOY0X4Q, 'tuile'], '0x4': [createOY0X4, 'grifel'] };
 const stages = [];
 $$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
@@ -65,7 +66,8 @@ $$('.lineup__item').forEach((item) => {
   // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам (камера чуть дальше: сложенный он шире колонки), у Nova выезжает перо,
   // а Butterfly закрывает «Глаз» диафрагмой
   // у 0X4Q «Планка» отходит от спинки
-  const near = id === '0x4q' ? { ry: -PI + 0.2, pull: 1 } : id === 'butterfly' ? { ry: -PI + 0.15, iris: 1 } : id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth2' ? { ry: -0.28, fold: 1, rz: PI, fy: 0, dist: DIST * 1.2 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
+  // у 0X4 — ребро с «Рубильником»: видно, какой он тонкий
+  const near = id === '0x4' ? { ry: -1.5 * PI + 0.04 } : id === '0x4q' ? { ry: -PI + 0.2, pull: 1 } : id === 'butterfly' ? { ry: -PI + 0.15, iris: 1 } : id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth2' ? { ry: -0.28, fold: 1, rz: PI, fy: 0, dist: DIST * 1.2 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
   stage.setTarget(rest);
   stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);
@@ -181,6 +183,9 @@ if (mini) {
   const labels = { price: 'Цена', citadel: 'Безопасность', keys: 'Отключение', cams: 'Камеры', battery: 'Аккумулятор', protect: 'Защита' };
   const N = COMPARE_MODELS.length;
   const cols = ON_SALE.map((id) => 2 + COMPARE_MODELS.indexOf(id));
+  // шапка — те же модели в продаже, что и столбцы
+  const head = $('[data-mini-head] tr');
+  if (head) head.innerHTML = `<th scope="col"><span class="sr-only">Параметр</span></th>${ON_SALE.map((id) => `<th scope="col">${PRODUCTS[id].name.replace('OY ', '')}</th>`).join('')}`;
   mini.innerHTML = COMPARE.filter((r) => labels[r[2 + N]])
     .map((r) => `<tr><th scope="row">${labels[r[2 + N]]}</th>${cols.map((c) => `<td>${r[c]}</td>`).join('')}</tr>`).join('');
 }

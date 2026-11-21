@@ -60,20 +60,20 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('в продаже семь моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят', async () => {
+test('в продаже семь моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят, осенью — 0X4, а 0X2 снят', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
-  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q']) {
+  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q', '0x2']) {
     assert.equal(PRODUCTS[id].discontinued, true, id);
     assert.equal(PRODUCTS[id].tag, 'Снят с продажи', id);
     assert.ok(!PRODUCTS[id].returned, id);
   }
-  assert.deepEqual(ON_SALE, ['0x3e', '0x2', '0x4q', 'moth2', '0x2pro', 'nova', 'butterfly']);
+  assert.deepEqual(ON_SALE, ['0x3e', '0x4q', 'moth2', '0x4', '0x2pro', 'nova', 'butterfly']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['0x1e', '0x3e'], ['0x2e', '0x3e'], ['0x0', '0x3e'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x1', '0x2'], ['0x1q', '0x4q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
+    [['0x1e', '0x3e'], ['0x2e', '0x3e'], ['0x0', '0x3e'], ['0x2', '0x4'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x1', '0x4'], ['0x1q', '0x4q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
@@ -138,7 +138,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', 'butterfly']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', '0x4', 'butterfly']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -236,8 +236,8 @@ test('0X Nova: новый флагман от $999 / €1149, один цвет 
   }
 });
 
-test('метка «Новинка» — у 0X3 Essential, 0X4Q и 0X Butterfly', () => {
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x3e', '0x4q', 'butterfly']);
+test('метка «Новинка» — у 0X3 Essential, 0X4Q, 0X4 и 0X Butterfly', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x3e', '0x4q', '0x4', 'butterfly']);
 });
 
 test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, от $399 / €469', async () => {
@@ -324,4 +324,35 @@ test('0X4Q: дешевле 0X2Q, три версии памяти, четыре 
   assert.match(get('Сменные модули'), /«Шторка», «Ночь», «Тепло 2», «Луч 2»/);
   assert.match(get('Загрузчик'), /Открывается/);
   assert.equal(get('Форма'), 'Моноблок');
+});
+
+test('0X4: самый тонкий OY — 5,75 мм и 170 г, полный GP20, Citadel 6 Slim, две камеры, четыре цвета, Европа да, Китай нет', async () => {
+  const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
+  const p = PRODUCTS['0x4'];
+  assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['12/256', 799, 899], ['12/512', 899, 999], ['16/1024', 1049, 1169]]);
+  assert.deepEqual(p.colors, { grifel: 'Грифель', list: 'Лист', folga: 'Фольга', nast: 'Наст' });
+  assert.equal(p.defaultColor, 'grifel');
+  assert.deepEqual(Object.keys(p.swatches), Object.keys(p.colors));
+  assert.ok(p.eu && !p.cn);
+  assert.equal(SHORT_NAMES['0x4'], '0X4');
+  // по цене — между Moth 2 и снятым 0X2Q
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('moth2') + 1], '0x4');
+  const i = 2 + COMPARE_MODELS.indexOf('0x4');
+  const get = (label) => COMPARE.find((r) => r[1] === label)[i];
+  assert.match(get('Толщина · вес'), /^5,75 мм.*170 г/);
+  assert.match(get('Аккумулятор'), /^4000 мАч/);
+  assert.match(get('Процессор'), /^Fyr GP20 — полный/);
+  assert.match(get('Чип безопасности'), /^Citadel 6 Slim/);
+  assert.match(get('Всего'), /две сзади/);
+  assert.match(get('Основная'), /^200 МП.*4× оптического качества/);
+  assert.match(get('Сверхширокоугольная'), /макро/);
+  assert.match(get('Аппаратное отключение'), /«Рубильник»/);
+  assert.equal(get('Форма'), 'Моноблок');
+  // тоньше любого моноблока OY
+  const thick = COMPARE.find((r) => r[1] === 'Толщина · вес');
+  const form = COMPARE.find((r) => r[1] === 'Форма');
+  COMPARE_MODELS.forEach((id, k) => {
+    if (id === '0x4' || /Раскладушка|Книжка/.test(form[2 + k])) return;
+    assert.ok(parseFloat(thick[2 + k].replace(',', '.')) > 5.75, id);
+  });
 });

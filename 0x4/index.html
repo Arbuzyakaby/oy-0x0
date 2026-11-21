@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="ru" data-x4 data-color="grifel">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X4 — пять семьдесят пять</title>
+  <meta name="description" content="OY 0X4 — самый тонкий OY: 5,75 мм и 170 г. Базовый флагман четвёртого поколения, второй OY, который сделала Fyr в Стокгольме. Полный Fyr GP20, Citadel 6 Slim, «Рубильник», 4000 мАч и две камеры: 200 Мп с 4× оптического качества и сверхширокая с макро. От $799. Концепт.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#F3F2EE">
+  <link rel="canonical" href="https://oy0x.online/0x4/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x4/">
+  <meta property="og:title" content="OY 0X4 — пять семьдесят пять">
+  <meta property="og:description" content="Самый тонкий OY: 5,75 мм, 170 г, полный GP20 и Citadel 6 Slim. Две камеры — 200 Мп с 4× и сверхширокая с макро. От $799. Концепт.">
+  <meta property="og:image" content="https://oy0x.online/og-0x4.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OY 0X4 цвета «Грифель» на миллиметровке: островок камер «○X○» и размер 5,75 мм">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F3F2EE'/%3E%3Crect x='8' y='14' width='48' height='16' rx='8' fill='%2326282B'/%3E%3Ccircle cx='19' cy='22' r='4.5' fill='%23F3F2EE'/%3E%3Ccircle cx='45' cy='22' r='4.5' fill='%23F3F2EE'/%3E%3Cpath d='M29 18l6 8M35 18l-6 8' stroke='%23F3F2EE' stroke-width='2'/%3E%3Ctext x='32' y='54' font-family='monospace' font-size='17' font-weight='700' text-anchor='middle' fill='%232B45D8'%3E5,75%3C/text%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
+  <link rel="stylesheet" href="/css/core.css?v=ab2ab23689">
+  <link rel="stylesheet" href="/css/0x4.css?v=c45d87b172">
+  <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=836b7d6c0f",
+      "/js/data/products.js": "/js/data/products.js?v=1df7b7ea3b",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
+      "/js/models/fyrh1.js": "/js/models/fyrh1.js?v=cd8e7d3a55",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=27e0885289",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oy0x4.js": "/js/models/oy0x4.js?v=f8652e989d",
+      "/js/models/oy0x4q.js": "/js/models/oy0x4q.js?v=e13ee7e681",
+      "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=3cb6753b62",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=58af31bffb",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=011fcc2bd9",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=32504e740d",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4c33d835a2",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=dd6052c460",
+      "/js/pages/0x4.js": "/js/pages/0x4.js?v=1bb705d79e",
+      "/js/pages/0x4q.js": "/js/pages/0x4q.js?v=cc97149bba",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=7fa6737a96",
+      "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
+      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
+      "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=fbb5493a64",
+      "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
+      "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=89f792cb34",
+      "/js/pages/home.js": "/js/pages/home.js?v=5204cc2c62",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=308e117d8e",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-x4-color');if(/^(grifel|list|folga|nast)$/.test(c))document.documentElement.dataset.color=c}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x4.js?v=1bb705d79e"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: губки штангенциркуля сходятся на 5,75 -->
+  <div class="loader x-loader" id="loader" role="status" aria-live="polite">
+    <div class="x-loader__cal" aria-hidden="true"><i></i><i></i></div>
+    <span class="loader__label">Меряем… 5,75&nbsp;мм</span>
+  </div>
+
+  <!-- Фон: миллиметровка -->
+  <div class="x-bg" aria-hidden="true"><i class="x-bg__grid"></i></div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+  <div class="x-night" data-dark aria-hidden="true"></div>
+
+  <header class="site-header x-header" id="top">
+    <a class="brand" href="/" aria-label="Fyr и телефоны OY — на главную">
+      <svg class="brand__fyr" viewBox="0 0 46 30" aria-hidden="true"><path class="brand__fyr-beam" d="M23 6L42 0.5V11.5Z"/><path d="M8 24V10a4 4 0 0 1 4-4h3M4 13h9M19 12v6a4 4 0 0 0 8 0M27 12v12a4 4 0 0 1-7.4 2.2M34 24v-8a4 4 0 0 1 4-4h3"/><circle class="brand__fyr-lamp" cx="23" cy="6" r="1.8"/></svg><span class="brand__sep" aria-hidden="true">/</span><svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
+      <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
+      <a class="site-nav__fyr" href="/fyr/h1/">H1</a>
+      <a href="/0x3e/">0X3 Essential</a>
+      <a href="/0x4q/">0X4Q</a>
+      <a href="/moth2/">0X Moth 2</a>
+      <a href="/0x4/" aria-current="page">0X4</a>
+      <a href="/0x2pro/">0X2 Pro</a>
+      <a href="/nova/">0X Nova</a>
+      <a href="/butterfly/">0X Butterfly</a>
+      <a href="/os/">CamelOS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+    <a class="btn btn--accent btn--sm x-header__buy" href="#buy">от $799</a>
+  </header>
+
+  <!-- Штангенциркуль: подвижная губка — где вы сейчас, риски — главы -->
+  <nav class="x-cal" aria-label="Главы страницы" data-cal>
+    <span class="x-cal__beam" aria-hidden="true"></span>
+    <span class="x-cal__jaw x-cal__jaw--fixed" aria-hidden="true"></span>
+    <span class="x-cal__slider" aria-hidden="true" data-cal-slider><span class="x-cal__read mono"><b data-cal-mm>0,0</b> мм</span></span>
+    <ol class="x-cal__ticks" role="list">
+      <li><a href="#hero" data-tick="hero"><span>Лист</span></a></li>
+      <li><a href="#profile" data-tick="profile"><span>Профиль</span></a></li>
+      <li><a href="#stack" data-tick="stack"><span>Стопка</span></a></li>
+      <li><a href="#layers" data-tick="layers"><span>Разрез</span></a></li>
+      <li><a href="#battery" data-tick="battery"><span>4000&nbsp;мАч</span></a></li>
+      <li><a href="#camera" data-tick="camera"><span>Камеры</span></a></li>
+      <li><a href="#chip" data-tick="chip"><span>GP20</span></a></li>
+      <li><a href="#citadel" data-tick="citadel"><span>Citadel</span></a></li>
+      <li><a href="#switch" data-tick="switch"><span>Рубильник</span></a></li>
+      <li><a href="#torch" data-tick="torch"><span>Фонарь</span></a></li>
+      <li><a href="#colors" data-tick="colors"><span>Цвета</span></a></li>
+      <li><a href="#buy" data-tick="buy"><span>Купить</span></a></li>
+    </ol>
+  </nav>
+
+  <main id="main">
+    <!-- 0. ЛИСТ: телефон влетает ребром, как лезвие, над гигантским 5,75 -->
+    <section class="x x--hero" id="hero" aria-labelledby="hero-title">
+      <div class="x-mega" aria-hidden="true" data-mega>
+        <span class="x-mega__dim"><i></i><b class="mono">5,75&nbsp;мм</b><i></i></span>
+        <span class="x-mega__num"><span>5</span><span>,</span><span>75</span></span>
+      </div>
+      <div class="x-hero">
+        <p class="x-stamp mono" aria-hidden="true"><span>Лист 01</span><span>Fyr AB · Stockholm</span><span>М 1:1</span></p>
+        <h1 class="x-hero__title" id="hero-title">
+          <span class="x-hero__model">OY 0X4 <span class="mono">4th Gen</span></span>
+          <span class="x-hero__big" data-split>Пять семьдесят пять.</span>
+        </h1>
+        <p class="x-hero__lead">Самый тонкий OY: 5,75&nbsp;мм и&nbsp;170&nbsp;г. Внутри&nbsp;— полный Fyr&nbsp;GP20, Citadel&nbsp;6&nbsp;Slim и&nbsp;4000&nbsp;мАч, сзади&nbsp;— две камеры: 200&nbsp;Мп с&nbsp;зумом 4× оптического качества и&nbsp;сверхширокая с&nbsp;макро. Ни&nbsp;миллиметра лишнего.</p>
+        <div class="x-hero__buy">
+          <p class="x-price"><span>от</span> <b>$799</b> <span class="mono">· €899 · 8&nbsp;990&nbsp;kr · C$1099</span></p>
+          <a class="btn btn--accent" href="#buy">Купить</a>
+          <a class="btn btn--ghost" href="/0x4/specs/">Характеристики</a>
+        </div>
+      </div>
+      <a class="x-scroll mono" href="#profile"><span>Листайте. Он&nbsp;тоньше, чем кажется</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <!-- 1. ПРОФИЛЬ: телефон встаёт ребром, рядом — профили всех OY в масштабе -->
+    <section class="x x--profile" id="profile" aria-labelledby="profile-title">
+      <div class="x-pin">
+        <div class="x-profile">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 02</span><span>Профиль</span><span>М 10:1</span></p>
+          <h2 class="x-h2" id="profile-title" data-split>Самый тонкий OY.</h2>
+          <p class="x-lead">Тоньше любого OY с&nbsp;2027 года и&nbsp;тоньше половинки Moth. Мы не&nbsp;убирали ради этого фонарь, «Рубильник» или Citadel: мы собрали их тоньше.</p>
+          <div class="x-gauge mono" aria-hidden="true">
+            <span class="x-gauge__k" data-gauge-name>OY 0X0 · 2027</span>
+            <b data-gauge>9,00</b><span>мм</span>
+          </div>
+          <p class="x-small">По&nbsp;корпусу. По&nbsp;островку камер&nbsp;— 7,65&nbsp;мм: мы не&nbsp;прячем.</p>
+        </div>
+        <ol class="x-profiles" role="list" data-profiles aria-label="Толщина телефонов OY в масштабе">
+          <li style="--mm: 9"><i></i><b>0X0</b><span class="mono">9</span></li>
+          <li style="--mm: 8.9"><i></i><b>0X1</b><span class="mono">8,9</span></li>
+          <li style="--mm: 8.6"><i></i><b>0X2 Pro</b><span class="mono">8,6</span></li>
+          <li style="--mm: 7.9"><i></i><b>0X2</b><span class="mono">7,9</span></li>
+          <li style="--mm: 7.9"><i></i><b>0X4Q</b><span class="mono">7,9</span></li>
+          <li style="--mm: 7.6"><i></i><b>Nova</b><span class="mono">7,6</span></li>
+          <li style="--mm: 6.8"><i></i><b>Moth&nbsp;2, половинка</b><span class="mono">6,8</span></li>
+          <li class="is-me" style="--mm: 5.75"><i></i><b>0X4</b><span class="mono">5,75</span></li>
+        </ol>
+        <ul class="x-facts mono" role="list">
+          <li><b>151,2</b> мм в&nbsp;высоту</li>
+          <li><b>71,6</b> мм в&nbsp;ширину</li>
+          <li><b>170</b> г</li>
+          <li><b>IP68</b> до&nbsp;6&nbsp;м</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. СТОПКА: что такое 5,75 мм — карты, листы, монеты растут до черты -->
+    <section class="x x--stack" id="stack" aria-labelledby="stack-title">
+      <div class="x-pin">
+        <div class="x-stackwrap">
+          <div class="x-stack__text">
+            <p class="x-stamp mono" aria-hidden="true"><span>Лист 03</span><span>Стопка</span><span>М 40:1</span></p>
+            <h2 class="x-h2" id="stack-title" data-split>Сколько это&nbsp;— 5,75&nbsp;мм?</h2>
+            <div class="x-chips" role="radiogroup" aria-label="Чем мерить" data-measure>
+              <button type="button" role="radio" data-value="card" aria-checked="true">Банковские карты</button>
+              <button type="button" role="radio" data-value="paper" aria-checked="false" tabindex="-1">Листы бумаги</button>
+              <button type="button" role="radio" data-value="coin" aria-checked="false" tabindex="-1">Монеты 1&nbsp;€</button>
+              <button type="button" role="radio" data-value="pencil" aria-checked="false" tabindex="-1">Карандаш</button>
+            </div>
+            <p class="x-stack__count" aria-live="polite"><b class="mono" data-stack-n>0</b> <span data-stack-what>карт</span></p>
+            <p class="x-lead" data-stack-note>Банковская карта&nbsp;— 0,76&nbsp;мм. Сложите семь с&nbsp;половиной&nbsp;— это 0X4.</p>
+          </div>
+          <div class="x-stack" aria-hidden="true" data-stack>
+            <span class="x-stack__ref"><i></i><b class="mono">5,75&nbsp;мм · OY 0X4</b></span>
+            <div class="x-stack__pile" data-pile></div>
+            <span class="x-stack__dim mono"><b data-stack-mm>0,00</b> мм</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. РАЗРЕЗ: восемь слоёв разлетаются и складываются обратно -->
+    <section class="x x--layers" id="layers" aria-labelledby="layers-title">
+      <div class="x-pin">
+        <div class="x-layers__text">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 04</span><span>Разрез А–А</span><span>М 60:1</span></p>
+          <h2 class="x-h2" id="layers-title" data-split>Восемь слоёв. Ни&nbsp;одного лишнего.</h2>
+          <p class="x-lead">Разрез через середину аккумулятора. Половина толщины&nbsp;— сама ячейка. Остальное мы делили по&nbsp;сотым долям миллиметра.</p>
+        </div>
+        <ol class="x-section" role="list" data-section>
+          <li style="--t: .5" data-k="glass"><i></i><b>Стекло</b><span class="mono">0,50</span></li>
+          <li style="--t: .32" data-k="oled"><i></i><b>OLED и&nbsp;тач</b><span class="mono">0,32</span></li>
+          <li style="--t: .35" data-k="plate"><i></i><b>Средняя плита, титан</b><span class="mono">0,35</span></li>
+          <li style="--t: .25" data-k="vapor"><i></i><b>Испарительная камера</b><span class="mono">0,25</span></li>
+          <li style="--t: 2.9" data-k="cell"><i></i><b>Ячейка 4000&nbsp;мАч</b><span class="mono">2,90</span></li>
+          <li style="--t: .38" data-k="coil"><i></i><b>Катушка XMagnum и&nbsp;NFC</b><span class="mono">0,38</span></li>
+          <li style="--t: .55" data-k="air"><i></i><b>Зазор на&nbsp;«дыхание»</b><span class="mono">0,55</span></li>
+          <li style="--t: .5" data-k="back"><i></i><b>Спинка, матовое стекло</b><span class="mono">0,50</span></li>
+        </ol>
+        <p class="x-section__sum mono" aria-hidden="true"><span>Σ</span> <b data-section-sum>0,00</b> мм</p>
+        <p class="x-jab x-layers__jab">0,55&nbsp;мм&nbsp;— пустота. За&nbsp;два года любая ячейка чуть «дышит», и&nbsp;мы оставили ей место. Тоньше можно. Честнее&nbsp;— нет.</p>
+      </div>
+    </section>
+
+    <!-- 4. 4000 мАч: честный день -->
+    <section class="x x--battery" id="battery" aria-labelledby="battery-title">
+      <div class="x-wrap x-split x-split--right">
+        <div class="x-split__text">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 05</span><span>Питание</span><span>4000 мАч</span></p>
+          <h2 class="x-h2" id="battery-title" data-split>4000&nbsp;мАч. Без сказок.</h2>
+          <p class="x-lead">Это меньше, чем у&nbsp;любого OY. Мы могли поставить 5000 и&nbsp;сделать 6,6&nbsp;мм. Выбрали 5,75&nbsp;— и&nbsp;честный график вместо «двух дней работы».</p>
+          <div class="x-chips" role="radiogroup" aria-label="Какой день" data-day>
+            <button type="button" role="radio" data-value="normal" aria-checked="true">Обычный день</button>
+            <button type="button" role="radio" data-value="heavy" aria-checked="false" tabindex="-1">Тяжёлый день</button>
+            <button type="button" role="radio" data-value="leaf" aria-checked="false" tabindex="-1">Режим «Лист»</button>
+          </div>
+          <figure class="x-day" data-daychart>
+            <svg class="x-day__svg" viewBox="0 0 600 260" role="img" aria-label="График заряда за день" data-day-svg>
+              <g class="x-day__grid" data-day-grid></g>
+              <path class="x-day__area" data-day-area d=""/>
+              <path class="x-day__line" data-day-line d=""/>
+              <line class="x-day__cursor" data-day-cursor x1="0" x2="0" y1="10" y2="230"/>
+              <circle class="x-day__dot" data-day-dot r="6" cx="0" cy="0"/>
+            </svg>
+            <figcaption class="x-day__cap mono" aria-live="polite"><b data-day-time>07:00</b> · <span data-day-pct>100 %</span> · <span data-day-note>Наведите на график</span></figcaption>
+          </figure>
+          <ul class="x-power" role="list">
+            <li><b>45<small>Вт</small></b><span>50&nbsp;% за&nbsp;20 минут, блок в&nbsp;коробке</span></li>
+            <li><b>25<small>Вт</small></b><span>XMagnum без провода</span></li>
+            <li><b>2,9<small>мм</small></b><span>ячейка из&nbsp;кремния и&nbsp;углерода</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. КАМЕРЫ: видоискатель 0,5× · 1× · 2× · 4× · макро и сенсор 200 Мп -->
+    <section class="x x--camera" id="camera" aria-labelledby="camera-title">
+      <div class="x-wrap">
+        <header class="x-head">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 06</span><span>Камеры</span><span>○X○</span></p>
+          <h2 class="x-h2" id="camera-title" data-split>Две камеры. Пять расстояний.</h2>
+          <p class="x-lead">Перископ в&nbsp;5,75&nbsp;мм не&nbsp;помещается. Сенсор на&nbsp;200&nbsp;Мп&nbsp;— помещается. 2× и&nbsp;4× он&nbsp;снимает центром кадра, без цифрового растягивания: 50 и&nbsp;12,5&nbsp;настоящих мегапикселей. Сверхширокая снимает и&nbsp;0,5×, и&nbsp;макро с&nbsp;2,5&nbsp;см.</p>
+        </header>
+        <div class="x-cam">
+          <div class="x-cam__view">
+            <canvas class="x-cam__canvas" data-view role="img" aria-label="Видоискатель OY 0X4: стокгольмские шхеры и маяк"></canvas>
+            <p class="x-cam__label mono" data-view-label>1× · 200 Мп · 24 мм</p>
+          </div>
+          <div class="x-cam__side">
+            <div class="x-zoom" role="radiogroup" aria-label="Зум" data-zoom>
+              <button type="button" role="radio" data-value="0.5" aria-checked="false" tabindex="-1">0,5×</button>
+              <button type="button" role="radio" data-value="1" aria-checked="true">1×</button>
+              <button type="button" role="radio" data-value="2" aria-checked="false" tabindex="-1">2×</button>
+              <button type="button" role="radio" data-value="4" aria-checked="false" tabindex="-1">4×</button>
+              <button type="button" role="radio" data-value="macro" aria-checked="false" tabindex="-1">Макро</button>
+            </div>
+            <div class="x-sensor" aria-hidden="true" data-sensor>
+              <span class="x-sensor__crop" data-crop></span>
+              <span class="x-sensor__k mono">сенсор 1/1,4″ · 200 Мп</span>
+            </div>
+            <p class="x-small" data-cam-note>1×: весь сенсор, 16 пикселей сливаются в&nbsp;один большой&nbsp;— светло даже в&nbsp;сумерках.</p>
+            <dl class="x-mini mono">
+              <div><dt>Основная</dt><dd>200&nbsp;Мп, 1/1,4″, f/1.8, OIS</dd></div>
+              <div><dt>Сверхширокая</dt><dd>50&nbsp;Мп, 120°, автофокус</dd></div>
+              <div><dt>Фронтальная</dt><dd>18&nbsp;Мп, квадратная</dd></div>
+              <div><dt>Видео</dt><dd>4K/120, при 4×&nbsp;— 4K/60</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="x-jab">Два одинаковых кольца и&nbsp;«X» между ними&nbsp;— лицо первого 0X0. Островок не&nbsp;приклеен: он вырастает из&nbsp;стекла спинки плавной волной, и&nbsp;пыли негде собраться.</p>
+      </div>
+    </section>
+
+    <!-- 6. GP20: весь, без Slim -->
+    <section class="x x--chip" id="chip" aria-labelledby="chip-title">
+      <div class="x-wrap x-split">
+        <div class="x-split__text">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 07</span><span>Процессор</span><span>2 нм</span></p>
+          <h2 class="x-h2" id="chip-title" data-split>Весь GP20. В&nbsp;5,75&nbsp;мм.</h2>
+          <p class="x-lead">В&nbsp;0X4Q стоит GP20&nbsp;Slim: 10 ядер из&nbsp;20. В&nbsp;0X4&nbsp;— полный: все двадцать, графика FIG&nbsp;Three и&nbsp;нейроядро на&nbsp;128&nbsp;TOPS. Впервые в&nbsp;телефоне.</p>
+          <div class="x-cores" aria-hidden="true" data-cores></div>
+          <p class="x-cores__k mono" aria-hidden="true"><span><i class="is-big"></i>4 больших до&nbsp;4,8&nbsp;ГГц</span><span><i class="is-mid"></i>8 средних</span><span><i class="is-low"></i>8 экономных</span></p>
+          <div class="x-bench">
+            <div class="x-bench__row"><span>AnTuTu 11</span><i style="--v: 100%"><b></b></i><span class="mono"><b>3&nbsp;512&nbsp;408</b></span></div>
+            <div class="x-bench__row is-other"><span>0X4Q, GP20 Slim</span><i style="--v: 84%"><b></b></i><span class="mono">2&nbsp;948&nbsp;622</span></div>
+            <div class="x-bench__row"><span>Через 20 минут игры</span><i style="--v: 81%"><b></b></i><span class="mono"><b>81&nbsp;%</b> пика</span></div>
+            <div class="x-bench__row is-other"><span>0X4Q через 20 минут</span><i style="--v: 93%"><b></b></i><span class="mono">93&nbsp;%</span></div>
+          </div>
+          <p class="x-small">Тонкость стоит градусов: долгую игру 0X4 тянет хуже 0X4Q, и&nbsp;мы так и&nbsp;пишем. Тепло разносит испарительная камера толщиной 0,25&nbsp;мм на&nbsp;6100&nbsp;мм² и&nbsp;графеновый лист. Модем&nbsp;— Fyr&nbsp;FM2 на&nbsp;том&nbsp;же кристалле.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CITADEL 6 SLIM: сейф толщиной 0,9 мм, «Водяной знак» -->
+    <section class="x x--citadel" id="citadel" aria-labelledby="citadel-title">
+      <div class="x-wrap x-split x-split--right">
+        <div class="x-split__text">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 08</span><span>Citadel 6 Slim</span><span>0,9 мм</span></p>
+          <h2 class="x-h2" id="citadel-title" data-split>Сейф толщиной 0,9&nbsp;мм.</h2>
+          <p class="x-lead">Citadel&nbsp;6&nbsp;Slim&nbsp;— отдельный компьютер для секретов: свой процессор на&nbsp;RISC-V, 256&nbsp;ГБ и&nbsp;своё питание 350&nbsp;мАч. Три кристалла сложены стопкой, чтобы уместиться под ячейкой.</p>
+          <div class="x-actions" data-mark>
+            <button type="button" class="x-btn" data-mark-act="reveal" aria-pressed="false">Проявить «Водяной знак»</button>
+            <button type="button" class="x-btn" data-mark-act="edit" aria-pressed="false">Подрисовать кадр</button>
+          </div>
+          <p class="x-small mono" data-mark-note>Каждый кадр Citadel подписывает прямо в&nbsp;камере. Нажмите «Проявить».</p>
+        </div>
+      </div>
+      <div class="x-wrap x-wrap--tight">
+        <ul class="x-feats" role="list">
+          <li data-reveal><b>«Водяной знак»</b><span>Подпись кадра в&nbsp;Citadel: любой может проверить, что фото снято этой камерой и&nbsp;не&nbsp;тронуто. Чужая подпись не&nbsp;подделывается.</span></li>
+          <li data-reveal><b>«Тонкий лёд»</b><span>Тензодатчики в&nbsp;рамке. Если спинку вскрывают, Citadel стирает ключи раньше, чем стекло отойдёт на&nbsp;миллиметр.</span></li>
+          <li data-reveal><b>«Чужая рука»</b><span>Телефон вырвали из&nbsp;руки на&nbsp;улице&nbsp;— через 0,3&nbsp;с он заблокирован, «Кошелёк» закрыт.</span></li>
+          <li data-reveal><b>«Мёртвая рука&nbsp;6»</b><span>Не&nbsp;подтверждали себя N&nbsp;дней&nbsp;— ключи уничтожены, доверенному контакту ушло письмо.</span></li>
+          <li data-reveal><b>«Кошелёк» и&nbsp;отпечаток</b><span>NFC-оплата и&nbsp;отпечаток живут в&nbsp;Citadel. «Тревожный палец» открывает пустой телефон.</span></li>
+          <li data-reveal><b>Загрузчик&nbsp;— ваш</b><span>Открывается и&nbsp;закрывается снова, как у&nbsp;0X0 и&nbsp;Butterfly.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. РУБИЛЬНИК: три положения на ребре в 4,75 мм -->
+    <section class="x x--switch" id="switch" aria-labelledby="switch-title">
+      <div class="x-wrap x-split">
+        <div class="x-split__text">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 09</span><span>Рубильник</span><span>ход 3,2 мм</span></p>
+          <h2 class="x-h2" id="switch-title" data-split>«Рубильник» влез.</h2>
+          <p class="x-lead">У&nbsp;H1 и&nbsp;Butterfly&nbsp;— у&nbsp;0X4 тоже. Красный язычок на&nbsp;левой грани, три положения. Не&nbsp;просьба к&nbsp;системе: Citadel&nbsp;6&nbsp;Slim обесточивает модули сама.</p>
+          <div class="x-switch" role="radiogroup" aria-label="Положение рубильника" data-sw>
+            <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1"><b>Вверх · «Эфир»</b><span>нет связи, Wi-Fi и&nbsp;геолокации</span></button>
+            <button type="button" role="radio" data-value="0" aria-checked="true"><b>Середина</b><span>всё включено</span></button>
+            <button type="button" role="radio" data-value="-1" aria-checked="false" tabindex="-1"><b>Вниз · «Тишина»</b><span>ещё и&nbsp;камеры с&nbsp;микрофонами</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. ФОНАРЬ -->
+    <section class="x x--torch" id="torch" aria-labelledby="torch-title">
+      <div class="x-wrap x-split x-split--right">
+        <div class="x-split__text">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 10</span><span>Фонарь</span><span>окно 1,6 мм</span></p>
+          <h2 class="x-h2" id="torch-title" data-split>Фонарь в&nbsp;щели на&nbsp;1,6&nbsp;мм.</h2>
+          <p class="x-lead">Сигнальный фонарь OY живёт на&nbsp;верхней грани с&nbsp;2027 года. В&nbsp;0X4 у&nbsp;него окно шириной в&nbsp;грифель. Красный видно за&nbsp;4000&nbsp;м&nbsp;— меньше, чем у&nbsp;0X0. Мы&nbsp;проверили, а&nbsp;не&nbsp;округлили.</p>
+          <div class="x-switch x-switch--row" role="radiogroup" aria-label="Режим фонаря" data-torch>
+            <button type="button" role="radio" data-value="off" aria-checked="true"><b>Выкл</b></button>
+            <button type="button" role="radio" data-value="white" aria-checked="false" tabindex="-1"><b>Белый</b></button>
+            <button type="button" role="radio" data-value="red" aria-checked="false" tabindex="-1"><b>Красный</b></button>
+            <button type="button" role="radio" data-value="sos" aria-checked="false" tabindex="-1"><b>SOS</b></button>
+          </div>
+          <p class="x-small mono" data-torch-note>Фонарь выключен. Нажмите «Красный».</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ЦВЕТА: тонкие вещи -->
+    <section class="x x--colors" id="colors" aria-labelledby="colors-title">
+      <div class="x-pin">
+        <div class="x-colors">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 11</span><span>Цвета</span><span>4 шт.</span></p>
+          <h2 class="x-h2" id="colors-title" data-split>Четыре тонкие вещи.</h2>
+          <p class="x-lead" data-color-note>«Грифель». Тёмный графит, как сердцевина карандаша, и&nbsp;сатиновый титан.</p>
+          <div class="x-swatches" role="radiogroup" aria-label="Цвет" data-colors>
+            <button type="button" role="radio" data-value="grifel" aria-checked="true" style="--sw: linear-gradient(135deg, #26282B 60%, #55585D 61%)"><i></i><span>Грифель</span></button>
+            <button type="button" role="radio" data-value="list" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #E7E3DA 60%, #C9CACC 61%)"><i></i><span>Лист</span></button>
+            <button type="button" role="radio" data-value="folga" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #D2BC92 60%, #C4A872 61%)"><i></i><span>Фольга</span></button>
+            <button type="button" role="radio" data-value="nast" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #BCCFDC 60%, #A6B5C1 61%)"><i></i><span>Наст</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. КУПИТЬ -->
+    <section class="x x--buy" id="buy" aria-labelledby="buy-title">
+      <div class="x-wrap x-buy">
+        <div class="x-buy__head">
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 12</span><span>Купить</span><span>осень 2032</span></p>
+          <h2 class="x-h2" id="buy-title" data-split>Одно поколение. Два&nbsp;города.</h2>
+          <p class="x-lead">0X4Q собрали люди OY в&nbsp;амбаре под Парижем. 0X4&nbsp;— второй OY, который сделала Fyr в&nbsp;Стокгольме, после Butterfly. Осень 2032&nbsp;года: Швеция, Евросоюз, США и&nbsp;Канада в&nbsp;один день. В&nbsp;Китае 0X4 нет: там телефоны OY продаёт XZF.</p>
+          <p class="x-small">А&nbsp;где 0X3? Его не&nbsp;было. В&nbsp;третьем поколении вышел только 0X3&nbsp;Essential&nbsp;— на&nbsp;своей странице он пишется «0X03».</p>
+          <ul class="x-box" role="list">
+            <li>Телефон и&nbsp;кабель USB-C</li>
+            <li>Блок 45&nbsp;Вт толщиной 9&nbsp;мм</li>
+            <li>Чехол-обложка 0,6&nbsp;мм</li>
+            <li>Скрепки нет: лотка для&nbsp;SIM тоже. Только eSIM</li>
+          </ul>
+        </div>
+        <div class="x-buy__panel">
+          <p class="x-buy__k mono">Где</p>
+          <div class="x-tabs" role="radiogroup" aria-label="Страна" data-cur>
+            <button type="button" role="radio" data-value="usd" aria-checked="true">США</button>
+            <button type="button" role="radio" data-value="cad" aria-checked="false" tabindex="-1">Канада</button>
+            <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">Евросоюз</button>
+            <button type="button" role="radio" data-value="sek" aria-checked="false" tabindex="-1">Швеция</button>
+          </div>
+          <p class="x-buy__k mono">Память</p>
+          <div class="x-mem" role="radiogroup" aria-label="Память" data-mem>
+            <button type="button" role="radio" data-value="12/256" data-usd="799" data-eur="899" data-cad="1099" data-sek="8990" aria-checked="true"><b>256&nbsp;ГБ</b><span>12&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="12/512" data-usd="899" data-eur="999" data-cad="1229" data-sek="9990" aria-checked="false" tabindex="-1"><b>512&nbsp;ГБ</b><span>12&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="16/1024" data-usd="1049" data-eur="1169" data-cad="1429" data-sek="11690" aria-checked="false" tabindex="-1"><b>1&nbsp;ТБ</b><span>16&nbsp;ГБ ОЗУ</span></button>
+          </div>
+          <p class="x-buy__k mono">Цвет: <span data-buy-color>Грифель</span></p>
+          <div class="x-swatches x-swatches--sm" role="radiogroup" aria-label="Цвет" data-colors-buy>
+            <button type="button" role="radio" data-value="grifel" aria-checked="true" aria-label="Грифель" style="--sw: linear-gradient(135deg, #26282B 60%, #55585D 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="list" aria-checked="false" tabindex="-1" aria-label="Лист" style="--sw: linear-gradient(135deg, #E7E3DA 60%, #C9CACC 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="folga" aria-checked="false" tabindex="-1" aria-label="Фольга" style="--sw: linear-gradient(135deg, #D2BC92 60%, #C4A872 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="nast" aria-checked="false" tabindex="-1" aria-label="Наст" style="--sw: linear-gradient(135deg, #BCCFDC 60%, #A6B5C1 61%)"><i></i></button>
+          </div>
+          <p class="x-total"><span class="mono" data-total-k>Итого · США</span><b data-total>$799</b></p>
+          <p class="x-small mono" data-total-hex>Fyr пишет: 0x31F $</p>
+          <button type="button" class="btn btn--accent btn--wide" data-buy>Купить</button>
+          <p class="x-small x-small--center">Купить здесь нельзя: это концепт. Но&nbsp;чертёж настоящий.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. ХАРАКТЕРИСТИКИ КОРОТКО -->
+    <section class="x x--specs" id="specs" aria-labelledby="specs-title">
+      <div class="x-wrap">
+        <header class="x-head x-head--center">
+          <h2 class="x-h2" id="specs-title" data-split>OY 0X4. Коротко.</h2>
+        </header>
+        <dl class="x-specs">
+          <div><dt>Корпус</dt><dd>151,2 × 71,6 × 5,75&nbsp;мм (7,65&nbsp;мм по&nbsp;островку), 170&nbsp;г, титан и&nbsp;стекло, IP68</dd></div>
+          <div><dt>Экран</dt><dd>6,3″ LTPO AMOLED, плоский, 1220 × 2652, 1–144&nbsp;Гц, 0,5–4400&nbsp;нит</dd></div>
+          <div><dt>Процессор</dt><dd>Fyr GP20: 2&nbsp;нм, 20 ядер, FIG&nbsp;Three, 128&nbsp;TOPS; модем Fyr&nbsp;FM2</dd></div>
+          <div><dt>Камеры</dt><dd>200&nbsp;Мп с&nbsp;2× и&nbsp;4× оптического качества, 50&nbsp;Мп сверхширокая с&nbsp;макро от&nbsp;2,5&nbsp;см; фронтальная 18&nbsp;Мп</dd></div>
+          <div><dt>Безопасность</dt><dd>Citadel&nbsp;6&nbsp;Slim, «Рубильник» на&nbsp;три положения, отпечаток в&nbsp;кнопке</dd></div>
+          <div><dt>Питание</dt><dd>4000&nbsp;мАч, 45&nbsp;Вт, XMagnum 25&nbsp;Вт</dd></div>
+          <div><dt>Память</dt><dd>12/256, 12/512, 16/1024&nbsp;ГБ, UFS&nbsp;4.1</dd></div>
+          <div><dt>Связь</dt><dd>5G, спутник: сообщения и&nbsp;SOS, Wi-Fi&nbsp;7, только eSIM</dd></div>
+          <div><dt>Система</dt><dd>CamelOS&nbsp;2.5, 8 лет обновлений, 26 месяцев гарантии</dd></div>
+        </dl>
+        <a class="btn btn--accent x-specs__all" href="/0x4/specs/">Все характеристики</a>
+      </div>
+    </section>
+
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">TSMC&nbsp;— Taiwan Semiconductor Manufacturing Company; AnTuTu&nbsp;— товарный знак своего владельца. Результаты GP20 вымышлены, как и&nbsp;сам телефон.</li>
+          <li id="fn-2">Толщина&nbsp;— по&nbsp;корпусу, без островка камер. Диагональ экрана измерена по&nbsp;прямоугольнику; из-за скруглённых углов видимая площадь меньше: 6,25″.</li>
+          <li id="fn-3">Время работы&nbsp;— замеры Fyr на&nbsp;CamelOS&nbsp;2.5 при яркости 200&nbsp;нит. Ваш день будет другим.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <p class="transit-plate"><b>Переходный период</b> <span>Марка OY у&nbsp;Fyr; 0X4 сделала Fyr в&nbsp;Стокгольме. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr. В&nbsp;Китае телефоны OY продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · начерчено в&nbsp;Стокгольме</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X4 · осень 2032 · Швеция, Евросоюз, США, Канада · <a href="/0x4/specs/">Характеристики</a> · <a href="/0x4q/">0X4Q</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X4, Citadel&nbsp;6&nbsp;Slim, Fyr, Fyr GP20, CamelOS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Эта страница ничего не&nbsp;считает. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

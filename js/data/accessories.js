@@ -15,7 +15,7 @@ export const DEVICES = {
   kbook: { name: 'Fyr KBook 1', short: 'KBook 1', group: 'fyr' },
   butterfly: { name: 'OY 0X Butterfly', short: '0X Butterfly', group: 'oy' },
   '0x3e': { name: 'OY 0X3 Essential', short: '0X3 Essential', group: 'oy' },
-  '0x2': { name: 'OY 0X2', short: '0X2', group: 'oy' },
+  '0x2': { name: 'OY 0X2', short: '0X2', group: 'old' },
   moth2: { name: 'OY 0X Moth 2', short: '0X Moth 2', group: 'oy' },
   '0x2pro': { name: 'OY 0X2 Pro', short: '0X2 Pro', group: 'oy' },
   nova: { name: 'OY 0X Nova', short: '0X Nova', group: 'oy' },
