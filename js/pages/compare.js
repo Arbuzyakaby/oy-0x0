@@ -169,7 +169,7 @@ const SECTIONS = [...new Set(COMPARE.map((r) => r[0]))].filter((s) => s !== 'Ц�
 /* ---------- Колонки ---------- */
 
 const START = (params.get('models') || '').split(',').filter((id) => PRODUCTS[id]);
-const picks = [0, 1, 2].map((i) => START[i] || ['0x2', '0x2pro', 'nova'][i]);
+const picks = [0, 1, 2].map((i) => START[i] || ['0x4', '0x4q', 'butterfly'][i]);
 const colorOf = {};
 const cols = $$('.cx-col');
 const stages = [];
