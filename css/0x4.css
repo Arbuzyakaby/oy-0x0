@@ -442,3 +442,12 @@ html.x-dark .x--torch .x-stamp span { border-color: #F4F6FF; }
   .x-profiles li { opacity: 1; transform: none; }
 }
 .x-sp__mono { font-family: var(--mono); font-size: 13px; }
+
+/* ---------- Снят с продажи: плашка и карточка преемника ---------- */
+
+.disc-plate { display: inline-flex; align-items: center; gap: 8px; justify-self: start; margin: 0 0 14px; padding: 6px 12px; border: 1.5px solid var(--fg); background: var(--paper); font-size: 12px; letter-spacing: .04em; color: var(--fg); }
+.disc-plate::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--signal); }
+.disc-plate a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.x-hero .disc-plate { margin: 0; }
+.x-buy__panel--disc .x-total { margin-top: 0; padding-top: 0; border-top: 0; }
+.x-buy__panel--disc .btn--wide { margin-top: 18px; }

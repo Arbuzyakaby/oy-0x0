@@ -131,6 +131,11 @@
 .pick--butterfly .pick__list li::before { background: #7FA8FF; }
 .pick--butterfly .btn--accent { background: #7FA8FF; color: #05060B; box-shadow: 0 10px 40px -10px rgba(127, 168, 255, .5); }
 @media (min-width: 900px) { .choose__grid--6 .pick--butterfly .pick__list { columns: 2; column-gap: 32px; } }
+/* 0X5 — два сердца: тёмный экран монитора, зелёная и голубая кардиограммы */
+.choose__grid--6 .pick--0x5 { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120' preserveAspectRatio='none'%3E%3Cpath d='M0 40h120l8-14 8 30 10-44 8 34 6-6h240' fill='none' stroke='%236CFF9E' stroke-opacity='.35' stroke-width='2'/%3E%3Cpath d='M0 92h200l7-10 7 22 9-30 7 24 5-6h165' fill='none' stroke='%236CD8FF' stroke-opacity='.3' stroke-width='2'/%3E%3C/svg%3E") center / 100% 100% no-repeat, linear-gradient(rgba(108, 255, 158, .07) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(90deg, rgba(108, 255, 158, .07) 1px, transparent 1px) 0 0 / 24px 24px, #04080A; border-color: rgba(108, 255, 158, .45); color: #E6F1EC; }
+.pick--0x5 .pick__lead, .pick--0x5 .pick__list li, .pick--0x5 .muted { color: #9FB4AC; }
+.pick--0x5 .pick__list li::before { background: #6CFF9E; }
+.pick--0x5 .btn--accent { background: #6CFF9E; color: #031008; box-shadow: 0 10px 40px -10px rgba(108, 255, 158, .5); }
 /* 0X4 — пять семьдесят пять: во всю ширину, чертёж на миллиметровке */
 .choose__grid--6 .pick--0x4 { background: linear-gradient(rgba(43, 69, 216, .1) 1px, transparent 1px) 0 0 / 40px 40px, linear-gradient(90deg, rgba(43, 69, 216, .1) 1px, transparent 1px) 0 0 / 40px 40px, #F3F2EE; border-color: rgba(43, 69, 216, .45); color: #121316; }
 .pick--0x4 .pick__lead, .pick--0x4 .pick__list li, .pick--0x4 .muted { color: #55575D; }

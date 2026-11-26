@@ -276,7 +276,7 @@ test('ни юаней, ни eXtream: ни на одной странице, ни
   assert.match(read('index.html'), /eXtream продан XZF/);
 });
 
-test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все смартфоны OY, часы и ноутбук, Butterfly, 0X4Q и 0X4 — из коробки', () => {
+test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все смартфоны OY, часы и ноутбук, Butterfly, 0X4Q, 0X4 и 0X5 — из коробки', () => {
   const html = read('os/index.html');
   assert.match(html, /class="cm-page"/);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
@@ -291,7 +291,7 @@ test('CamelOS 2.0: одна система Fyr без аккаунта и обл
   // все смартфоны OY, которые когда-либо выходили, и оба устройства Fyr — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS);
-  assert.equal(phones.length, 17);
+  assert.equal(phones.length, 18);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке CamelOS 2.0`);
   for (const href of ['/fyr/', '/fyr/kbook/']) assert.ok(all.includes(`href="${href}"`), href);
   // в шапке всех страниц раздел называется CamelOS
@@ -424,7 +424,7 @@ test('страница /0x4q/specs/: все разделы, одна h1, огл�
   assert.ok(html.includes('data-only="eu"') && html.includes('data-only="na"') && html.includes('data-ver-switch'));
 });
 
-test('страница /0x4/: чертёж на миллиметровке — главы по порядку, одна h1, якоря и риски штангенциркуля сходятся, цвета и память из данных', () => {
+test('страница /0x4/: чертёж на миллиметровке — главы по порядку, одна h1, якоря и риски штангенциркуля сходятся, цвета из данных; снят с продажи — карточка 0X5 вместо калькулятора', () => {
   const html = read('0x4/index.html');
   const chapters = [...html.matchAll(/<section class="x x--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(chapters, ['hero', 'profile', 'stack', 'layers', 'battery', 'camera', 'chip', 'citadel', 'switch', 'torch', 'colors', 'buy', 'specs']);
@@ -433,7 +433,8 @@ test('страница /0x4/: чертёж на миллиметровке — �
   for (const [, tick] of html.matchAll(/data-tick="([^"]+)"/g)) assert.ok(ids.has(tick), `риска ${tick}`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   for (const c of Object.keys(PRODUCTS['0x4'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
-  for (const c of PRODUCTS['0x4'].configs) assert.ok(html.includes(`data-value="${c.id}" data-usd="${c.usd}" data-eur="${c.eur}"`), c.id);
+  assert.ok(!html.includes('data-mem'), 'калькулятор снятого 0X4 остался');
+  assert.match(html, /был от<\/span> <b>\$799/);
   // восемь слоёв разреза складываются ровно в 5,75 мм
   const layers = [...html.matchAll(/<li style="--t: ([\d.]+)" data-k=/g)].map((m) => Number(m[1]));
   assert.equal(layers.length, 8);
@@ -444,7 +445,8 @@ test('страница /0x4/: чертёж на миллиметровке — �
   assert.ok(existsSync(join(ROOT, 'models', 'oy0x4.glb')));
   assert.ok(existsSync(join(ROOT, 'og-0x4.jpg')));
   assert.ok(read('os/index.html').includes('href="/0x4/"'), '0X4 нет в списке CamelOS');
-  assert.ok(read('index.html').includes('data-model="0x4"'), '0X4 нет на витрине');
+  assert.ok(!read('index.html').includes('data-model="0x4"'), 'снятый 0X4 остался на витрине');
+  assert.ok(read('index.html').includes('href="/0x4/"'), '0X4 нет в списке снятых на главной');
 });
 
 test('страница /0x4/specs/: все листы, одна h1, оглавление сходится, цены из данных', () => {
@@ -455,4 +457,40 @@ test('страница /0x4/specs/: все листы, одна h1, оглавл
   const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
   for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
   for (const c of PRODUCTS['0x4'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
+});
+
+test('страница /0x5/: кардиомонитор — двенадцать глав-отведений, одна h1, якоря и удары кардиограммы сходятся, цвета и память из данных', () => {
+  const html = read('0x5/index.html');
+  const chapters = [...html.matchAll(/<section class="v v--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['hero', 'anatomy', 'homes', 'relay', 'thin', 'camera', 'graphics', 'tesseract', 'switch', 'torch', 'colors', 'buy', 'specs']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  const ticks = [...html.matchAll(/data-tick="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(ticks.length, 12);
+  for (const t of ticks) assert.ok(ids.has(t), `удар ${t}`);
+  // двенадцать отведений ЭКГ подписывают главы
+  const leads = [...html.matchAll(/class="v-(?:lead-)?ch mono" aria-hidden="true"><b>([^<]+)<\/b>/g)].map((m) => m[1]);
+  assert.deepEqual(leads, ['I', 'II', 'III', 'aVR', 'aVL', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const c of Object.keys(PRODUCTS['0x5'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
+  for (const c of PRODUCTS['0x5'].configs) assert.ok(html.includes(`data-value="${c.id}" data-usd="${c.usd}" data-eur="${c.eur}"`), c.id);
+  for (const z of ['0.5', '1', '2', '5', '10', 'macro']) assert.ok(html.includes(`data-value="${z}"`), `зум ${z}`);
+  for (const re of [/Два сердца/, /GP30&nbsp;Duo/, /OY&nbsp;Vitals/, /FIG&nbsp;Four/, /Tesseract&nbsp;5/, /«Только Дом»/, /data-hack/, /data-defib/, /data-rt/, /6,1&nbsp;мм/]) assert.match(html, re);
+  assert.ok(html.includes('href="/0x5/specs/"'));
+  assert.ok(existsSync(join(ROOT, 'models', 'oy0x5.glb')));
+  assert.ok(existsSync(join(ROOT, 'og-0x5.jpg')));
+  assert.ok(read('os/index.html').includes('href="/0x5/"'), '0X5 нет в списке CamelOS');
+  assert.ok(read('index.html').includes('data-model="0x5"'), '0X5 нет на витрине');
+});
+
+test('страница /0x5/specs/: все разделы, одна h1, оглавление сходится, цены из данных, «Мир» и «Дом» расписаны отдельно', () => {
+  const html = read('0x5/specs/index.html');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  const rows = [...html.matchAll(/<section class="v-sp__row" id="([^"]+)"/g)].map((m) => m[1]);
+  for (const id of ['capacity', 'size', 'section', 'water', 'display', 'vitals', 'map', 'graphics', 'camera', 'video', 'front', 'power', 'security', 'switch', 'peace', 'cellular', 'location', 'buttons', 'sensors', 'sim', 'wallet', 'calls', 'media', 'os', 'a11y', 'apps', 'environment', 'box']) assert.ok(rows.includes(id), id);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const c of PRODUCTS['0x5'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
+  assert.match(html, /«Мир» · наверху/);
+  assert.match(html, /«Дом» · внизу/);
 });

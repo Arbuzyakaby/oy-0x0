@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="ru" data-x5 data-color="puls">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X5 — два сердца</title>
+  <meta name="description" content="OY 0X5 — базовый флагман пятого поколения и первый OY, который сделали оба города. Система OY Vitals: два процессора Fyr GP30 Duo — «Мир» для сети и приложений, «Дом» для ваших данных, без единой линии к модему. Графика FIG Four, Tesseract 5, три камеры с перископом 5×, 6,1 мм. От $849. Концепт.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#04080A">
+  <link rel="canonical" href="https://oy0x.online/0x5/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x5/">
+  <meta property="og:title" content="OY 0X5 — два сердца">
+  <meta property="og:description" content="Два процессора GP30 Duo: одно сердце — для мира, другое — для вас. OY Vitals, FIG Four, Tesseract 5, три камеры, 6,1 мм. От $849. Концепт.">
+  <meta property="og:image" content="https://oy0x.online/og-0x5.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OY 0X5 цвета «Пульс» на тёмном мониторе с двумя кардиограммами: «Мир» и «Дом»">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2304080A'/%3E%3Cpath d='M4 24h12l4-8 5 16 5-20 4 12h26' fill='none' stroke='%236CFF9E' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M4 46h14l3-5 4 10 4-13 3 8h28' fill='none' stroke='%236CD8FF' stroke-width='3.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
+  <link rel="stylesheet" href="/css/core.css?v=ab2ab23689">
+  <link rel="stylesheet" href="/css/0x5.css?v=9d38e652db">
+  <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=836b7d6c0f",
+      "/js/data/products.js": "/js/data/products.js?v=54cdbba114",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
+      "/js/models/fyrh1.js": "/js/models/fyrh1.js?v=cd8e7d3a55",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=27e0885289",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oy0x4.js": "/js/models/oy0x4.js?v=f8652e989d",
+      "/js/models/oy0x4q.js": "/js/models/oy0x4q.js?v=e13ee7e681",
+      "/js/models/oy0x5.js": "/js/models/oy0x5.js?v=d453bdcbf9",
+      "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=3cb6753b62",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=58af31bffb",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=011fcc2bd9",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=32504e740d",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4c33d835a2",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=dd6052c460",
+      "/js/pages/0x4.js": "/js/pages/0x4.js?v=5a36989c0d",
+      "/js/pages/0x4q.js": "/js/pages/0x4q.js?v=cc97149bba",
+      "/js/pages/0x5.js": "/js/pages/0x5.js?v=29d0841133",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=7fa6737a96",
+      "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
+      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
+      "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=7800be84e0",
+      "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
+      "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=89f792cb34",
+      "/js/pages/home.js": "/js/pages/home.js?v=38b17216f9",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=308e117d8e",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-x5-color');if(/^(puls|night|phosphor|coat)$/.test(c))document.documentElement.dataset.color=c}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x5.js?v=29d0841133"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: прямая линия, писк — первый удар -->
+  <div class="loader v-loader" id="loader" role="status" aria-live="polite">
+    <svg class="v-loader__ecg" viewBox="0 0 240 60" aria-hidden="true"><path d="M0 30h80l8-12 8 26 10-38 8 30 6-6h120"/></svg>
+    <span class="loader__label mono">Запускаем сердца…</span>
+  </div>
+
+  <!-- Фон: экран кардиомонитора — сетка, две кардиограммы, развёртка -->
+  <div class="v-bg" aria-hidden="true"><i class="v-bg__grid"></i></div>
+  <canvas class="v-monitor" id="monitor" aria-hidden="true"></canvas>
+  <div class="v-scan" aria-hidden="true"></div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+  <div class="v-night" data-dark aria-hidden="true"></div>
+  <div class="v-flash" data-flash aria-hidden="true"></div>
+
+  <header class="site-header v-header" id="top">
+    <a class="brand" href="/" aria-label="Fyr и телефоны OY — на главную">
+      <svg class="brand__fyr" viewBox="0 0 46 30" aria-hidden="true"><path class="brand__fyr-beam" d="M23 6L42 0.5V11.5Z"/><path d="M8 24V10a4 4 0 0 1 4-4h3M4 13h9M19 12v6a4 4 0 0 0 8 0M27 12v12a4 4 0 0 1-7.4 2.2M34 24v-8a4 4 0 0 1 4-4h3"/><circle class="brand__fyr-lamp" cx="23" cy="6" r="1.8"/></svg><span class="brand__sep" aria-hidden="true">/</span><svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
+      <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
+      <a class="site-nav__fyr" href="/fyr/h1/">H1</a>
+      <a href="/0x3e/">0X3 Essential</a>
+      <a href="/0x4q/">0X4Q</a>
+      <a href="/moth2/">0X Moth 2</a>
+      <a href="/0x5/" aria-current="page">0X5</a>
+      <a href="/0x2pro/">0X2 Pro</a>
+      <a href="/nova/">0X Nova</a>
+      <a href="/butterfly/">0X Butterfly</a>
+      <a href="/os/">CamelOS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+    <a class="btn btn--accent btn--sm v-header__buy" href="#buy">от $849</a>
+  </header>
+
+  <!-- Показания: два сердца, как на прикроватном мониторе -->
+  <aside class="v-hud mono" aria-label="Показания OY Vitals" data-hud>
+    <div class="v-hud__row is-world" data-hud-world><b>МИР</b><span class="v-hud__bpm"><i aria-hidden="true">♥</i><em data-hud-bpm="world">72</em></span><span data-hud-ghz="world">3,9 ГГц</span><span data-hud-temp="world">36 °C</span></div>
+    <div class="v-hud__row is-home" data-hud-home><b>ДОМ</b><span class="v-hud__bpm"><i aria-hidden="true">♥</i><em data-hud-bpm="home">58</em></span><span data-hud-ghz="home">2,1 ГГц</span><span data-hud-temp="home">31 °C</span></div>
+  </aside>
+
+  <!-- Прогресс: кардиограмма страницы — каждая глава — удар -->
+  <nav class="v-strip" aria-label="Главы страницы" data-strip>
+    <svg class="v-strip__svg" viewBox="0 0 1000 44" preserveAspectRatio="none" aria-hidden="true">
+      <defs><clipPath id="v-strip-clip"><rect data-strip-clip x="0" y="0" width="0" height="44"/></clipPath></defs>
+      <path class="v-strip__base" data-strip-path d=""/>
+      <path class="v-strip__live" data-strip-path clip-path="url(#v-strip-clip)" d=""/>
+      <line class="v-strip__head" data-strip-head x1="0" x2="0" y1="2" y2="42"/>
+    </svg>
+    <ol class="v-strip__ticks" role="list">
+      <li><a href="#hero" data-tick="hero"><span>I · Два сердца</span></a></li>
+      <li><a href="#anatomy" data-tick="anatomy"><span>II · Анатомия</span></a></li>
+      <li><a href="#homes" data-tick="homes"><span>III · Мир и Дом</span></a></li>
+      <li><a href="#relay" data-tick="relay"><span>aVR · Эстафета</span></a></li>
+      <li><a href="#thin" data-tick="thin"><span>aVL · 6,1&nbsp;мм</span></a></li>
+      <li><a href="#camera" data-tick="camera"><span>aVF · Камеры</span></a></li>
+      <li><a href="#graphics" data-tick="graphics"><span>V1 · FIG Four</span></a></li>
+      <li><a href="#tesseract" data-tick="tesseract"><span>V2 · Tesseract&nbsp;5</span></a></li>
+      <li><a href="#switch" data-tick="switch"><span>V3 · Рубильник</span></a></li>
+      <li><a href="#torch" data-tick="torch"><span>V4 · Фонарь</span></a></li>
+      <li><a href="#colors" data-tick="colors"><span>V5 · Цвета</span></a></li>
+      <li><a href="#buy" data-tick="buy"><span>V6 · Купить</span></a></li>
+    </ol>
+  </nav>
+
+  <main id="main">
+    <!-- I. ДВА СЕРДЦА: телефон появляется с ударом, кардиограммы стартуют -->
+    <section class="v v--hero" id="hero" aria-labelledby="hero-title">
+      <div class="v-mega" aria-hidden="true">
+        <svg class="v-mega__ecg" viewBox="0 0 1200 300" preserveAspectRatio="none"><path data-mega-path d="M0 150H1200"/></svg>
+      </div>
+      <div class="v-hero">
+        <p class="v-lead-ch mono" aria-hidden="true"><b>I</b><span>OY Vitals</span><span>25&nbsp;мм/с</span></p>
+        <h1 class="v-hero__title" id="hero-title">
+          <span class="v-hero__model">OY 0X5 <span class="mono">5th Gen</span></span>
+          <span class="v-hero__big" data-split>Два сердца.</span>
+        </h1>
+        <p class="v-hero__lead">Внутри 0X5 два процессора Fyr&nbsp;GP30&nbsp;Duo. Одно сердце&nbsp;— для мира: сеть, приложения, игры. Другое&nbsp;— для вас: фото, сообщения, ключи. Ко&nbsp;второму не&nbsp;ведёт ни&nbsp;одна линия от&nbsp;модема. Это OY&nbsp;Vitals.</p>
+        <div class="v-hero__buy">
+          <p class="v-price"><span>от</span> <b>$849</b> <span class="mono">· €949 · 9&nbsp;490&nbsp;kr · C$1149</span></p>
+          <a class="btn btn--accent" href="#buy">Купить</a>
+          <a class="btn btn--ghost" href="/0x5/specs/">Характеристики</a>
+        </div>
+      </div>
+      <a class="v-scroll mono" href="#anatomy"><span>Листайте. Слушайте пульс</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <!-- II. АНАТОМИЯ: рентген телефона, органы загораются по прокрутке -->
+    <section class="v v--anatomy" id="anatomy" aria-labelledby="anatomy-title">
+      <div class="v-pin">
+        <div class="v-anat">
+          <div class="v-anat__text">
+            <p class="v-ch mono" aria-hidden="true"><b>II</b><span>Анатомия</span><span>рентген</span></p>
+            <h2 class="v-h2" id="anatomy-title" data-split>Снимок, который не&nbsp;делают телефонам.</h2>
+            <ol class="v-anat__list" role="list" data-anat-list>
+              <li data-step="world"><b>«Мир»</b><span>GP30 на&nbsp;18 ядер, графика FIG&nbsp;Four, модем FM3. Наверху, у&nbsp;камер.</span></li>
+              <li data-step="modem"><b>Модем и&nbsp;антенны</b><span>Подключены только к&nbsp;«Миру». Десять антенн в&nbsp;рамке.</span></li>
+              <li data-step="aorta"><b>«Аорта»</b><span>Единственная шина между сердцами. По&nbsp;ней ходит только шифр.</span></li>
+              <li data-step="home"><b>«Дом»</b><span>GP30 на&nbsp;12 ядер. Внизу, у&nbsp;USB-C. Ни&nbsp;одной дорожки к&nbsp;радио.</span></li>
+              <li data-step="tess"><b>Tesseract&nbsp;5</b><span>Рядом с&nbsp;«Домом». Держит ключи и&nbsp;«Клапан» на&nbsp;«Аорте».</span></li>
+              <li data-step="cell"><b>Ячейка 4400&nbsp;мАч</b><span>Посередине, между сердцами: тепло расходится к&nbsp;двум концам.</span></li>
+              <li data-step="peri"><b>«Плоский перископ»</b><span>Призма лежит поперёк корпуса&nbsp;— поэтому 5× поместился в&nbsp;6,1&nbsp;мм.</span></li>
+            </ol>
+          </div>
+          <figure class="v-xray" aria-hidden="true" data-xray>
+            <svg viewBox="0 0 300 620">
+              <defs>
+                <radialGradient id="xr-glow"><stop offset="0" stop-color="currentColor" stop-opacity=".55"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></radialGradient>
+              </defs>
+              <rect class="xr-body" x="10" y="10" width="280" height="600" rx="48"/>
+              <rect class="xr-screen" x="22" y="22" width="256" height="576" rx="38"/>
+              <g data-part="cams"><circle class="xr-part" cx="78" cy="78" r="26"/><circle class="xr-part" cx="158" cy="78" r="26"/><rect class="xr-part" x="102" y="128" width="32" height="32" rx="6" transform="rotate(45 118 144)"/></g>
+              <g data-part="peri"><rect class="xr-part" x="40" y="132" width="200" height="24" rx="6"/><text x="140" y="184" class="xr-k">перископ · призма поперёк</text></g>
+              <g data-part="world" class="xr-heart xr-heart--world"><circle cx="150" cy="232" r="70" fill="url(#xr-glow)"/><rect class="xr-chip" x="108" y="198" width="84" height="68" rx="10"/><text x="150" y="236" class="xr-t">МИР</text></g>
+              <g data-part="modem"><rect class="xr-part" x="214" y="206" width="44" height="40" rx="6"/><text x="236" y="230" class="xr-k">FM3</text><path class="xr-ant" d="M12 70v80M288 70v80M12 470v80M288 470v80"/><path class="xr-wire" d="M192 226h22"/></g>
+              <g data-part="cell"><rect class="xr-part xr-cell" x="40" y="290" width="220" height="180" rx="14"/><text x="150" y="386" class="xr-k">4400 мАч · 3,1 мм</text></g>
+              <g data-part="aorta"><path class="xr-aorta" d="M150 266V500"/><circle class="xr-pulse" r="6" cx="150" cy="266"/></g>
+              <g data-part="home" class="xr-heart xr-heart--home"><circle cx="150" cy="532" r="62" fill="url(#xr-glow)"/><rect class="xr-chip" x="112" y="500" width="76" height="60" rx="10"/><text x="150" y="534" class="xr-t">ДОМ</text></g>
+              <g data-part="tess"><rect class="xr-part xr-tess" x="40" y="506" width="56" height="48" rx="8"/><text x="68" y="534" class="xr-k">T5</text><path class="xr-wire" d="M96 530h16"/><path class="xr-valve" d="M138 488h24"/></g>
+              <rect class="xr-port" x="126" y="600" width="48" height="10" rx="5"/>
+            </svg>
+            <figcaption class="v-xray__cap mono" data-xray-cap>OY 0X5 · вид сквозь экран</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- III. МИР И ДОМ: где что живёт; «Взломать Мир» и «Дефибриллятор» -->
+    <section class="v v--homes" id="homes" aria-labelledby="homes-title">
+      <div class="v-wrap v-split v-split--right">
+        <div class="v-split__text">
+          <p class="v-ch mono" aria-hidden="true"><b>III</b><span>Мир и&nbsp;Дом</span><span>×2</span></p>
+          <h2 class="v-h2" id="homes-title" data-split>Взломают мир. В&nbsp;дом не&nbsp;войдут.</h2>
+          <p class="v-lead">Браузер, приложения и&nbsp;сеть живут в&nbsp;«Мире». Всё, что про вас,&nbsp;— в&nbsp;«Доме». Если в&nbsp;«Мир» проберутся, у&nbsp;них будет процессор без ваших данных и&nbsp;шина, по&nbsp;которой ходит только шифр.</p>
+          <div class="v-where">
+            <p class="v-k mono">Где живёт</p>
+            <div class="v-chips" role="radiogroup" aria-label="Что выбрать" data-where>
+              <button type="button" role="radio" data-value="msg" aria-checked="true">Сообщение</button>
+              <button type="button" role="radio" data-value="photo" aria-checked="false" tabindex="-1">Фото</button>
+              <button type="button" role="radio" data-value="browser" aria-checked="false" tabindex="-1">Браузер</button>
+              <button type="button" role="radio" data-value="game" aria-checked="false" tabindex="-1">Игра</button>
+              <button type="button" role="radio" data-value="ai" aria-checked="false" tabindex="-1">«Погонщик»</button>
+              <button type="button" role="radio" data-value="pay" aria-checked="false" tabindex="-1">Оплата</button>
+            </div>
+            <p class="v-where__path mono" aria-live="polite" data-where-path></p>
+          </div>
+          <div class="v-scope" data-scope>
+            <div class="v-scope__row is-world"><span class="v-scope__name mono">МИР · GP30</span><canvas class="v-scope__cv" data-scope-cv="world" aria-hidden="true"></canvas><span class="v-scope__st mono" data-scope-st="world">ритм ровный</span></div>
+            <div class="v-scope__aorta mono" data-aorta><i aria-hidden="true"></i><span data-aorta-k>аорта · только шифр</span></div>
+            <div class="v-scope__row is-home"><span class="v-scope__name mono">ДОМ · GP30</span><canvas class="v-scope__cv" data-scope-cv="home" aria-hidden="true"></canvas><span class="v-scope__st mono" data-scope-st="home">ритм ровный</span></div>
+          </div>
+          <div class="v-actions">
+            <button type="button" class="v-btn v-btn--alarm" data-hack>Взломать «Мир»</button>
+            <button type="button" class="v-btn" data-defib disabled>⚡ Дефибриллятор</button>
+          </div>
+          <p class="v-small mono" aria-live="polite" data-hack-note>Попробуйте. Это не&nbsp;ваш телефон, ему не&nbsp;больно.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- aVR. ЭСТАФЕТА: тепло двух сердец против одного -->
+    <section class="v v--relay" id="relay" aria-labelledby="relay-title">
+      <div class="v-wrap v-split">
+        <div class="v-split__text">
+          <p class="v-ch mono" aria-hidden="true"><b>aVR</b><span>Эстафета</span><span>20&nbsp;мин</span></p>
+          <h2 class="v-h2" id="relay-title" data-split>Два сердца остывают по&nbsp;очереди.</h2>
+          <p class="v-lead">У&nbsp;0X4 одно сердце, и&nbsp;через 20 минут игры оно сбрасывает частоту до&nbsp;81&nbsp;% пика. В&nbsp;0X5 сердца стоят на&nbsp;двух концах платы, и&nbsp;«Мир» отдаёт «Дому» фоновую работу. Личный раздел «Дома» на&nbsp;это время заперт.</p>
+          <div class="v-relay">
+            <div class="v-chips" role="radiogroup" aria-label="Сколько сердец" data-hearts>
+              <button type="button" role="radio" data-value="2" aria-checked="true">Два сердца · 0X5</button>
+              <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1">Одно · 0X4</button>
+            </div>
+            <label class="v-range mono"><span>Минут игры: <b data-min-out>20</b></span><input type="range" min="0" max="20" step="1" value="20" data-min></label>
+            <figure class="v-perf">
+              <svg viewBox="0 0 600 220" role="img" aria-label="Производительность за 20 минут игры: 0X5 держит 94 % пика, 0X4 — 81 %" data-perf>
+                <g class="v-perf__grid" data-perf-grid></g>
+                <path class="v-perf__one" data-perf-one d=""/>
+                <path class="v-perf__two" data-perf-two d=""/>
+                <line class="v-perf__cursor" data-perf-cursor x1="0" x2="0" y1="14" y2="190"/>
+              </svg>
+              <figcaption class="mono"><span class="is-two">0X5 · <b data-perf-two-v>94 %</b></span> <span class="is-one">0X4 · <b data-perf-one-v>81 %</b></span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- aVL. 6,1 мм: честно — на 0,35 мм толще 0X4 -->
+    <section class="v v--thin" id="thin" aria-labelledby="thin-title">
+      <div class="v-pin">
+        <div class="v-thin">
+          <p class="v-ch mono" aria-hidden="true"><b>aVL</b><span>Профиль</span><span>6,1&nbsp;мм</span></p>
+          <h2 class="v-h2" id="thin-title" data-split>На&nbsp;0,35&nbsp;мм толще 0X4. Внутри&nbsp;— второе сердце.</h2>
+          <p class="v-lead">0X4&nbsp;— самый тонкий OY, и&nbsp;мы его не&nbsp;догоняли. 0X5&nbsp;— 6,1&nbsp;мм и&nbsp;179&nbsp;г. Вот куда ушли эти треть миллиметра.</p>
+          <div class="v-thin__gauge mono" aria-hidden="true"><b data-thin-mm>5,75</b><span>мм</span></div>
+          <ol class="v-thin__bars" role="list" data-thin>
+            <li style="--mm: .2"><b>+0,20</b><span>ячейка 3,1&nbsp;мм вместо 2,9: +400&nbsp;мАч на&nbsp;второе сердце</span></li>
+            <li style="--mm: .1"><b>+0,10</b><span>призма перископа лежит поперёк корпуса</span></li>
+            <li style="--mm: .05"><b>+0,05</b><span>вторая испарительная камера&nbsp;— у&nbsp;«Дома»</span></li>
+          </ol>
+          <ul class="v-facts mono" role="list">
+            <li><b>150,8</b> мм в&nbsp;высоту</li>
+            <li><b>71,4</b> мм в&nbsp;ширину</li>
+            <li><b>179</b> г</li>
+            <li><b>IP69</b> горячая струя</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- aVF. КАМЕРЫ: видоискатель 0,5× · 1× · 2× · 5× · 10× · макро над амбаром -->
+    <section class="v v--camera" id="camera" aria-labelledby="camera-title">
+      <div class="v-wrap">
+        <header class="v-head">
+          <p class="v-ch mono" aria-hidden="true"><b>aVF</b><span>Камеры</span><span>○X◇</span></p>
+          <h2 class="v-h2" id="camera-title" data-split>Три камеры. Перископ лёг на&nbsp;бок.</h2>
+          <p class="v-lead">В&nbsp;5,75&nbsp;мм перископ не&nbsp;помещался. Мы&nbsp;положили призму поперёк корпуса: свет идёт вдоль ширины телефона, а&nbsp;не&nbsp;вглубь. Получилось 5× оптически и&nbsp;10× оптического качества из&nbsp;центра сенсора.</p>
+        </header>
+        <div class="v-cam">
+          <div class="v-cam__view">
+            <canvas class="v-cam__canvas" data-view role="img" aria-label="Видоискатель OY 0X5: амбар под Парижем на рассвете"></canvas>
+            <p class="v-cam__label mono" data-view-label>1× · 200 Мп · 24 мм</p>
+            <span class="v-cam__rec mono" aria-hidden="true">● REC · Дом</span>
+          </div>
+          <div class="v-cam__side">
+            <div class="v-zoom" role="radiogroup" aria-label="Зум" data-zoom>
+              <button type="button" role="radio" data-value="0.5" aria-checked="false" tabindex="-1">0,5×</button>
+              <button type="button" role="radio" data-value="1" aria-checked="true">1×</button>
+              <button type="button" role="radio" data-value="2" aria-checked="false" tabindex="-1">2×</button>
+              <button type="button" role="radio" data-value="5" aria-checked="false" tabindex="-1">5×</button>
+              <button type="button" role="radio" data-value="10" aria-checked="false" tabindex="-1">10×</button>
+              <button type="button" role="radio" data-value="macro" aria-checked="false" tabindex="-1">Макро</button>
+            </div>
+            <p class="v-small" data-cam-note>1×: весь сенсор 200&nbsp;Мп, 16 пикселей сливаются в&nbsp;один большой.</p>
+            <dl class="v-mini mono">
+              <div><dt>Основная</dt><dd>200&nbsp;Мп, 1/1,3″, f/1.7</dd></div>
+              <div><dt>Сверхширокая</dt><dd>50&nbsp;Мп, 120°, макро от&nbsp;2&nbsp;см</dd></div>
+              <div><dt>Перископ</dt><dd>50&nbsp;Мп, 5×, f/2.8, призма поперёк</dd></div>
+              <div><dt>Фронтальная</dt><dd>18&nbsp;Мп, квадратная</dd></div>
+              <div><dt>Видео</dt><dd>8K/30, 4K/120, 10-бит Log</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="v-jab">Снимок уходит с&nbsp;сенсора сразу в&nbsp;«Дом»: «Мир» видит кадр, только если вы&nbsp;им&nbsp;поделились. На&nbsp;10× видно, кто сторожит амбар, где придумали OY&nbsp;Vitals.</p>
+      </div>
+    </section>
+
+    <!-- V1. FIG FOUR: трассировщик лучей прямо на странице -->
+    <section class="v v--graphics" id="graphics" aria-labelledby="graphics-title">
+      <div class="v-wrap">
+        <header class="v-head">
+          <p class="v-ch mono" aria-hidden="true"><b>V1</b><span>Графика</span><span>FIG Four</span></p>
+          <h2 class="v-h2" id="graphics-title" data-split>FIG&nbsp;Four. Лучи считает в&nbsp;2,1 раза быстрее.</h2>
+          <p class="v-lead">Десять графических ядер на&nbsp;«Мире», 1300&nbsp;МГц, трассировка лучей второго поколения, около 3400&nbsp;ГФЛОПС. Ниже&nbsp;— маленький трассировщик: он&nbsp;считает картинку прямо в&nbsp;вашем браузере, с&nbsp;той&nbsp;же разницей в&nbsp;скорости.</p>
+        </header>
+        <div class="v-rt">
+          <div class="v-rt__view">
+            <canvas class="v-rt__canvas" data-rt role="img" aria-label="Три шара на шахматном полу, сцена считается трассировкой лучей"></canvas>
+            <p class="v-rt__k mono" aria-live="polite"><span data-rt-gpu>FIG Four</span> · <b data-rt-pct>0 %</b> · <span data-rt-time>0,0 с</span></p>
+          </div>
+          <div class="v-rt__side">
+            <div class="v-chips" role="radiogroup" aria-label="Графика" data-gpu>
+              <button type="button" role="radio" data-value="four" aria-checked="true">FIG Four · 0X5</button>
+              <button type="button" role="radio" data-value="three" aria-checked="false" tabindex="-1">FIG Three · 0X4</button>
+            </div>
+            <button type="button" class="v-btn" data-rt-again>Пересчитать кадр</button>
+            <div class="v-bench">
+              <div class="v-bench__row"><span>AnTuTu 11</span><i style="--v: 100%"><b></b></i><span class="mono"><b>3&nbsp;874&nbsp;512</b></span></div>
+              <div class="v-bench__row is-other"><span>0X4, GP20</span><i style="--v: 91%"><b></b></i><span class="mono">3&nbsp;512&nbsp;408</span></div>
+              <div class="v-bench__row"><span>Трассировка лучей</span><i style="--v: 100%"><b></b></i><span class="mono"><b>2,1×</b></span></div>
+              <div class="v-bench__row is-other"><span>FIG Three</span><i style="--v: 48%"><b></b></i><span class="mono">1×</span></div>
+            </div>
+            <p class="v-small">«Мир»: 18 ядер (4&nbsp;больших до&nbsp;4,9&nbsp;ГГц, 6&nbsp;средних, 8&nbsp;экономных), нейроядро 140&nbsp;TOPS. «Дом»: 12 ядер (2&nbsp;+&nbsp;4&nbsp;+&nbsp;6), нейроядро 60&nbsp;TOPS&nbsp;— там живёт «Погонщик», и&nbsp;он&nbsp;не&nbsp;знает, что такое интернет. 18&nbsp;+&nbsp;12&nbsp;= 30: отсюда GP30.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- V2. TESSERACT 5: «Клапан», «Дефибриллятор» -->
+    <section class="v v--tesseract" id="tesseract" aria-labelledby="tesseract-title">
+      <div class="v-wrap v-split v-split--right">
+        <div class="v-split__text">
+          <p class="v-ch mono" aria-hidden="true"><b>V2</b><span>Tesseract&nbsp;5</span><span>Париж</span></p>
+          <h2 class="v-h2" id="tesseract-title" data-split>Сторож между двумя сердцами.</h2>
+          <p class="v-lead">Tesseract&nbsp;5 сделала команда OY в&nbsp;амбаре под Парижем&nbsp;— как и&nbsp;в&nbsp;0X4Q. В&nbsp;0X5 он&nbsp;впервые стоит не&nbsp;рядом с&nbsp;процессором, а&nbsp;между двумя. Свой RISC-V, 128&nbsp;ГБ для секретов и&nbsp;своё питание 800&nbsp;мАч.</p>
+        </div>
+      </div>
+      <div class="v-wrap v-wrap--tight">
+        <ul class="v-feats" role="list">
+          <li data-reveal><b>«Клапан»</b><span>Сидит на&nbsp;«Аорте» и&nbsp;пропускает только зашифрованные пакеты. Заметил чужое&nbsp;— пережимает шину за&nbsp;0,2&nbsp;мс.</span></li>
+          <li data-reveal><b>«Дефибриллятор»</b><span>«Дом» перезапускает «Мир» с&nbsp;чистой прошивки и&nbsp;сверяет хеш. Вы&nbsp;теряете вкладки браузера, а&nbsp;не&nbsp;фото.</span></li>
+          <li data-reveal><b>«Чужой кремний&nbsp;2»</b><span>Хеш прошивки обоих GP30 при каждом запуске. Подменённое сердце не&nbsp;заведётся.</span></li>
+          <li data-reveal><b>«Подпись 2 из&nbsp;3»</b><span>Обновление принимается, только если его подписали двое из&nbsp;трёх: один ключ у&nbsp;OY, два у&nbsp;Fyr.</span></li>
+          <li data-reveal><b>«Ловец вышек&nbsp;3»</b><span>Вместе с&nbsp;FM3 узнаёт поддельные вышки и&nbsp;принудительный 2G.</span></li>
+          <li data-reveal><b>«Карантин USB»</b><span>Заблокированный телефон через USB-C только заряжается. Порт подключён к&nbsp;«Дому», и&nbsp;сторожит его Tesseract.</span></li>
+        </ul>
+        <p class="v-small">Унаследовано: «Кошелёк», «Двойник», «Свидетель», «Мёртвая рука», «Тревожный палец», «Сторож». Загрузчик открывается и&nbsp;закрывается снова&nbsp;— у&nbsp;каждого сердца свой. Отпечаток в&nbsp;кнопке питания хранится в&nbsp;Tesseract&nbsp;5; разблокировки по&nbsp;лицу нет: лицо не&nbsp;сменишь.</p>
+      </div>
+    </section>
+
+    <!-- V3. РУБИЛЬНИК: «Эфир», середина, «Только Дом» -->
+    <section class="v v--switch" id="switch" aria-labelledby="switch-title">
+      <div class="v-wrap v-split">
+        <div class="v-split__text">
+          <p class="v-ch mono" aria-hidden="true"><b>V3</b><span>Рубильник</span><span>ход 3,2&nbsp;мм</span></p>
+          <h2 class="v-h2" id="switch-title" data-split>Остановить одно сердце. Рукой.</h2>
+          <p class="v-lead">Язычок на&nbsp;левой грани, три положения. Нижнее&nbsp;— новое: «Только Дом». «Мир» обесточен целиком, вместе с&nbsp;модемом. Остаётся телефон без сети по&nbsp;проводам, а&nbsp;не&nbsp;по&nbsp;настройке: камера, заметки, галерея, диктофон, фонарь. До&nbsp;9 дней в&nbsp;ожидании.</p>
+          <div class="v-switch" role="radiogroup" aria-label="Положение рубильника" data-sw>
+            <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1"><b>Вверх · «Эфир»</b><span>нет связи, Wi-Fi и&nbsp;геолокации</span></button>
+            <button type="button" role="radio" data-value="0" aria-checked="true"><b>Середина</b><span>оба сердца, всё включено</span></button>
+            <button type="button" role="radio" data-value="-1" aria-checked="false" tabindex="-1"><b>Вниз · «Только Дом»</b><span>«Мир» остановлен</span></button>
+          </div>
+          <p class="v-small mono" data-sw-note>Посмотрите на&nbsp;верхнюю кардиограмму страницы и&nbsp;переключите вниз.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- V4. ФОНАРЬ -->
+    <section class="v v--torch" id="torch" aria-labelledby="torch-title">
+      <div class="v-wrap v-split v-split--right">
+        <div class="v-split__text">
+          <p class="v-ch mono" aria-hidden="true"><b>V4</b><span>Фонарь</span><span>4500&nbsp;м</span></p>
+          <h2 class="v-h2" id="torch-title" data-split>У&nbsp;фонаря тоже есть пульс.</h2>
+          <p class="v-lead">Сигнальный фонарь живёт на&nbsp;верхней грани OY с&nbsp;2027 года. В&nbsp;0X5 окно шире, чем у&nbsp;0X4, и&nbsp;красный видно за&nbsp;4,5&nbsp;км. Новый режим «Пульс» мигает двойными ударами: спасатели узнают его издалека и&nbsp;не&nbsp;путают с&nbsp;фарами.</p>
+          <div class="v-switch v-switch--row" role="radiogroup" aria-label="Режим фонаря" data-torch>
+            <button type="button" role="radio" data-value="off" aria-checked="true"><b>Выкл</b></button>
+            <button type="button" role="radio" data-value="white" aria-checked="false" tabindex="-1"><b>Белый</b></button>
+            <button type="button" role="radio" data-value="red" aria-checked="false" tabindex="-1"><b>Красный</b></button>
+            <button type="button" role="radio" data-value="sos" aria-checked="false" tabindex="-1"><b>SOS</b></button>
+            <button type="button" role="radio" data-value="pulse" aria-checked="false" tabindex="-1"><b>Пульс</b></button>
+          </div>
+          <p class="v-small mono" data-torch-note>Фонарь выключен. Нажмите «Пульс».</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- V5. ЦВЕТА -->
+    <section class="v v--colors" id="colors" aria-labelledby="colors-title">
+      <div class="v-pin">
+        <div class="v-colors">
+          <p class="v-ch mono" aria-hidden="true"><b>V5</b><span>Цвета</span><span>4 шт.</span></p>
+          <h2 class="v-h2" id="colors-title" data-split>Четыре цвета дежурства.</h2>
+          <p class="v-lead" data-color-note>«Пульс». Сигнальный красный&nbsp;— главный цвет OY со&nbsp;времён 0X0.</p>
+          <div class="v-swatches" role="radiogroup" aria-label="Цвет" data-colors>
+            <button type="button" role="radio" data-value="puls" aria-checked="true" style="--sw: linear-gradient(135deg, #A3202B 60%, #4E5157 61%)"><i></i><span>Пульс</span></button>
+            <button type="button" role="radio" data-value="night" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #1C2333 60%, #596276 61%)"><i></i><span>Ночная смена</span></button>
+            <button type="button" role="radio" data-value="phosphor" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #C3D3BE 60%, #A3AE9F 61%)"><i></i><span>Фосфор</span></button>
+            <button type="button" role="radio" data-value="coat" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #E9EAE6 60%, #C5C8CC 61%)"><i></i><span>Халат</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- V6. КУПИТЬ -->
+    <section class="v v--buy" id="buy" aria-labelledby="buy-title">
+      <div class="v-wrap v-buy">
+        <div class="v-buy__head">
+          <p class="v-ch mono" aria-hidden="true"><b>V6</b><span>Купить</span><span>весна 2033</span></p>
+          <h2 class="v-h2" id="buy-title" data-split>Два сердца. Два города.</h2>
+          <p class="v-lead">Процессоры GP30 Duo сделала Fyr в&nbsp;Стокгольме. OY&nbsp;Vitals и&nbsp;Tesseract&nbsp;5&nbsp;— команда OY в&nbsp;амбаре под Парижем. 0X5&nbsp;— первый OY, который сделали оба города вместе. Весна 2033 года: Швеция, Евросоюз, США и&nbsp;Канада в&nbsp;один день. В&nbsp;Китае 0X5 нет: там телефоны OY продаёт XZF.</p>
+          <p class="v-small">С&nbsp;выходом 0X5 снят с&nbsp;продажи <a class="v-link" href="/0x4/">0X4</a>. Он&nbsp;остаётся самым тонким OY&nbsp;— обновления и&nbsp;гарантия у&nbsp;него прежние.</p>
+          <ul class="v-box" role="list">
+            <li>Телефон и&nbsp;кабель USB-C</li>
+            <li>Блок 50&nbsp;Вт</li>
+            <li>Скрепка: лоток nano-SIM вернулся</li>
+            <li>Ни&nbsp;одной подписки</li>
+          </ul>
+        </div>
+        <div class="v-buy__panel">
+          <p class="v-buy__k mono">Где</p>
+          <div class="v-tabs" role="radiogroup" aria-label="Страна" data-cur>
+            <button type="button" role="radio" data-value="usd" aria-checked="true">США</button>
+            <button type="button" role="radio" data-value="cad" aria-checked="false" tabindex="-1">Канада</button>
+            <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">Евросоюз</button>
+            <button type="button" role="radio" data-value="sek" aria-checked="false" tabindex="-1">Швеция</button>
+          </div>
+          <p class="v-buy__k mono">Память</p>
+          <div class="v-mem" role="radiogroup" aria-label="Память" data-mem>
+            <button type="button" role="radio" data-value="16/256" data-usd="849" data-eur="949" data-cad="1149" data-sek="9490" aria-checked="true"><b>256&nbsp;ГБ</b><span>12&nbsp;+&nbsp;4&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="16/512" data-usd="949" data-eur="1049" data-cad="1279" data-sek="10490" aria-checked="false" tabindex="-1"><b>512&nbsp;ГБ</b><span>12&nbsp;+&nbsp;4&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="24/1024" data-usd="1149" data-eur="1249" data-cad="1549" data-sek="12490" aria-checked="false" tabindex="-1"><b>1&nbsp;ТБ</b><span>16&nbsp;+&nbsp;8&nbsp;ГБ ОЗУ</span></button>
+          </div>
+          <p class="v-small mono">ОЗУ у&nbsp;каждого сердца своя: «Мир»&nbsp;+&nbsp;«Дом».</p>
+          <p class="v-buy__k mono">Цвет: <span data-buy-color>Пульс</span></p>
+          <div class="v-swatches v-swatches--sm" role="radiogroup" aria-label="Цвет" data-colors-buy>
+            <button type="button" role="radio" data-value="puls" aria-checked="true" aria-label="Пульс" style="--sw: linear-gradient(135deg, #A3202B 60%, #4E5157 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="night" aria-checked="false" tabindex="-1" aria-label="Ночная смена" style="--sw: linear-gradient(135deg, #1C2333 60%, #596276 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="phosphor" aria-checked="false" tabindex="-1" aria-label="Фосфор" style="--sw: linear-gradient(135deg, #C3D3BE 60%, #A3AE9F 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="coat" aria-checked="false" tabindex="-1" aria-label="Халат" style="--sw: linear-gradient(135deg, #E9EAE6 60%, #C5C8CC 61%)"><i></i></button>
+          </div>
+          <p class="v-total"><span class="mono" data-total-k>Итого · США</span><b data-total>$849</b></p>
+          <p class="v-small mono" data-total-hex>Fyr пишет: 0x351 $</p>
+          <button type="button" class="btn btn--accent btn--wide" data-buy>Купить</button>
+          <p class="v-small v-small--center">Купить здесь нельзя: это концепт. Но&nbsp;пульс настоящий&nbsp;— ваш.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- КОРОТКО -->
+    <section class="v v--specs" id="specs" aria-labelledby="specs-title">
+      <div class="v-wrap">
+        <header class="v-head v-head--center">
+          <h2 class="v-h2" id="specs-title" data-split>OY 0X5. Коротко.</h2>
+        </header>
+        <dl class="v-specs">
+          <div><dt>Корпус</dt><dd>150,8 × 71,4 × 6,1&nbsp;мм (7,8&nbsp;мм по&nbsp;островку), 179&nbsp;г, титан и&nbsp;стекло, IP68 и&nbsp;IP69</dd></div>
+          <div><dt>Экран</dt><dd>6,3″ LTPO AMOLED, плоский, 1256 × 2720, 1–144&nbsp;Гц, 0,5–4600&nbsp;нит</dd></div>
+          <div><dt>OY Vitals</dt><dd>Два процессора Fyr GP30 Duo: «Мир»&nbsp;— 18 ядер, FIG&nbsp;Four, 140&nbsp;TOPS, модем FM3; «Дом»&nbsp;— 12 ядер, 60&nbsp;TOPS, без радио</dd></div>
+          <div><dt>Камеры</dt><dd>200&nbsp;Мп с&nbsp;2×, 50&nbsp;Мп сверхширокая с&nbsp;макро от&nbsp;2&nbsp;см, 50&nbsp;Мп «плоский перископ» 5× и&nbsp;10× оптического качества; фронтальная 18&nbsp;Мп</dd></div>
+          <div><dt>Безопасность</dt><dd>Tesseract&nbsp;5 с&nbsp;«Клапаном» и&nbsp;«Дефибриллятором», «Рубильник» с&nbsp;положением «Только Дом», отпечаток в&nbsp;кнопке</dd></div>
+          <div><dt>Питание</dt><dd>4400&nbsp;мАч, 50&nbsp;Вт, XMagnum 25&nbsp;Вт</dd></div>
+          <div><dt>Память</dt><dd>16/256, 16/512, 24/1024&nbsp;ГБ, UFS&nbsp;5.0</dd></div>
+          <div><dt>Связь</dt><dd>5G-Advanced, спутник: сообщения и&nbsp;SOS, Wi-Fi&nbsp;7, eSIM и&nbsp;nano-SIM</dd></div>
+          <div><dt>Система</dt><dd>CamelOS&nbsp;2.5 с&nbsp;OY&nbsp;Vitals, 8 лет обновлений, 26 месяцев гарантии</dd></div>
+        </dl>
+        <a class="btn btn--accent v-specs__all" href="/0x5/specs/">Все характеристики</a>
+      </div>
+    </section>
+
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">TSMC&nbsp;— Taiwan Semiconductor Manufacturing Company; AnTuTu&nbsp;— товарный знак своего владельца. Результаты GP30 Duo и&nbsp;FIG Four вымышлены, как и&nbsp;сам телефон. Трассировщик на&nbsp;странице считает на&nbsp;процессоре вашего устройства и&nbsp;только показывает соотношение скоростей.</li>
+          <li id="fn-2">«Пульс» на&nbsp;мониторе&nbsp;— метафора: так страница рисует нагрузку на&nbsp;процессоры. Телефон не&nbsp;меряет ваш пульс и&nbsp;не&nbsp;является медицинским прибором.</li>
+          <li id="fn-3">Толщина&nbsp;— по&nbsp;корпусу, без островка камер. Время работы&nbsp;— замеры на&nbsp;CamelOS&nbsp;2.5 при яркости 200&nbsp;нит; ваш день будет другим.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <p class="transit-plate"><b>Переходный период</b> <span>Марка OY у&nbsp;Fyr; 0X5 сделали вместе Fyr в&nbsp;Стокгольме и&nbsp;команда OY в&nbsp;амбаре под Парижем. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr. В&nbsp;Китае телефоны OY продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · два сердца, два города</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X5 · весна 2033 · Швеция, Евросоюз, США, Канада · <a href="/0x5/specs/">Характеристики</a> · <a href="/0x4/">0X4</a> · <a href="/0x4q/">0X4Q</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X5, OY&nbsp;Vitals, Fyr GP30 Duo, FIG&nbsp;Four, Tesseract&nbsp;5, Fyr, CamelOS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Эта страница ничего не&nbsp;считает, кроме лучей. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -455,7 +455,8 @@ const COLOR_NOTES = {
   folga: '«Фольга». Бледное золото: тоньше фольги не бывает, но мы старались.',
   nast: '«Наст». Тонкая ледяная корка на мартовском снегу и серебристый титан.',
 };
-const colorGrps = [$('[data-colors]'), $('[data-colors-buy]')];
+// снят с продажи: выбора цвета в покупке больше нет
+const colorGrps = [$('[data-colors]'), $('[data-colors-buy]')].filter(Boolean);
 const colorNote = $('[data-color-note]');
 const buyColor = $('[data-buy-color]');
 function applyColor(v, { instant = false, twirl = true } = {}) {
@@ -466,7 +467,7 @@ function applyColor(v, { instant = false, twirl = true } = {}) {
   root.dataset.color = v;
   store.set('oy-x4-color', v);
   colorNote.textContent = COLOR_NOTES[v];
-  buyColor.textContent = X4_COLORS[v].label;
+  if (buyColor) buyColor.textContent = X4_COLORS[v].label;
   stage?.setBodyColor(v, instant);
   // новый цвет — телефон переворачивается, как страница
   if (changed && twirl && !instant && !reducedMode) gsap.fromTo(demo, { twirl: 0 }, { twirl: 1, duration: 1.1, ease: 'power3.inOut', onComplete: () => { demo.twirl = 0; } });
@@ -503,10 +504,12 @@ function paintTotal(animate = true) {
   const o = { v: from };
   gsap.to(o, { v: total, duration: 0.6, ease: 'power2.out', onUpdate: () => { totalOut.textContent = CUR[cur].f(Math.round(o.v)); } });
 }
-initRadioGroup(curGrp, (v) => { syncRadio(curGrp, v); cur = v; paintTotal(); });
-initRadioGroup(memGrp, (v) => { syncRadio(memGrp, v); paintTotal(); });
-paintTotal(false);
-$('[data-buy]').addEventListener('click', () => toast('Купить здесь нельзя: это концепт. Но чертёж настоящий.'));
+// 0X4 снят с продажи весной 2033-го: калькулятора нет, на его месте — карточка 0X5
+if (curGrp && memGrp) {
+  initRadioGroup(curGrp, (v) => { syncRadio(curGrp, v); cur = v; paintTotal(); });
+  initRadioGroup(memGrp, (v) => { syncRadio(memGrp, v); paintTotal(); });
+  paintTotal(false);
+}
 
 /* ---------- Хореография ---------- */
 

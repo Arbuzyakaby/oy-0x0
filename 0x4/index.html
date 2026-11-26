@@ -27,7 +27,7 @@
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
   <link rel="stylesheet" href="/css/core.css?v=ab2ab23689">
-  <link rel="stylesheet" href="/css/0x4.css?v=c45d87b172">
+  <link rel="stylesheet" href="/css/0x4.css?v=ca1ef11f14">
   <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
 
   <script type="importmap">
@@ -47,7 +47,7 @@
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=836b7d6c0f",
-      "/js/data/products.js": "/js/data/products.js?v=1df7b7ea3b",
+      "/js/data/products.js": "/js/data/products.js?v=54cdbba114",
       "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
@@ -66,6 +66,7 @@
       "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
       "/js/models/oy0x4.js": "/js/models/oy0x4.js?v=f8652e989d",
       "/js/models/oy0x4q.js": "/js/models/oy0x4q.js?v=e13ee7e681",
+      "/js/models/oy0x5.js": "/js/models/oy0x5.js?v=d453bdcbf9",
       "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
       "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
       "/js/models/oynova.js": "/js/models/oynova.js?v=3cb6753b62",
@@ -80,19 +81,20 @@
       "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=32504e740d",
       "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4c33d835a2",
       "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=dd6052c460",
-      "/js/pages/0x4.js": "/js/pages/0x4.js?v=1bb705d79e",
+      "/js/pages/0x4.js": "/js/pages/0x4.js?v=5a36989c0d",
       "/js/pages/0x4q.js": "/js/pages/0x4q.js?v=cc97149bba",
+      "/js/pages/0x5.js": "/js/pages/0x5.js?v=29d0841133",
       "/js/pages/accessories.js": "/js/pages/accessories.js?v=7fa6737a96",
       "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
       "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
       "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=1a86cf7c04",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=7800be84e0",
       "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
       "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
       "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
       "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=89f792cb34",
-      "/js/pages/home.js": "/js/pages/home.js?v=5204cc2c62",
+      "/js/pages/home.js": "/js/pages/home.js?v=38b17216f9",
       "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
       "/js/pages/nova.js": "/js/pages/nova.js?v=308e117d8e",
@@ -104,7 +106,7 @@
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
   <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
   <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
-  <script type="module" src="/js/pages/0x4.js?v=1bb705d79e"></script>
+  <script type="module" src="/js/pages/0x4.js?v=5a36989c0d"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -139,7 +141,7 @@
       <a href="/0x3e/">0X3 Essential</a>
       <a href="/0x4q/">0X4Q</a>
       <a href="/moth2/">0X Moth 2</a>
-      <a href="/0x4/" aria-current="page">0X4</a>
+      <a href="/0x5/">0X5</a>
       <a href="/0x2pro/">0X2 Pro</a>
       <a href="/nova/">0X Nova</a>
       <a href="/butterfly/">0X Butterfly</a>
@@ -147,7 +149,7 @@
       <a href="/accessories/">Аксессуары</a>
       <a href="/compare/">Сравнить</a>
     </nav>
-    <a class="btn btn--accent btn--sm x-header__buy" href="#buy">от $799</a>
+    <a class="btn btn--accent btn--sm x-header__buy" href="/0x5/">0X5</a>
   </header>
 
   <!-- Штангенциркуль: подвижная губка — где вы сейчас, риски — главы -->
@@ -185,9 +187,10 @@
           <span class="x-hero__big" data-split>Пять семьдесят пять.</span>
         </h1>
         <p class="x-hero__lead">Самый тонкий OY: 5,75&nbsp;мм и&nbsp;170&nbsp;г. Внутри&nbsp;— полный Fyr&nbsp;GP20, Citadel&nbsp;6&nbsp;Slim и&nbsp;4000&nbsp;мАч, сзади&nbsp;— две камеры: 200&nbsp;Мп с&nbsp;зумом 4× оптического качества и&nbsp;сверхширокая с&nbsp;макро. Ни&nbsp;миллиметра лишнего.</p>
+        <p class="disc-plate mono">Снят с&nbsp;продажи · преемник&nbsp;— <a href="/0x5/">0X5</a></p>
         <div class="x-hero__buy">
-          <p class="x-price"><span>от</span> <b>$799</b> <span class="mono">· €899 · 8&nbsp;990&nbsp;kr · C$1099</span></p>
-          <a class="btn btn--accent" href="#buy">Купить</a>
+          <p class="x-price"><span>был от</span> <b>$799</b> <span class="mono">· €899 · 8&nbsp;990&nbsp;kr · C$1099</span></p>
+          <a class="btn btn--accent" href="/0x5/">Смотреть 0X5</a>
           <a class="btn btn--ghost" href="/0x4/specs/">Характеристики</a>
         </div>
       </div>
@@ -444,9 +447,9 @@
     <section class="x x--buy" id="buy" aria-labelledby="buy-title">
       <div class="x-wrap x-buy">
         <div class="x-buy__head">
-          <p class="x-stamp mono" aria-hidden="true"><span>Лист 12</span><span>Купить</span><span>осень 2032</span></p>
-          <h2 class="x-h2" id="buy-title" data-split>Одно поколение. Два&nbsp;города.</h2>
-          <p class="x-lead">0X4Q собрали люди OY в&nbsp;амбаре под Парижем. 0X4&nbsp;— второй OY, который сделала Fyr в&nbsp;Стокгольме, после Butterfly. Осень 2032&nbsp;года: Швеция, Евросоюз, США и&nbsp;Канада в&nbsp;один день. В&nbsp;Китае 0X4 нет: там телефоны OY продаёт XZF.</p>
+          <p class="x-stamp mono" aria-hidden="true"><span>Лист 12</span><span>Снят с&nbsp;продажи</span><span>весна 2033</span></p>
+          <h2 class="x-h2" id="buy-title" data-split>0X4 больше не&nbsp;продаётся.</h2>
+          <p class="x-lead">0X4 продавался с&nbsp;осени 2032 по&nbsp;весну 2033 года и&nbsp;снят с&nbsp;выходом 0X5&nbsp;— базового флагмана пятого поколения, который сделали оба города вместе. 0X4 остаётся самым тонким OY: 5,75&nbsp;мм так никто и&nbsp;не&nbsp;догнал.</p>
           <p class="x-small">А&nbsp;где 0X3? Его не&nbsp;было. В&nbsp;третьем поколении вышел только 0X3&nbsp;Essential&nbsp;— на&nbsp;своей странице он пишется «0X03».</p>
           <ul class="x-box" role="list">
             <li>Телефон и&nbsp;кабель USB-C</li>
@@ -455,31 +458,13 @@
             <li>Скрепки нет: лотка для&nbsp;SIM тоже. Только eSIM</li>
           </ul>
         </div>
-        <div class="x-buy__panel">
-          <p class="x-buy__k mono">Где</p>
-          <div class="x-tabs" role="radiogroup" aria-label="Страна" data-cur>
-            <button type="button" role="radio" data-value="usd" aria-checked="true">США</button>
-            <button type="button" role="radio" data-value="cad" aria-checked="false" tabindex="-1">Канада</button>
-            <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">Евросоюз</button>
-            <button type="button" role="radio" data-value="sek" aria-checked="false" tabindex="-1">Швеция</button>
-          </div>
-          <p class="x-buy__k mono">Память</p>
-          <div class="x-mem" role="radiogroup" aria-label="Память" data-mem>
-            <button type="button" role="radio" data-value="12/256" data-usd="799" data-eur="899" data-cad="1099" data-sek="8990" aria-checked="true"><b>256&nbsp;ГБ</b><span>12&nbsp;ГБ ОЗУ</span></button>
-            <button type="button" role="radio" data-value="12/512" data-usd="899" data-eur="999" data-cad="1229" data-sek="9990" aria-checked="false" tabindex="-1"><b>512&nbsp;ГБ</b><span>12&nbsp;ГБ ОЗУ</span></button>
-            <button type="button" role="radio" data-value="16/1024" data-usd="1049" data-eur="1169" data-cad="1429" data-sek="11690" aria-checked="false" tabindex="-1"><b>1&nbsp;ТБ</b><span>16&nbsp;ГБ ОЗУ</span></button>
-          </div>
-          <p class="x-buy__k mono">Цвет: <span data-buy-color>Грифель</span></p>
-          <div class="x-swatches x-swatches--sm" role="radiogroup" aria-label="Цвет" data-colors-buy>
-            <button type="button" role="radio" data-value="grifel" aria-checked="true" aria-label="Грифель" style="--sw: linear-gradient(135deg, #26282B 60%, #55585D 61%)"><i></i></button>
-            <button type="button" role="radio" data-value="list" aria-checked="false" tabindex="-1" aria-label="Лист" style="--sw: linear-gradient(135deg, #E7E3DA 60%, #C9CACC 61%)"><i></i></button>
-            <button type="button" role="radio" data-value="folga" aria-checked="false" tabindex="-1" aria-label="Фольга" style="--sw: linear-gradient(135deg, #D2BC92 60%, #C4A872 61%)"><i></i></button>
-            <button type="button" role="radio" data-value="nast" aria-checked="false" tabindex="-1" aria-label="Наст" style="--sw: linear-gradient(135deg, #BCCFDC 60%, #A6B5C1 61%)"><i></i></button>
-          </div>
-          <p class="x-total"><span class="mono" data-total-k>Итого · США</span><b data-total>$799</b></p>
-          <p class="x-small mono" data-total-hex>Fyr пишет: 0x31F $</p>
-          <button type="button" class="btn btn--accent btn--wide" data-buy>Купить</button>
-          <p class="x-small x-small--center">Купить здесь нельзя: это концепт. Но&nbsp;чертёж настоящий.</p>
+        <div class="x-buy__panel x-buy__panel--disc">
+          <p class="x-buy__k mono">Снят с&nbsp;продажи · был от $799 · преемник</p>
+          <p class="x-total"><span class="mono">OY 0X5</span><b>от $849</b></p>
+          <p class="x-small">Два процессора GP30 Duo&nbsp;— «Мир» и&nbsp;«Дом», графика FIG&nbsp;Four, Tesseract&nbsp;5, три камеры с&nbsp;перископом 5×. 6,1&nbsp;мм: на&nbsp;0,35&nbsp;мм толще 0X4.</p>
+          <a class="btn btn--accent btn--wide" href="/0x5/">Смотреть 0X5</a>
+          <p class="x-small">Обновления&nbsp;— все обещанные 8&nbsp;лет на&nbsp;CamelOS, гарантия на&nbsp;купленные телефоны сохраняется. Citadel&nbsp;6&nbsp;Slim и&nbsp;«Кошелёк» продолжают работать.</p>
+          <p class="x-small x-small--center">Это концепт-сайт: OY&nbsp;0X4 и&nbsp;компания OY вымышлены, продажи не&nbsp;велись.</p>
         </div>
       </div>
     </section>
@@ -524,7 +509,7 @@
         <span>OY · начерчено в&nbsp;Стокгольме</span>
       </div>
       <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
-      <p class="footer__small mono">OY 0X4 · осень 2032 · Швеция, Евросоюз, США, Канада · <a href="/0x4/specs/">Характеристики</a> · <a href="/0x4q/">0X4Q</a></p>
+      <p class="footer__small mono">OY 0X4 · осень 2032 · Швеция, Евросоюз, США, Канада · снят с&nbsp;продажи · <a href="/0x5/">OY 0X5</a> · <a href="/0x4/specs/">Характеристики</a> · <a href="/0x4q/">0X4Q</a></p>
       <p class="footer__concept">Концепт. OY&nbsp;0X4, Citadel&nbsp;6&nbsp;Slim, Fyr, Fyr GP20, CamelOS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Эта страница ничего не&nbsp;считает. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
     </div>
   </footer>
