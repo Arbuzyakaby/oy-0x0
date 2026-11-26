@@ -224,7 +224,7 @@ test('снятые весной 2031-го: на страницах плашка,
   }
 });
 
-test('0X3 Essential — реверанс 0X0: тот же сюжет прокрутки, четыре ползунка, фонарь на 5000 м и прощание с 0X0', () => {
+test('0X3 Essential — реверанс 0X0: тот же сюжет прокрутки, четыре ползунка, фонарь на 5000 м и прощание с 0X0; снят с продажи, преемник — 0X5 Essential', () => {
   const html = read('0x3e/index.html');
   for (const id of ['hero', 'zero', 'switches', 'compare', 'signal', 'display', 'cesium', 'assist', 'camera', 'inside', 'colors', 'farewell', 'buy', 'final']) assert.ok(html.includes(`id="${id}"`), id);
   assert.equal((html.match(/class="ks-item" data-ks="\d"/g) || []).length, 4);
@@ -232,7 +232,8 @@ test('0X3 Essential — реверанс 0X0: тот же сюжет прокр�
   assert.match(html, /Спасибо, 0X0\./);
   assert.ok(html.includes('href="/0x0/"'));
   assert.ok(html.includes('/js/pages/0x3e.js'));
-  for (const c of PRODUCTS['0x3e'].configs) assert.ok(html.includes(`data-value="${c.id}"`), c.id);
+  assert.ok(html.includes('disc-plate') && html.includes('price-card--disc') && !html.includes('data-mem-switch'), 'не снят с продажи');
+  assert.ok(html.includes('href="/0x5e/"'), 'нет ссылки на 0X5 Essential');
   for (const c of Object.keys(PRODUCTS['0x3e'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.ok(existsSync(join(ROOT, 'models', 'oy0x3e.glb')));
@@ -276,7 +277,7 @@ test('ни юаней, ни eXtream: ни на одной странице, ни
   assert.match(read('index.html'), /eXtream продан XZF/);
 });
 
-test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все смартфоны OY, часы и ноутбук, Butterfly, 0X4Q, 0X4 и 0X5 — из коробки', () => {
+test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все смартфоны OY, часы и ноутбук, Butterfly, 0X4Q, 0X4, 0X5 и 0X5 Essential — из коробки', () => {
   const html = read('os/index.html');
   assert.match(html, /class="cm-page"/);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
@@ -291,7 +292,7 @@ test('CamelOS 2.0: одна система Fyr без аккаунта и обл
   // все смартфоны OY, которые когда-либо выходили, и оба устройства Fyr — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS);
-  assert.equal(phones.length, 18);
+  assert.equal(phones.length, 19);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке CamelOS 2.0`);
   for (const href of ['/fyr/', '/fyr/kbook/']) assert.ok(all.includes(`href="${href}"`), href);
   // в шапке всех страниц раздел называется CamelOS
@@ -493,4 +494,42 @@ test('страница /0x5/specs/: все разделы, одна h1, огла
   for (const c of PRODUCTS['0x5'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
   assert.match(html, /«Мир» · наверху/);
   assert.match(html, /«Дом» · внизу/);
+});
+
+test('страница /0x5e/: цех — двенадцать операций техкарты, одна тёмная глава «Ночь», одна h1, якоря и риски бруска сходятся, цвета и память из данных, сотый деплой', () => {
+  const html = read('0x5e/index.html');
+  const chapters = [...html.matchAll(/<section class="e e--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['hero', 'mill', 'seam', 'glow', 'resonance', 'cesium', 'seal', 'camera', 'switch', 'torch', 'colors', 'buy', 'specs']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  const ops = [...html.matchAll(/data-op="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(ops.length, 12);
+  for (const o of ops) assert.ok(ids.has(o), `риска ${o}`);
+  // главы подписаны операциями технологической карты, последняя — сотая
+  const labels = [...html.matchAll(/class="e-op mono" aria-hidden="true"><b>ОП (\d+)<\/b>/g)].map((m) => m[1]);
+  assert.deepEqual(labels, ['005', '010', '020', '025', '030', '040', '050', '060', '070', '080', '090', '100']);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const c of Object.keys(PRODUCTS['0x5e'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
+  for (const c of PRODUCTS['0x5e'].configs) assert.ok(html.includes(`data-value="${c.id}" data-usd="${c.usd}" data-eur="${c.eur}"`), c.id);
+  for (const re of [/Из одного куска/, /6,78&nbsp;МГц/, /Cesium&nbsp;5/, /Palladium&nbsp;5/, /«Пломба»/, /Отпечаток в&nbsp;кнопке/, /data-mill/, /data-res/, /data-open/, /data-hours/, /люминофор/, /3,5&nbsp;мм/, /0x64/, /Деплой №&nbsp;100/]) assert.match(html, re);
+  for (const z of ['1', '2', 'portrait']) assert.ok(html.includes(`data-value="${z}"`), `камера ${z}`);
+  assert.ok(html.includes('href="/0x5e/specs/"') && html.includes('href="/0x3e/"'));
+  assert.ok(existsSync(join(ROOT, 'models', 'oy0x5e.glb')));
+  assert.ok(existsSync(join(ROOT, 'og-0x5e.jpg')));
+  assert.ok(read('os/index.html').includes('href="/0x5e/"'), '0X5 Essential нет в списке CamelOS');
+  assert.ok(read('index.html').includes('data-model="0x5e"'), '0X5 Essential нет на витрине');
+  assert.ok(!read('index.html').includes('data-model="0x3e"'), 'снятый 0X3 Essential на витрине');
+});
+
+test('страница /0x5e/specs/: все разделы, одна h1, оглавление сходится, цены из данных, «Резонанс» и «Пломба» расписаны', () => {
+  const html = read('0x5e/specs/index.html');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  const rows = [...html.matchAll(/<section class="e-sp__row" id="([^"]+)"/g)].map((m) => m[1]);
+  for (const id of ['capacity', 'size', 'body', 'seam', 'water', 'display', 'chip', 'camera', 'video', 'front', 'power', 'resonance', 'security', 'switch', 'torch', 'cellular', 'buttons', 'sensors', 'os', 'missing', 'environment', 'box']) assert.ok(rows.includes(id), id);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const c of PRODUCTS['0x5e'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
+  assert.match(html, /6,78&nbsp;МГц/);
+  assert.match(html, /«Пломба»/);
+  assert.match(html, /Отпечаток в&nbsp;кнопке/);
 });

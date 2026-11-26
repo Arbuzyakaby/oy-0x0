@@ -515,7 +515,7 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
   .site-nav a:is([href="/0x2q/"], [href="/accessories/"]) { display: none; }
 }
 @media (max-width: 1280px) {
-  .site-nav a:is([href="/0x3e/"], [href="/os/"]) { display: none; }
+  .site-nav a:is([href="/0x5e/"], [href="/os/"]) { display: none; }
 }
 @media (max-width: 1100px) {
   .site-nav { display: none; }

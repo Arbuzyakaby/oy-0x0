@@ -63,7 +63,7 @@ function setColor(name, { save = true, instant = false } = {}) {
 colorGroups.forEach((g) => initRadioGroup(g, (v) => setColor(v)));
 setColor(store.get('oy-color') || root.dataset.color || PRODUCT.defaultColor, { save: false, instant: true });
 
-// Память и цена
+// Память и цена: с весны 2033-го 0X3 Essential снят с продажи — выбора памяти на странице нет, осталась таблица цен
 const memGroup = $('[data-mem-switch]');
 const usdEl = $('[data-price-usd]');
 const eurEl = $('[data-price-eur]');
@@ -86,8 +86,10 @@ function setMemory(v, animate = true) {
   });
   gsap.fromTo(usdEl, { y: 8, opacity: 0.6 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
 }
-initRadioGroup(memGroup, (v) => setMemory(v));
-setMemory('8/128', false);
+if (memGroup) {
+  initRadioGroup(memGroup, (v) => setMemory(v));
+  setMemory('8/128', false);
+}
 $('[data-price-table]').innerHTML = PRODUCT.configs
   .map((c) => `<tr><th scope="row">${c.id} ГБ</th><td>$${c.usd}</td><td>€${c.eur}</td></tr>`).join('');
 

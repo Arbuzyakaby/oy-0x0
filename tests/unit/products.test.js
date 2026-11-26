@@ -60,29 +60,30 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('в продаже семь моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят, осенью — 0X4, а 0X2 снят, весной 2033-го — 0X5, а 0X4 снят', async () => {
+test('в продаже семь моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят, осенью — 0X4, а 0X2 снят, весной 2033-го — 0X5 и 0X5 Essential, а 0X4 и 0X3 Essential сняты', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
-  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q', '0x2', '0x4']) {
+  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q', '0x2', '0x4', '0x3e']) {
     assert.equal(PRODUCTS[id].discontinued, true, id);
     assert.equal(PRODUCTS[id].tag, 'Снят с продажи', id);
     assert.ok(!PRODUCTS[id].returned, id);
   }
-  assert.deepEqual(ON_SALE, ['0x3e', '0x4q', 'moth2', '0x5', '0x2pro', 'nova', 'butterfly']);
+  assert.deepEqual(ON_SALE, ['0x5e', '0x4q', 'moth2', '0x5', '0x2pro', 'nova', 'butterfly']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['0x1e', '0x3e'], ['0x2e', '0x3e'], ['0x0', '0x3e'], ['0x2', '0x5'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x4', '0x5'], ['0x1', '0x5'], ['0x1q', '0x4q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
+    [['0x1e', '0x5e'], ['0x2e', '0x5e'], ['0x3e', '0x5e'], ['0x0', '0x5e'], ['0x2', '0x5'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x4', '0x5'], ['0x1', '0x5'], ['0x1q', '0x4q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
 
-test('лестница цен: модели в продаже идут по возрастанию, 0X3 Essential заканчивается дешевле 0X2', async () => {
+test('лестница цен: модели в продаже идут по возрастанию, 0X3 Essential заканчивался дешевле 0X2, 0X5 Essential дешевле 0X4Q', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
   const from = ON_SALE.map((id) => PRODUCTS[id].configs[0].usd);
   assert.deepEqual(from, [...from].sort((a, b) => a - b));
   assert.ok(PRODUCTS['0x3e'].configs.at(-1).usd < PRODUCTS['0x2'].configs[0].usd);
+  assert.ok(PRODUCTS['0x5e'].configs.at(-1).usd < PRODUCTS['0x4q'].configs[0].usd);
 });
 
 test('цены и цвета 0X2: память 11, 17, 21', () => {
@@ -138,7 +139,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', '0x4', '0x5', 'butterfly']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', '0x5e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', '0x4', '0x5', 'butterfly']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -236,17 +237,18 @@ test('0X Nova: новый флагман от $999 / €1149, один цвет 
   }
 });
 
-test('метка «Новинка» — у 0X3 Essential, 0X4Q, 0X5 и 0X Butterfly', () => {
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x3e', '0x4q', '0x5', 'butterfly']);
+test('метка «Новинка» — у 0X5 Essential, 0X4Q, 0X5 и 0X Butterfly', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x5e', '0x4q', '0x5', 'butterfly']);
 });
 
-test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, от $399 / €469', async () => {
+test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, был от $399 / €469; снят весной 2033-го, преемник — 0X5 Essential', async () => {
   const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
   const p = PRODUCTS['0x3e'];
   assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['8/128', 399, 469], ['8/256', 449, 519], ['12/256', 499, 579]]);
   assert.deepEqual(p.colors, { radium: 'Радиевый', mustard: 'Горчичный', rocky: 'Скалистый', iberian: 'Иберийский', penguin: 'Пингвиний' });
   assert.ok(!Object.values(p.colors).some((c) => /красн/i.test(c)), 'легендарного красного больше нет');
   assert.ok(p.eu && p.cn);
+  assert.ok(p.discontinued && p.successor === '0x5e' && p.tag === 'Снят с продажи');
   assert.equal(SHORT_NAMES['0x3e'], '0X3 Essential');
   const i = 2 + COMPARE_MODELS.indexOf('0x3e');
   const get = (label) => COMPARE.find((r) => r[1] === label)[i];
@@ -386,3 +388,33 @@ test('0X5: два сердца — OY Vitals на двух GP30 Duo, FIG Four, T
   for (const r of COMPARE) assert.ok(r[i] && r[i].length, `пусто: ${r[1]}`);
 });
 
+test('0X5 Essential: из одного куска — цельный алюминий, «Резонанс» 6,78 МГц сквозь металл, Cesium 5 и Palladium 5, две камеры, от $509', async () => {
+  const { COMPARE, COMPARE_MODELS, SHORT_NAMES, ON_SALE } = await import('../../js/data/products.js');
+  const p = PRODUCTS['0x5e'];
+  assert.equal(p.tag, 'Новинка');
+  assert.ok(!p.discontinued && p.eu && !p.cn);
+  assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['8/128', 509, 599], ['8/256', 559, 649], ['12/256', 609, 709]]);
+  assert.equal(0x1FD, 509);
+  assert.deepEqual(p.colors, { blank: 'Заготовка', anod: 'Анод', chips: 'Стружка', signal: 'Сигнальный', lacquer: 'Чёрный лак' });
+  assert.equal(p.defaultColor, 'blank');
+  assert.deepEqual(Object.keys(p.swatches), Object.keys(p.colors));
+  assert.equal(SHORT_NAMES['0x5e'], '0X5 Essential');
+  // самый доступный OY в продаже; по цене — между снятыми 0X1 ($499) и 0X2 ($579)
+  assert.equal(ON_SALE[0], '0x5e');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x5e') - 1], '0x1');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x5e') + 1], '0x2');
+  const i = 2 + COMPARE_MODELS.indexOf('0x5e');
+  const get = (label) => COMPARE.find((r) => r[1] === label)[i];
+  assert.equal(COMPARE[0][i], 'от $509');
+  assert.match(get('Процессор'), /^Cesium 5/);
+  assert.match(get('Чип безопасности'), /^Palladium 5.*«Пломба»/);
+  assert.match(get('Беспроводная зарядка'), /6,78 МГц.*сквозь цельный алюминий/);
+  assert.match(get('Материалы'), /^Цельный кусок алюминия/);
+  assert.match(get('Всего'), /две сзади/);
+  assert.match(get('Телевик'), /2×/);
+  assert.match(get('Биометрия'), /^Отпечаток в кнопке питания/);
+  assert.match(get('3,5 мм · USB-C'), /^Есть/);
+  assert.match(get('Сигнальный фонарь'), /5000 м/);
+  assert.equal(get('Цвета'), Object.values(p.colors).join(', '));
+  for (const r of COMPARE) assert.ok(r[i] && r[i].length, `пусто: ${r[1]}`);
+});
