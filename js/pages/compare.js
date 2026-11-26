@@ -28,7 +28,7 @@ import { createOY0X4 } from '../models/oy0x4.js';
 import { createOY0X5 } from '../models/oy0x5.js';
 import { createOY0X5E } from '../models/oy0x5e.js';
 import { createPro } from '../models/pro.js';
-import { $, $$, initRadioGroup, syncRadio } from '../core/ui.js';
+import { $, $$, initRadioGroup, syncRadio, createToast } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
 import { createSplitReveals } from '../core/text.js';
 
@@ -80,11 +80,11 @@ const LENS = { 1: [[28, 28]], 2: [[28, 19], [28, 37]], 3: [[19, 19], [19, 37], [
 
 const ROW_ICON = {
   'Чип безопасности': (v) => {
-    const name = v.split(/[:—]/)[0].trim();
-    const m = name.match(/^(.*?)\s+([\d.]+)$/);
-    if (name === 'MSC') return badge('MSC', 'в Argon 1');
-    if (name.endsWith(' Plus')) return badge(name.replace(/\s+[\d.]+ Plus$/, ''), name.match(/[\d.]+ Plus$/)[0], { accent: true });
-    return m ? badge(m[1], m[2]) : badge(name, '');
+    // на значке — только имя и номер: «Tesseract 5 между двумя сердцами» → «Tesseract 5»
+    if (v.startsWith('MSC')) return badge('MSC', /Argon 2/.test(v) ? 'в Argon 2' : 'в Argon 1');
+    const m = v.match(/^(Null Chip|Tesseract|Citadel|Palladium)(?:\s+([\d.]+X?(?:\s(?:Slim|Plus))?))?/);
+    if (!m) return badge(v.split(/[\s:—,]/)[0], '');
+    return badge(m[2] ? `${m[1]} ${m[2]}` : m[1], '', { accent: /Plus/.test(m[2] || '') });
   },
   'Аппаратное отключение': (v) => {
     const n = num(v.match(/^\d+ kill/)?.[0] || 0);
@@ -132,11 +132,14 @@ const ROW_ICON = {
     if (/^(Argon|Beryllium|Cesium)/.test(v)) return badge(v.split(' — ')[0].trim(), 'OY · свой', { accent: true });
     // первый процессор Fyr для телефонов: имя без марки, марка — подписью
     // 0X4Q: две версии — процессор Fyr в Европе, Snapdragon в Северной Америке
-    if (v.includes('GP20 Slim')) return badge('GP20 Slim · 8 Gen 5', 'Fyr · Snapdragon', { accent: true });
+    if (v.includes('GP20 Slim')) return badge('GP20 Slim', 'Fyr · или Snapdragon', { accent: true });
+    // 0X5: OY Vitals — два процессора Fyr GP30 Duo, «Мир» и «Дом»
+    if (v.includes('GP30 Duo')) return badge('GP30 Duo', 'Fyr · два сердца', { accent: true });
     if (v.startsWith('Fyr ')) return badge(v.split(' — ')[0].replace('Fyr ', '').trim(), 'Fyr · свой', { accent: true });
     if (v.includes('Extreme')) return badge('8 Elite Extreme', 'Snapdragon · Gen 6', { accent: true });
     if (v.startsWith('Snapdragon')) return badge(v.replace('Snapdragon ', ''), 'Snapdragon');
-    return badge(v.replace('Dimensity ', ''), 'Dimensity');
+    if (v.startsWith('Dimensity')) return badge(v.replace('Dimensity ', ''), 'Dimensity');
+    return badge(v.split(/[:—]/)[0].trim(), '');
   },
   'Аккумулятор': (v) => {
     const k = Math.min(1, num(v) / 9000);
@@ -163,10 +166,46 @@ const ROW_ICON = {
 function valueHtml(v) {
   if (v === '—') return '<span class="cx-none" aria-label="нет">—</span>';
   const m = v.match(/^(.{2,40}?)(?::\s|\s—\s(?=\D))(.+)$/); // «8/128 — 8/256» — это диапазон, не делим
-  return m ? `<b>${esc(m[1])}</b><span>${esc(m[2])}</span>` : `<b>${esc(v)}</b>`;
+  if (!m) return `<b>${esc(v)}</b>`;
+  const long = m[2].length > 70;
+  return `<b>${esc(m[1])}</b><span${long ? ' class="is-long"' : ''}>${esc(m[2])}</span>${long ? '<button type="button" class="cx-unfold" aria-expanded="false">подробнее</button>' : ''}`;
 }
 
 const SECTIONS = [...new Set(COMPARE.map((r) => r[0]))].filter((s) => s !== 'Цена');
+
+/* ---------- «Лучше»: где у чисел есть понятное «больше — лучше» ---------- */
+
+// Число из нужного места строки; null — сравнивать нечего
+const pick = (re) => (v) => { const m = String(v).match(re); return m ? num(m[1]) : null; };
+const BEST = {
+  'Аккумулятор': { get: pick(/(\d+)\s*мАч/), more: true },
+  'Зарядка': { get: pick(/(\d+)\s*Вт/), more: true },
+  'Яркость': { get: pick(/([\d,]+)\s*нит/), more: true },
+  'Частота': { get: pick(/(\d+)\s*Гц/), more: true },
+  'Толщина · вес': { get: pick(/(\d+)\s*г(?![а-я])/), more: false, label: 'легче' },
+  'Обновления · гарантия': { get: pick(/(\d+)\s*лет/), more: true },
+};
+function bestOf(label, vs) {
+  const rule = BEST[label];
+  if (!rule) return [];
+  const ns = vs.map((v) => (v === '—' ? null : rule.get(v)));
+  const ok = ns.filter((n) => n !== null && n > 0);
+  if (ok.length < 2) return [];
+  const top = rule.more ? Math.max(...ok) : Math.min(...ok);
+  if (ok.every((n) => n === top)) return [];
+  return ns.map((n) => n === top);
+}
+const plural = (n, one, few, many) => (n % 10 === 1 && n % 100 !== 11 ? one : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? few : many);
+
+/* ---------- Готовые наборы ---------- */
+
+const PRESETS = [
+  ['Новинки', ['0x5e', '0x4q', '0x5']],
+  ['Флагманы', ['0x5', '0x2pro', 'nova']],
+  ['Складные', ['moth2', 'butterfly', 'moth']],
+  ['Недорогие', ['0x5e', '0x4q', 'moth2']],
+  ['Тогда и сейчас', ['0x0', '0x2pro', '0x5']],
+].filter(([, ids]) => ids.every((id) => PRODUCTS[id]));
 
 /* ---------- Колонки ---------- */
 
@@ -203,6 +242,13 @@ function mountStage(i) {
   stages[i] = stage;
 }
 
+// выбранный цвет — посередине ленты (на телефоне цвета листаются)
+function centerSwatch(sw) {
+  const on = $('[aria-checked="true"]', sw);
+  if (!on || sw.scrollWidth <= sw.clientWidth) return;
+  sw.scrollLeft = on.offsetLeft - sw.offsetLeft - (sw.clientWidth - on.offsetWidth) / 2;
+}
+
 function renderCol(i) {
   const col = cols[i];
   const id = picks[i];
@@ -214,6 +260,7 @@ function renderCol(i) {
   sw.innerHTML = Object.entries(p.swatches).map(([c, hex]) =>
     `<button type="button" role="radio" class="cx-swatch" data-value="${c}" aria-checked="${c === color}" style="--c:${hex}"><span class="sr-only">${esc(p.colors[c])}</span></button>`).join('');
   $('[data-cname]', col).textContent = p.colors[color];
+  centerSwatch(sw);
   const tag = $('[data-tag]', col);
   tag.textContent = p.tag || '';
   tag.classList.toggle('is-off', !!p.discontinued);
@@ -246,22 +293,94 @@ function renderBody() {
       const same = vs.every((v) => v === vs[0]);
       if (!same) diffs++;
       const icon = ROW_ICON[r[1]];
+      const best = bestOf(r[1], vs);
+      const bestLabel = BEST[r[1]]?.label || 'лучше';
       // иконка — строка открывает новую группу, как у Apple
-      rowsHtml += `<div class="cx-row${icon ? ' cx-row--icon' : ''}${same ? ' is-same' : ''}">${vs.map((v) => {
+      rowsHtml += `<div class="cx-row${icon ? ' cx-row--icon' : ''}${same ? ' is-same' : ''}">${vs.map((v, k) => {
         const ico = icon ? (icon(v) || svg('<circle class="cx-ico__line is-dash" cx="28" cy="28" r="16"/>', { cls: ' is-none' })) : '';
-        return `<div class="cx-cell">${ico}<span class="cx-cell__k">${esc(r[1])}</span><span class="cx-cell__v">${valueHtml(v)}</span></div>`;
+        const b = best[k] ? `<span class="cx-best">${bestLabel}</span>` : '';
+        return `<div class="cx-cell${best[k] ? ' is-best' : ''}">${ico}<span class="cx-cell__k">${esc(r[1])}</span><span class="cx-cell__v">${valueHtml(v)}</span>${b}</div>`;
       }).join('')}</div>`;
     }
-    html += `<section class="cx-sec${diffs ? '' : ' is-same'}" aria-label="${esc(sec)}">
-      <h2 class="cx-sec__title">${esc(sec)}</h2>
+    const count = diffs ? `${diffs} ${plural(diffs, 'отличие', 'отличия', 'отличий')}` : 'всё одинаково';
+    html += `<section class="cx-sec${diffs ? '' : ' is-same'}" id="cx-sec-${SECTIONS.indexOf(sec)}" aria-label="${esc(sec)}">
+      <h2 class="cx-sec__title">${esc(sec)} <span class="cx-sec__count mono">${count}</span></h2>
       ${rowsHtml}
     </section>`;
   }
   body.innerHTML = html;
-  names.innerHTML = picks.map((id) => `<span>${esc(SHORT_NAMES[id])}</span>`).join('');
+  names.innerHTML = picks.map((id) => {
+    const p = PRODUCTS[id];
+    const dot = p.swatches[colorOf[id] || p.defaultColor];
+    return `<span class="cx-sticky__name"><i style="--c:${dot}"></i><b>${esc(SHORT_NAMES[id])}</b><em class="mono">${p.discontinued ? 'снят' : `от $${p.configs[0].usd}`}</em></span>`;
+  }).join('');
+  renderNav();
+  syncPresets();
   history.replaceState(null, '', `?models=${picks.join(',')}${location.hash}`);
   ScrollTrigger.refresh();
 }
+
+/* ---------- Меню разделов: в панели под колонками и в липкой полосе ---------- */
+
+const navs = [$('[data-secnav]'), $('[data-sticky-nav]')].filter(Boolean);
+// раздел, который сейчас на экране, подсвечен
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    navs.forEach((nav) => $$('a', nav).forEach((a) => a.classList.toggle('is-on', a.getAttribute('href') === `#${e.target.id}`)));
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+function renderNav() {
+  const secs = $$('.cx-sec', body);
+  navs.forEach((nav, n) => {
+    nav.innerHTML = secs.map((el) => `<a href="#${el.id}"${n ? ' tabindex="-1"' : ''}${el.classList.contains('is-same') ? ' class="is-same"' : ''}>${esc(el.getAttribute('aria-label'))}</a>`).join('');
+  });
+  spy.disconnect();
+  secs.forEach((el) => spy.observe(el));
+}
+navs.forEach((nav) => nav.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  // свой отступ под липкую полосу: общий обработчик якорей здесь не нужен
+  e.preventDefault();
+  e.stopPropagation();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 150;
+  if (smooth.lenis) smooth.lenis.scrollTo(top);
+  else window.scrollTo({ top, behavior: reduceMQ.matches ? 'auto' : 'smooth' });
+}));
+
+/* ---------- Наборы ---------- */
+
+const presetsEl = $('[data-presets]');
+presetsEl.innerHTML = PRESETS.map(([name, ids], k) => `<button type="button" class="cx-preset" data-preset="${k}" aria-pressed="false"><b>${esc(name)}</b> <span class="mono">${ids.map((id) => esc(SHORT_NAMES[id])).join(' · ')}</span></button>`).join('');
+function syncPresets() {
+  $$('[data-preset]', presetsEl).forEach((b) => b.setAttribute('aria-pressed', String(PRESETS[b.dataset.preset][1].join() === picks.join())));
+}
+presetsEl.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-preset]');
+  if (!b) return;
+  PRESETS[b.dataset.preset][1].forEach((id, i) => {
+    if (picks[i] === id) return;
+    picks[i] = id;
+    renderCol(i);
+    mountStage(i);
+  });
+  renderBody();
+});
+
+/* ---------- Ссылка на это сравнение ---------- */
+
+const toast = createToast($('#toast'), gsap);
+$('[data-share]').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(location.href);
+    toast('Ссылка скопирована: по ней откроются те же три модели.');
+  } catch {
+    toast(`Скопируйте адрес: ${location.href}`);
+  }
+});
 
 cols.forEach((col, i) => {
   const sel = $('[data-pick]', col);
@@ -273,7 +392,10 @@ cols.forEach((col, i) => {
     colorOf[id] = c;
     syncRadio(sw, c);
     $('[data-cname]', col).textContent = PRODUCTS[id].colors[c];
+    centerSwatch(sw);
     stages[i]?.setBodyColor(c);
+    const dot = $$('.cx-sticky__name i', names)[i];
+    if (dot) dot.style.setProperty('--c', PRODUCTS[id].swatches[c]);
   });
   sel.addEventListener('change', () => {
     const next = sel.value;
@@ -305,11 +427,23 @@ renderBody();
 const sticky = $('[data-sticky]');
 new IntersectionObserver(([e]) => sticky.classList.toggle('is-on', !e.isIntersecting && e.boundingClientRect.top < 0)).observe($('.cx-buy'));
 
+// «подробнее» раскрывает свёрнутое описание в ячейке
+body.addEventListener('click', (e) => {
+  const btn = e.target.closest('.cx-unfold');
+  if (!btn) return;
+  const cell = btn.closest('.cx-cell');
+  const open = cell.classList.toggle('is-open');
+  btn.setAttribute('aria-expanded', String(open));
+  btn.textContent = open ? 'свернуть' : 'подробнее';
+  ScrollTrigger.refresh();
+});
+
 /* ---------- Только различия ---------- */
 
 const page = $('.cx-page');
 $('[data-diff]').addEventListener('change', (e) => {
   page.classList.toggle('only-diff', e.target.checked);
+  navs.forEach((nav) => nav.classList.toggle('only-diff', e.target.checked));
   ScrollTrigger.refresh();
 });
 

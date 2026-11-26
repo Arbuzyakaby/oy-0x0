@@ -19,7 +19,6 @@
 }
 
 .site-nav a[aria-current="page"] { color: var(--fg); }
-.site-header .site-nav { position: absolute; left: 50%; translate: -50% 0; }
 
 .acc-eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent-text); }
 .acc-eyebrow--oy { color: #FF8A90; }

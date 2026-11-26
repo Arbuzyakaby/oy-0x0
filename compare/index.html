@@ -6,7 +6,7 @@
   <title>Сравнение телефонов OY</title>
   <meta name="description" content="Подробное сравнение характеристик OY 0X1 Essential, OY 0X2 Essential, OY 0X0, OY 0X2, OY 0X Moth, OY 0X2Q, OY 0X2 Pro, OY 0X Nova, OY 0X1 Pro, OY 0X1, OY 0X1Q и снятого с продажи OY 0X0 Pro, с ценами в долларах и евро. Концепт.">
   <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#0A0A0B">
+  <meta name="theme-color" content="#F4EDE2">
   <link rel="canonical" href="https://oy0x.online/compare/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OY">
@@ -24,9 +24,8 @@
 
   <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
-  <link rel="stylesheet" href="/css/core.css?v=eacad602e5">
-  <link rel="stylesheet" href="/css/home.css?v=d2350dd3e4">
-  <link rel="stylesheet" href="/css/compare.css?v=0ac5120728">
+  <link rel="stylesheet" href="/css/core.css?v=24c9a4230a">
+  <link rel="stylesheet" href="/css/compare.css?v=b998f0bd4c">
   <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
 
   <script type="importmap">
@@ -89,7 +88,7 @@
       "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
       "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
       "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=121ed28b2b",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=6e6a93eab4",
       "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
       "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
       "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
@@ -106,7 +105,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
   <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
-  <script type="module" src="/js/pages/compare.js?v=121ed28b2b"></script>
+  <script type="module" src="/js/pages/compare.js?v=6e6a93eab4"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -177,15 +176,18 @@
       <a href="/compare/" aria-current="page">Сравнить</a>
     </nav>
     <div class="header-actions">
-      <a class="btn btn--accent btn--sm" href="/0x2pro/#buy">Купить</a>
+      <a class="btn btn--accent btn--sm header-cta" href="/#phones">Выбрать<span class="header-cta__more"> телефон</span></a>
     </div>
   </header>
 
   <main id="main">
-    <section class="section solid cx-page" id="compare" aria-labelledby="cmp-title">
+    <section class="section solid cx-page paper" id="compare" aria-labelledby="cmp-title">
       <div class="container">
         <header class="cx-head">
-          <h1 class="cx-title" id="cmp-title" data-split>Сравните модели OY.</h1>
+          <p class="eyebrow cx-eyebrow" data-reveal>Сравнение · три телефона рядом</p>
+          <h1 class="cx-title" id="cmp-title">Сравните модели&nbsp;OY. <em>Спокойно, по&nbsp;строчке.</em></h1>
+          <p class="cx-lead" data-reveal>Выберите любые три модели или начните с&nbsp;готового набора. Отличия отмечены огоньком, лучшее значение в&nbsp;строке&nbsp;— плашкой «лучше».</p>
+          <div class="cx-presets" role="group" aria-label="Готовые наборы" data-presets data-reveal></div>
           <p class="cx-links" data-reveal><a href="/">Все модели на витрине <span aria-hidden="true">›</span></a> <a href="/accessories/">Аксессуары <span aria-hidden="true">›</span></a></p>
         </header>
 
@@ -236,14 +238,19 @@
 
         <div class="cx-sticky" aria-hidden="true" data-sticky>
           <div class="cx-sticky__inner" data-sticky-names></div>
+          <div class="cx-sticky__nav" data-sticky-nav></div>
         </div>
 
-        <div class="cx-tools">
-          <label class="cmp-toggle">
-            <input type="checkbox" data-diff>
-            <span class="cmp-toggle__track" aria-hidden="true"></span>
-            <span>Показать только различия</span>
-          </label>
+        <div class="cx-tools" data-tools>
+          <nav class="cx-secnav" aria-label="Разделы сравнения" data-secnav></nav>
+          <div class="cx-tools__right">
+            <label class="cmp-toggle">
+              <input type="checkbox" data-diff>
+              <span class="cmp-toggle__track" aria-hidden="true"></span>
+              <span>Только различия</span>
+            </label>
+            <button type="button" class="cx-share" data-share>Скопировать ссылку</button>
+          </div>
         </div>
 
         <div class="cx-body" data-body aria-live="polite"></div>
@@ -254,6 +261,12 @@
 
   <footer class="site-footer">
     <div class="container footer__inner">
+      <nav class="footer__map" aria-label="Карта сайта">
+        <div><p class="footer__map-h">Fyr</p><ul><li><a href="/fyr/h1/">Fyr H1</a></li><li><a href="/fyr/">Osmium X0</a></li><li><a href="/fyr/kbook/">KBook 1</a></li><li><a href="/fyr/chronicle/">Хроника: как OY стала Fyr</a></li></ul></div>
+        <div><p class="footer__map-h">Телефоны OY</p><ul><li><a href="/0x5e/">0X5 Essential</a></li><li><a href="/0x4q/">0X4Q</a></li><li><a href="/moth2/">0X Moth 2</a></li><li><a href="/0x5/">0X5</a></li><li><a href="/0x2pro/">0X2 Pro</a></li><li><a href="/nova/">0X Nova</a></li><li><a href="/butterfly/">0X Butterfly</a></li></ul></div>
+        <div><p class="footer__map-h">Выбрать</p><ul><li><a href="/#phones">Все телефоны на полке</a></li><li><a href="/compare/">Сравнить модели</a></li><li><a href="/accessories/">Аксессуары</a></li><li><a href="/os/">CamelOS 2.0</a></li></ul></div>
+        <div><p class="footer__map-h">Сняты с продажи</p><ul class="footer__map-old"><li><a href="/0x4/">0X4</a></li><li><a href="/0x3e/">0X3 Essential</a></li><li><a href="/0x2q/">0X2Q</a></li><li><a href="/moth/">Moth</a></li><li><a href="/0x2/">0X2</a></li><li><a href="/0x2e/">0X2 Essential</a></li><li><a href="/0x1pro/">0X1 Pro</a></li><li><a href="/0x1q/">0X1Q</a></li><li><a href="/0x1/">0X1</a></li><li><a href="/0x1e/">0X1 Essential</a></li><li><a href="/0x0/">0X0</a></li><li><a href="/pro/">0X0 Pro</a></li></ul></div>
+      </nav>
       <p class="transit-plate"><b>Переходный период</b> <span>OY&nbsp;Europe обанкротилась. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr, теперь на&nbsp;CamelOS&nbsp;2.0. В&nbsp;Китае их&nbsp;продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
       <div class="footer__brand">
         <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>

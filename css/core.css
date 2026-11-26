@@ -9,30 +9,46 @@
 @property --glow { syntax: '<color>'; inherits: true; initial-value: rgba(179, 32, 42, .38); }
 @property --bg-tint { syntax: '<color>'; inherits: true; initial-value: #0E0A0B; }
 
+/* «Вечер у маяка»: тёплая ночь, бумага цвета льна и янтарный свет лампы.
+   Fyr по-шведски — маяк, поэтому свет здесь жёлтый, а не неоновый */
 :root {
-  --bg: #0A0A0B;
-  --bg-2: #121214;
-  --bg-3: #19191C;
-  --fg: #F2F2F0;
-  --muted: #A3A3A8;
-  --line: rgba(255, 255, 255, .1);
-  --line-2: rgba(255, 255, 255, .18);
+  --bg: #14110E;
+  --bg-2: #1C1814;
+  --bg-3: #26201B;
+  --fg: #F6EEE2;
+  --muted: #B4A797;
+  --line: rgba(255, 236, 210, .1);
+  --line-2: rgba(255, 236, 210, .19);
 
-  --light-bg: #F1F0EC;
-  --light-bg-2: #E6E5E0;
-  --light-fg: #0B0B0C;
-  --light-muted: #55555B;
-  --light-line: rgba(0, 0, 0, .12);
+  --light-bg: #F4EDE2;
+  --light-bg-2: #EAE0D1;
+  --light-fg: #2A211A;
+  --light-muted: #6C5F52;
+  --light-line: rgba(60, 40, 20, .14);
 
-  --ok: #4ADE9B;
-  --bad: #FF5C64;
+  /* бумага и лампа — общие для всего сайта */
+  --linen: #F4EDE2;
+  --linen-2: #FBF7F0;
+  --linen-3: #EAE0D1;
+  --linen-ink: #2A211A;
+  --linen-muted: #6C5F52;
+  --linen-line: rgba(60, 40, 20, .14);
+  --lamp: #FFB547;
+  --lamp-deep: #C9771C;
+  --lamp-ink: #2A1A06;
+  --lamp-glow: rgba(255, 170, 60, .28);
+  --night: #14110E;
+
+  --ok: #8BD9A6;
+  --bad: #FF7A6B;
 
   --sans: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --serif: 'Palatino Linotype', Palatino, 'Book Antiqua', 'URW Palladio L', 'Noto Serif', Georgia, serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 
   --gutter: clamp(16px, 4vw, 48px);
   --maxw: 1320px;
-  --radius: 22px;
+  --radius: 28px;
   --ease: cubic-bezier(.2, .7, .1, 1);
 
   --header-h: 64px;
@@ -66,6 +82,14 @@ html {
   text-size-adjust: 100%;
   background: var(--bg);
 }
+
+/* лёгкое зерно, как у бумаги и старой плёнки: сайт перестаёт быть стерильным */
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: 70; pointer-events: none;
+  opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .3 0 0 0 1.4 -.35'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media print { body::after { display: none; } }
 
 html.lenis, html.lenis body { height: auto; }
 .lenis-smooth { scroll-behavior: auto !important; }
@@ -136,14 +160,21 @@ svg:has(use) { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linec
 /* ---------- Типографика ---------- */
 
 .eyebrow {
+  display: flex; align-items: center; gap: 10px;
   font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: .08em;
+  font-size: 12px;
+  letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+}
+/* огонёк перед подписью раздела */
+.eyebrow::before {
+  content: ''; flex: none; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--lamp); box-shadow: 0 0 0 4px var(--lamp-glow), 0 0 14px var(--lamp);
 }
 .light .eyebrow { color: var(--light-muted); }
+.light .eyebrow::before { background: var(--lamp-deep); box-shadow: 0 0 0 4px rgba(201, 119, 28, .16); }
 
 .mega {
   font-size: clamp(64px, 14vw, 220px);
@@ -152,14 +183,18 @@ svg:has(use) { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linec
   font-weight: 700;
 }
 
+/* Заголовки разделов — с засечками: сайт говорит спокойно, как книга у огня */
 .h2 {
-  font-size: clamp(40px, 6.6vw, 112px);
-  line-height: .95;
-  letter-spacing: -.045em;
-  font-weight: 700;
+  font-family: var(--serif);
+  font-size: clamp(40px, 6.2vw, 104px);
+  line-height: 1;
+  letter-spacing: -.025em;
+  font-weight: 400;
   max-width: 14ch;
   text-wrap: balance;
 }
+.serif { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; }
+.serif em, .h2 em { font-style: italic; }
 
 .h3 {
   font-size: clamp(28px, 3.4vw, 52px);
@@ -220,8 +255,13 @@ svg:has(use) { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linec
   color: var(--accent-ink);
   box-shadow: 0 10px 40px -10px var(--glow);
 }
-.btn--ghost { border-color: var(--line-2); background: rgba(255, 255, 255, .03); }
-.btn--ghost:hover { border-color: var(--fg); }
+.btn--ghost { border-color: var(--line-2); background: rgba(255, 240, 220, .04); }
+.btn--ghost:hover { border-color: var(--fg); background: rgba(255, 240, 220, .08); }
+/* кнопка-лампа: тёплая, с мягким ореолом */
+.btn--lamp { background: var(--lamp); color: var(--lamp-ink); box-shadow: 0 10px 34px -12px var(--lamp), inset 0 1px 0 rgba(255, 255, 255, .45); }
+.btn--lamp:hover { background: #FFC266; }
+.btn--ink { background: var(--linen-ink); color: var(--linen-2); }
+.btn--ink:hover { background: #3A2E25; }
 .btn--sm { --h: 40px; padding: 0 18px; font-size: 14px; }
 .btn--wide { width: 100%; }
 
@@ -237,7 +277,7 @@ svg:has(use) { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linec
 @keyframes loader-failsafe { to { opacity: 0; visibility: hidden; } }
 .loader.is-done { opacity: 0; visibility: hidden; }
 .loader__mark { width: 132px; height: auto; fill: none; stroke-width: 3; stroke-linecap: round; }
-.loader__o { stroke: var(--accent-text); stroke-dasharray: 101; stroke-dashoffset: 101; animation: loader-o 1.6s var(--ease) infinite; }
+.loader__o { stroke: var(--lamp); stroke-dasharray: 101; stroke-dashoffset: 101; animation: loader-o 1.6s var(--ease) infinite; }
 .loader__o--r { animation-delay: .15s; }
 .loader__x { stroke: var(--fg); stroke-dasharray: 26; stroke-dashoffset: 26; animation: loader-x 1.6s var(--ease) infinite .3s; }
 .loader__label { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); }
@@ -273,41 +313,66 @@ svg:has(use) { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linec
 
 main, .site-footer { position: relative; z-index: 2; }
 
-/* ---------- Шапка ---------- */
+/* ---------- Шапка ----------
+   Тёплое стекло, лампа в логотипе и лента разделов посередине: на узком
+   экране она листается пальцем, ничего не прячется */
 
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   height: var(--header-h);
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: clamp(10px, 2vw, 28px);
   padding: 0 var(--gutter);
-  background: rgba(10, 10, 11, .55);
-  backdrop-filter: saturate(160%) blur(16px);
-  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  background: rgba(20, 17, 14, .8);
+  backdrop-filter: saturate(150%) blur(18px);
+  -webkit-backdrop-filter: saturate(150%) blur(18px);
   border-bottom: 1px solid var(--line);
 }
-.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: -.02em; font-size: 18px; }
+/* тонкая полоска света под шапкой — как луч маяка по горизонту */
+.site-header::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent 8%, rgba(255, 181, 71, .55) 50%, transparent 92%);
+  opacity: .55;
+}
+.brand { flex: none; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: -.02em; font-size: 18px; }
 .brand__mark { width: 46px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
 .brand__mark circle { stroke: var(--accent-text); }
-/* переходный период: сайт — Fyr, телефоны — OY. Логотип «fyr / OY» */
+/* переходный период: сайт — Fyr, телефоны — OY. Логотип «fyr / OY»; у «маяка» тёплый луч */
 .brand__fyr { width: 40px; height: 26px; flex: none; overflow: visible; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.brand__fyr-beam { fill: #2F6BFF; stroke: none; opacity: .5; transform-box: view-box; transform-origin: 23px 6px; animation: brand-beam 8s linear infinite; }
-.brand__fyr-lamp { fill: #7FA4FF; stroke: none; }
+.brand__fyr-beam { fill: var(--lamp); stroke: none; opacity: .55; transform-box: view-box; transform-origin: 23px 6px; animation: brand-beam 8s linear infinite; }
+.brand__fyr-lamp { fill: #FFD58A; stroke: none; filter: drop-shadow(0 0 3px var(--lamp)); }
 .brand__sep { margin: 0 -2px; color: var(--muted); font-weight: 400; }
 @keyframes brand-beam { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .brand__fyr-beam { animation: none; } }
-.site-nav .site-nav__fyr { color: #7FA4FF; font-weight: 600; }
-.site-nav .site-nav__fyr:hover { color: #F4F7FF; }
+/* устройства Fyr в меню отмечены огоньком */
+.site-nav .site-nav__fyr { color: var(--fg); font-weight: 600; }
+.site-nav .site-nav__fyr::before { content: ''; display: inline-block; width: 5px; height: 5px; margin: 0 7px 2px 0; border-radius: 50%; background: var(--lamp); box-shadow: 0 0 8px var(--lamp); vertical-align: middle; }
+.site-nav .site-nav__fyr:hover { color: #FFF6E6; }
 /* плашка переходного периода в подвале страниц OY */
-.transit-plate { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 14px 18px; border: 1px solid rgba(47, 107, 255, .45); border-radius: 14px; background: rgba(47, 107, 255, .08); color: var(--fg); font-size: 14px; line-height: 1.5; }
-.transit-plate b { color: #7FA4FF; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
-.transit-plate a { color: #7FA4FF; white-space: nowrap; }
-.site-nav { display: flex; gap: clamp(14px, 1.5vw, 26px); font-size: 14px; }
-.site-nav a { text-decoration: none; color: var(--muted); transition: color .2s; white-space: nowrap; }
-.site-nav a:hover { color: var(--fg); }
-.header-actions { display: flex; align-items: center; gap: 14px; }
+.transit-plate { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 16px 20px; border: 1px solid rgba(255, 181, 71, .32); border-radius: 18px; background: linear-gradient(100deg, rgba(255, 181, 71, .1), rgba(255, 181, 71, .03)); color: var(--fg); font-size: 14px; line-height: 1.5; }
+.transit-plate b { color: var(--lamp); font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.transit-plate a { color: var(--lamp); white-space: nowrap; }
+.site-nav {
+  flex: 0 1 auto; min-width: 0;
+  display: flex; justify-content: safe center; gap: 0; font-size: 13.5px;
+  overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+  padding: 4px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+}
+.site-nav::-webkit-scrollbar { display: none; }
+.site-nav a { flex: none; padding: 7px 10px; border-radius: 999px; text-decoration: none; color: var(--muted); transition: color .2s, background-color .2s; white-space: nowrap; }
+.site-nav a:hover { color: var(--fg); background: rgba(255, 236, 210, .07); }
+.site-nav a[aria-current="page"] { color: var(--fg); background: rgba(255, 236, 210, .1); }
+/* меню делится на три группы: устройства Fyr · телефоны OY · система, аксессуары и сравнение */
+.site-nav a:is([href="/0x5e/"], [href="/os/"]) { position: relative; margin-left: 13px; }
+.site-nav a:is([href="/0x5e/"], [href="/os/"])::before { content: ''; position: absolute; left: -7px; top: 50%; width: 1px; height: 16px; margin-top: -8px; background: var(--line-2); }
+.site-nav a[href="/compare/"] { box-shadow: inset 0 0 0 1px var(--line-2); color: var(--fg); }
+.header-actions { flex: none; display: flex; align-items: center; gap: 14px; }
+/* «Купить» в шапке горит лампой на любой странице */
+.header-actions .btn--accent { background: var(--lamp); color: var(--lamp-ink); box-shadow: 0 8px 26px -10px var(--lamp), inset 0 1px 0 rgba(255, 255, 255, .45); }
+.header-actions .btn--accent:hover { background: #FFC266; }
 /* Прячем через top: transform шапки анимирует GSAP при появлении */
 .site-header { transition: top .4s var(--ease); }
-.site-header .site-nav { position: absolute; left: 50%; translate: -50% 0; }
 
 /* ---------- Подменю страницы модели (как у Apple) ----------
    Под общей шапкой: название модели, разделы, цвет и «Купить». При прокрутке
@@ -317,7 +382,7 @@ main, .site-footer { position: relative; z-index: 2; }
 .subnav {
   position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 49;
   height: var(--subnav-h);
-  background: rgba(10, 10, 11, .72);
+  background: rgba(20, 17, 14, .74);
   backdrop-filter: saturate(160%) blur(16px);
   -webkit-backdrop-filter: saturate(160%) blur(16px);
   border-bottom: 1px solid var(--line);
@@ -381,6 +446,18 @@ html[data-subnav] [id] { scroll-margin-top: var(--subnav-h); }
 .section { position: relative; }
 .solid { background: var(--bg); }
 .light { background: var(--light-bg); color: var(--light-fg); }
+/* Бумага: льняной фон, тёплые чернила. Переопределяет токены, поэтому всё,
+   что внутри пишет var(--fg) и var(--muted), само становится тёмным на светлом */
+.paper {
+  --fg: var(--linen-ink); --muted: var(--linen-muted);
+  --line: var(--linen-line); --line-2: rgba(60, 40, 20, .24);
+  --bg: var(--linen); --bg-2: var(--linen-2); --bg-3: var(--linen-3);
+  --accent-text: var(--accent-strong);
+  background: var(--linen); color: var(--linen-ink);
+}
+.paper--deep { --bg: var(--linen-3); background: var(--linen-3); }
+.paper .eyebrow::before { background: var(--lamp-deep); box-shadow: 0 0 0 4px rgba(201, 119, 28, .16); }
+.paper :focus-visible { outline-color: var(--lamp-deep); }
 .solid:not(.pinned), .final { padding-block: clamp(96px, 14vh, 180px); }
 
 .pinned { min-height: 100vh; min-height: 100svh; }
@@ -478,16 +555,43 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
 .footnotes__more { margin-top: 18px; max-width: 980px; }
 [id^="fnr-"] { scroll-margin-top: 45vh; }
 
-/* ---------- Футер ---------- */
+/* ---------- Футер ----------
+   Тёплый подвал: маяк справа светит над текстом, а строки стоят спокойно */
 
-.site-footer { background: var(--bg); border-top: 1px solid var(--line); padding: 40px 0 calc(40px + env(safe-area-inset-bottom)); }
-.footer__inner { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; }
+.site-footer {
+  position: relative; overflow: hidden;
+  background: radial-gradient(50% 140% at 92% 0%, rgba(255, 181, 71, .13), transparent 62%), var(--bg-2);
+  border-top: 1px solid var(--line);
+  padding: clamp(48px, 7vw, 80px) 0 calc(40px + env(safe-area-inset-bottom));
+}
+/* маяк и его луч — только украшение */
+.site-footer::before {
+  content: ''; position: absolute; right: clamp(-40px, 2vw, 40px); top: 10px; width: 230px; height: 150px; pointer-events: none; opacity: .5;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 230 150'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='1' x2='0'%3E%3Cstop offset='0' stop-color='%23FFB547' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FFB547' stop-opacity='.55'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M170 38 L10 6 L10 64Z' fill='url(%23b)'/%3E%3Cg fill='none' stroke='%23B4A797' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M160 150 L166 52 H184 L190 150'/%3E%3Cpath d='M162 52 H188 M168 52 V40 H182 V52 M166 40 L175 30 L184 40'/%3E%3Cpath d='M164 84 H186 M162 118 H188'/%3E%3C/g%3E%3Ccircle cx='175' cy='46' r='3.5' fill='%23FFD58A'/%3E%3C/svg%3E") no-repeat right top / contain;
+}
+.footer__inner { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; }
 .footer__brand { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 14px; }
-.footer__privacy { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; text-align: center; }
+.footer__privacy { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 236, 210, .03); font-weight: 600; font-size: 15px; text-align: center; }
 .footer__privacy svg { width: 20px; height: 20px; color: var(--ok); flex: none; }
-.footer__small { justify-self: end; font-size: 12px; color: var(--muted); }
-.footer__concept { grid-column: 1 / -1; margin: 4px 0 0; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); text-align: center; }
+.footer__small { justify-self: end; font-size: 12px; line-height: 1.7; color: var(--muted); }
+.footer__small a { color: var(--fg); text-decoration-color: rgba(255, 236, 210, .3); text-underline-offset: 3px; }
+.footer__small a:hover { color: var(--lamp); }
+.footer__concept { grid-column: 1 / -1; margin: 8px 0 0; padding-top: 22px; border-top: 1px dashed var(--line-2); font-size: 13px; color: var(--muted); text-align: center; text-wrap: pretty; }
 .footer__concept a { color: var(--fg); }
+
+/* Карта сайта: всё, что есть, в четыре понятные колонки */
+.footer__map { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.2fr 1fr 1.6fr; gap: 28px 32px; padding-bottom: 36px; margin-bottom: 12px; border-bottom: 1px dashed var(--line-2); }
+.footer__map-h { margin-bottom: 14px; font: 600 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: color-mix(in srgb, var(--lamp) 62%, var(--fg)); }
+.footer__map ul { display: grid; gap: 9px; }
+.footer__map a { color: var(--fg); text-decoration: none; font-size: 15px; transition: color .2s; }
+.footer__map a:hover { color: var(--lamp); }
+.footer__map-old { grid-template-columns: 1fr 1fr; column-gap: 20px; }
+.footer__map-old a { color: var(--muted); font-size: 14px; }
+@media (max-width: 860px) { .footer__map { grid-template-columns: 1fr 1fr; } .footer__map > div:last-child { grid-column: 1 / -1; } .footer__map-old { grid-template-columns: repeat(3, 1fr); } }
+/* старая строка ссылок повторяла карту — убираем, остаются бренд и приватность */
+.footer__map ~ .footer__small { display: none; }
+@media (min-width: 861px) { .footer__map ~ .footer__privacy { justify-self: end; grid-column: 2 / -1; } }
+.site-footer:has(.footer__map)::before { opacity: .22; top: auto; bottom: 70px; }
 
 /* ---------- Toast ---------- */
 
@@ -496,9 +600,9 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
   translate: -50% 0;
   max-width: min(520px, calc(100vw - 32px));
   padding: 14px 20px; border-radius: 16px;
-  background: var(--fg); color: var(--bg);
+  background: var(--linen-2); color: var(--linen-ink);
   font-size: 15px; font-weight: 500;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+  box-shadow: 0 20px 60px rgba(20, 10, 0, .45), 0 0 0 1px rgba(255, 181, 71, .3);
 }
 
 /* ---------- Появление (начальные состояния только при JS) ---------- */
@@ -510,15 +614,14 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
    Адаптив (общие элементы)
    ========================================================================= */
 
-/* в меню двенадцать пунктов: на узких экранах прячем наименее нужные */
-@media (max-width: 1480px) {
-  .site-nav a:is([href="/0x2q/"], [href="/accessories/"]) { display: none; }
-}
-@media (max-width: 1280px) {
-  .site-nav a:is([href="/0x5e/"], [href="/os/"]) { display: none; }
+/* в меню тринадцать пунктов: на узких экранах лента листается, ничего не прячем */
+@media (max-width: 1560px) {
+  .site-nav { font-size: 13px; }
+  .site-nav a { padding: 6px 7px; }
 }
 @media (max-width: 1100px) {
-  .site-nav { display: none; }
+  .site-nav { justify-content: flex-start; font-size: 13px; }
+  .site-nav a { padding: 6px 9px; }
 }
 
 @media (max-width: 860px) {
@@ -538,7 +641,7 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
   .stage-text--bottom { padding-bottom: 0; }
   .pinned .stage-text::before {
     content: ''; position: absolute; inset: -40px calc(-1 * var(--gutter)) -28px;
-    background: linear-gradient(to top, rgba(10, 10, 11, .92) 55%, rgba(10, 10, 11, 0));
+    background: linear-gradient(to top, rgba(20, 17, 14, .92) 55%, rgba(20, 17, 14, 0));
     z-index: -1; pointer-events: none;
   }
   .pinned .lead { font-size: 16px; }
@@ -561,7 +664,7 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
   .subnav__toggle:focus-visible { outline: 2px solid var(--accent-text); }
   .subnav__menu {
     position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 6px var(--gutter) 16px;
-    background: rgba(10, 10, 11, .94); border-bottom: 1px solid var(--line);
+    background: rgba(20, 17, 14, .95); border-bottom: 1px solid var(--line);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     visibility: hidden; opacity: 0; transform: translateY(-6px); transition: opacity .25s, transform .25s, visibility 0s .25s;
   }
@@ -570,6 +673,12 @@ sup.fn a:hover, sup.fn a:focus-visible { opacity: 1; text-decoration: underline;
   .subnav__actions .color-switch--mini { display: none; }
 }
 
+@media (max-width: 480px) {
+  .header-cta__more { display: none; }
+  /* место под ленту меню: на телефоне в логотипе остаются «fyr / OY» */
+  .site-header .brand .brand__mark { display: none; }
+  .site-header { gap: 8px; }
+}
 @media (max-width: 400px) {
   .header-actions .color-switch--mini { display: none; }
 }
