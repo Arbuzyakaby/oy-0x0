@@ -237,8 +237,8 @@ test('0X Nova: новый флагман от $999 / €1149, один цвет 
   }
 });
 
-test('метка «Новинка» — у 0X5 Essential, 0X4Q, 0X5 и 0X Butterfly', () => {
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x5e', '0x4q', '0x5', 'butterfly']);
+test('метка «Новинка» — только у 0X5 Essential', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x5e']);
 });
 
 test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, был от $399 / €469; снят весной 2033-го, преемник — 0X5 Essential', async () => {
@@ -365,7 +365,7 @@ test('0X4: самый тонкий OY — 5,75 мм и 170 г, полный GP20
 test('0X5: два сердца — OY Vitals на двух GP30 Duo, FIG Four, Tesseract 5, три камеры сзади, 6,1 мм; ОЗУ «Мир» + «Дом»', async () => {
   const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
   const p = PRODUCTS['0x5'];
-  assert.equal(p.tag, 'Новинка');
+  assert.equal(p.tag, undefined);
   assert.ok(!p.discontinued && p.eu && !p.cn);
   assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['16/256', 849, 949], ['16/512', 949, 1049], ['24/1024', 1149, 1249]]);
   assert.deepEqual(p.colors, { puls: 'Пульс', night: 'Ночная смена', phosphor: 'Фосфор', coat: 'Халат' });
