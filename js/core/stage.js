@@ -136,20 +136,32 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
   ro?.observe(canvas);
 
   /* ---- Загрузка модели ---- */
+  // Если GLB не успел за 8 с, показываем процедурную модель, но загрузку не бросаем:
+  // настоящая модель тихо подменит заглушку, как только придёт.
+  function swapIn(root) {
+    if (disposed) return;
+    for (const c of [...modelRoot.children]) modelRoot.remove(c);
+    model.setup(root);
+    modelRoot.add(root);
+    snap();
+    update(0);
+    renderer.render(scene, camera);
+  }
   const ready = (async () => {
     let fallback = forceFallback;
     let root = null;
     if (!fallback) {
+      const load = new GLTFLoader().loadAsync(model.url);
       try {
-        const loader = new GLTFLoader();
         const gltf = await Promise.race([
-          loader.loadAsync(model.url),
-          new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 15000)),
+          load,
+          new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000)),
         ]);
         root = gltf.scene;
       } catch (err) {
-        console.info('[OY] GLB недоступен, используется процедурная модель:', err?.message || err);
+        console.info('[OY] GLB пока недоступен, временно процедурная модель:', err?.message || err);
         fallback = true;
+        if (err?.message === 'timeout') load.then((gltf) => swapIn(gltf.scene)).catch(() => {});
       }
     }
     if (disposed) return { fallback };
