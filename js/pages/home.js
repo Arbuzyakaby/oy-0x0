@@ -8,9 +8,8 @@ import Lenis from 'lenis';
 import { createStage } from '../core/stage.js';
 import { createOY0X2 } from '../models/oy0x2.js';
 import { createOY0X5E } from '../models/oy0x5e.js';
-import { createOY0X2Pro } from '../models/oy0x2pro.js';
+import { createOY0X5Pro } from '../models/oy0x5pro.js';
 import { createOYMoth2 } from '../models/oymoth.js';
-import { createOYNova } from '../models/oynova.js';
 import { createOYButterfly } from '../models/oybutterfly.js';
 import { createOY0X4Q } from '../models/oy0x4q.js';
 import { createOY0X5 } from '../models/oy0x5.js';
@@ -39,15 +38,15 @@ const PI = Math.PI;
 
 const smooth = createSmoothScroll({ gsap, ScrollTrigger, Lenis, reduceMQ });
 
-/* ---------- Модельный ряд: семь телефонов в одном масштабе, по цене ---------- */
+/* ---------- Модельный ряд: шесть телефонов в одном масштабе, по цене ---------- */
 
 // У всех одна камера и одна точка опоры — низ корпуса стоит на общей линии,
-// поэтому разница в росте настоящая: 0X2 Pro — 166 мм, 0X2Q — 142,4 мм.
-const HEIGHT = { '0x5e': 156.4, '0x2': 161, moth2: 166.7, '0x2pro': 166, nova: 164.8, butterfly: 120, '0x4q': 150.4, '0x5': 150.8 };
-const TURN = { '0x5e': -PI + 0.45, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x2pro': -PI - 0.4, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x4q': -PI + 0.45, '0x5': -PI + 0.45 };
+// поэтому разница в росте настоящая: 0X Moth 2 — 166,7 мм, Butterfly сложенный — 120 мм.
+const HEIGHT = { '0x5e': 156.4, '0x2': 161, moth2: 166.7, '0x5pro': 164.2, butterfly: 120, '0x4q': 150.4, '0x5': 150.8 };
+const TURN = { '0x5e': -PI + 0.45, '0x2': -PI + 0.32, moth2: -PI + 0.45, '0x5pro': -PI + 0.5, butterfly: -PI + 0.45, '0x4q': -PI + 0.45, '0x5': -PI + 0.45 };
 const DIST = 4.05;
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: DIST, float: 0.35, screen: 1, ...(id === 'butterfly' ? { fold: 1 } : {}) });
-const MODELS = { '0x5e': [createOY0X5E, 'blank'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x2pro': [createOY0X2Pro, 'sky'], nova: [createOYNova, 'supernova'], butterfly: [createOYButterfly, 'signal'], '0x4q': [createOY0X4Q, 'tuile'], '0x5': [createOY0X5, 'puls'] };
+const MODELS = { '0x5e': [createOY0X5E, 'blank'], '0x2': [createOY0X2, 'honey'], moth2: [createOYMoth2, 'orange'], '0x5pro': [createOY0X5Pro, 'iris'], butterfly: [createOYButterfly, 'signal'], '0x4q': [createOY0X4Q, 'tuile'], '0x5': [createOY0X5, 'puls'] };
 const stages = [];
 $$('.lineup__item').forEach((item) => {
   const id = item.dataset.model;
@@ -62,12 +61,12 @@ $$('.lineup__item').forEach((item) => {
   }
   const rest = pose(id);
   // при наведении телефон разворачивается к вам экраном вполоборота;
-  // 0X2 Pro поворачивается экраном и поднимает фронталку из-под CPix,
-  // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам (камера чуть дальше: сложенный он шире колонки), у Nova выезжает перо,
+  // у 0X5 Pro выезжает шайба на 20 мм,
+  // Moth складывается и встаёт на линию петлёй вниз, «Крылом» к вам (камера чуть дальше: сложенный он шире колонки),
   // а Butterfly закрывает «Глаз» диафрагмой
   // у 0X4Q «Планка» отходит от спинки
   // у 0X5 — экран: на заставке бьются оба сердца; у 0X5 Essential загораются «Швы» на спинке
-  const near = id === '0x5e' ? { ry: -PI + 0.2, seam: 1 } : id === '0x5' ? { ry: -0.3 } : id === '0x4q' ? { ry: -PI + 0.2, pull: 1 } : id === 'butterfly' ? { ry: -PI + 0.15, iris: 1 } : id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x2pro' ? { ry: -0.3, cpix1: 1 } : id === 'moth2' ? { ry: -0.28, fold: 1, rz: PI, fy: 0, dist: DIST * 1.2 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
+  const near = id === '0x5e' ? { ry: -PI + 0.2, seam: 1 } : id === '0x5' ? { ry: -0.3 } : id === '0x4q' ? { ry: -PI + 0.2, pull: 1 } : id === 'butterfly' ? { ry: -PI + 0.15, iris: 1 } : id === 'nova' ? { ry: -0.35, pen: 0.32 } : id === '0x5pro' ? { ry: -PI + 0.9, ext: 1 } : id === 'moth2' ? { ry: -0.28, fold: 1, rz: PI, fy: 0, dist: DIST * 1.2 } : { ry: TURN[id] + (TURN[id] > -PI ? -0.9 : 0.9), ext: 1 };
   stage.setTarget(rest);
   stage.setBodyColor(MODELS[id][1], true);
   stage.setReduced(reduceMQ.matches);

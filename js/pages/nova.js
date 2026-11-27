@@ -514,11 +514,12 @@ function renderPrice() {
   const c = getConfig('nova', mem);
   $('[data-total]').textContent = money(c.usd, c.eur);
   $('[data-cfg-name]').textContent = `OY 0X Nova · ${mem} ГБ`;
-  syncRadio(memGroup, mem);
+  if (memGroup) syncRadio(memGroup, mem);
   $$('[data-currency]').forEach((g) => syncRadio(g, currency));
   $$('[data-price]').forEach((el) => { el.textContent = money(Number(el.dataset.usd), Number(el.dataset.eur)); });
 }
-initRadioGroup(memGroup, (v) => { mem = v; renderPrice(); });
+// снят с продажи: выбора памяти больше нет, цена — «был от»
+if (memGroup) initRadioGroup(memGroup, (v) => { mem = v; renderPrice(); });
 $$('[data-currency]').forEach((g) => initRadioGroup(g, (v) => { currency = v; store.set(CUR_KEY, v); renderPrice(); }));
 $('[data-price-table]').innerHTML = PRODUCT.configs
   .map((c) => `<tr><td>${c.id.replace('/', ' / ')} ГБ</td><td>$${c.usd}</td><td>€${c.eur}</td></tr>`).join('');

@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="ru" data-x5p data-color="iris">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X5 Pro — смотрит в оба</title>
+  <meta name="description" content="OY 0X5 Pro — Pro пятого поколения. Шайба камер выдвигается из корпуса на 20 мм, фронталки и сканер сетчатки спрятаны под пикселями CPix 3, на спинке — цветной E Ink, внутри — гибкий кремний Fyr GP30 Pro и чип Love Gen 5. 0Pen 2 в комплекте. От $1149. Концепт.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#E3E0D7">
+  <link rel="canonical" href="https://oy0x.online/0x5pro/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x5pro/">
+  <meta property="og:title" content="OY 0X5 Pro — смотрит в оба">
+  <meta property="og:description" content="Шайба выдвигается на 20 мм, сетчатка под пикселями CPix 3, E Ink на спинке, гибкий кремний GP30 Pro, Love Gen 5 и 0Pen 2 в комплекте. От $1149. Концепт.">
+  <meta property="og:image" content="https://oy0x.online/og-0x5pro.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Пять OY 0X5 Pro спинкой: на E Ink каждого — время, у среднего шайба камер выдвинута">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E3E0D7'/%3E%3Ctext x='32' y='30' font-family='Georgia,serif' font-weight='700' font-size='24' text-anchor='middle' fill='%2316171A'%3E%D0%A8%20%D0%91%3C/text%3E%3Ctext x='32' y='50' font-family='Georgia,serif' font-weight='700' font-size='14' text-anchor='middle' fill='%2316171A'%3E%D0%9C%20%D0%9D%20%D0%9A%3C/text%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
+  <link rel="stylesheet" href="/css/core.css?v=24c9a4230a">
+  <link rel="stylesheet" href="/css/0x5pro.css?v=f15eff2b24">
+  <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=b26daeb300",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=a0a53f4718",
+      "/js/data/products.js": "/js/data/products.js?v=0d687eb125",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
+      "/js/models/fyrh1.js": "/js/models/fyrh1.js?v=cd8e7d3a55",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=27e0885289",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oy0x4.js": "/js/models/oy0x4.js?v=f8652e989d",
+      "/js/models/oy0x4q.js": "/js/models/oy0x4q.js?v=e13ee7e681",
+      "/js/models/oy0x5.js": "/js/models/oy0x5.js?v=d453bdcbf9",
+      "/js/models/oy0x5e.js": "/js/models/oy0x5e.js?v=60d87aee07",
+      "/js/models/oy0x5pro.js": "/js/models/oy0x5pro.js?v=2aba89fad3",
+      "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=3cb6753b62",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=58af31bffb",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=011fcc2bd9",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=55f1029788",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4c33d835a2",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=aed814f3c3",
+      "/js/pages/0x4.js": "/js/pages/0x4.js?v=5a36989c0d",
+      "/js/pages/0x4q.js": "/js/pages/0x4q.js?v=cc97149bba",
+      "/js/pages/0x5.js": "/js/pages/0x5.js?v=29d0841133",
+      "/js/pages/0x5e.js": "/js/pages/0x5e.js?v=51605521d4",
+      "/js/pages/0x5pro.js": "/js/pages/0x5pro.js?v=0c19b9cf45",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=7fa6737a96",
+      "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
+      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
+      "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=3f7035c6d9",
+      "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
+      "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=89f792cb34",
+      "/js/pages/home.js": "/js/pages/home.js?v=be6fbc29e3",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=89d9237b99",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-x5p-color');if(/^(iris|ink|paper|retina|amber)$/.test(c))document.documentElement.dataset.color=c}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=b26daeb300">
+  <script type="module" src="/js/pages/0x5pro.js?v=0c19b9cf45"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Лоадер: первая строка таблицы проявляется на электронной бумаге -->
+  <div class="loader o-loader" id="loader" role="status" aria-live="polite">
+    <span class="o-loader__row" aria-hidden="true">Ш&nbsp;Б</span>
+    <span class="loader__label mono">Перерисовываем бумагу…</span>
+  </div>
+
+  <!-- Электронная бумага: зерно, полная перерисовка между главами, призрак прошлого заголовка -->
+  <div class="o-paper" aria-hidden="true"></div>
+  <p class="o-ghost" aria-hidden="true" data-ghost></p>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+  <div class="o-refresh" aria-hidden="true" data-refresh></div>
+  <div class="o-night" aria-hidden="true" data-dark></div>
+
+  <header class="site-header o-header" id="top">
+    <a class="brand" href="/" aria-label="Fyr и телефоны OY — на главную">
+      <svg class="brand__fyr" viewBox="0 0 46 30" aria-hidden="true"><path class="brand__fyr-beam" d="M23 6L42 0.5V11.5Z"/><path d="M8 24V10a4 4 0 0 1 4-4h3M4 13h9M19 12v6a4 4 0 0 0 8 0M27 12v12a4 4 0 0 1-7.4 2.2M34 24v-8a4 4 0 0 1 4-4h3"/><circle class="brand__fyr-lamp" cx="23" cy="6" r="1.8"/></svg><span class="brand__sep" aria-hidden="true">/</span><svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
+      <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
+      <a class="site-nav__fyr" href="/fyr/h1/">H1</a>
+      <a href="/0x5e/">0X5 Essential</a>
+      <a href="/0x4q/">0X4Q</a>
+      <a href="/moth2/">0X Moth 2</a>
+      <a href="/0x5/">0X5</a>
+      <a href="/0x5pro/" aria-current="page">0X5 Pro</a>
+      <a href="/butterfly/">0X Butterfly</a>
+      <a href="/os/">CamelOS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+    <a class="btn btn--accent btn--sm o-header__buy" href="#buy">от $1149</a>
+  </header>
+
+  <!-- Прогресс: таблица Сивцева — каждая строка ведёт на главу, буквы мельчают -->
+  <nav class="o-chart" aria-label="Главы страницы" data-chart>
+    <ol role="list">
+      <li style="--fs: 1"><a href="#hero" data-tick="hero"><b>Ш Б</b><span>Смотрит в&nbsp;оба</span></a></li>
+      <li style="--fs: .86"><a href="#cpix" data-tick="cpix"><b>М Н К</b><span>CPix&nbsp;3</span></a></li>
+      <li style="--fs: .75"><a href="#retina" data-tick="retina"><b>Ы М Б Ш</b><span>Сетчатка</span></a></li>
+      <li style="--fs: .66"><a href="#tube" data-tick="tube"><b>Б Ы Н К М</b><span>20&nbsp;мм</span></a></li>
+      <li style="--fs: .59"><a href="#zoom" data-tick="zoom"><b>И Н Ш М К</b><span>Подзорная труба</span></a></li>
+      <li style="--fs: .53"><a href="#flex" data-tick="flex"><b>Н Ш Ы И К Б</b><span>Гибкий кремний</span></a></li>
+      <li style="--fs: .48"><a href="#vapor" data-tick="vapor"><b>Ш И Н Б К М</b><span>Три слоя</span></a></li>
+      <li style="--fs: .44"><a href="#hz" data-tick="hz"><b>К Н Ш М Ы Б И</b><span>0,1–180&nbsp;Гц</span></a></li>
+      <li style="--fs: .41"><a href="#eink" data-tick="eink"><b>Б К Ш М И Ы Н</b><span>E&nbsp;Ink и&nbsp;0Pen&nbsp;2</span></a></li>
+      <li style="--fs: .38"><a href="#love" data-tick="love"><b>Н К И Б М Ш Ы К</b><span>Love Gen&nbsp;5</span></a></li>
+      <li style="--fs: .36"><a href="#switch" data-tick="switch"><b>Ш Ы Н К М И Б</b><span>Рубильник</span></a></li>
+      <li style="--fs: .34"><a href="#colors" data-tick="colors"><b>Ы Б Н М К Ш И Н</b><span>Цвета</span></a></li>
+      <li style="--fs: .34"><a href="#buy" data-tick="buy"><b>○ X ○</b><span>Купить</span></a></li>
+    </ol>
+  </nav>
+
+  <main id="main">
+    <!-- Ш Б. СМОТРИТ В ОБА: первая строка таблицы, телефон поворачивается к вам -->
+    <section class="o o--hero" id="hero" aria-labelledby="hero-title">
+      <div class="o-hero__chart" aria-hidden="true"><span>Ш</span><span>Б</span></div>
+      <div class="o-hero">
+        <p class="o-row mono" aria-hidden="true"><b>Ш Б</b><span>V = 0,1</span><span>март 2034</span></p>
+        <h1 class="o-hero__title" id="hero-title">
+          <span class="o-hero__model">OY 0X5 Pro</span>
+          <span class="o-hero__big" data-split>Смотрит в&nbsp;оба.</span>
+        </h1>
+        <p class="o-hero__lead">Спереди&nbsp;— сканер сетчатки и&nbsp;две камеры, спрятанные под обычными пикселями. Сзади&nbsp;— шайба, которая выезжает из&nbsp;корпуса на&nbsp;целых 20&nbsp;мм, и&nbsp;электронная бумага на&nbsp;всю спинку. Внутри&nbsp;— кремний, который гнётся.</p>
+        <div class="o-hero__buy">
+          <p class="o-price"><span>от</span> <b>$1149</b> <span class="mono">· €1299 · 12&nbsp;990&nbsp;kr · C$1549</span></p>
+          <a class="btn btn--accent" href="#buy">Купить</a>
+          <a class="btn btn--ghost" href="/0x5pro/specs/">Характеристики</a>
+        </div>
+        <p class="o-hero__eye mono" data-eye-note>Подвигайте мышью: телефон следит за&nbsp;вами</p>
+      </div>
+      <a class="o-scroll mono" href="#cpix"><span>Читайте строку ниже</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <!-- М Н К. CPIX 3: пиксели уезжают, камеры поднимаются -->
+    <section class="o o--cpix" id="cpix" aria-labelledby="cpix-title">
+      <div class="o-wrap o-split o-split--right">
+        <div class="o-split__text">
+          <p class="o-row mono" aria-hidden="true"><b>М Н К</b><span>V = 0,2</span><span>CPix&nbsp;3</span></p>
+          <h2 class="o-h2" id="cpix-title" data-split>Над камерой&nbsp;— обычные пиксели.</h2>
+          <p class="o-lead">Ни&nbsp;дырочки, ни&nbsp;«чёлки», ни&nbsp;пятна редких пикселей. Над фронталками лежит блок той&nbsp;же плотности, что и&nbsp;весь экран. Камера нужна&nbsp;— блок гаснет, уезжает под соседей, и&nbsp;три модуля поднимаются в&nbsp;окно. И&nbsp;ни&nbsp;одного моторчика: блок сдвигают магниты, камеры поднимают пьезоэлементы. У&nbsp;CPix&nbsp;2 с&nbsp;микромотором на&nbsp;это уходило 120&nbsp;мс. У&nbsp;CPix&nbsp;3&nbsp;— 40, и&nbsp;беззвучно.</p>
+          <div class="o-cpix" data-cpix>
+            <div class="o-cpix__screen">
+              <div class="o-cpix__well" aria-hidden="true">
+                <i class="o-cpix__mod" data-mod="front"><em></em></i>
+                <i class="o-cpix__mod o-cpix__mod--retina" data-mod="retina"><em></em></i>
+                <i class="o-cpix__mod" data-mod="wide"><em></em></i>
+              </div>
+              <div class="o-cpix__block" data-cpix-block aria-hidden="true"></div>
+              <p class="o-cpix__time mono" aria-hidden="true">09:41</p>
+              <p class="o-cpix__msg" aria-live="polite" data-cpix-msg>Пиксели на&nbsp;месте. Камеры обесточены и&nbsp;смотрят в&nbsp;изнанку экрана.</p>
+            </div>
+            <div class="o-cpix__side">
+              <div class="o-chips" role="radiogroup" aria-label="Поколение" data-gen>
+                <button type="button" role="radio" data-value="3" aria-checked="true">CPix&nbsp;3 · 40&nbsp;мс</button>
+                <button type="button" role="radio" data-value="2" aria-checked="false" tabindex="-1">CPix&nbsp;2 · 120&nbsp;мс</button>
+              </div>
+              <label class="o-check mono"><input type="checkbox" data-slow checked> замедлить в&nbsp;20&nbsp;раз</label>
+              <button type="button" class="o-btn" data-cpix-go>Поднять камеры</button>
+              <dl class="o-mini mono">
+                <div><dt>Фронталка</dt><dd>50&nbsp;Мп, квадратный сенсор, автофокус</dd></div>
+                <div><dt>Сверхширокая</dt><dd>50&nbsp;Мп, 100°</dd></div>
+                <div><dt>Сетчатка</dt><dd>ИК 940&nbsp;нм и&nbsp;ИК-камера</dd></div>
+                <div><dt>Блок</dt><dd>линейный магнитный привод</dd></div>
+                <div><dt>Камеры</dt><dd>пьезоэлементы</dd></div>
+                <div><dt>Ресурс</dt><dd>1&nbsp;000&nbsp;000 циклов</dd></div>
+              </dl>
+            </div>
+          </div>
+          <p class="o-small">Магнитный привод держит блок на&nbsp;месте и&nbsp;обесточенным: в&nbsp;кармане он не&nbsp;сдвинется. Шестерёнок нет&nbsp;— изнашиваться нечему, отсюда миллион циклов. Шов блока не&nbsp;виден даже на&nbsp;сером фоне под углом: края блока теперь ступенчатые, по&nbsp;одному субпикселю, и&nbsp;сливаются с&nbsp;соседями. Блоком управляет только Love Gen&nbsp;5, каждое открытие пишется в&nbsp;журнал «Века&nbsp;2»&nbsp;— подделать его нельзя.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ы М Б Ш. СЕТЧАТКА: сканер, «Тревожный взгляд», чужой глаз -->
+    <section class="o o--retina" id="retina" aria-labelledby="retina-title">
+      <div class="o-wrap o-split">
+        <div class="o-split__text">
+          <p class="o-row mono" aria-hidden="true"><b>Ы М Б Ш</b><span>V = 0,3</span><span>940&nbsp;нм</span></p>
+          <h2 class="o-h2" id="retina-title" data-split>Пароль, который у&nbsp;вас на&nbsp;дне глаза.</h2>
+          <p class="o-lead">Рисунок сосудов сетчатки не&nbsp;меняется с&nbsp;детства и&nbsp;одинаковым не&nbsp;бывает даже у&nbsp;близнецов. Его не&nbsp;снять с&nbsp;фотографии и&nbsp;не&nbsp;оставить на&nbsp;стакане, как отпечаток. Сканер под CPix&nbsp;3 светит в&nbsp;зрачок невидимым светом 940&nbsp;нм и&nbsp;за&nbsp;0,4&nbsp;с узнаёт вас с&nbsp;20–40&nbsp;см.</p>
+          <div class="o-retina">
+            <canvas class="o-retina__cv" data-retina role="img" aria-label="Сетчатка: рисунок сосудов вокруг диска зрительного нерва"></canvas>
+            <div class="o-retina__side">
+              <button type="button" class="o-btn" data-scan>Сканировать</button>
+              <div class="o-chips" role="radiogroup" aria-label="Чей глаз" data-who>
+                <button type="button" role="radio" data-value="you" aria-checked="true">Ваш глаз</button>
+                <button type="button" role="radio" data-value="squint" aria-checked="false" tabindex="-1">Прищур</button>
+                <button type="button" role="radio" data-value="other" aria-checked="false" tabindex="-1">Чужой</button>
+                <button type="button" role="radio" data-value="photo" aria-checked="false" tabindex="-1">Фото глаза</button>
+              </div>
+              <p class="o-verdict mono" aria-live="polite" data-verdict>Сканер ждёт взгляда.</p>
+            </div>
+          </div>
+          <p class="o-small">Шаблон хранится только в&nbsp;Love Gen&nbsp;5. Ложное совпадение&nbsp;— одно на&nbsp;10&nbsp;миллионов. Живой глаз сканер узнаёт по&nbsp;зрачку: тот сужается от&nbsp;вспышки, а&nbsp;на&nbsp;фото&nbsp;— нет. «Тревожный взгляд»: прищурьтесь при разблокировке, и&nbsp;откроется «Двойник»&nbsp;— телефон-пустышка. Лицо OY по-прежнему не&nbsp;сканирует.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Б Ы Н К М. 20 ММ: шайба выезжает по прокрутке -->
+    <section class="o o--tube" id="tube" aria-labelledby="tube-title">
+      <div class="o-pin">
+        <div class="o-tube">
+          <p class="o-row mono" aria-hidden="true"><b>Б Ы Н К М</b><span>V = 0,4</span><span>Ø46&nbsp;мм</span></p>
+          <h2 class="o-h2" id="tube-title" data-split>Шайба выезжает на&nbsp;двадцать миллиметров.</h2>
+          <p class="o-lead">Вся шайба целиком: ободок остаётся в&nbsp;корпусе, два титановых колена тубуса раздвигаются, голова с&nbsp;объективами уходит от&nbsp;спинки. За&nbsp;0,6&nbsp;с у&nbsp;«Тубуса» появляется длина, которой у&nbsp;телефонов не&nbsp;бывает,&nbsp;— и&nbsp;настоящий оптический зум.</p>
+          <div class="o-ruler" aria-hidden="true">
+            <div class="o-ruler__scale" data-ruler></div>
+            <p class="o-ruler__mm mono"><b data-mm>0,0</b><span>мм</span></p>
+          </div>
+          <ul class="o-facts mono" role="list">
+            <li><b>0,6</b> с на&nbsp;выезд</li>
+            <li><b>300&nbsp;000</b> циклов</li>
+            <li><b>80</b> мс&nbsp;— спрятаться при падении</li>
+            <li><b>IP68</b> и&nbsp;выдвинутой</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- И Н Ш М К. ПОДЗОРНАЯ ТРУБА: залив и маяк Fyr, 0Pen 2 как кольцо зума, тест на падение -->
+    <section class="o o--zoom" id="zoom" aria-labelledby="zoom-title">
+      <div class="o-wrap">
+        <header class="o-head">
+          <p class="o-row mono" aria-hidden="true"><b>И Н Ш М К</b><span>V = 0,5</span><span>3–20×</span></p>
+          <h2 class="o-h2" id="zoom-title" data-split>Через залив&nbsp;— до&nbsp;таблички смотрителя.</h2>
+          <p class="o-lead">Когда шайба выдвинута, работает «Тубус»: сенсор 1/1,3″ и&nbsp;плавный оптический зум 3–20×, от&nbsp;70 до&nbsp;460&nbsp;мм. Поворачивайте кольцо&nbsp;— или корпус 0Pen&nbsp;2: перо и&nbsp;есть кольцо зума, а&nbsp;его кнопка&nbsp;— спуск затвора на&nbsp;расстоянии до&nbsp;20&nbsp;м.</p>
+        </header>
+        <div class="o-scope">
+          <div class="o-scope__view">
+            <canvas class="o-scope__cv" data-view role="img" aria-label="Видоискатель OY 0X5 Pro: залив, на скале маяк Fyr"></canvas>
+            <p class="o-scope__label mono" data-view-label>1× · основная 200&nbsp;Мп · 23&nbsp;мм</p>
+            <span class="o-scope__rec mono" aria-hidden="true">● REC на&nbsp;спинке</span>
+          </div>
+          <div class="o-scope__side">
+            <div class="o-dial" data-dial role="slider" tabindex="0" aria-label="Зум" aria-valuemin="0.5" aria-valuemax="20" aria-valuenow="1" aria-valuetext="1×">
+              <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="o-dial__ring" cx="100" cy="100" r="86"/><g data-dial-ticks></g><circle class="o-dial__knob" data-dial-knob cx="100" cy="14" r="9"/></svg>
+              <p class="o-dial__val mono"><b data-dial-val>1</b>×</p>
+            </div>
+            <div class="o-chips" role="radiogroup" aria-label="Время суток" data-night>
+              <button type="button" role="radio" data-value="0" aria-checked="true">День</button>
+              <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1">Ночь</button>
+            </div>
+            <p class="o-small" data-zoom-note>1×: основная камера, сенсор 1″ изогнут, как сетчатка.</p>
+            <button type="button" class="o-btn o-btn--alarm" data-drop>Уронить телефон</button>
+            <p class="o-drop mono" aria-live="polite" data-drop-note>Шайба выдвинута. Что будет, если телефон выскользнет?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Н Ш Ы И К Б. ГИБКИЙ КРЕМНИЙ: зачем он в жёстком телефоне -->
+    <section class="o o--flex" id="flex" aria-labelledby="flex-title">
+      <div class="o-wrap">
+        <header class="o-head">
+          <p class="o-row mono" aria-hidden="true"><b>Н Ш Ы И К Б</b><span>V = 0,6</span><span>25&nbsp;мкм</span></p>
+          <h2 class="o-h2" id="flex-title" data-split>Кремний, который гнётся. В&nbsp;телефоне, который нет.</h2>
+          <p class="o-lead">Корпус 0X5 Pro жёсткий. А&nbsp;кристалл Fyr GP30 Pro утончён до&nbsp;25&nbsp;мкм&nbsp;— на&nbsp;такой толщине кремний гнётся, как бумага, и&nbsp;плата под ним&nbsp;— гибкий текстолит в&nbsp;14 слоёв. Зачем? Потяните кристалл и&nbsp;посмотрите.</p>
+        </header>
+        <div class="o-bend">
+          <svg class="o-bend__svg" viewBox="0 0 640 300" role="img" aria-label="Кристалл на плате изгибается: гибкий кремний выдерживает, жёсткий трескается" data-bend>
+            <path class="o-bend__board" data-board d=""/>
+            <path class="o-bend__chip" data-chip d=""/>
+            <g class="o-bend__cracks" data-cracks><path d="M300 0l8 14-6 10 9 12"/><path d="M332 0l-6 16 8 8-5 14"/><path d="M318 0l3 20"/></g>
+            <circle class="o-bend__grip" data-grip r="13" cx="320" cy="120"/>
+          </svg>
+          <div class="o-bend__side">
+            <div class="o-chips" role="radiogroup" aria-label="Кремний" data-silicon>
+              <button type="button" role="radio" data-value="flex" aria-checked="true">GP30 Pro · 25&nbsp;мкм</button>
+              <button type="button" role="radio" data-value="rigid" aria-checked="false" tabindex="-1">Обычный · 780&nbsp;мкм</button>
+            </div>
+            <label class="o-range mono"><span>Радиус изгиба: <b data-r-out>∞</b></span><input type="range" min="0" max="100" value="0" data-bend-in></label>
+            <p class="o-verdict mono" aria-live="polite" data-bend-note>Тяните точку на&nbsp;кристалле вверх.</p>
+          </div>
+        </div>
+        <ol class="o-why" role="list">
+          <li data-reveal><b>01 · Сенсор как сетчатка</b><span>Глаз видит резко до&nbsp;краёв, потому что сетчатка вогнутая. Сенсор основной камеры 1″ тоже вогнут: края резкие без лишних линз, объектив короче и&nbsp;светлее&nbsp;— f/1.5.</span></li>
+          <li data-reveal><b>02 · Колодец для шайбы</b><span>Чтобы выдвигаться на&nbsp;20&nbsp;мм, шайбе нужен колодец Ø46&nbsp;мм сквозь корпус. Жёсткую плату пришлось&nbsp;бы вырезать кольцом. Гибкая&nbsp;— «рукав» вокруг колодца: механизм занял место, которое раньше пустовало.</span></li>
+          <li data-reveal><b>03 · Падения</b><span>Телефоны после падения чаще всего умирают от&nbsp;трещин в&nbsp;пайке под чипом. Гибкие кристалл и&nbsp;плата пружинят вместе с&nbsp;корпусом: до&nbsp;30&nbsp;000&nbsp;g без повреждений.</span></li>
+          <li data-reveal><b>04 · Холод</b><span>Изогнутый кристалл прилегает к&nbsp;изогнутому слою испарительной камеры всей площадью&nbsp;— без воздушных щелей.</span></li>
+          <li data-reveal><b>05 · Вскрытие видно</b><span>Love Gen&nbsp;5 тоже на&nbsp;гибком кремнии и&nbsp;приклеен к&nbsp;спинке. Вскроют спинку&nbsp;— чип порвётся вместе с&nbsp;ключами.</span></li>
+        </ol>
+        <p class="o-small">GP30 Pro&nbsp;— один кристалл TSMC A16, 1,6&nbsp;нм: 30 ядер (6 больших до&nbsp;5,2&nbsp;ГГц, 10 средних, 14 экономных), графика FIG&nbsp;FourPro на&nbsp;14 ядер с&nbsp;трассировкой лучей третьего поколения, нейроядро на&nbsp;220&nbsp;TOPS, модем Fyr FM3&nbsp;Pro. AnTuTu&nbsp;11&nbsp;— 4&nbsp;612&nbsp;300.</p>
+      </div>
+    </section>
+
+    <!-- Ш И Н Б К М. ТРИ СЛОЯ: испарительная камера -->
+    <section class="o o--vapor" id="vapor" aria-labelledby="vapor-title">
+      <div class="o-wrap o-split o-split--right">
+        <div class="o-split__text">
+          <p class="o-row mono" aria-hidden="true"><b>Ш И Н Б К М</b><span>V = 0,7</span><span>12&nbsp;800&nbsp;мм²</span></p>
+          <h2 class="o-h2" id="vapor-title" data-split>Испарительная камера в&nbsp;три этажа.</h2>
+          <p class="o-lead">Первый слой лежит на&nbsp;кристалле, второй обнимает колодец шайбы, третий&nbsp;— широкий, под экраном. Слои сшиты перемычками из&nbsp;медной сетки: пар идёт туда, где холоднее. Через полчаса игры GP30 Pro держит 97&nbsp;% пика.</p>
+          <figure class="o-vc">
+            <svg viewBox="0 0 600 240" role="img" aria-label="Три слоя испарительной камеры: тепло от кристалла уходит в рамку" data-vc>
+              <rect class="o-vc__l o-vc__l3" x="30" y="40" width="540" height="22" rx="11"/>
+              <rect class="o-vc__l o-vc__l2" x="150" y="100" width="300" height="22" rx="11"/>
+              <rect class="o-vc__l o-vc__l1" x="230" y="160" width="140" height="22" rx="11"/>
+              <rect class="o-vc__chip" x="262" y="196" width="76" height="18" rx="4"/>
+              <path class="o-vc__bridge" d="M260 160v-38M340 160v-38M180 100v-38M420 100v-38"/>
+              <g data-vc-dots></g>
+              <text x="580" y="55">под экраном</text><text x="460" y="115">вокруг колодца</text><text x="380" y="175">на кристалле</text>
+            </svg>
+          </figure>
+          <label class="o-range mono"><span>Минут игры: <b data-vmin-out>30</b></span><input type="range" min="0" max="30" step="1" value="30" data-vmin></label>
+          <p class="o-vc__k mono"><span>0X5 Pro · <b data-v-pro>97 %</b></span> <span>0X2 Pro · <b data-v-old>84 %</b></span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- К Н Ш М Ы Б И. 0,1–180 ГЦ: фликер-тест -->
+    <section class="o o--hz is-dark" id="hz" aria-labelledby="hz-title">
+      <div class="o-wrap">
+        <header class="o-head">
+          <p class="o-row mono" aria-hidden="true"><b>К Н Ш М Ы Б И</b><span>V = 0,8</span><span>7,2″</span></p>
+          <h2 class="o-h2" id="hz-title" data-split>От&nbsp;одного кадра в&nbsp;десять секунд до&nbsp;180 в&nbsp;одну.</h2>
+          <p class="o-lead">Экран 7,2″ LTPO, 1480&nbsp;×&nbsp;3280, 500&nbsp;ppi. Если картинка стоит, он&nbsp;обновляется раз в&nbsp;десять секунд&nbsp;— 0,1&nbsp;Гц, и&nbsp;часы на&nbsp;погасшем экране почти не&nbsp;тратят батарею. В&nbsp;игре&nbsp;— 180&nbsp;Гц. Ниже шарик рисуется ровно с&nbsp;выбранной частотой.</p>
+        </header>
+        <div class="o-hz">
+          <canvas class="o-hz__cv" data-hz-cv role="img" aria-label="Шарик движется с выбранной частотой обновления экрана"></canvas>
+          <div class="o-hz__side">
+            <div class="o-chips o-chips--wrap" role="radiogroup" aria-label="Частота" data-hz>
+              <button type="button" role="radio" data-value="0.1" aria-checked="false" tabindex="-1">0,1</button>
+              <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1">1</button>
+              <button type="button" role="radio" data-value="10" aria-checked="false" tabindex="-1">10</button>
+              <button type="button" role="radio" data-value="24" aria-checked="false" tabindex="-1">24</button>
+              <button type="button" role="radio" data-value="60" aria-checked="false" tabindex="-1">60</button>
+              <button type="button" role="radio" data-value="120" aria-checked="false" tabindex="-1">120</button>
+              <button type="button" role="radio" data-value="180" aria-checked="true">180</button>
+            </div>
+            <p class="o-small" data-hz-note>180&nbsp;Гц: игра и&nbsp;прокрутка.</p>
+            <dl class="o-mini mono">
+              <div><dt>Яркость</dt><dd>0,1–6500&nbsp;нит</dd></div>
+              <div><dt>ШИМ</dt><dd>4320&nbsp;Гц</dd></div>
+              <div><dt>Покрытие</dt><dd>«Антиблик&nbsp;3», &lt;&nbsp;0,3&nbsp;%</dd></div>
+              <div><dt>Ваш монитор</dt><dd data-hz-real>измеряем…</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Б К Ш М И Ы Н. E INK И 0PEN 2: записка на спинке 3D-модели -->
+    <section class="o o--eink" id="eink" aria-labelledby="eink-title">
+      <div class="o-wrap o-split o-split--right">
+        <div class="o-split__text">
+          <p class="o-row mono" aria-hidden="true"><b>Б К Ш М И Ы Н</b><span>V = 0,9</span><span>4,6″</span></p>
+          <h2 class="o-h2" id="eink-title" data-split>Спинка, на&nbsp;которой можно писать.</h2>
+          <p class="o-lead">Цветной E&nbsp;Ink 4,6″ под тем&nbsp;же матовым стеклом, что и&nbsp;вся спинка. Картинка держится без единого милливатта&nbsp;— даже на&nbsp;выключенном телефоне. 0Pen&nbsp;2 из&nbsp;слота в&nbsp;нижней грани пишет и&nbsp;на&nbsp;экране, и&nbsp;здесь. Попробуйте: всё, что вы&nbsp;нарисуете ниже, появится на&nbsp;спинке телефона.</p>
+          <div class="o-ink">
+            <div class="o-chips o-chips--wrap" role="radiogroup" aria-label="Что на спинке" data-ink>
+              <button type="button" role="radio" data-value="note" aria-checked="true">Записка</button>
+              <button type="button" role="radio" data-value="clock" aria-checked="false" tabindex="-1">Часы</button>
+              <button type="button" role="radio" data-value="ticket" aria-checked="false" tabindex="-1">Посадочный</button>
+              <button type="button" role="radio" data-value="book" aria-checked="false" tabindex="-1">Книга</button>
+              <button type="button" role="radio" data-value="rec" aria-checked="false" tabindex="-1">● REC</button>
+            </div>
+            <div class="o-pad" data-pad-wrap>
+              <canvas class="o-pad__cv" data-pad role="img" aria-label="Поле для записки пером: рисуйте мышью или пальцем"></canvas>
+              <div class="o-pad__tools">
+                <div class="o-inks" role="radiogroup" aria-label="Чернила" data-pen-color>
+                  <button type="button" role="radio" data-value="black" aria-checked="true" aria-label="Чёрные"><i style="--c: #17181A"></i></button>
+                  <button type="button" role="radio" data-value="red" aria-checked="false" tabindex="-1" aria-label="Красные"><i style="--c: #A3352A"></i></button>
+                  <button type="button" role="radio" data-value="blue" aria-checked="false" tabindex="-1" aria-label="Синие"><i style="--c: #2F5D88"></i></button>
+                </div>
+                <button type="button" class="o-btn o-btn--sm" data-pad-clear>Стереть</button>
+              </div>
+            </div>
+            <p class="o-small mono" data-ink-note>0Pen&nbsp;2: 8192 уровня нажатия, задержка 2&nbsp;мс.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Н К И Б М Ш Ы К. LOVE GEN 5 -->
+    <section class="o o--love" id="love" aria-labelledby="love-title">
+      <div class="o-wrap">
+        <header class="o-head o-head--center">
+          <p class="o-row mono" aria-hidden="true"><b>Н К И Б М Ш Ы К</b><span>V = 1,0</span><span>Love Gen&nbsp;5</span></p>
+          <h2 class="o-h2" id="love-title" data-split>Любовь слепа. Love Gen&nbsp;5&nbsp;— нет.</h2>
+          <p class="o-lead">Новый чип безопасности: отдельный компьютер для секретов. Свой процессор RISC-V, 256&nbsp;ГБ, своё питание на&nbsp;1200&nbsp;мАч и&nbsp;сетка от&nbsp;вскрытия. Он&nbsp;видит всё, что происходит с&nbsp;телефоном, и&nbsp;никому ничего не&nbsp;рассказывает.</p>
+        </header>
+        <div class="o-love">
+          <button type="button" class="o-love__heart" data-heart aria-label="Попробовать вскрыть Love Gen 5">
+            <svg viewBox="0 0 200 180" aria-hidden="true"><path d="M100 168C40 120 8 90 8 52 8 26 28 8 54 8c20 0 36 12 46 28C110 20 126 8 146 8c26 0 46 18 46 44 0 38-32 68-92 116z"/><g class="o-love__mesh" data-mesh></g></svg>
+          </button>
+          <p class="o-verdict mono" aria-live="polite" data-heart-note>Нажмите на&nbsp;сердце, чтобы попробовать его вскрыть.</p>
+        </div>
+        <ul class="o-feats" role="list">
+          <li data-reveal><b>Глаза под замком</b><span>CPix&nbsp;3, сканер сетчатки и&nbsp;подъёмник шайбы подчиняются только Love Gen&nbsp;5. Камера без его разрешения не&nbsp;поднимется.</span></li>
+          <li data-reveal><b>«Веко&nbsp;2»</b><span>Журнал каждого открытия CPix и&nbsp;каждого выезда шайбы: когда, каким приложением и&nbsp;на&nbsp;сколько.</span></li>
+          <li data-reveal><b>«Тревожный взгляд»</b><span>Прищур при разблокировке открывает «Двойника»&nbsp;— пустой телефон для того, кто заставил вас его разблокировать.</span></li>
+          <li data-reveal><b>«Окно»</b><span>Окна «Кошелька» и&nbsp;паролей Love Gen&nbsp;5 рисует сам. Система видит на&nbsp;их&nbsp;месте пустоту.</span></li>
+          <li data-reveal><b>«Ловец вышек&nbsp;3»</b><span>Вместе с&nbsp;FM3&nbsp;Pro узнаёт поддельные вышки и&nbsp;принудительный 2G.</span></li>
+          <li data-reveal><b>«Подпись 2 из&nbsp;3»</b><span>Обновление принимается, только если его подписали двое из&nbsp;трёх: один ключ у&nbsp;OY, два у&nbsp;Fyr.</span></li>
+        </ul>
+        <p class="o-small">Унаследовано: «Двойник», «Кошелёк», «Мёртвая рука», «Сторож», «Карантин USB», Шифратор&nbsp;4 через спутник и&nbsp;«Эхо&nbsp;2». Загрузчик открывается и&nbsp;закрывается снова&nbsp;— решает владелец.</p>
+      </div>
+    </section>
+
+    <!-- Ш Ы Н К М И Б. РУБИЛЬНИК И ФОНАРЬ -->
+    <section class="o o--switch" id="switch" aria-labelledby="switch-title">
+      <div class="o-wrap o-split">
+        <div class="o-split__text">
+          <p class="o-row mono" aria-hidden="true"><b>Ш Ы Н К М И Б</b><span>V = 1,5</span><span>ход 3,2&nbsp;мм</span></p>
+          <h2 class="o-h2" id="switch-title" data-split>Закрыть глаза. Рукой.</h2>
+          <p class="o-lead">«Рубильник» на&nbsp;левой грани. Вниз&nbsp;— «Тишина»: камеры, сканер, микрофоны и&nbsp;вся связь обесточены ключами на&nbsp;плате, а&nbsp;шайба сама уезжает в&nbsp;корпус. Положение «Рубильника» видно и&nbsp;на&nbsp;спинке: E&nbsp;Ink не&nbsp;гаснет.</p>
+          <div class="o-switch" role="radiogroup" aria-label="Положение рубильника" data-sw>
+            <button type="button" role="radio" data-value="1" aria-checked="false" tabindex="-1"><b>Вверх · «Эфир»</b><span>нет связи и&nbsp;геолокации</span></button>
+            <button type="button" role="radio" data-value="0" aria-checked="true"><b>Середина</b><span>всё включено</span></button>
+            <button type="button" role="radio" data-value="-1" aria-checked="false" tabindex="-1"><b>Вниз · «Тишина»</b><span>глаза и&nbsp;уши обесточены</span></button>
+          </div>
+          <div class="o-switch o-switch--row" role="radiogroup" aria-label="Режим фонаря" data-torch>
+            <button type="button" role="radio" data-value="off" aria-checked="true"><b>Фонарь выкл</b></button>
+            <button type="button" role="radio" data-value="white" aria-checked="false" tabindex="-1"><b>Белый</b></button>
+            <button type="button" role="radio" data-value="red" aria-checked="false" tabindex="-1"><b>Красный</b></button>
+            <button type="button" role="radio" data-value="sos" aria-checked="false" tabindex="-1"><b>SOS</b></button>
+          </div>
+          <p class="o-small mono" data-sw-note>Сигнальный фонарь на&nbsp;верхней грани: белый и&nbsp;красный, до&nbsp;6000&nbsp;м.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ы Б Н М К Ш И Н. ЦВЕТА -->
+    <section class="o o--colors" id="colors" aria-labelledby="colors-title">
+      <div class="o-pin">
+        <div class="o-colors">
+          <p class="o-row mono" aria-hidden="true"><b>Ы Б Н М К Ш И Н</b><span>V = 2,0</span><span>5 шт.</span></p>
+          <h2 class="o-h2" id="colors-title" data-split>Пять цветов. На&nbsp;каждом&nbsp;— своя бумага.</h2>
+          <p class="o-lead" data-color-note>«Радужка». Глубокий сине-зелёный, титан с&nbsp;бирюзовым отливом.</p>
+          <div class="o-swatches" role="radiogroup" aria-label="Цвет" data-colors>
+            <button type="button" role="radio" data-value="iris" aria-checked="true" style="--sw: linear-gradient(135deg, #1E4650 60%, #5E6A6E 61%)"><i></i><span>Радужка</span></button>
+            <button type="button" role="radio" data-value="ink" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #121316 60%, #2E3135 61%)"><i></i><span>Чернила</span></button>
+            <button type="button" role="radio" data-value="paper" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #E8E2D4 60%, #BDB4A3 61%)"><i></i><span>Бумага</span></button>
+            <button type="button" role="radio" data-value="retina" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #B85A4E 60%, #B08A7A 61%)"><i></i><span>Сетчатка</span></button>
+            <button type="button" role="radio" data-value="amber" aria-checked="false" tabindex="-1" style="--sw: linear-gradient(135deg, #8E4A1C 60%, #4A3A2C 61%)"><i></i><span>Янтарь</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ○ X ○. КУПИТЬ -->
+    <section class="o o--buy" id="buy" aria-labelledby="buy-title">
+      <div class="o-wrap o-buy">
+        <div class="o-buy__head">
+          <p class="o-row mono" aria-hidden="true"><b>○ X ○</b><span>Купить</span><span>март 2034</span></p>
+          <h2 class="o-h2" id="buy-title" data-split>Последняя строка таблицы.</h2>
+          <p class="o-lead">Fyr GP30 Pro и&nbsp;гибкий кремний&nbsp;— Стокгольм. CPix&nbsp;3, Love Gen&nbsp;5 и&nbsp;выдвижная шайба&nbsp;— команда OY в&nbsp;амбаре под Парижем. Март 2034 года: Швеция, Евросоюз, США и&nbsp;Канада в&nbsp;один день. В&nbsp;Китае 0X5 Pro нет: там телефоны OY продаёт XZF.</p>
+          <p class="o-small">С&nbsp;выходом 0X5 Pro сняты с&nbsp;продажи <a class="o-link" href="/0x2pro/">0X2 Pro</a> и&nbsp;<a class="o-link" href="/nova/">0X Nova</a>. Обновления и&nbsp;гарантия у&nbsp;них прежние.</p>
+          <ul class="o-box" role="list">
+            <li>Телефон и&nbsp;кабель USB-C</li>
+            <li>0Pen&nbsp;2&nbsp;— в&nbsp;слоте нижней грани</li>
+            <li>Блок 120&nbsp;Вт</li>
+            <li>Скрепка для лотка nano-SIM</li>
+            <li>Ни&nbsp;одной подписки</li>
+          </ul>
+        </div>
+        <div class="o-buy__panel">
+          <p class="o-buy__k mono">Где</p>
+          <div class="o-tabs" role="radiogroup" aria-label="Страна" data-cur>
+            <button type="button" role="radio" data-value="usd" aria-checked="true">США</button>
+            <button type="button" role="radio" data-value="cad" aria-checked="false" tabindex="-1">Канада</button>
+            <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">Евросоюз</button>
+            <button type="button" role="radio" data-value="sek" aria-checked="false" tabindex="-1">Швеция</button>
+          </div>
+          <p class="o-buy__k mono">Память</p>
+          <div class="o-mem" role="radiogroup" aria-label="Память" data-mem>
+            <button type="button" role="radio" data-value="16/512" data-usd="1149" data-eur="1299" data-cad="1549" data-sek="12990" aria-checked="true"><b>512&nbsp;ГБ</b><span>16&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="24/1024" data-usd="1299" data-eur="1449" data-cad="1749" data-sek="14490" aria-checked="false" tabindex="-1"><b>1&nbsp;ТБ</b><span>24&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="32/2048" data-usd="1599" data-eur="1799" data-cad="2149" data-sek="17990" aria-checked="false" tabindex="-1"><b>2&nbsp;ТБ</b><span>32&nbsp;ГБ ОЗУ</span></button>
+          </div>
+          <p class="o-buy__k mono">Цвет: <span data-buy-color>Радужка</span></p>
+          <div class="o-swatches o-swatches--sm" role="radiogroup" aria-label="Цвет" data-colors-buy>
+            <button type="button" role="radio" data-value="iris" aria-checked="true" aria-label="Радужка" style="--sw: linear-gradient(135deg, #1E4650 60%, #5E6A6E 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="ink" aria-checked="false" tabindex="-1" aria-label="Чернила" style="--sw: linear-gradient(135deg, #121316 60%, #2E3135 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="paper" aria-checked="false" tabindex="-1" aria-label="Бумага" style="--sw: linear-gradient(135deg, #E8E2D4 60%, #BDB4A3 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="retina" aria-checked="false" tabindex="-1" aria-label="Сетчатка" style="--sw: linear-gradient(135deg, #B85A4E 60%, #B08A7A 61%)"><i></i></button>
+            <button type="button" role="radio" data-value="amber" aria-checked="false" tabindex="-1" aria-label="Янтарь" style="--sw: linear-gradient(135deg, #8E4A1C 60%, #4A3A2C 61%)"><i></i></button>
+          </div>
+          <p class="o-total"><span class="mono" data-total-k>Итого · США</span><b data-total>$1149</b></p>
+          <p class="o-small mono" data-total-hex>Fyr пишет: 0x47D $</p>
+          <button type="button" class="btn btn--accent btn--wide" data-buy>Купить</button>
+          <p class="o-small o-small--center">Купить здесь нельзя: это концепт. Зато таблицу вы&nbsp;дочитали до&nbsp;конца&nbsp;— зрение у&nbsp;вас отличное.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- КОРОТКО -->
+    <section class="o o--specs" id="specs" aria-labelledby="specs-title">
+      <div class="o-wrap">
+        <header class="o-head o-head--center">
+          <h2 class="o-h2" id="specs-title" data-split>OY 0X5 Pro. Коротко.</h2>
+        </header>
+        <dl class="o-specs">
+          <div><dt>Корпус</dt><dd>164,2 × 77,8 × 8,4&nbsp;мм, 232&nbsp;г, жёсткий: титан grade&nbsp;5 и&nbsp;стекло, IP68 и&nbsp;IP69&nbsp;— и&nbsp;с&nbsp;выдвинутой шайбой</dd></div>
+          <div><dt>Экран</dt><dd>7,2″ LTPO AMOLED, 1480 × 3280, 0,1–180&nbsp;Гц, 0,1–6500&nbsp;нит, без единого отверстия</dd></div>
+          <div><dt>CPix&nbsp;3</dt><dd>Магниты и&nbsp;пьезоэлементы вместо моторчиков, блок пикселей открывается за&nbsp;40&nbsp;мс: фронталка 50&nbsp;Мп, сверхширокая 50&nbsp;Мп, сканер сетчатки</dd></div>
+          <div><dt>Процессор</dt><dd>Fyr GP30 Pro: один гибкий кристалл 25&nbsp;мкм, 30 ядер, FIG&nbsp;FourPro, 220&nbsp;TOPS; плата из&nbsp;гибкого текстолита</dd></div>
+          <div><dt>Камеры</dt><dd>Шайба Ø46&nbsp;мм выдвигается на&nbsp;20&nbsp;мм: 200&nbsp;Мп 1″ с&nbsp;изогнутым сенсором, 50&nbsp;Мп сверхширокая, «Тубус» 3–20×</dd></div>
+          <div><dt>Спинка</dt><dd>Цветной E&nbsp;Ink 4,6″ под матовым стеклом; 0Pen&nbsp;2 пишет и&nbsp;на&nbsp;нём</dd></div>
+          <div><dt>Безопасность</dt><dd>Love Gen&nbsp;5: RISC-V, 256&nbsp;ГБ, 1200&nbsp;мАч; «Рубильник» с&nbsp;положением «Тишина»</dd></div>
+          <div><dt>Питание</dt><dd>7600&nbsp;мАч, 120&nbsp;Вт, XMagnum 50&nbsp;Вт, обратная 15&nbsp;Вт</dd></div>
+          <div><dt>Система</dt><dd>CamelOS&nbsp;3, сборка OY: без аккаунта и&nbsp;облака; 8 лет обновлений, 26 месяцев гарантии</dd></div>
+        </dl>
+        <a class="btn btn--accent o-specs__all" href="/0x5pro/specs/">Все характеристики</a>
+      </div>
+    </section>
+
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">Таблица на&nbsp;странице похожа на&nbsp;таблицу Сивцева для проверки зрения, но&nbsp;проверить по&nbsp;ней зрение нельзя: размеры букв подобраны под экран, а&nbsp;не&nbsp;под пять метров. Сходите к&nbsp;окулисту.</li>
+          <li id="fn-2">E&nbsp;Ink, TSMC и&nbsp;AnTuTu&nbsp;— товарные знаки своих владельцев. Результаты GP30 Pro и&nbsp;FIG&nbsp;FourPro вымышлены, как и&nbsp;сам телефон. Частоту, которую страница называет у&nbsp;вашего монитора, браузер измеряет сам; быстрее неё шарик не&nbsp;нарисуется.</li>
+          <li id="fn-3">Сканер сетчатки на&nbsp;странице ничего не&nbsp;сканирует: рисунок сосудов сгенерирован. Камера вашего устройства не&nbsp;включается.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <nav class="footer__map" aria-label="Карта сайта">
+        <div><p class="footer__map-h">Fyr</p><ul><li><a href="/fyr/h1/">Fyr H1</a></li><li><a href="/fyr/">Osmium X0</a></li><li><a href="/fyr/kbook/">KBook 1</a></li><li><a href="/fyr/chronicle/">Хроника: как OY стала Fyr</a></li></ul></div>
+        <div><p class="footer__map-h">Телефоны OY</p><ul><li><a href="/0x5e/">0X5 Essential</a></li><li><a href="/0x4q/">0X4Q</a></li><li><a href="/moth2/">0X Moth 2</a></li><li><a href="/0x5/">0X5</a></li><li><a href="/0x5pro/">0X5 Pro</a></li><li><a href="/butterfly/">0X Butterfly</a></li></ul></div>
+        <div><p class="footer__map-h">Выбрать</p><ul><li><a href="/#phones">Все телефоны на полке</a></li><li><a href="/compare/">Сравнить модели</a></li><li><a href="/accessories/">Аксессуары</a></li><li><a href="/os/">CamelOS 2.0</a></li></ul></div>
+        <div><p class="footer__map-h">Сняты с продажи</p><ul class="footer__map-old"><li><a href="/0x2pro/">0X2 Pro</a></li><li><a href="/nova/">0X Nova</a></li><li><a href="/0x4/">0X4</a></li><li><a href="/0x3e/">0X3 Essential</a></li><li><a href="/0x2q/">0X2Q</a></li><li><a href="/moth/">Moth</a></li><li><a href="/0x2/">0X2</a></li><li><a href="/0x2e/">0X2 Essential</a></li><li><a href="/0x1pro/">0X1 Pro</a></li><li><a href="/0x1q/">0X1Q</a></li><li><a href="/0x1/">0X1</a></li><li><a href="/0x1e/">0X1 Essential</a></li><li><a href="/0x0/">0X0</a></li><li><a href="/pro/">0X0 Pro</a></li></ul></div>
+      </nav>
+      <p class="transit-plate"><b>Переходный период</b> <span>Марка OY у&nbsp;Fyr; 0X5 Pro сделали вместе Fyr в&nbsp;Стокгольме и&nbsp;команда OY в&nbsp;амбаре под Парижем. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr. В&nbsp;Китае телефоны OY продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · смотрит в оба</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X5 Pro · март 2034 · Швеция, Евросоюз, США, Канада · Деплой №&nbsp;103 · 0x67 · <a href="/0x5pro/specs/">Характеристики</a> · <a href="/0x2pro/">0X2 Pro</a> · <a href="/0x5/">0X5</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X5 Pro, CPix&nbsp;3, Fyr GP30 Pro, FIG&nbsp;FourPro, Love Gen&nbsp;5, 0Pen&nbsp;2, Fyr, CamelOS и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

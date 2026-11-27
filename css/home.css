@@ -266,6 +266,7 @@
 .pick--moth2 { --c: #E08624; --c-ink: #1E1206; }
 .pick--nova { --c: #A9803F; }
 .pick--0x2pro { --c: #4F76A8; }
+.pick--0x5pro { --c: #2F6F7C; }
 .choose__grid--6 .pick--butterfly { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); column-gap: clamp(24px, 4vw, 64px); }
 .choose__grid--6 .pick--butterfly > :not(.pick__list) { grid-column: 1; }
 .choose__grid--6 .pick--butterfly .pick__list { grid-column: 2; grid-row: 1 / span 4; align-self: center; }

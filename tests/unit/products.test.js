@@ -60,20 +60,20 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('в продаже семь моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят, осенью — 0X4, а 0X2 снят, весной 2033-го — 0X5 и 0X5 Essential, а 0X4 и 0X3 Essential сняты', async () => {
+test('в продаже шесть моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят, осенью — 0X4, а 0X2 снят, весной 2033-го — 0X5 и 0X5 Essential, а 0X4 и 0X3 Essential сняты, в марте 2034-го — 0X5 Pro, а 0X2 Pro и Nova сняты', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
-  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q', '0x2', '0x4', '0x3e']) {
+  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q', '0x2', '0x4', '0x3e', '0x2pro', 'nova']) {
     assert.equal(PRODUCTS[id].discontinued, true, id);
     assert.equal(PRODUCTS[id].tag, 'Снят с продажи', id);
     assert.ok(!PRODUCTS[id].returned, id);
   }
-  assert.deepEqual(ON_SALE, ['0x5e', '0x4q', 'moth2', '0x5', '0x2pro', 'nova', 'butterfly']);
+  assert.deepEqual(ON_SALE, ['0x5e', '0x4q', 'moth2', '0x5', '0x5pro', 'butterfly']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['0x1e', '0x5e'], ['0x2e', '0x5e'], ['0x3e', '0x5e'], ['0x0', '0x5e'], ['0x2', '0x5'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x4', '0x5'], ['0x1', '0x5'], ['0x1q', '0x4q'], ['0x1pro', '0x2pro'], ['pro', '0x2pro']],
+    [['0x1e', '0x5e'], ['0x2e', '0x5e'], ['0x3e', '0x5e'], ['0x0', '0x5e'], ['0x2', '0x5'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x2pro', '0x5pro'], ['nova', '0x5pro'], ['0x4', '0x5'], ['0x1', '0x5'], ['0x1q', '0x4q'], ['0x1pro', '0x5pro'], ['pro', '0x5pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
@@ -139,7 +139,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', '0x5e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', '0x4', '0x5', 'butterfly']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', '0x5e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', '0x4', '0x5', '0x5pro', 'butterfly']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -203,24 +203,27 @@ test('сравнение: у Moth — Argon 1, MSC, раскладушка и в
   const b = 2 + COMPARE_MODELS.indexOf('butterfly');
   assert.match(get('Форма')[b], /^Книжка/);
   assert.match(get('Внешний экран')[b], /^5,6"/);
+  // у 0X5 Pro второй экран — E Ink на спинке, но сам он моноблок
+  const pr = 2 + COMPARE_MODELS.indexOf('0x5pro');
+  assert.match(get('Внешний экран')[pr], /^Цветной E Ink 4,6″/);
   // у остальных — моноблок и без внешнего экрана
   COMPARE_MODELS.forEach((id, k) => {
     if (id === 'moth' || id === 'moth2' || id === 'butterfly') return;
     assert.equal(get('Форма')[2 + k], 'Моноблок', id);
-    assert.equal(get('Внешний экран')[2 + k], '—', id);
+    if (id !== '0x5pro') assert.equal(get('Внешний экран')[2 + k], '—', id);
   });
 });
 
-test('0X Nova: новый флагман от $999 / €1149, один цвет «Сверхновая»', async () => {
+test('0X Nova: был от $999 / €1149, один цвет «Сверхновая»; снят в марте 2034-го, преемник — 0X5 Pro', async () => {
   const { COMPARE, COMPARE_MODELS, SHORT_NAMES } = await import('../../js/data/products.js');
   const nova = PRODUCTS.nova;
   assert.deepEqual(nova.configs.map((c) => [c.id, c.usd, c.eur]), [['16/512', 999, 1149], ['16/1024', 1149, 1319]]);
   assert.deepEqual(nova.colors, { supernova: 'Сверхновая' });
   assert.equal(nova.defaultColor, 'supernova');
   assert.equal(nova.eu, true);
-  // дороже всех моноблоков в продаже; дороже Nova только складной Butterfly
-  for (const p of Object.values(PRODUCTS)) if (p !== nova && p.id !== 'butterfly' && !p.discontinued) assert.ok(p.configs[0].usd < 999, p.id);
-  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('nova') + 1], 'butterfly');
+  assert.ok(nova.discontinued && nova.successor === '0x5pro');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('nova') + 1], '0x5pro');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x5pro') + 1], 'butterfly');
   assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('butterfly') + 1], 'pro');
   assert.equal(SHORT_NAMES.nova, 'Nova');
   const i = 2 + COMPARE_MODELS.indexOf('nova');
@@ -230,15 +233,16 @@ test('0X Nova: новый флагман от $999 / €1149, один цвет 
   assert.match(get('Всего')[i], /пять сзади/);
   assert.match(get('3,5 мм · USB-C')[i], /^Нет/);
   assert.match(get('Система')[i], /игры заблокированы/);
-  // монохромная — только у Nova; стилус и датчики камеры — у Nova и Butterfly
+  // монохромная — только у Nova; стилус и датчики камеры — у Nova, 0X5 Pro и Butterfly
   const bf = 2 + COMPARE_MODELS.indexOf('butterfly');
-  for (const [name, who] of [['Монохромная', [i]], ['Стилус', [i, bf]], ['Датчики камеры', [i, bf]]]) {
+  const pr = 2 + COMPARE_MODELS.indexOf('0x5pro');
+  for (const [name, who] of [['Монохромная', [i]], ['Стилус', [i, pr, bf]], ['Датчики камеры', [i, pr, bf]]]) {
     get(name).slice(2, 2 + COMPARE_MODELS.length).forEach((v, k) => assert.equal(v !== '—', who.includes(k + 2), `${name}: ${COMPARE_MODELS[k]}`));
   }
 });
 
-test('метка «Новинка» — только у 0X5 Essential', () => {
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x5e']);
+test('метка «Новинка» — только у 0X5 Pro', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x5pro']);
 });
 
 test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, был от $399 / €469; снят весной 2033-го, преемник — 0X5 Essential', async () => {
@@ -391,7 +395,8 @@ test('0X5: два сердца — OY Vitals на двух GP30 Duo, FIG Four, T
 test('0X5 Essential: из одного куска — цельный алюминий, «Резонанс» 6,78 МГц сквозь металл, Cesium 5 и Palladium 5, две камеры, от $509', async () => {
   const { COMPARE, COMPARE_MODELS, SHORT_NAMES, ON_SALE } = await import('../../js/data/products.js');
   const p = PRODUCTS['0x5e'];
-  assert.equal(p.tag, 'Новинка');
+  // «Новинка» перешла к 0X5 Pro
+  assert.equal(p.tag, undefined);
   assert.ok(!p.discontinued && p.eu && !p.cn);
   assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['8/128', 509, 599], ['8/256', 559, 649], ['12/256', 609, 709]]);
   assert.equal(0x1FD, 509);
@@ -415,6 +420,36 @@ test('0X5 Essential: из одного куска — цельный алюми�
   assert.match(get('Биометрия'), /^Отпечаток в кнопке питания/);
   assert.match(get('3,5 мм · USB-C'), /^Есть/);
   assert.match(get('Сигнальный фонарь'), /5000 м/);
+  assert.equal(get('Цвета'), Object.values(p.colors).join(', '));
+  for (const r of COMPARE) assert.ok(r[i] && r[i].length, `пусто: ${r[1]}`);
+});
+
+test('0X5 Pro: смотрит в оба — CPix 3 на магнитах и пьезо, сетчатка, шайба выезжает на 20 мм, E Ink на спинке, гибкий GP30 Pro, Love Gen 5, 0Pen 2; от $1149', async () => {
+  const { COMPARE, COMPARE_MODELS, SHORT_NAMES, ON_SALE } = await import('../../js/data/products.js');
+  const p = PRODUCTS['0x5pro'];
+  assert.equal(p.tag, 'Новинка');
+  assert.ok(!p.discontinued && p.eu && !p.cn);
+  assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['16/512', 1149, 1299], ['24/1024', 1299, 1449], ['32/2048', 1599, 1799]]);
+  assert.deepEqual([0x47D, 0x513, 0x63F], [1149, 1299, 1599]);
+  assert.deepEqual(p.colors, { iris: 'Радужка', ink: 'Чернила', paper: 'Бумага', retina: 'Сетчатка', amber: 'Янтарь' });
+  assert.equal(p.defaultColor, 'iris');
+  assert.deepEqual(Object.keys(p.swatches), Object.keys(p.colors));
+  assert.equal(SHORT_NAMES['0x5pro'], '0X5 Pro');
+  assert.ok(ON_SALE.includes('0x5pro') && !ON_SALE.includes('0x2pro') && !ON_SALE.includes('nova'));
+  // по цене — между снятой Nova ($999) и Butterfly ($1599)
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x5pro') - 1], 'nova');
+  const i = 2 + COMPARE_MODELS.indexOf('0x5pro');
+  const get = (label) => COMPARE.find((r) => r[1] === label)[i];
+  assert.equal(COMPARE[0][i], 'от $1149');
+  assert.match(get('Процессор'), /^Fyr GP30 Pro — один гибкий кристалл 25 мкм/);
+  assert.match(get('Чип безопасности'), /^Love Gen 5/);
+  assert.match(get('Шторка камер'), /CPix 3 на магнитах и пьезоэлементах/);
+  assert.match(get('Телевик'), /3–20×.*20 мм/);
+  assert.match(get('Внешний экран'), /E Ink/);
+  assert.match(get('Стилус'), /0Pen 2 в комплекте/);
+  assert.match(get('Частота'), /^0,1–180 Гц$/);
+  assert.match(get('Биометрия'), /^Сканер сетчатки/);
+  assert.match(get('Охлаждение'), /^Трёхслойная/);
   assert.equal(get('Цвета'), Object.values(p.colors).join(', '));
   for (const r of COMPARE) assert.ok(r[i] && r[i].length, `пусто: ${r[1]}`);
 });

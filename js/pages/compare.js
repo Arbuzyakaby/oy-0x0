@@ -27,6 +27,7 @@ import { createOY0X4Q } from '../models/oy0x4q.js';
 import { createOY0X4 } from '../models/oy0x4.js';
 import { createOY0X5 } from '../models/oy0x5.js';
 import { createOY0X5E } from '../models/oy0x5e.js';
+import { createOY0X5Pro } from '../models/oy0x5pro.js';
 import { createPro } from '../models/pro.js';
 import { $, $$, initRadioGroup, syncRadio, createToast } from '../core/ui.js';
 import { createSmoothScroll } from '../core/scroll.js';
@@ -45,10 +46,10 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x4q': createOY0X4Q, '0x4': createOY0X4, '0x5': createOY0X5, '0x5e': createOY0X5E, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, butterfly: createOYButterfly, '0x1pro': createOY0X1Pro, pro: createPro };
+const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x4q': createOY0X4Q, '0x4': createOY0X4, '0x5': createOY0X5, '0x5e': createOY0X5E, '0x5pro': createOY0X5Pro, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, butterfly: createOYButterfly, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
-const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x4q': 150.4, '0x4': 151.2, '0x5': 150.8, '0x5e': 156.4, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, butterfly: 120, '0x1pro': 163.5, pro: 150 };
-const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x4q': -PI + 0.45, '0x4': -PI + 0.45, '0x5': -PI + 0.45, '0x5e': -PI + 0.45, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x4q': 150.4, '0x4': 151.2, '0x5': 150.8, '0x5e': 156.4, '0x5pro': 164.2, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, butterfly: 120, '0x1pro': 163.5, pro: 150 };
+const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x4q': -PI + 0.45, '0x4': -PI + 0.45, '0x5': -PI + 0.45, '0x5e': -PI + 0.45, '0x5pro': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
 // Butterfly стоит сложенным, «Глазом» к вам
 const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1, ...(id === 'butterfly' ? { fold: 1 } : {}) });
 
@@ -135,6 +136,8 @@ const ROW_ICON = {
     if (v.includes('GP20 Slim')) return badge('GP20 Slim', 'Fyr · или Snapdragon', { accent: true });
     // 0X5: OY Vitals — два процессора Fyr GP30 Duo, «Мир» и «Дом»
     if (v.includes('GP30 Duo')) return badge('GP30 Duo', 'Fyr · два сердца', { accent: true });
+    // 0X5 Pro: один кристалл, утончённый до 25 мкм, — гнётся
+    if (v.includes('GP30 Pro')) return badge('GP30 Pro', 'Fyr · гибкий', { accent: true });
     if (v.startsWith('Fyr ')) return badge(v.split(' — ')[0].replace('Fyr ', '').trim(), 'Fyr · свой', { accent: true });
     if (v.includes('Extreme')) return badge('8 Elite Extreme', 'Snapdragon · Gen 6', { accent: true });
     if (v.startsWith('Snapdragon')) return badge(v.replace('Snapdragon ', ''), 'Snapdragon');
@@ -200,17 +203,18 @@ const plural = (n, one, few, many) => (n % 10 === 1 && n % 100 !== 11 ? one : n 
 /* ---------- Готовые наборы ---------- */
 
 const PRESETS = [
-  ['Последние', ['0x5e', '0x4q', '0x5']],
-  ['Флагманы', ['0x5', '0x2pro', 'nova']],
+  ['Последние', ['0x5e', '0x5', '0x5pro']],
+  ['Флагманы', ['0x5', '0x5pro', 'butterfly']],
+  ['Pro: тогда и сейчас', ['pro', '0x2pro', '0x5pro']],
   ['Складные', ['moth2', 'butterfly', 'moth']],
   ['Недорогие', ['0x5e', '0x4q', 'moth2']],
-  ['Тогда и сейчас', ['0x0', '0x2pro', '0x5']],
+  ['Тогда и сейчас', ['0x0', '0x2pro', '0x5pro']],
 ].filter(([, ids]) => ids.every((id) => PRODUCTS[id]));
 
 /* ---------- Колонки ---------- */
 
 const START = (params.get('models') || '').split(',').filter((id) => PRODUCTS[id]);
-const picks = [0, 1, 2].map((i) => START[i] || ['0x5', '0x4q', 'butterfly'][i]);
+const picks = [0, 1, 2].map((i) => START[i] || ['0x5pro', '0x5', '0x4q'][i]);
 const colorOf = {};
 const cols = $$('.cx-col');
 const stages = [];

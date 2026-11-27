@@ -370,7 +370,8 @@ function setColor(name, { instant = false } = {}) {
   $$('[data-color-switch]').forEach((g) => syncRadio(g, name));
   colorName.textContent = COLOR_DESC[name][0];
   colorDesc.textContent = COLOR_DESC[name][1];
-  $('[data-cfg-color]').textContent = PRODUCT.colors[name];
+  const cfgColor = $('[data-cfg-color]');
+  if (cfgColor) cfgColor.textContent = PRODUCT.colors[name];
   stage?.setBodyColor(name, instant);
 }
 $$('[data-color-switch]').forEach((g) => initRadioGroup(g, (v) => setColor(v)));
@@ -395,10 +396,11 @@ function renderTotal(animate = true) {
     gsap.fromTo(s, { xPercent: 110, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 0.45, delay: i * 0.04, ease: 'power3.out' });
   });
 }
+// снят с продажи: выбора памяти больше нет, цена — «был от»
 {
   const group = $('[data-mem-switch]');
   const name = $('[data-cfg-name]');
-  initRadioGroup(group, (v) => {
+  if (group) initRadioGroup(group, (v) => {
     cfgId = v;
     syncRadio(group, v);
     name.textContent = `OY 0X2 Pro · ${v} ГБ`;

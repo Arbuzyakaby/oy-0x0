@@ -98,9 +98,10 @@ test('страница 0X Nova: тринадцать глав «Обсерват
   const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
   for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  // цена на странице — из данных
+  // цена на странице — из данных; Nova снят с продажи: «был от» и путь к 0X5 Pro вместо выбора памяти
   assert.ok(html.includes(`data-usd="${PRODUCTS.nova.configs[0].usd}" data-eur="${PRODUCTS.nova.configs[0].eur}"`));
-  for (const c of PRODUCTS.nova.configs) assert.ok(html.includes(`data-value="${c.id}"`), c.id);
+  assert.ok(html.includes('disc-plate') && html.includes('href="/0x5pro/"') && !html.includes('data-mem-switch'));
+  assert.match(html, /был от/);
 });
 
 test('у каждого аксессуара есть рендер, цены в $ и €, совместимость — известные устройства', () => {
@@ -246,7 +247,7 @@ test('салюта больше нет: ни модуля, ни вызовов, 
   }
 });
 
-test('витрина: семь телефонов OY в продаже под Fyr, блок «Хроника коротко» вместо «Перемен в OY»', () => {
+test('витрина: шесть телефонов OY в продаже под Fyr, блок «Хроника коротко» вместо «Перемен в OY»', () => {
   const html = read('index.html');
   assert.match(html, /<title>Fyr — Osmium X0, KBook 1 и телефоны OY<\/title>/);
   for (const id of ON_SALE) {
@@ -277,7 +278,7 @@ test('ни юаней, ни eXtream: ни на одной странице, ни
   assert.match(read('index.html'), /eXtream продан XZF/);
 });
 
-test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все смартфоны OY, часы и ноутбук, Butterfly, 0X4Q, 0X4, 0X5 и 0X5 Essential — из коробки', () => {
+test('CamelOS 2.0: одна система Fyr без аккаунта и облака; обновятся все смартфоны OY, часы и ноутбук, Butterfly, 0X4Q, 0X4, 0X5, 0X5 Essential и 0X5 Pro — из коробки', () => {
   const html = read('os/index.html');
   assert.match(html, /class="cm-page"/);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
@@ -292,7 +293,7 @@ test('CamelOS 2.0: одна система Fyr без аккаунта и обл
   // все смартфоны OY, которые когда-либо выходили, и оба устройства Fyr — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS);
-  assert.equal(phones.length, 19);
+  assert.equal(phones.length, 20);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке CamelOS 2.0`);
   for (const href of ['/fyr/', '/fyr/kbook/']) assert.ok(all.includes(`href="${href}"`), href);
   // в шапке всех страниц раздел называется CamelOS
@@ -532,4 +533,43 @@ test('страница /0x5e/specs/: все разделы, одна h1, огл�
   assert.match(html, /6,78&nbsp;МГц/);
   assert.match(html, /«Пломба»/);
   assert.match(html, /Отпечаток в&nbsp;кнопке/);
+});
+
+test('страница /0x5pro/: электронная бумага и таблица Сивцева — тринадцать строк-глав, одна h1, якоря и строки таблицы сходятся, цвета и память из данных', () => {
+  const html = read('0x5pro/index.html');
+  const chapters = [...html.matchAll(/<section class="o o--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['hero', 'cpix', 'retina', 'tube', 'zoom', 'flex', 'vapor', 'hz', 'eink', 'love', 'switch', 'colors', 'buy', 'specs']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  const ticks = [...html.matchAll(/data-tick="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(ticks.length, 13);
+  for (const t of ticks) assert.ok(ids.has(t), `строка ${t}`);
+  // каждая глава подписана строкой таблицы, и строка в навигации та же, что над главой
+  const rows = [...html.matchAll(/class="o-row mono" aria-hidden="true"><b>([^<]+)<\/b>/g)].map((m) => m[1]);
+  const chart = [...html.matchAll(/data-tick="[^"]+"><b>([^<]+)<\/b>/g)].map((m) => m[1]);
+  assert.deepEqual(rows, chart);
+  assert.equal(rows[0], 'Ш Б');
+  assert.equal(rows[rows.length - 1], '○ X ○');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  for (const c of Object.keys(PRODUCTS['0x5pro'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
+  for (const c of PRODUCTS['0x5pro'].configs) assert.ok(html.includes(`data-value="${c.id}" data-usd="${c.usd}" data-eur="${c.eur}"`), c.id);
+  for (const re of [/Смотрит в&nbsp;оба/, /CPix&nbsp;3/, /магнит/, /пьезоэлемент/, /сетчатк/, /20&nbsp;мм/, /E&nbsp;Ink/, /0Pen&nbsp;2/, /Love Gen&nbsp;5/, /GP30 Pro/, /гибк/, /0,1–180&nbsp;Гц/, /data-pad/, /data-dial/, /data-drop/, /data-scan/, /data-bend/]) assert.match(html, re);
+  assert.ok(html.includes('href="/0x5pro/specs/"') && html.includes('href="/0x2pro/"') && html.includes('href="/nova/"'));
+  assert.ok(existsSync(join(ROOT, 'models', 'oy0x5pro.glb')));
+  assert.ok(existsSync(join(ROOT, 'og-0x5pro.jpg')));
+  assert.ok(read('os/index.html').includes('href="/0x5pro/"'), '0X5 Pro нет в списке CamelOS');
+  assert.ok(read('index.html').includes('data-model="0x5pro"'), '0X5 Pro нет на витрине');
+  for (const id of ['0x2pro', 'nova']) assert.ok(!read('index.html').includes(`data-model="${id}"`), `снятый ${id} на витрине`);
+});
+
+test('страница /0x5pro/specs/: все разделы, одна h1, оглавление сходится, цены из данных, CPix 3 без моторчиков', () => {
+  const html = read('0x5pro/specs/index.html');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  const rows = [...html.matchAll(/<section class="o-sp__row" id="([^"]+)"/g)].map((m) => m[1]);
+  for (const id of ['capacity', 'size', 'water', 'display', 'cpix', 'retina', 'chip', 'flex', 'graphics', 'vapor', 'tube', 'camera', 'video', 'front', 'eink', 'pen', 'power', 'security', 'switch', 'torch', 'cellular', 'location', 'buttons', 'sensors', 'os', 'environment', 'box']) assert.ok(rows.includes(id), id);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const c of PRODUCTS['0x5pro'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
+  assert.match(html, /Моторчиков в&nbsp;CPix&nbsp;3 нет/);
+  assert.match(html, /пьезоэлементы/);
 });
