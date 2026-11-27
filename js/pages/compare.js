@@ -23,6 +23,7 @@ import { createOY0X2Pro } from '../models/oy0x2pro.js';
 import { createOYMoth, createOYMoth2 } from '../models/oymoth.js';
 import { createOYNova } from '../models/oynova.js';
 import { createOYButterfly } from '../models/oybutterfly.js';
+import { createOY0X5Butterfly } from '../models/oy0x5butterfly.js';
 import { createOY0X4Q } from '../models/oy0x4q.js';
 import { createOY0X4 } from '../models/oy0x4.js';
 import { createOY0X5 } from '../models/oy0x5.js';
@@ -46,12 +47,12 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 /* ---------- 3D: модель в колонке ---------- */
 
-const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x4q': createOY0X4Q, '0x4': createOY0X4, '0x5': createOY0X5, '0x5e': createOY0X5E, '0x5pro': createOY0X5Pro, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, butterfly: createOYButterfly, '0x1pro': createOY0X1Pro, pro: createPro };
+const FACTORY = { '0x1e': createOY0X1E, '0x2e': createOY0X2E, '0x3e': createOY0X3E, '0x0': createOY0X0, '0x2': createOY0X2, '0x2q': createOY0X2Q, '0x4q': createOY0X4Q, '0x4': createOY0X4, '0x5': createOY0X5, '0x5e': createOY0X5E, '0x5pro': createOY0X5Pro, '0x1': createOY0X1, '0x1q': createOY0X1Q, '0x2pro': createOY0X2Pro, moth: createOYMoth, moth2: createOYMoth2, nova: createOYNova, butterfly: createOYButterfly, '0x5butterfly': createOY0X5Butterfly, '0x1pro': createOY0X1Pro, pro: createPro };
 // Высота корпуса, мм: телефоны стоят на одной линии в одном масштабе, как на витрине
-const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x4q': 150.4, '0x4': 151.2, '0x5': 150.8, '0x5e': 156.4, '0x5pro': 164.2, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, butterfly: 120, '0x1pro': 163.5, pro: 150 };
-const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x4q': -PI + 0.45, '0x4': -PI + 0.45, '0x5': -PI + 0.45, '0x5e': -PI + 0.45, '0x5pro': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
+const HEIGHT = { '0x1e': 152, '0x2e': 150, '0x3e': 150, '0x0': 146, '0x2': 161, '0x2q': 142.4, '0x4q': 150.4, '0x4': 151.2, '0x5': 150.8, '0x5e': 156.4, '0x5pro': 164.2, '0x1': 161, '0x1q': 142.4, '0x2pro': 166, moth: 166.7, moth2: 166.7, nova: 164.8, butterfly: 120, '0x5butterfly': 128, '0x1pro': 163.5, pro: 150 };
+const TURN = { '0x1e': -PI + 0.5, '0x2e': -PI + 0.5, '0x3e': -PI + 0.5, '0x0': -PI + 0.5, '0x2': -PI + 0.32, '0x2q': -PI + 0.5, '0x4q': -PI + 0.45, '0x4': -PI + 0.45, '0x5': -PI + 0.45, '0x5e': -PI + 0.45, '0x5pro': -PI + 0.5, '0x1': -PI + 0.32, '0x1q': -PI + 0.5, '0x2pro': -PI - 0.4, moth: -PI + 0.45, moth2: -PI + 0.45, nova: -PI + 0.42, butterfly: -PI + 0.45, '0x5butterfly': -PI + 0.45, '0x1pro': -PI - 0.45, pro: -PI - 0.5 };
 // Butterfly стоит сложенным, «Глазом» к вам
-const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1, ...(id === 'butterfly' ? { fold: 1 } : {}) });
+const pose = (id) => ({ x: 0, y: -0.9, fx: 0, fy: -HEIGHT[id] / 200, fz: 0, rx: 0.04, ry: TURN[id], rz: 0, dist: 4.3, float: 0.25, screen: 1, ...(id === 'butterfly' || id === '0x5butterfly' ? { fold: 1 } : {}) });
 
 /* ---------- Иконки строк, как у Apple: у каждой модели своя ---------- */
 
@@ -204,9 +205,10 @@ const plural = (n, one, few, many) => (n % 10 === 1 && n % 100 !== 11 ? one : n 
 
 const PRESETS = [
   ['Последние', ['0x5e', '0x5', '0x5pro']],
-  ['Флагманы', ['0x5', '0x5pro', 'butterfly']],
+  ['Флагманы', ['0x5', '0x5pro', '0x5butterfly']],
+  ['Butterfly: новая игра+', ['butterfly', '0x5butterfly', 'moth2']],
   ['Pro: тогда и сейчас', ['pro', '0x2pro', '0x5pro']],
-  ['Складные', ['moth2', 'butterfly', 'moth']],
+  ['Складные', ['moth2', '0x5butterfly', 'moth']],
   ['Недорогие', ['0x5e', '0x4q', 'moth2']],
   ['Тогда и сейчас', ['0x0', '0x2pro', '0x5pro']],
 ].filter(([, ids]) => ids.every((id) => PRODUCTS[id]));

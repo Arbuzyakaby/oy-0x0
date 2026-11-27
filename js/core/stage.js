@@ -17,9 +17,18 @@ export const POSE_DEFAULTS = {
   float: 1, spin: 0,
 };
 
+// Скорость: на плотных экранах (2×) сглаживание MSAA почти не видно, а стоит дорого — его нет.
+// Разрешение рендера подстраивается под кадры: не успеваем в ~40 к/с — рисуем реже пикселей,
+// снова быстро — возвращаем. Когда модель застыла (только покачивается), сцена рисуется 30 раз в секунду.
+const QUALITY = [1, 0.85, 0.7, 0.55];
+const SLOW_MS = 25;      // средний кадр дольше — снижаем разрешение
+const FAST_MS = 17.5;    // средний кадр короче — можно вернуть
+const IDLE_MS = 32;      // застывшая модель — не чаще 30 раз в секунду
+
 export function createStage(canvas, createModel, { forceFallback = false, fitCanvas = false } = {}) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  const dprMax = () => Math.min(window.devicePixelRatio || 1, 2);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: dprMax() < 1.5, alpha: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(dprMax());
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -94,14 +103,43 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
 
   /* ---- Цикл рендера ---- */
   let last = 0;
+  let lastRender = 0;
   let wantActive = true;
   let disposed = false;
   let modelReady = false;
 
+  // адаптивное разрешение: средний интервал кадра и ступень качества
+  let quality = 0;
+  let avgMs = 16.7;
+  let framesAtStep = 0;
+  let lastDrop = 0;
+  function adapt(ms, now) {
+    if (ms > 250) return;                       // вкладка просыпалась — не считаем
+    avgMs += (ms - avgMs) * 0.06;
+    framesAtStep++;
+    if (avgMs > SLOW_MS && framesAtStep > 45 && quality < QUALITY.length - 1) {
+      quality++; framesAtStep = 0; lastDrop = now; avgMs = 16.7; resize();
+    } else if (avgMs < FAST_MS && framesAtStep > 240 && quality > 0 && now - lastDrop > 8000) {
+      quality--; framesAtStep = 0; resize();
+    }
+  }
+  function settled() {
+    for (const key in target) if (Math.abs(target[key] - cur[key]) > 1e-3) return false;
+    return Math.abs(pointer.tx - pointer.x) < 1e-3 && Math.abs(pointer.ty - pointer.y) < 1e-3;
+  }
+
+  let rendered = false;
   function frame(now) {
     raf = requestAnimationFrame(frame);
-    const dt = Math.min((now - last) / 1000, 0.05);
+    // меряем только кадр, который шёл после рендера: в нём и видна цена сцены
+    if (rendered) adapt(now - last, now);
     last = now;
+    rendered = false;
+    // застывшая модель только покачивается — хватит 30 кадров в секунду
+    if (now - lastRender < IDLE_MS && settled()) return;
+    rendered = true;
+    const dt = Math.min((now - lastRender) / 1000, 0.05);
+    lastRender = now;
     update(dt);
     renderer.render(scene, camera);
   }
@@ -109,7 +147,8 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
   function start() {
     if (raf || !modelReady) return;
     snap();
-    last = performance.now();
+    last = lastRender = performance.now();
+    framesAtStep = 0;
     raf = requestAnimationFrame(frame);
   }
   function stop() {
@@ -121,11 +160,13 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
     model.snap();
   }
 
+  // pxScale < 1 — модель рисуется в меньшем разрешении (настройка DLSS на странице 0X5 Butterfly)
+  let pxScale = 1;
   function resize() {
     // fitCanvas: сцена в собственном canvas (витрина), иначе — на весь экран
     const w = fitCanvas ? canvas.clientWidth || 1 : window.innerWidth;
     const h = fitCanvas ? canvas.clientHeight || 1 : window.innerHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.max(0.75, dprMax() * QUALITY[quality]) * pxScale);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -179,7 +220,7 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
   return {
     ready,
     renderer,
-    debug: { cur, target, parts: model.parts },
+    debug: { cur, target, parts: model.parts, get quality() { return QUALITY[quality]; }, get frameMs() { return avgMs; } },
     setTarget(values) {
       for (const k in values) if (k in target && Number.isFinite(values[k])) target[k] = values[k];
     },
@@ -191,6 +232,7 @@ export function createStage(canvas, createModel, { forceFallback = false, fitCan
     },
     setReduced(v) { reduced = v; },
     resize,
+    setPixelScale(v) { pxScale = Math.max(0.25, Math.min(1, v)); resize(); },
     // Освободить WebGL-контекст: на странице сравнения модели меняются на лету
     dispose() {
       disposed = true;

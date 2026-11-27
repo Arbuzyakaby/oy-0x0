@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ru" data-x5b data-color="peacock" data-rtx="on">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OY 0X5 Butterfly — новая игра+</title>
+  <meta name="description" content="OY 0X5 Butterfly — вторая книжка OY. Процессор Fyr GP30 Ultra, графика FIG FourNV вместе с NVIDIA: RTX и DLSS. CamelOS 3.1 запускает .exe. Петля «Имаго», два сканера сетчатки, электрохромное «Затмение» над камерами вместо шторки, Love Gen 5 Semi. Август 2034, от $1999. Концепт.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0A0810">
+  <link rel="canonical" href="https://oy0x.online/0x5butterfly/">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OY">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://oy0x.online/0x5butterfly/">
+  <meta property="og:title" content="OY 0X5 Butterfly — новая игра+">
+  <meta property="og:description" content="GP30 Ultra и FIG FourNV с NVIDIA: RTX и DLSS. CamelOS 3.1 запускает .exe. Петля «Имаго», два сканера сетчатки, «Затмение» над камерами. Август 2034, от $1999. Концепт.">
+  <meta property="og:image" content="https://oy0x.online/og-0x5butterfly.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OY 0X5 Butterfly цвета «Павлиний глаз»: сложенный спинкой с «Визором» и раскрытый книжкой">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; form-action 'none'; base-uri 'none'; object-src 'none';">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0810'/%3E%3Crect x='10' y='22' width='44' height='20' rx='10' fill='%23111'/%3E%3Ccircle cx='21' cy='32' r='6' fill='none' stroke='%2362D6E8' stroke-width='3'/%3E%3Ccircle cx='35' cy='32' r='4' fill='%2362D6E8'/%3E%3Ccircle cx='46' cy='32' r='3' fill='%23FF6FB5'/%3E%3C/svg%3E">
+
+  <link rel="preload" href="/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css?v=d612ef3c8a">
+  <link rel="stylesheet" href="/css/core.css?v=24c9a4230a">
+  <link rel="stylesheet" href="/css/0x5butterfly.css?v=03354ae09e">
+  <link rel="stylesheet" href="/css/fyr.css?v=95997399a3">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "/js/core/carousel.js": "/js/core/carousel.js?v=0572605637",
+      "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
+      "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
+      "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
+      "/js/core/stage.js": "/js/core/stage.js?v=7c26d5ab65",
+      "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
+      "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
+      "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
+      "/js/data/accessories.js": "/js/data/accessories.js?v=a0a53f4718",
+      "/js/data/products.js": "/js/data/products.js?v=129ff55d05",
+      "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
+      "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
+      "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
+      "/js/models/fyrh1.js": "/js/models/fyrh1.js?v=cd8e7d3a55",
+      "/js/models/fyrkbook.js": "/js/models/fyrkbook.js?v=dd5e788fc7",
+      "/js/models/fyrosmium.js": "/js/models/fyrosmium.js?v=27e0885289",
+      "/js/models/oy0x0.js": "/js/models/oy0x0.js?v=7e77a9a28d",
+      "/js/models/oy0x1.js": "/js/models/oy0x1.js?v=e3148209b1",
+      "/js/models/oy0x1e.js": "/js/models/oy0x1e.js?v=022b47d4c1",
+      "/js/models/oy0x1pro.js": "/js/models/oy0x1pro.js?v=9ff564504d",
+      "/js/models/oy0x1q.js": "/js/models/oy0x1q.js?v=e4d6c075b3",
+      "/js/models/oy0x2.js": "/js/models/oy0x2.js?v=de8194b4af",
+      "/js/models/oy0x2e.js": "/js/models/oy0x2e.js?v=77fe9435db",
+      "/js/models/oy0x2pro.js": "/js/models/oy0x2pro.js?v=a0ce89870b",
+      "/js/models/oy0x2q.js": "/js/models/oy0x2q.js?v=87a3282ee6",
+      "/js/models/oy0x3e.js": "/js/models/oy0x3e.js?v=08fce2a23c",
+      "/js/models/oy0x4.js": "/js/models/oy0x4.js?v=f8652e989d",
+      "/js/models/oy0x4q.js": "/js/models/oy0x4q.js?v=e13ee7e681",
+      "/js/models/oy0x5.js": "/js/models/oy0x5.js?v=d453bdcbf9",
+      "/js/models/oy0x5butterfly.js": "/js/models/oy0x5butterfly.js?v=f92e45659f",
+      "/js/models/oy0x5e.js": "/js/models/oy0x5e.js?v=60d87aee07",
+      "/js/models/oy0x5pro.js": "/js/models/oy0x5pro.js?v=2aba89fad3",
+      "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
+      "/js/models/oymoth.js": "/js/models/oymoth.js?v=7385eba81e",
+      "/js/models/oynova.js": "/js/models/oynova.js?v=3cb6753b62",
+      "/js/models/pro.js": "/js/models/pro.js?v=e89e21cb22",
+      "/js/pages/0x1.js": "/js/pages/0x1.js?v=8d2ef210fa",
+      "/js/pages/0x1e.js": "/js/pages/0x1e.js?v=02f0986f72",
+      "/js/pages/0x1pro.js": "/js/pages/0x1pro.js?v=86d8953bcb",
+      "/js/pages/0x1q.js": "/js/pages/0x1q.js?v=3765c96438",
+      "/js/pages/0x2.js": "/js/pages/0x2.js?v=58af31bffb",
+      "/js/pages/0x2e.js": "/js/pages/0x2e.js?v=011fcc2bd9",
+      "/js/pages/0x2pro-scenes.js": "/js/pages/0x2pro-scenes.js?v=957ee0c719",
+      "/js/pages/0x2pro.js": "/js/pages/0x2pro.js?v=55f1029788",
+      "/js/pages/0x2q.js": "/js/pages/0x2q.js?v=4c33d835a2",
+      "/js/pages/0x3e.js": "/js/pages/0x3e.js?v=aed814f3c3",
+      "/js/pages/0x4.js": "/js/pages/0x4.js?v=5a36989c0d",
+      "/js/pages/0x4q.js": "/js/pages/0x4q.js?v=cc97149bba",
+      "/js/pages/0x5.js": "/js/pages/0x5.js?v=29d0841133",
+      "/js/pages/0x5butterfly.js": "/js/pages/0x5butterfly.js?v=3727096b9f",
+      "/js/pages/0x5e.js": "/js/pages/0x5e.js?v=51605521d4",
+      "/js/pages/0x5pro.js": "/js/pages/0x5pro.js?v=0c19b9cf45",
+      "/js/pages/accessories.js": "/js/pages/accessories.js?v=7fa6737a96",
+      "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
+      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=4ab67c2464",
+      "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=aa3e82a88b",
+      "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
+      "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
+      "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
+      "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
+      "/js/pages/fyr.js": "/js/pages/fyr.js?v=89f792cb34",
+      "/js/pages/home.js": "/js/pages/home.js?v=c1620e2c7f",
+      "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
+      "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
+      "/js/pages/nova.js": "/js/pages/nova.js?v=89d9237b99",
+      "/js/pages/pro.js": "/js/pages/pro.js?v=7a7d92ed76"
+    }
+  }
+  </script>
+  <script>document.documentElement.classList.add('js');try{var c=localStorage.getItem('oy-x5b-color');if(/^(peacock|blue|brimstone|mourning|pearl)$/.test(c))document.documentElement.dataset.color=c;var g=JSON.parse(localStorage.getItem('oy-x5b-gfx')||'{}');if(g.rtx===false)document.documentElement.dataset.rtx='off'}catch(e){}</script>
+  <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
+  <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
+  <link rel="modulepreload" href="/js/core/stage.js?v=7c26d5ab65">
+  <script type="module" src="/js/pages/0x5butterfly.js?v=3727096b9f"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1.5"/><path d="M3 10h18M3 14h18M9 6v12M15 6v12"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Загрузка: CamelOS 3.1 поднимает «Мираж 3» и запускает BUTTERFLY.EXE -->
+  <div class="loader b-boot" id="loader" role="status" aria-live="polite">
+    <pre class="b-boot__log mono" aria-hidden="true" data-boot>CamelOS 3.1 · сборка «Новая игра+»
+Love Gen 5 Semi ........ ок
+GP30 Ultra · 30 ядер ... ок
+FIG FourNV · RT · DLSS . ок
+Мираж 3 · x86-64 ....... ок
+Запуск BUTTERFLY.EXE</pre>
+    <span class="loader__label">Загружаем уровень…</span>
+  </div>
+
+  <!-- Фон: чешуйки крыла с переливом, который бежит по мере прокрутки -->
+  <div class="b-bg" aria-hidden="true"><i class="b-bg__film"></i><i class="b-bg__scales"></i><i class="b-bg__vig"></i></div>
+  <canvas class="stage" id="stage" aria-hidden="true"></canvas>
+  <div class="b-dark" aria-hidden="true" data-dark></div>
+
+  <header class="site-header b-header" id="top">
+    <a class="brand" href="/" aria-label="Fyr и телефоны OY — на главную">
+      <svg class="brand__fyr" viewBox="0 0 46 30" aria-hidden="true"><path class="brand__fyr-beam" d="M23 6L42 0.5V11.5Z"/><path d="M8 24V10a4 4 0 0 1 4-4h3M4 13h9M19 12v6a4 4 0 0 0 8 0M27 12v12a4 4 0 0 1-7.4 2.2M34 24v-8a4 4 0 0 1 4-4h3"/><circle class="brand__fyr-lamp" cx="23" cy="6" r="1.8"/></svg><span class="brand__sep" aria-hidden="true">/</span><svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+      <span class="brand__name">OY</span>
+    </a>
+    <nav class="site-nav" aria-label="Модели">
+      <a class="site-nav__fyr" href="/fyr/">Osmium X0</a>
+      <a class="site-nav__fyr" href="/fyr/kbook/">KBook 1</a>
+      <a class="site-nav__fyr" href="/fyr/h1/">H1</a>
+      <a href="/0x5e/">0X5 Essential</a>
+      <a href="/0x4q/">0X4Q</a>
+      <a href="/moth2/">0X Moth 2</a>
+      <a href="/0x5/">0X5</a>
+      <a href="/0x5pro/">0X5 Pro</a>
+      <a href="/0x5butterfly/" aria-current="page">0X5 Butterfly</a>
+      <a href="/os/">CamelOS</a>
+      <a href="/accessories/">Аксессуары</a>
+      <a href="/compare/">Сравнить</a>
+    </nav>
+    <a class="btn btn--accent btn--sm b-header__buy" href="#buy">от $1999</a>
+  </header>
+
+  <!-- HUD: уровень, тайны «Техаса», кадры в секунду, меню паузы -->
+  <div class="b-hud" data-hud>
+    <a class="b-hud__lvl mono" href="#hero" data-hud-lvl><b data-hud-n>ТИТУЛ</b><span data-hud-name>Новая игра+</span><i class="b-hud__xp" aria-hidden="true"><i data-hud-xp></i></i></a>
+    <button type="button" class="b-hud__secrets mono" data-open="secrets" aria-label="Тайны: открыть список">
+      <span class="b-hud__word" aria-hidden="true"><i data-slot="0"></i><i data-slot="1"></i><i data-slot="2"></i><i data-slot="3"></i><i data-slot="4"></i></span>
+      <span class="b-hud__suns" aria-hidden="true"><i data-sun-slot="0"></i><i data-sun-slot="1"></i><i data-sun-slot="2"></i></span>
+      <span class="b-hud__drop" aria-hidden="true" data-drop-slot></span>
+      <b data-secrets-n>0/9</b>
+    </button>
+    <button type="button" class="b-hud__fps mono" data-open="gfx" aria-label="Настройки графики"><b data-fps>—</b><span>к/с</span><em data-gfx-badge>RTX · DLSS К</em></button>
+  </div>
+  <!-- экран загрузки уровня: короткая полоса с советом -->
+  <div class="b-loading" aria-hidden="true" data-loading><p class="mono"><b data-load-title>Загрузка</b><span data-load-tip></span></p><i><i data-load-bar></i></i></div>
+  <!-- достижения -->
+  <div class="b-ach" aria-live="polite" data-ach></div>
+
+  <main id="main">
+    <!-- ТИТУЛ: «Нажмите любую клавишу» и главное меню -->
+    <section class="b b--hero" id="hero" aria-labelledby="hero-title">
+      <div class="b-hero">
+        <p class="b-lvl mono" aria-hidden="true"><b>OY 0X5 Butterfly</b><span>август 2034</span><span>Сохранение 01</span></p>
+        <h1 class="b-hero__title" id="hero-title">
+          <span class="b-hero__model">OY 0X5 Butterfly</span>
+          <span class="b-hero__big" data-split>Новая игра+</span>
+        </h1>
+        <p class="b-hero__lead">Вторая книжка OY. Тот&nbsp;же мир, что у&nbsp;первого Butterfly, но&nbsp;характеристики прокачаны: процессор GP30 Ultra, графика FIG&nbsp;FourNV вместе с&nbsp;NVIDIA&nbsp;— RTX и&nbsp;DLSS, CamelOS&nbsp;3.1 запускает .exe. Один предмет потерян по&nbsp;дороге. Найдите, какой.</p>
+        <nav class="b-menu" aria-label="Главное меню">
+          <a class="b-menu__item is-on" href="#imago"><span>Начать</span><em class="mono">Уровень 1</em></a>
+          <button type="button" class="b-menu__item" data-open="gfx"><span>Настройки графики</span><em class="mono" data-menu-gfx>RTX вкл · DLSS «Качество»</em></button>
+          <button type="button" class="b-menu__item" data-open="ach"><span>Достижения</span><em class="mono" data-menu-ach>0 из 12</em></button>
+          <a class="b-menu__item" href="/0x5butterfly/specs/"><span>Характеристики</span><em class="mono">все</em></a>
+          <a class="b-menu__item" href="#buy"><span>Сохранить игру</span><em class="mono">от $1999</em></a>
+        </nav>
+        <p class="b-hero__press mono" aria-hidden="true">Нажмите любую клавишу</p>
+      </div>
+    </section>
+
+    <!-- УРОВЕНЬ 1. ИМАГО: телефон раскрывается по прокрутке -->
+    <section class="b b--imago" id="imago" aria-labelledby="imago-title">
+      <div class="b-pin">
+        <div class="b-wrap b-imago">
+          <div class="b-imago__text">
+            <p class="b-lvl mono" aria-hidden="true"><b>Уровень 01</b><span>Имаго</span><span>петля</span></p>
+            <h2 class="b-h2" id="imago-title" data-split>Куколка стала бабочкой.</h2>
+            <p class="b-lead">У&nbsp;первого Butterfly петля называлась «Куколка». У&nbsp;второго&nbsp;— «Имаго»: так зовут взрослую бабочку, которая уже не&nbsp;меняется. Складки на&nbsp;экране почти нет&nbsp;— 0,03&nbsp;мм против 0,12. Сложенный телефон смыкается без зазора&nbsp;— и&nbsp;без <button type="button" class="b-tx" data-tx="2" aria-label="хлопка — тайная буква">хлопка</button>: магниты в&nbsp;последний миллиметр гасят удар.</p>
+            <p class="b-lead b-lead--m">«Куколка» стала «Имаго»: складка 0,03&nbsp;мм вместо 0,12, телефон смыкается без зазора и&nbsp;без <button type="button" class="b-tx" data-tx="2" aria-label="хлопка — тайная буква">хлопка</button>.</p>
+            <div class="b-quest" data-quest="unfold"><i aria-hidden="true"></i><span>Задание: раскройте телефон до&nbsp;конца</span></div>
+            <dl class="b-meter mono">
+              <div><dt>Угол</dt><dd><b data-angle>0</b>°</dd></div>
+              <div><dt>Складка</dt><dd><b data-crease>—</b></dd></div>
+              <div><dt>Ресурс</dt><dd>1&nbsp;000&nbsp;000 сгибов</dd></div>
+            </dl>
+            <figure class="b-hinge">
+              <svg viewBox="0 0 520 180" role="img" aria-label="Разрез петли «Имаго»: экран изгибается каплей внутри корешка">
+                <path class="b-hinge__shell" d="M40 30h170a90 70 0 0 1 0 120H40"/>
+                <path class="b-hinge__shell" d="M480 30H310a90 70 0 0 0 0 120h170"/>
+                <path class="b-hinge__screen" d="M40 70h150c40 0 70 0 70 20s-30 20-70 20H40" fill="none"/>
+                <path class="b-hinge__screen" d="M480 70H330c-40 0-70 0-70 20s30 20 70 20h150" fill="none"/>
+                <g class="b-hinge__gears"><circle cx="240" cy="90" r="9"/><circle cx="280" cy="90" r="9"/><circle cx="260" cy="58" r="6"/><circle cx="260" cy="122" r="6"/></g>
+                <text x="40" y="20">половина 4,2 мм</text><text x="480" y="20" text-anchor="end">половина 4,2 мм</text><text x="260" y="172" text-anchor="middle">экран гнётся каплей · R 1,6 мм</text>
+              </svg>
+              <button type="button" class="b-drop" data-drop aria-label="Капля в разрезе петли — тайна"><svg viewBox="0 0 20 26" aria-hidden="true"><path d="M10 1C6 8 2 12 2 17a8 8 0 0 0 16 0c0-5-4-9-8-16z"/></svg></button>
+              <figcaption class="mono">Разрез петли. Шестерёнки держат угол от&nbsp;20 до&nbsp;160°: телефон стоит «домиком» и&nbsp;ноутбуком.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- УРОВЕНЬ 2. ДВА ГЛАЗА: два сканера сетчатки — снаружи и внутри -->
+    <section class="b b--eyes" id="eyes" aria-labelledby="eyes-title">
+      <div class="b-wrap">
+        <header class="b-head">
+          <p class="b-lvl mono" aria-hidden="true"><b>Уровень 02</b><span>Два глаза</span><span>940&nbsp;нм</span></p>
+          <h2 class="b-h2" id="eyes-title" data-split>Две двери. Два глаза.</h2>
+          <p class="b-lead">У&nbsp;Butterfly всегда было две двери: внешний экран и&nbsp;внутренний, с&nbsp;разными ключами. Теперь у&nbsp;каждой двери свой сканер&nbsp;— под пикселями CPix&nbsp;3 на&nbsp;магнитах. И&nbsp;каждую можно запереть на&nbsp;свой глаз: рисунок сосудов на&nbsp;дне левого и&nbsp;правого глаза разный, как два разных пароля. Ваша <button type="button" class="b-tx" data-tx="4" aria-label="сетчатка — тайная буква">сетчатка</button>&nbsp;— это два ключа сразу.</p>
+        </header>
+        <div class="b-eyes">
+          <div class="b-door" data-door="out">
+            <p class="b-door__k mono">Внешняя дверь · 6,1″</p>
+            <canvas class="b-door__cv" data-eye="out" role="img" aria-label="Сканер сетчатки внешнего экрана"></canvas>
+            <div class="b-chips" role="radiogroup" aria-label="Ключ внешней двери" data-key-out>
+              <button type="button" role="radio" data-value="L" aria-checked="true">Левый глаз</button>
+              <button type="button" role="radio" data-value="R" aria-checked="false" tabindex="-1">Правый</button>
+            </div>
+          </div>
+          <div class="b-eyes__mid">
+            <p class="mono">Чем смотрите</p>
+            <div class="b-chips b-chips--col" role="radiogroup" aria-label="Чем смотрите" data-look>
+              <button type="button" role="radio" data-value="L" aria-checked="true">Левым глазом</button>
+              <button type="button" role="radio" data-value="R" aria-checked="false" tabindex="-1">Правым глазом</button>
+              <button type="button" role="radio" data-value="X" aria-checked="false" tabindex="-1">Чужим</button>
+              <button type="button" role="radio" data-value="P" aria-checked="false" tabindex="-1">Фото глаза</button>
+            </div>
+            <button type="button" class="b-btn" data-scan="out">Посмотреть снаружи</button>
+            <button type="button" class="b-btn" data-scan="in">Раскрыть и&nbsp;посмотреть</button>
+          </div>
+          <div class="b-door" data-door="in">
+            <p class="b-door__k mono">Внутренняя дверь · 8,0″</p>
+            <canvas class="b-door__cv" data-eye="in" role="img" aria-label="Сканер сетчатки внутреннего экрана"></canvas>
+            <div class="b-chips" role="radiogroup" aria-label="Ключ внутренней двери" data-key-in>
+              <button type="button" role="radio" data-value="L" aria-checked="false" tabindex="-1">Левый</button>
+              <button type="button" role="radio" data-value="R" aria-checked="true">Правый глаз</button>
+            </div>
+          </div>
+        </div>
+        <p class="b-verdict mono" aria-live="polite" data-eye-verdict>Снаружи заперто на&nbsp;левый глаз, внутри&nbsp;— на&nbsp;правый.</p>
+        <div class="b-quest" data-quest="twoeyes"><i aria-hidden="true"></i><span>Задание: откройте обе двери</span></div>
+        <p class="b-small">Сканер светит в&nbsp;зрачок невидимым светом 940&nbsp;нм и&nbsp;узнаёт глаз за&nbsp;0,4&nbsp;с с&nbsp;20–40&nbsp;см. Живой глаз отличает от&nbsp;фото по&nbsp;зрачку: от&nbsp;вспышки тот сужается. Шаблоны хранит только Love Gen&nbsp;5 Semi. «Тревожный взгляд» на&nbsp;месте: прищурьтесь&nbsp;— откроется «Двойник».</p>
+      </div>
+    </section>
+
+    <!-- УРОВЕНЬ 3. ЗАТМЕНИЕ: электрохромный слой вместо шторки и как ND-фильтр -->
+    <section class="b b--eclipse" id="eclipse" aria-labelledby="eclipse-title">
+      <div class="b-wrap b-split">
+        <div class="b-split__text">
+          <p class="b-lvl mono" aria-hidden="true"><b>Уровень 03</b><span>Затмение</span><span>ND&nbsp;2–2048</span></p>
+          <h2 class="b-h2" id="eclipse-title" data-split>Шестнадцать лепестков стали одним стеклом.</h2>
+          <p class="b-lead">У&nbsp;первого Butterfly камеры закрывало кольцо с&nbsp;шестнадцатью лепестками. У&nbsp;второго механики нет совсем: над объективами «Визора» лежит электрохромный слой «Затмение». Ток&nbsp;— и&nbsp;стекло темнеет. Немного&nbsp;— это ND-фильтр: выдержка длиннее, водопад превращается в&nbsp;шёлк. До&nbsp;конца&nbsp;— шторка: камера не&nbsp;видит ничего, а&nbsp;Love Gen&nbsp;5 Semi её обесточивает.</p>
+          <div class="b-falls">
+            <canvas class="b-falls__cv" data-falls role="img" aria-label="Видоискатель: водопад, выдержка зависит от плотности «Затмения»"></canvas>
+            <button type="button" class="b-sun b-sun--falls" data-sun="0" aria-label="Солнечная панель в отражении — тайна"><svg aria-hidden="true"><use href="#i-sun"/></svg></button>
+            <p class="b-falls__label mono" data-falls-label>«Затмение» выкл · 1/500&nbsp;с</p>
+          </div>
+          <label class="b-range mono"><span>Плотность: <b data-nd-out>0 ступеней</b></span><input type="range" min="0" max="12" step="1" value="0" data-nd aria-label="Плотность «Затмения»"></label>
+          <div class="b-quest" data-quest="eclipse"><i aria-hidden="true"></i><span>Задание: затемните «Визор» целиком</span></div>
+          <p class="b-small">0–11 ступеней&nbsp;— от&nbsp;ND&nbsp;2 до&nbsp;ND&nbsp;2048, без шагов, за&nbsp;0,12&nbsp;с. Двенадцатая&nbsp;— «Шторка»: темнее, чем сварочная маска. Слой держит любое состояние без тока, как E&nbsp;Ink: в&nbsp;кармане «Визор» тёмный и&nbsp;батарею не&nbsp;тратит. Положение «Затмения» пишет журнал «Веко&nbsp;3».</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- УРОВЕНЬ 4. GP30 ULTRA: карта кристалла -->
+    <section class="b b--ultra" id="ultra" aria-labelledby="ultra-title">
+      <div class="b-wrap">
+        <header class="b-head">
+          <p class="b-lvl mono" aria-hidden="true"><b>Уровень 04</b><span>GP30 Ultra</span><span>1,4&nbsp;нм</span></p>
+          <h2 class="b-h2" id="ultra-title" data-split>Карта кристалла. Нажимайте на&nbsp;районы.</h2>
+          <p class="b-lead">Fyr GP30 Ultra&nbsp;— старший из&nbsp;процессоров пятого поколения: один кристалл TSMC A14, 30 ядер, частоты выше, чем у&nbsp;Pro. Кристалл лежит на&nbsp;плате из&nbsp;гибкого <button type="button" class="b-tx" data-tx="0" aria-label="текстолита — тайная буква">текстолита</button>, которая проходит через петлю и&nbsp;соединяет обе половины.</p>
+        </header>
+        <div class="b-die">
+          <div class="b-die__map" role="radiogroup" aria-label="Блоки кристалла" data-die>
+            <button type="button" role="radio" class="b-die__b b-die__b--p" data-value="p" aria-checked="true" style="--x:2;--y:2;--w:4;--h:3"><span>8 × 5,4&nbsp;ГГц</span></button>
+            <button type="button" role="radio" class="b-die__b b-die__b--m" data-value="m" aria-checked="false" tabindex="-1" style="--x:6;--y:2;--w:4;--h:3"><span>10 × 4,4</span></button>
+            <button type="button" role="radio" class="b-die__b b-die__b--e" data-value="e" aria-checked="false" tabindex="-1" style="--x:10;--y:2;--w:3;--h:3"><span>12 × 3,1</span></button>
+            <button type="button" role="radio" class="b-die__b b-die__b--g" data-value="g" aria-checked="false" tabindex="-1" style="--x:2;--y:5;--w:8;--h:5"><span>FIG FourNV</span></button>
+            <button type="button" role="radio" class="b-die__b b-die__b--n" data-value="n" aria-checked="false" tabindex="-1" style="--x:10;--y:5;--w:3;--h:3"><span>300 TOPS</span></button>
+            <button type="button" role="radio" class="b-die__b b-die__b--r" data-value="r" aria-checked="false" tabindex="-1" style="--x:10;--y:8;--w:3;--h:2"><span>FM3 Ultra</span></button>
+            <button type="button" role="radio" class="b-die__b b-die__b--c" data-value="c" aria-checked="false" tabindex="-1" style="--x:2;--y:10;--w:11;--h:1"><span>кеш 48&nbsp;МБ</span></button>
+          </div>
+          <div class="b-die__info">
+            <p class="b-die__k mono" data-die-k>Большие ядра</p>
+            <p class="b-die__t" data-die-t>Восемь ядер до&nbsp;5,4&nbsp;ГГц. Игры, компиляция, «Мираж&nbsp;3», когда переводит .exe.</p>
+            <dl class="b-stats mono">
+              <div><dt>AnTuTu&nbsp;11</dt><dd><i style="--v:.96"></i><b>5&nbsp;410&nbsp;000</b></dd></div>
+              <div><dt>0X5 Pro</dt><dd><i style="--v:.82"></i><b>4&nbsp;612&nbsp;300</b></dd></div>
+              <div><dt>0X Butterfly</dt><dd><i style="--v:.42"></i><b>2&nbsp;310&nbsp;000</b></dd></div>
+            </dl>
+            <p class="b-small">Охлаждение «Крылья»: испарительная камера идёт через обе половины и&nbsp;петлю, 16&nbsp;800&nbsp;мм². Раскрытый телефон греется вдвое шире&nbsp;— через полчаса игры GP30 Ultra держит 98&nbsp;% пика.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- УРОВЕНЬ 5. RTX И DLSS -->
+    <section class="b b--rtx" id="rtx" aria-labelledby="rtx-title">
+      <div class="b-wrap">
+        <header class="b-head">
+          <p class="b-lvl mono" aria-hidden="true"><b>Уровень 05</b><span>RTX и&nbsp;DLSS</span><span>FIG FourNV</span></p>
+          <h2 class="b-h2" id="rtx-title" data-split>Графику сделали вместе с&nbsp;NVIDIA.</h2>
+          <p class="b-lead">FIG&nbsp;FourNV&nbsp;— первая графика Fyr, которую делали вместе с&nbsp;NVIDIA: 24 ядра, RT-ядра для трассировки лучей и&nbsp;тензорные ядра для DLSS. Игра считает кадр в&nbsp;низком разрешении, а&nbsp;нейросеть дорисовывает его до&nbsp;полного&nbsp;— вплоть до&nbsp;иголок на&nbsp;<button type="button" class="b-tx" data-tx="1" aria-label="ели — тайная буква">ели</button> у&nbsp;остановки. Двигайте шторку.</p>
+        </header>
+        <div class="b-rtx">
+          <div class="b-rtx__view" data-rtx-view>
+            <canvas class="b-rtx__cv" data-rtx-cv role="img" aria-label="Ночная улица после дождя: слева кадр без DLSS, справа с DLSS"></canvas>
+            <div class="b-rtx__split" data-rtx-split role="slider" tabindex="0" aria-label="Шторка сравнения" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i></i></div>
+            <p class="b-rtx__l mono" data-rtx-l>540p · без DLSS</p>
+            <p class="b-rtx__r mono" data-rtx-r>DLSS → 1440p</p>
+          </div>
+          <div class="b-rtx__side">
+            <div class="b-chips" role="radiogroup" aria-label="Трассировка лучей" data-rtx-on>
+              <button type="button" role="radio" data-value="on" aria-checked="true">RTX вкл</button>
+              <button type="button" role="radio" data-value="off" aria-checked="false" tabindex="-1">RTX выкл</button>
+            </div>
+            <div class="b-chips b-chips--wrap" role="radiogroup" aria-label="Режим DLSS" data-dlss>
+              <button type="button" role="radio" data-value="off" aria-checked="false" tabindex="-1">Выкл</button>
+              <button type="button" role="radio" data-value="q" aria-checked="true">Качество</button>
+              <button type="button" role="radio" data-value="b" aria-checked="false" tabindex="-1">Баланс</button>
+              <button type="button" role="radio" data-value="p" aria-checked="false" tabindex="-1">Производительность</button>
+            </div>
+            <label class="b-check mono"><input type="checkbox" data-fg checked> генерация кадров</label>
+            <dl class="b-fpsbars mono" data-fpsbars>
+              <div><dt>0X5 Butterfly</dt><dd><i data-fb="b"></i><b data-fv="b">—</b></dd></div>
+              <div><dt>0X Butterfly</dt><dd><i data-fb="o"></i><b data-fv="o">—</b></dd></div>
+            </dl>
+            <p class="b-small" data-rtx-note>Качество: кадр считается в&nbsp;1440p&nbsp;÷&nbsp;1,5.</p>
+          </div>
+        </div>
+        <div class="b-quest" data-quest="rtx"><i aria-hidden="true"></i><span>Задание: выключите и&nbsp;снова включите RTX</span></div>
+        <p class="b-small">Эти&nbsp;же переключатели&nbsp;— в&nbsp;меню «Настройки графики» на&nbsp;всей странице: RTX убирает блики и&nbsp;отражения с&nbsp;3D-модели, DLSS рисует её в&nbsp;меньшем разрешении. Счётчик внизу справа показывает настоящие кадры в&nbsp;секунду вашего браузера.</p>
+      </div>
+    </section>
+
+    <!-- УРОВЕНЬ 6. В ПУСТЫНЕ ПОЯВИЛИСЬ ОКНА: CamelOS 3.1 и .exe -->
+    <section class="b b--exe" id="exe" aria-labelledby="exe-title">
+      <div class="b-wrap">
+        <header class="b-head">
+          <p class="b-lvl mono" aria-hidden="true"><b>Уровень 06</b><span>CamelOS&nbsp;3.1</span><span>.exe</span></p>
+          <h2 class="b-h2" id="exe-title" data-split>В&nbsp;пустыне появились окна.</h2>
+          <p class="b-lead">CamelOS&nbsp;3.1 есть только у&nbsp;0X5 Butterfly. В&nbsp;ней «Мираж&nbsp;3»&nbsp;— тот, что в&nbsp;KBook переводил программы x86 на&nbsp;ARM,&nbsp;— научился запускать обычные .exe прямо на&nbsp;телефоне: программы, старые игры, установщики. Раскройте книжку&nbsp;— и&nbsp;это рабочий стол. Подключите монитор по&nbsp;USB4&nbsp;— и&nbsp;это компьютер. Двойной клик по&nbsp;значку&nbsp;— или Enter.</p>
+        </header>
+        <div class="b-desk" data-desk>
+          <div class="b-desk__wall" aria-hidden="true">
+            <svg viewBox="0 0 800 300" preserveAspectRatio="none"><path d="M0 220 C120 180 220 200 320 190 S520 160 620 185 S760 200 800 190 V300 H0Z" fill="#C99A6E"/><path d="M0 255 C160 230 300 250 420 238 S640 220 800 245 V300 H0Z" fill="#8E6444"/></svg>
+          </div>
+          <button type="button" class="b-sun b-sun--desk" data-sun="1" aria-label="Солнечная панель на дюне — тайна"><svg aria-hidden="true"><use href="#i-sun"/></svg></button>
+          <ul class="b-desk__icons" role="list">
+            <li><button type="button" class="b-icon" data-app="saper"><i aria-hidden="true">✹</i><span>САПЁР.EXE</span></button></li>
+            <li><button type="button" class="b-icon" data-app="dunes"><i aria-hidden="true">▲</i><span>ДЮНЫ.EXE</span></button></li>
+            <li><button type="button" class="b-icon" data-app="setup"><i aria-hidden="true">⇩</i><span>SETUP.EXE</span></button></li>
+            <li><button type="button" class="b-icon" data-app="texas"><i aria-hidden="true">☀</i><span>TEXAS.EXE</span></button></li>
+          </ul>
+          <section class="b-win" data-win="saper" hidden aria-label="САПЁР.EXE">
+            <header class="b-win__bar mono"><span>САПЁР.EXE · Мираж&nbsp;3 · x86-64</span><button type="button" data-close aria-label="Закрыть">×</button></header>
+            <div class="b-saper">
+              <p class="b-saper__top mono"><span data-sp-mines>Мин: 10</span><button type="button" class="b-saper__new" data-sp-new aria-label="Новая партия">☺</button><span data-sp-time>000</span></p>
+              <div class="b-saper__grid" role="grid" aria-label="Поле 9 на 9: открывайте клетки, правый клик или долгое нажатие ставит флажок" data-sp-grid></div>
+            </div>
+          </section>
+          <section class="b-win" data-win="dunes" hidden aria-label="ДЮНЫ.EXE">
+            <header class="b-win__bar mono"><span>ДЮНЫ.EXE · Мираж&nbsp;3 · DirectX → Vulkan</span><button type="button" data-close aria-label="Закрыть">×</button></header>
+            <div class="b-win__body"><p>Игра 2009 года для ПК. На&nbsp;0X5 Butterfly&nbsp;— 165&nbsp;к/с на&nbsp;внутреннем экране и&nbsp;4K на&nbsp;мониторе. Сохранения лежат рядом с&nbsp;вашими фото, но&nbsp;до&nbsp;фото игра не&nbsp;дотянется: каждый .exe живёт в&nbsp;«Карантине» Love Gen&nbsp;5 Semi.</p></div>
+          </section>
+          <section class="b-win" data-win="setup" hidden aria-label="SETUP.EXE">
+            <header class="b-win__bar mono"><span>SETUP.EXE · Мастер установки</span><button type="button" data-close aria-label="Закрыть">×</button></header>
+            <div class="b-win__body"><p data-setup-text>Добро пожаловать в&nbsp;мастер установки.</p><i class="b-win__prog"><i data-setup-bar></i></i><button type="button" class="b-btn b-btn--sm" data-setup-next>Далее &gt;</button></div>
+          </section>
+          <section class="b-win b-win--err" data-win="texas" hidden aria-label="TEXAS.EXE">
+            <header class="b-win__bar mono"><span>TEXAS.EXE · Ошибка</span><button type="button" data-close aria-label="Закрыть">×</button></header>
+            <div class="b-win__body"><p><b>Этот файл для другого устройства.</b> Требуется: солнце, жидкий кремний, электрохромные стёкла. Дата запуска: 2036.</p><p class="mono" data-texas-hint>Подсказка: на&nbsp;странице спрятано девять тайн.</p></div>
+          </section>
+          <p class="b-desk__bar mono" aria-hidden="true"><span>☰ Караван</span><span data-clock>09:41</span></p>
+        </div>
+        <div class="b-quest" data-quest="saper"><i aria-hidden="true"></i><span>Задание: выиграйте в&nbsp;САПЁР.EXE</span></div>
+        <p class="b-small">Под капотом: перевод x86-64 в&nbsp;ARM на&nbsp;лету с&nbsp;кешем, перевод DirectX&nbsp;12 в&nbsp;Vulkan, мышь и&nbsp;клавиатура по&nbsp;Bluetooth, окна на&nbsp;обеих половинах. Античиты, которые лезут в&nbsp;ядро системы, «Мираж&nbsp;3» не&nbsp;пускает&nbsp;— поэтому часть сетевых игр не&nbsp;запустится. Мы&nbsp;честно предупредили.</p>
+      </div>
+    </section>
+
+    <!-- УРОВЕНЬ 7. БОСС: LOVE GEN 5 SEMI -->
+    <section class="b b--boss" id="boss" aria-labelledby="boss-title">
+      <div class="b-wrap b-split b-split--right">
+        <div class="b-split__text">
+          <p class="b-lvl mono" aria-hidden="true"><b>Уровень 07 · Босс</b><span>Love Gen&nbsp;5 Semi</span><span>∞&nbsp;HP</span></p>
+          <h2 class="b-h2" id="boss-title" data-split>Босса нельзя победить. Так и&nbsp;задумано.</h2>
+          <p class="b-lead">Love Gen&nbsp;5 Semi&nbsp;— чип безопасности 0X5 Pro, ужатый для половинки толщиной 4,2&nbsp;мм: свой процессор RISC-V, 128&nbsp;ГБ для секретов, своя батарея на&nbsp;600&nbsp;мАч и&nbsp;сетка от&nbsp;вскрытия через обе половины и&nbsp;петлю. Попробуйте его сломать.</p>
+          <div class="b-boss">
+            <p class="b-boss__name mono"><b>LOVE GEN 5 SEMI</b><span data-boss-hp>∞ / ∞</span></p>
+            <i class="b-boss__bar" aria-hidden="true"><i data-boss-bar></i></i>
+            <div class="b-boss__moves" data-moves>
+              <button type="button" class="b-btn b-btn--move" data-move="hinge">Вскрыть петлю</button>
+              <button type="button" class="b-btn b-btn--move" data-move="photo">Подсунуть фото глаза</button>
+              <button type="button" class="b-btn b-btn--move" data-move="usb">USB-отладка</button>
+              <button type="button" class="b-btn b-btn--move" data-move="exe">Запустить вирус.exe</button>
+              <button type="button" class="b-btn b-btn--move" data-move="fw">Подменить прошивку</button>
+            </div>
+            <ol class="b-boss__log mono" aria-live="polite" data-boss-log><li>Босс ждёт. Ход за&nbsp;вами.</li></ol>
+          </div>
+          <div class="b-quest" data-quest="boss"><i aria-hidden="true"></i><span>Задание: испробуйте на&nbsp;боссе все пять атак</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ИНВЕНТАРЬ: рубильники, фонарь, аккумулятор и потерянный предмет -->
+    <section class="b b--inv" id="inventory" aria-labelledby="inv-title">
+      <div class="b-wrap">
+        <header class="b-head">
+          <p class="b-lvl mono" aria-hidden="true"><b>Инвентарь</b><span>8 ячеек</span><span>1 пустая</span></p>
+          <h2 class="b-h2" id="inv-title" data-split>Что в&nbsp;рюкзаке.</h2>
+          <p class="b-lead">В&nbsp;новую игру+ переходят все предметы первой. Кроме одного.</p>
+        </header>
+        <ul class="b-inv" role="list">
+          <li class="b-slot">
+            <button type="button" class="b-slot__btn" data-item="rub"><b>«Глаза и&nbsp;уши»</b><span class="mono" data-item-state="rub">1 · всё работает</span></button>
+            <p>Рубильник на&nbsp;правой половине. 2&nbsp;— без микрофонов, 3&nbsp;— обесточены камеры, сканеры и&nbsp;микрофоны.</p>
+          </li>
+          <li class="b-slot">
+            <button type="button" class="b-slot__btn" data-item="rub2"><b>«Эфир»</b><span class="mono" data-item-state="rub2">1 · всё работает</span></button>
+            <p>Рубильник на&nbsp;левой половине. 2&nbsp;— без геолокации, 3&nbsp;— без связи совсем.</p>
+          </li>
+          <li class="b-slot">
+            <button type="button" class="b-slot__btn" data-item="torch"><b>Фонарь «Маяк»</b><span class="mono" data-item-state="torch">выкл</span></button>
+            <p>В&nbsp;торце петли, 1000&nbsp;лм: белый, красный, «Маяк» и&nbsp;SOS.</p>
+          </li>
+          <li class="b-slot">
+            <div class="b-slot__btn b-slot__btn--static"><b><button type="button" class="b-tx" data-tx="3" aria-label="Аккумулятор — тайная буква">Аккумулятор</button></b><span class="mono">6000&nbsp;мАч</span></div>
+            <p>Две ячейки по&nbsp;3000&nbsp;мАч, по&nbsp;одной в&nbsp;половине. 100&nbsp;Вт: половина за&nbsp;12 минут.</p>
+          </li>
+          <li class="b-slot">
+            <div class="b-slot__btn b-slot__btn--static"><b>Блок 100&nbsp;Вт</b><span class="mono">в&nbsp;коробке</span></div>
+            <p>И&nbsp;кабель USB-C. XMagnum 50&nbsp;Вт без провода, обратная&nbsp;— 15&nbsp;Вт.</p>
+          </li>
+          <li class="b-slot">
+            <div class="b-slot__btn b-slot__btn--static"><b>Две фронталки</b><span class="mono">50 + 50&nbsp;Мп</span></div>
+            <p>Снаружи и&nbsp;внутри, обе под CPix&nbsp;3 на&nbsp;магнитах вместе со&nbsp;сканерами.</p>
+          </li>
+          <li class="b-slot">
+            <div class="b-slot__btn b-slot__btn--static"><b>«Визор»</b><span class="mono">4 камеры</span></div>
+            <p>200&nbsp;Мп, сверхширокая 50&nbsp;Мп, телевик&nbsp;3×, перископ&nbsp;6×. Цвет снимка&nbsp;— вместе с&nbsp;Kodak.</p>
+          </li>
+          <li class="b-slot b-slot--lost">
+            <div class="b-slot__btn b-slot__btn--static"><b>Третья фронталка</b><span class="mono">утеряна</span></div>
+            <p>Сверхширокая 12&nbsp;Мп «Вся компания» с&nbsp;внешнего экрана. Под CPix помещаются одна камера и&nbsp;сканер&nbsp;— выбрали сканер.</p>
+          </li>
+        </ul>
+        <p class="b-small mono" data-inv-note>Нажимайте на&nbsp;рубильники и&nbsp;фонарь&nbsp;— модель ответит.</p>
+      </div>
+    </section>
+
+    <!-- ВЫБОР СКИНА -->
+    <section class="b b--skins" id="skins" aria-labelledby="skins-title">
+      <div class="b-wrap b-split">
+        <div class="b-split__text">
+          <p class="b-lvl mono" aria-hidden="true"><b>Выбор скина</b><span>5 шт.</span><span>бесплатно</span></p>
+          <h2 class="b-h2" id="skins-title" data-split>Пять бабочек. Ни&nbsp;одного платного скина.</h2>
+          <div class="b-skins" role="radiogroup" aria-label="Цвет" data-colors>
+            <button type="button" role="radio" data-value="peacock" aria-checked="true" style="--sw: #4A1430; --sf: #6B2A44"><i></i><b>Павлиний глаз</b><span class="mono">редкость: легенда</span></button>
+            <button type="button" role="radio" data-value="blue" aria-checked="false" tabindex="-1" style="--sw: #8FA9D6; --sf: #B9C3D3"><i></i><b>Голубянка</b><span class="mono">редкость: эпик</span></button>
+            <button type="button" role="radio" data-value="brimstone" aria-checked="false" tabindex="-1" style="--sw: #DCD67A; --sf: #C7C5B6"><i></i><b>Лимонница</b><span class="mono">редкость: редкий</span></button>
+            <button type="button" role="radio" data-value="mourning" aria-checked="false" tabindex="-1" style="--sw: #2B1A16; --sf: #D9C9A0"><i></i><b>Траурница</b><span class="mono">редкость: эпик</span></button>
+            <button type="button" role="radio" data-value="pearl" aria-checked="false" tabindex="-1" style="--sw: #E6DFD5; --sf: #B8743A"><i></i><b>Перламутровка</b><span class="mono">редкость: легенда</span></button>
+          </div>
+          <p class="b-lead" data-color-note>«Павлиний глаз». Винный с&nbsp;переливом, как крыло бабочки, у&nbsp;которой на&nbsp;каждом крыле по&nbsp;глазу. Рамка&nbsp;— тёмная роза.</p>
+          <div class="b-quest" data-quest="skin"><i aria-hidden="true"></i><span>Задание: примерьте все пять скинов</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СОХРАНИТЬ ИГРУ -->
+    <section class="b b--save" id="buy" aria-labelledby="save-title">
+      <div class="b-wrap b-buy">
+        <div class="b-buy__head">
+          <p class="b-lvl mono" aria-hidden="true"><b>Сохранить игру</b><span>слот 01</span><span>август 2034</span></p>
+          <h2 class="b-h2" id="save-title" data-split>Сохранить игру?</h2>
+          <p class="b-lead">Август 2034 года: Швеция, Евросоюз, США и&nbsp;Канада в&nbsp;один день. GP30 Ultra и&nbsp;петля «Имаго»&nbsp;— Стокгольм, FIG&nbsp;FourNV&nbsp;— Fyr вместе с&nbsp;NVIDIA, CPix&nbsp;3, Love Gen&nbsp;5 Semi и&nbsp;«Затмение»&nbsp;— команда OY в&nbsp;амбаре под Парижем. В&nbsp;Китае 0X5 Butterfly нет: там телефоны OY продаёт XZF.</p>
+          <p class="b-small">С&nbsp;выходом 0X5 Butterfly снят с&nbsp;продажи <a class="b-link" href="/butterfly/">0X Butterfly</a>. Обновления и&nbsp;гарантия у&nbsp;него прежние.</p>
+          <ul class="b-box" role="list">
+            <li>Телефон и&nbsp;кабель USB-C</li>
+            <li>Блок 100&nbsp;Вт</li>
+            <li>Ни&nbsp;одной подписки и&nbsp;ни&nbsp;одного платного скина</li>
+          </ul>
+        </div>
+        <div class="b-buy__panel">
+          <p class="b-buy__k mono">Где</p>
+          <div class="b-tabs" role="radiogroup" aria-label="Страна" data-cur>
+            <button type="button" role="radio" data-value="usd" aria-checked="true">США</button>
+            <button type="button" role="radio" data-value="cad" aria-checked="false" tabindex="-1">Канада</button>
+            <button type="button" role="radio" data-value="eur" aria-checked="false" tabindex="-1">Евросоюз</button>
+            <button type="button" role="radio" data-value="sek" aria-checked="false" tabindex="-1">Швеция</button>
+          </div>
+          <p class="b-buy__k mono">Память</p>
+          <div class="b-mem" role="radiogroup" aria-label="Память" data-mem>
+            <button type="button" role="radio" data-value="16/512" data-usd="1999" data-eur="2199" data-cad="2699" data-sek="22990" aria-checked="true"><b>512&nbsp;ГБ</b><span>16&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="24/1024" data-usd="2199" data-eur="2399" data-cad="2949" data-sek="24990" aria-checked="false" tabindex="-1"><b>1&nbsp;ТБ</b><span>24&nbsp;ГБ ОЗУ</span></button>
+            <button type="button" role="radio" data-value="32/2048" data-usd="2599" data-eur="2799" data-cad="3499" data-sek="28990" aria-checked="false" tabindex="-1"><b>2&nbsp;ТБ</b><span>32&nbsp;ГБ ОЗУ</span></button>
+          </div>
+          <p class="b-buy__k mono">Скин: <span data-buy-color>Павлиний глаз</span></p>
+          <div class="b-skins b-skins--sm" role="radiogroup" aria-label="Цвет" data-colors-buy>
+            <button type="button" role="radio" data-value="peacock" aria-checked="true" aria-label="Павлиний глаз" style="--sw: #4A1430; --sf: #6B2A44"><i></i></button>
+            <button type="button" role="radio" data-value="blue" aria-checked="false" tabindex="-1" aria-label="Голубянка" style="--sw: #8FA9D6; --sf: #B9C3D3"><i></i></button>
+            <button type="button" role="radio" data-value="brimstone" aria-checked="false" tabindex="-1" aria-label="Лимонница" style="--sw: #DCD67A; --sf: #C7C5B6"><i></i></button>
+            <button type="button" role="radio" data-value="mourning" aria-checked="false" tabindex="-1" aria-label="Траурница" style="--sw: #2B1A16; --sf: #D9C9A0"><i></i></button>
+            <button type="button" role="radio" data-value="pearl" aria-checked="false" tabindex="-1" aria-label="Перламутровка" style="--sw: #E6DFD5; --sf: #B8743A"><i></i></button>
+          </div>
+          <p class="b-total"><span class="mono" data-total-k>Итого · США</span><b data-total>$1999</b></p>
+          <p class="b-small mono" data-total-hex>Fyr пишет: 0x7CF $</p>
+          <button type="button" class="btn btn--accent btn--wide" data-buy>Сохранить</button>
+          <p class="b-small b-small--center">Сохраниться здесь нельзя: это концепт. Но&nbsp;прогресс страницы&nbsp;— тайны и&nbsp;достижения&nbsp;— браузер запомнит.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ХАРАКТЕРИСТИКИ ПЕРСОНАЖА -->
+    <section class="b b--specs" id="stats" aria-labelledby="stats-title">
+      <div class="b-wrap">
+        <header class="b-head b-head--center">
+          <p class="b-lvl mono" aria-hidden="true"><b>Персонаж</b><span>уровень 5</span><span>класс: книжка</span></p>
+          <h2 class="b-h2" id="stats-title" data-split>OY 0X5 Butterfly. Коротко.</h2>
+        </header>
+        <dl class="b-sheet">
+          <div><dt>Корпус</dt><dd>Раскрыт 148,6 × 128,0 × 4,2&nbsp;мм, сложен 74,3 × 128,0 × 9,1&nbsp;мм; 209&nbsp;г. Титан и&nbsp;матовое стекло, IP68 и&nbsp;IP69</dd><i style="--v:.9" aria-hidden="true"></i></div>
+          <div><dt>Петля</dt><dd>«Имаго»: складка 0,03&nbsp;мм, 1&nbsp;000&nbsp;000 сгибов, держит угол 20–160°</dd><i style="--v:.95" aria-hidden="true"></i></div>
+          <div><dt>Экраны</dt><dd>8,0″ внутри и&nbsp;6,1″ снаружи, LTPO AMOLED, 1–165&nbsp;Гц, 0,5–5000&nbsp;нит</dd><i style="--v:.88" aria-hidden="true"></i></div>
+          <div><dt>Процессор</dt><dd>Fyr GP30 Ultra: 30 ядер до&nbsp;5,4&nbsp;ГГц, графика FIG&nbsp;FourNV с&nbsp;NVIDIA&nbsp;— RTX и&nbsp;DLSS, 300&nbsp;TOPS</dd><i style="--v:1" aria-hidden="true"></i></div>
+          <div><dt>Камеры</dt><dd>«Визор»: 200&nbsp;Мп, 50&nbsp;Мп сверхширокая, 3×, перископ 6×; «Затмение»&nbsp;— ND&nbsp;2–2048 и&nbsp;шторка</dd><i style="--v:.86" aria-hidden="true"></i></div>
+          <div><dt>Безопасность</dt><dd>Love Gen&nbsp;5 Semi, два сканера сетчатки, два «Рубильника»</dd><i style="--v:1" aria-hidden="true"></i></div>
+          <div><dt>Питание</dt><dd>6000&nbsp;мАч, 100&nbsp;Вт, XMagnum 50&nbsp;Вт <button type="button" class="b-sun b-sun--inline" data-sun="2" aria-label="Солнечная панель — тайна"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></dd><i style="--v:.84" aria-hidden="true"></i></div>
+          <div><dt>Система</dt><dd>CamelOS&nbsp;3.1&nbsp;— только у&nbsp;0X5 Butterfly: «Мираж&nbsp;3» запускает .exe. 8 лет обновлений, 26 месяцев гарантии</dd><i style="--v:.92" aria-hidden="true"></i></div>
+        </dl>
+        <a class="btn btn--accent b-sheet__all" href="/0x5butterfly/specs/">Все характеристики</a>
+      </div>
+    </section>
+
+    <!-- ТИТРЫ И СЦЕНА ПОСЛЕ ТИТРОВ -->
+    <section class="b b--credits" id="credits" aria-labelledby="credits-title">
+      <div class="b-credits" data-credits>
+        <div class="b-credits__roll" data-roll>
+          <h2 class="b-credits__t" id="credits-title">Титры</h2>
+          <dl>
+            <div><dt>Процессор GP30 Ultra, петля «Имаго»</dt><dd>Fyr, Стокгольм</dd></div>
+            <div><dt>Графика FIG&nbsp;FourNV</dt><dd>Fyr и&nbsp;NVIDIA</dd></div>
+            <div><dt>CPix&nbsp;3, Love Gen&nbsp;5 Semi, «Затмение»</dt><dd>команда OY, амбар под Парижем</dd></div>
+            <div><dt>CamelOS&nbsp;3.1 и&nbsp;«Мираж&nbsp;3»</dt><dd>Fyr</dd></div>
+            <div><dt>Цвет снимка</dt><dd>вместе с&nbsp;Kodak</dd></div>
+            <div><dt>Особая благодарность</dt><dd>первому Butterfly, «Куколке» и&nbsp;шестнадцати лепесткам</dd></div>
+            <div><dt>Главная роль</dt><dd>вы</dd></div>
+          </dl>
+          <p class="b-credits__end">Спасибо за&nbsp;игру.</p>
+        </div>
+      </div>
+      <!-- сцена после титров: Project Texas, только когда найдены все девять тайн -->
+      <div class="b-post" data-post>
+        <p class="b-lvl mono" aria-hidden="true"><b>Сцена после титров</b><span data-post-k>заперто</span><span>2036</span></p>
+        <div class="b-post__locked" data-post-locked>
+          <p class="b-post__q">Здесь что-то есть.</p>
+          <p class="b-small" data-post-hint>Найдено тайн: 0 из&nbsp;9. Три солнечные панели, пять слов и&nbsp;одна капля.</p>
+        </div>
+        <div class="b-post__open" data-post-open hidden>
+          <svg class="b-glasses" viewBox="0 0 600 220" role="img" aria-label="Силуэт умных очков: электрохромные стёкла и солнечные панели на дужках">
+            <defs><linearGradient id="b-lens" x1="0" x2="1"><stop offset="0" stop-color="#0A1020"/><stop offset="1" stop-color="#2A3B5A"/></linearGradient></defs>
+            <path class="b-glasses__frame" d="M40 70h200a10 10 0 0 1 10 10v20c0 50-30 80-110 80S30 150 30 100V80a10 10 0 0 1 10-10zM360 70h200a10 10 0 0 1 10 10v20c0 50-30 80-110 80s-110-30-110-80V80a10 10 0 0 1 10-10zM250 92c20-14 80-14 100 0"/>
+            <path class="b-glasses__lens" d="M44 82h192v18c0 44-26 70-96 70S44 144 44 100z"/>
+            <path class="b-glasses__lens" d="M364 82h192v18c0 44-26 70-96 70s-96-26-96-70z"/>
+            <g class="b-glasses__sun"><rect x="0" y="62" width="34" height="14"/><rect x="566" y="62" width="34" height="14"/></g>
+          </svg>
+          <h3 class="b-post__t">Project Texas</h3>
+          <p class="b-lead">Солнце вместо розетки. Стёкла, которые темнеют сами. Кремний, который течёт. Умные очки. 2036.</p>
+          <p class="b-small">Больше ничего сказать не&nbsp;можем: Стокгольм и&nbsp;амбар до&nbsp;сих пор спорят, чьи это будут очки.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="footnotes" aria-label="Примечания">
+      <div class="container">
+        <ol class="footnotes__list">
+          <li id="fn-1">NVIDIA, RTX, DLSS, Kodak, TSMC, AnTuTu, DirectX и&nbsp;Vulkan&nbsp;— товарные знаки своих владельцев и&nbsp;упомянуты только ради сюжета. FIG&nbsp;FourNV, GP30 Ultra и&nbsp;их результаты вымышлены, как и&nbsp;сам телефон.</li>
+          <li id="fn-2">Счётчик кадров в&nbsp;HUD измеряет ваш браузер. Цифры кадров в&nbsp;«RTX и&nbsp;DLSS» и&nbsp;сам кадр на&nbsp;странице&nbsp;— иллюстрация: DLSS на&nbsp;сайте не&nbsp;работает, а&nbsp;настройки графики меняют только 3D-модель.</li>
+          <li id="fn-3">САПЁР.EXE&nbsp;— не&nbsp;.exe, а&nbsp;обычная страница. Сканеры сетчатки ничего не&nbsp;сканируют: камера вашего устройства не&nbsp;включается. Тайны и&nbsp;достижения хранятся только в&nbsp;этом браузере.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- Меню паузы: графика, достижения, тайны. Esc открывает и закрывает -->
+  <dialog class="b-pause" data-pause aria-labelledby="pause-title">
+    <div class="b-pause__in">
+      <header class="b-pause__head">
+        <h2 class="mono" id="pause-title">Пауза</h2>
+        <button type="button" class="b-pause__x" data-pause-close aria-label="Продолжить">Продолжить · Esc</button>
+      </header>
+      <div class="b-tabs" role="tablist" aria-label="Разделы меню" data-pause-tabs>
+        <button type="button" role="tab" id="tab-gfx" aria-controls="pane-gfx" aria-selected="true" data-tab="gfx">Графика</button>
+        <button type="button" role="tab" id="tab-ach" aria-controls="pane-ach" aria-selected="false" tabindex="-1" data-tab="ach">Достижения</button>
+        <button type="button" role="tab" id="tab-secrets" aria-controls="pane-secrets" aria-selected="false" tabindex="-1" data-tab="secrets">Тайны</button>
+      </div>
+      <div class="b-pane" role="tabpanel" id="pane-gfx" aria-labelledby="tab-gfx" data-pane="gfx">
+        <div class="b-opt"><span>Трассировка лучей (RTX)</span><div class="b-chips" role="radiogroup" aria-label="Трассировка лучей" data-g-rtx><button type="button" role="radio" data-value="on" aria-checked="true">Вкл</button><button type="button" role="radio" data-value="off" aria-checked="false" tabindex="-1">Выкл</button></div></div>
+        <div class="b-opt"><span>DLSS</span><div class="b-chips b-chips--wrap" role="radiogroup" aria-label="DLSS" data-g-dlss><button type="button" role="radio" data-value="off" aria-checked="false" tabindex="-1">Выкл</button><button type="button" role="radio" data-value="q" aria-checked="true">Качество</button><button type="button" role="radio" data-value="b" aria-checked="false" tabindex="-1">Баланс</button><button type="button" role="radio" data-value="p" aria-checked="false" tabindex="-1">Производ.</button></div></div>
+        <div class="b-opt"><span>Генерация кадров</span><label class="b-check mono"><input type="checkbox" data-g-fg checked> вкл</label></div>
+        <p class="b-small">RTX выкл&nbsp;— у&nbsp;3D-модели пропадают блики, перелив и&nbsp;отражения. DLSS «Производительность»&nbsp;— модель рисуется в&nbsp;половинном разрешении, и&nbsp;это видно. Генерация кадров удваивает цифру в&nbsp;счётчике&nbsp;— и&nbsp;честно подписывает её «ГК».</p>
+      </div>
+      <div class="b-pane" role="tabpanel" id="pane-ach" aria-labelledby="tab-ach" data-pane="ach" hidden>
+        <ul class="b-achs" role="list" data-ach-list></ul>
+        <button type="button" class="b-btn b-btn--sm" data-reset>Начать заново: стереть прогресс</button>
+      </div>
+      <div class="b-pane" role="tabpanel" id="pane-secrets" aria-labelledby="tab-secrets" data-pane="secrets" hidden>
+        <p class="b-lead">На&nbsp;странице спрятано девять тайн. Найдёте все&nbsp;— после титров откроется сцена.</p>
+        <ul class="b-secrets mono" role="list" data-secrets-list></ul>
+        <p class="b-small">Подсказки: слова с&nbsp;тайной буквой чуть светятся, если навести на&nbsp;них. Одна панель отражается в&nbsp;тёмном стекле, другая стоит на&nbsp;дюне, третья прячется в&nbsp;характеристиках. Каплю ищите там, где телефон гнётся.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <nav class="footer__map" aria-label="Карта сайта">
+        <div><p class="footer__map-h">Fyr</p><ul><li><a href="/fyr/h1/">Fyr H1</a></li><li><a href="/fyr/">Osmium X0</a></li><li><a href="/fyr/kbook/">KBook 1</a></li><li><a href="/fyr/chronicle/">Хроника: как OY стала Fyr</a></li></ul></div>
+        <div><p class="footer__map-h">Телефоны OY</p><ul><li><a href="/0x5e/">0X5 Essential</a></li><li><a href="/0x4q/">0X4Q</a></li><li><a href="/moth2/">0X Moth 2</a></li><li><a href="/0x5/">0X5</a></li><li><a href="/0x5pro/">0X5 Pro</a></li><li><a href="/0x5butterfly/">0X5 Butterfly</a></li></ul></div>
+        <div><p class="footer__map-h">Выбрать</p><ul><li><a href="/#phones">Все телефоны на полке</a></li><li><a href="/compare/">Сравнить модели</a></li><li><a href="/accessories/">Аксессуары</a></li><li><a href="/os/">CamelOS 2.0</a></li></ul></div>
+        <div><p class="footer__map-h">Сняты с продажи</p><ul class="footer__map-old"><li><a href="/butterfly/">0X Butterfly</a></li><li><a href="/0x2pro/">0X2 Pro</a></li><li><a href="/nova/">0X Nova</a></li><li><a href="/0x4/">0X4</a></li><li><a href="/0x3e/">0X3 Essential</a></li><li><a href="/0x2q/">0X2Q</a></li><li><a href="/moth/">Moth</a></li><li><a href="/0x2/">0X2</a></li><li><a href="/0x2e/">0X2 Essential</a></li><li><a href="/0x1pro/">0X1 Pro</a></li><li><a href="/0x1q/">0X1Q</a></li><li><a href="/0x1/">0X1</a></li><li><a href="/0x1e/">0X1 Essential</a></li><li><a href="/0x0/">0X0</a></li><li><a href="/pro/">0X0 Pro</a></li></ul></div>
+      </nav>
+      <p class="transit-plate"><b>Переходный период</b> <span>Марка OY у&nbsp;Fyr; 0X5 Butterfly сделали вместе Fyr в&nbsp;Стокгольме и&nbsp;команда OY в&nbsp;амбаре под Парижем. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr. В&nbsp;Китае телефоны OY продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
+      <div class="footer__brand">
+        <svg class="brand__mark" viewBox="0 0 64 24" aria-hidden="true"><circle cx="10" cy="12" r="8.2"/><path d="M28 6.5l8 11M36 6.5l-8 11"/><circle cx="54" cy="12" r="8.2"/></svg>
+        <span>OY · новая игра+</span>
+      </div>
+      <p class="footer__privacy"><button type="button" class="fyr-shield" data-fyr-shield aria-label="Щит"><svg aria-hidden="true"><use href="#i-shield"/></svg></button> Этот сайт не использует cookies и трекеры. Проверьте сами.</p>
+      <p class="footer__small mono">OY 0X5 Butterfly · август 2034 · Швеция, Евросоюз, США, Канада · Деплой №&nbsp;105 · 0x69 · <a href="/0x5butterfly/specs/">Характеристики</a> · <a href="/butterfly/">0X Butterfly</a> · <a href="/0x5pro/">0X5 Pro</a></p>
+      <p class="footer__concept">Концепт. OY&nbsp;0X5 Butterfly, Fyr GP30 Ultra, FIG&nbsp;FourNV, CPix&nbsp;3, Love Gen&nbsp;5 Semi, CamelOS, «Мираж&nbsp;3», Project Texas и&nbsp;компания OY вымышлены: это демонстрационный сайт, телефон не&nbsp;продаётся. Исходный код&nbsp;— на&nbsp;<a href="https://github.com/Arbuzyakaby/oy-0x0" rel="noopener">GitHub</a>.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

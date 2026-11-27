@@ -410,3 +410,8 @@
   .bf-promise .w { opacity: 1; }
   .bf-unfold__r { opacity: 1; }
 }
+
+/* снят с продажи в августе 2034-го: плашка и путь к 0X5 Butterfly */
+.disc-plate { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 16px; padding: 7px 13px; border: 1px solid rgba(255, 255, 255, .2); border-radius: 999px; background: rgba(255, 255, 255, .05); font-size: 12px; letter-spacing: .04em; color: rgba(244, 247, 255, .75); }
+.disc-plate::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #FF5A5A; }
+.disc-plate a { color: #F4F7FF; text-decoration: underline; text-underline-offset: 3px; }

@@ -40,12 +40,12 @@
       "/js/core/cpix.js": "/js/core/cpix.js?v=d557f201de",
       "/js/core/keys.js": "/js/core/keys.js?v=a1cda1931e",
       "/js/core/scroll.js": "/js/core/scroll.js?v=14e38d2f29",
-      "/js/core/stage.js": "/js/core/stage.js?v=e500df8978",
+      "/js/core/stage.js": "/js/core/stage.js?v=7c26d5ab65",
       "/js/core/subnav.js": "/js/core/subnav.js?v=2b8a463a67",
       "/js/core/text.js": "/js/core/text.js?v=830a4c1222",
       "/js/core/ui.js": "/js/core/ui.js?v=96a14cc544",
       "/js/data/accessories.js": "/js/data/accessories.js?v=a0a53f4718",
-      "/js/data/products.js": "/js/data/products.js?v=0d687eb125",
+      "/js/data/products.js": "/js/data/products.js?v=129ff55d05",
       "/js/fyr/dict.js": "/js/fyr/dict.js?v=db3e050003",
       "/js/fyr/glitch.js": "/js/fyr/glitch.js?v=317b122e59",
       "/js/fyr/hijack.js": "/js/fyr/hijack.js?v=7e008971a2",
@@ -65,6 +65,7 @@
       "/js/models/oy0x4.js": "/js/models/oy0x4.js?v=f8652e989d",
       "/js/models/oy0x4q.js": "/js/models/oy0x4q.js?v=e13ee7e681",
       "/js/models/oy0x5.js": "/js/models/oy0x5.js?v=d453bdcbf9",
+      "/js/models/oy0x5butterfly.js": "/js/models/oy0x5butterfly.js?v=f92e45659f",
       "/js/models/oy0x5e.js": "/js/models/oy0x5e.js?v=60d87aee07",
       "/js/models/oy0x5pro.js": "/js/models/oy0x5pro.js?v=2aba89fad3",
       "/js/models/oybutterfly.js": "/js/models/oybutterfly.js?v=8f92dd0ae2",
@@ -84,19 +85,20 @@
       "/js/pages/0x4.js": "/js/pages/0x4.js?v=5a36989c0d",
       "/js/pages/0x4q.js": "/js/pages/0x4q.js?v=cc97149bba",
       "/js/pages/0x5.js": "/js/pages/0x5.js?v=29d0841133",
+      "/js/pages/0x5butterfly.js": "/js/pages/0x5butterfly.js?v=3727096b9f",
       "/js/pages/0x5e.js": "/js/pages/0x5e.js?v=51605521d4",
       "/js/pages/0x5pro.js": "/js/pages/0x5pro.js?v=0c19b9cf45",
       "/js/pages/accessories.js": "/js/pages/accessories.js?v=7fa6737a96",
       "/js/pages/base.js": "/js/pages/base.js?v=c27d1d73fe",
-      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=8ab57e476f",
+      "/js/pages/butterfly.js": "/js/pages/butterfly.js?v=4ab67c2464",
       "/js/pages/camelos.js": "/js/pages/camelos.js?v=ce3114864d",
-      "/js/pages/compare.js": "/js/pages/compare.js?v=3f7035c6d9",
+      "/js/pages/compare.js": "/js/pages/compare.js?v=aa3e82a88b",
       "/js/pages/fyr-chronicle.js": "/js/pages/fyr-chronicle.js?v=a201b3dac7",
       "/js/pages/fyr-h1.js": "/js/pages/fyr-h1.js?v=4c9497d7bf",
       "/js/pages/fyr-kbook-desk.js": "/js/pages/fyr-kbook-desk.js?v=7ee46f3521",
       "/js/pages/fyr-kbook.js": "/js/pages/fyr-kbook.js?v=c47a43da5e",
       "/js/pages/fyr.js": "/js/pages/fyr.js?v=89f792cb34",
-      "/js/pages/home.js": "/js/pages/home.js?v=be6fbc29e3",
+      "/js/pages/home.js": "/js/pages/home.js?v=c1620e2c7f",
       "/js/pages/moth.js": "/js/pages/moth.js?v=15299aaafe",
       "/js/pages/nova-sky.js": "/js/pages/nova-sky.js?v=936bc241de",
       "/js/pages/nova.js": "/js/pages/nova.js?v=89d9237b99",
@@ -107,7 +109,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script>try{if(sessionStorage.getItem('fyr')==='1'){var r=document.documentElement;r.dataset.brand='fyr';r.classList.add('fyr-pending')}}catch(e){}</script>
   <script type="module" src="/js/fyr/hijack.js?v=7e008971a2"></script>
-  <script type="module" src="/js/pages/compare.js?v=3f7035c6d9"></script>
+  <script type="module" src="/js/pages/compare.js?v=aa3e82a88b"></script>
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -171,7 +173,7 @@
       <a href="/moth2/">0X Moth 2</a>
       <a href="/0x5/">0X5</a>
       <a href="/0x5pro/">0X5 Pro</a>
-      <a href="/butterfly/">0X Butterfly</a>
+      <a href="/0x5butterfly/">0X5 Butterfly</a>
       <a href="/os/">CamelOS</a>
       <a href="/accessories/">Аксессуары</a>
       <a href="/compare/" aria-current="page">Сравнить</a>
@@ -264,9 +266,9 @@
     <div class="container footer__inner">
       <nav class="footer__map" aria-label="Карта сайта">
         <div><p class="footer__map-h">Fyr</p><ul><li><a href="/fyr/h1/">Fyr H1</a></li><li><a href="/fyr/">Osmium X0</a></li><li><a href="/fyr/kbook/">KBook 1</a></li><li><a href="/fyr/chronicle/">Хроника: как OY стала Fyr</a></li></ul></div>
-        <div><p class="footer__map-h">Телефоны OY</p><ul><li><a href="/0x5e/">0X5 Essential</a></li><li><a href="/0x4q/">0X4Q</a></li><li><a href="/moth2/">0X Moth 2</a></li><li><a href="/0x5/">0X5</a></li><li><a href="/0x5pro/">0X5 Pro</a></li><li><a href="/butterfly/">0X Butterfly</a></li></ul></div>
+        <div><p class="footer__map-h">Телефоны OY</p><ul><li><a href="/0x5e/">0X5 Essential</a></li><li><a href="/0x4q/">0X4Q</a></li><li><a href="/moth2/">0X Moth 2</a></li><li><a href="/0x5/">0X5</a></li><li><a href="/0x5pro/">0X5 Pro</a></li><li><a href="/0x5butterfly/">0X5 Butterfly</a></li></ul></div>
         <div><p class="footer__map-h">Выбрать</p><ul><li><a href="/#phones">Все телефоны на полке</a></li><li><a href="/compare/">Сравнить модели</a></li><li><a href="/accessories/">Аксессуары</a></li><li><a href="/os/">CamelOS 2.0</a></li></ul></div>
-        <div><p class="footer__map-h">Сняты с продажи</p><ul class="footer__map-old"><li><a href="/0x2pro/">0X2 Pro</a></li><li><a href="/nova/">0X Nova</a></li><li><a href="/0x4/">0X4</a></li><li><a href="/0x3e/">0X3 Essential</a></li><li><a href="/0x2q/">0X2Q</a></li><li><a href="/moth/">Moth</a></li><li><a href="/0x2/">0X2</a></li><li><a href="/0x2e/">0X2 Essential</a></li><li><a href="/0x1pro/">0X1 Pro</a></li><li><a href="/0x1q/">0X1Q</a></li><li><a href="/0x1/">0X1</a></li><li><a href="/0x1e/">0X1 Essential</a></li><li><a href="/0x0/">0X0</a></li><li><a href="/pro/">0X0 Pro</a></li></ul></div>
+        <div><p class="footer__map-h">Сняты с продажи</p><ul class="footer__map-old"><li><a href="/butterfly/">0X Butterfly</a></li><li><a href="/0x2pro/">0X2 Pro</a></li><li><a href="/nova/">0X Nova</a></li><li><a href="/0x4/">0X4</a></li><li><a href="/0x3e/">0X3 Essential</a></li><li><a href="/0x2q/">0X2Q</a></li><li><a href="/moth/">Moth</a></li><li><a href="/0x2/">0X2</a></li><li><a href="/0x2e/">0X2 Essential</a></li><li><a href="/0x1pro/">0X1 Pro</a></li><li><a href="/0x1q/">0X1Q</a></li><li><a href="/0x1/">0X1</a></li><li><a href="/0x1e/">0X1 Essential</a></li><li><a href="/0x0/">0X0</a></li><li><a href="/pro/">0X0 Pro</a></li></ul></div>
       </nav>
       <p class="transit-plate"><b>Переходный период</b> <span>OY&nbsp;Europe обанкротилась. Обновления, гарантию и&nbsp;поддержку телефонов OY ведёт Fyr, теперь на&nbsp;CamelOS&nbsp;2.0. В&nbsp;Китае их&nbsp;продаёт XZF (Huawei). Данные из&nbsp;0X&nbsp;Cloud выгрузите: облако осталось у&nbsp;XNA.</span> <a href="/fyr/chronicle/">Хроника →</a></p>
       <div class="footer__brand">

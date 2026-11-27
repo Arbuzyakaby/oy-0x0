@@ -472,7 +472,7 @@ $$('.bf-hex').forEach((b) => {
   });
 });
 paintPrices(false);
-$('[data-buy]').addEventListener('click', () => toast('Купить здесь нельзя: это концепт. Но выбор вы сделали правильный.'));
+// снят с продажи: кнопка ведёт к преемнику, 0X5 Butterfly
 
 // подсветка плиток под курсором
 $$('.bf-tile').forEach((t) => t.addEventListener('pointermove', (e) => {

@@ -259,7 +259,7 @@
 /* цветная закладка сверху — цвет модели */
 .pick::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--c); }
 .pick::after { content: ''; position: absolute; right: -60px; top: -60px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 18%, transparent), transparent); pointer-events: none; }
-.pick--butterfly { --c: #D2343F; }
+.pick--butterfly { --c: #C2387A; }
 .pick--0x5 { --c: #1E9E5A; }
 .pick--0x4q { --c: #B4532F; }
 .pick--0x5e { --c: #1F4FD8; }

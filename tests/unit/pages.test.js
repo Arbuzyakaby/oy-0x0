@@ -293,7 +293,7 @@ test('CamelOS 2.0: одна система Fyr без аккаунта и обл
   // все смартфоны OY, которые когда-либо выходили, и оба устройства Fyr — в списке обновления
   const all = html.slice(html.indexOf('devices__all'), html.indexOf('</ul>', html.indexOf('devices__all')));
   const phones = Object.values(PRODUCTS);
-  assert.equal(phones.length, 20);
+  assert.equal(phones.length, 21);
   for (const p of phones) assert.ok(all.includes(`href="${p.href}"`), `${p.id}: нет в списке CamelOS 2.0`);
   for (const href of ['/fyr/', '/fyr/kbook/']) assert.ok(all.includes(`href="${href}"`), href);
   // в шапке всех страниц раздел называется CamelOS
@@ -572,4 +572,55 @@ test('страница /0x5pro/specs/: все разделы, одна h1, ог�
   for (const c of PRODUCTS['0x5pro'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
   assert.match(html, /Моторчиков в&nbsp;CPix&nbsp;3 нет/);
   assert.match(html, /пьезоэлементы/);
+});
+
+test('страница /0x5butterfly/: игра «Новая игра+» — титул, семь уровней, инвентарь, скин, сохранение, характеристики и титры; одна h1, якоря сходятся, цвета и память из данных', () => {
+  const html = read('0x5butterfly/index.html');
+  const chapters = [...html.matchAll(/<section class="b b--[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(chapters, ['hero', 'imago', 'eyes', 'eclipse', 'ultra', 'rtx', 'exe', 'boss', 'inventory', 'skins', 'buy', 'stats', 'credits']);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  // уровни подписаны по порядку
+  const levels = [...html.matchAll(/<b>Уровень 0(\d)/g)].map((m) => +m[1]);
+  assert.deepEqual(levels, [1, 2, 3, 4, 5, 6, 7]);
+  for (const c of Object.keys(PRODUCTS['0x5butterfly'].colors)) assert.ok(html.includes(`data-value="${c}"`), c);
+  for (const c of PRODUCTS['0x5butterfly'].configs) assert.ok(html.includes(`data-value="${c.id}" data-usd="${c.usd}" data-eur="${c.eur}"`), c.id);
+  for (const re of [/Новая игра\+/, /GP30 Ultra/, /FIG&nbsp;FourNV/, /NVIDIA/, /RTX/, /DLSS/, /CamelOS&nbsp;3\.1/, /\.exe/, /«Имаго»/, /сканер/, /«Затмение»/, /ND/, /Love Gen&nbsp;5 Semi/, /CPix&nbsp;3/, /Третья фронталка/, /Project Texas/, /2036/, /август 2034/i]) assert.match(html, re);
+  for (const re of [/data-hud/, /data-pause/, /data-g-rtx/, /data-g-dlss/, /data-nd/, /data-sp-grid/, /data-move/, /data-rtx-cv/, /data-eye="out"/, /data-eye="in"/]) assert.match(html, re);
+  assert.ok(html.includes('href="/0x5butterfly/specs/"') && html.includes('href="/butterfly/"'));
+  assert.ok(existsSync(join(ROOT, 'models', 'oy0x5butterfly.glb')));
+  assert.ok(existsSync(join(ROOT, 'og-0x5butterfly.jpg')));
+  assert.ok(read('os/index.html').includes('href="/0x5butterfly/"'), '0X5 Butterfly нет в списке CamelOS');
+  assert.ok(read('index.html').includes('data-model="0x5butterfly"'), '0X5 Butterfly нет на витрине');
+  assert.ok(!read('index.html').includes('data-model="butterfly"'), 'снятый 0X Butterfly на витрине');
+});
+
+test('0X5 Butterfly: пасхалка «Техас» — пять слов дают Т, Е, Х, А, С, три солнечные панели и капля жидкого кремния', () => {
+  const html = read('0x5butterfly/index.html');
+  const words = new Map();
+  for (const [, i, word] of html.matchAll(/data-tx="(\d)"[^>]*>([^<]+)<\/button>/g)) words.set(+i, word);
+  assert.deepEqual([0, 1, 2, 3, 4].map((i) => words.get(i)[0].toUpperCase()).join(''), 'ТЕХАС');
+  const suns = new Set([...html.matchAll(/data-sun="(\d)"/g)].map((m) => m[1]));
+  assert.deepEqual([...suns].sort(), ['0', '1', '2']);
+  assert.match(html, /data-drop /);
+  assert.match(html, /data-post-open/);
+});
+
+test('страница /0x5butterfly/specs/: все разделы, одна h1, оглавление сходится, цены из данных, что пропало — честно', () => {
+  const html = read('0x5butterfly/specs/index.html');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  const rows = [...html.matchAll(/<section class="b-sp__row" id="([^"]+)"/g)].map((m) => m[1]);
+  for (const id of ['capacity', 'size', 'water', 'hinge', 'display', 'cpix', 'retina', 'chip', 'graphics', 'cooling', 'camera', 'eclipse', 'video', 'front', 'power', 'security', 'switches', 'torch', 'cellular', 'location', 'buttons', 'sensors', 'os', 'lost', 'environment', 'box']) assert.ok(rows.includes(id), id);
+  const ids = new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]));
+  for (const [, href] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.has(href), `нет #${href}`);
+  for (const c of PRODUCTS['0x5butterfly'].configs) assert.ok(html.includes(`$${c.usd} · €${c.eur}`), c.id);
+  assert.match(html, /Третья фронталка/);
+  assert.match(html, /шестнадцатью лепестками/);
+});
+
+test('0X Butterfly снят: плашка, «был от» и путь к 0X5 Butterfly', () => {
+  const html = read('butterfly/index.html');
+  assert.ok(html.includes('disc-plate') && html.includes('href="/0x5butterfly/"'));
+  assert.match(html, /был от/);
 });

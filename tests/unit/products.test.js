@@ -60,20 +60,20 @@ test('сравнение: цены совпадают с конфигураци�
   for (const r of COMPARE) assert.ok(r.length >= 2 + n && r.slice(0, 2 + n).every((x) => typeof x === 'string' && x.length));
 });
 
-test('в продаже шесть моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят, осенью — 0X4, а 0X2 снят, весной 2033-го — 0X5 и 0X5 Essential, а 0X4 и 0X3 Essential сняты, в марте 2034-го — 0X5 Pro, а 0X2 Pro и Nova сняты', async () => {
+test('в продаже шесть моделей OY: весной 2031-го сняты 0X0, 0X2 Essential и вся линейка 0X1, зимой вышел 0X Butterfly, весной 2032-го — 0X4Q, а 0X2Q снят, осенью — 0X4, а 0X2 снят, весной 2033-го — 0X5 и 0X5 Essential, а 0X4 и 0X3 Essential сняты, в марте 2034-го — 0X5 Pro, а 0X2 Pro и Nova сняты, в августе — 0X5 Butterfly, а 0X Butterfly снят', async () => {
   const { ON_SALE } = await import('../../js/data/products.js');
-  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q', '0x2', '0x4', '0x3e', '0x2pro', 'nova']) {
+  for (const id of ['0x0', '0x2e', '0x1e', '0x1', '0x1q', '0x1pro', 'pro', 'moth', '0x2q', '0x2', '0x4', '0x3e', '0x2pro', 'nova', 'butterfly']) {
     assert.equal(PRODUCTS[id].discontinued, true, id);
     assert.equal(PRODUCTS[id].tag, 'Снят с продажи', id);
     assert.ok(!PRODUCTS[id].returned, id);
   }
-  assert.deepEqual(ON_SALE, ['0x5e', '0x4q', 'moth2', '0x5', '0x5pro', 'butterfly']);
+  assert.deepEqual(ON_SALE, ['0x5e', '0x4q', 'moth2', '0x5', '0x5pro', '0x5butterfly']);
 });
 
 test('у снятых моделей есть преемник в продаже', () => {
   assert.deepEqual(
     Object.values(PRODUCTS).filter((p) => p.discontinued).map((p) => [p.id, p.successor]),
-    [['0x1e', '0x5e'], ['0x2e', '0x5e'], ['0x3e', '0x5e'], ['0x0', '0x5e'], ['0x2', '0x5'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x2pro', '0x5pro'], ['nova', '0x5pro'], ['0x4', '0x5'], ['0x1', '0x5'], ['0x1q', '0x4q'], ['0x1pro', '0x5pro'], ['pro', '0x5pro']],
+    [['0x1e', '0x5e'], ['0x2e', '0x5e'], ['0x3e', '0x5e'], ['0x0', '0x5e'], ['0x2', '0x5'], ['moth', 'moth2'], ['0x2q', '0x4q'], ['0x2pro', '0x5pro'], ['nova', '0x5pro'], ['0x4', '0x5'], ['butterfly', '0x5butterfly'], ['0x1', '0x5'], ['0x1q', '0x4q'], ['0x1pro', '0x5pro'], ['pro', '0x5pro']],
   );
   for (const p of Object.values(PRODUCTS)) if (p.successor) assert.ok(!PRODUCTS[p.successor].discontinued);
 });
@@ -139,7 +139,7 @@ test('0X2 Pro: 17, 21, 29 ГБ от $889, четыре цвета, первый 
   assert.equal(PRODUCTS['0x2pro'].defaultColor, 'sky');
   // дешевле предшественника
   assert.ok(PRODUCTS['0x2pro'].configs[0].usd < PRODUCTS['0x1pro'].configs[0].usd);
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', '0x5e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', '0x4', '0x5', '0x5pro', 'butterfly']);
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.eu).map((p) => p.id), ['0x3e', '0x5e', 'moth', 'moth2', '0x2pro', 'nova', '0x4q', '0x4', '0x5', '0x5pro', 'butterfly', '0x5butterfly']);
 });
 
 test('цены и цвета 0X1 Pro', () => {
@@ -206,9 +206,13 @@ test('сравнение: у Moth — Argon 1, MSC, раскладушка и в
   // у 0X5 Pro второй экран — E Ink на спинке, но сам он моноблок
   const pr = 2 + COMPARE_MODELS.indexOf('0x5pro');
   assert.match(get('Внешний экран')[pr], /^Цветной E Ink 4,6″/);
+  // у 0X5 Butterfly — вторая книжка, снаружи 6,1″ без «пилюли»
+  const b5 = 2 + COMPARE_MODELS.indexOf('0x5butterfly');
+  assert.match(get('Форма')[b5], /^Книжка, второе поколение/);
+  assert.match(get('Внешний экран')[b5], /^6,1"/);
   // у остальных — моноблок и без внешнего экрана
   COMPARE_MODELS.forEach((id, k) => {
-    if (id === 'moth' || id === 'moth2' || id === 'butterfly') return;
+    if (id === 'moth' || id === 'moth2' || id === 'butterfly' || id === '0x5butterfly') return;
     assert.equal(get('Форма')[2 + k], 'Моноблок', id);
     if (id !== '0x5pro') assert.equal(get('Внешний экран')[2 + k], '—', id);
   });
@@ -224,7 +228,8 @@ test('0X Nova: был от $999 / €1149, один цвет «Сверхнов�
   assert.ok(nova.discontinued && nova.successor === '0x5pro');
   assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('nova') + 1], '0x5pro');
   assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x5pro') + 1], 'butterfly');
-  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('butterfly') + 1], 'pro');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('butterfly') + 1], '0x5butterfly');
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x5butterfly') + 1], 'pro');
   assert.equal(SHORT_NAMES.nova, 'Nova');
   const i = 2 + COMPARE_MODELS.indexOf('nova');
   const get = (label) => COMPARE.find((r) => r[1] === label);
@@ -233,16 +238,17 @@ test('0X Nova: был от $999 / €1149, один цвет «Сверхнов�
   assert.match(get('Всего')[i], /пять сзади/);
   assert.match(get('3,5 мм · USB-C')[i], /^Нет/);
   assert.match(get('Система')[i], /игры заблокированы/);
-  // монохромная — только у Nova; стилус и датчики камеры — у Nova, 0X5 Pro и Butterfly
+  // монохромная — только у Nova; стилус — у Nova, 0X5 Pro и Butterfly; датчики камеры — ещё и у 0X5 Butterfly
   const bf = 2 + COMPARE_MODELS.indexOf('butterfly');
   const pr = 2 + COMPARE_MODELS.indexOf('0x5pro');
-  for (const [name, who] of [['Монохромная', [i]], ['Стилус', [i, pr, bf]], ['Датчики камеры', [i, pr, bf]]]) {
+  const b5 = 2 + COMPARE_MODELS.indexOf('0x5butterfly');
+  for (const [name, who] of [['Монохромная', [i]], ['Стилус', [i, pr, bf]], ['Датчики камеры', [i, pr, bf, b5]]]) {
     get(name).slice(2, 2 + COMPARE_MODELS.length).forEach((v, k) => assert.equal(v !== '—', who.includes(k + 2), `${name}: ${COMPARE_MODELS[k]}`));
   }
 });
 
-test('метка «Новинка» — только у 0X5 Pro', () => {
-  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x5pro']);
+test('метка «Новинка» — только у 0X5 Butterfly', () => {
+  assert.deepEqual(Object.values(PRODUCTS).filter((p) => p.tag === 'Новинка').map((p) => p.id), ['0x5butterfly']);
 });
 
 test('0X3 Essential: реверанс 0X0 — четыре kill switch и фонарь на 5000 м, Cesium 1, пять цветов без красного, был от $399 / €469; снят весной 2033-го, преемник — 0X5 Essential', async () => {
@@ -298,8 +304,9 @@ test('юаней больше нет: в Китае цены назначает 
   for (const r of COMPARE) assert.equal(r.length, 2 + COMPARE_MODELS.length + (r.length > 2 + COMPARE_MODELS.length ? 1 : 0), r[1]);
 });
 
-test('0X Butterfly: четыре версии памяти до 2 ТБ, пять цветов во главе с «Сигнальным Красным», Евросоюз да, Китай нет', () => {
+test('0X Butterfly: четыре версии памяти до 2 ТБ, пять цветов во главе с «Сигнальным Красным», Евросоюз да, Китай нет; снят в августе 2034-го, преемник — 0X5 Butterfly', () => {
   const p = PRODUCTS.butterfly;
+  assert.ok(p.discontinued && p.successor === '0x5butterfly');
   assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['12/256', 1599, 1799], ['16/512', 1799, 1999], ['16/1024', 1999, 2199], ['24/2048', 2399, 2599]]);
   assert.deepEqual(Object.keys(p.colors), ['signal', 'morpho', 'swallowtail', 'cabbage', 'admiral']);
   // главный цвет OY — лицо модели
@@ -427,7 +434,7 @@ test('0X5 Essential: из одного куска — цельный алюми�
 test('0X5 Pro: смотрит в оба — CPix 3 на магнитах и пьезо, сетчатка, шайба выезжает на 20 мм, E Ink на спинке, гибкий GP30 Pro, Love Gen 5, 0Pen 2; от $1149', async () => {
   const { COMPARE, COMPARE_MODELS, SHORT_NAMES, ON_SALE } = await import('../../js/data/products.js');
   const p = PRODUCTS['0x5pro'];
-  assert.equal(p.tag, 'Новинка');
+  assert.ok(!p.tag, '«Новинка» перешла к 0X5 Butterfly');
   assert.ok(!p.discontinued && p.eu && !p.cn);
   assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['16/512', 1149, 1299], ['24/1024', 1299, 1449], ['32/2048', 1599, 1799]]);
   assert.deepEqual([0x47D, 0x513, 0x63F], [1149, 1299, 1599]);
@@ -452,4 +459,37 @@ test('0X5 Pro: смотрит в оба — CPix 3 на магнитах и пь
   assert.match(get('Охлаждение'), /^Трёхслойная/);
   assert.equal(get('Цвета'), Object.values(p.colors).join(', '));
   for (const r of COMPARE) assert.ok(r[i] && r[i].length, `пусто: ${r[1]}`);
+});
+
+test('0X5 Butterfly: новая игра+ — GP30 Ultra, FIG FourNV с NVIDIA, CamelOS 3.1 с .exe, «Имаго», два сканера сетчатки, «Затмение», Love Gen 5 Semi; от $1999', async () => {
+  const { COMPARE, COMPARE_MODELS, SHORT_NAMES, ON_SALE } = await import('../../js/data/products.js');
+  const p = PRODUCTS['0x5butterfly'];
+  assert.equal(p.tag, 'Новинка');
+  assert.ok(!p.discontinued && p.eu && !p.cn);
+  assert.deepEqual(p.configs.map((c) => [c.id, c.usd, c.eur]), [['16/512', 1999, 2199], ['24/1024', 2199, 2399], ['32/2048', 2599, 2799]]);
+  assert.deepEqual([0x7CF, 0x897, 0xA27], [1999, 2199, 2599]);
+  assert.deepEqual(p.colors, { peacock: 'Павлиний глаз', blue: 'Голубянка', brimstone: 'Лимонница', mourning: 'Траурница', pearl: 'Перламутровка' });
+  assert.equal(p.defaultColor, 'peacock');
+  assert.deepEqual(Object.keys(p.swatches), Object.keys(p.colors));
+  assert.equal(SHORT_NAMES['0x5butterfly'], '0X5 Butterfly');
+  assert.ok(ON_SALE.includes('0x5butterfly') && !ON_SALE.includes('butterfly'));
+  // самый дорогой OY в продаже: после первого Butterfly ($1599), перед снятым 0X0 Pro
+  assert.equal(COMPARE_MODELS[COMPARE_MODELS.indexOf('0x5butterfly') - 1], 'butterfly');
+  assert.ok(ON_SALE.every((id) => PRODUCTS[id].configs[0].usd <= p.configs[0].usd));
+  const i = 2 + COMPARE_MODELS.indexOf('0x5butterfly');
+  const get = (label) => COMPARE.find((r) => r[1] === label)[i];
+  assert.equal(COMPARE[0][i], 'от $1999');
+  assert.match(get('Процессор'), /^Fyr GP30 Ultra.*FIG FourNV вместе с NVIDIA: RTX и DLSS/);
+  assert.match(get('Чип безопасности'), /^Love Gen 5 Semi/);
+  assert.match(get('Шторка камер'), /^«Затмение»: электрохромный/);
+  assert.match(get('Фронтальные'), /50 МП снаружи и 50 МП внутри/);
+  assert.match(get('Всего'), /третья фронталка ушла/);
+  assert.match(get('Биометрия'), /^Два сканера сетчатки/);
+  assert.match(get('Система'), /^CamelOS 3\.1.*\.exe/);
+  assert.match(get('Выход'), /^Август 2034/);
+  assert.equal(get('Цвета'), Object.values(p.colors).join(', '));
+  for (const r of COMPARE) assert.ok(r[i] && r[i].length, `пусто: ${r[1]}`);
+  // у первого Butterfly — «был от»
+  const bf = 2 + COMPARE_MODELS.indexOf('butterfly');
+  assert.equal(COMPARE[0][bf], 'Снят с продажи (был от $1599)');
 });
